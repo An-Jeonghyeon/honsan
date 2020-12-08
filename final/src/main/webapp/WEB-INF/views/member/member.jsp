@@ -172,8 +172,8 @@ $(function(){
 });
 
 </script>
-</head>
-<body>
+
+
 <div id="container"> <!--이건 만들어주는 틀로 바꿀거(임시)-->
 	<div id="singup-content">
         
