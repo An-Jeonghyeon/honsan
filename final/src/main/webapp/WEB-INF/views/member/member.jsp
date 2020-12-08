@@ -4,8 +4,9 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/dateUtil.js"></script>
-<script type="text/javascript">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/member.css" type="text/css">
 
+<script type="text/javascript">
 /* 유효성 검사 */
 function memberOk() {
     var f = document.memberForm;
