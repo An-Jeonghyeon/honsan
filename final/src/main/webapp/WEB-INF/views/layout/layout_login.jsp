@@ -12,6 +12,7 @@
     <script type="text/javascript" src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/layout_login.js"></script>
     
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/member.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/layout_login.css" type="text/css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.0/css/all.min.css" integrity="sha512-gRH0EcIcYBFkQTnbpO8k0WlsD20x5VzjhOA1Og8+ZUAhcMUCvd+APD35FJw3GzHAP3e+mP28YcDJxVr745loHw==" crossorigin="anonymous" />
