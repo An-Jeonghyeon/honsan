@@ -1,19 +1,230 @@
 @charset "UTF-8";
 
 *{
-	padding: 0;
-	margin: 0;
-	
+    padding: 0;
+    margin: 0;
+            
 }
-
-
+        
+/* 큰틀 조정 위치 */
+/* 메인 게시글 list box */
 .interior_box {
-	width: 100%;
-	background: yellow;
+    width: 1200px;
+    padding-top: 20px;
+    min-height: 1130px;
+    margin: 0px auto;
+    display: flex;
+ 
+
+    
+}
+/* 메인 게시글 list 의 한줄을 갖고있는 박스  */  
+.interior_object{
+    width: 269px;
+    height: 558px;
+
+
+    padding-left: 10px;
+    padding-right: 10px;
+    margin: 0 auto;
+    
+
+
+    
+}
+/* 메인 게시글 모든 속성을 갖구있는 박스  */
+.interior_atr{
+    width: 269px;
+    height: 518px;
+
+    padding-bottom: 40px;
+
+}
+/* 메인화면 게시글 타이틀 (회원 이미지 , 회원아이디 , 회원 좋아요 , 게시글 제목) */
+.interior_subject{
+    width: 100%;
+    height: 36px;
+    margin-bottom: 16px;
+
+}
+/* 회원 이미지 박스 */
+.interior_subject_user_img{
+    width: 48px;
+    height: 36px;
+
+    float: left;
+}
+/* 회원 이미지 파일  */
+.interior_subject_user_img img{
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+}
+.interior_subject_user_img:hover {
+    cursor: pointer;
+    background: #d6d5d850;
+
 }
 
-.interior_object{
-	width: 300px;
-	height: 400px;
-	background: gray;
+/* 메인 게시글 회원 아이디 및 제목 box */
+.interior_subject_id_title{
+    width: 221px;
+    height: 36px;
+    
+    float: left;
+    
 }
+/* 메인 게시글 회원 아이디  */
+.interior_subject_userId{
+    width: 100%;
+    height: 19px;
+    
+    font-size: 15px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    font-weight: 700;
+}
+/* 회원 아이디 a 태그 속성  */
+.interior_subject_userId_idTag{
+    font-size: 15px;
+    color: #424242;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.interior_subject_userId_idTag:hover {
+    cursor: pointer;
+    background: #d6d5d850;
+}
+
+/* 회원 아이디 like 태그 속성  */
+.interior_subject_userId_likeTag{
+    font-size: 15px;
+    color: #35c5f0;
+    font-weight: 700;
+    text-decoration: none;
+
+}
+
+
+
+/* 메인 게시글 제목  */
+.interior_subject_subject{
+    width: 100%;
+    height: 16px;
+    margin-top: 1px;
+    
+    font-size: 12px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    
+
+}
+
+/* 메인 게시판 이미지 박스  */
+.interior_object_mainImg {
+    width: 269px;
+    height: 269px;
+    border-radius: 5px;
+ 
+    clear: both;
+}
+/* 메인 게시판 이미지   */
+.interior_object_mainImg img{
+    width: 269px;
+    height: 269px;
+    border-radius: 5px;
+}
+
+/* 메인화면 게시글의 좋아요 , 댓글 , 회원좋아효 수 창  */
+.interior_counts{
+    width: 100%;
+    height: 53px;
+    display: flex;
+}
+
+.interior_counts_box{
+    width: 100%;
+    height: 54px;
+    padding-top: 13px;
+    padding-bottom: 16px;
+    box-sizing: border-box;
+    background: rgba(255, 255, 255, 0);
+    border: 0px;
+    font-size: 12px;
+ 
+    
+}
+.interior_counts_box img{
+    width: 24px;
+    height: 24px;
+    
+}
+
+.interior_counts_box span{
+    vertical-align: 7px;
+    font-size: inherit;
+    padding-left: 5px;
+   
+}
+
+/* 인테리어 자랑 내용 */
+.interior_content{
+    width: 100%;
+    height: 66px;
+    font-size: 15px;
+    /* 넘치면 ... 나오기  */
+    text-overflow: ellipsis;
+    overflow: hidden;
+
+    white-space: normal;
+    height: 4em;
+    
+    
+}
+
+       
+
+/* 메인 화면 댓글 창 */
+.interior_first_review {
+    width: 100%;
+    height: 66px;
+    margin-top: 12px;
+
+}
+/* 댓글 작성한 회원 이미지 box */
+.interior_first_review_img{
+    width: 34px;
+    height: 100%;
+
+    float: left;
+
+}
+/* 댓글 작성한 회원 이미지 */
+.interior_first_review_img img{
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+}
+
+
+/* 댓글 작성한 회원의 내용 */
+.interior_first_review_content{
+    width: 235px;
+    height: 100%;
+
+    float: left;
+    font-size: 15px;
+}
+
+.interior_first_review_content a{
+    font-size: inherit;
+    font-weight: 700;
+    text-decoration: none;
+    color : #424242;
+    padding-right: 5px;
+}
+
+
