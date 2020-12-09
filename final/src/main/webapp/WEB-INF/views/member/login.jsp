@@ -84,29 +84,32 @@ function sendLogin() {
 
 
 	<div class="body-container">
-		<div style="width: 360px; margin: 0px auto; padding-top: 90px;">
+		<hr>
+		<div style="width: 420px; margin: 0px auto; padding-top: 90px;">
 			<div style="text-align: center;">
 				<span style="font-weight: bold; font-size: 27px; color: #424951;">
 					로 그 인 </span>
 			</div>
-
+			
 			<form name="loginForm" method="post" action="">
 				<table style="margin: 15px auto; width: 100%; border-spacing: 0px;">
 					<tr align="center" height="60">
 						<td><label for="userId" id="lblUserId" class="lbl">아이디
-								: 영문, 숫자 조합 5자 이상</label> <input type="text" name="userId" id="userId"
+								: 영문, 숫자 조합 5자 이상</label> 
+								<input type="text" name="userId" id="userId"
 							class="loginTF" maxlength="15" tabindex="1"
 							onfocus="document.getElementById('lblUserId').style.display='none';"
 							onblur="bgLabel(this, 'lblUserId');"></td>
 					</tr>
 					<tr align="center" height="60">
 						<td><label for="userPwd" id="lblUserPwd" class="lbl">비밀번호
-								: 영문,숫자 조합 10자 이상</label> <input type="password" name="userPwd"
+								: 영문,숫자 조합 10자 이상</label> 
+								<input type="password" name="userPwd"
 							id="userPwd" class="loginTF" maxlength="20" tabindex="2"
 							onfocus="document.getElementById('lblUserPwd').style.display='none';"
 							onblur="bgLabel(this, 'lblUserPwd');"></td>
 					</tr>
-					<tr>
+					<tr style="height: 30px;">
 						<td><input type="checkbox" name="idsave" value="saveOk">
 							아이디 저장</td>
 					</tr>
@@ -120,7 +123,7 @@ function sendLogin() {
 						<td><a href="${pageContext.request.contextPath}/">아이디 찾기</a>&nbsp;&nbsp;
 							| &nbsp;&nbsp; <a href="${pageContext.request.contextPath}/">패스워드
 								찾기</a>&nbsp;&nbsp; | &nbsp;&nbsp; <a
-							href="${pageContext.request.contextPath}/">회원가입</a></td>
+							href="${pageContext.request.contextPath}/member/member">회원가입</a></td>
 					</tr>
 
 					<tr align="center" height="40">
@@ -134,21 +137,21 @@ function sendLogin() {
 
 		</div>
 
-		<div style="width: 360px; margin: 0px auto; padding-top: 10px;">
+		<div style="width: 420px; margin: 0px auto; padding-top: 10px; text-align: center;">
 			<p class="snslogin"
-				style="width: 100%; margin: 0 auto 10px; text-align: center;">SNS
+				style="width: 100%; margin: 10px auto 15px; text-align: center;">SNS
 				계정으로 로그인</p>
 			<!-- Naver Login Btn -->
-			<div id="naverIdLogin">
+			<div id="naverIdLogin" style=" display: inline-block;">
 				<a id="naverIdLogin_loginButton"> <img
 					src="https://static.nid.naver.com/oauth/big_g.PNG?version=js-2.0.0"
-					width="100%" height="auto"
+					width="190px" height="auto"
 					style="max-width: 400px; max-height: 60px" />
 				</a>
 			</div>
 			<!-- KaKao Login Btn --> 
 			<a id="login-form-btn" href="javascript:loginFormWithKakao()"> 
-			<img src="//k.kakaocdn.net/14/dn/btqCn0WEmI3/nijroPfbpCa4at5EIsjyf0/o.jpg" width="100%" height="auto" style="max-width:400px;max-height:60px"/> </a>
+			<img src="//k.kakaocdn.net/14/dn/btqCn0WEmI3/nijroPfbpCa4at5EIsjyf0/o.jpg" width="190px" height="auto" style="max-width:400px;max-height:60px"/> </a>
 
 		</div>
 
