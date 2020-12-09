@@ -55,17 +55,9 @@ public class MemberController {
 			model.addAttribute("mode", "member");
 			model.addAttribute("message", "아이디 중복으로 회원가입이 실패했습니다.");
 			return ".member.member";
-		}
+		}	
 		
-		StringBuilder sb=new StringBuilder();
-		sb.append(dto.getUserName()+ "님의 회원 가입이 정상적으로 처리되었습니다.<br>");
-		sb.append("메인화면으로 이동하여 로그인 하시기 바랍니다.<br>");
-		
-		// 리다이렉트된 페이지에 값 넘기기
-        reAttr.addFlashAttribute("message", sb.toString());
-        reAttr.addFlashAttribute("title", "회원 가입");
-		
-		return "redirect:/member/complete";
+		return ".member.complete";
 	}
 	
 /*

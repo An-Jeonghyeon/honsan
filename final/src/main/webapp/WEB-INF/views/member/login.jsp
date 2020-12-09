@@ -95,7 +95,7 @@ function sendLogin() {
 				<table style="margin: 15px auto; width: 100%; border-spacing: 0px;">
 					<tr align="center" height="60">
 						<td><label for="userId" id="lblUserId" class="lbl">아이디
-								: 영문, 숫자 조합 5자 이상</label> 
+								: 영문, 숫자 조합 4~12자</label> 
 								<input type="text" name="userId" id="userId"
 							class="loginTF" maxlength="15" tabindex="1"
 							onfocus="document.getElementById('lblUserId').style.display='none';"
@@ -103,7 +103,7 @@ function sendLogin() {
 					</tr>
 					<tr align="center" height="60">
 						<td><label for="userPwd" id="lblUserPwd" class="lbl">비밀번호
-								: 영문,숫자 조합 10자 이상</label> 
+								: 영문,숫자,특수 문자 조합 6~16자</label> 
 								<input type="password" name="userPwd"
 							id="userPwd" class="loginTF" maxlength="20" tabindex="2"
 							onfocus="document.getElementById('lblUserPwd').style.display='none';"
