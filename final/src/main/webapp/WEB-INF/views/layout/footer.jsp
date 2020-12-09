@@ -6,7 +6,7 @@
 	 <div class="footerBox">
                 <div class="innerfooterBox">
                     <ul class="footerUl1">
-                        <li><a href="${pageContext.request.contextPath}">공지사항</a> <span>|</span></li>
+                        <li><a href="${pageContext.request.contextPath}/infos/infos">고객센터</a> <span>|</span></li>
                         <li><a href="${pageContext.request.contextPath}"> 상담접수</a> <span>|</span></li>
                         <li><a href="${pageContext.request.contextPath}"> 이용약관</a> <span>|</span></li>
                         <li><a href="${pageContext.request.contextPath}"> 개인정보처리방침</a></li>

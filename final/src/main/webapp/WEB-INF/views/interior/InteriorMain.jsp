@@ -4,5 +4,10 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <section>
-	<div class="">내용 작성</div>
+	<div class="interior_box">
+		<div class="interior_object"></div>
+	
+	
+	
+	</div>
 </section>
