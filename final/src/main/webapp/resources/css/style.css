@@ -10,16 +10,7 @@ body {
 	/*line-height: 1.42857143;*/
 }
 
-a {
-	cursor: pointer;
-	color: #000000;
-	text-decoration: none;
-	/*line-height: 150%;*/
-}
-a:hover, a:active {
-	color: #F28011;
-	text-decoration: underline;
-}
+
 
 .btn {
 	color:#333333;
