@@ -1,105 +1,61 @@
-<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ page contentType="text/html; charset=UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<script type="text/javascript">
-function deleteBoard(num) {
-<c:if test="${sessionScope.member.userId==dto.userId || sessionScope.member.userId=='admin' }">
-	if(confirm("게시물을 삭제 하시겠습니까 ?")) {
-		var q="num="+num+"&${query}";
-		var url="${pageContext.request.contextPath}/bbs/delete?"+q;
-		location.href=url;
-	}
-</c:if>
+<div class="articleButton">
+                <button class="btn1" type="button">이전글</button>
+                <button class="btn2" type="button">다음글</button>
+            </div>
+            <div class="articleMainBody">
+                <div class="articleMainHeader">
+                    <div class="articleGo">
+                        <span><a href="${pageContext.request.contextPath">자랑게시판 &gt;</a></span>
+                    </div>
+                    <div class="articleMainHeaderSubject">
+                        <span>오늘하루도 수고 하셨습니다 여러분</span>
+                    </div>
+                    <div class="articleSub">
+                        <div class="articleMainHeaderUserName">
+                            <span>주다혜</span>
+                            <span class="createdNumber">2020.12.03. 01:03</span>
+                            <span class="hitCountNumber">조회 670</span>
+                        </div>
+                        <div class="articleMainHeaderReply">
+                            <span> <a href="${pageContext.request.contextPath}"> 댓글 54</a></span>
+                        </div>
+                    </div>
+                </div>
 
-<c:if test="${sessionScope.member.userId!=dto.userId || sessionScope.member.userId!='admin' }"> 
-	alert("게시글을 삭제할 수 없습니다.");
-</c:if>
-
-}
-
-function updateBoard(num) {
-	<c:if test="${sessionScope.member.userId==dto.userId}">
-		var q="num="+num+"&page=${page}";
-		var url="${pageContext.request.contextPath}/bbs/update?"+q;
-		location.href=url;
-	</c:if>
-	<c:if test="${sessionScope.member.userId!=dto.userId}">
-		alert("게시글을 수정할 수 없습니다.");
-	</c:if>	
-}
-
-</script>
-
-<div class="body-container" style="width: 700px;">
-	<div class="body-title">
-		<h3><i class="fas fa-chalkboard"></i> 자유 게시판 </h3>
-	</div>
-
-	<div>
-		<table style="width: 100%; margin-top: 20px; border-spacing: 0px; border-collapse: collapse;">
-			<tr height="35" style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc;">
-				<td colspan="2" align="center">
-					${dto.subject}
-				</td>
-			</tr>
-
-			<tr height="35" style="border-bottom: 1px solid #cccccc;">
-				<td width="50%" align="left" style="padding-left: 5px;">
-					이름 : ${dto.userName}
-				</td>
-				<td width="50%" align="right" style="padding-right: 5px;">
-					${dto.created} | 조회 ${dto.hitCount}
-				</td>
-			</tr>
-			
-			<tr style="border-bottom: 1px solid #cccccc;">
-				<td colspan="2" align="left" style="padding: 10px 5px;" valign="top" height="200">
-					${dto.content}
-				</td>
-			</tr>
-
-			<tr height="35" style="border-bottom: 1px solid #cccccc;">
-				<td colspan="2" align="left" style="padding-left: 5px;">
-					첨부 :
-					<c:if test="${not empty dto.saveFilename}">
-						<a href="${pageContext.request.contextPath}/bbs/download?num=${dto.num}">${dto.originalFilename}</a>
-					</c:if>
-				</td>
-			</tr>
-
-			<tr height="35" style="border-bottom: 1px solid #cccccc;">
-				<td colspan="2" align="left" style="padding-left: 5px;">
-					이전글 :
-					<c:if test="${not empty preReadDto}">
-						<a href="${pageContext.request.contextPath}/bbs/article?${query}&num=${preReadDto.num}">${preReadDto.subject}</a>
-					</c:if>
-				</td>
-			</tr>
-
-			<tr height="35" style="border-bottom: 1px solid #cccccc;">
-				<td colspan="2" align="left" style="padding-left: 5px;">
-					다음글 :
-					<c:if test="${not empty nextReadDto}">
-						<a href="${pageContext.request.contextPath}/bbs/article?${query}&num=${nextReadDto.num}">${nextReadDto.subject}</a>
-					</c:if>					
-				</td>
-			</tr>
-		</table>
-
-		<table style="width: 100%; margin: 0px auto 20px; border-spacing: 0px;">
-			<tr height="45">
-				<td width="300" align="left">
-					<button type="button" class="btn" onclick="updateBoard('${dto.num}');">수정</button>
-					<button type="button" class="btn" onclick="deleteBoard('${dto.num}');">삭제</button>
-				</td>
-
-				<td align="right">
-					<button type="button" class="btn" onclick="javascript:location.href='${pageContext.request.contextPath}/bbs/list?${query}';">리스트</button>
-				</td>
-			</tr>
-		</table>
-	</div>
-
-</div>
+                <div class="ContentBody">
+                    <pre>
+가계약금 및 본인부담금 잘 체크하기
+가계약금 및 본인부담금 잘 체크하기
+가계약금 및 본인부담금 잘 체크하기
+가계약금 및 본인부담금 잘 체크하기
+가계약금 및 본인부담금 잘 체크하기
+가계약금 및 본인부담금 잘 체크하기
+가계약금 및 본인부담금 잘 체크하기
+</pre>
+                </div>
+                <div class="LikeBox">
+                    <span class="LikeHeart"> <i class="far fa-heart ILikeHeart"></i>좋아요 13</span>
+                    <span class="Comment"><i class="far fa-comments"></i>댓글 54</span>
+                    <span class="fullLikeHeart"> <i class="fas fa-heart"></i></span>
+                </div>
+                <div class="ReplySUb">
+                    <span>댓글</span>
+                </div>
+                <div class="ReplyList">
+                    여기는 댓글 리스트 
+                </div>
+                <div class="ReplyBody">
+                    <div class="ReplyContentBox">
+                        <span>주다혜</span>
+                        <textarea name="" id="" placeholder="댓글을 남겨보세요"></textarea>
+                        <div class="ReplySubmitButton">
+                            <button class="Replybtn" type="button">등록</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
