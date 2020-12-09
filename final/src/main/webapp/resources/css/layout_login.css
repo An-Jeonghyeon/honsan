@@ -1,6 +1,7 @@
 *{
     margin: 0;
     padding: 0;
+    font-family: 'Jeju Gothic';
 }
 @font-face {
     /* font-family: 'YESGothic-Regular';
@@ -21,13 +22,13 @@
 .jejugothic * { 
  font-family: 'Jeju Gothic', sans-serif;
 }
+
 i{
     color: rgb(55, 55, 55);
 }
 #mainBody{
     width: 100%;
     margin: 30px auto;
-    font-family: 'UNPGothicKS';
     font-weight: 600;
     /* background-color: rgb(55, 51, 45);  */
 }
