@@ -12,7 +12,7 @@ public class Member {
 	private String birth, birth_year, birth_month, birth_day ;
 	private String zip;
 	private String addr1, addr2;
-	private int memberState;
+	private int enabled;
 	
 	public long getMemberIdx() {
 		return memberIdx;
@@ -146,12 +146,12 @@ public class Member {
 	public void setAddr2(String addr2) {
 		this.addr2 = addr2;
 	}
-	public int getMemberState() {
-		return memberState;
+	public int getEnabled() {
+		return enabled;
 	}
-	public void setMemberState(int memberState) {
-		this.memberState = memberState;
+	public void setEnabled(int enabled) {
+		this.enabled = enabled;
 	}
-	
+
 
 }
