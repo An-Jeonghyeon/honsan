@@ -235,4 +235,70 @@ public class MemberController {
 		model.put("passed", p);
 		return model;
 	}
+	
+	
+	//아이디 찾기
+
+	
+	@RequestMapping(value="findId", method=RequestMethod.GET)
+	public String findId() {
+		
+		return ".member.findId";
+	}
+	
+	
+	@RequestMapping(value="findId", method=RequestMethod.POST)
+	public String findId(
+			@RequestParam String userName,
+			@RequestParam String tel,
+			Model model
+			) throws Exception{
+		
+		String usertel="";
+		
+		if(tel.length()>11) {
+			String tels[] = tel.split("-");
+			usertel=tels[0]+tels[1]+tels[2];
+		}else {
+			usertel=tel;
+		}
+		
+		
+		try {
+			Member dto=service.findId(userName);
+			String dtotelS[]=dto.getTel().split("-");
+			
+			String dtotel=dtotelS[0]+dtotelS[1]+dtotelS[2];
+			
+			if(!userName.equals(dto.getUserName()) || !usertel.equals(dtotel)) {
+				model.addAttribute("message", "가입하지 않은 회원입니다");
+				return ".member.findId";
+			}else {
+				model.addAttribute("message", "아이디는 ["+ dto.getUserId()+"] 입니다");
+				return ".member.findId";
+			}
+			
+		} catch (DataIntegrityViolationException e) {
+			// 데이터형식 오류, 참조키, NOT NULL 등의 제약조건 위반
+			e.printStackTrace();
+			model.addAttribute("message", "가입하지 않은 회원입니다");
+			return ".member.findId";
+		} catch (Exception e) {
+			e.printStackTrace();
+		}	
+		
+		return ".member.findId";
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

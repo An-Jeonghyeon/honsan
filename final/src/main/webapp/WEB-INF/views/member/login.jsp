@@ -120,7 +120,7 @@ function sendLogin() {
 					</tr>
 
 					<tr align="center" height="45">
-						<td><a href="${pageContext.request.contextPath}/">아이디 찾기</a>&nbsp;&nbsp;
+						<td><a href="${pageContext.request.contextPath}/member/findId">아이디 찾기</a>&nbsp;&nbsp;
 							| &nbsp;&nbsp; <a href="${pageContext.request.contextPath}/">패스워드
 								찾기</a>&nbsp;&nbsp; | &nbsp;&nbsp; <a
 							href="${pageContext.request.contextPath}/member/member">회원가입</a></td>
