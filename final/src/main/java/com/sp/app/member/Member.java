@@ -9,10 +9,10 @@ public class Member {
 	private String created_date, modify_date, last_login;
 	private String email, email1, email2;
 	private String tel, tel1, tel2, tel3;
-	private String birth;
+	private String birth, birth_year, birth_month, birth_day ;
 	private String zip;
 	private String addr1, addr2;
-	private int enabled;
+	private int memberState;
 	
 	public long getMemberIdx() {
 		return memberIdx;
@@ -110,6 +110,24 @@ public class Member {
 	public void setBirth(String birth) {
 		this.birth = birth;
 	}
+	public String getBirth_year() {
+		return birth_year;
+	}
+	public void setBirth_year(String birth_year) {
+		this.birth_year = birth_year;
+	}
+	public String getBirth_month() {
+		return birth_month;
+	}
+	public void setBirth_month(String birth_month) {
+		this.birth_month = birth_month;
+	}
+	public String getBirth_day() {
+		return birth_day;
+	}
+	public void setBirth_day(String birth_day) {
+		this.birth_day = birth_day;
+	}
 	public String getZip() {
 		return zip;
 	}
@@ -128,10 +146,12 @@ public class Member {
 	public void setAddr2(String addr2) {
 		this.addr2 = addr2;
 	}
-	public int getEnabled() {
-		return enabled;
+	public int getMemberState() {
+		return memberState;
 	}
-	public void setEnabled(int enabled) {
-		this.enabled = enabled;
+	public void setMemberState(int memberState) {
+		this.memberState = memberState;
 	}
+	
+
 }

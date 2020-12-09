@@ -120,7 +120,7 @@ function memberOk() {
         return;
     } 
     
-    f.action = "${pageContext.request.contextPath}/ ";
+    f.action = "${pageContext.request.contextPath}/member/${mode}";
 
     f.submit();
 }
@@ -231,22 +231,22 @@ $(function(){
 
                         <div class="basic-birth">
                             <span  class="b-span">생년월일</span>
-                            <select name="birth-year" class="birth-select">
+                            <select name="birth_year" class="birth-select">
 								<c:forEach var="i" begin="0" end="${2020-1910}">
 								    <c:set var="yearOption" value="${2020-i}" />
 								    <option value="${yearOption}">${yearOption}</option>
 								</c:forEach>
                             </select>
                             <span>년</span>
-                            <select name="birth-month" class="birth-select">
+                            <select name="birth_month" class="birth-select">
 								<c:forEach var="i" begin="1" end="12">
-							    	<option value="${i}">${i}</option>
+							    	<option value="<fmt:formatNumber value='${i}' pattern='00'/>"> ${i}</option>
 								</c:forEach>
                             </select>
                             <span>월</span>
-                            <select name="birth-day" class="birth-select">
+                            <select name="birth_day" class="birth-select">
 								<c:forEach var="i" begin="1" end="31">
-							    	<option value="${i}">${i}</option>
+							    	<option value=" <fmt:formatNumber value='${i}' pattern='00'/>"> ${i}</option>
 								</c:forEach>
                             </select>
                             <span>일</span>
@@ -271,7 +271,7 @@ $(function(){
 
                         <div class="basic-tel">
                             <span  class="b-span">휴대폰 번호</span>
-                            <select name="tel1" id="">
+                            <select name="tel1">
                                 <option value="010">010</option>
                                 <option value="011">011</option>
                                 <option value="016">016</option>
