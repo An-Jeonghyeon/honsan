@@ -19,6 +19,21 @@ public class Board {
 	private String saveFilename; 
 	private String originalFilename;
 	
+	private int replyCount;
+	private int boardLikeCount;	
+	
+	public int getReplyCount() {
+		return replyCount;
+	}
+	public void setReplyCount(int replyCount) {
+		this.replyCount = replyCount;
+	}
+	public int getBoardLikeCount() {
+		return boardLikeCount;
+	}
+	public void setBoardLikeCount(int boardLikeCount) {
+		this.boardLikeCount = boardLikeCount;
+	}
 	public int getListNum() {
 		return listNum;
 	}
@@ -84,8 +99,5 @@ public class Board {
 	}
 	public void setSubject(String subject) {
 		this.subject = subject;
-	}
-	
-	
-	
+	}	
 }

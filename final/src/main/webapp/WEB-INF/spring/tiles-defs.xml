@@ -45,10 +45,10 @@
 	</definition>
 	
 	<!-- 순서가 바뀌면 안됨(* 많은것이 위에) -->
-	<definition name=".*.*.*" extends=".mainLayout">
+	<definition name=".*.*.*" extends=".mainLayout"> 
 		<put-attribute name="body" value="/WEB-INF/views/{1}/{2}/{3}.jsp"/>
 	</definition>
-	<definition name=".*.*" extends=".mainLayout">
+	<definition name=".*.*" extends=".mainLayout"> 
 		<put-attribute name="body" value="/WEB-INF/views/{1}/{2}.jsp"/>
 	</definition>
 	<definition name=".*" extends=".mainLayout">

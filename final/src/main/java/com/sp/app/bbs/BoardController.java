@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sp.app.common.FileManager;
 import com.sp.app.common.MyUtil;
@@ -303,9 +304,30 @@ public class BoardController {
 		
 		resp.setContentType("text/html;charset=utf-8");
 		PrintWriter out = resp.getWriter();
-		out.print("<script>alert('파일을 다운로드 할 수 없습니다.');history.back();</script>");
-		
+		out.print("<script>alert('파일을 다운로드 할 수 없습니다.');history.back();</script>");		
 	}
 	
+	// AJAX - 리플/답글 등록 : JSON 응답
+	@RequestMapping(value = "insertReply", method = RequestMethod.POST) // 등록은 get으로 하면 안된다~~
+	@ResponseBody
+	public Map<String, Object> insertReply(
+			Reply dto,
+			HttpSession session
+			) throws Exception {
+		
+		SessionInfo info = (SessionInfo)session.getAttribute("member");
+		String state = "true";
+		
+		try {
+			dto.setUserId(info.getUserId());
+			service.insertReply(dto);
+		} catch (Exception e) {
+			state="false";
+		}
+		
+		Map<String, Object> model = new HashMap<>();
+		model.put("state", state);
+		return model;
+	}
 	
 }
