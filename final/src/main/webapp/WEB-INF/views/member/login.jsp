@@ -91,7 +91,7 @@ function sendLogin() {
 					로 그 인 </span>
 			</div>
 			
-			<form name="loginForm" method="post" action="">
+			<form name="loginForm" method="post">
 				<table style="margin: 15px auto; width: 100%; border-spacing: 0px;">
 					<tr align="center" height="60">
 						<td><label for="userId" id="lblUserId" class="lbl">아이디

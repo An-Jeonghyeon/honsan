@@ -118,7 +118,7 @@ public class MemberController {
 		String uri=(String)session.getAttribute("preLoginURI");
 		session.removeAttribute("preLoginURI");
 		if(uri==null)
-			uri="redirect:/";
+			uri=".home";
 		else
 			uri="redirect:"+uri;
 		
