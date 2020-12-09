@@ -11,16 +11,24 @@
                 <div class="menuBox"> <a href="${pageContext.request.contextPath}">인테리어</a></div>
                 <div class="menuBox"> <a href="${pageContext.request.contextPath}">건 강</a></div>
                 <div class="loginBox">
-                    <div class="loginName">이경태 님</div>
+                    <div class="loginName">
+              			<c:if test="${not empty sessionScope.member}">
+                			  ${sessionScope.member.userName} 님
+                	    </c:if>
+          	            <c:if test="${empty sessionScope.member}">
+	                    	<a href="${pageContext.request.contextPath}/member/login">로그인</a>
+                  		</c:if> 
+                    </div>
                     <div class="mypage">
                         <i class="fas fa-house-user fa-2x"></i>
-                        <div class="userBox">
-                            <ul>
-                                <li><a href="${pageContext.request.contextPath}">로그인</a></li>
-                                <li><a href="${pageContext.request.contextPath}">로그아웃</a></li>
-                                <li ><a href="${pageContext.request.contextPath}">회원정보</a></li>
-                            </ul>
-                        </div>
+           				<c:if test="${not empty sessionScope.member}">
+	                       	<div class="userBox">
+	                            <ul>
+	                             	<li><a href="${pageContext.request.contextPath}/member/logout">로그아웃</a></li>
+		                            <li><a href="${pageContext.request.contextPath}">회원정보</a></li>
+	                           	</ul>
+	                        </div>
+                 		</c:if>
                     </div>
                 </div>
             </nav>
