@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-            <nav>
+             <nav>
                 <div class="logo"><i class="fas fa-home fa-2x"></i><a href="${pageContext.request.contextPath}"> Home live alone</a></div>
                 <div class="menuBox"> <a href="${pageContext.request.contextPath}">오늘 뭐 입어?</a></div>
                 <div class="menuBox"> <a href="${pageContext.request.contextPath}">혼자 뭐 먹지?</a></div>
@@ -16,9 +16,9 @@
                         <i class="fas fa-house-user fa-2x"></i>
                         <div class="userBox">
                             <ul>
-                                <li><a href="">로그인</a></li>
-                                <li><a href="">로그아웃</a></li>
-                                <li ><a href="">회원정보</a></li>
+                                <li><a href="${pageContext.request.contextPath}">로그인</a></li>
+                                <li><a href="${pageContext.request.contextPath}">로그아웃</a></li>
+                                <li ><a href="${pageContext.request.contextPath}">회원정보</a></li>
                             </ul>
                         </div>
                     </div>
