@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <div>
-    <div>
+    <div style="height: 1000px; background-color: pink;">
         홈 화면 입니다.
     </div>
 </div>
