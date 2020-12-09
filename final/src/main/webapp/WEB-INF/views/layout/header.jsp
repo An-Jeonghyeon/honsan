@@ -46,7 +46,7 @@
                         <li> <a href="${pageContext.request.contextPath}">귀갓길을 부탁해</a></li>
                     </ul>
                     <ul class="menuObject">
-                        <li> <a href="${pageContext.request.contextPath}">내집자랑</a></li>
+                        <li> <a href="${pageContext.request.contextPath}/interior/main">내집자랑</a></li>
                         <li> <a href="${pageContext.request.contextPath}">생활 팁</a></li>
                         <li> <a href="${pageContext.request.contextPath}">생활 팁</a></li>
                         <li> <a href="${pageContext.request.contextPath}">생활 팁</a></li>
