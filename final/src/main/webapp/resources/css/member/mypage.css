@@ -1,0 +1,132 @@
+@charset "UTF-8";
+
+.main-content-container {
+	margin: 0 auto;
+	width: 1300px;
+	height: 1000px;
+	background-color: gray;
+}
+
+/****************
+	마이페이지 왼쪽
+*****************/
+.mypage-left {
+	width: 575px;
+	height: 1000px;
+	background-color: yellow;
+	float: left;
+}
+
+.profile-image {
+	width: 100%;
+	height: 400px;
+	/*background-color: tomato;*/
+	float: clear;
+	/*float: left;*/
+}
+
+.profile-image-background {
+	width: 100%;
+	height: 300px;
+	background-image: url('${pageContext.request.contextPath}/resources/images/pattern/moroccan-flower.png');
+	background-repeat : no-repeat;
+	background-size: cover;
+}
+
+.userImage {
+	margin : 120px 125px;
+	width: 150px;
+	height: 150px;
+}
+
+.profile-userBasicInfo {
+	width: 100%;
+	height: 400px;
+	padding: 50px 100px;
+	background-color: skyblue;
+}
+
+.profile-update-userBasicInfo {
+	width: 100%;
+	height: 200px;
+	background-color: orange;
+}
+
+/****************
+	마이페이지 오른쪽
+*****************/
+.mypage-right {
+	width: 700px;
+	height: 1000px;
+	background-color: pink;
+	
+	float: right;
+	padding: 20px 25px;
+}
+
+.mypage-right .heading{
+	margin-top:0;
+}
+
+.mypage-contents {
+	width: 100%;
+	height: 500px;
+	background-color: lime;
+}
+
+.mypage-contents {
+	padding: 60px 0 0 60px;
+}
+
+.mypage-content-item {
+	display: inline-block;
+	vertical-align: middle;
+	text-align: center;
+	margin-bottom: 30px;
+}
+
+.mypage-content-item .hexagon {
+	margin: 35px 0;
+}
+
+.items {
+	width: 55px;
+	height: 55px;
+}
+
+.hexagon {
+	width: 100px;
+	height: 55px;
+	background: #ececec;
+	position: relative;
+}
+
+.hexagon:before {
+	content: "";
+	position: absolute;
+	top: -25px;
+	left: 0;
+	width: 0;
+	height: 0;
+	border-left: 50px solid transparent;
+	border-right: 50px solid transparent;
+	border-bottom: 25px solid #ececec;
+}
+
+.hexagon:after {
+	content: "";
+	position: absolute;
+	bottom: -25px;
+	left: 0;
+	width: 0;
+	height: 0;
+	border-left: 50px solid transparent;
+	border-right: 50px solid transparent;
+	border-top: 25px solid #ececec;
+}
+
+.mypage-recent {
+	width: 100%;
+	height: 400px;
+	background-color: maroon;
+}
