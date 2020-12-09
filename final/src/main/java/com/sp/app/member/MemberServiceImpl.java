@@ -36,6 +36,10 @@ public class MemberServiceImpl implements MemberService {
 			if(dto.getTel1().length()!=0 && dto.getTel2().length()!=0 && dto.getTel3().length()!=0) {
 				dto.setTel(dto.getTel1() + "-" + dto.getTel2() + "-" + dto.getTel3());
 			}
+			if(dto.getBirth_year().length()!=0 && dto.getBirth_month().length()!=0 && dto.getBirth_day().length()!=0) {
+				dto.setBirth(dto.getBirth_year() + "-" + dto.getBirth_month() + "-" + dto.getBirth_day());
+			}
+			
 			
 			long memberSeq = dao.selectOne("member.memberSeq");
 			dto.setMemberIdx(memberSeq);
@@ -43,8 +47,6 @@ public class MemberServiceImpl implements MemberService {
 			// 회원정보 저장
 			dao.insertData("member.insertMember", memberSeq);
 			
-			// dao.insertData("member.insertMember1", dto);
-			// dao.insertData("member.insertMember2", dto);
 			dao.updateData("member.insertMember12", dto); // member1, member2 테이블 동시에 
 		} catch (Exception e) {
 			e.printStackTrace();

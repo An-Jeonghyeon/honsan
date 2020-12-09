@@ -7,6 +7,47 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/member.css" type="text/css">
 
 <script type="text/javascript">
+
+var id_check = false;
+/* 중복확인  */
+function userIdCheck() {
+	var str = $("#userId").val();
+	str = str.trim();
+	if(!/^[a-zA-Z0-9]{4,12}$/i.test(str)) { 
+		$("#userId").focus();
+		$("#userId").val("");
+		$("#help_id").css("color","red");
+		return;
+	}
+	
+	$("#help_id").css("color","black");
+	var url="${pageContext.request.contextPath}/member/userIdCheck";
+	var q="userId="+str;
+	
+	$.ajax({
+		type:"post"
+		,url:url
+		,data:q
+		,dataType:"json"
+		,success:function(data) {
+			var p=data.passed;
+			if(p=="true") {
+	        	 alert("사용하실 수 있는 아이디입니다.");
+	        	 id_check = true;
+			} else {
+	         	alert("중복된 아이디가 존재합니다.");
+				$("#userId").val("");
+				$("#userId").focus();
+				id_check = false;
+			}
+		}
+	    ,error:function(e) {
+	    	console.log(e.responseText);
+	    }
+	});
+	
+}
+
 /* 유효성 검사 */
 function memberOk() {
     var f = document.memberForm;
@@ -25,6 +66,11 @@ function memberOk() {
         return;
     }
     f.userId.value = str;
+    if(id_check==false) {
+        alert("아이디 중복확인을 해주세요.");
+        f.userId.focus();
+       	return;
+    }
 
     str = f.userPwd.value;
     str = str.trim();
@@ -140,8 +186,6 @@ function changeEmail() {
         f.email1.focus();
     }
 }
-/* 중복확인  */
- 
 
 </script>
 <script>
@@ -209,9 +253,9 @@ $(function(){
                 	<div class="user-basic">
                         <div class="basic-id">
                             <span  class="b-span">회원 아이디</span>
-                            <input type="text" name="userId" placeholder="회원아이디 입력" class="de-input"> 
-                            <button type="button">중복확인</button>
-                            <small id="" class="check-sm">4~12 자의 영문, 숫자를 조합해서 사용해주세요.</small>
+                            <input type="text" name="userId" id="userId" placeholder="회원아이디 입력" class="de-input"> 
+                            <button type="button" onclick="userIdCheck();">중복확인</button>
+                            <small id="help_id" class="check-sm">4~12 자의 영문, 숫자를 조합해서 사용해주세요.</small>
                         </div>
                         
                         <div class="basic-pwd">
@@ -264,7 +308,7 @@ $(function(){
                                 <option value="naver.com">naver.com</option>
                                 <option value="hanmail.net">hanmail.net</option>
                                 <option value="nate.com">nate.com</option>
-                                <option value="gmail..com">gmail.com</option>
+                                <option value="gmail.com">gmail.com</option>
                                 <option value="daum.net">daum.net</option>
                             </select>
                         </div>
@@ -458,6 +502,9 @@ $(function(){
                     <div class="singup-submit">
                         <button type="button" class="submit-reset" onclick="">취소</button>
                         <button type="button" class="submit-ok" name="sendButton" onclick="memberOk();">완료</button>
+                    </div>
+                    <div class="error-msg">
+                     <p>${message}</p>
                     </div>
                 </div>
             </div>
