@@ -5,8 +5,8 @@
 
 <article class="writeHeader">
                 <div class="writeheaderInnerText">
-                    <h3>혼자서 뭐입어?/혼자 뭐먹어?/혼자 방구해?</h3>
-                    <small>오늘도 어김없이 혼자 무엇을 하려는 당신 <br> 오늘 하루 수고한 당신과
+                    <h3 class="FadeinText">혼자서 뭐입어?/혼자 뭐먹어?/혼자 방구해?</h3>
+                    <small class="FadeinText">오늘도 어김없이 혼자 무엇을 하려는 당신 <br> 오늘 하루 수고한 당신과
                         ,주변사람들을 위해 <br> 당신의 하루를 공유 해보는게 어떠세요?
                     </small>
                 </div>

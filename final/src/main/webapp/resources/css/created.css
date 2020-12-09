@@ -21,7 +21,7 @@
     /* TestBackground */
     /* background-color: rgb(150, 142, 140);    */
 }
-h3,small{
+.FadeinText{
     display: none;
 }
 .writeHeaderMenu{
