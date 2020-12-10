@@ -7,6 +7,8 @@ $(function(){
         }
     })
 })
+
+
 function sendOk(){
     var f= document.writeForm;
     if(!f.subject.value){
