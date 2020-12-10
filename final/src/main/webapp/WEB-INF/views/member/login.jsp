@@ -137,7 +137,7 @@ function sendLogin() {
 
 		</div>
 
-		<div style="width: 420px; margin: 0px auto; padding-top: 10px; text-align: center;">
+		<div style="width: 420px; margin: 0px auto 80px; padding-top: 10px; text-align: center;">
 			<p class="snslogin"
 				style="width: 100%; margin: 10px auto 15px; text-align: center;">SNS
 				계정으로 로그인</p>
@@ -156,7 +156,7 @@ function sendLogin() {
 		</div>
 
 
-
+	<hr>
 	</div>
 
 

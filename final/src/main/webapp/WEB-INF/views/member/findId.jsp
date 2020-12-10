@@ -24,24 +24,28 @@ function sendFind(){
         return;
     }
     
-    var te="";
-    if(f.tel.value.indexOf("-")>0){
-	    var t=f.tel.value.split("-");
-	    for(var i in t){
-	    	te+=t[i];
-	    }
-    }
-
     if(! f.tel.value) {
         alert("휴대폰 번호를 입력하세요. ");
         f.tel.focus();
         return;
     }
-    if(f.tel.value.length<10 || te.length<10) {
+    
+    if(f.tel.value.indexOf("-")>0){
+    	if(! /^[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}/.test(f.tel.value)) {
+            alert("휴대폰 번호 확인하세요");
+            f.tel.focus();
+            return;
+        }
+    }
+
+    
+    if(f.tel.value.length<10) {
         alert("휴대폰 번호 확인하세요");
         f.tel.focus();
         return;
     }
+    
+    
     
 
     f.action = "${pageContext.request.contextPath}/member/findId";
@@ -58,7 +62,7 @@ function sendFind(){
 
 	<div class="body-container">
 		<hr>
-		<div style="width: 420px; margin: 0px auto; padding-top: 90px;">
+		<div style="width: 420px; margin: 40px auto; padding-top: 90px;">
 			<div style="text-align: center;">
 				<span style="font-weight: bold; font-size: 27px; color: #424951;">
 					아 이 디 &nbsp;&nbsp; 찾 기  </span>
