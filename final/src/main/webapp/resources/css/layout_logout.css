@@ -126,7 +126,12 @@ button[type="button"]:hover {
 	background-color: rgba(255, 255, 255, 0.509);
 	color: rgb(249, 188, 96);
 }
-
+#mainSection{
+    width: inherit;
+  	/* height: 1000px;  */
+    /* TestBackground */
+   /* background-color: rgba(232, 216, 247, 0.31);*/ 
+}
 /* -------------mediaquery Start----------- */
 @media ( max-width :700px) {
 	article {
@@ -144,66 +149,62 @@ button[type="button"]:hover {
 }
 
 /*---------------------------------- footer start              */
-footer {
-	max-width: 1800px;
-	height: 300px;
-	/* TestBackground */
-	/* background-color: rgb(166, 146, 186); */
+footer{
+    max-width: inherit;
+    height: 300px;
+    
+     /* TestBackground */
+     /* background-color: rgb(166, 146, 186); */
+}
+.footerBox{
+    width: 1180px;
+    height: 200px;
+    margin: 0 auto;
+   
+    /* TestBackground */
+   /* background-color: aqua;  */
+}
+.innerfooterBox{
+    width: inherit;
+    padding-top:50px;
+    
+    /* TestBackground */
+    /* background-color: bisque; */
+}
+.footerUl1 , .footerUl2 , .footerUl3{
+    width: inherit;
+    height: 40px;
+    color: rgb(92, 92, 92);
+    text-decoration: none;
+    list-style: none;
+    display: flex;
+    /* TestBackground */
+     /* background-color: rgba(157, 191, 191, 0.728);  */
+
+}
+.footerUl1 li a:last-child{
+    color: tomato;
 }
 
-.footerBox {
-	width: inherit;
-	height: 200px;
-	/* margin: 0 auto; */
-
-	/* TestBackground */
-	/* background-color: aqua;  */
+.footerUl2 li{
+        font-size: 15px;
+        margin-top: 20px;
+        
+        
+     /* TestBackground */
+     /* background-color: rgba(157, 191, 191, 0.728);  */
 }
-
-.innerfooterBox {
-	width: inherit;
-	padding-top: 50px;
-
-	/* TestBackground */
-	/* background-color: bisque; */
+li >span{
+    margin: 20px;
 }
-
-.footerUl1, .footerUl2, .footerUl3 {
-	width: inherit;
-	height: 40px;
-	color: rgb(92, 92, 92);
-	text-decoration: none;
-	list-style: none;
-	display: flex;
-	/* TestBackground */
-	/* background-color: rgba(157, 191, 191, 0.728);  */
+.footerUl3{
+    width: 500px;
+ /* TestBackground */
+ /* background-color: rgba(157, 191, 191, 0.728); */
 }
-
-.footerUl1 li a:last-child {
-	color: tomato;
-}
-
-.footerUl2 li {
-	font-size: 15px;
-	margin-top: 20px;
-
-	/* TestBackground */
-	/* background-color: rgba(157, 191, 191, 0.728);  */
-}
-
-li>span {
-	margin: 20px;
-}
-
-.footerUl3 {
-	width: 500px;
-	/* TestBackground */
-	/* background-color: rgba(157, 191, 191, 0.728); */
-}
-
-.footerUl3 li {
-	width: 200px;
-
-	/* TestBackground */
-	/* background-color: aqua; */
+.footerUl3 li{
+    width: 200px;
+  
+    /* TestBackground */
+    /* background-color: aqua; */
 }
