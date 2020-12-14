@@ -3,7 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<section id="section1">
+ <section id="section1">
+            <div class="section1Image">
             <div class="textBox">
                 <h2>혼자 무엇을 먹을지 고민이세요?</h2>
                 <h3>오늘 어떤 옷을 입어야 할지 날씨때문에 고민이세요?</h3>
@@ -17,6 +18,7 @@
                 <h3>오늘 어떤 옷을 입어야 할지 날씨때문에 고민이세요?</h3>
                 <h4>혼자 무엇을 먹을지 고민이세요?</h4>
             </div>
+        </div>
         </section>
 
         <section id="section2">
@@ -43,7 +45,7 @@
                 </div>
             </article>
         </section>
-        <form action="${pageContext.request.contextPath}/member/login" method="get">
+        <form action="${pageContext.request.contextPath}" method="post">
             <div class="login">
                 <button type="button" onclick="sendLogin();">로그인 하러가기</button>
             </div>
