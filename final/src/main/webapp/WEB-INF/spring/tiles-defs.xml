@@ -27,6 +27,26 @@
 	<definition name=".main.*" extends=".mainLayout2">
 	</definition>
 
+
+   <!-- 3단 관리자 -->
+	<definition name=".admLayout" template="/WEB-INF/views/adm/layout.jsp">
+		
+	  	
+		<put-attribute name="body" value="/WEB-INF/views/adm/main/main.jsp" />
+
+	</definition>
+	<definition name=".adm.*.*.*" extends=".admLayout">
+		<put-attribute name="body" value="/WEB-INF/views/adm/{1}/{2}/{3}.jsp"/>
+	</definition>
+	<definition name=".adm.*.*" extends=".admLayout">
+		<put-attribute name="body" value="/WEB-INF/views/adm/{1}/{2}.jsp"/>
+	</definition>
+	<definition name=".adm.*" extends=".admLayout">
+    	<put-attribute name="body" value="/WEB-INF/views/adm/{1}.jsp" />
+	</definition>
+
+
+
    <!-- 3단 관리자 -->
 	<definition name=".adminLayout" template="/WEB-INF/views/admin/layout/layout3.jsp">
 	    <put-attribute name="title" value="spring" />
