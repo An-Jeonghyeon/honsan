@@ -24,10 +24,22 @@
     background: skyblue;
 }
 .slide1{
-    background-color: red;
+    background-image: url("../images/home/back1.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%;
 }
+.slide2{
+    background-image: url("../images/home/back3.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: center center;
+}
+
 .slide3{
-background-color: aquamarine;
+    background-image: url("../images/home/back4.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: center center;
 }
 
 
