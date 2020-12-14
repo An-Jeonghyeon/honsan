@@ -42,7 +42,7 @@
                     <div class="subjectBody">
                         <input type="text" name="subject" id="subject" placeholder="제목을 입력해 주세요.">
                     </div>
-                    <div class="smartEditor"></div>
+                    
                     <div class="contentBody">
                         <div class="inputBody1">
                               <textarea name="content" id="content"></textarea>                

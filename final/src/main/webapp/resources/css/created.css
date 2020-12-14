@@ -89,15 +89,6 @@ input::placeholder{
     color: #b1b1b1b1;
 }
 
-.smartEditor{
-    width: inherit;
-    height: 50px;
-    padding-left: 20px;
-    box-sizing: border-box;
-    border: 1px solid rgb(226, 226, 226);
-    /* TestBackground */
-    /*  background-color: rgb(100, 100, 158); */    
-}
 .contentBody{
     width: 1300px;
     height: 650px;
@@ -110,7 +101,7 @@ input::placeholder{
     width: 1200px;
     height: 500px;
     margin: 10px auto;
-    overflow: scroll;
+   /*  overflow: scroll; */
     /* background-color: #ff6347; */ 
 }
 textarea[name="content"]{ 
