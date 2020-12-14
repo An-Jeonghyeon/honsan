@@ -91,12 +91,12 @@ input::placeholder{
 
 .smartEditor{
     width: inherit;
-    height: 100px;
+    height: 50px;
     padding-left: 20px;
     box-sizing: border-box;
     border: 1px solid rgb(226, 226, 226);
     /* TestBackground */
-    /* background-color: rgb(100, 100, 158);    */
+    /*  background-color: rgb(100, 100, 158); */    
 }
 .contentBody{
     width: 1300px;
@@ -111,14 +111,13 @@ input::placeholder{
     height: 500px;
     margin: 10px auto;
     overflow: scroll;
-    /* background-color: #ff6347; */
+    /* background-color: #ff6347; */ 
 }
-input[name="content"]{
-    width: 100%;
-    border: none;
-}
-input[name="content"]:focus{
-   outline: none;
+textarea[name="content"]{
+    width: 99.3%;
+    height:85%;
+ 
+      
 }
 .tagBody{
     position: relative;
