@@ -45,7 +45,7 @@
                 </div>
             </article>
         </section>
-        <form action="${pageContext.request.contextPath}" method="post">
+        <form action="${pageContext.request.contextPath}/member/login" method="GET">
             <div class="login">
                 <button type="button" onclick="sendLogin();">로그인 하러가기</button>
             </div>
