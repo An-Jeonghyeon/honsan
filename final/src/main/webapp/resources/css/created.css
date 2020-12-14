@@ -113,7 +113,7 @@ input::placeholder{
     overflow: scroll;
     /* background-color: #ff6347; */ 
 }
-textarea[name="content"]{
+textarea[name="content"]{ 
     width: 99.3%;
     height:85%;
  
