@@ -13,7 +13,7 @@
 				<li><a href="${pageContext.request.contextPath}"> 개인정보처리방침</a></li>
 			</ul>
 			<ul class="footerUl2">
-				<li>(주)Home live alone</a> <span>|</span></li>
+				<li><a>(주)Home live alone</a> <span>|</span></li>
 				<li>서울특별시 마포구 여의봉112<span>|</span></li>
 				<li>사업자등록번호 000-00-000<span>|</span></li>
 				<li><strong> 대표이사</strong> 우주정복자정복자</li>

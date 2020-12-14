@@ -1,137 +1,112 @@
-* {
-	margin: 0;
-	padding: 0;
-	font-family: 'Jal_Onuel';
+*{
+    margin: 0;
+    padding: 0;
+}
+#mainBody{
+    max-width: 1900px;
+    min-height: 1900px;
+    margin: 30px auto;
+    
+    /* 확인용 background */
+    background-color: rgba(189, 189, 189, 0.18);
+}
+header{
+    height: 200px;
+    margin: 30px auto;
+    padding: 40px;
+    box-sizing: border-box;
+    display: flex;
+    /* 확인용 background */
+    background-color: rgba(189, 189, 189, 0.536);
+}
+.Logo{
+    width: 130px;
+    padding: 30px;
+
+    /* 확인용 background */
+    background-color: rgba(0, 255, 255, 0.283);
+}
+.LogoName{
+    font-size: 50px;
+    text-decoration: none;
+}
+.headerText{
+    padding: 30px;
+    box-sizing: border-box;
+
+    /* 확인용 background */
+    background-color: rgba(127, 255, 212, 0.344);
+
+}
+#section1{
+    height: 1000px;
+    margin: 30px auto;
+}
+.textBox{
+    display: none;
+    margin-left: 150px;
+    position: relative;
+    top: 300px;
+  
+}
+h2{
+    font-size: 50px;
+}
+#section2{
+    width: 100%;
+    height: 700px;
+    display: none;
+     /* 확인용 background */
+    /*  background-color: rgba(211, 152, 237, 0.707); */
+}
+.article1, .article2{
+    width: 100%;
+    display: flex;
+    margin: 0 auto; 
+}
+.contentUp, .contentDown{
+    min-width: 30%;
+    height: 250px;
+    margin: 30px auto;
+    box-sizing: border-box;
+    border-radius: 25px;
+   
+    /* 확인용 background */
+    background-color: rgba(152, 237, 225, 0.707);
+}
+.contentInner{
+    
+    height: 230px;
+    margin: 10px auto;
+    border-radius: 25px;
+    background-color: rgba(130, 130, 130, 0.454); 
+    transition: 1s;
+}
+.contentInner:hover{
+    transform: scale(1.2);
+}
+.login{
+    width: 300px;
+    height: 50px;
+    margin: 0 auto;
+    border-radius: 25px;
+}
+button[type="button"]{
+    width: 300px;
+    height: 100%;
+    font-size: 20px;
+    border-radius: 25px;
+    position: relative;
+    bottom: 40px;
+    border: none;
+    background-color: rgba(220, 219, 219, 0.652);
+    transition: 1s;
+}
+button[type="button"]:hover{
+    background-color: rgba(255, 255, 255, 0.509);
+    color: rgb(249, 188, 96);
 }
 
-@font-face {
-	font-family: 'Jal_Onuel';
-	src:
-		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.0/Jal_Onuel.woff')
-		format('woff');
-	font-weight: normal;
-	font-style: normal;
-}
-
-#mainBody {
-	max-width: 1900px;
-	min-height: 1900px;
-	margin: 30px auto;
-	/* 확인용 background */
-	background-color: rgba(189, 189, 189, 0.18);
-}
-
-a {
-	text-decoration: none;
-	color: rgb(52, 52, 52);
-}
-
-header {
-	height: 200px;
-	margin: 30px;
-	padding: 40px;
-	box-sizing: border-box;
-	display: flex;
-	/* 확인용 background */
-	background-color: rgba(189, 189, 189, 0.536);
-}
-
-.Logo {
-	width: 130px;
-	padding: 30px;
-	/* 확인용 background */
-	background-color: rgba(0, 255, 255, 0.283);
-}
-
-.LogoName {
-	font-size: 50px;
-	text-decoration: none;
-}
-
-.headerText {
-	padding: 30px;
-	box-sizing: border-box;
-	/* 확인용 background */
-	background-color: rgba(127, 255, 212, 0.344);
-}
-
-#section1 {
-	height: 1000px;
-	margin: 30px auto;
-}
-
-.textBox {
-	display: none;
-	margin-left: 150px;
-	position: relative;
-	top: 300px;
-}
-
-h2 {
-	font-size: 50px;
-}
-
-#section2 {
-	height: 700px;
-	display: none;
-}
-
-article {
-	display: flex;
-}
-
-.contentUp, .contentDown {
-	width: 600px;
-	height: 250px;
-	margin: 30px;
-	box-sizing: border-box;
-	border-radius: 25px;
-	/* 확인용 background */
-	background-color: rgba(152, 237, 225, 0.707);
-}
-
-.contentInner {
-	width: 500px;
-	height: 230px;
-	margin: 10px auto;
-	border-radius: 25px;
-	background-color: rgba(130, 130, 130, 0.454);
-	transition: 1s;
-}
-
-.contentInner:hover {
-	transform: scale(1.2);
-}
-
-.login {
-	width: 300px;
-	height: 50px;
-	margin: 0 auto;
-	border-radius: 25px;
-}
-
-button[type="button"] {
-	width: 300px;
-	height: 100%;
-	font-size: 20px;
-	border-radius: 25px;
-	position: relative;
-	bottom: 40px;
-	border: none;
-	background-color: rgba(220, 219, 219, 0.652);
-	transition: 1s;
-}
-
-button[type="button"]:hover {
-	background-color: rgba(255, 255, 255, 0.509);
-	color: rgb(249, 188, 96);
-}
-#mainSection{
-    width: inherit;
-  	/* height: 1000px;  */
-    /* TestBackground */
-   /* background-color: rgba(232, 216, 247, 0.31);*/ 
-}
 /* -------------mediaquery Start----------- */
 @media ( max-width :700px) {
 	article {
@@ -155,6 +130,10 @@ footer{
     
      /* TestBackground */
      /* background-color: rgb(166, 146, 186); */
+}
+footer a{
+	text-decoration: none;
+	color: gray;
 }
 .footerBox{
     width: 1180px;
