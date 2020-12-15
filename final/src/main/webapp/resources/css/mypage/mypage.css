@@ -5,29 +5,30 @@
 	width: 1300px;
 	height: 1000px;
 	background-color: gray;
+	display: flex;
 }
 
 /****************
 	마이페이지 왼쪽
 *****************/
 .mypage-left {
-	width: 575px;
-	height: 1000px;
+	width: 40%;
+	height: 100%;
 	background-color: yellow;
-	float: left;
+	/*float: left;*/
 }
 
 .profile-image {
 	width: 100%;
-	height: 400px;
+	height: 40%;
 	/*background-color: tomato;*/
 	float: clear;
 	/*float: left;*/
 }
 
 .profile-image-background {
-	width: 500px;
-	height: 300px;
+	width: 100%;
+	height: 30%;
 	background-image: url("${pageContext.request.contextPath}/resources/images/pattern/moroccan-flower.png");
 	background-repeat : no-repeat;
 	background-size: cover;
@@ -35,8 +36,8 @@
 
 .userImage {
 	margin : 120px 125px;
-	width: 150px;
-	height: 150px;
+	width: 20%;
+	height: 20%;
 }
 
 .profile-userBasicInfo {
@@ -56,7 +57,7 @@
 	마이페이지 오른쪽
 *****************/
 .mypage-right {
-	width: 700px;
+	width: 50%;
 	height: 1000px;
 	background-color: pink;
 	
@@ -70,7 +71,7 @@
 
 .mypage-contents {
 	width: 100%;
-	height: 500px;
+	height: 600px;
 	background-color: lime;
 }
 
@@ -127,6 +128,6 @@
 
 .mypage-recent {
 	width: 100%;
-	height: 400px;
+	height: 350px;
 	background-color: maroon;
 }

@@ -1,0 +1,160 @@
+@charset "UTF-8";
+
+.main-content-container {
+	width: 1300px;
+	height: 1000px;
+	margin :0 auto;
+	background-color: gray;
+	display: flex;
+}
+
+/****************
+	마이페이지 왼쪽
+*****************/
+.mypage-left {
+	width: 40%;
+	height: 100%;
+	background-color: yellow;
+	/*float: left;*/
+}
+
+.mypage-left-container {
+	width:90%;
+	height:60%;
+	margin:35% auto;
+	border: 3px solid #ececec;	
+	border-radius: 10px;
+}
+
+.profile-image {
+	width: 100%;
+	height: 45%;
+	padding : 10% 0 0 0;
+	background-color: tomato;
+	/*float: clear;*/
+	/*float: left;*/
+}
+
+.profile-image-box {
+    margin : 0 auto;
+    padding : 5%;
+    width : 40%;
+    height : 65%;
+    border-radius : 100%;
+    background-color:beige;
+    background-image: url("");
+}
+
+.userImage {
+/* 	width: 20%;
+	height: 20%; */
+}
+
+.profile-userBasicInfo {
+	width: 100%;
+	height: 30%;
+	text-align:center;
+	background-color: skyblue;
+}
+
+.profile-userName {
+	font-size: 1.8em;
+}
+
+.profile-follow {
+	margin : 4% 0 10% 0;
+}
+
+.profile-follow > span > a{
+    color: rgb(45, 45, 45);
+    font-size: 1.0rem;
+    /* font-weight: 900; */
+    transition: 0.6s;
+}
+.profile-follow > span > a:hover{
+    color: tomato; 
+}
+
+.profile-like {
+	width: 100%;
+	height: 15%;
+	background-color: orange;
+	text-align: center;
+}
+
+/****************
+	마이페이지 오른쪽
+*****************/
+.mypage-right {
+	width: 60%;
+	height: 100%;
+	background-color: pink;
+	
+	/* float: right; */
+}
+
+.mypage-right .heading{
+	/* margin-top:0; */
+}
+
+.mypage-contents {
+	width: 100%;
+	height: 60%;
+	background-color: lime;
+}
+
+.mypage-contents {
+/* 	padding: 60px 0 0 60px;
+ */}
+
+.mypage-content-item {
+	display: inline-block;
+	vertical-align: middle;
+	text-align: center;
+}
+
+.mypage-content-item .hexagon {
+/* 	margin: 35px 0;
+ */}
+
+.items {
+	width: 55px;
+	height: 55px;
+}
+
+.hexagon {
+	width: 100px;
+	height: 55px;
+	background: #ececec;
+	position: relative;
+}
+
+.hexagon:before {
+	content: "";
+	position: absolute;
+	top: -25px;
+	left: 0;
+	width: 0;
+	height: 0;
+	border-left: 50px solid transparent;
+	border-right: 50px solid transparent;
+	border-bottom: 25px solid #ececec;
+}
+
+.hexagon:after {
+	content: "";
+	position: absolute;
+	bottom: -25px;
+	left: 0;
+	width: 0;
+	height: 0;
+	border-left: 50px solid transparent;
+	border-right: 50px solid transparent;
+	border-top: 25px solid #ececec;
+}
+
+.mypage-recent {
+	width: 100%;
+	height: 35%;
+	background-color: maroon;
+}

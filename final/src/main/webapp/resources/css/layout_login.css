@@ -39,7 +39,7 @@ a{
 }
 header{
     width: inherit;
-    height: 75px;
+    height: 140px;
     border-radius: 5px;
     
     /* TestBackground */
@@ -62,13 +62,25 @@ nav{
     /* TestBackground */
      /* background-color: rgb(194, 192, 190); */
 }
-
+.logo {
+	background-image: url("../images/layout_logout/logo11.png");
+	background-repeat: no-repeat;
+	background-size: 150px 137px;
+	background-position: left 0px;
+}
+.logo a {
+	display: block;
+	width: 100%;
+	height: 100%;
+    cursor: pointer;
+}
 .menuBox{
     width: 240px;
     height: 70px;
     line-height: 70px;
     text-align: center;
     margin: 3px 1px;
+    margin-top: 50px;
     
      /* TestBackground */
      /* background-color: rgba(179, 233, 102, 0.419); */
@@ -87,6 +99,7 @@ nav{
   display: flex;
   width: 300px;
   height: 100%;
+  margin-top : 50px;
   /* TestBackground */
   /* background-color: rgb(220, 144, 68); */
 }
@@ -126,7 +139,8 @@ nav{
     width: 150px;
     height: 130px;
     display: none;
-    background-color: #cddbffb5;
+/*     background-color: #cddbffb5; */
+    background-color: #f3c04a2d;
     border-radius: 15px;
     position: relative;
     right: 50px;
@@ -162,11 +176,12 @@ nav{
 .userBox:after{
     content: "";
     position: relative;
-    top: -158px;
+    top: -159px;
     left: -64px;
     border-left: 12px solid transparent;
     border-right: 12px solid transparent;
-    border-bottom: 12px solid #cddbffb5;
+/*     border-bottom: 12px solid #cddbffb5; */
+    border-bottom: 12px solid #f3c04a2d;
 }
 .logOut{
      width: 100px;

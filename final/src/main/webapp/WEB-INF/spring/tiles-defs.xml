@@ -45,7 +45,22 @@
     	<put-attribute name="body" value="/WEB-INF/views/adm/{1}.jsp" />
 	</definition>
 
-
+	<!-- 3단 마이페이지 -->
+	<!-- 
+	<definition name=".mypageLayout" template="/WEB-INF/views/mypage/main.jsp">
+	  	<put-attribute name="header" value="/WEB-INF/views/mypage/header.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/main/main.jsp" />	
+	</definition>
+	<definition name=".mypage.*.*.*" extends=".mypageLayout">
+		<put-attribute name="body" value="/WEB-INF/views/mypage/{1}/{2}/{3}.jsp"/>
+	</definition>
+	<definition name=".mypage.*.*" extends=".mypageLayout">
+		<put-attribute name="body" value="/WEB-INF/views/mypage/{1}/{2}.jsp"/>
+	</definition>
+	<definition name=".mypage.*" extends=".mypageLayout">
+		<put-attribute name="body" value="/WEB-INF/views/mypage/{1}.jsp" />
+	</definition>	
+	 -->
 
    <!-- 3단 관리자 -->
 	<definition name=".adminLayout" template="/WEB-INF/views/admin/layout/layout3.jsp">
@@ -65,6 +80,9 @@
 	</definition>
 	
 	<!-- 순서가 바뀌면 안됨(* 많은것이 위에) -->
+	<definition name=".*.*.*.*" extends=".mainLayout"> 
+		<put-attribute name="body" value="/WEB-INF/views/{1}/{2}/{3}/{4}.jsp"/>
+	</definition>
 	<definition name=".*.*.*" extends=".mainLayout"> 
 		<put-attribute name="body" value="/WEB-INF/views/{1}/{2}/{3}.jsp"/>
 	</definition>
