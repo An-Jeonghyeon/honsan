@@ -7,15 +7,22 @@
 	charset="utf-8"></script>
 <script type="text/javascript">
 	function check() {
-		var f = document.writeBodyForm;
-		str = f.content.value;
-		if (!str || str == "<p>&nbsp;</p>") {
-			alert("내용을 입력하세요. ");
-			f.content.focus();
-			return false;
+		var f= document.writeBodyForm;
+		
+		var chk=f.subject.value;
+		if(!chk){
+			alert("제목을 입력 해주세요.");
+			f.chk.focus();
+			return;
+		}
+		chk=f.content.value;
+		if(!chk){
+			alert("내용을 입력 해주세요");
+			f.chk.focus();
+			return;
 		}
 
-		f.action = "${pageContext.request.contextPath}/";
+		f.action = "${pageContext.request.contextPath}/bbs/created";
 
 		return true;
 	}
@@ -30,12 +37,12 @@
 	</div>
 	<div class="writeHeaderMenu">
 		<ul>
-			<li><a href="${pageContext.request.contextPath}">전체글보기</a></li>
+			<li><a href="${pageContext.request.contextPath}/dress/list">전체글보기</a></li>
 			<li><a href="${pageContext.request.contextPath}">베스트글</a></li>
 		</ul>
 	</div>
 </article>
-<form action="" method="post" name="writeBodyForm"
+<form method="post" name="writeBodyForm"
 	onsubmit="return submitContents(this)" enctype="multipart/form-data">
 	<article class=" writeBody">
 		<div class="writeBodyHeader">
@@ -49,7 +56,7 @@
 
 		<div class="contentBody">
 			<div class="inputBody1">
-				<textarea name="content" id="content"></textarea>
+				<textarea name="content"></textarea>
 			</div>
 			<div class="tagBody">
 
@@ -71,7 +78,7 @@
 			</div>
 		</div>
 		<div class="buttonBoxBody">
-			<button type="button" id="writeSubmit">등록하기</button>
+			<button type="button" id="writeSubmit" onclick="check()">등록하기</button>
 			<button type="button" id="CencelSubmit">등록취소</button>
 		</div>
 	</article>
