@@ -43,7 +43,7 @@
                     <div class="PermenuObject">
                     <ul class="menuObject">
                         <li> <a href="${pageContext.request.contextPath}">오늘의 옷차림</a></li>
-                        <li> <a href="${pageContext.request.contextPath}">코디자랑</a></li>
+                        <li> <a href="${pageContext.request.contextPath}/dress/list">코디자랑</a></li>
                         <li> <a href="${pageContext.request.contextPath}">팁</a></li>
 
                     </ul>
