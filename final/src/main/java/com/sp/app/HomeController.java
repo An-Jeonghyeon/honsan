@@ -25,7 +25,7 @@ public class HomeController {
 	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
 	public String mypage(Locale locale, Model model) {	
 		
-		return ".member.mypage";
+		return ".mypage.mypage";
 	}
 	
 }
