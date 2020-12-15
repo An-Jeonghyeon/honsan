@@ -19,6 +19,10 @@
 	                    	<a href="${pageContext.request.contextPath}/member/login">로그인</a>
                   		</c:if> 
                     </div>
+                    
+                    	<c:if test="${sessionScope.member.userId =='admin'}">
+							<a href="${pageContext.request.contextPath}/adm/adm" style="padding-left :10px; line-height: 100px; font-size: 0px;"><img style="width: 32px; height: 29px;" src="${pageContext.request.contextPath}/resources/images/setcon_1.jpg"></img></a>
+						</c:if>
                     <div class="mypage">
                         <i class="fas fa-house-user fa-2x"></i>
            				<c:if test="${not empty sessionScope.member}">
@@ -30,6 +34,7 @@
 	                        </div>
                  		</c:if>
 						<!-- 유저아이디 admin 이면 버튼생성 구간  -->
+
                     </div>
                 </div>
             </nav>
