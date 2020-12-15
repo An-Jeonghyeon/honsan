@@ -32,7 +32,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand waves-effect waves-white" href="index.html"> <strong>honsan</strong></a>
+                <a class="navbar-brand waves-effect waves-white" href="${pageContext.request.contextPath}/home"> <strong>honsan</strong></a>
 				
 		<div id="sideNav" class="waves-effect waves-dark" href=""><i class="material-icons dp48">toc</i></div>
             </div>

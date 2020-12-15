@@ -31,7 +31,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <!-- 왼쪽 최상단 홈페이지 이름 부분  -->
-                <a class="navbar-brand waves-effect waves-dark" href="index.html"> <strong>honsan</strong></a>
+                <a class="navbar-brand waves-effect waves-dark" href="${pageContext.request.contextPath}/home"> <strong>honsan</strong></a>
 				
 				<!-- 최상단 리스트 표시 !!  -->
 		<div id="sideNav" href=""><i class="material-icons dp48">toc</i></div>
