@@ -1,6 +1,6 @@
 @charset "UTF-8";
 .loginMainBody{
-    width:1000px;
+    width:1800px;
     height:500px;
     margin: 0px auto;
     position: relative;
@@ -10,7 +10,7 @@
     background-color: rgb(208, 132, 132);
 }
 .slideshow-container{
-    width: 1000px;
+    width: 100%;
     height: inherit;
     border-radius: 5px;
     /* background-color: #ff6347; */
@@ -22,24 +22,26 @@
     border-radius: 5px;
      /* TestBackground */
     background: skyblue;
+    background-size: contain;
 }
 .slide1{
-    background-image: url("../images/home/back1.jpg");
+    background-image: url("../images/home/back7.jpg");
     background-repeat: no-repeat;
     background-size: 100%;
+    background-position: center -1400px;
 }
 .slide2{
     background-image: url("../images/home/back3.jpg");
     background-repeat: no-repeat;
     background-size: 100%;
-    background-position: center center;
+    background-position: center top;
 }
 
 .slide3{
     background-image: url("../images/home/back4.jpg");
     background-repeat: no-repeat;
     background-size: 100%;
-    background-position: center center;
+    background-position: center -200px;
 }
 
 
