@@ -4,12 +4,20 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
              <nav>
-                <div class="logo"><i class="fas fa-home fa-2x"></i><a href="${pageContext.request.contextPath}"> Home live alone</a></div>
+              	<div class="logo">
+	                <c:if test="${empty sessionScope.member}">
+		                <a href="${pageContext.request.contextPath}"></a>
+	                </c:if>
+	                <c:if test="${not empty sessionScope.member}">
+		                <a href="${pageContext.request.contextPath}/home"></a>
+	                </c:if>
+                </div>
+                
                 <div class="menuBox"> <a href="${pageContext.request.contextPath}">오늘 뭐 입어?</a></div>
                 <div class="menuBox"> <a href="${pageContext.request.contextPath}">혼자 뭐 먹지?</a></div>
                 <div class="menuBox"> <a href="${pageContext.request.contextPath}">방구할래?</a></div>
                 <div class="menuBox"> <a href="${pageContext.request.contextPath}">인테리어</a></div>
-                <div class="menuBox"> <a href="${pageContext.request.contextPath}">건 강</a></div>
+                <div class="menuBox"> <a href="${pageContext.request.contextPath}">건강챙기기</a></div>
                 <div class="loginBox">
                     <div class="loginName">
               			<c:if test="${not empty sessionScope.member}">
@@ -29,7 +37,7 @@
 	                       	<div class="userBox">
 	                            <ul>
 	                             	<li><a href="${pageContext.request.contextPath}/member/logout">로그아웃</a></li>
-		                            <li><a href="${pageContext.request.contextPath}">회원정보</a></li>
+		                            <li><a href="${pageContext.request.contextPath}">마이페이지</a></li>
 	                           	</ul>
 	                        </div>
                  		</c:if>
@@ -66,9 +74,10 @@
                         <li> <a href="${pageContext.request.contextPath}">생활 팁</a></li>
                     </ul>
                     <ul class="menuObject">
-                        <li> <a href="${pageContext.request.contextPath}"">셀프건강</a></li>
-                        <li> <a href="${pageContext.request.contextPath}"">운동</a></li>
-                        <li> <a href="${pageContext.request.contextPath}"">응급</a></li>
+                        <li> <a href="${pageContext.request.contextPath}/supplement/list">영양제 뭐 먹을까?</a></li>
+                        <li> <a href="${pageContext.request.contextPath}">하루 운동 챌린지</a></li>
+                        <li> <a href="${pageContext.request.contextPath}">오늘 운동을 보여줘</a></li>
+                        <li> <a href="${pageContext.request.contextPath}">건강 지킴이</a></li>
                     </ul>
                 </div>
                 </div>
