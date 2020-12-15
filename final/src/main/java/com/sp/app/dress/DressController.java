@@ -9,4 +9,12 @@ public class DressController {
 	public String DressList() throws Exception{
 		return ".dress.list";
 	}
+	@RequestMapping("created")
+	public String DressCreated() throws Exception{
+		return ".dress.created";
+	}
+	@RequestMapping("article")
+	public String DressArticle() throws Exception{
+		return ".dress.article";
+	}
 }
