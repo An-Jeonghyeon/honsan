@@ -12,4 +12,10 @@ public class InteriorController {
 		
 		return ".interior.InteriorMain";
 	}
+	
+	@RequestMapping("board")
+	public String InteriorBoard() throws Exception{
+		
+		return ".interior.interior_board";
+	}
 }
