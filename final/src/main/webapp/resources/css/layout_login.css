@@ -125,8 +125,7 @@ nav{
 .userBox{
     width: 150px;
     height: 130px;
-   
-    /* display: none; */
+    display: none;
     background-color: #cddbffb5;
     border-radius: 15px;
     position: relative;
