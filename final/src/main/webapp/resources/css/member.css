@@ -15,12 +15,11 @@ li {
 }
 .singup-header {
     height: 150px;
-    width: 1200px;
     margin : 0 auto;
     padding: 100px 0 50px;
     text-align: center;
-    border-bottom: 3px solid #ddd;
-    /* box-shadow: 3px 3px 3px #333333a9; */
+/*     border-bottom: 3px solid */
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
 }
 .singup-title h1 {
     font-size: 35px;
@@ -38,7 +37,7 @@ li {
 .circle {
     width: 10px;
     height: 10px;
-    border: 5px solid rgb(218, 72, 72);
+    border: 5px solid #f3c04ab5;
     border-radius: 50%;
     display: inline-block;
     position: relative;
@@ -48,7 +47,7 @@ li {
 .line1 {
     height: 4px;
     width: 200px;
-    background:  rgb(218, 72, 72);
+    background:  #f3c04ab5;
     display: inline-block;
 }
 .step-name {
@@ -303,7 +302,7 @@ li {
     background: #ddd;
 }
 .submit-ok {
-    background: rgba(218, 72, 72, 0.849);
+    background: #f3c04a;
 }
 .error-msg {
     height: 40px;
