@@ -12,4 +12,11 @@ public class InfosController {
 	public String main() {
 		return ".infos.infos";
 	}
+	
+	@RequestMapping(value = "qna")
+	public String qna() {
+		return ".infos.qna";
+	}
+	
+	
 }
