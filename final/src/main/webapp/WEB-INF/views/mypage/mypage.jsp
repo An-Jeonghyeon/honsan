@@ -3,7 +3,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-
+<!-- 
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">	 
+-->
+ 
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/member/mypage.css">
 
@@ -20,7 +25,7 @@
 			<table>
 				<thead>
 					<tr>
-						<td>${dto.userName!=null? dto.userName : "이경태"}님의 기본 정보</td>
+						<td>${dto.userName!=null? dto.userName : "이경태"} 님의 기본 정보</td>
 						<td></td>
 					</tr>
 				</thead>
