@@ -1,8 +1,7 @@
-@charset "UTF-8";
 .dress-TipMainBody{
     width: 1300px;
     min-height: 1000px;
-    margin: 200px auto 0 auto;
+    margin:200px auto 0 auto;
 }
 .dress-TipMainBodySub{
     display: flex;
@@ -14,8 +13,9 @@
     padding: 10px 10px 0px 10px;
     box-sizing:border-box;
     border-radius: 15px 15px 0 0;
+   
     /* TestBackground */
-    background-color: rgb(201, 201, 201);
+    background-color: #ededed80;
 }
 .dress-TipMenuBody2{
     width: 300px;
@@ -23,8 +23,9 @@
     padding: 10px 10px 0px 10px;
     box-sizing:border-box;
     border-radius: 15px 15px 0 0;
+   
     /* TestBackground */
-    background-color: rgb(233, 233, 233);
+    background-color: rgba(192, 226, 255, 0.523);
 }
 .dress-TipMenu1{
     width: 100%;
@@ -33,7 +34,7 @@
     box-sizing: border-box;
     border-radius: 15px 15px 0 0;
     /* TestBackground */
-    background-color: rgb(76, 15, 133);
+    background-color: hotpink;
 }
 .dress-TipMenu1>a{
     width: 100%;
@@ -72,8 +73,9 @@
     box-sizing: border-box;
     padding: 10px 0;
     border-radius: 0 15px 15px 15px;
+   
     /* TestBackground */
-    background-color: rgb(201, 201, 201);
+    background-color: #ededed80;
 }
 
 .dress-TipShowArticleBody{
@@ -91,7 +93,7 @@
 .dress-TipShowMenu{
     width: 10%;
     margin: 0 auto;
-   
+  
 }
 .dress-Subject{
     width: 50%;
@@ -101,19 +103,19 @@
 .dress-UserName{
     width: 10%;
     margin: 0 auto;
-   
+ 
 }
 .dress-Created{
     width: 10%;
     margin: 0 auto;
     text-align: center;
-  
+   
 }
 .dress-HitCountName{
     width: 10%;
     margin: 0 auto;
     text-align: right;
-   
+    
 }
 .dress-HitCount{
     width: 1%;
@@ -130,7 +132,9 @@
    
 }
 .dress-TipMainShowArticleBody>form{
-    padding-bottom: 3px;   
+    padding-bottom: 3px;
+    
+    
 }
 .dress-searchBody{
     width: 100%;
