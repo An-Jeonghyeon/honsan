@@ -88,7 +88,7 @@ function sendLogin() {
 		<div style="width: 420px; margin: 0px auto; padding-top: 90px;">
 			<div style="text-align: center;">
 				<span style="font-weight: bold; font-size: 27px; color: #424951;">
-					로 그 인 </span>
+					<i class="fas fa-sign-in-alt"></i> 로 그 인 </span>
 			</div>
 			
 			<form name="loginForm" method="post">
@@ -120,9 +120,9 @@ function sendLogin() {
 					</tr>
 
 					<tr align="center" height="45">
-						<td><a href="${pageContext.request.contextPath}/member/findId">아이디 찾기</a>&nbsp;&nbsp;
-							| &nbsp;&nbsp; <a href="${pageContext.request.contextPath}/">패스워드
-								찾기</a>&nbsp;&nbsp; | &nbsp;&nbsp; <a
+						<td><a class="logina" href="${pageContext.request.contextPath}/member/findId">아이디 찾기</a>&nbsp;&nbsp;
+							| &nbsp;&nbsp; <a class="logina" href="${pageContext.request.contextPath}/">패스워드
+								찾기</a>&nbsp;&nbsp; | &nbsp;&nbsp; <a class="logina"
 							href="${pageContext.request.contextPath}/member/member">회원가입</a></td>
 					</tr>
 
