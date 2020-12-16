@@ -1,0 +1,147 @@
+@charset "UTF-8";
+
+/*  -------------오늘 영양제 리스트  */
+.supplement-body {
+    /* background: #ccc; */
+    margin: 0 auto;
+}
+.supplement-top {
+    width: 100%;
+    height: 600px;
+    background-image:url("../../images/health/medicine.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center -300px;
+    text-align: center;
+}
+.top-title {
+    padding: 80px 0 20px;
+}
+.top-title p{
+	color: white;
+	font-size : 40px;
+	font-family: 'Noto Sans KR', sans-serif;
+}
+.top-text p{
+	color: white;
+    font-size: 16px;
+    margin-bottom: 4px;
+}
+.supplement-content {
+    width: 1200px;
+    height: 1000px;
+    /* background: wheat; */
+    margin: 0 auto
+}
+/* 베스트 */
+.supplement-best {
+    width: 100%;
+    text-align: center;
+}
+.title-best {
+    margin-top: 80px;
+}
+.title-best h2 {
+	font-size: 30px;
+}
+
+.content-best {
+    width: 1180px;
+    height: 400px;
+    display: flex;
+    margin: 0 auto;
+    padding-top: 30px;
+}
+.best { 
+    width: 270px;
+    height: 340px;
+    background: turquoise;
+    margin: 0 auto;
+}
+/* 게시판 */
+.supplement-bbs { 
+    margin-top: 50px;
+    width: 1200px;
+    height: 400px;
+    /* background: tomato; */
+    text-align: center;
+    
+}
+.supplement-table {
+    width: 1000px;
+    margin: 0 auto;
+    border-collapse:collapse;
+}
+.s-thead { 
+    background: #fbfbfb;
+}
+.s-thead tr {
+    border-top: 1px solid black;
+    border-bottom:  1px solid #dbdbdb;
+    height: 35px;
+}
+/* 요기는 게시글 */
+.s-body-tr td {
+	font-weight: 100;
+}
+.s-tbody tr{
+    border-bottom:  1px solid #dbdbdb;
+    height: 35px;
+}
+.supplement-paging {
+    margin-top: 20px;
+}
+.supplement-bbs-search {
+    border-top: 1px solid #e8e8e8;
+    border-bottom: 1px solid #e8e8e8;
+    background: #f7f7f7;
+    text-align: center;
+    height: 50px;
+    width: 1000px;
+    margin: 50px auto 0;
+    line-height: 50px;
+}
+.sup-bbs-input {
+    height: 23px;
+    width: 200px;
+    border: 1px solid #e8e8e8;
+}
+.sup-bbs-btn {
+    height: 25px;
+    width: 70px;
+    border: none;
+    background: rgba(27, 27, 27, 0.692);
+    color: #e8e8e8;
+}
+.sup-bbs-select {
+    height: 25px;
+    width: 80px;
+    border: 1px solid #e8e8e8;
+}
+/* 플로팅 */
+.floating-write {
+    width: 150px;
+    height: 150px;
+    background: #f3c04ac7;
+    border-radius: 50%;
+    text-align: center;
+    position : absolute;
+    right: 70px;
+    top: 500px;
+}
+.f-div {
+    padding-top: 25px;
+}
+.f-div p{
+    font-size: 17px;
+    font-weight: 700;
+    margin-top: 5px;
+}
+.floating-image {
+    width: 50px;
+    height: 50px;
+    background-image :url("../../images/health/vitamin.png");
+    background-repeat : no-repeat;
+    background-size: contain;
+    margin: 0 auto;
+}
