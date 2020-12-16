@@ -1,24 +1,26 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
-<%@ page trimDirectiveWhitespaces="true" %>
+<%@ page trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-  <div class="dress-TipMainBody">
+ <div class="dress-TipMainBody">
                 <div class="dress-TipMainBodySub">
                     <div class="dress-TipMenuBody1">
                         <div class="dress-TipMenu1">
-                            <a href="#">
-                                <div class="dress-InnerImg"></div>
-                                <span>옷 보관법</span>
-                            </a>
+                            <div class="dress-InnerImg1">
+                                <a href="#">
+                                    <span>옷 보관법</span>
+                                </a>
+                            </div>
                         </div>
                     </div>
                     <div class="dress-TipMenuBody2">
                         <div class="dress-TipMenu2">
-                            <a href="#">
-                                <div class="dress-InnerImg"></div>
-                                <span>옷 세탁법</span>
-                            </a>
+                            <div class="dress-InnerImg2">
+                                <a href="#">
+                                    <span>옷 세탁법</span>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>

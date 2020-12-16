@@ -1,7 +1,9 @@
 .dress-TipMainBody{
     width: 1300px;
     min-height: 1000px;
-    margin:200px auto 0 auto;
+    margin: 200px auto 0 auto;
+    /* TestBackground */
+    /* background-color: rgba(232, 216, 247, 0.31); */
 }
 .dress-TipMainBodySub{
     display: flex;
@@ -34,28 +36,37 @@
     box-sizing: border-box;
     border-radius: 15px 15px 0 0;
     /* TestBackground */
-    background-color: hotpink;
+    /* background-color: rgb(76, 15, 133); */
 }
 .dress-TipMenu1>a{
     width: 100%;
     height: 100%;
 }
-.dress-InnerImg{
+.dress-InnerImg1{
     width:100%;
     height: 100%;
     border-radius: 15px 15px 0 0;
-    background-image: url("pp.jpeg");
-    background-size: contain;
+    background-image: url("../images/interior/h1.png");
+    /* background-color: white; */
+    background-size: 150px 90px;
     background-repeat: no-repeat;
 }
-.dress-TipMenu1>a >span,.dress-TipMenu2>a >span{
+.dress-InnerImg2{
+    width:100%;
+    height: 100%;
+    border-radius: 15px 15px 0 0;
+    background-image: url("../images/dress/laundry.png");
+    background-color: white;
+    background-size: 150px 90px;
+    background-repeat: no-repeat;
+}
+.dress-InnerImg1>a >span,.dress-InnerImg2>a >span{
     display: inline-block;
     width: 80px;
     text-align: center;
     position: relative;
-    top: -30px;
-    left: 180px;
-    border-radius: 3px;
+    top: 0px;
+    left: 175px;
     background-color: rgba(237, 237, 237, 0.632);
 }
 .dress-TipMenu2{
@@ -73,8 +84,6 @@
     box-sizing: border-box;
     padding: 10px 0;
     border-radius: 0 15px 15px 15px;
-   
-    /* TestBackground */
     background-color: #ededed80;
 }
 
@@ -87,13 +96,12 @@
     padding: 0 20px;
     border-radius: 5px;
     line-height: 40px;
-    /* TestBackground */
     background-color: rgba(255, 255, 255, 0.925);
 }
 .dress-TipShowMenu{
     width: 10%;
     margin: 0 auto;
-  
+   
 }
 .dress-Subject{
     width: 50%;
@@ -103,7 +111,7 @@
 .dress-UserName{
     width: 10%;
     margin: 0 auto;
- 
+  
 }
 .dress-Created{
     width: 10%;
