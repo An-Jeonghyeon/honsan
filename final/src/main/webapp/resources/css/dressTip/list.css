@@ -2,7 +2,7 @@
 .dress-TipMainBody{
     width: 1300px;
     min-height: 1000px;
-    margin-top: 200px;
+    margin: 200px auto 0 auto;
 }
 .dress-TipMainBodySub{
     display: flex;
