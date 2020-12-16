@@ -1,0 +1,222 @@
+@charset "UTF-8";
+
+
+/* roomlist */
+
+* {
+	margin:0; padding:0;
+}
+
+.body-container {
+    clear:both;
+    box-sizing: border-box;  /* padding과 border는 크기에 포함되지 않음 */
+    margin: 0px auto 15px;
+    min-height: 500px;
+    padding-top: 20px;
+}
+
+hr {
+  border:0.1px solid #ccc;
+}
+
+.searchlist{
+	background: #e4e4e4;
+	height: 130px;
+	
+}
+
+
+
+.lbl {
+	position: absolute;
+	margin-left: 15px;
+	margin-top: 15px;
+	color: #999999;
+	font-size: 10pt;
+}
+
+.searchTF {
+	width: 200px;
+	height: 20px;
+	padding: 5px;
+	padding-left: 15px;
+	border: 1px solid #999999;
+	color: #333333;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	font-size: 14px;
+	border-radius: 4px;
+}
+
+.searchTF:focus{
+	border: 1px solid #ff8000;
+}
+.searchbtn{
+	font-size: 15px; 
+	border:none;
+	background:#d7def7;
+	width: 60px;
+	height: 35px;
+	border-radius:4px;
+	color: #000;
+}
+
+.searchbtn:hover, .btn:hover {
+	background:#a7b7ed;
+}
+
+.btn{
+	font-size: 15px; 
+	border:none;
+	background:#d7def7;
+	width: 100px;
+	height: 35px;
+	border-radius:4px;
+	color: #000;
+	margin: 10px;
+}
+
+
+.mainexplain{
+	width: 100%;
+	height: 30px;
+	
+}
+
+.listTd{
+	margin:5px;
+	width:220px;
+	padding: 10px;
+	align-items: center;
+	border: 1px solid #808080;
+}
+
+.listTd:hover{
+	box-shadow: 10px 10px 20px #c0c0c0;
+}
+
+.roomlist{
+	width:100%;
+	margin: 30px auto 30px;
+}
+
+.toplist{
+	width:100%;
+	height: 200px;
+	margin: 10px auto;
+}
+
+.toplistTd{
+	padding: 3px;
+}
+
+.topimg_box{
+	background-position: center;
+	background-size:cover;
+	background-position:center; 
+	width:230px;  
+	height: 130px; 
+	border:2px solid silver;
+}
+
+.topimg_box:hover{
+	box-shadow: 10px 10px 20px #c0c0c0;
+}
+
+
+/* roomchecklist */
+
+.listname{
+	width: 200px;
+	height: 20px;
+	padding: 5px;
+	padding-left: 15px;
+	border: 1px solid #999999;
+	color: #333333;
+	margin:250px 0 0 0;
+	font-size: 20px;
+	border-radius: 4px;
+	text-align: center;
+}
+
+.listname:focus{
+	border: 1px solid #ff8000;
+}
+
+.checklist{
+	background-image: url("../../images/room/checklistimg.png");
+	background-position: center;
+	background-size:cover;
+	background-position:center; 
+	width:100%; 
+	height: 1300px;
+	margin-bottom: 100px;
+}
+
+
+.listdiv{
+	height: 1080px;
+	width: 610px;
+	margin-left: 150px;
+}
+
+.listTable{
+	width: 600px;
+}
+
+.checkbox{
+	transform : scale(1.5);
+}
+.radio{
+	transform : scale(1.5);
+}
+
+.bottonbtn{
+	font-size: 15px; 
+	border:none;
+	background:#d7def7;
+	width: 100px;
+	height: 35px;
+	border-radius:4px;
+	color: #000;
+	margin: 10px;
+}
+
+.mychecklist{
+	width: 100%;
+	margin-left: 400px
+}
+
+.mylistbtn{
+	font-size: 15px; 
+	border:none;
+	background:#d7def7;
+	width: 130px;
+	height: 40px;
+	border-radius:4px;
+	color: #000;
+	margin: 10px;
+}
+
+.bottonbtn:hover, .mylistbtn:hover{
+	background:#a7b7ed;
+}
+
+.toptitle{
+	width: 900px; 
+	margin: 0px auto; 
+	padding-left:130px; 
+	padding-top: 100px;
+	font-size: 30px;
+	color: gray;
+}
+
+.toptitleP{
+	padding:20px;
+	 width: 750px;
+	 height: 50px;
+}
+.toptitleP:hover{
+	box-shadow: 0 0 20px #c0c0c0;
+}
+
