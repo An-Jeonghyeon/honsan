@@ -63,15 +63,15 @@ nav{
      /* background-color: rgb(194, 192, 190); */
 }
 .logo {
-	background-image: url("../images/layout_logout/logo11.png");
-	background-repeat: no-repeat;
-	background-size: 150px 137px;
-	background-position: left 0px;
+   background-image: url("../images/layout_logout/logo11.png");
+   background-repeat: no-repeat;
+   background-size: 150px 137px;
+   background-position: left 0px;
 }
 .logo a {
-	display: block;
-	width: 100%;
-	height: 100%;
+   display: block;
+   width: 100%;
+   height: 100%;
     cursor: pointer;
 }
 .menuBox{
@@ -114,7 +114,7 @@ nav{
     /* background-color: rgb(194, 192, 190);  */
 }
 .loginName a {
-	color: rgb(255, 255, 255);
+   color: rgb(255, 255, 255);
     text-shadow: 1px 1px 1px rgb(13, 43, 10);
 }
 .mypage{
@@ -265,9 +265,9 @@ nav{
 /*----------------------------------  header end               */
 /*----------------------------------    mainSection              */
 #mainSection {
-	width: inherit;
-	/* TestBackground */
-	/* background-color: rgba(232, 216, 247, 0.31); */
+   width: inherit;
+   /* TestBackground */
+   /* background-color: rgba(232, 216, 247, 0.31); */
 }
 /*-- 개인 css 설정 영역 --*/
 
