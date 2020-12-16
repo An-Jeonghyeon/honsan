@@ -1,0 +1,222 @@
+@charset "UTF-8";
+.dress-TipMainBody{
+    width: 1300px;
+    min-height: 1000px;
+    margin: 200px auto 0 auto;
+}
+.dress-TipMainBodySub{
+    display: flex;
+}
+
+.dress-TipMenuBody1{
+    width: 300px;
+    height: 100px;
+    padding: 10px 10px 0px 10px;
+    box-sizing:border-box;
+    border-radius: 15px 15px 0 0;
+    /* TestBackground */
+    background-color: rgb(201, 201, 201);
+}
+.dress-TipMenuBody2{
+    width: 300px;
+    height: 100px;
+    padding: 10px 10px 0px 10px;
+    box-sizing:border-box;
+    border-radius: 15px 15px 0 0;
+    /* TestBackground */
+    background-color: rgb(233, 233, 233);
+}
+.dress-TipMenu1{
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    box-sizing: border-box;
+    border-radius: 15px 15px 0 0;
+    /* TestBackground */
+    background-color: rgb(76, 15, 133);
+}
+.dress-TipMenu1>a{
+    width: 100%;
+    height: 100%;
+}
+.dress-InnerImg{
+    width:100%;
+    height: 100%;
+    border-radius: 15px 15px 0 0;
+    background-image: url("pp.jpeg");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.dress-TipMenu1>a >span,.dress-TipMenu2>a >span{
+    display: inline-block;
+    width: 80px;
+    text-align: center;
+    position: relative;
+    top: -30px;
+    left: 180px;
+    border-radius: 3px;
+    background-color: rgba(237, 237, 237, 0.632);
+}
+.dress-TipMenu2{
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    box-sizing: border-box;
+    border-radius: 15px 15px 0 0;
+    /* TestBackground */
+    background-color: rgb(103, 242, 193);
+}
+.dress-TipMainShowArticleBody{
+    width: 100%;
+    min-height: 500px;
+    box-sizing: border-box;
+    padding: 10px 0;
+    border-radius: 0 15px 15px 15px;
+    /* TestBackground */
+    background-color: rgb(201, 201, 201);
+}
+
+.dress-TipShowArticleBody{
+    width: 97%;
+    height: 40px;
+    box-sizing: border-box;
+    display: flex;
+    margin: 10px auto;
+    padding: 0 20px;
+    border-radius: 5px;
+    line-height: 40px;
+    /* TestBackground */
+    background-color: rgba(255, 255, 255, 0.925);
+}
+.dress-TipShowMenu{
+    width: 10%;
+    margin: 0 auto;
+   
+}
+.dress-Subject{
+    width: 50%;
+    margin: 0 auto;
+  
+}
+.dress-UserName{
+    width: 10%;
+    margin: 0 auto;
+   
+}
+.dress-Created{
+    width: 10%;
+    margin: 0 auto;
+    text-align: center;
+  
+}
+.dress-HitCountName{
+    width: 10%;
+    margin: 0 auto;
+    text-align: right;
+   
+}
+.dress-HitCount{
+    width: 1%;
+    margin: 0 auto;
+    text-align: right;
+   
+}
+
+.dress-searchFormBody{  
+    width: 95%;
+    margin: 30px  auto;
+    box-sizing: border-box;
+    padding: 5px;
+   
+}
+.dress-TipMainShowArticleBody>form{
+    padding-bottom: 3px;   
+}
+.dress-searchBody{
+    width: 100%;
+    height: 35px;
+    box-sizing: border-box;
+    margin: 0 auto;
+    display: flex;
+    
+}
+.dress-pagingNum{
+    width: 30px;
+    height: 30px;
+    margin: 10px auto;
+    border-radius: 5px;
+    line-height: 30px;
+    border: 1px solid rgb(31,31,31);
+    background-color: rgb(31, 31, 31);
+    transition: 0.3s;
+    text-align: center;    
+}
+.dress-pagingNum>a{
+    color: white;
+}
+.dress-pagingNum:hover{
+    border: 1px solid rgb(31,31,31);
+    background-color: white;
+}
+.dress-pagingNum:hover.dress-pagingNum>a{
+    color: rgb(31, 31, 31);
+    transform: scale(1.1);
+    font-size: 18px;
+}
+.dress-Resetbtn{
+    width: 70px;
+    border: none;
+   
+}
+.dress-Selectbtn{
+    margin-left: auto;
+    width: 70px;
+    border: none;
+    border-radius: 5px;
+    background-color: #ededed;
+    padding-left: 10px;
+}
+.dress-Selectbtn:focus{
+    outline: none;
+    background-color: #ededed;
+    box-shadow: 0px 1px 15px rgba(95, 172, 255, 0.769);
+}
+.dress-Search{
+    width: 25%;
+    margin: 0 10px 0 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #ededed;
+}
+
+.dress-Search:focus{
+    outline: none;
+    background-color:white;
+    box-shadow: 0px 1px 15px rgba(95, 172, 255, 0.769);
+}
+.dress-Searchbnt{
+    width: 70px;
+    border: none;
+}
+.dress-Createdbtn{
+    margin-left: auto;
+    width: 70px;
+    border: none;
+}
+.dress-Btn{
+    background-color: #ededed;
+    border-radius: 5px;
+    transition: 0.3s;
+    font-size: 16px;
+}
+
+.dress-Btn:hover{
+    background-color: #bdbdbd;
+}
+.dress-Btn:focus{
+    outline: none;
+}
+.dress-Btn:active {
+    transform: scale(0.9);
+    margin-top: 5px;
+}

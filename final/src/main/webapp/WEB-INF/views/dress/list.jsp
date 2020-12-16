@@ -29,7 +29,7 @@
 				</div>
 			</div>
 		</div>
-		<form action="" name="" method="post">
+		<form action="" name="dress-CreatedFrom" method="post">
 			<div class="dress-searchFormBody">
 				<div class="dress-pagingNum">
 					<a href=""> 1</a>
@@ -45,7 +45,7 @@
 						<option value="">작성자</option>
 					</select> <input class="dress-Search" type="text" name="" id="">
 					<button class="dress-Searchbnt dress-Btn" type="button" onclick="">검색</button>
-					<button class="dress-Createdbtn dress-Btn" type="button" onclick="">글쓰기</button>
+					<button class="dress-Createdbtn dress-Btn" type="button" onclick="javascript:location.href='${pageContext.request.contextPath}/dress/created'">글쓰기</button>
 				</div>
 			</div>
 		</form>
