@@ -276,7 +276,7 @@ nav{
 /*---------------------------------- footer start              */
 footer{
     max-width: inherit;
-    height: 300px;
+    height: 230px;
     
      /* TestBackground */
      /* background-color: rgb(166, 146, 186); */
@@ -306,6 +306,9 @@ footer{
     /* TestBackground */
      /* background-color: rgba(157, 191, 191, 0.728);  */
 
+}
+.footerUl1 {
+	font-weight: 700;
 }
 .footerUl1 li a:last-child{
     color: tomato;
