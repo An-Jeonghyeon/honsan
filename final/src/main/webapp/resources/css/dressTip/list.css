@@ -46,7 +46,7 @@
     width:100%;
     height: 100%;
     border-radius: 15px 15px 0 0;
-    background-image: url("../images/interior/h1.png");
+    background-image:url("/app/resources/images/dress/OrganizingClothes.png");
     /* background-color: white; */
     background-size: 150px 90px;
     background-repeat: no-repeat;
@@ -55,7 +55,7 @@
     width:100%;
     height: 100%;
     border-radius: 15px 15px 0 0;
-    background-image: url("../images/dress/laundry.png");
+    background-image: url("/app/resources/images/dress/laundry.png");
     background-color: white;
     background-size: 150px 90px;
     background-repeat: no-repeat;
