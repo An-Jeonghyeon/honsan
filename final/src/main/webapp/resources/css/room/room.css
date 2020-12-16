@@ -220,3 +220,61 @@ hr {
 	box-shadow: 0 0 20px #c0c0c0;
 }
 
+
+
+/*roomCreated*/
+.createdtoptitleP{
+	width: 900px; 
+	margin: 0px auto; 
+	padding-left:140px; 
+	padding-top: 100px;
+	font-size: 25px;
+	color: gray;
+}
+
+.acc:hover{
+	box-shadow: 0 0 20px #c0c0c0;
+	background: #ffeb5e;
+}
+
+.addrbtn{
+	font-size: 15px; 
+	border:none;
+	background:#ffeb5e;
+	width: 100px;
+	height: 35px;
+	border-radius:4px;
+	color: #000;
+	margin: 10px;
+}
+
+.addrbtn:hover, .roomCreatedbtn:hover{
+	background:#ffad15;
+}
+
+.roomboxTF{
+	width: 200px;
+	height: 20px;
+	padding: 5px;
+	padding-left: 15px;
+	border: 1px solid #999999;
+	color: #333333;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	font-size: 14px;
+	border-radius: 1px;
+}
+
+.roomCreatedbtn{
+	font-size: 20px; 
+	font-weight:bold;
+	border:none;
+	background:#ffeb5e;
+	width: 150px;
+	height: 50px;
+	border-radius:4px;
+	color: #000;
+	margin: 10px;
+}
+
+			

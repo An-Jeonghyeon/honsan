@@ -18,6 +18,12 @@ public class RoomController {
 		return ".room.roomlist";
 	}
 	
+	@RequestMapping(value="roomCreated", method=RequestMethod.GET)
+	public String roomCread() {
+		
+		return ".room.roomCreated";
+	}
+	
 	
 	
 	

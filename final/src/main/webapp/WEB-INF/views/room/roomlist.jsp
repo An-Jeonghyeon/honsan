@@ -61,7 +61,7 @@
 					<tr>		
 						<td align="right">
 						<button type="button" class="btn"
-						onclick="javascript:location.href='${pageContext.request.contextPath}/room/roomcreated';">방
+						onclick="javascript:location.href='${pageContext.request.contextPath}/room/roomCreated';">방
 						올리기</button>
 						</td>
 					</tr>
