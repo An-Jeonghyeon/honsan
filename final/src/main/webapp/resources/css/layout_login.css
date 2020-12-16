@@ -49,6 +49,7 @@ nav{
     height: 100%;
     margin: 0 auto;  
     display: flex;
+    font-weight: 800;
     /* TestBackground */
     /* background-color: #ff6347; */
 }
@@ -217,6 +218,7 @@ nav{
     /* TestBackground */
     background: #ffffff66;
     backdrop-filter: saturate(180%) blur(10px);
+    font-weight: 700;
 }
 .innerhideNav{
     display: flex;
