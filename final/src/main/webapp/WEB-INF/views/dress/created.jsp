@@ -56,7 +56,7 @@
 
 		<div class="contentBody">
 			<div class="inputBody1">
-				<textarea name="content"></textarea>
+				<textarea id="content" name="content"></textarea>
 			</div>
 			<div class="tagBody">
 
@@ -84,50 +84,47 @@
 	</article>
 </form>
 <script type="text/javascript">
-	var oEditors = [];
-	nhn.husky.EZCreator
-			.createInIFrame({
-				oAppRef : oEditors,
-				elPlaceHolder : "content",
-				sSkinURI : "${pageContext.request.contextPath}/resources/se/SmartEditor2Skin.html",
-				htParams : {
-					bUseToolbar : true,
-					fOnBeforeUnload : function() {
-						// alert(" Ok !!!");
-					}
-				}, //boolean
-				fOnAppLoad : function() {
-					//예제 코드
-					//oEditors.getById["content"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
-				},
-				fCreator : "createSEditor2"
-			});
-
-	function pasteHTML() {
-		var sHTML = "<span style='color:#FF0000;'>이미지도 같은 방식으로 삽입합니다.<\/span>";
-		oEditors.getById["content"].exec("PASTE_HTML", [ sHTML ]);
-	}
-
-	function showHTML() {
-		var sHTML = oEditors.getById["content"].getIR();
-		alert(sHTML);
-	}
-
-	function submitContents(elClickedObj) {
-		oEditors.getById["content"].exec("UPDATE_CONTENTS_FIELD", []); // 에디터의 내용이 textarea에 적용됩니다.
-
-		// 에디터의 내용에 대한 값 검증은 이곳에서 document.getElementById("content").value를 이용해서 처리하면 됩니다.
-
-		try {
-			// elClickedObj.form.submit();
-			return check();
-		} catch (e) {
+var oEditors = [];
+nhn.husky.EZCreator.createInIFrame({
+	oAppRef: oEditors,
+	elPlaceHolder: "content",
+	sSkinURI: "${pageContext.request.contextPath}/resources/se/SmartEditor2Skin.html",	
+	htParams : {bUseToolbar : true,
+		fOnBeforeUnload : function(){
+			// alert(" Ok !!!");
 		}
-	}
+	}, //boolean
+	fOnAppLoad : function(){
+		//예제 코드
+		//oEditors.getById["content"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
+	},
+	fCreator: "createSEditor2"
+});
 
-	function setDefaultFont() {
-		var sDefaultFont = '돋움';
-		var nFontSize = 24;
-		oEditors.getById["content"].setDefaultFont(sDefaultFont, nFontSize);
-	}
+function pasteHTML() {
+	var sHTML = "<span style='color:#FF0000;'>이미지도 같은 방식으로 삽입합니다.<\/span>";
+	oEditors.getById["content"].exec("PASTE_HTML", [sHTML]);
+}
+
+function showHTML() {
+	var sHTML = oEditors.getById["content"].getIR();
+	alert(sHTML);
+}
+	
+function submitContents(elClickedObj) {
+	oEditors.getById["content"].exec("UPDATE_CONTENTS_FIELD", []);	// 에디터의 내용이 textarea에 적용됩니다.
+	
+	// 에디터의 내용에 대한 값 검증은 이곳에서 document.getElementById("content").value를 이용해서 처리하면 됩니다.
+	
+	try {
+		// elClickedObj.form.submit();
+		return check();
+	} catch(e) {}
+}
+
+function setDefaultFont() {
+	var sDefaultFont = '돋움';
+	var nFontSize = 24;
+	oEditors.getById["content"].setDefaultFont(sDefaultFont, nFontSize);
+}
 </script>
