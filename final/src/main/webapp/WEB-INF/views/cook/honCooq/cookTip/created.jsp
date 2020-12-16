@@ -32,7 +32,6 @@
 		return true;
 	}
 
-
 </script>
 
 
@@ -149,7 +148,8 @@
 					bUseToolbar : true,
 					fOnBeforeUnload : function() {
 						// alert(" Ok !!!");
-					}
+					},
+					bUseVerticalResizer : false
 				}, //boolean
 				fOnAppLoad : function() {
 					//예제 코드
