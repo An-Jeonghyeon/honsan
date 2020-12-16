@@ -65,7 +65,7 @@ function sendFind(){
 		<div style="width: 420px; margin: 40px auto; padding-top: 90px;">
 			<div style="text-align: center;">
 				<span style="font-weight: bold; font-size: 27px; color: #424951;">
-					아 이 디 &nbsp;&nbsp; 찾 기  </span>
+					<i class="fas fa-id-card-alt"></i>  아 이 디 &nbsp;&nbsp; 찾 기  </span>
 			</div>
 			
 			<form name="loginForm" method="post">
