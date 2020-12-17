@@ -10,7 +10,7 @@
 <div class="articleMainBody">
 	<div class="articleMainHeader">
 		<div class="articleGo">
-			<span><a href="${pageContext.request.contextPath">자랑게시판
+			<span><a href="${pageContext.request.contextPath}">자랑게시판
 					&gt;</a></span>
 		</div>
 		<div class="articleMainHeaderSubject">
