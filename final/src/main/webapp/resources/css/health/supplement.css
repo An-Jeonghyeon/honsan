@@ -146,6 +146,9 @@
   position: absolute;
   bottom: 350px;
 }
+.floating-write:hover {
+	background: #be9229da;
+}
 .f-div {
     padding-top: 25px;
 }

@@ -15,7 +15,6 @@ $(document).ready(function() {
 	$(window).scroll(function() {
 		var scrollTop = $(window).scrollTop();
 		var newPosition = scrollTop + floatPosition + "px";
-		console.log(newPosition);
 		
 		$(".floating-write").stop().animate({
 			"top" : newPosition
