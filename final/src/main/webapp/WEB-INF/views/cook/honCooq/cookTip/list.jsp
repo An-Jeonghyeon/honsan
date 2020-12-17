@@ -66,6 +66,223 @@
 					</div>
 				</div>
 			</div>
+			<div class="cookTip_content-box">
+				<div class="cookTip_content">
+					<div class="cookTip_content_info">
+
+						<div class="cookTip_category">
+							<span>${dto.category!=null? dto.category : "STORY"}</span>
+						</div>
+
+						<strong class="cookTip_title"> <a
+							href="${pageContext.request.contextPath}/">${dto.subject} 쌀쌀한
+								날씨 감기조심하세요</a>
+						</strong>
+						<div class="cookTip_data">
+							<ul>
+								<li><span>${dto.userName}작성자</span></li>
+								<li><span>${dto.created}등록일</span></li>
+								<li><span>${dto.register_date}조회수</span></li>
+							</ul>
+						</div>
+						<div class="cookTip_util">
+							<span class="like-reply-function"> <a href="javascript:;"
+								class="fn-reply-count"><i class="icon-reply-count"></i><span
+									class="sr-only">댓글 수</span><span>0</span></a> <a
+								href="javascript:;" class="fn-reply-like check-sso action-like "
+								data-id="story_bbs_01_28782"><i class="icon-reply-like"></i><span
+									class="sr-only">좋아요 수</span><span>0</span></a>
+							</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="cookTip_content-box">
+				<div class="cookTip_content">
+					<div class="cookTip_content_info">
+
+						<div class="cookTip_category">
+							<span>${dto.category!=null? dto.category : "STORY"}</span>
+						</div>
+
+						<strong class="cookTip_title"> <a
+							href="${pageContext.request.contextPath}/">${dto.subject} 쌀쌀한
+								날씨 감기조심하세요</a>
+						</strong>
+						<div class="cookTip_data">
+							<ul>
+								<li><span>${dto.userName}작성자</span></li>
+								<li><span>${dto.created}등록일</span></li>
+								<li><span>${dto.register_date}조회수</span></li>
+							</ul>
+						</div>
+						<div class="cookTip_util">
+							<span class="like-reply-function"> <a href="javascript:;"
+								class="fn-reply-count"><i class="icon-reply-count"></i><span
+									class="sr-only">댓글 수</span><span>0</span></a> <a
+								href="javascript:;" class="fn-reply-like check-sso action-like "
+								data-id="story_bbs_01_28782"><i class="icon-reply-like"></i><span
+									class="sr-only">좋아요 수</span><span>0</span></a>
+							</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="cookTip_content-box">
+				<div class="cookTip_content">
+					<div class="cookTip_content_info">
+
+						<div class="cookTip_category">
+							<span>${dto.category!=null? dto.category : "STORY"}</span>
+						</div>
+
+						<strong class="cookTip_title"> <a
+							href="${pageContext.request.contextPath}/">${dto.subject} 쌀쌀한
+								날씨 감기조심하세요</a>
+						</strong>
+						<div class="cookTip_data">
+							<ul>
+								<li><span>${dto.userName}작성자</span></li>
+								<li><span>${dto.created}등록일</span></li>
+								<li><span>${dto.register_date}조회수</span></li>
+							</ul>
+						</div>
+						<div class="cookTip_util">
+							<span class="like-reply-function"> <a href="javascript:;"
+								class="fn-reply-count"><i class="icon-reply-count"></i><span
+									class="sr-only">댓글 수</span><span>0</span></a> <a
+								href="javascript:;" class="fn-reply-like check-sso action-like "
+								data-id="story_bbs_01_28782"><i class="icon-reply-like"></i><span
+									class="sr-only">좋아요 수</span><span>0</span></a>
+							</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="cookTip_content-box">
+				<div class="cookTip_content">
+					<div class="cookTip_content_info">
+
+						<div class="cookTip_category">
+							<span>${dto.category!=null? dto.category : "STORY"}</span>
+						</div>
+
+						<strong class="cookTip_title"> <a
+							href="${pageContext.request.contextPath}/">${dto.subject} 쌀쌀한
+								날씨 감기조심하세요</a>
+						</strong>
+						<div class="cookTip_data">
+							<ul>
+								<li><span>${dto.userName}작성자</span></li>
+								<li><span>${dto.created}등록일</span></li>
+								<li><span>${dto.register_date}조회수</span></li>
+							</ul>
+						</div>
+						<div class="cookTip_util">
+							<span class="like-reply-function"> <a href="javascript:;"
+								class="fn-reply-count"><i class="icon-reply-count"></i><span
+									class="sr-only">댓글 수</span><span>0</span></a> <a
+								href="javascript:;" class="fn-reply-like check-sso action-like "
+								data-id="story_bbs_01_28782"><i class="icon-reply-like"></i><span
+									class="sr-only">좋아요 수</span><span>0</span></a>
+							</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="cookTip_content-box">
+				<div class="cookTip_content">
+					<div class="cookTip_content_info">
+
+						<div class="cookTip_category">
+							<span>${dto.category!=null? dto.category : "STORY"}</span>
+						</div>
+
+						<strong class="cookTip_title"> <a
+							href="${pageContext.request.contextPath}/">${dto.subject} 쌀쌀한
+								날씨 감기조심하세요</a>
+						</strong>
+						<div class="cookTip_data">
+							<ul>
+								<li><span>${dto.userName}작성자</span></li>
+								<li><span>${dto.created}등록일</span></li>
+								<li><span>${dto.register_date}조회수</span></li>
+							</ul>
+						</div>
+						<div class="cookTip_util">
+							<span class="like-reply-function"> <a href="javascript:;"
+								class="fn-reply-count"><i class="icon-reply-count"></i><span
+									class="sr-only">댓글 수</span><span>0</span></a> <a
+								href="javascript:;" class="fn-reply-like check-sso action-like "
+								data-id="story_bbs_01_28782"><i class="icon-reply-like"></i><span
+									class="sr-only">좋아요 수</span><span>0</span></a>
+							</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="cookTip_content-box">
+				<div class="cookTip_content">
+					<div class="cookTip_content_info">
+
+						<div class="cookTip_category">
+							<span>${dto.category!=null? dto.category : "STORY"}</span>
+						</div>
+
+						<strong class="cookTip_title"> <a
+							href="${pageContext.request.contextPath}/">${dto.subject} 쌀쌀한
+								날씨 감기조심하세요</a>
+						</strong>
+						<div class="cookTip_data">
+							<ul>
+								<li><span>${dto.userName}작성자</span></li>
+								<li><span>${dto.created}등록일</span></li>
+								<li><span>${dto.register_date}조회수</span></li>
+							</ul>
+						</div>
+						<div class="cookTip_util">
+							<span class="like-reply-function"> <a href="javascript:;"
+								class="fn-reply-count"><i class="icon-reply-count"></i><span
+									class="sr-only">댓글 수</span><span>0</span></a> <a
+								href="javascript:;" class="fn-reply-like check-sso action-like "
+								data-id="story_bbs_01_28782"><i class="icon-reply-like"></i><span
+									class="sr-only">좋아요 수</span><span>0</span></a>
+							</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="cookTip_content-box">
+				<div class="cookTip_content">
+					<div class="cookTip_content_info">
+
+						<div class="cookTip_category">
+							<span>${dto.category!=null? dto.category : "STORY"}</span>
+						</div>
+
+						<strong class="cookTip_title"> <a
+							href="${pageContext.request.contextPath}/">${dto.subject} 쌀쌀한
+								날씨 감기조심하세요</a>
+						</strong>
+						<div class="cookTip_data">
+							<ul>
+								<li><span>${dto.userName}작성자</span></li>
+								<li><span>${dto.created}등록일</span></li>
+								<li><span>${dto.register_date}조회수</span></li>
+							</ul>
+						</div>
+						<div class="cookTip_util">
+							<span class="like-reply-function"> <a href="javascript:;"
+								class="fn-reply-count"><i class="icon-reply-count"></i><span
+									class="sr-only">댓글 수</span><span>0</span></a> <a
+								href="javascript:;" class="fn-reply-like check-sso action-like "
+								data-id="story_bbs_01_28782"><i class="icon-reply-like"></i><span
+									class="sr-only">좋아요 수</span><span>0</span></a>
+							</span>
+						</div>
+					</div>
+				</div>
+			</div>
 
 
 		</div>
