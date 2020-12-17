@@ -8,21 +8,22 @@
 
 <div class="cookTip_list-container">
 	<div class="cookTip_list-header">
+		<div class="cookTip_list-banner">아아 여기는 배너</div>
 		<div class="honCooq-tabs">
-			<div class="honCooq-tab">요리 정보</div>
-			<div class="honCooq-tab">CookTip</div>
-			<div class="honCooq-tab">오늘 뭐 먹지?</div>
+			<button type="button" class="honCooq-tab-button">요리 정보</button>
+			<button type="button" class="honCooq-tab-button">CookTip</button>
+			<button type="button" class="honCooq-tab-button">오늘 뭐 먹지?</button>
 		</div>
 	</div>
 
 	<div class="cookTip_list-body">
 		<div class="cookTip_inner-tab">
 			<ul>
-				<li><a href="" class="active" title="ALL">전체</a></li>
-				<li><a href="" title="장보기">장보기</a></li>
-				<li><a href="" title="조미료 관리">조미료 관리</a></li>
-				<li><a href="" title="음식 보관법">음식 보관법</a></li>
-				<li><a href="" title="설거지 및 주방정리">설거지 및 주방정리</a></li>
+				<li class="cookTip_li_category"><a href="" class="active" title="ALL">전체</a></li>
+				<li class="cookTip_li_category"><a href="" title="장보기">장보기</a></li>
+				<li class="cookTip_li_category"><a href="" title="조미료 관리">조미료 관리</a></li>
+				<li class="cookTip_li_category"><a href="" title="음식 보관법">음식 보관법</a></li>
+				<li class="cookTip_li_category"><a href="" title="설거지 및 주방정리">설거지 및 주방정리</a></li>
 			</ul>
 		</div>
 
@@ -31,8 +32,9 @@
 		</div>
 
 		<div class="cookTip_list">
-
+	<!-- 
 			<c:forEach var="dto" items="${list}"></c:forEach>
+	 -->
 			<div class="cookTip_content-box">
 				<div class="cookTip_content">
 					<div class="cookTip_content_info">
