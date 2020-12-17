@@ -34,7 +34,7 @@
                 </div>
                 <!-- 메인 사진  -->
                 <div class="interior_object_mainImg">
-                    <img src="${pageContext.request.contextPath}/resources/images/interior/a1.jpg" >
+                    <a href="${pageContext.request.contextPath}/interior/boardItem"><img src="${pageContext.request.contextPath}/resources/images/interior/a1.jpg" ></a>
                     
                 </div>
                 <!-- 카운트 숫자 게시판 (찜 , 댓글 , 좋아요 )  -->

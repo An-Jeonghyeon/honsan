@@ -1,0 +1,41 @@
+-----------------------------
+@Component, @Service
+  => 빈 등록(객체 생성)
+
+@Service   => 빈 이름은 test
+public class Test {
+   :
+}   
+
+@Service("testEx")   => 빈 이름은 testEx
+public class Test {
+   :
+}   
+
+-----------------------------
+-- 컴포넌트 스캔 : 스테레오 타입 애노테이션을 검색하여 빈을 등록
+   @Component, @Service 등을 검색
+   
+   <context:component-scan base-package="패키지명"/>
+   
+-- 컴포넌트 스캔 : 특정한 애노테이션만 스캔 - 예를 들어 @Service 스캔
+	<context:component-scan  base-package="패키지명"  use-default-filters="false">
+		<context:include-filter type="annotation" 
+				expression="org.springframework.stereotype.Service"/>
+	</context:component-scan>
+
+
+-----------------------------
+--  의존성 주입
+public class Ex {
+	@Autowired   => 타입으로 의존성을 주입
+    private Test obj;
+}
+
+
+public class Ex {
+	@Resource(name = "test")  => 빈이름으로 주입
+    private Test obj;
+}
+
+-----------------------------

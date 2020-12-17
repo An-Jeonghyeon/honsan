@@ -18,4 +18,9 @@ public class InteriorController {
 		
 		return ".interior.interior_board";
 	}
+	
+	@RequestMapping("boardItem")
+	public String boardItem() throws Exception{
+		return ".interior.boardItem";
+	}
 }
