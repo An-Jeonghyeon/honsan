@@ -3,7 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/cook/honCooq.css" type="text/css">
+<%-- <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/cook/honCooq.css" type="text/css">
+ --%>
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/se/js/HuskyEZCreator.js"
 	charset="utf-8"></script>
@@ -70,6 +71,7 @@
 		</div>
 		<div class="">
 			<select name="category" class="cookTip_select" id="cookTip_select">
+				<option value="전체" ${dto.category=="전체"?"selected='selected'":"" }>장보기</option>
 				<option value="장보기" ${dto.category=="장보기"?"selected='selected'":"" }>장보기</option>
 				<option value="조미료 관리"
 					${dto.category=="조미료 관리"?"selected='selected'":"" }>조미료 관리</option>

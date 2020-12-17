@@ -24,6 +24,12 @@ public class CookTipController {
 	@Autowired
 	private MyUtil myUtil;
 	
+	@RequestMapping(value = "list")
+	public String list() throws Exception {
+		return ".cook.honCooq.cookTip.list";
+	}
+	
+	
 	@RequestMapping(value = "created", method = RequestMethod.GET)
 	public String createdForm(
 			Model model
