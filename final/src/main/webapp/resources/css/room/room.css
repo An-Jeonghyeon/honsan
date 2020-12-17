@@ -277,4 +277,42 @@ hr {
 	margin: 10px;
 }
 
+		/*상세 정보 입력 창*/
+.add-table tr > th{
+	background: #eee;
+	width: 100px;
+	padding: 10px 10px 10px 10px;
+}
+
+.i-gray{
+	width:450px;
+	background: #eee;
+	margin: 10px 0 10px 10px;
+	padding: 5px;
+}
+
+.description{
+	width: 800px;
+	height : 130px;
+	margin: 10px 0 10px 10px;
+	resize: none;
+}
+
+.add-table input[type=text], .add-table select{
+	margin-left: 10px;
+}
+.add-table input[type=checkbox]{
+	margin: 10px 0 10px 0;
+}
+.i-options, .has-col, .size, .floor, .elev{
+	padding-left: 10px;
+}
+
+.fc-red1{
+	color:red;
+	font-size: 13px;
+}
+
+
+
 			

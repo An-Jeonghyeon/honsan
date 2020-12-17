@@ -86,9 +86,7 @@ $(function(){
 		<div id="accordion2" class="acc" >
 			<h3 style="background:#ffeb5e; height: 30px; font-size: 20px; color: black; border: none;"><i class="fas fa-list-alt"></i>  거래 유형 및 방 상세 정보</h3>
 			<div>
-				<table>
-				<tr>
-					<table class="add-table">
+				<table class="add-table">
                 <tbody><tr>
                     <th>보증금</th>
                     <td>
@@ -117,7 +115,7 @@ $(function(){
                     </td>
                 </tr>
                 
-                <tr>
+                <tr height="70">
                     <th>관리비</th>
                     <td>
                         <input type="text" class="text" name="fee" onkeydown="return number_validate2(event);"> 만원
@@ -134,18 +132,18 @@ $(function(){
                     </td>
                 </tr>
                 <tr>
-                    <th>크기</th>
-                    <td>
+                    <th height="80">크기</th>
+                    <td class="size">
                         <div class="mb-5">전용면적 : <input type="text" class="text min" name="size_m2" onkeydown="return number_validate2(event);"> m<sup>2</sup>  = <input type="text" class="text min" name="size" onkeydown="return number_validate2(event);"> P</div>
                         <span class="mb-5" id="contract_size">
                             계약면적 : <input type="text" class="text min" name="size_contract_m2" onkeydown="return number_validate2(event);"> m<sup>2</sup> = <input type="text" class="text min" name="size_contract" onkeydown="return number_validate2(event);"> P
-                        </span>
+                        </span><br>
                         <span class="fc-red1">※한 단위만 입력하면 자동으로 전환됩니다</span>
                     </td>
                 </tr>
                 <tr>
                     <th>층수</th>
-                    <td>
+                    <td class="floor">
                         건물 층 수:
                         <select name="building_floor">
                             <option value="">선택하세요</option>
@@ -160,23 +158,6 @@ $(function(){
                     </td>
                 </tr>
                 <tr>
-                    <th>방향</th>
-                    <td>
-                        <select name="room_direction">
-                            <option value="">선택하세요</option>
-                            <option value="E">동향</option>
-                            <option value="W">서향</option>
-                            <option value="S">남향</option>
-                            <option value="N">북향</option>
-                            <option value="SE">남동향</option>
-                            <option value="SW">남서향</option>
-                            <option value="NE">북동향</option>
-                            <option value="NW">북서향</option>
-                            <option value="-">확인필요</option>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
                     <th>옵션</th>
                     <td class="i-options">
                         <label><input type="checkbox" name="room_options" value="01"> 에어컨</label>
@@ -184,7 +165,7 @@ $(function(){
                         <label><input type="checkbox" name="room_options" value="03"> 세탁기</label>
                         <label><input type="checkbox" name="room_options" value="04"> 가스레인지</label>
                         <label><input type="checkbox" name="room_options" value="05"> 인덕션</label>
-                        <label><input type="checkbox" name="room_options" value="06"> 전자레인지</label>
+                        <label><input type="checkbox" name="room_options" value="06"> 전자레인지</label><br>
                         <label><input type="checkbox" name="room_options" value="07"> 책상</label>
                         <label><input type="checkbox" name="room_options" value="08"> 책장</label>
                         <label><input type="checkbox" name="room_options" value="09"> 침대</label>
@@ -194,35 +175,19 @@ $(function(){
                     </td>
                 </tr>
                 <tr>
-                    <th>전세 대출</th>
-                    <td>
-                        <label> <input type="radio" name="loan" value="true"> 가능</label>
-                        <label><input type="radio" name="loan" value="false"> 불가능</label>
-                        <label><input type="radio" name="loan" value="-"> 확인필요</label>
-                    </td>
-                </tr>
-                <tr>
-                    <th>반려동물</th>
-                    <td>
-                        <label><input type="radio" name="pets" value="yes"> 가능</label>
-                        <label><input type="radio" name="pets" value="no"> 불가능</label>
-                        <label><input type="radio" name="pets" value="catonly"> 고양이만</label>
-                        <label><input type="radio" name="pets" value="-"> 확인필요</label>
-                    </td>
-                </tr>
-                <tr>
                     <th>주차</th>
                     <td class="has-col">
                         <label><input type="radio" name="parking" value="가능"> 가능</label>
                         <label><input type="radio" name="parking" value="불가능"> 없음</label>
-                        <div class="i-col">
-                            <strong>엘리베이터</strong>
-                            <label><input type="radio" name="building_elevator" value="true"> 있음</label>
-                            <label><input type="radio" name="building_elevator" value="false"> 없음</label>
-                        </div>
                     </td>
                 </tr>
-                <tr></tr>
+                <tr>
+                	<th>엘리베이터</th>
+                	<td class="elev">
+                	 	<label><input type="radio" name="building_elevator" value="true"> 있음</label>
+                        <label><input type="radio" name="building_elevator" value="false"> 없음</label>
+                	</td>
+                </tr>
                 <tr>
                     <th>입주가능일</th>
                     <td>
@@ -241,27 +206,16 @@ $(function(){
                         <textarea name="description" class="description" placeholder="해당 방에 대한 특징과 소개를 최소 50자 이상 입력해야 합니다.
 방의 위치와 교통, 주변 편의시설, 방의 특징과 장점, 보안시설, 옵션, 주차, 전체적인
 방의 느낌 등을 작성해 주세요.      
-
 다른 방에 대한 설명, 연락처, 홍보 메시지 등 해당 방과 관련없는 내용을 입력하거나 
 해당 방에 대한 설명이 부적절할 경우 중개가 종료될 수 있습니다.
                                   "></textarea>
                         <div class="i-description-status">
-                            <button type="button">예시보기</button>
                             <em>방 설명을 최소 50자 이상 입력해 주세요.</em>
-                            <span><strong>0</strong> 자</span>
                         </div>
                     </td>
                 </tr>
-                <tr id="to_agent_memo">
-                    <th>중개사에게<br>남기는 메세지</th>
-                    <td>
-                        <textarea id="to_agent_text" name="to_agent" style="height:50px;" placeholder="중개사에게만 보여 집니다. 상세한 조건 등 중개사에게 전달할 말을 적어 주세요"></textarea>
-                    </td>
-                </tr>
             </tbody></table>
-				</tr>
 				
-				</table>
 			</div>
 		</div>
 	
