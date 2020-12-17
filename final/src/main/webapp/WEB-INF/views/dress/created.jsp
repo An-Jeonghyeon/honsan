@@ -2,6 +2,9 @@
 <%@ page trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
+ <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/dress/created.css" type="text/css">
+
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/se/js/HuskyEZCreator.js"
 	charset="utf-8"></script>
