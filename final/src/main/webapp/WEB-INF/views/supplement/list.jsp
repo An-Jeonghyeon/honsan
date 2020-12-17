@@ -15,10 +15,11 @@ $(document).ready(function() {
 	$(window).scroll(function() {
 		var scrollTop = $(window).scrollTop();
 		var newPosition = scrollTop + floatPosition + "px";
-	
+		console.log(newPosition);
+		
 		$(".floating-write").stop().animate({
 			"top" : newPosition
-		}, 700);
+		}, 500);
 
 	}).scroll();
 });
@@ -28,13 +29,15 @@ $(document).ready(function() {
 <section>
     <div class="supplement-body">
         <div class="supplement-top">
-            <div class="top-title">
-             	<p>오늘 영양제</p>
-            </div>
-            <div class="top-text">
-                <p>영양제 먹고 안먹고의 차이를 이것을 먹고 난 느꼈다 ! </p>
-                <p>내가 먹는 영양제를 같이 공유해봐요 </p>
-            </div>
+        	<div class="top-text-all">
+	            <div class="top-title">
+	             	<p>오늘 영양제</p>
+	            </div>
+	            <div class="top-text">
+	                <p>영양제 먹고 안먹고의 차이를 이것을 먹고 난 느꼈다 ! </p>
+	                <p>내가 먹는 영양제를 같이 공유해봐요 </p>
+	            </div>
+        	</div>
         </div>
 
         <!-- 영양제 내용 -->
@@ -122,10 +125,10 @@ $(document).ready(function() {
             </div>
 
             <!-- 글쓰기 플로팅 -->
-            <div class="floating-write">
+            <div class="floating-write" onclick="javascript:location.href='${pageContext.request.contextPath}/supplement/created';">
                 <div class="f-div">
                     <div class="floating-image"></div>
-                    <p> 영양제<br> 추천하기</p>   
+                    <p> 영양제<br> 추천하기</p>
                 </div>
             </div>
 

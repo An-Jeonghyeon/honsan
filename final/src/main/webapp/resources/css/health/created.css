@@ -1,0 +1,237 @@
+@charset "UTF-8";
+
+.h-writeHeader{
+    width: 1100px;
+    height: 250px;
+    margin: 60px auto 0 auto;
+    box-sizing: border-box;
+   
+    /* TestBackground */
+    /* background-color: rgba(211, 23, 111, 0.332);    */
+}
+.h-writeheaderInnerText{    
+    width: 1100px;
+    height: 100px;
+    margin-bottom: 60px;
+    padding-left: 20px;
+    color: rgb(53, 53, 53);
+    box-sizing: border-box;
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    /* TestBackground */
+    /* background-color: rgb(150, 142, 140);    */
+}
+.h-FadeinText{
+    display: none;
+}
+.h-writeBody{
+    width: 1100px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    padding-top: 100px;
+    /* TestBackground */
+    /* background-color: rgb(215, 141, 230);    */
+}
+.h-writeBodyHeader{
+    font-size: 40px;
+    font-weight: 900;
+    padding-left: 5px;
+    padding-bottom: 20px;
+    margin-bottom: 40px;
+    border-bottom: 2px solid rgb(226, 226, 226);
+    /* TestBackground */
+    /* background-color: rgb(219, 219, 254);    */
+}
+.h-subjectBody{
+    width: inherit;
+    height: 45px;
+    margin-bottom: 20px;
+    border: 1px solid rgb(226, 226, 226);
+    box-sizing: border-box;
+    /* TestBackground */
+    /* background-color: rgb(50, 50, 97);    */
+}
+.h-subjectBody >input{
+    width: 100%;
+    height: 100%;
+    padding-left: 20px;
+    box-sizing: border-box;
+    border: none;
+    /* background-color: antiquewhite; */
+}
+.h-title-font{
+   font-size:16px;
+}
+.h-title-font:focus{
+    outline: none;
+    border: 2px solid black;
+}
+.h-InputTag {
+    border: 1px solid rgb(226, 226, 226);
+}
+.h-InputTag::placeholder{
+    color: #b1b1b1b1;
+}
+.h-title-font::placeholder{
+    color: #b1b1b1b1;
+}
+.h-textarea::placeholder{
+    color: #b1b1b1b1;
+}
+
+.h-contentBody{
+    width: 1100px;
+    height: 650px;
+    box-sizing: border-box;
+    /* TestBackground */
+    /* background-color: rgb(147, 147, 174);    */
+}
+.h-contentBody:focus{
+    border: 2px solid black;
+}
+.h-inputBody1{
+    width: 1100px;
+    height: 480px;
+    margin: 10px auto;
+    text-align: center;
+   /*  overflow: scroll; */
+   /* background-color: #ff6347; */ 
+}
+.h-textarea {
+    width: 99%;
+    height: 450px;
+    border: none;
+    font-size:16px;
+}
+.h-textarea:focus {
+    outline: none;
+}
+
+.h-tagBody{
+    position: relative;
+    width: 1000px;
+    height: 130px;
+    margin-left: 20px;
+    /* TestBackground */
+    /* background-color: rgb(116, 116, 121);    */
+}
+.h-tagBody >form{
+    width: 100%;
+    height: 100%;
+    
+}
+.h-plusTag{
+    width: 100%;
+    padding: 0;
+    box-sizing: border-box;
+    height: 40px;
+     /* TestBackground */
+     /* background-color: #ff6347; */
+}
+.h-plusTag ul{
+    width: 700px;
+    list-style: none;
+    margin-left: 150px;
+    /* TestBackground */
+   /* background-color: #ebaca1; */
+}
+#tag-list li{
+    width: 130px;
+    height: 30px;
+    background-color: aqua;
+    display: inline-block;
+}
+
+.h-inputBody2{
+    width: 1000px;
+    height: 70px;
+    margin: 0 auto;
+    margin-bottom: 100px;
+	display: flex;
+	margint-left: 20px;
+	
+/* TestBackground */
+/* background-color: rgb(39, 39, 49);    */
+}
+input[name="h-tag"]{
+    margin-top: 10px;
+    padding-left: 20px;
+    font-size: 20px;
+    box-sizing: border-box;
+    width: 90%;
+    height:50px;
+    cursor: pointer;
+}
+input[name="h-tag"]:focus{
+    box-shadow: 0 1px 20px rgba(170, 226, 249, 0.687);
+    outline: none;
+}
+.h-tagbtnBody{
+    margin-top: 10px;
+    width: 100px;
+    height: 50px;
+    box-sizing: border-box;
+     /* TestBackground */
+    /* background-color: red; */
+}
+.h-Tag-btn{
+    width: 130px;
+    height: 40px;
+    margin:5px 10px;
+    transition: 0.1s;
+    font-size: 16px;
+    color: white;
+    background: rgb(255, 0, 132);
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    box-shadow: 1px 10px 33px rgba(255, 0, 174, 0.755);
+}
+.h-Tag-btn:active{
+   transform: scale(0.9);
+   margin-top: 10px;
+   background: rgb(162, 0, 111);
+   box-shadow: 1px 3px 25px rgba(199, 0, 76, 0.755);
+}
+.h-Tag-btn:focus{
+    outline: none;
+}
+.h-Tag-btn:hover{
+    background: rgb(162, 0, 111);
+}
+.h-del-btn {
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-left: 8px;
+}
+.h-buttonBoxBody{
+    width: 280px;
+    height: 50px;
+    margin: 80px auto;
+     /* TestBackground */
+    /* background-color: rgb(89, 89, 179);    */
+}
+#CencelSubmit{
+    width: 130px;
+    height: 40px;
+    font-size: 16px;
+    color: white;
+    background: #ccc;
+    border : none;
+    cursor : pointer;
+    border-radius: 5px;
+    font-weight: 700;
+}
+#writeSubmit{
+    width: 130px;
+    height: 40px;
+    transition: 0.1s;
+    font-size: 16px;
+    color: white;
+    background: #f3c04ac7;
+    border : none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: 700;
+}

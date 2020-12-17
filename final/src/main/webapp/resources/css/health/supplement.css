@@ -4,24 +4,35 @@
 .supplement-body {
     /* background: #ccc; */
     margin: 0 auto;
+    
 }
 .supplement-top {
     width: 100%;
     height: 600px;
-    background-image:url("../../images/health/medicine.jpg");
+    background-image:url("../../images/health/gray_m.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center -300px;
-    text-align: center;
+	margin: 0 auto;
+}
+.top-text-all {
+	width: 1200px;
+	height : 600px;
+	margin: 0 auto;
+	padding-left: 10px;
+	padding-top: 150px;
+    box-sizing : border-box;
+	
 }
 .top-title {
     padding: 80px 0 20px;
 }
 .top-title p{
 	color: white;
-	font-size : 40px;
+	font-size : 45px;
 	font-family: 'Noto Sans KR', sans-serif;
 	font-weight: 900;
+/* 	text-shadow: 4px 4px 7px gray; */
 }
 .top-text p{
 	color: white;
@@ -31,7 +42,6 @@
 }
 .supplement-content {
     width: 1200px;
-    height: 1000px;
     /* background: wheat; */
     margin: 0 auto
 }
@@ -129,7 +139,12 @@
     text-align: center;
     position : absolute;
     right: 70px;
-    top: 500px;
+    bottom: 50px;
+    cursor: pointer;
+}
+.floating-write.on {
+  position: absolute;
+  bottom: 350px;
 }
 .f-div {
     padding-top: 25px;
