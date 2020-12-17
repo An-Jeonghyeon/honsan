@@ -10,6 +10,8 @@
     <meta charset="UTF-8"> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script type="text/javascript" src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     
     <!-- 
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -21,6 +23,7 @@
     <script src="${pageContext.request.contextPath}/resources/js/created.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/home.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/dressTip/list.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/dressMain/main.js"></script>
       
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/login.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/member.css" type="text/css">
@@ -32,6 +35,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/home.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/dress/list.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/dressTip/list.css" type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/dressMain/main.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/cook/honCooq.css" type="text/css">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />

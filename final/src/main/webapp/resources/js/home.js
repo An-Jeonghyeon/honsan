@@ -12,7 +12,7 @@ $(function(){
         if(sliderIndex>slides.length){
             sliderIndex=1;
         }
-        slides[sliderIndex-1].style.display="block";
+        slides[sliderIndex-1].css("display","block");
         setTimeout(showSlider,2500);
     }
 })
