@@ -22,7 +22,7 @@
 		
 		chk=f.content.value;
 	
-		if(!chk){
+		if(chk=="<p>&nbsp;</p>"){
 			alert("내용을 입력 해주세요");
 			f.content.focus();
 			return;
@@ -72,20 +72,20 @@
 
 				</div>
 				<div class="inputBody2">
-					<input type="text" class="InputTag" name="tag"
+					<input type="text" class="InputTag" name="hashtag"
 						placeholder="#태그를 입렵해 주세요.(최대5개)">
 					<div class="tagbtnBody">
-						<input type="hidden" name="tag" id="IdTag">
+					<!-- 	<input type="hidden" name="tag" id="IdTag"> -->
 						<button class="Tag-btn" type="button" onclick="TagbtnSend()">TAG</button>
 					</div>
 				</div>
 			</div>
 		</div>
-		<input type="hidden" name="num" value="${dto.num}">
+		
 		
 		
 		<div class="buttonBoxBody">
-			<button type="button" id="writeSubmit" onclick="check()">등록하기</button>
+			<button type="submit" id="writeSubmit">등록하기</button>
 			<button type="button" id="CencelSubmit">등록취소</button>
 		</div>
 	</article>
