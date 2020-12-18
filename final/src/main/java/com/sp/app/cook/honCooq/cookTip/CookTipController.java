@@ -63,4 +63,10 @@ public class CookTipController {
 		return model;
 	}
 	
+	@RequestMapping("article")
+	public String article() throws Exception {
+		return ".cook.honCooq.cookTip.article";
+	}
+	
+	
 }
