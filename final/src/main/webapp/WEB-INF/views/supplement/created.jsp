@@ -7,22 +7,30 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/health/created.css" type="text/css">
 
 <script type="text/javascript">
-    function check() {
-        var f = document.writeBodyForm;
-        str = f.content.value;
-        if(!str || str=="<p>&nbsp;</p>") {
-            alert("내용을 입력하세요. ");
-            f.content.focus();
-            return false; 	
-        }
+function check() {
+    var f = document.supplementForm;
 
-       f.action="${pageContext.request.contextPath}/";
-
-        return true;
+	var str = f.subject.value;
+    if(!str) {
+        alert("제목을 입력하세요.");
+        f.subject.focus();
+        return;
     }
+
+    str = f.content.value;
+    if(!str || str=="<p>&nbsp;</p>") {
+    	alert("내용을 입력하세요. ");
+ 		f.content.focus();
+    	return false;
+    }
+
+	f.action="${pageContext.request.contextPath}/supplement/${mode}";
+
+	return true;
+}
 </script>
 
-<form action="" method="post" name="writeBodyForm" onsubmit="return submitContents(this)" enctype="multipart/form-data">
+<form method="post" name="supplementForm" enctype="multipart/form-data" onsubmit="return submitContents(this);">
 	<article class="h-writeBody">
 	    <div class="h-writeBodyHeader">
 	        <span>영양제 추천하기</span>
@@ -44,9 +52,8 @@
 	                </ul>
 	            </div>
 	            <div class="h-inputBody2">
-	                <input type="text" class="h-InputTag" name="h-tag" placeholder="#태그를 입렵해 주세요.(최대5개)">
+	                <input type="text" class="h-InputTag" name="hashtag" placeholder="#태그를 입렵해 주세요.(최대5개)">
 	                <div class="h-tagbtnBody">
-	                    <input type="hidden" name="h-tag" id="IdTag">
 	                    <button class="h-Tag-btn" type="button" onclick="TagbtnSend()">TAG</button>
 	                </div>
 	            </div>
@@ -54,7 +61,7 @@
 	    </div>
 	    <div class="h-buttonBoxBody">
 	        <button type="button" id="CencelSubmit">등록취소</button>
-	        <button type="button" id="writeSubmit" >등록하기</button>
+	        <button type="submit" id="writeSubmit">등록하기</button>
 	    </div>
 	</article>
 </form>
