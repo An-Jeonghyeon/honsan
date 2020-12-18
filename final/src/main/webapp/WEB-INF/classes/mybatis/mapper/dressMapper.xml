@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Dress">
+	<insert id="insertDress" parameterType="com.sp.app.dress.Dress">
+		INSERT INTO clothesStory(
+		num, usrId, subject, content, hashtag, register_date, hitCount
+		)VALUES(clothesStory_NEXTVAL.seq, #{userId},#{subject}, #{content},
+		#{hashtag}, SYSDATE, 0 )
+	</insert>
+</mapper>

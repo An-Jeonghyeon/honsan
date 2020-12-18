@@ -13,19 +13,22 @@
 		var f= document.writeBodyForm;
 		
 		var chk=f.subject.value;
+		
 		if(!chk){
 			alert("제목을 입력 해주세요.");
 			f.chk.focus();
 			return;
 		}
+		
 		chk=f.content.value;
+	
 		if(!chk){
 			alert("내용을 입력 해주세요");
-			f.chk.focus();
+			f.content.focus();
 			return;
 		}
 
-		f.action = "${pageContext.request.contextPath}/bbs/created";
+		f.action = "${pageContext.request.contextPath}/dress/created";
 
 		return true;
 	}
@@ -41,25 +44,24 @@
 	<div class="writeHeaderMenu">
 		<ul>
 			<li><a href="${pageContext.request.contextPath}/dress/list">전체글보기</a></li>
-			<li><a href="${pageContext.request.contextPath}">베스트글</a></li>
 		</ul>
 	</div>
 </article>
 <form method="post" name="writeBodyForm"
 	onsubmit="return submitContents(this)" enctype="multipart/form-data">
-	<article class=" writeBody">
+	<article class="writeBody">
 		<div class="writeBodyHeader">
 			<span>혼자뭐먹지 자랑 글쓰기/...</span>
 		</div>
-
+			<span>${sessionScope.member.userName}</span>
 		<div class="subjectBody">
-			<input type="text" name="subject" id="subject"
+			<input type="text" name="subject" id="subject" value="${dto.subject}"
 				placeholder="제목을 입력해 주세요.">
 		</div>
 
 		<div class="contentBody">
 			<div class="inputBody1">
-				<textarea id="content" name="content"></textarea>
+				<textarea id="content" name="content">${dto.content}</textarea>
 			</div>
 			<div class="tagBody">
 
@@ -77,9 +79,11 @@
 						<button class="Tag-btn" type="button" onclick="TagbtnSend()">TAG</button>
 					</div>
 				</div>
-
 			</div>
 		</div>
+		<input type="hidden" name="num" value="${dto.num}">
+		
+		
 		<div class="buttonBoxBody">
 			<button type="button" id="writeSubmit" onclick="check()">등록하기</button>
 			<button type="button" id="CencelSubmit">등록취소</button>

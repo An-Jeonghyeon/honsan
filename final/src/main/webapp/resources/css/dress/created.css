@@ -91,7 +91,7 @@ input::placeholder{
 
 .contentBody{
     width: 1300px;
-    height: 650px;
+    min-height: 650px;
     box-sizing: border-box;
     border: 1px solid rgb(226, 226, 226);
     /* TestBackground */
@@ -99,14 +99,14 @@ input::placeholder{
 }
 .inputBody1{
     width: 1200px;
-    height: 500px;
+    min-height: 500px;
     margin: 10px auto;
    /*  overflow: scroll; */
     /* background-color: #ff6347; */ 
 }
 textarea[name="content"]{ 
     width: 99.3%;
-    height:85%;
+    height:500px;
  
       
 }
