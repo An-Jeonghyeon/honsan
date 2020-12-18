@@ -79,7 +79,7 @@ $(function() {
 		
 		<div class="cookTip_list-dataCountAndSearch">
 			<div class="cookTip_list-dataCount">
-				총 1234건 <span class="cookTip_list-dataCount-small"> * 게시판 성격에 맞지않은 글은 예고없이 삭제됩니다.</span>
+				총 ${dataCount}건 / ${total_page} 페이지 <span class="cookTip_list-dataCount-small"> * 게시판 성격에 맞지않은 글은 예고없이 삭제됩니다.</span>
 			</div>
 			<div class="cookTip_list-search">
 					<form name="cookTip_searchForm" action="${pageContext.request.contextPath}" method="post">
@@ -97,9 +97,8 @@ $(function() {
 		</div>
 
 		<div class="cookTip_list">
-	<!-- 
-			<c:forEach var="dto" items="${list}"></c:forEach>
-	 -->
+ 
+			<c:forEach var="dto" items="${list}">
 			<div class="cookTip_content-box">
 				<div class="cookTip_content">
 					<div class="cookTip_content_info">
@@ -109,25 +108,26 @@ $(function() {
 						</div>
 
 						<div class="cookTip_title"> <a
-							href="${pageContext.request.contextPath}/">${dto.subject} 쌀쌀한
-								날씨 감기조심하세요</a>
+							href="${articleUrl}&num=${dto.num}">${dto.subject}</a>
 						</div>
 						<div class="cookTip_data">
 							<ul>
-								<li class="cookTip_li_data cookTip_li_data-userName"><span><i class="far fa-user"></i> ${dto.userName}작성자</span></li>
-								<li class="cookTip_li_data cookTip_li_data-created"><span><i class="far fa-clock"></i> ${dto.created}2020.12.18</span></li>
-								<li class="cookTip_li_data cookTip_li_data-hitCount"><span><i class="far fa-eye"></i> ${dto.register_date}조회수</span></li>
+								<li class="cookTip_li_data cookTip_li_data-userName"><span><i class="far fa-user"></i> ${dto.userName}</span></li>
+								<li class="cookTip_li_data cookTip_li_data-created"><span><i class="far fa-clock"></i> ${dto.register_date}</span></li>
+								<li class="cookTip_li_data cookTip_li_data-hitCount"><span><i class="far fa-eye"></i> ${dto.hitCount}</span></li>
 							</ul>
 						</div>
 						<div class="cookTip_util">
-							<ul>
-								<li class="cookTip_li_util cookTip_li_util-reply"><span><i class="far fa-comment-dots"></i> ${dto.userName}7</span></li>
-								<li class="cookTip_li_util cookTip_li_util-like"><span><i class="far fa-heart" id="cookTip-like"></i> ${dto.created}2</span></li>
+							<ul>	<!-- db에서 댓글 수, 좋아요 수 가져오도록 차후 수정 -->
+								<li class="cookTip_li_util cookTip_li_util-reply"><span><i class="far fa-comment-dots"></i> 7</span></li>
+								<li class="cookTip_li_util cookTip_li_util-like"><span><i class="far fa-heart" id="cookTip-like"></i> 2</span></li>
 							</ul>						
 						</div>
 					</div>
 				</div>
 			</div>
+			</c:forEach>
+			
 			<div class="cookTip_content-box">
 				<div class="cookTip_content">
 					<div class="cookTip_content_info">
@@ -162,9 +162,16 @@ $(function() {
 
 	</div>
     
-    <div class="cookTip_floating-button" href="#toast"><span><i class="fas fa-pen"></i> CookTip 쓰기</span></div>
+    <div class="cookTip_floating-button">
+    	<a href="${pageContext.request.contextPath}/cook/honCooq/cookTip/created"><span>
+    		<i class="fas fa-pen"></i> CookTip 쓰기</span>
+    	</a>
+    </div>
 
 	<div class="cookTip_list-page">
+		<button type="button" class="btn" onclick="javascript:location.href='${pageContext.request.contextPath}/cook/honCooq/cookTip/list';">새로고침</button>
+		
+		${dataCount==0?"등록된 게시물이 없습니다.":paging}
 		<div class="cookTip_list-paging">&lt;</div>
 		<div class="cookTip_list-pagingBody">1</div>
 		<div class="cookTip_list-pagingBody">2</div>

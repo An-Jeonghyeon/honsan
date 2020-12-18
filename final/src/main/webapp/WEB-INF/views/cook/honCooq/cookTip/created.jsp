@@ -119,7 +119,7 @@
 				      <td width="100" bgcolor="#eeeeee" style="text-align: center;">첨부된파일</td>
 				      <td style="padding-left:10px;">
 				          <c:if test="${not empty dto.saveFilename}">
-				          		<a href="${pageContext.request.contextPath}/bbs/deleteFile?num=${dto.num}&page=${page}"><i class="far fa-trash-alt"></i></a>
+				          		<a href="${pageContext.request.contextPath}/cook/honCooq/cookTip/deleteFile?num=${dto.num}&page=${page}"><i class="far fa-trash-alt"></i></a>
 				          </c:if>
 						  ${dto.originalFilename}
 				       </td>

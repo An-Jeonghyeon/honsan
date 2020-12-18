@@ -4,6 +4,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class CookTip {
 	private int num;
+	private int listNum;
 	private String userId;
 	private String userName;
 	private String subject;
@@ -96,6 +97,12 @@ public class CookTip {
 	}
 	public void setCookTipLikeCount(int cookTipLikeCount) {
 		this.cookTipLikeCount = cookTipLikeCount;
+	}
+	public int getListNum() {
+		return listNum;
+	}
+	public void setListNum(int listNum) {
+		this.listNum = listNum;
 	}
 	
 	

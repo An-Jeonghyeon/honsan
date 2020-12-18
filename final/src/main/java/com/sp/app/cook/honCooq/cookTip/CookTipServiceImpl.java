@@ -29,14 +29,26 @@ public class CookTipServiceImpl implements CookTipService{
 
 	@Override
 	public List<CookTip> listCookTip(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		return null;
+		List<CookTip> list = null;
+		try {
+			list = dao.selectList("cookTip.listCookTip", map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}		
+		return list;
 	}
 
 	@Override
 	public int dataCount(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		return 0;
+		int result = 0;
+		
+		try {
+			result = dao.selectOne("cookTip.dataCount", map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
 	}
 
 	@Override
