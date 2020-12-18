@@ -50,7 +50,7 @@
                 <div class="innerhideNav">
                     <div class="PermenuObject">
                     <ul class="menuObject">
-                        <li> <a href="${pageContext.request.contextPath}">오늘의 옷차림</a></li>
+                        <li> <a href="${pageContext.request.contextPath}/dressMain/main">오늘의 옷차림</a></li>
                         <li> <a href="${pageContext.request.contextPath}/dress/list">코디자랑</a></li>
                         <li> <a href="${pageContext.request.contextPath}/dressTip/list">팁</a></li>
 

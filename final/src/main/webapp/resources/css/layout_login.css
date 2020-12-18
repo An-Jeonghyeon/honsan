@@ -28,7 +28,7 @@ i{
 }
 #mainBody{
     width: 100%;
-    margin: 30px auto;
+    margin: 10px auto 30px;
     /* background-color: rgb(55, 51, 45);  */
 }
 /* ----------------------------------  header               */
@@ -38,7 +38,7 @@ a{
 }
 header{
     width: inherit;
-    height: 140px;
+    height: 120px;
     border-radius: 5px;
     
     /* TestBackground */
@@ -63,10 +63,10 @@ nav{
      /* background-color: rgb(194, 192, 190); */
 }
 .logo {
-   background-image: url("../images/layout_logout/logo11.png");
+   background-image: url("../images/layout_logout/hollo_y.png");
    background-repeat: no-repeat;
-   background-size: 150px 137px;
-   background-position: left 0px;
+   background-size: 140px 120px;
+   background-position: 20px 0px;
 }
 .logo a {
    display: block;
@@ -80,7 +80,7 @@ nav{
     line-height: 70px;
     text-align: center;
     margin: 3px 1px;
-    margin-top: 50px;
+    margin-top: 30px;
     
      /* TestBackground */
      /* background-color: rgba(179, 233, 102, 0.419); */
@@ -88,7 +88,7 @@ nav{
 .menuBox > a{
     color: rgb(45, 45, 45);
     line-height: 75px;
-    font-size: 1.4rem;
+    font-size: 1.3rem;
     /* font-weight: 900; */
     transition: 0.6s;
 }
@@ -99,7 +99,7 @@ nav{
   display: flex;
   width: 300px;
   height: 100%;
-  margin-top : 50px;
+  margin-top : 30px;
   /* TestBackground */
   /* background-color: rgb(220, 144, 68); */
 }
@@ -140,7 +140,7 @@ nav{
     height: 130px;
     display: none;
 /*     background-color: #cddbffb5; */
-    background-color: #f3c04a2d;
+    background-color: #f3c04a9d;
     border-radius: 15px;
     position: relative;
     right: 50px;
@@ -162,6 +162,7 @@ nav{
     list-style: none;
     text-align: center;
     color: rgb(133, 83, 9);
+    font-weight: 600;
     /* TestBackground */
     /* background-color: rgb(53, 28, 28); */
 }
@@ -181,7 +182,7 @@ nav{
     border-left: 12px solid transparent;
     border-right: 12px solid transparent;
 /*     border-bottom: 12px solid #cddbffb5; */
-    border-bottom: 12px solid #f3c04a2d;
+    border-bottom: 12px solid #f3c04a9d;
 }
 .logOut{
      width: 100px;
