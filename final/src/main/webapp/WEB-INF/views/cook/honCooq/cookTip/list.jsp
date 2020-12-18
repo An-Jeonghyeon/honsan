@@ -37,13 +37,19 @@ function links() {
 }
 
 // 
-var color = '#'; 
-var letters = ['f6c9cc', 'a8c0c0', 'FEBF36', 'FF7238', '6475A0', 'acc7bf', '5e5f67', 'c37070', 'eae160', 'bf7aa3', 'd7d967']; 
-	// 원하는 색상을 'letters'에 지정한다. 변수는 마음대로 변경해도 무관하다. 
-color += letters[Math.floor(Math.random() * letters.length)]; 
-	// 컬러는 상기 변수들을 조립하는데 랜덤으로 조립한다. 
-document.getElementsByClassName('cookTip_content-box').style.background = color; 
-	// 조립한 컬러를 프론트엔드에서 지정한 ID에 적용한다.
+
+$(function() {
+	//$(".cookTip_content").on("mouseover", function() {
+		// var color = '#'; 
+		// var letters = ['f6c9cc', 'a8c0c0', 'FEBF36', 'FF7238', '6475A0', 'acc7bf', '5e5f67', 'c37070', 'eae160', 'bf7aa3', 'd7d967']; 
+		// color += letters[Math.floor(Math.random() * letters.length)]; 
+		//$(".cookTip_content").css("background-color", "red");
+		
+//	});
+	$(document).ready(function() {
+		$(".cookTip_content").css("background-color", "red");
+	});
+});	
 
 
 </script>
@@ -62,16 +68,32 @@ document.getElementsByClassName('cookTip_content-box').style.background = color;
 	<div class="cookTip_list-body">
 		<div class="cookTip_inner-tab">
 			<ul>
-				<li class="cookTip_li_category"><a href="" class="active" title="ALL">전체</a></li>
-				<li class="cookTip_li_category"><a href="" title="장보기">장보기</a></li>
-				<li class="cookTip_li_category"><a href="" title="조미료 관리">조미료 관리</a></li>
-				<li class="cookTip_li_category"><a href="" title="음식 보관법">음식 보관법</a></li>
-				<li class="cookTip_li_category"><a href="" title="설거지 및 주방정리">설거지 및 주방정리</a></li>
+				<li class="cookTip_li_category"><a href="" class="cookTip-tab" title="ALL">전체</a></li>
+				<li class="cookTip_li_category"><a href="" class="cookTip-tab" title="장보기"><i class="fas fa-shopping-basket"></i> 장보기</a></li>
+
+				<li class="cookTip_li_category"><a href="" class="cookTip-tab" title="조미료 관리"><i class="fas fa-spray-can"></i> 조미료 관리</a></li>
+				<li class="cookTip_li_category"><a href="" class="cookTip-tab" title="음식 보관법"><i class="fas fa-carrot"></i> 음식 보관법</a></li>
+				<li class="cookTip_li_category"><a href="" class="cookTip-tab" title="설거지 및 주방정리"><i class="fas fa-pump-soap"></i> 설거지 및 주방정리</a></li>
 			</ul>
 		</div>
-
-		<div class="cookTip_list-dataCount">
-			총 1234건 <small>* 게시판 성격에 맞지않은 글은 예고없이 삭제됩니다.</small>
+		
+		<div class="cookTip_list-dataCountAndSearch">
+			<div class="cookTip_list-dataCount">
+				총 1234건 <span class="cookTip_list-dataCount-small"> * 게시판 성격에 맞지않은 글은 예고없이 삭제됩니다.</span>
+			</div>
+			<div class="cookTip_list-search">
+					<form name="cookTip_searchForm" action="${pageContext.request.contextPath}" method="post">
+						<select name="condition" class="cookTip_select cookTip_list_select">
+							<option value="all" ${condition=="all"?"selected='selected'":""}>모두</option>
+							<option value="subject" ${condition=="subject"?"selected='selected'":""}>제목</option>
+							<option value="content" ${condition=="content"?"selected='selected'":""}>내용</option>
+							<option value="userName" ${condition=="userName"?"selected='selected'":""}>작성자</option>
+							<option value="created" ${condition=="created"?"selected='selected'":""}>등록일</option>
+						</select>
+						<input type="text" name="keyword" value="${keyword}" class="cookTip_search-input">
+						<button type="button" class="cookTip_search-btn" onclick="cookTip_searchList()">검색</button>
+					</form>			
+			</div>
 		</div>
 
 		<div class="cookTip_list">
@@ -83,7 +105,7 @@ document.getElementsByClassName('cookTip_content-box').style.background = color;
 					<div class="cookTip_content_info">
 
 						<div class="cookTip_category">
-							<span>${dto.category!=null? dto.category : "STORY"}</span>
+							<span>${dto.category!=null? dto.category : "설거지 및 주방정리"}</span>
 						</div>
 
 						<div class="cookTip_title"> <a
@@ -136,9 +158,11 @@ document.getElementsByClassName('cookTip_content-box').style.background = color;
 			</div>
 
 		</div>
+		
+
 	</div>
     
-    <div class="cookTip_floating-button" href="#toast"> CookTip 쓰기</div>
+    <div class="cookTip_floating-button" href="#toast"><span><i class="fas fa-pen"></i> CookTip 쓰기</span></div>
 
 	<div class="cookTip_list-page">
 		<div class="cookTip_list-paging">&lt;</div>

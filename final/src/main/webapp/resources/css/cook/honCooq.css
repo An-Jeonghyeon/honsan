@@ -260,7 +260,7 @@ CookTip 게시판 리스트폼
 -----------------------*/
 .cookTip_list-container {
 	width: 1300px;
-	height: 2000px;
+	height: 1800px;
 	margin: 0 auto;
 /* 	background-color: red; */
 	display: flex;
@@ -269,7 +269,7 @@ CookTip 게시판 리스트폼
 
 .cookTip_list-header {
 	min-width: 100%;
-	height: 15%;
+	height: 18%;
 /* 	background-color: pink; */
 }
 
@@ -278,6 +278,11 @@ CookTip 게시판 리스트폼
   width:100%;
   height:80%;
   background-color:skyblue;
+  text-align:center;
+  font-size:3.0rem;
+  font-weight:700;
+  color:white;
+
   margin:auto;
   background-image:url("https://imgur.com/download/OtK7XDW");
   background-position:0;
@@ -308,21 +313,37 @@ CookTip 게시판 리스트폼
 	width: 90%;
 	height: 20%;
 	margin-left:5%;
-/* 	background-color: orange; */
+/* 	background-color: red; */
 }
 
 .honCooq-tab-button {
 	padding: 15px 100px;
 	margin: 10px 4px;
-	color: black;
-	font-size:1.2rem;
+	box-sizing:border-box;
+
+	color: #0a043c;
+	font-size:1.4rem;
 	font-weight:700;
 	text-transform: uppercase;
 	text-align: center;
+	text-shadow: -1px -1px 2px white;
+	
 	position: relative;
 	text-decoration: none;
 	display: inline-block;
 	border:none;
+	transition:all .5s ease-in-out;
+	background-color:#ffa952;
+	box-shadow : 5px 5px 0 #ef5a5a;
+}
+
+.honCooq-tab-button:active {
+	border:none;
+}
+
+.honCooq-tab-button:focus {
+	border:none;
+	outline:none;
 }
 
 .honCooq-tab-button::before {
@@ -342,7 +363,9 @@ CookTip 게시판 리스트폼
 }
 
 .honCooq-tab-button:hover {
-	color: #6098FF;
+	color: #fbf7f0;
+	font-size:1.5rem;
+	text-shadow : 2px 2px 2px #0a043c;
 }
 
 .honCooq-tab-button:hover::before {
@@ -356,9 +379,22 @@ CookTip 게시판 리스트폼
 }
 
 .cookTip_list-body {
+	box-sizing:border-box;
 	width: 100%;
 	height: 85%;
-/* 	background-color: yellow; */
+/* 	background-color: rgb(242 236 236 / 16%); */
+/*     background-color:rgb(255 251 237 / 49%); */
+    background: linear-gradient(
+            to right,
+            rgba(255, 251, 237, 0) 10%,
+            rgba(255, 251, 237, 0.25) 20%,
+            rgba(255, 251, 237, 0.75) 40%,
+            rgba(255, 251, 237, 1) 50%,
+            rgba(255, 251, 237, 0.75) 60%,
+            rgba(255, 251, 237, 0.25) 80%,
+            rgba(255, 251, 237, 0) 100%
+          )
+
 }
 
 .cookTip_inner-tab {
@@ -366,47 +402,171 @@ CookTip 게시판 리스트폼
 	width:100%;
 	height:5%;
 	padding:2%;
+	border-bottom:2px solid #ffa952;
 /* 	background-color:honeydew; */
 }
 
+.cookTip-tab:hover {
+}
+/*
+section button {
+  margin: 0 auto;
+  font-size: 2.0rem;
+  padding: 1.25rem 2.5rem;
+  display: block;
+  background-color: #009ac9;
+  border: 1px solid transparent;
+  color: #ffffff;
+  font-weight: 300;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+section button:hover {
+  background-color: #ffffff;
+  color: #009ac9;
+  border-color: #009ac9;
+}
+*/
 .cookTip_li_category {
 	width: 140px;
 	height:30px;
 	line-height:30px;
-
+    
+    color:black;
 	font-size: 1.0rem;
 	font-weight:600;
 	text-align:center;
 	box-sizing:border-box;
-	border-right:1px solid black;
+/* 	border:1px solid black; */
 	float:left;
+    
+	position:relative;
+	text-transform:uppercase;
+	outline:none;
+    transition:all .5s ease-in-out;
 }
 
 .cookTip_li_category:first-child {
+	width:100px;
 	margin-left:3%;
 }
 
+.cookTip_li_category:nth-child(2){
+	width:130px;
+	padding-right:0.5%;
+}
+
+.cookTip_li_category:nth-child(3), .cookTip_li_category:nth-child(4){
+	width:155px;
+	padding-right:0.5%;
+}
+
 .cookTip_li_category:last-child {
-    border-right:none;
-    margin-left:2%;
+    width:210px;
+    padding-left:0.5%;
+/*     margin-left:0.5%; */
+}
+
+.cookTip_li_category:hover {
+    font-size:20px;
+}
+
+.cookTip_list-dataCountAndSearch{
+	box-sizing:border-box;
+	display:flex;
+	width:95%;
+	height:4%;
+/* 	padding:2%; */
+	margin-left:5%;	
+
+/* 	background-color:green; */
 }
 
 .cookTip_list-dataCount {
 	box-sizing:border-box;
-	width:95%;
-	height:4%;
+	width:40%;
+	height:100%;
 	padding:2%;
-	margin-left:5%;
+	margin-right:20%;
 
 	font-size:1.0rem;
-	font-weight:500;
+	font-weight:600;
 /* 	background-color:coral; */
 }
 
+.cookTip_list-dataCount-small {
+	font-size:0.8rem;
+	font-weight:500;		
+}
+
+.cookTip_list-search{
+	box-sizing:border-box;
+	width:40%;
+	height:100%;
+	padding:1%;
+
+/* 	background-color:bisque; */
+}
+
+.cookTip_list_select {
+	text-align:center;
+	box-shadow:none;
+	border:2px solid #ffa952;
+	transition:all .5s ease-in-out;
+}
+
+.cookTip_list_select:hover, .cookTip_list_select:focus  {
+	box-shadow:2px 2px 1px #ef5a5a;
+	border:2px solid #ef5a5a;
+}
+
+.cookTip_search-input, .cookTip_search-btn {
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	appearance: none;
+	font-size: 1rem;
+	font-weight: 400;
+	line-height: 1.5;
+	text-align:center;
+	color: #444;
+	background-color: #fff;
+	padding: .6em 1.4em .5em .8em;
+	margin-bottom: 20px;
+	height: 45px;
+	box-sizing: border-box;
+	border: 2px solid #ffa952;
+	border-radius: .5em;
+	box-shadow: 0 1px 0 1px rgba(0, 0, 0, .04);
+	transition:all .5s ease-in-out;
+}
+
+.cookTip_search-btn {
+	font-weight:700;
+	padding-left: 1.5rem;
+}
+
+.cookTip_search-input:focus, .cookTip_search-btn:focus{
+	box-shadow:2px 2px 1px #ef5a5a;
+	border:2px solid #ef5a5a;
+	background-color:white;
+	outline:none;
+}
+
+.cookTip_search-input:hover, .cookTip_search-btn:hover {
+	box-shadow:2px 2px 1px #ef5a5a;
+	border:2px solid #ef5a5a;
+}
 .cookTip_list {
 	width:100%;
+/* 	min-height:50%; */
 	height:91%;
-	background-color:khaki;
+	border-bottom:2px solid #ffa952;
+/* 	background-color:khaki; */
+
 	display : flex;
 	flex-direction: row;
 	flex-wrap: wrap;
@@ -417,7 +577,7 @@ CookTip 게시판 리스트폼
 .cookTip_content-box {
     box-sizing:border-box;
     width:20%;
-    height:15%; 
+    height:20%; 
     margin : 2.5%;
 /*     background-color:crimson; */
 }
@@ -426,8 +586,10 @@ CookTip 게시판 리스트폼
 	box-sizing:border-box;
 	width:100%;
 	height:100%;
-	padding:2.0rem;
-    background-color:cornsilk;
+	padding:1.5rem;
+/*     background-color:#feffdf; */
+    background: linear-gradient( to bottom, #feffdf, #ffefc0 );
+    transition:all .5s ease-in-out;
 }
 
 .cookTip_content:hover {
@@ -442,7 +604,7 @@ CookTip 게시판 리스트폼
   -moz-box-shadow: 0 10px 15px 0 rgba(0, 0, 0, 0.4);
   -webkit-box-shadow: 0 10px 15px 0 rgba(0, 0, 0, 0.4);
   margin-top: 2px;
-  background: lightcoral;
+  background: #ffe79a;
 }
 
 .cookTip_content_info {
@@ -451,17 +613,21 @@ CookTip 게시판 리스트폼
 }
 
 .cookTip_category {
-	width:7.0rem;
-	height:2.5rem;
+	width:9.0rem;
+	height:3.0rem;
     margin-bottom:1.0rem;
 
 	box-sizing:border-box;
-	border:3px solid skyblue;
-	border-radius:45%;
+	border:3px solid #ffe79a;
+	border-radius:49%;
+	box-shadow:2px 2px 0 #ffa952;
 
-	font-size: 1.2rem;
+	font-size: 0.9rem;
 	text-align:center;
-	line-height:2.0rem;
+	line-height:2.6rem;
+	font-weight:700;
+
+	background-color:white;
 }
 
 .cookTip_title {
@@ -513,8 +679,8 @@ CookTip 게시판 리스트폼
 }
 
 .cookTip_list-page {
-	background-color:burlywood;
-	margin :auto;
+/* 	background-color:burlywood; */
+	margin : 1.0rem auto;
 }
 
 .cookTip_list-paging {
@@ -527,16 +693,18 @@ CookTip 게시판 리스트폼
 .cookTip_list-pagingBody {
 	box-sizing:border-box;
 	display:inline-block;
-	border:1px solid gray;
+	border:2px solid gray;
 	border-radius:50%;
-	padding:10px 15px;
+	padding:13px 20px;
 
 	font-size:1.0rem;
 	font-weight:600;
 	background-color:white;
+	transition:all .3s ease-in-out;
 }
 
 .cookTip_list-pagingBody:hover {
+  border:2px solid #ef5a5a;
   box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.3);
   -moz-box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.3);
   -webkit-box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.3);
@@ -544,11 +712,11 @@ CookTip 게시판 리스트폼
 }
 
 .cookTip_list-pagingBody:active {
-  box-shadow: 0 10px 15px 0 rgba(0, 0, 0, 0.4);
-  -moz-box-shadow: 0 10px 15px 0 rgba(0, 0, 0, 0.4);
-  -webkit-box-shadow: 0 10px 15px 0 rgba(0, 0, 0, 0.4);
+  box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.4);
+  -moz-box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.4);
+  -webkit-box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.4);
   margin-top: 2px;
-  background: lightcoral;
+  background: #ffa952;
 }
 
 .cookTip_floating-button {
@@ -556,11 +724,16 @@ CookTip 게시판 리스트폼
   z-index: 100;
   width: 200px;
   height: 100px;
-  background: white;
+  box-sizing:border-box;
+/*   background: #feffdf; */
+background: linear-gradient( to bottom, white, #feffdf, #feffdf, #ffefc0 );
+
   color: black;
   font-size: 1.4rem;
-  border:2px solid darkred;
+  font-weight:700;
+  border:6px solid #ffa952;
   border-radius: 50%;
+  
   top: 80vh;
   right: 7%;
   margin-top: -15px;
@@ -598,5 +771,5 @@ CookTip 게시판 리스트폼
   -moz-box-shadow: 0 10px 15px 0 rgba(0, 0, 0, 0.4);
   -webkit-box-shadow: 0 10px 15px 0 rgba(0, 0, 0, 0.4);
   margin-top: -32px;
-  background: #EC407A;
+  background: #ffe79a;
 }
