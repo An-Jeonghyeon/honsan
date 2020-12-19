@@ -152,7 +152,7 @@
     display: flex;
     
 }
-.dress-pagingNum{
+/* .dress-pagingNum{
     width: 30px;
     height: 30px;
     margin: 10px auto;
@@ -174,7 +174,7 @@
     color: rgb(31, 31, 31);
     transform: scale(1.1);
     font-size: 18px;
-}
+} */
 .dress-Resetbtn{
     width: 70px;
     border: none;

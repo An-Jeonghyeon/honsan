@@ -15,9 +15,14 @@
 			,HITCOUNT,TO_CHAR(REGISTER_DATE,'YYYY-MM-DD')created
 		FROM CLOTHESSTORY b
 		JOIN member1 m ON b.userId = m.userId
+		<where>
+			<if test="keyword!=null and keyword!=''">
+				<include refid="where-list"></include>
+			</if>
+		</where>
 			ORDER BY num DESC
-			OFFSET 0 ROWS
-			FETCH FIRST 9 ROWS ONLY
+			OFFSET #{offset} ROWS
+			FETCH FIRST #{rows} ROWS ONLY
 	</select>
 	<sql id="where-list">
 		<choose>

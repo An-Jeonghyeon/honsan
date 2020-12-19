@@ -57,9 +57,8 @@ public class DressController {
 			current_page= total_page;
 		}
 		int offset= (current_page-1) *rows;
-		if(offset<0) {
+		if(offset<0)
 			offset=0;
-		}
 		map.put("offset", offset);
 		map.put("rows",rows);
 		

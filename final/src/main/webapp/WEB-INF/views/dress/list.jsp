@@ -5,12 +5,16 @@
 	
 <script type="text/javascript">
 	function searchList(){
-		const f = document.dressCreatedFrom;
+		var f = document.dressCreatedFrom;
 		f.submit();
 	}
+	
+	
+	
 </script>
     <div class="dress-Body">
                 <div class="dress-MainBody">
+                    <span class="dress-paging">${dataCount}개(${page}/${total_page} 페이지)</span>
                     <div class="dress-InnerBody">
                         <div class="dress-MainContent">
                             <div class="dress-BestContentName">
@@ -31,15 +35,15 @@
                         </div>
                         <c:forEach var="dto" items="${list}">
                             <div class="dress-subContent">
-                                <div class="dress-subContent-InnerImage">
-                                    <span class="dress-subContent-InnerUserName">작성자:이경태</span>
-                                    <span class="dress-subContent-InnerHitCount">조회수:12</span>
+                                <div class="dress-subContent-InnerImage" onclick="javascript:location.href='${articleUrl}&num=${dto.num}'">
+                                    <span class="dress-subContent-InnerUserName">작성자:${dto.userName }</span>
+                                    <span class="dress-subContent-InnerHitCount">조회수:${dto.hitCount }</span>
                                 </div>
                                 <div class="dress-subContent-InnerText">
-                                    <span>제목: ${dto.subject}</span>
+                                <a href="${articleUrl}&num=${dto.num}">${dto.subject}</a>
                                 </div>
                             </div>
-
+							
                         </c:forEach>
                     </div>
                     <form action="${pageContext.request.contextPath}/dress/list" name="dressCreatedFrom" method="post">
@@ -52,11 +56,11 @@
                                     <i class="fas fa-redo-alt fa-2x"></i>
                                 </button>
                                 <select class="dress-Selectbtn" name="condition">
-                                    <option value="all">모두</option>
-                                    <option value="subject">제목</option>
-                                    <option value="content">내용</option>
-                                    <option value="userName">작성자</option>
-                                    <option value="created">등록일</option>
+                                    <option value="all"  ${condition=="all"?"selected='selected'":""} >모두</option>
+                                    <option value="subject" ${condition=="subject"?"selected='selected'":""}>제목</option>
+                                    <option value="content" ${condition=="content"?"selected='selected'":""}>내용</option>
+                                    <option value="userName" ${condition=="userName"?"selected='selected'":""}>작성자</option>
+                                    <option value="created" ${condition=="created"?"selected='selected'":""}>등록일</option>
                                 </select> <input class="dress-Search" type="text" name="keyword" value="${keyword}">
                                 <button class="dress-Searchbnt dress-Btn" type="button" onclick="searchList()">검색</button>
                                 <button class="dress-Createdbtn dress-Btn" type="button"
