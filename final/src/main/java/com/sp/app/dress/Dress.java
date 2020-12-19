@@ -3,6 +3,8 @@ package com.sp.app.dress;
 public class Dress {
 	private int num;
 	private String userId;
+	private String userName;
+	private int listNum;
 	private String subject;
 	private String content;
 	private String hashtag;
@@ -13,6 +15,20 @@ public class Dress {
 	private int main;
 	private String saveFile;
 	
+	
+	
+	public int getListNum() {
+		return listNum;
+	}
+	public void setListNum(int listNum) {
+		this.listNum = listNum;
+	}
+	public String getUserName() {
+	return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
 	public int getNum() {
 		return num;
 	}

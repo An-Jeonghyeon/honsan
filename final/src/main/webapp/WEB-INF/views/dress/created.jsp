@@ -49,8 +49,8 @@
 		</ul>
 	</div>
 </article>
-<!-- onsubmit="return submitContents(this)" -->
-<form method="post" name="writeBodyForm"
+
+<form method="post" name="writeBodyForm" onsubmit="return submitContents(this)"
 	 enctype="multipart/form-data">
 	<article class="writeBody">
 		<div class="writeBodyHeader">
@@ -89,7 +89,7 @@
 
 
 		<div class="buttonBoxBody">
-			<button type="button" id="writeSubmit" onclick="check()">등록하기</button>
+			<button type="submit" id="writeSubmit" >등록하기</button>
 			<button type="button" id="CencelSubmit">등록취소</button>
 		</div>
 	</article>

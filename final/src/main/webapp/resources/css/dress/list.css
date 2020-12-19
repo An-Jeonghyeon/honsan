@@ -7,7 +7,7 @@
 .dress-MainBody{
     width: 100%;
     height: 1000px;
-    margin: 150px 0 100px 0;
+    margin: 200px 0 100px 0;
     padding-top: 100px;
     box-sizing: border-box;
     /* TestBackground */
@@ -25,19 +25,19 @@
 .dress-MainContent{
     width: 30%;
     height: 96%;
-    margin: 10px;
+    margin: 10px 10px 10px 40px;
     padding: 5px;
     float: left;
-    border-radius: 25px;
+    border-radius: 2px;
     box-sizing: border-box;
-    box-shadow: 0px 1px 5px rgba(95, 172, 255, 0.769);
+    box-shadow: 0px 1px 5px rgba(145, 145, 145, 0.769);
     /* TestBackground */
     /* background-color: rgba(166, 173, 255, 0.639); */
 }
 .dress-BestContentName{
     width: 100%;
     height: 150px;
-    border-radius: 25px;
+    border-radius: 2px;
     line-height: 150px;
     text-align: center;
     box-sizing: border-box;
@@ -64,7 +64,7 @@
     margin: 15px 0 15px 0;
     padding: 5px;
     text-align: center;
-    border-radius: 25px;
+    border-radius:2px;
     box-sizing: border-box;
     /* TestBackground */
     /* background-color: #faa090c8; */
@@ -72,7 +72,7 @@
 .dress-BestContentText{
     width: 100%;
     height: 15%;
-    border-radius: 25px;
+    border-radius: 2px;
     box-sizing: border-box;
     text-align: center;
     /* TestBackground */
@@ -84,43 +84,71 @@
     margin: 10px;
     float: left;
     padding: 5px;
-    border-radius: 25px;
+    border-radius: 2px;
     box-sizing: border-box;
     text-align: center;
-    box-shadow: 0px 1px 5px rgba(95, 172, 255, 0.769);
+    box-shadow: 0px 1px 5px rgba(145, 145, 145, 0.769);
     /* TestBackground */
     /* background-color: rgba(166, 173, 255, 0.639); */
+}
+.dress-subContent-InnerUserName{
+    display: inline-block;
+    font-size: 9px;
+    position: relative;
+    bottom: -155px;
+    left: -57px;
+    color: #9b9b9b;
+   
+}
+.dress-subContent-InnerHitCount{
+    display: inline-block;
+    width: 60px;
+    font-size: 9px;
+    font-size: 9px;
+    position: relative;
+    bottom: -155px;
+    right: -70px;
+    color: #9b9b9b;
+   
 }
 .dress-subContent-InnerImage{
     width: 100%;
     height: 85%;
     box-sizing: border-box;
     margin-bottom: 5px;
-    border-radius: 25px;
+   
     background-repeat: no-repeat;
     background-size: cover;
     transition: 1s;
-    box-shadow: 0px 0px 5px rgba(95, 172, 255, 0.769);
+    box-shadow: 0px 1px 5px rgba(145, 145, 145, 0.769);
     /* TestBackground */
     background-image: url("ff.jpeg");
-    background-color: rgba(229, 231, 254, 0.639);
 }
 .dress-subContent-InnerImage:hover{
     transform: scale3d(1.1, 1.1, 0.1);
+    box-shadow: 0px 1px 30px rgba(194, 236, 255, 0.769);
 
 }
 .dress-subContent-InnerText{
-    width: 95%;
+    width: 100%;
     height: 10%;
     box-sizing: border-box;
-    margin: 0 auto;
-    border-radius: 15px;
-    padding: 3px;
+    margin: 7px auto 0 auto;
+    border-radius: 2px;
+    padding: 5px;
+    text-align: left;
+    font-size: 9px;
+     /* TestBackground */
+   
+     box-shadow: -1px 0px 4px rgba(145, 145, 145, 0.769);
+}
+.dress-subContent-InnerText>span{
+    width: 100%;
+    display: inline-block;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-     /* TestBackground */
-     background-color: rgba(229, 231, 254, 0.639);
+  
 }
 .dress-searchFormBody{
     width: 95%;
@@ -139,7 +167,7 @@
      /* TestBackground */
      /* background-color: rgba(250, 242, 150, 0.797); */
 }
-.dress-pagingNum{
+/* .dress-pagingNum{
     width: 30px;
     height: 30px;
     margin: 10px auto;
@@ -156,12 +184,12 @@
 .dress-pagingNum:hover{
     border: 1px solid rgb(31,31,31);
     background-color: white;
-}
-.dress-pagingNum:hover.dress-pagingNum>a{
+} */
+/* .dress-pagingNum:hover.dress-pagingNum>a{
     color: rgb(31, 31, 31);
     transform: scale(1.1);
     font-size: 18px;
-}
+} */
 .dress-Resetbtn{
     width: 70px;
     border: none;
@@ -219,3 +247,6 @@
     transform: scale(0.7);
     margin-top: 5px;
 }
+
+
+

@@ -29,14 +29,25 @@ public class DressServiceImpl implements DressService{
 
 	@Override
 	public List<Dress> listDress(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Dress> list= null;
+		try {
+			list= dao.selectList("dress.listDress",map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
 	}
 
 	@Override
 	public int dataCount(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		return 0;
+		int result=0;
+		try {
+			result= dao.selectOne("dress.dataCount",map);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
 	}
 
 	@Override
