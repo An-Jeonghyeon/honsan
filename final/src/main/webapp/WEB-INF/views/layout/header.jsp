@@ -56,7 +56,7 @@
 
                     </ul>
                     <ul class="menuObject">
-                        <li> <a href="${pageContext.request.contextPath}">HONCOOQ</a></li>
+                        <li> <a href="${pageContext.request.contextPath}/cook/honCooq/cookTip/list">HONCOOQ</a></li>
                         <li> <a href="${pageContext.request.contextPath}">우리집 냉장고</a></li>
                         <li> <a href="${pageContext.request.contextPath}">우리동네 마트</a></li>
                         <li> <a href="${pageContext.request.contextPath}">나만의 요리 후기</a></li>

@@ -139,8 +139,8 @@ public class BoardController {
 	
 	@GetMapping("article")
 	public String article(
-			@RequestParam int num,
-			@RequestParam String page,
+			@RequestParam (defaultValue = "1")int num,
+			@RequestParam (defaultValue = "")String page,
 			@RequestParam(defaultValue = "all") String condition,
 			@RequestParam(defaultValue = "") String keyword,
 			Model model
