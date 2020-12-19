@@ -53,13 +53,31 @@
     /* background-color: rgb(215, 141, 230);    */
 }
 .writeBodyHeader{
+    width: 120px;
+    height: 35px;
     font-size: 25px;
-    font-weight: 400;
+    font-weight: 600;
+    text-align: center;
     padding-left: 5px;
     margin-bottom: 20px;
     border-bottom: 2px solid rgb(226, 226, 226);
-    /* TestBackground */
-    /* background-color: rgb(219, 219, 254);    */
+    background-color: #67caff;
+    box-shadow: 4px 4px 0px #bdbdbd;
+}
+.writeBodyHeader{
+    color: white;
+    text-shadow:  2px 2px 1px  #bdbdbd;
+}
+.writeUserName{
+    color: #8c8c8c;
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    padding-left: 20px;
+    font-weight: 500;
+    box-sizing: border-box;
+    border: 1px solid rgb(226, 226, 226);
+    margin-bottom: 20px;
 }
 .subjectBody{
     width: inherit;
@@ -155,7 +173,7 @@ textarea[name="content"]{
     /* background-color: rgb(39, 39, 49);    */
 }
 
-input[name="tag"]{
+input[name="hashtag"]{
     margin-top: 10px;
     padding-left: 20px;
     font-size: 20px;
@@ -165,10 +183,10 @@ input[name="tag"]{
     border: none;
     cursor: pointer;
 }
-input[name="tag"]::placeholder{
+input[name="hashtag"]::placeholder{
     font-size: 20px;
 }
-input[name="tag"]:focus{
+input[name="hashtag"]:focus{
     box-shadow: 0 1px 20px rgba(170, 226, 249, 0.687);
     outline: none;
 }
