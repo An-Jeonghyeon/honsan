@@ -58,7 +58,12 @@ public class DressServiceImpl implements DressService{
 
 	@Override
 	public void updateHitCount(int num) throws Exception {
-		// TODO Auto-generated method stub
+		try {
+			dao.updateData("dress.updateHitCount",num);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
 		
 	}
 
