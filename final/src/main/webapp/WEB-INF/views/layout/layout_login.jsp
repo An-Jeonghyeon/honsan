@@ -19,7 +19,7 @@
      -->
 
     <script src="${pageContext.request.contextPath}/resources/js/layout_login.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/js/created.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/dress/created.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/home.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/dressTip/list.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/dressMain/main.js"></script>
@@ -27,12 +27,12 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/login.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/member.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/layout_login.css" type="text/css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/article.css" type="text/css">
     <!-- 글쓰기 폼 css 참고할 사람은 아래의 링크를 참고하세요! 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/dress/created.css" type="text/css">
      -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/home.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/dress/list.css" type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/dress/article.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/dressTip/list.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/dressMain/main.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/cook/honCooq.css" type="text/css">

@@ -51,8 +51,20 @@
 				</if>
 			</where>
 	</select>
-		<update id="updateHitCount" parameterType="Integer">
+	
+	<update id="updateHitCount" parameterType="Integer">
 		UPDATE clothesStory SET HitCount= HitCount+1 WHERE num=#{num}
-		</update>
+	</update>
+	
+	<select id="readDress" parameterType="Integer" resultType="com.sp.app.dress.Dress">
+		SELECT num, b.userId, userName, subject, content, TO_CHAR(REGISTER_DATE,'YYYY-MM-DD')register_date, HitCount
+		FROM clothesStory b
+		JOIN member1 m ON b.userId = m.userId
+		WHERE num = #{num}
+	</select>
+	
+	<delete id="deleteDress" parameterType="Integer">
+		DELETE FROM CLOTHESSTORY WHERE num= #{num}
+	</delete>
 	
 </mapper>

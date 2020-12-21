@@ -1,0 +1,270 @@
+@charset "UTF-8";
+.articleMainBody{
+    width: 1300px;
+    min-height: 800px;
+    margin: 250px auto 0 auto;
+    box-sizing: border-box;
+    border: 1px solid rgb(226, 226, 226);
+}
+.articleMainHeader{
+    width: 1200px;
+    height: 220px;
+    margin: 20px auto;
+    box-sizing: border-box;
+    border-bottom: 1px  solid rgb(226, 226, 226);
+}
+.articleGo{
+    width: 95%;
+    margin: 10px auto;
+    box-sizing: border-box;
+     /* TestBackground */
+     /* background-color: rgba(203, 163, 240, 0.31); */
+}
+.articleGo> span >a{
+    color: #8e88ff;
+}
+.articleGo> span >a:hover{
+    color: #ff6347;
+}
+.articleMainHeaderSubject{
+    width: 95%;
+    height: 90px;
+    margin: 10px auto;
+    padding-top: 20px;
+    box-sizing: border-box;
+    /* border: 1px solid rgb(226, 226, 226); */
+    /* TestBackground */
+    /* background-color: rgba(232, 216, 247, 0.31); */
+}
+.articleMainHeaderSubject >span{
+    font-size: 2rem;
+}
+.articleSub{
+    display: flex;
+     /* TestBackground */
+    /* background-color: #f9e9e677; */
+}
+.articleMainHeaderUserName{
+    width: 30%;
+    margin: 10px 0px 0px 30px;
+    box-sizing: border-box;
+     /* TestBackground */
+     /* background-color: rgba(116, 54, 177, 0.31); */
+}
+.createdNumber, .hitCountNumber{
+    width: 200px;
+    display:block;
+    color: rgb(176, 176, 176);
+    font-weight: 500;
+    font-size: 0.8rem;
+}
+.articleMainHeaderReply{
+    width: 20%;
+    height: 70px;
+    margin: 10px 31px 0px 600px;
+    line-height: 70px;
+    text-align: right;
+    box-sizing: border-box;
+    /* TestBackground */
+    /* background-color: rgba(222, 188, 255, 0.31); */
+}
+.ContentBody{
+    width: 90%;
+    min-height: 500px;
+    margin: 30px auto;
+    /* TestBackground */
+    /* background-color: rgba(222, 188, 255, 0.31); */
+}
+.LikeBox{
+    width: 90%;
+    height: 20px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    border-bottom: 1px solid rgb(226,226,226);
+    /* TestBackground */
+    /* background-color: rgba(222, 188, 255, 0.31); */
+}
+.fa-heart{
+    margin: 0 10px 0 0;
+    color: red;
+    cursor: pointer;
+    
+}
+.LikeHeart{
+    margin: 0 15px 0 0;
+}
+.fullLikeHeart{
+    width: 5px;
+    height: 5px;
+    display: none;
+    position: relative;
+    left: -187px;
+    /* background-color: #ffffff; */
+}
+.fa-comments{
+    margin: 0 10px 0 0;
+}
+.ReplySUb{
+    width: 90%;
+    height: 30px;
+    margin: 10px auto;
+    box-sizing: border-box;
+    /* TestBackground */
+    /* background-color: rgba(222, 188, 255, 0.31); */
+}
+.ReplyList{
+    width: 90%;
+    height: 80px;
+    margin: 10px auto;
+    box-sizing: border-box;
+    border-bottom: 1px solid rgb(226,226,226);
+    /* TestBackground */
+    /* background-color: rgba(222, 188, 255, 0.31); */
+}
+.ReplyAnswerBody{
+    width: 100%;
+    min-height:150px;
+    margin: 0 auto;
+    padding-left: 30px;
+    box-sizing: border-box;
+     /* TestBackground */
+    /* background-color: rgba(222, 188, 255, 0.31); */
+
+}
+.ReplyAnswerContentBox{
+    width: 90%;
+    height: 190px;
+    border-radius: 5px;
+    margin: 60px auto;
+    padding: 20px;
+    box-sizing: border-box;
+    border: 2px solid rgb(226,226,226);
+}
+.ReplyAnswerContentBox>textarea{
+    width: 100%;
+    height: 70%;
+    resize: none;
+    display: block;
+    border: none;
+}
+.ReplyAnswer{
+    width: 90%;
+    height: 80px;
+    margin: 10px auto;
+    padding-left: 50px;
+    box-sizing: border-box;
+    border-bottom: 1px solid rgb(226,226,226);
+    /* TestBackground */
+    /* background-color: rgba(222, 188, 255, 0.31); */
+}
+.pagingBody{
+    width: 100%;
+    box-sizing: border-box;
+   
+     /* TestBackground */
+    /* background-color: rgba(222, 188, 255, 0.31); */
+}
+.pagingInnerBody{
+   text-align: center; 
+   box-sizing: border-box;
+   
+}
+.pagingInnerBody >span{
+    width: 20px;
+    margin: 10px;
+   
+    display: inline-block;
+    color: white;
+    background-color: #262626;
+    border: 1px solid rgb(226,226,226);
+}
+.pagingInnerBody >span:hover{
+    
+    border: 1px solid rgb(226,226,226);
+    color: #262626;
+    background-color: white;
+}
+
+.ReplyBody{
+    width: 100%;
+    min-height:150px;
+    margin: 0 auto;
+    /* TestBackground */
+    /* background-color: rgba(222, 188, 255, 0.31); */
+}
+.ReplyContentBox{
+    width: 90%;
+    height: 200px;
+    border-radius: 5px;
+    margin: 60px auto;
+    padding: 20px;
+    box-sizing: border-box;
+    border: 2px solid rgb(226,226,226);
+    /* TestBackground */
+    /* background-color: rgba(130, 43, 218, 0.31); */
+}
+.ReplyListUserName{
+    font-size: 13px;
+}
+.ReplyListContent{
+    font-size: 12px;
+    font-weight: 400;
+}
+.RelyWrite{
+    font-size: 12px;
+    background: white;
+    border: none;
+    cursor: pointer;
+}
+.RelyWrite:focus{
+    outline: none;
+}
+
+.ReplyContentBox>span ,.ReplyAnswerContentBox>span{
+    font-size: 0.8rem;
+    font-weight: 400;
+}
+.ReplyContentBox>textarea{
+    width: 100%;
+    height: 70%;
+    resize: none;
+    display: block;
+    border: none;
+    /* TestBackground */
+    /* background-color: rgba(130, 43, 218, 0.31); */
+}
+.ReplyContentBox>textarea:focus{
+   outline: none;
+   
+}
+.ReplyContentBox>textarea::placeholder{
+    color: rgb(226,226,226);
+}
+.ReplySubmitButton{
+ width: 100%;
+ height: 20%;
+ margin-top: 10px;
+ /* TestBackground */
+ /* background-color: #ff6347; */
+}
+.Replybtn{
+    width: 70px;
+    height: 30px;
+    border:none;
+    cursor: pointer;
+    border-radius: 5px;
+    float: right;
+    transition: 0.1s;
+    color: rgb(136, 136, 136);
+    box-shadow: 0px 0px 10px  rgba(128, 128, 128, 0.529);
+}
+.Replybtn:hover{
+background: rgb(174, 174, 174);
+color: aliceblue;
+}
+.Replybtn:active{
+transform: scale(0.9);
+}
+.Replybtn:focus{
+outline: none;
+}

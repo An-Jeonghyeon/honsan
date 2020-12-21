@@ -1,43 +1,39 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
-<%@ page trimDirectiveWhitespaces="true" %>
+<%@ page trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<div class="articleButton">
-	<button class="btn1" type="button">이전글</button>
-	<button class="btn2" type="button">다음글</button>
-</div>
+
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/dress/created.css"
+	type="text/css">
+
+
 <div class="articleMainBody">
 	<div class="articleMainHeader">
 		<div class="articleGo">
-			<span><a href="${pageContext.request.contextPath}">자랑게시판
+			<span><a href="${pageContext.request.contextPath}/dress/list">자랑게시판
 					&gt;</a></span>
 		</div>
 		<div class="articleMainHeaderSubject">
-			<span>오늘하루도 수고 하셨습니다 여러분</span>
+			<span>${dto.subject}</span>
 		</div>
 		<div class="articleSub">
 			<div class="articleMainHeaderUserName">
-				<span>주다혜</span> <span class="createdNumber">2020.12.03.
-					01:03</span> <span class="hitCountNumber">조회 670</span>
+				<span>${dto.userName}</span> 
+				<span class="createdNumber">${dto.register_date}</span>
+				<span class="hitCountNumber">조회 ${dto.hitCount}</span>
 			</div>
 			<div class="articleMainHeaderReply">
-				<span> <a href="${pageContext.request.contextPath}"> 댓글
-						54</a></span>
+				<span> <a href="${pageContext.request.contextPath}"> 댓글 54</a></span>
 			</div>
 		</div>
 	</div>
 
 	<div class="ContentBody">
 		<pre>
-가계약금 및 본인부담금 잘 체크하기
-가계약금 및 본인부담금 잘 체크하기
-가계약금 및 본인부담금 잘 체크하기
-가계약금 및 본인부담금 잘 체크하기
-가계약금 및 본인부담금 잘 체크하기
-가계약금 및 본인부담금 잘 체크하기
-가계약금 및 본인부담금 잘 체크하기
-</pre>
+			${dto.content}				
+		</pre>
 	</div>
 	<div class="LikeBox">
 		<span class="LikeHeart"> <i class="far fa-heart ILikeHeart"></i>좋아요
@@ -48,14 +44,50 @@
 	<div class="ReplySUb">
 		<span>댓글</span>
 	</div>
-	<div class="ReplyList">여기는 댓글 리스트</div>
-	<div class="ReplyBody">
-		<div class="ReplyContentBox">
-			<span>주다혜</span>
-			<textarea name="" id="" placeholder="댓글을 남겨보세요"></textarea>
-			<div class="ReplySubmitButton">
-				<button class="Replybtn" type="button">등록</button>
+	<form action="" method="post">
+		<div class="ReplyList">
+			<span class="ReplyListUserName">이지영</span>
+			<p>
+				<span class="ReplyListContent">어떤 항목을 체크 해야 하나요?</span>
+			</p>
+			<span class="createdNumber">2020.12.03. 01:03</span>
+			<button type="button" class="RelyWrite">답글쓰기</button>
+		</div>
+		<div class="ReplyAnswerBody">
+			<div class="ReplyAnswerContentBox">
+				<span>주다혜</span>
+				<textarea name="" id="" placeholder="댓글을 남겨보세요">여기는 대댓글</textarea>
+				<div class="ReplySubmitButton">
+					<button class="Replybtn" type="button">등록</button>
+				</div>
 			</div>
 		</div>
-	</div>
+		<div class="ReplyAnswer">
+			<span class="ReplyListUserName">주다혜</span>
+			<p>
+				<span class="ReplyListContent">여러 항목을 체크해야죠 ㅡㅡ;</span>
+			</p>
+			<span class="createdNumber">2020.12.03. 01:03</span>
+		</div>
+
+		<div class="pagingBody">
+			<div class="pagingInnerBody">
+				<span>1</span>
+			</div>
+		</div>
+
+		<div class="ReplyBody">
+			<div class="ReplyContentBox">
+				<span>주다혜</span>
+				<textarea name="" id="" placeholder="댓글을 남겨보세요"></textarea>
+				<div class="ReplySubmitButton">
+					<button class="Replybtn" type="button">등록</button>
+				</div>
+			</div>
+		</div>
+		<div class="buttonBoxBody">
+			<button type="button" id="CencelSubmit" onclick="">삭제</button>
+			<button type="submit" id="writeSubmit">수정하기</button>
+		</div>
+	</form>
 </div>

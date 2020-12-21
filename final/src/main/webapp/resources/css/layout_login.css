@@ -32,7 +32,7 @@ i{
     /* background-color: rgb(55, 51, 45);  */
 }
 /* ----------------------------------  header               */
-a{
+header nav a, .footerBox a, .PermenuObject>ul a{
     text-decoration: none;
     color:rgb(52, 52, 52);
 }

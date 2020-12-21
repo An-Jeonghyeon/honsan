@@ -15,11 +15,11 @@
 		var f = document.writeBodyForm;
 
 		var chk = f.subject.value;
-
+		
 		if (!chk) {
 			alert("제목을 입력 해주세요.");
-			f.chk.focus();
-			return;
+			f.subject.focus();
+			return false;
 		}
 
 		chk = f.content.value;
@@ -27,73 +27,77 @@
 		if (chk == "<p>&nbsp;</p>") {
 			alert("내용을 입력 해주세요");
 			f.content.focus();
-			return;
+			return false;
 		}
 
 		f.action = "${pageContext.request.contextPath}/dress/created";
 
 		return true;
 	}
+	
 </script>
 
 <article class="writeHeader">
-	<div class="writeheaderInnerText">
-		<h3 class="FadeinText">나혼자 코디자랑</h3>
-		<small class="FadeinText">오늘도 어김없이 혼자 무엇을 하려는 당신 <br> 오늘
-			하루 수고한 당신과 ,주변사람들을 위해 <br> 당신의 하루를 공유 해보는게 어떠세요?
-		</small>
-	</div>
-	<div class="writeHeaderMenu">
-		<ul>
-			<li><a href="${pageContext.request.contextPath}/dress/list">전체글보기</a></li>
-		</ul>
-	</div>
-</article>
+                <div class="writeheaderInnerText">
+                    <h3 class="FadeinText">나혼자 코디자랑</h3>
+                    <small class="FadeinText">오늘도 어김없이 혼자 무엇을 하려는 당신 <br> 오늘
+                        하루 수고한 당신과 ,주변사람들을 위해 <br> 당신의 하루를 공유 해보는게 어떠세요?
+                    </small>
+                </div>
+                <div class="writeHeaderMenu">
+                    <ul>
+                        <li><a href="${pageContext.request.contextPath}/dress/list">전체글보기</a></li>
+                    </ul>
+                </div>
+            </article>
 
-<form method="post" name="writeBodyForm" onsubmit="return submitContents(this)"
-	 enctype="multipart/form-data">
-	<article class="writeBody">
-		<div class="writeBodyHeader">
-			<span>코디자랑</span>
-		</div>
-			<div class="writeUserName">작성자: ${sessionScope.member.userName}</div>
-		
-		<div class="subjectBody">
-			<input type="text" name="subject" id="subject" value="${dto.subject}"
-				placeholder="제목을 입력해 주세요.">
-		</div>
+            <form method="post" name="writeBodyForm" onsubmit="return submitContents(this);"
+                enctype="multipart/form-data">
+                <article class="writeBody">
+                    <div class="writeBodyHeader">
+                        <span>코디자랑</span>
+                    </div>
+                    <div class="writeUserName">작성자: ${sessionScope.member.userName}</div>
 
-		<div class="contentBody">
-			<div class="inputBody1">
-				<textarea id="content" name="content">${dto.content}</textarea>
-			</div>
-			<div class="tagBody">
+                    <div class="subjectBody">
+                        <input type="text" name="subject" id="subject" value="${dto.subject}"
+                            placeholder="제목을 입력해 주세요.">
+                    </div>
 
-				<div class="plusTag">
-					<ul id="tag-list">
+                    <div class="contentBody">
+                        <div class="inputBody1">
+                            <textarea id="content" name="content">${dto.content}</textarea>
+                        </div>
+                        <div class="tagBody">
 
-					</ul>
+                            <div class="plusTag">
+                                <ul id="tag-list">
 
-				</div>
-				<div class="inputBody2">
-					<input type="text" class="InputTag" name="hashtag"
-						placeholder="#태그를 입렵해 주세요.(최대5개)">
-					<div class="tagbtnBody">
-						<!-- 	<input type="hidden" name="tag" id="IdTag"> -->
-						<button class="Tag-btn" type="button" onclick="TagbtnSend()">TAG</button>
-					</div>
-				</div>
-			</div>
-		</div>
+                                </ul>
+
+                            </div>
+                            <div class="dress-TagSpanBodyBox">
+                                <div class="dress-TagSpanBody"></div>
+                            </div>
+                            <div class="inputBody2">
+                              <input type="hidden" value="" name="hashtag" id="rdTag" />
+                                <input type="text" class="InputTag"  placeholder="#태그를 입렵해 주세요.(최대5개)">
+                                <div class="tagbtnBody">
+                                    <button class="Tag-btn" type="button" onclick="TagbtnSend()">TAG</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
 
 
-		<div class="buttonBoxBody">
-			<button type="submit" id="writeSubmit" >등록하기</button>
-			<button type="button" id="CencelSubmit">등록취소</button>
-		</div>
-	</article>
-</form>
+                    <div class="buttonBoxBody">
+                        <button type="button" id="CencelSubmit"
+                            onclick="javascript:location.href='${pageContext.request.contextPath}/dress/list'">등록취소</button>
+                        <button type="submit" id="writeSubmit">등록하기</button>
+                    </div>
+                </article>
+            </form>
 <script type="text/javascript">
 	var oEditors = [];
 	nhn.husky.EZCreator

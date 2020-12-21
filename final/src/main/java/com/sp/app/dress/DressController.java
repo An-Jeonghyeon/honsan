@@ -122,8 +122,35 @@ public class DressController {
 		}
 		return "redirect:/dress/list";
 	}
-	@RequestMapping("article")
-	public String DressArticle() throws Exception{
+	@GetMapping("article")
+	public String DressArticle(
+			@RequestParam (defaultValue = "1")int num,
+			@RequestParam (defaultValue = "")String page,
+			@RequestParam (defaultValue = "all")String condition,
+			@RequestParam (defaultValue = "")String keyword,
+			Model model
+			) throws Exception{
+		keyword = URLDecoder.decode(keyword,"utf-8");
+		
+		String query = "page"+page;
+		if(keyword.length()!=0) {
+			query+="&condition="+condition+"&keyword="+URLEncoder.encode(keyword,"utf-8");
+		}
+		
+		service.updateHitCount(num);
+		Dress dto=service.readDress(num);
+		if(dto==null) {
+			return"redirect:/dress/list?"+query;
+		}
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("num",num);
+		map.put("condition",condition);
+		map.put("keyword",keyword);
+		model.addAttribute("dto", dto);
+		model.addAttribute("page", page);
+		model.addAttribute("query", query);
+		
 		return ".dress.article";
 	}
 }

@@ -52,8 +52,13 @@ public class DressServiceImpl implements DressService{
 
 	@Override
 	public Dress readDress(int num) {
-		// TODO Auto-generated method stub
-		return null;
+		Dress dto= null;
+		try {
+			dto=dao.selectOne("dress.readDress",num);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return dto;
 	}
 
 	@Override
@@ -75,7 +80,11 @@ public class DressServiceImpl implements DressService{
 
 	@Override
 	public void deleteDress(int num, String pathname, String userId) throws Exception {
-		// TODO Auto-generated method stub
+		try {
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 		
 	}
 
