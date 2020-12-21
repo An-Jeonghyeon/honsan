@@ -2,9 +2,108 @@
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="supplement">
+	<!-- 인서트 -->
 	<insert id="insertSupplement" parameterType="com.sp.app.supplement.Supplement">
-		INSERT INTO supplement(num, userId, subject, content, hashtag, register_date, hitCount)
+		INSERT INTO supplement(num, userId, subject, content, hashtag, register_date, hitCount, imageFilename)
 			VALUES(supplement_seq.NEXTVAL, #{userId}, #{subject}, #{content}, 
-				 #{hashtag, jdbcType=VARCHAR}, SYSDATE, 0)
+				 #{hashtag, jdbcType=VARCHAR}, SYSDATE, 0, #{imageFilename, jdbcType=VARCHAR})
 	</insert>
+	
+
+	<!--  검색  -->
+	<sql id="where-list">
+		<choose>
+			<when test="condition=='all'">
+				(INSTR(subject, #{keyword}) &gt; 0 OR DBMS_LOB.INSTR(content, #{keyword})  &gt; 0)
+			</when>
+			<when test="condition=='created'">
+				(TO CHAR(register_date, 'YYYYMMDD) = #{keyword} OR TO CHAR(register_date, 'YYYY-MM-DD) = #{keyword})
+			</when>
+			<when test="condition=='cotent'">
+				DBMS_LOB.INSTR(content, #{keyword}) &gt; 0
+			</when>
+			<otherwise>
+				INSTR(content, #{keyword}) &gt; 0
+			</otherwise>
+		</choose>
+	</sql>
+	
+	<!-- 글 리스트  -->
+	<select id="listSupplement" parameterType="map" resultType="com.sp.app.supplement.Supplement">
+		SELECT s.num, s.userId, userName, subject, TO_CHAR(register_date, 'YYYY-MM-DD') register_date, hitCount, imageFilename, 
+   			 NVL(likeCount, 0) likeCount
+		FROM supplement s
+		JOIN member1 m ON s.userId = m.userId 
+		LEFT OUTER JOIN(
+			SELECT num, COUNT(*) likeCount 
+			FROM supplement_like
+			GROUP BY num
+		) slk ON s.num = slk.num
+		<where>
+			<if test="keyword !=null and keyword !=''">
+				<include refid="where-list"/>
+			</if>
+		</where>
+		ORDER BY s.num DESC
+		OFFSET #{offset} ROWS FETCH FIRST #{rows} ROWS ONLY
+	</select>
+	
+	<!-- 글갯수 -->
+	<!-- 이거 왜 조인해야돼? => 검색때문에-->
+	<select id="dataCount" parameterType="Map" resultType="Integer">
+		SELECT NVL(COUNT(*), 0)
+		FROM supplement s
+		JOIN member1 m ON s.userId=m.userId
+		<where>
+			<if test="keyword!=null and keyword!=''">
+				<include refid="where-list"/>
+			</if>
+		</where>
+	</select>
+	
+	<update id="updateHitCount" parameterType="Integer">
+		UPDATE supplement SET hitCount=hitCount+1 WHERE num=#{num}
+	</update>
+	
+	<!-- 베스트 리스트-->
+	<select id="listSupplementBest" resultType="com.sp.app.supplement.Supplement">
+		select num, userId, userName, subject, imageFilename, 
+		         likeCount
+		from (
+		    SELECT s.num, s.userId, userName, subject, TO_CHAR(register_date, 'YYYY-MM-DD') register_date, hitCount, imageFilename, 
+		         NVL(likeCount, 0) likeCount
+		    FROM supplement s
+		    JOIN member1 m ON s.userId = m.userId 
+		    LEFT OUTER JOIN(
+		        SELECT num, COUNT(*) likeCount 
+		        FROM supplement_like
+		        GROUP BY num
+		    ) slk ON s.num = slk.num
+		    ORDER BY likeCount DESC
+		)<![CDATA[WHERE rownum <= 4]]>
+	</select>
+	
+	<!-- 게시글 추천 추가(like) -->
+	<insert id="insertSupplementLike" parameterType="map">
+		INSERT supplement_like(num, userId) VALUES(#{num}, #{userId})
+	</insert>
+	
+	<!-- 게시글 추천수 -->
+	<select id="supplementLikeCount" parameterType="Integer" resultType="Integer">
+		SELECT COUNT(*) FROM supplement_like WHERE num=#{num}
+	</select>
+	
+	<!-- 게시글보기 -->
+	<select id="readSupplement" parameterType="Integer" resultType="com.sp.app.supplement.Supplement">
+		SELECT s.num, s.userId, userName, subject, content, hitCount, register_date, imageFilename, 
+			NVL(likeCount, 0) likeCount
+		FROM supplement s
+		JOIN member1 m ON s.userId = m.userId
+		LEFT OUTER JOIN (
+			SELECT num, COUNT(*) likeCount
+			FROM supplement_like 
+			GROUP BY num
+		) slk ON s.num = slk.num
+		WHERE s.num=#{num}
+	</select>
 </mapper>

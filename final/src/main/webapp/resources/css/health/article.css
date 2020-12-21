@@ -1,0 +1,272 @@
+@charset "UTF-8";
+.h-divvv {
+    width: 1000px;
+    margin: 100px auto 90px;
+}
+.h-articleButton{
+    width: 1000px;
+    height: 50px;
+    padding-left: 25px;
+    padding-right: 25px;
+    box-sizing: border-box;
+    text-align: right;
+
+     /* TestBackground */
+     /* background-color: rgba(203, 163, 240, 0.31); */
+}
+.h-prebtn {
+    height: 50px;
+    margin-right: 30px;
+    line-height: 50px;
+    display: inline-block;
+    line-height: 50px;
+    cursor: pointer;
+}
+.h-prebtn span {
+    display: inline-block;
+    height: 30px;
+}
+.h-nextbtn {
+    height: 50px;
+    line-height: 50px;
+    display: inline-block;
+    line-height: 50px;
+    cursor: pointer;
+}
+.h-nextbtn span {
+    display: inline-block;
+    height: 30px;
+}
+.h-nextbtn2{
+    width: 100px;
+    height: 30px;
+    margin-left: 6px;
+    border:none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 0.1s;
+    color: rgb(136, 136, 136);
+    box-shadow: 0px 0px 10px  rgba(128, 128, 128, 0.529);
+}
+.h-articleMainBody{
+    width: 1000px;
+    min-height: 800px;
+    box-sizing: border-box;
+}
+.h-articleMainHeader{
+    width: 1000px;
+    min- height: 220px;
+    margin: 0 auto 20px;
+    box-sizing: border-box;
+    border-bottom: 1px  solid rgb(226, 226, 226);
+}
+/* 요거 지움 */
+.h-articleGo{
+    width: 95%;
+    margin: 10px auto;
+    box-sizing: border-box;
+    /* TestBackground */
+    /* background-color: rgba(203, 163, 240, 0.31); */
+}
+.h-articleGo> span {
+    /* background:#f3c04a3f; */
+    display: inline-block;
+    width: 170px;
+    height: 35px;
+    font-weight: 600;
+    text-align: center;
+    line-height: 35px;
+    border-bottom: 1px solid #ccc;
+}
+/* 요기까지 */
+.h-articleMainHeaderSubject{
+    width: 95%;
+    height: 60px;
+    margin: 0px auto 70px;
+    padding-top: 20px;
+    box-sizing: border-box;
+    /* border: 1px solid rgb(226, 226, 226); */
+    /* TestBackground */
+    /* background-color: rgba(232, 216, 247, 0.31); */
+}
+.h-articleMainHeaderSubject >span{
+    font-size: 30px;
+    font-weight: 800;
+}
+.h-articleSub{
+    display: flex;
+     /* TestBackground */
+    /* background-color: #f9e9e677; */
+}
+.h-articleMainHeaderUserName{
+    width: 30%;
+    margin: 10px 0px 0px 30px;
+    box-sizing: border-box;
+     /* TestBackground */
+     /* background-color: rgba(116, 54, 177, 0.31); */
+}
+.h-createdNumber{
+    display:block;
+    color: rgb(120, 120, 120);
+    font-weight: 500;
+    font-size: 1.0rem;
+}
+.h-articleMainHeaderReply{
+    width: 20%;
+    height: 70px;
+    margin: 10px 31px 0px 600px;
+    line-height: 70px;
+    text-align: right;
+    box-sizing: border-box;
+    /* TestBackground */
+    /* background-color: rgba(222, 188, 255, 0.31); */
+}
+.h-ContentBody{
+    width: 90%;
+    min-height: 200px;
+    margin: 30px auto;
+    /* TestBackground */
+    /* background-color: rgba(222, 188, 255, 0.31); */
+}
+.h-LikeBox{
+    width: 100%;
+    height: 100px;
+    margin: 0 auto 30px;
+    box-sizing: border-box;
+    /* TestBackground */
+    /* background-color: rgba(222, 188, 255, 0.31); */
+}
+.h-likecircle {
+    width: 100px;
+    height: 100px;
+    background: #dbdbdb;
+    border-radius: 50%;
+    text-align: center;
+    cursor: pointer;
+    margin: 0 auto;
+}
+.h-likelike {
+    padding-top: 25px;
+}
+.h-likeCountdiv {
+    margin-top: 10px;
+}
+.h-fa-heart{
+    margin: 0 10px 0 0;
+    color: red;
+    cursor: pointer;
+    
+}
+.h-LikeHeart{
+    margin: 0 15px 0 0;
+}
+.h-fullLikeHeart{
+    width: 5px;
+    height: 5px;
+    display: none;
+    position: relative;
+    left: -187px;
+    /* background-color: #ffffff; */
+}
+.h-ReplySUb{
+    width: 100%;
+    height: 50px;
+    margin: 10px auto;
+    box-sizing: border-box;
+    border-bottom:  1px solid rgb(226,226,266);;
+    padding: 10px 30px;
+    /* TestBackground */
+    /* background-color: rgba(222, 188, 255, 0.31); */
+}
+.h-listButton {
+    float: right;
+    width: 70px;
+    height: 30px;
+    border:1px solid #ccc;
+    cursor: pointer;
+    border-radius: 5px;
+    float: right;
+    transition: 0.1s;
+    color: rgb(136, 136, 136);
+    background: white;
+}
+.h-ReplyList{
+    width: 100%;
+    height: 30px;
+    margin: 10px auto;
+    box-sizing: border-box;
+    border-top: 1px solid rgb(226,226,266);
+    /* TestBackground */
+    /* background-color: rgba(222, 188, 255, 0.31); */
+}
+.h-replyList2 {
+    width: 90%;
+    margin: 10px auto;
+}
+.h-ReplyBody{
+    width: 100%;
+    min-height:150px;
+    margin: 0 auto;
+    /* TestBackground */
+    /* background-color: rgba(222, 188, 255, 0.31); */
+}
+.h-ReplyContentBox{
+    width: 90%;
+    height: 200px;
+    border-radius: 5px;
+    margin: 60px auto;
+    padding: 20px;
+    box-sizing: border-box;
+    border: 2px solid rgb(226,226,226);
+    /* TestBackground */
+    /* background-color: rgba(130, 43, 218, 0.31); */
+}
+.h-ReplyContentBox>span{
+    font-size: 0.8rem;
+    font-weight: 400;
+}
+.h-ReplyContentBox>textarea{
+    width: 100%;
+    height: 55%;
+    resize: none;
+    display: block;
+    border: none;
+    margin-top: 10px;
+    /* TestBackground */
+    /* background-color: rgba(130, 43, 218, 0.31); */
+}
+.h-ReplyContentBox>textarea:focus{
+   outline: none;
+   
+}
+.h-ReplyContentBox>textarea::placeholder{
+    color: rgb(226,226,226);
+}
+.h-ReplySubmitButton{
+ width: 100%;
+ height: 20%;
+ margin-top: 10px;
+ /* TestBackground */
+ /* background-color: #ff6347; */
+}
+.h-Replybtn{
+    width: 70px;
+    height: 30px;
+    border:none;
+    cursor: pointer;
+    border-radius: 5px;
+    float: right;
+    transition: 0.1s;
+    color: rgb(136, 136, 136);
+    box-shadow: 0px 0px 10px  rgba(128, 128, 128, 0.529);
+}
+.h-Replybtn:hover{
+background: rgb(174, 174, 174);
+color: aliceblue;
+}
+.h-Replybtn:active{
+transform: scale(0.9);
+}
+.h-Replybtn:focus{
+outline: none;
+}

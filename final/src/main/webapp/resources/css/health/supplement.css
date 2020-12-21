@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+a {
+	text-decoration: none;
+	color: black;
+}
 /*  -------------오늘 영양제 리스트  */
 .supplement-body {
     /* background: #ccc; */
@@ -20,21 +24,26 @@
 	height : 600px;
 	margin: 0 auto;
 	padding-left: 10px;
-	padding-top: 150px;
     box-sizing : border-box;
-	
+    position: absolute;
+    top: 350px;
+    left: 10%;
 }
 .top-title {
-    padding: 80px 0 20px;
+    padding-bottom: 20px ;
+    width: 100%;
 }
-.top-title p{
+.top-text {
+    width: 100%;
+}
+.top-title span{
 	color: white;
 	font-size : 45px;
 	font-family: 'Noto Sans KR', sans-serif;
 	font-weight: 900;
 /* 	text-shadow: 4px 4px 7px gray; */
 }
-.top-text p{
+.top-text span{
 	color: white;
     font-size: 16px;
     margin-bottom: 4px;
@@ -63,18 +72,83 @@
     display: flex;
     margin: 0 auto;
     padding-top: 30px;
+    margin-bottom: 100px;
 }
-.best { 
+.s-best { 
     width: 270px;
-    height: 340px;
-    background: turquoise;
-    margin: 0 auto;
+    height: 400px;
+    /* background: turquoise; */
+    margin-right: 30px;
 }
-/* 게시판 */
+.best-top {
+    width: 270px;
+    background: yellow;
+}
+.best-bottom {
+    width: 270px;
+    /* background-color: teal; */
+    position: relative;
+    top: 300px;
+    margin-top: 10px;
+}
+.best-num {
+	width: 50px;
+	height: 50px;
+	background: rgba(51, 51, 51, 0.829);
+	font-size: 20px;
+	line-height: 50px;
+	border-radius: 0 0 20px 0;
+	position: absolute;
+	color: rgb(219, 219, 219);
+}
+.best-num-span {
+    position: relative;
+    left: 0;
+    top: 0;
+}
+.best-image {
+    /* background: yellow; */
+    width: 270px;
+    height: 300px;
+    margin: 0 auto;
+    position: absolute;
+    cursor: pointer;
+}
+.best-imageFile {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+.best-subject {
+    width: 100%;
+    /* background: wheat; */
+    height: 30px;
+    line-height: 40px;
+    font-size: 17px;
+    font-weight: 700;
+    /* border-bottom: 1px solid #ccc; */
+    position: relative;
+}
+.best-user {
+    width: 100%;
+    /* background:yellowgreen; */
+    height: 30px;
+    line-height: 30px;
+    font-size: 15px;
+}
+.best-count {
+    width: 100%;
+    /* background: tomato; */
+    height: 30px;
+}
+.count-count {
+    padding-left: 10px;
+}
+/* 게시판  - title */
 .supplement-bbs { 
     margin-top: 50px;
+    margin-bottom: 80px;
     width: 1200px;
-    height: 400px;
     /* background: tomato; */
     text-align: center;
     
@@ -92,13 +166,36 @@
     border-bottom:  1px solid #dbdbdb;
     height: 35px;
 }
-/* 요기는 게시글 */
+/* 게시글 비율 */
+.s-table-num {
+	width: 10%;
+}
+.s-table-sub {
+	width: 43%;
+}
+.s-table-date {
+	width: 15%;
+}
+.s-table-user {
+	width: 15%;
+}
+.register_date {
+	width: 10%;
+}
+.s-table-count {
+	width: 10%;
+}
+
+/*글리스트 */
 .s-body-tr td {
 	font-weight: 100;
 }
 .s-tbody tr{
     border-bottom:  1px solid #dbdbdb;
     height: 35px;
+}
+.s-subject{
+    text-align: left;
 }
 .supplement-paging {
     margin-top: 20px;
@@ -108,26 +205,45 @@
     border-bottom: 1px solid #e8e8e8;
     background: #f7f7f7;
     text-align: center;
-    height: 50px;
+    height: 60px;
     width: 1000px;
     margin: 50px auto 0;
-    line-height: 50px;
+    line-height: 60px;
+    display: flex;
+}
+.search-reset {
+    width: 50%;
+    text-align: left;
+}
+.reset { 
+    margin-left: 20px;
+    width: 90px;
+    height: 35px;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+.search-select-box { 
+    width: 50%;
+    text-align: right;
+    margin-right: 20px;
 }
 .sup-bbs-input {
-    height: 23px;
-    width: 200px;
+    height: 35px;
+    width: 230px;
     border: 1px solid #e8e8e8;
 }
 .sup-bbs-btn {
-    height: 25px;
-    width: 70px;
+    width: 90px;
+    height: 35px;
     border: none;
     background: rgba(27, 27, 27, 0.692);
     color: #e8e8e8;
+    border-radius: 6px;
 }
 .sup-bbs-select {
-    height: 25px;
-    width: 80px;
+    height: 35px;
+    width: 100px;
     border: 1px solid #e8e8e8;
 }
 /* 플로팅 */
