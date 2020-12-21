@@ -8,7 +8,7 @@ $(function() {
 	})
 	var tt = $(".InputTag");
 	$(".InputTag").click(function() {
-		tt.val("#");
+		tt.val("#").css("color","skyblue");
 	})
 
 })

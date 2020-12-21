@@ -35,7 +35,7 @@
     margin: 10px 10px 10px 40px;
     padding: 5px;
     float: left;
-    border-radius: 2px;
+  	border-radius:15px;
     box-sizing: border-box;
     box-shadow: 0px 1px 5px rgba(145, 145, 145, 0.769);
     /* TestBackground */
@@ -71,7 +71,7 @@
     margin: 15px 0 15px 0;
     padding: 5px;
     text-align: center;
-    border-radius:2px;
+    border-radius:15px;
     box-sizing: border-box;
     /* TestBackground */
     /* background-color: #faa090c8; */
@@ -91,7 +91,7 @@
     margin: 10px;
     float: left;
     padding: 5px;
-    border-radius: 2px;
+    border-radius: 15px;
     box-sizing: border-box;
     text-align: center;
     box-shadow: 0px 1px 5px rgba(145, 145, 145, 0.769);
@@ -123,7 +123,7 @@
     height: 85%;
     box-sizing: border-box;
     margin-bottom: 5px;
-   
+    border-radius: 15px;
     background-repeat: no-repeat;
     background-size: cover;
     transition: 1s;
@@ -141,7 +141,7 @@
     height: 10%;
     box-sizing: border-box;
     margin: 7px auto 0 auto;
-    border-radius: 2px;
+    border-radius: 5px;
     padding: 5px;
     text-align: left;
     font-size: 9px;
