@@ -55,5 +55,47 @@
 		ORDER BY num DESC
 		OFFSET #{offset} ROWS FETCH FIRST #{rows} ROWS ONLY
 	</select>	
+
+	<!-- 글보기(article) -->
+	<select id="readCookTip" parameterType="Integer" resultType="com.sp.app.cook.honCooq.cookTip.CookTip">
+		SELECT num, c.userId, userName, subject, content, TO_CHAR(register_date, 'YYYY-MM-DD') register_date, hitCount
+		FROM cookTip c
+		JOIN  member1 m ON c.userId = m.userId
+		WHERE num = #{num}                       
+	</select>
 	
+	<!-- 조회수 증가 -->
+	<update id="updateHitCount" parameterType="Integer">
+		UPDATE cookTip SET hitCount = hitCount+1 WHERE num = #{num}
+	</update>	
+	
+	<!-- 이전글 -->
+	<select id="preReadCookTip" parameterType="map" resultType="com.sp.app.cook.honCooq.cookTip.CookTip">
+		SELECT num, c.userId, userName, subject, content, TO_CHAR(register_date, 'YYYY-MM-DD') register_date, hitCount
+		FROM cookTip c
+		JOIN  member1 m ON c.userId = m.userId
+		<where>
+			<if test="keyword != null and keyword != '' ">
+				<include refid="where-list"/>
+			</if>
+			AND (num &gt; #{num})
+		</where>
+		ORDER BY num ASC
+		FETCH FIRST 1 ROWS ONLY                      
+	</select>
+	
+	<!-- 다음글 -->	
+	<select id="nextReadCookTip" parameterType="map" resultType="com.sp.app.cook.honCooq.cookTip.CookTip">
+		SELECT num, c.userId, userName, subject, content, TO_CHAR(register_date, 'YYYY-MM-DD') register_date, hitCount
+		FROM cookTip c
+		JOIN  member1 m ON c.userId = m.userId
+		<where>
+			<if test="keyword != null and keyword != '' ">
+				<include refid="where-list"/>
+			</if>
+			AND (num &lt; #{num})
+		</where>
+		ORDER BY num DESC
+		FETCH FIRST 1 ROWS ONLY                      
+	</select>
 </mapper>

@@ -70,7 +70,6 @@ $(function() {
 			<ul>
 				<li class="cookTip_li_category"><a href="" class="cookTip-tab" title="ALL">전체</a></li>
 				<li class="cookTip_li_category"><a href="" class="cookTip-tab" title="장보기"><i class="fas fa-shopping-basket"></i> 장보기</a></li>
-
 				<li class="cookTip_li_category"><a href="" class="cookTip-tab" title="조미료 관리"><i class="fas fa-spray-can"></i> 조미료 관리</a></li>
 				<li class="cookTip_li_category"><a href="" class="cookTip-tab" title="음식 보관법"><i class="fas fa-carrot"></i> 음식 보관법</a></li>
 				<li class="cookTip_li_category"><a href="" class="cookTip-tab" title="설거지 및 주방정리"><i class="fas fa-pump-soap"></i> 설거지 및 주방정리</a></li>
@@ -108,7 +107,7 @@ $(function() {
 						</div>
 
 						<div class="cookTip_title"> <a
-							href="${articleUrl}&num=${dto.num}">${dto.subject}</a>
+							href="${articleUrl}&num=${dto.num}">${dto.subject} (${dto.replyCount})</a>
 						</div>
 						<div class="cookTip_data">
 							<ul>
@@ -127,36 +126,6 @@ $(function() {
 				</div>
 			</div>
 			</c:forEach>
-			
-			<div class="cookTip_content-box">
-				<div class="cookTip_content">
-					<div class="cookTip_content_info">
-
-						<div class="cookTip_category">
-							<span>${dto.category!=null? dto.category : "STORY"}</span>
-						</div>
-
-						<div class="cookTip_title"> <a
-							href="${pageContext.request.contextPath}/">${dto.subject} 쌀쌀한
-								날씨 감기조심하세요</a>
-						</div>
-						<div class="cookTip_data">
-							<ul>
-								<li class="cookTip_li_data cookTip_li_data-userName"><span><i class="far fa-user"></i> ${dto.userName}작성자</span></li>
-								<li class="cookTip_li_data cookTip_li_data-created"><span><i class="far fa-clock"></i> ${dto.created}2020.12.18</span></li>
-								<li class="cookTip_li_data cookTip_li_data-hitCount"><span><i class="far fa-eye"></i> ${dto.register_date}조회수</span></li>
-							</ul>
-						</div>
-						<div class="cookTip_util">
-							<ul>
-								<li class="cookTip_li_util cookTip_li_util-reply"><span><i class="far fa-comment-dots"></i> ${dto.userName}7</span></li>
-								<li class="cookTip_li_util cookTip_li_util-like"><span><i class="far fa-heart" id="cookTip-like"></i> ${dto.created}2</span></li>
-							</ul>						
-						</div>
-					</div>
-				</div>
-			</div>
-
 		</div>
 		
 
