@@ -619,8 +619,9 @@ section button:hover {
 
 	box-sizing:border-box;
 	border:3px solid #ffe79a;
-	border-radius:49%;
-	box-shadow:2px 2px 0 #ffa952;
+/* 	border-radius: 2rem; */
+    border-radius:10% 50% / 120% ;
+	box-shadow:3px 3px 0 #ffa952;
 
 	font-size: 0.9rem;
 	text-align:center;
@@ -773,3 +774,340 @@ background: linear-gradient( to bottom, white, #feffdf, #feffdf, #ffefc0 );
   margin-top: -32px;
   background: #ffe79a;
 }
+
+/*----------------------
+CookTip 게시판 글보기 폼
+-----------------------*/
+
+.cookTip_articleMainBody{
+	margin:0 auto;
+    width: 1300px;
+    min-height: 900px;
+    padding-bottom:3.5rem;
+    box-sizing: border-box;
+    border: 1px solid #ffe79a;
+}
+.cookTip_articleMainHeader{
+    width: 1200px;
+    height: 220px;
+    margin: 20px auto;
+    box-sizing: border-box;
+/*     border-bottom: 1px  solid rgb(226, 226, 226); */
+}
+
+.cookTip_ariticleBodyHeader {
+	width: 120px;
+	height: 35px;
+	font-size: 25px;
+	font-weight: 600;
+	text-align: center;
+	padding-left: 5px;
+	margin-bottom: 20px;
+	border-bottom: 2px solid rgb(226, 226, 226);
+	background-color: #ff9a00;
+	box-shadow: 4px 4px 0px #bdbdbd;
+}
+
+.cookTip_articleBodyHeader-Title {
+	color: #ffffff;
+	text-shadow: 2px 2px 0px #bdbdbd;
+}
+
+.article_category {
+	margin: 0 auto;
+}
+
+.cookTip_articleMainHeaderSubject{
+    width: 95%;
+    height: 90px;
+    margin: 10px auto;
+    padding-top: 20px;
+    box-sizing: border-box;
+    text-align:center;
+    /* TestBackground */
+/*     background-color: rgba(232, 216, 247, 0.31); */
+}
+.cookTip_articleMainHeaderSubject >span{
+    font-size: 2.5rem;
+    font-weight:700;
+}
+
+.cookTip_articleSub{
+    width: inherit;
+    height: 50px;
+     /* TestBackground */
+/*     background-color: #f9e9e677; */
+    border-bottom: 1px  solid rgb(226, 226, 226);
+}
+
+.cookTip_articleMainHeaderInfo{
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    box-sizing: border-box;
+     /* TestBackground */
+/*      background-color: rgba(116, 54, 177, 0.31); */
+}
+
+.cookTip_articleMainHeaderInfo{
+	width:50%;
+	line-height:2rem;
+	display:flex;
+	text-align:center;
+	justify-content:space-around;
+ /* TestBackground */
+/* 	background-color:lightsteelblue; */
+}
+
+.cookTip_articleSub .cookTip_writer {
+	width: 30%;
+/* 	background-color:yellow; */
+	justify-content:space-around;
+}
+
+.cookTip_articleSub .cookTip_registerDateNumber {
+	width: 30%;
+/* 	background-color:ivory; */
+}
+
+.cookTip_articleSub .cookTip_hitCountNumber {
+	width: 30%; 
+/* 	background-color:palegoldenrod; */
+}
+
+
+.cookTip_articleInfo, .cookTip_articleInfo, .cookTip_articleInfo {
+    text-align:center;
+    color: rgb(120, 120, 120);
+    font-weight: 500;
+    font-size: 0.9rem;
+    font-weight:800;
+}
+
+.cookTip_ContentBody{
+    width: 90%;
+/*     height:auto; */
+    min-height: 500px;
+    margin: 60px auto;
+    /* TestBackground */
+/*     background-color: rgba(222, 188, 255, 0.31); */
+}
+.cookTip_LikeBox{
+    width: 90%;
+    height: 20px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    border-bottom: 1px solid rgb(226,226,226);
+    /* TestBackground */
+    /* background-color: rgba(222, 188, 255, 0.31); */
+}
+.cookTip_fa-heart{
+    margin: 0 10px 0 0;
+    color: red;
+    cursor: pointer;
+    
+}
+.cookTip_LikeHeart{
+    margin: 0 15px 0 0;
+}
+.cookTip_fullLikeHeart{
+    width: 5px;
+    height: 5px;
+    display: none;
+    position: relative;
+    left: -187px;
+    /* background-color: #ffffff; */
+}
+.cookTip_fa-comments{
+    margin: 0 10px 0 0;
+}
+
+.cookTip_preAndNext {
+	width: 90%;
+    height: 100px;
+    margin: 10px auto;
+    box-sizing: border-box;
+}
+.cookTip_articleButtons{
+    width: 100%;
+    height: 50px;
+    padding-bottom:10px;
+    border-bottom: 1px  solid rgb(226, 226, 226);
+    display: flex;
+    justify-content: space-between;
+    text-align:center;
+
+     /* TestBackground */
+     /* background-color: rgba(203, 163, 240, 0.31); */
+}
+
+.cookTip_articleButtonBox{
+	width: 20%;
+/* 	height: 100px; */
+	box-sizing: border-box;
+/* 	background-color: pink; */
+}
+
+.cookTip_articleButtonBox > span {
+/* 	line-height:50px; */
+}
+
+.cookTip_preRead, .cookTip_nextRead, .cookTip_toList{
+    width: 40px;
+    height: 40px;
+    margin: 0 10px;
+    border-radius:50%;
+    font-size:1.3rem;
+    font-weight:700;
+/*     position: relative; */
+    border:none;
+    cursor: pointer;
+    transition:all .4s ease-in-out;
+    color: rgb(136, 136, 136);
+/*     box-shadow: 0px 0px 10px  rgba(128, 128, 128, 0.529); */
+}
+.cookTip_preRead:hover, .cookTip_nextRead:hover, .cookTip_toList:hover{
+    background: #ffe79a;
+}
+.cookTip_preRead:active, .cookTip_nextRead:active, .cookTip_toList:active{
+    transform: scale(0.9);
+}
+.cookTip_preRead:focus, .cookTip_nextRead:focus, .cookTip_toList:focus{
+    outline: none;
+}
+
+.cookTip_ReplyAll {
+	box-sizing:border-box;
+	width:90%;
+	padding:0.5rem 0;
+	/* margin-bottom:100px; */
+	margin: 0 auto;
+	background-color:#fafafa;
+}
+
+.cookTip_ReplySub{
+    width: 95%;
+    height: auto;
+    height: 30px;
+    margin: 10px auto;
+    box-sizing: border-box;
+    border-bottom: 2px  solid darkgray;
+    /* TestBackground */
+    /* background-color: rgba(222, 188, 255, 0.31); */
+}
+
+.cookTip_ReplyList{
+    width: 95%;
+    min-height: 150px;
+    margin: 10px auto;
+    box-sizing: border-box;
+/*     border-bottom: 1px solid rgb(226,226,266); */
+    /* TestBackground */
+    /* background-color: rgba(222, 188, 255, 0.31); */
+}
+
+.cookTip_ReplyListBody {
+	/* TestBackground */
+/* 	background-color:lightcyan; */
+	width:100%;
+	min-height:100px;
+	padding:0.5rem;
+	border-bottom: 1px solid darkgray;
+	margin:0.5rem auto;
+}
+
+.cookTip_replyList-userInfo {
+	width:100%;
+	display:flex;
+	justify-content:flex-start;
+	margin-bottom:1.0rem;
+}
+
+.cookTip_replyList-userInfo-userName {
+	width:10%;
+	/* TestBackground */
+/* 	background-color:mintcream; */
+}
+
+.cookTip_replyList-userInfo-etc{
+	width:10%;
+	font-size:smaller;
+	line-height:1.3rem;
+	/* TestBackground */
+/* 	background-color:deeppink; */
+}
+
+.cookTip_replyList-content{
+	
+}
+
+
+.cookTip_ReplyBody{
+    width: 95%;
+    min-height:150px;
+    margin: 0 auto;
+    /* TestBackground */
+    /* background-color: rgba(222, 188, 255, 0.31); */
+}
+.cookTip_ReplyContentBox{
+    width: 100%;
+    height: 200px;
+    border-radius: 5px;
+    margin: 60px auto;
+    padding: 20px;
+    box-sizing: border-box;
+    border: 2px solid rgb(226,226,226);
+    /* TestBackground */
+    /* background-color: rgba(130, 43, 218, 0.31); */
+}
+.cookTip_ReplyContentBox>span{
+    font-size: 0.8rem;
+    font-weight: 400;
+}
+.cookTip_ReplyContentBox>textarea{
+    width: 100%;
+    height: 70%;
+    margin-top:0.5rem;
+    resize: none;
+    display: block;
+    border:none;
+    border-top: 1px solid darkgray;
+   
+    /* TestBackground */
+    /* background-color: rgba(130, 43, 218, 0.31); */
+}
+.cookTip_ReplyContentBox>textarea:focus{
+   outline: none;
+   
+}
+.cookTip_ReplyContentBox>textarea::placeholder{
+    color: rgb(226,226,226);
+}
+.cookTip_ReplySubmitButton{
+ width: 100%;
+ height: 20%;
+ margin-top: 10px;
+ /* TestBackground */
+ /* background-color: #ff6347; */
+}
+.cookTip_Replybtn{
+    width: 70px;
+    height: 30px;
+    border:none;
+    cursor: pointer;
+    border-radius: 5px;
+    float: right;
+    transition:all .4s ease-in-out;
+    color: rgb(136, 136, 136);
+}
+.cookTip_Replybtn:hover{
+background: #ffe79a;
+color: black;
+}
+.cookTip_Replybtn:active{
+transform: scale(0.9);
+}
+.cookTip_Replybtn:focus{
+outline: none;
+}
+

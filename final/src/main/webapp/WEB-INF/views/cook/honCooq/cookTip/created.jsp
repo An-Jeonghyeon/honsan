@@ -47,8 +47,8 @@
 	</div>
 	<div class="cookTip_writeHeaderMenu">
 		<ul>
-			<li><a href="${pageContext.request.contextPath}">전체글보기</a></li>
-			<li><a href="${pageContext.request.contextPath}">베스트글</a></li>
+			<li><a href="${pageContext.request.contextPath}/cook/honCook/cookTip/list">전체글보기</a></li>
+			<li><a href="${pageContext.request.contextPath}/cook/honCook/cookTip/list">베스트글</a></li>
 		</ul>
 	</div>
 </article>
@@ -71,7 +71,7 @@
 		</div>
 		<div class="">
 			<select name="category" class="cookTip_select" id="cookTip_select">
-				<option value="전체" ${dto.category=="전체"?"selected='selected'":"" }>장보기</option>
+				<option value="::카테고리 선택하기::" ${dto.category=="::카테고리 선택하기::"?"selected='selected'":"" }>:: 선택해 주세요 ::</option>
 				<option value="장보기" ${dto.category=="장보기"?"selected='selected'":"" }>장보기</option>
 				<option value="조미료 관리"
 					${dto.category=="조미료 관리"?"selected='selected'":"" }>조미료 관리</option>
@@ -95,6 +95,14 @@
 			<div class="cookTip_inputBody1">
 				<textarea name="content" id="content">${dto.content}</textarea>
 			</div>
+		</div>
+
+		<div class="cookTip_subjectTitle">
+			<span class="cookTip_smallTitle">첨부 파일</span> 
+		</div>
+		<div class="cookTip_subjectBody">
+			<input type="file" name="upload" id="cookTip_files"
+				placeholder="유튜브 영상코드를 입력해 주세요." value="${dto.subject}">
 		</div>
 
 		<div class="cookTip_subjectTitle">
@@ -128,7 +136,7 @@
 		
 		
 		<div class="cookTip_buttonBoxBody">
-			<button type="submit" id="cookTip_writeSubmit" class="cookTip_btn">${mode=='update'?'수정완료':'등록하기'}</button>
+			<button type="submit" id="cookTip_writeSubmit" class="cookTip_btn" >${mode=='update'?'수정완료':'등록하기'}</button>
 			<button type="button" id="cookTip_CancelSubmit" class="cookTip_btn">${mode=='update'?'수정취소':'등록취소'}</button>
 		</div>
 			         <c:if test="${mode=='update'}">

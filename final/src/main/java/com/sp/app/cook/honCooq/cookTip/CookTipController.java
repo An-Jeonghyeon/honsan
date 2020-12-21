@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.sp.app.common.FileManager;
 import com.sp.app.common.MyUtil;
 import com.sp.app.member.SessionInfo;
 
@@ -28,6 +29,8 @@ public class CookTipController {
 	private CookTipService service;
 	@Autowired
 	private MyUtil myUtil;
+	@Autowired
+	private FileManager filemanager;
 	
 	@RequestMapping(value = "list")
 	public String list(
@@ -101,7 +104,6 @@ public class CookTipController {
 		return ".cook.honCooq.cookTip.list";
 	}
 	
-	
 	@RequestMapping(value = "created", method = RequestMethod.GET)
 	public String createdForm(
 			Model model
@@ -113,7 +115,7 @@ public class CookTipController {
 	}
 	
 	@RequestMapping(value="created", method=RequestMethod.POST)
-	@ResponseBody
+//	@ResponseBody
 //	public Map<String, Object> createdSubmit(	// ajax 화면 구성시
 	public String createdSubmit(
 			CookTip dto,
@@ -138,7 +140,48 @@ public class CookTipController {
 	}
 	
 	@RequestMapping("article")
-	public String article() throws Exception {
+	public String article(
+			@RequestParam int num,
+			@RequestParam String page,
+			@RequestParam(defaultValue="all") String condition,
+			@RequestParam(defaultValue="") String keyword,
+			Model model			
+			) throws Exception {
+		
+		keyword = URLDecoder.decode(keyword, "utf-8");
+		
+		String query = "page="+page;
+		if(keyword.length()!=0) {
+			query+="&condition="+condition+"&keyword="+URLEncoder.encode(keyword, "UTF-8");
+		}
+		
+		service.updateHitCount(num);
+		
+		// 해당 레코드(글 정보) 가져오기
+		CookTip dto = service.readCookTip(num);
+		if (dto==null) {
+			return "redirect:/cook/honCooq/cookTip/list?"+query;
+		}
+		
+		// 스마트 에디터 사용시 주석처리 해야함!
+		// dto.setContent(myUtil.htmlSymbols(dto.getContent()));
+		
+		// 이전글, 다음글 불러오기
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("condition", condition);
+		map.put("keyword", keyword);
+		map.put("num", num);
+		
+		CookTip preReadDto = service.preReadCookTip(map);
+		CookTip nextReadDto = service.nextReadCookTip(map);
+		
+		model.addAttribute("dto", dto);		
+		model.addAttribute("preReadDto", preReadDto);		
+		model.addAttribute("nextReadDto", nextReadDto);		
+		
+		model.addAttribute("page", page);
+		model.addAttribute("query", query);
+		
 		return ".cook.honCooq.cookTip.article";
 	}
 	

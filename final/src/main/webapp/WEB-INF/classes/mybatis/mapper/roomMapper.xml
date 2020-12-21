@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="room">
+
+	<select id="roomSeq" resultType="Integer">
+       SELECT room_seq.NEXTVAL FROM dual 
+    </select>
+    
+	<insert id="insertRoom" parameterType="com.sp.app.room.Room">
+		INSERT INTO room(num, userId, subject, content, register_date) VALUES  
+			( #{num}, #{userId}, #{subject},#{content}, SYSDATE )
+	</insert>
+	
+    
+	<insert id="insertRoomlist" parameterType="com.sp.app.room.Room">
+		INSERT INTO roomlist(num,addr1, addr2, dealtype, depo, mrent, adcost, aditem, totfloor, corfloor, roomtype, m2, pyeoug, elev, park, options, movedate) VALUES  
+			( #{num}, #{addr1}, #{addr2, jdbcType=VARCHAR}, #{dealtype}, #{depo}, #{mrent}, #{adcost}, #{aditem}, #{totfloor}, #{corfloor}, #{roomtype}, #{m2}, #{pyeoug}, #{elev}, #{park}, #{options}, #{movedate})
+	</insert>
+	
+	
+</mapper>

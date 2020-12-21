@@ -21,7 +21,208 @@ $(function(){
 	   $("#accordion3").accordion({active:false, collapsible:true});
 		
 });
+
+function roomOk(){
+	var f = document.roomForm;
+	var str;
+	
+	str = f.zip.value;
+	str = str.trim();
+	if(!str) {
+		alert("주소를 입력하세요.");
+		f.addrbtn.focus();
+		return;
+	}
+	
+	
+	str = f.addr2.value;
+	str = str.trim();
+	if(!str) {
+		alert("상세 주소를 입력하세요.");
+		f.addr2.focus();
+		return;
+	}
+	
+	str = f.depo.value;
+	str = str.trim();
+	if(!str) {
+		alert("보증금을 입력하세요.");
+		f.depo.focus();
+		return;
+	}
+	
+	str = f.mrent.value;
+	str = str.trim();
+	if(!str) {
+		alert("월세를 입력하세요.");
+		f.mrent.focus();
+		return;
+	}
+	
+	str = f.roomtype.value;
+	str = str.trim();
+	if(!str) {
+		alert("방 구조를 선택하세요.");
+		f.roomtype.focus();
+		return;
+	}
+	
+	str = f.adcost.value;
+	str = str.trim();
+	if(!str) {
+		alert("관리비를 입력하세요.");
+		f.adcost.focus();
+		return;
+	}
+	
+	str = f.m2.value;
+	str = str.trim();
+	if(!str) {
+		alert("면적을 입력하세요.");
+		f.m2.focus();
+		return;
+	}
+	
+	str = f.pyeoug.value;
+	str = str.trim();
+	if(!str) {
+		alert("면적을 입력하세요.");
+		f.pyeoug.focus();
+		return;
+	}
+	
+	str = f.totfloor.value;
+	str = str.trim();
+	if(!str) {
+		alert("건물 층 수를 입력하세요.");
+		f.totfloor.focus();
+		return;
+	}
+	
+	str = f.corfloor.value;
+	str = str.trim();
+	if(!str) {
+		alert("해당 층 수를 입력하세요.");
+		f.corfloor.focus();
+		return;
+	}
+	
+	str = f.park.value;
+	str = str.trim();
+	if(!str) {
+		alert("주차 여부를 선택하세요.");
+		f.park.focus(); //이건 어떻게 포커스 될까
+		return;
+	}
+	
+	str = f.elev.value;
+	str = str.trim();
+	if(!str) {
+		alert("엘리베이터 여부를 선택하세요.");
+		f.elev.focus(); //이건 어떻게 포커스 될까
+		return;
+	}
+	
+	str = f.movedate.value;
+	str = str.trim();
+	if(!str) {
+		alert("입주가능일을 입력하세요.");
+		f.movedate.focus();
+		return;
+	}
+	
+	str = f.subject.value;
+	str = str.trim();
+	if(!str) {
+		alert("제목을 입력하세요.");
+		f.subject.focus();
+		return;
+	}
+	
+	str = f.content.value;
+	str = str.trim();
+	if(!str) {
+		alert("상세 내용을 입력하세요.");
+		f.content.focus();
+		return;
+	}
+	
+	
+	
+	 f.action = "${pageContext.request.contextPath}/room/roomCreated";
+
+	 f.submit();
+}
+
+
 </script>
+
+
+<script type="text/javascript">
+
+//aditems 배열 받기
+function checkboxArr() {
+    var checkArr = [];     // 배열 초기화
+    $("input[name='aditem']:checked").each(function(i) {
+        checkArr.push($(this).val());     // 체크된 것만 값을 뽑아서 배열에 push
+    });
+    $('#aditems').val(checkArr);
+    
+    
+    var checkArr2 = [];
+    $("input[name='options']:checked").each(function(i) {
+        checkArr2.push($(this).val());     // 체크된 것만 값을 뽑아서 배열에 push
+    });
+    $('#option').val(checkArr2);
+    
+ 
+}
+
+
+</script>
+
+
+
+
+
+<!-- 방 상세 정보 스크립트 -->
+<script type="text/javascript">
+
+function calculator(chk){
+	  if(chk==1){ 
+		  document.getElementById('cal2').value = parseFloat(document.getElementById('cal1').value) * 3.3058;
+	  }
+	  else { 
+	      document.getElementById('cal1').value = parseFloat(document.getElementById('cal2').value) / 3.3058;
+	  }
+}
+
+
+
+
+
+function updateInputCount() {
+    var textLength = $('.description').val().replace(/^\s+|\s+$|\s+(?=\s)/g, '').length;
+    var count = textLength;
+    $('.i-description-status strong').text(count);
+    if (count < 50) {
+        $('.i-description-status em').text("방 설명을 최소 50자 이상 입력해 주세요.");
+        $('.i-description-status em, .i-description-status strong').removeClass("on");
+    } else if (count < 200) {
+        $('.i-description-status em').text("좀 더 상세하게 방을 설명해 주세요.");
+        $('.i-description-status em').removeClass("on");
+        $('.i-description-status strong').addClass("on");
+    } else {
+        $('.i-description-status em').text("상세한 설명은 신뢰감을 줄 수 있습니다.");
+        $('.i-description-status em').addClass("on");
+        $('.i-description-status strong').addClass("on");
+    }
+}
+
+
+</script>
+
+
 
 
 
@@ -33,7 +234,7 @@ $(function(){
 	</div>
 
 <div class="totaldiv" style="">
-<form action="">
+<form name="roomForm" method="post">
 
 <!-- 주소 부분 -->
 <div style="width: 1000px; margin: 0px auto; padding-top: 100px;">
@@ -50,9 +251,9 @@ $(function(){
 				      </td>
 				      <td style="padding: 0 0 15px 15px;">
 				        <p style="margin-top: 1px; margin-bottom: 5px;">
-				            <input type="text" name="zip" id="zip" value="${dto.zip}"
+				            <input type="text" name="zip" id="zip"
 				                       class="roomboxTF" readonly="readonly">
-				            <button type="button" class="addrbtn" onclick="daumPostcode();">우편번호</button>          
+				            <button type="button" class="addrbtn" name="addrbtn" onclick="daumPostcode();">우편번호</button>          
 				        </p>
 				      </td>
 				  </tr>
@@ -90,21 +291,21 @@ $(function(){
                 <tbody><tr>
                     <th>보증금</th>
                     <td>
-                        <input type="text" class="text" name="deposit" onkeydown="return number_validate1(event);"> 만원
+                        <input type="text" class="text" name="depo" onkeydown="return number_validate1(event);"> 만원
                         <span class="fc-red1">※무보증일 경우, 한 달 월세를 입력하세요</span>
                     </td>
                 </tr>
                 <tr>
                     <th>월세</th>
                     <td>
-                        <input type="text" class="text" name="rent" onkeydown="return number_validate1(event);"> 만원
+                        <input type="text" class="text" name="mrent" onkeydown="return number_validate1(event);"> 만원
                         <span class="fc-red1">※전세일 경우, 0을 입력 하세요</span>
                     </td>
                 </tr>
                 <tr>
                     <th>방구조</th>
                     <td>
-                        <select style="width:180px" name="room_type">
+                        <select style="width:180px" name="roomtype">
                             <option value="">선택하세요</option>
                             <option value="01">오픈형 원룸 (방1)</option>
                             <option value="02">분리형 원룸 (방1, 거실1)</option>
@@ -118,26 +319,25 @@ $(function(){
                 <tr height="70">
                     <th>관리비</th>
                     <td>
-                        <input type="text" class="text" name="fee" onkeydown="return number_validate2(event);"> 만원
+                        <input type="text" class="text" name="adcost" onkeydown="return number_validate2(event);"> 만원
                         &nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;
                         <label><input type="checkbox" id="fee_none" name="fee_none"> 없음</label>
                         <p class="i-gray">
                             <strong>관리비 포함 항목</strong>
-                            <label><input name="fee_inc" type="checkbox" value="01"> 전기세</label>
-                            <label><input name="fee_inc" type="checkbox" value="02"> 가스</label>
-                            <label><input name="fee_inc" type="checkbox" value="03"> 수도</label>
-                            <label><input name="fee_inc" type="checkbox" value="04"> 인터넷</label>
-                            <label><input name="fee_inc" type="checkbox" value="05"> TV</label>
+                            <label><input name="aditem" type="checkbox" value="01"> 전기세</label>
+                            <label><input name="aditem" type="checkbox" value="02"> 가스</label>
+                            <label><input name="aditem" type="checkbox" value="03"> 수도</label>
+                            <label><input name="aditem" type="checkbox" value="04"> 인터넷</label>
+                            <label><input name="aditem" type="checkbox" value="05"> TV</label>
+                            <input type="hidden" name="aditems" id="aditems" value=""/>
                         </p>
                     </td>
                 </tr>
                 <tr>
                     <th height="80">크기</th>
                     <td class="size">
-                        <div class="mb-5">전용면적 : <input type="text" class="text min" name="size_m2" onkeydown="return number_validate2(event);"> m<sup>2</sup>  = <input type="text" class="text min" name="size" onkeydown="return number_validate2(event);"> P</div>
-                        <span class="mb-5" id="contract_size">
-                            계약면적 : <input type="text" class="text min" name="size_contract_m2" onkeydown="return number_validate2(event);"> m<sup>2</sup> = <input type="text" class="text min" name="size_contract" onkeydown="return number_validate2(event);"> P
-                        </span><br>
+                            계약면적 : <input type="text" class="text min" name="m2" id="cal2" onkeyup="calculator(2);"> m<sup>2</sup> = <input type="text" class="text min" name="pyeoug" id="cal1" onkeyup="calculator(1);"> P
+                        <br>
                         <span class="fc-red1">※한 단위만 입력하면 자동으로 전환됩니다</span>
                     </td>
                 </tr>
@@ -145,12 +345,12 @@ $(function(){
                     <th>층수</th>
                     <td class="floor">
                         건물 층 수:
-                        <select name="building_floor">
+                        <select name="totfloor">
                             <option value="">선택하세요</option>
                         <option value="1">1층</option><option value="2">2층</option><option value="3">3층</option><option value="4">4층</option><option value="5">5층</option><option value="6">6층</option><option value="7">7층</option><option value="8">8층</option><option value="9">9층</option><option value="10">10층</option><option value="11">11층</option><option value="12">12층</option><option value="13">13층</option><option value="14">14층</option><option value="15">15층</option><option value="16">16층</option><option value="17">17층</option><option value="18">18층</option><option value="19">19층</option><option value="20">20층</option><option value="21">21층</option><option value="22">22층</option><option value="23">23층</option><option value="24">24층</option><option value="25">25층</option><option value="26">26층</option><option value="27">27층</option><option value="28">28층</option><option value="29">29층</option><option value="30">30층</option><option value="31">31층</option><option value="32">32층</option><option value="33">33층</option><option value="34">34층</option><option value="35">35층</option><option value="36">36층</option><option value="37">37층</option><option value="38">38층</option><option value="39">39층</option><option value="40">40층</option><option value="41">41층</option><option value="42">42층</option><option value="43">43층</option><option value="44">44층</option><option value="45">45층</option><option value="46">46층</option><option value="47">47층</option><option value="48">48층</option><option value="49">49층</option><option value="50">50층</option><option value="51">51층</option><option value="52">52층</option><option value="53">53층</option><option value="54">54층</option><option value="55">55층</option><option value="56">56층</option><option value="57">57층</option><option value="58">58층</option><option value="59">59층</option><option value="60">60층</option><option value="61">61층</option><option value="62">62층</option><option value="63">63층</option><option value="64">64층</option><option value="65">65층</option><option value="66">66층</option><option value="67">67층</option><option value="68">68층</option><option value="69">69층</option><option value="70">70층</option><option value="71">71층</option><option value="72">72층</option><option value="73">73층</option><option value="74">74층</option><option value="75">75층</option><option value="76">76층</option><option value="77">77층</option><option value="78">78층</option><option value="79">79층</option><option value="80">80층</option></select>
                         &nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;
                         해당 층 :
-                        <select name="room_floor">
+                        <select name="corfloor">
                             <option value="">선택하세요</option>
                             <option value="반지하">반지하</option>
                             <option value="옥탑방">옥탑방</option>
@@ -160,50 +360,51 @@ $(function(){
                 <tr>
                     <th>옵션</th>
                     <td class="i-options">
-                        <label><input type="checkbox" name="room_options" value="01"> 에어컨</label>
-                        <label><input type="checkbox" name="room_options" value="02"> 냉장고</label>
-                        <label><input type="checkbox" name="room_options" value="03"> 세탁기</label>
-                        <label><input type="checkbox" name="room_options" value="04"> 가스레인지</label>
-                        <label><input type="checkbox" name="room_options" value="05"> 인덕션</label>
-                        <label><input type="checkbox" name="room_options" value="06"> 전자레인지</label><br>
-                        <label><input type="checkbox" name="room_options" value="07"> 책상</label>
-                        <label><input type="checkbox" name="room_options" value="08"> 책장</label>
-                        <label><input type="checkbox" name="room_options" value="09"> 침대</label>
-                        <label><input type="checkbox" name="room_options" value="10"> 옷장</label>
-                        <label><input type="checkbox" name="room_options" value="11"> 신발장</label>
-                        <label><input type="checkbox" name="room_options" value="12"> 싱크대</label>
+                        <label><input type="checkbox" name="options" value="01"> 에어컨</label>
+                        <label><input type="checkbox" name="options" value="02"> 냉장고</label>
+                        <label><input type="checkbox" name="options" value="03"> 세탁기</label>
+                        <label><input type="checkbox" name="options" value="04"> 가스레인지</label>
+                        <label><input type="checkbox" name="options" value="05"> 인덕션</label>
+                        <label><input type="checkbox" name="options" value="06"> 전자레인지</label><br>
+                        <label><input type="checkbox" name="options" value="07"> 책상</label>
+                        <label><input type="checkbox" name="options" value="08"> 책장</label>
+                        <label><input type="checkbox" name="options" value="09"> 침대</label>
+                        <label><input type="checkbox" name="options" value="10"> 옷장</label>
+                        <label><input type="checkbox" name="options" value="11"> 신발장</label>
+                        <label><input type="checkbox" name="options" value="12"> 싱크대</label>
+                        <input type="hidden" name="option" id="option" value=""/>
                     </td>
                 </tr>
                 <tr>
                     <th>주차</th>
                     <td class="has-col">
-                        <label><input type="radio" name="parking" value="가능"> 가능</label>
-                        <label><input type="radio" name="parking" value="불가능"> 없음</label>
+                        <label><input type="radio" name="park" value="1"> 가능</label>
+                        <label><input type="radio" name="park" value="0"> 없음</label>
                     </td>
                 </tr>
                 <tr>
                 	<th>엘리베이터</th>
                 	<td class="elev">
-                	 	<label><input type="radio" name="building_elevator" value="true"> 있음</label>
-                        <label><input type="radio" name="building_elevator" value="false"> 없음</label>
+                	 	<label><input type="radio" name="elev" value="1"> 있음</label>
+                        <label><input type="radio" name="elev" value="0"> 없음</label>
                 	</td>
                 </tr>
                 <tr>
                     <th>입주가능일</th>
                     <td>
-                        <input type="text" class="text max" name="movein_date">
+                        <input type="text" class="text max" name="movedate">
                     </td>
                 </tr>
                 <tr>
                     <th>제목</th>
                     <td>
-                        <input type="text" class="text max" name="title">
+                        <input type="text" class="text max" name="subject">
                     </td>
                 </tr>
                 <tr>
                     <th>상세설명</th>
                     <td>
-                        <textarea name="description" class="description" placeholder="해당 방에 대한 특징과 소개를 최소 50자 이상 입력해야 합니다.
+                        <textarea name="content" class="description" placeholder="해당 방에 대한 특징과 소개를 최소 50자 이상 입력해야 합니다.
 방의 위치와 교통, 주변 편의시설, 방의 특징과 장점, 보안시설, 옵션, 주차, 전체적인
 방의 느낌 등을 작성해 주세요.      
 다른 방에 대한 설명, 연락처, 홍보 메시지 등 해당 방과 관련없는 내용을 입력하거나 
@@ -336,7 +537,7 @@ $(function(){
 
 	<table style="width: 100%;">
 	<tr>
-		<td align="center"><button class="roomCreatedbtn" type="button">등록하기</button> </td>
+		<td align="center"><button class="roomCreatedbtn" type="button" onclick="roomOk();">등록하기</button> </td>
 		<td align="center"><button class="roomCreatedbtn" type="reset">다시 입력</button> </td>
 		<td align="center"><button class="roomCreatedbtn" type="button">돌아가기</button> </td>
 	</tr>
@@ -399,247 +600,6 @@ $(function(){
         }).open();
     }
 </script>
-
-
-<!-- 방 상세 정보 스크립트 -->
-<script type="text/javascript">
-
-
-
-function updateInputCount() {
-    var textLength = $('.description').val().replace(/^\s+|\s+$|\s+(?=\s)/g, '').length;
-    var count = textLength;
-    $('.i-description-status strong').text(count);
-    if (count < 50) {
-        $('.i-description-status em').text("방 설명을 최소 50자 이상 입력해 주세요.");
-        $('.i-description-status em, .i-description-status strong').removeClass("on");
-    } else if (count < 200) {
-        $('.i-description-status em').text("좀 더 상세하게 방을 설명해 주세요.");
-        $('.i-description-status em').removeClass("on");
-        $('.i-description-status strong').addClass("on");
-    } else {
-        $('.i-description-status em').text("상세한 설명은 신뢰감을 줄 수 있습니다.");
-        $('.i-description-status em').addClass("on");
-        $('.i-description-status strong').addClass("on");
-    }
-}
-
-function captureReturnKey(e) {
-    if (e.keyCode == 13)
-        onCheckLocationClick();
-}
-
-var number_validate1 = function (event) {
-    var key = window.event ? event.keyCode : event.which;
-    if (key >= 48 && key <= 57 || key >= 96 && key <= 105 || key == 8 || key == 46 || key == 9) {
-
-    } else {
-        window.event.returnValue = false;
-    }
-};
-
-var number_validate2 = function (event) {
-    var key = window.event ? event.keyCode : event.which;
-    if (key >= 48 && key <= 57 || key >= 96 && key <= 105 || key == 8 || key == 46 || key == 110 || key == 190 || key == 9) {
-
-    } else {
-        window.event.returnValue = false;
-    }
-};
-
-$(document).ready(function () {
-
-    //직거래or공실 체크
-    $(".item-caution").show();
-    $(".room_title").show();
-    $("#to_agent_memo").show();
-
-    //크롬인지 체크
-    var isChrome = !!window.chrome;
-    if (!isChrome) {
-        //IE일때 버전체크
-        if (navigator.userAgent.match(/Trident\/(\d.\d)/i) != null && (navigator.userAgent.match(/Trident\/(\d.\d)/i)[1] == '6.0' || navigator.userAgent.match(/Trident\/(\d.\d)/i)[1] == '7.0')) {
-            $(".islowIE").hide();
-            $(".isnotchrome").show();
-            $(".ischrome").hide();
-        } else {
-            $(".islowIE").show();
-            $(".isnotchrome").hide();
-            $(".ischrome").hide();
-        }
-    }
-
-    $(".i-btn").each(function (e) {
-        initplupload($(this).attr("id"), $(this).data("index"), $(this).parent().attr("id"));
-    });
-
-    $(".description").focus(updateInputCount).blur(updateInputCount).keypress(updateInputCount).keyup(updateInputCount);
-
-    $(".i-description-status  button").click(function () {
-        createBgLayerIfNecessary();
-        $("#guide-layer").show();
-
-        $("#guide-layer button").click(function () {
-            $(".bg-layer").hide();
-            $("#guide-layer").hide();
-        });
-
-    });
-
-    $(".owner-type input[type=radio]").click(function () {
-        var idx = $(".owner-type input[type=radio]").index($(this));
-        if (idx == 0) {
-            $(".owner-type").addClass("type-owner");
-            $(".owner-type .i-owner .text").attr("disable", true);
-        } else {
-            $(".owner-type").removeClass("type-owner");
-            $(".owner-type .i-owner .text").attr("disable", false);
-        }
-    })
-});
-
-function initplupload(upload_btn_id, btn_index, li_id) {
-    var uploader = new plupload.Uploader({
-        runtimes: 'html5,flash,silverlight,html4',
-
-        browse_button: upload_btn_id, // you can pass in id...
-        drop_element: li_id,
-
-        //url: "//" + api_host + "/user/me/photos",
-        url: "/plupload/upload",
-        headers: {
-            "Zigbang-UserToken": "a7cec64cd8d018c7fb419a424a103b20e7aa7e86ace7e996a8f95e22aec8af47"
-        },
-        filters: {
-            max_file_size: '10mb',
-            mime_types: [
-                { title: "Image files", extensions: "jpg,png,jpeg" }
-            ],
-            prevent_duplicates: false
-        },
-
-        // Flash settings
-        flash_swf_url: '//s.zigbang.com/js/plupload-2.1.4/js/Moxie.swf"',
-
-        // Silverlight settings
-        silverlight_xap_url: '//s.zigbang.com/js/plupload-2.1.4/js/Moxie.xap',
-
-        init: {
-
-            PostInit: function () {
-                //client_init();
-            },
-
-            FilesAdded: function (up, files) {
-                var limit_count = 15;
-                var one_alert = true;
-                plupload.each(files, function (file) {
-                    if (files.length < limit_count) {
-                        addImage("file-" + file.id, null, btn_index, null);
-                        uploader.start();
-                    } else {
-                        uploader.removeFile(file);
-                        if (one_alert) {
-                            alert("이미지는 " + limit_count + "장 까지만 등록가능합니다.");
-                            one_alert = false;
-                        }
-                    }
-                });
-            },
-            FileUploaded: function (up, file, data) {
-                try {
-                    onImageUploaded("#file-" + file.id, data);
-                } catch (e) {
-                    alert("해당 이미지는 업로드 도중 실패하였습니다.\n다시 한번 시도해주세요.");
-                    $("#file-" + file.id).remove();
-                    //refresh();
-                }
-            },
-
-            UploadProgress: function (up, file) {
-                var id = "#file-" + file.id;
-                $(id + " .progress").show();
-                $(id + " .progress-bar").css("width", file.percent + "%");
-            },
-
-            Error: function (up, err) {
-                var report = true;
-                var message = "ceo plupload fail";
-
-                if (err.file) {
-                    message += (", file=" + err.file.name);
-                    message += (", code=" + err.code);
-
-                    if (err.code == -602) {
-                        alert("중복된 파일입니다. 확인 후 다시 시도해주세요.");
-                        report = false;
-                    } else if (err.code == -600) {
-                        cearteAlertLayer("사진 등록", new Handlebars.SafeString("<strong class='fs-14'>해당 이미지 [ " + err.file.name + " ] 는 업로드 최대용량을 초과하였습니다. 10MB를 초과 시 이미지 등록이 불가능합니다.</strong>"));
-                    } else {
-                        cearteAlertLayer("사진 등록", new Handlebars.SafeString("<strong class='fs-14'>해당 이미지 [ " + err.file.name + " ] 는 업로드 도중 실패하였습니다. 이미지를 그림판에서 jpg 형태로 다시 저장하여 시도해주세요.</strong>"));
-                    }
-
-                    $("#file-" + err.file.id).remove();
-                    //refresh();
-                }
-            }
-
-        }
-    });
-
-    uploader.init();
-
-    function onImageUploaded(id, data) {
-    	var url = "//ic.zigbang.com/ic".concat(data.response, "?w=100")
-        var img = $("<img />").attr("src", url);
-        $(id).find(".selectable-content").append(img);
-        $(id).parent().children("button").hide();
-        $(id).find(".progress").hide();
-    }
-}
-
-function addImage(id, url, index, index2) {
-    var progressBar = $("<div />").addClass("progress-bar");
-    var progress = $("<div />").addClass("progress");
-    progress.append(progressBar);
-
-    var selectable_content = $("<div />").addClass("selectable-content");
-    if (url) {
-    	url = url.replace("?w=100", "").concat("?w=100")
-        selectable_content.append($("<img />").attr("src", "https://ic.zigbang.com/ic" + url));
-    }
-    var selectable_index = $("<span />");
-    var selectable_layer = $("<div />").addClass("selectable-layer");
-    var selectable_del = $("<button />").addClass("selectable-del").text("X").attr("type", "button");
-    selectable_layer.append(selectable_del);
-
-    var item = $("<div />").addClass("selectable");
-    if (id) {
-        item.attr("id", id);
-    }
-    item.append(selectable_content).append(selectable_layer).append(selectable_index);
-    item.append(progress);
-
-    //선택한칸 이후로 빈자리 있는지 체크
-    var isEmpty = false;
-    $($("#add-photo-box ul li").get().reverse()).each(function (i, v) {
-        if ($(this).index() >= parseInt(index) && !$(this).children().find(".selectable-content").is(":visible")) { isEmpty = true; }
-    });
-    $($("#add-photo-box ul li").get().reverse()).each(function (i, v) {
-        if (index != null) {
-            if (isEmpty) {
-                if ($(this).index() >= parseInt(index) && !$(this).children().find(".selectable-content").is(":visible")) { $(this).append(item); }
-            } else {
-                if (!$(this).children().find(".selectable-content").is(":visible")) { $(this).append(item); }
-            }
-        } else {
-            if (!$(this).children().find(".selectable-content").is(":visible") && $(this…
-            		
-            		
-</script>
-
-
-
 
 
 

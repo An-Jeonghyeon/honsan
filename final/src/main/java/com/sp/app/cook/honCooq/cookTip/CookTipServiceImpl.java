@@ -26,7 +26,7 @@ public class CookTipServiceImpl implements CookTipService{
 			throw e;
 		}		
 	}
-
+	
 	@Override
 	public List<CookTip> listCookTip(Map<String, Object> map) {
 		List<CookTip> list = null;
@@ -53,26 +53,45 @@ public class CookTipServiceImpl implements CookTipService{
 
 	@Override
 	public CookTip readCookTip(int num) {
-		// TODO Auto-generated method stub
-		return null;
+		CookTip dto = null;
+		try {
+			dto = dao.selectOne("cookTip.readCookTip", num);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return dto;
 	}
 
 	@Override
 	public void updateHitCount(int num) throws Exception {
-		// TODO Auto-generated method stub
-		
+		try {
+			dao.updateData("cookTip.updateHitCount", num);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
 	}
 
 	@Override
 	public CookTip preReadCookTip(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		return null;
+		CookTip dto = null;
+		try {
+			dto = dao.selectOne("cookTip.preReadCookTip", map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return dto;
 	}
 
 	@Override
 	public CookTip nextReadCookTip(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		return null;
+		CookTip dto = null;
+		try {
+			dto = dao.selectOne("cookTip.nextReadCookTip", map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return dto;
 	}
 
 	@Override
