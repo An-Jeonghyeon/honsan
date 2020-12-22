@@ -1,5 +1,7 @@
 package com.sp.app.dress;
 
+import java.util.List;
+
 public class Dress {
 	private int num;
 	private String userId;
@@ -10,7 +12,14 @@ public class Dress {
 	private String hashtag;
 	private String register_date;
 	private int hitCount;
+	private	List<String> tags;
 	
+	public List<String> getTags() {
+		return tags;
+	}
+	public void setTags(List<String> tags) {
+		this.tags = tags;
+	}
 	private int fileNum;
 	private int main;
 	private String saveFile;

@@ -11,7 +11,7 @@
 
 	<select id="listDress" parameterType="map"
 		resultType="com.sp.app.dress.Dress">
-		SELECT num, b.userId, userName , subject
+		SELECT num, b.userId, userName , subject,hashtag
 			,HITCOUNT,TO_CHAR(REGISTER_DATE,'YYYY-MM-DD')created
 		FROM CLOTHESSTORY b
 		JOIN member1 m ON b.userId = m.userId

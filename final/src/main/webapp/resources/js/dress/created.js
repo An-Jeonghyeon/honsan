@@ -26,11 +26,6 @@ function addTag (value) {
     console.log(tag);
     console.log($("#rdTag").val(tag))
 }
-function marginTag () {
-    return Object.values(tag).filter(function (word) {
-        return word !== "";
-    });
-}
 
 function TagbtnSend() {
     var tage = $(".InputTag").val();
@@ -70,7 +65,7 @@ function sendOk(){
             f.content.focus();
             return;
         }
-//        var value= marginTag ();
+
        $("#rdTag").val(tag)
 
        
