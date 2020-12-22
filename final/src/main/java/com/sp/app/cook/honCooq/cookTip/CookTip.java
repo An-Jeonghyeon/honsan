@@ -12,6 +12,8 @@ public class CookTip {
 	private String category;
 	private String register_date;
 	private int hitCount;
+
+	private String imageFilename;
 	
 	private String saveFilename;
 	private String originalFilename;
@@ -103,6 +105,12 @@ public class CookTip {
 	}
 	public void setListNum(int listNum) {
 		this.listNum = listNum;
+	}
+	public String getImageFilename() {
+		return imageFilename;
+	}
+	public void setImageFilename(String imageFilename) {
+		this.imageFilename = imageFilename;
 	}
 	
 	

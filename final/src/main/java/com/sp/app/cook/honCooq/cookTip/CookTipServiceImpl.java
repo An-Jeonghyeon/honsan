@@ -96,7 +96,7 @@ public class CookTipServiceImpl implements CookTipService{
 
 	@Override
 	public void updateCookTip(CookTip dto, String pathname) throws Exception {
-		// TODO Auto-generated method stub
+		dao.updateData("cookTip.updateCookTip", dto);
 		
 	}
 

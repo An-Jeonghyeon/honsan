@@ -4,10 +4,25 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 
+
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/interior/interior.css" type="text/css">
 
-
-
+<script type="text/javascript">
+    $(document).ready(function() {
+    
+        var floatPosition = parseInt($(".floating-write").css('top'));
+        
+        $(window).scroll(function() {
+            var scrollTop = $(window).scrollTop();
+            var newPosition = scrollTop + floatPosition + "px";
+            
+            $(".floating-write").stop().animate({
+                "top" : newPosition
+            }, 1);
+    
+        }).scroll();
+    });
+</script>
 
 <section>
 	<div class="interior_box">
@@ -231,6 +246,12 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+    <div class="floating-write" onclick="javascript:location.href='${pageContext.request.contextPath}/interior/created';">
+        <div class="f-div">
+             <div class="floating-image"></div>
+             <p> 인테리어<br> 추가</p>
         </div>
     </div>
 </section>

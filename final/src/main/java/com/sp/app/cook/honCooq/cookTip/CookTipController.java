@@ -41,7 +41,7 @@ public class CookTipController {
 			Model model
 			) throws Exception {
 		
-		int rows = 16;	// 한 화면에 보여주는 게시물 수
+		int rows = 12;	// 한 화면에 보여주는 게시물 수
 		int total_page=0;
 		int dataCount=0;
 		
@@ -68,12 +68,18 @@ public class CookTipController {
 		map.put("rows", rows);
 		
 		List<CookTip> list = service.listCookTip(map);
-		
+		// 스마트에디터에서 저장한 이미지 처음 한 장만 가져오기	--> delete할 때도 아래의 List 불러서 돌려가며 지우면 됨
+		List<String> images;
 		int listNum, n=0;
 		for(CookTip dto : list) {
 			listNum = dataCount - (offset+n);
 			dto.setListNum(listNum);
 			n++;
+			
+			images = myUtil.getImgSrc(dto.getContent());
+			if(images.size()>0) {
+				dto.setImageFilename(images.get(0));	// (0)으로 처음 한 장만!
+			}
 		}
 		
 		String cp = req.getContextPath();

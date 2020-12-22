@@ -13,10 +13,10 @@ public class InteriorController {
 		return ".interior.InteriorMain";
 	}
 	
-	@RequestMapping("board")
+	@RequestMapping("created")
 	public String InteriorBoard() throws Exception{
 		
-		return ".interior.interior_board";
+		return ".interior.interior_created";
 	}
 	
 	@RequestMapping("boardItem")
