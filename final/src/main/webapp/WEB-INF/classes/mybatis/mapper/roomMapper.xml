@@ -4,19 +4,136 @@
 <mapper namespace="room">
 
 	<select id="roomSeq" resultType="Integer">
-       SELECT room_seq.NEXTVAL FROM dual 
-    </select>
-    
+		SELECT room_seq.NEXTVAL FROM
+		dual
+	</select>
+
+
 	<insert id="insertRoom" parameterType="com.sp.app.room.Room">
-		INSERT INTO room(num, userId, subject, content, register_date) VALUES  
-			( #{num}, #{userId}, #{subject},#{content}, SYSDATE )
+		INSERT INTO room(num,
+		userId, subject, content, register_date) VALUES
+		( #{num}, #{userId},
+		#{subject},#{content}, SYSDATE )
 	</insert>
-	
-    
+
+
 	<insert id="insertRoomlist" parameterType="com.sp.app.room.Room">
-		INSERT INTO roomlist(num,addr1, addr2, dealtype, depo, mrent, adcost, aditem, totfloor, corfloor, roomtype, m2, pyeoug, elev, park, options, movedate) VALUES  
-			( #{num}, #{addr1}, #{addr2, jdbcType=VARCHAR}, #{dealtype}, #{depo}, #{mrent}, #{adcost}, #{aditem}, #{totfloor}, #{corfloor}, #{roomtype}, #{m2}, #{pyeoug}, #{elev}, #{park}, #{options}, #{movedate})
+		INSERT INTO
+		roomlist(num,addr1, addr2, dealtype, depo, mrent, adcost, aditem,
+		totfloor, corfloor, roomtype, m2, pyeoug, elev, park, options,
+		movedate) VALUES
+		( #{num}, #{addr1}, #{addr2, jdbcType=VARCHAR},
+		#{dealtype}, #{depo},
+		#{mrent}, #{adcost}, #{aditem}, #{totfloor},
+		#{corfloor}, #{roomtype},
+		#{m2}, #{pyeoug}, #{elev}, #{park},
+		#{options}, #{movedate})
 	</insert>
-	
-	
+
+
+
+	<!--내용 + 제목에 동네 있으면 검색되게 -->
+	<sql id="where-list">
+		<choose>
+			<when test="keyword != null and keyword!='' ">
+				( INSTR(subject, #{keyword}) &gt; 0
+				OR
+				INSTR(addr1,
+				#{keyword}) &gt; 0
+				OR
+				INSTR(addr2, #{keyword}) &gt; 0
+				OR
+				DBMS_LOB.INSTR(content, #{keyword}) &gt; 0 )
+			</when>
+		</choose>
+	</sql>
+
+	<select id="dataCount" parameterType="map" resultType="Integer">
+		SELECT NVL(COUNT(*), 0)
+		FROM room r
+		JOIN member1 m ON r.userId =
+		m.userId
+		LEFT OUTER JOIN
+		roomlist b ON
+		b.num=r.num
+		<where>
+			<if test="keyword!=null and keyword!=''">
+				<include refid="where-list" />
+			</if>
+		</where>
+	</select>
+
+
+	<select id="listRoom" parameterType="map"
+		resultType="com.sp.app.room.Room"> <!-- map에는 condition, keyword, offset, rows 등이 저장되어 넘어온다 -->
+		SELECT b.num, b.userId, subject, content, register_date, addr1, addr2,
+		dealtype, depo, mrent, adcost, aditem, totfloor, corfloor, roomtype,
+		m2, pyeoug, elev, park, options, movedate
+		FROM room b
+		LEFT OUTER JOIN
+		member1 m ON b.userId = m.userId
+		LEFT OUTER JOIN
+		roomlist r ON
+		b.num=r.num
+		<where>
+			<if test="keyword!=null and keyword!=''">
+				<include refid="where-list" />
+			</if>
+		</where>
+		ORDER BY num DESC
+		OFFSET #{offset} ROWS FETCH FIRST #{rows} ROWS ONLY
+	</select>
+
+
+	<select id="readRoom" parameterType="Integer"
+		resultType="com.sp.app.room.Room">
+		SELECT b.num, b.userId, subject, content, register_date,
+		addr1, addr2, dealtype, depo, mrent, adcost, aditem, totfloor,
+		corfloor, roomtype, m2, pyeoug, elev, park, options, movedate
+		FROM room
+		b
+		LEFT OUTER JOIN member1 m ON b.userId = m.userId
+		LEFT OUTER JOIN
+		roomlist r ON b.num=r.num
+		WHERE b.num=#{num}
+	</select>
+
+	<update id="updateRoom" parameterType="com.sp.app.room.Room">
+		UPDATE room SET
+		subject=#{subject}, content=#{content}
+		WHERE num=#{num}
+	</update>
+	<update id="updateRoomlist" parameterType="com.sp.app.room.Room">
+		UPDATE room SET
+		addr1=#{addr1}, addr2=#{addr2, jdbcType=VARCHAR},
+		dealtype=#{dealtype}, depo=#{depo}, mrent=#{mrent},
+		adcost=#{adcost},
+		aditem=#{aditem}, totfloor=#{totfloor}, corfloor=#{corfloor},
+		roomtype=#{roomtype}, m2=#{m2}, pyeoug=#{pyeoug}, elev=#{elev},
+		park=#{park}, options=#{options}, movedate=#{movedate}
+		WHERE num=#{num}
+	</update>
+
+	<delete id="deleteRoom" parameterType="Integer">
+		DELETE FROM room WHERE
+		num=#{num}
+	</delete>
+	<delete id="deleteRoomlist" parameterType="Integer">
+		DELETE FROM roomlist
+		WHERE
+		num=#{num}
+	</delete>
+
+
+	<!-- 리플(댓글) -->
+	<insert id="insertReply" parameterType="com.sp.app.bbs.Reply">
+		INSERT INTO
+		room_Reply(replyNum, num, userId, content,register_date)
+		VALUES
+		(bbsReply_seq.NEXTVAL, #{num}, #{userId}, #{content},
+		SYSDATE)
+	</insert>
+
+
+
 </mapper>

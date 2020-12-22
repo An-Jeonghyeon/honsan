@@ -403,10 +403,13 @@ CookTip 게시판 리스트폼
 	height:5%;
 	padding:2%;
 	border-bottom:2px solid #ffa952;
+	text-decoration : none; 
 /* 	background-color:honeydew; */
 }
 
-.cookTip-tab:hover {
+.cookTip-tab, .cookTip-tab:hover {
+	
+	text-decoration : none; 
 }
 /*
 section button {
@@ -614,7 +617,7 @@ section button:hover {
 
 .cookTip_category {
 	width:9.0rem;
-	height:3.0rem;
+	height:2.2rem;
     margin-bottom:1.0rem;
 
 	box-sizing:border-box;
@@ -625,7 +628,7 @@ section button:hover {
 
 	font-size: 0.9rem;
 	text-align:center;
-	line-height:2.6rem;
+	line-height:2.1rem;
 	font-weight:700;
 
 	background-color:white;
@@ -635,6 +638,10 @@ section button:hover {
     font-size:1.2rem;
     font-weight:700;
     margin-bottom:0.5rem;
+}
+
+.cookTip_title > a{
+	text-decoration : none; 
 }
 
 .cookTip_data { 
@@ -774,6 +781,111 @@ background: linear-gradient( to bottom, white, #feffdf, #feffdf, #ffefc0 );
   margin-top: -32px;
   background: #ffe79a;
 }
+
+		/* 이미지 존재하는 게시글일 경우 리스트 처리*/
+.cookTip_content_info_img {
+	width:100%;
+    height:100%;
+/*     background-color:rebeccapurple; */
+}
+.cookTip_category_img {
+	width:9.0rem;
+	height:2.2rem;
+    margin-bottom:1.0rem;
+
+	box-sizing:border-box;
+	border:3px solid #ffe79a;
+/* 	border-radius: 2rem; */
+    border-radius:10% 50% / 120% ;
+	box-shadow:3px 3px 0 #ffa952;
+
+	font-size: 0.9rem;
+	text-align:center;
+	line-height:2.1rem;
+	font-weight:700;
+    
+	background-color:white;
+}
+.cookTip_listImg {
+	width:100%;
+	height:50%;
+	margin:0 auto;
+	position:relative;
+	top:-0.6rem;
+/* 	box-sizing:border-box; */
+	z-index:1;
+/* 	background-color: white; */
+}
+
+.cookTip_img {
+	margin:0 auto;
+	width:100%;
+	height:100%;
+/* 	border-box:2px solid white; */
+}
+
+.cookTip_title_img {
+    font-size:1.2rem;
+    font-weight:700;
+    color:black;
+    margin-bottom:0.1rem;
+/*     background-color:skyblue; */
+}
+
+.cookTip_title_img > a{
+	text-decoration : none; 
+}
+
+.cookTip_title_img > a:active {
+	text-decoration:none;
+}
+
+.cookTip_flex{
+	width:100%;
+	height:21%;
+/* 	margin:0 auto; */
+/* 	background-color:tomato; */
+	display:flex;
+	flex-wrap:wrap;
+	justify-content:flex-start;
+}
+.cookTip_dataAndUtil_img {
+    width:100%;
+    height:100%;
+/*     background-color:aquamarine; */
+    display:flex;	
+    justify-content:flex-start;
+}
+
+.cookTip_dataAndUtil_img ul li {
+	float:left;
+	position:relative;
+/* 	width:9rem; */
+/* 	margin:0 auto; */
+/* 	padding:0; */
+}
+
+.cookTip_li_data-userName_img {
+/* 	width:7.0rem; */
+/* background-color:tan */
+}
+.cookTip_li_data-created_img {
+/* 	width:7.0rem; */
+/* background-color:springgreen */
+}
+.cookTip_li_data-hitCount_img {
+/* 	width:4.0rem; */
+/* background-color:snow; */
+}	
+
+.cookTip_li_util-reply_img{
+/* 	background-color:cadetblue; */
+}
+
+.cookTip_li_util-like_img {
+/* 	background-color:seashell; */
+}
+
 
 /*----------------------
 CookTip 게시판 글보기 폼
@@ -1110,4 +1222,3 @@ transform: scale(0.9);
 .cookTip_Replybtn:focus{
 outline: none;
 }
-

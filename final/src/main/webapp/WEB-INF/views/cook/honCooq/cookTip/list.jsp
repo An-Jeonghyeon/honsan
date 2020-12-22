@@ -100,29 +100,59 @@ $(function() {
 			<c:forEach var="dto" items="${list}">
 			<div class="cookTip_content-box">
 				<div class="cookTip_content">
-					<div class="cookTip_content_info">
+							<c:choose>
+								<c:when test="${not empty dto.imageFilename}">
+									<div class="cookTip_content_info_img">
+										<div class="cookTip_category_img">
+											<span>${dto.category!=null? dto.category : "설거지 및 주방정리"}</span>
+										</div>
+				
+										<div class="cookTip_listImg">
+											<img class="cookTip_img" src="${dto.imageFilename}">
+										</div>
 
-						<div class="cookTip_category">
-							<span>${dto.category!=null? dto.category : "설거지 및 주방정리"}</span>
-						</div>
-
-						<div class="cookTip_title"> <a
-							href="${articleUrl}&num=${dto.num}">${dto.subject} (${dto.replyCount})</a>
-						</div>
-						<div class="cookTip_data">
-							<ul>
-								<li class="cookTip_li_data cookTip_li_data-userName"><span><i class="far fa-user"></i> ${dto.userName}</span></li>
-								<li class="cookTip_li_data cookTip_li_data-created"><span><i class="far fa-clock"></i> ${dto.register_date}</span></li>
-								<li class="cookTip_li_data cookTip_li_data-hitCount"><span><i class="far fa-eye"></i> ${dto.hitCount}</span></li>
-							</ul>
-						</div>
-						<div class="cookTip_util">
-							<ul>	<!-- db에서 댓글 수, 좋아요 수 가져오도록 차후 수정 -->
-								<li class="cookTip_li_util cookTip_li_util-reply"><span><i class="far fa-comment-dots"></i> 7</span></li>
-								<li class="cookTip_li_util cookTip_li_util-like"><span><i class="far fa-heart" id="cookTip-like"></i> 2</span></li>
-							</ul>						
-						</div>
-					</div>
+										<div class="cookTip_title_img"> <a
+											href="${articleUrl}&num=${dto.num}">${dto.subject} (${dto.replyCount})</a>
+										</div>
+										<div class="cookTip_flex">
+											<div class="cookTip_dataAndUtil_img">
+												<ul>
+													<li class="cookTip_li_data_img cookTip_li_data-userName_img"><span><i class="far fa-user"></i> ${dto.userName}</span></li>
+													<li class="cookTip_li_data_img cookTip_li_data-created_img"><span><i class="far fa-clock"></i> ${dto.register_date}</span></li>
+													<li class="cookTip_li_data_img cookTip_li_data-hitCount_img"><span><i class="far fa-eye"></i> ${dto.hitCount}</span></li>
+													<li class="cookTip_li_util_img cookTip_li_util-reply_img"><span><i class="far fa-comment-dots"></i> 7</span></li>
+													<li class="cookTip_li_util_img cookTip_li_util-like_img"><span><i class="far fa-heart" id="cookTip-like"></i> 2</span></li>
+												</ul>
+											</div>
+										</div>
+									</div>
+									
+								</c:when>
+								<c:otherwise>
+									<div class="cookTip_content_info">
+										<div class="cookTip_category">
+											<span>${dto.category!=null? dto.category : "설거지 및 주방정리"}</span>
+										</div>
+				
+										<div class="cookTip_title"> <a
+											href="${articleUrl}&num=${dto.num}">${dto.subject} (${dto.replyCount})</a>
+										</div>
+										<div class="cookTip_data">
+											<ul>
+												<li class="cookTip_li_data cookTip_li_data-userName"><span><i class="far fa-user"></i> ${dto.userName}</span></li>
+												<li class="cookTip_li_data cookTip_li_data-created"><span><i class="far fa-clock"></i> ${dto.register_date}</span></li>
+												<li class="cookTip_li_data cookTip_li_data-hitCount"><span><i class="far fa-eye"></i> ${dto.hitCount}</span></li>
+											</ul>
+										</div>
+										<div class="cookTip_util">
+											<ul>	<!-- db에서 댓글 수, 좋아요 수 가져오도록 차후 수정 -->
+												<li class="cookTip_li_util cookTip_li_util-reply"><span><i class="far fa-comment-dots"></i> 7</span></li>
+												<li class="cookTip_li_util cookTip_li_util-like"><span><i class="far fa-heart" id="cookTip-like"></i> 2</span></li>
+											</ul>						
+										</div>
+									</div>								
+								</c:otherwise>
+							</c:choose>
 				</div>
 			</div>
 			</c:forEach>
