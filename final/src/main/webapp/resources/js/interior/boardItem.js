@@ -304,7 +304,7 @@
                 var widthSize =  tagContent.length * 15;
                 $("#rdTag").val("#");
 
-                var out = "<li class='leftbox_tag_li' onclick='$(this).remove();' > <input type='text' class='leftbox_tag_li_a' style='width:"+widthSize+"px;'"+
+                var out = "<li class='leftbox_tag_li' onclick='$(this).remove();' > <input name='category' type='text' class='leftbox_tag_li_a' style='width:"+widthSize+"px;'"+
                 " value=' "+ tagContent+"' > </li>";
 
                 $(".leftbox_tag_ul").append(out);
@@ -315,14 +315,14 @@
         });
     });
 
-    //인풋 태그 엔터키 입력시 submit 비활성화 
-    $(function(){
-        $('.input-form').keydown(function() {
-            if (event.keyCode === 13) {
-            event.preventDefault();
-             }
-        });
-    });
+//인풋 태그 엔터키 입력시 submit 비활성화 
+//    $(function(){
+//        $('.input-form').keydown(function() {
+//            if (event.keyCode === 13) {
+//            event.preventDefault();
+//             }
+//        });
+//    });
     
 
 

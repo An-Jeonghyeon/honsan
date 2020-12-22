@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="interior">
+	
+	<select id="seq" resultType="Integer">
+		SELECT interior_seq.NEXTVAL FROM dual
+	</select>
+	
+	<insert id="insertInterior" parameterType="com.sp.app.interior.Interior">
+		INSERT INTO interior(num, userId, subject, content, category, hitCount, register_date)
+				VALUES(#{num}, #{userId}, #{subject}, #{content}, #{category}, 0, SYSDATE)
+	</insert>
+	
+	
+		<sql id="where-list">
+		<choose>
+
+			<otherwise>
+				( INSTR(subject, #{keyword}) &gt; 0 
+					OR DBMS_LOB.INSTR(content, #{keyword}) &gt; 0 
+					OR INSTR(userId , #{keyword}) &gt; 0 
+					OR TO_CHAR(register_date, 'YYYYMMDD') = #{keyword}
+					OR TO_CHAR(created, 'YYYY-MM-DD') = #{keyword} )
+			</otherwise>
+			
+		</choose>
+	</sql>
+	
+	
+	<select id="dataCount" parameterType="map" resultType="Integer">
+		SELECT NVL(COUNT(*), 0) 
+		FROM interior
+			<where>
+				<if test="keyword!=null and keyword!=''">
+						<include refid="where-list"/>
+				</if>
+			</where>
+	</select>
+	
+	<select id="interiorlist" parameterType="map"
+		resultType="com.sp.app.interior.Interior"> <!-- map에는 condition, keyword, offset, rows 등이 저장되어 넘어온다 -->
+		SELECT num, userId, subject, content, category, hitCount, register_date 
+		FROM interior 
+		<where>
+			<if test="keyword!=null and keyword!=''">
+				<include refid="where-list"/>
+			</if>
+		</where>
+		ORDER BY num DESC
+		OFFSET #{offset} ROWS FETCH FIRST #{rows} ROWS ONLY
+	</select>	
+	
+	<select id="readBoard" parameterType="Integer" resultType="com.sp.app.interior.Interior">
+		SELECT num, userId, subject, content, category, hitCount, register_date 
+		FROM interior 
+		WHERE num = #{num}
+	</select>
+	
+	
+</mapper>

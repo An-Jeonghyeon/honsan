@@ -611,7 +611,7 @@
     padding-top: 91px;
     background: white;
     position: sticky;
-    z-index: -1;
+   	/* z-index: -1; */
     top: 0;
 
 }
