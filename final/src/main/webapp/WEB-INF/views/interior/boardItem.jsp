@@ -13,10 +13,10 @@
             <!-- 게시판 제목 부분  -->
             <div class="board_interior_leftbox_header">
                 <div class="leftbox_header_subject">
-                    30평대 | 내추럴 스타일 | 아파트 
+                    ${dto.subject}
                 </div>
                 <div class="leftbox_header_created">
-                    2020-10-10
+                    ${dto.register_date}
                 </div>
             </div>
             <!-- 메인 사진 -->
@@ -55,13 +55,13 @@
                 </div>
             </div>
             <!-- 간단한 내용 -->
-            <p class="leftbox_content">새로 구입한 쿠션 커버인데 쇼파랑 세트같네요 ㅎ.ㅎ</p>
+            <p class="leftbox_content">${dto.content}</p>
             
             <!-- # 태그가 있을시 for 문 돌려서 사용할것 ! -->
             <ul class="leftbox_tag_ul">
-                <li class="leftbox_tag_li"><a class="leftbox_tag_li_a">#크리스</a></li>
-                <li class="leftbox_tag_li"><a class="leftbox_tag_li_a">#크리스마스데코</a></li>
-                <li class="leftbox_tag_li"><a class="leftbox_tag_li_a">#크리스마스</a></li>
+				<c:forEach var="tag" items="${categorylist}" varStatus="n">
+               		<li class="leftbox_tag_li"><a class="leftbox_tag_li_a"># ${tag}</a></li>
+				</c:forEach>
             </ul>
 
             <p class="leftbox_item_box_p">

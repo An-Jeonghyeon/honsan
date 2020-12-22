@@ -4,14 +4,14 @@
 <mapper namespace="dress">
 	<insert id="insertDress" parameterType="com.sp.app.dress.Dress">
 		INSERT INTO clothesStory(
-			num, userId, subject, content, hashtag, register_date, hitCount)
+			num, userId, subject, content, hashtag, register_date, hitCount, saveFilename)
 		VALUES(clothesStory_seq.NEXTVAL, #{userId},#{subject}, #{content},
-			#{hashtag,jdbcType=VARCHAR}, SYSDATE, 0 )
+			#{hashtag,jdbcType=VARCHAR}, SYSDATE, 0, #{saveFilename, jdbcType=VARCHAR})
 	</insert>
 
 	<select id="listDress" parameterType="map"
 		resultType="com.sp.app.dress.Dress">
-		SELECT num, b.userId, userName , subject
+		SELECT num, b.userId, userName , subject,hashtag
 			,HITCOUNT,TO_CHAR(REGISTER_DATE,'YYYY-MM-DD')created
 		FROM CLOTHESSTORY b
 		JOIN member1 m ON b.userId = m.userId

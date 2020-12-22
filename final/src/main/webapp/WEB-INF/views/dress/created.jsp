@@ -67,14 +67,13 @@
                     <div class="contentBody">
                         <div class="inputBody1">
                             <textarea id="content" name="content">${dto.content}</textarea>
-                        </div>
+                              <div class="">
+                              <input type="file" name="upload" accept="image/*">
+                          </div>
+                        </div>                     
                         <div class="tagBody">
-
                             <div class="plusTag">
-                                <ul id="tag-list">
-
-                                </ul>
-
+                              
                             </div>
                             <div class="dress-TagSpanBodyBox">
                                 <div class="dress-TagSpanBody"></div>

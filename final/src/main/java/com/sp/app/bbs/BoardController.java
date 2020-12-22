@@ -160,6 +160,8 @@ public class BoardController {
 			return "redirect:/bbs/list?"+query;
 		}
 		
+		
+		
 		// 스마트에디터를 사용하는 경우 아래 주석처리(스마트에디터는 자체적으로 고쳐서..?)
 		// dto.setContent(myUtil.htmlSymbols(dto.getContent()));
 		
