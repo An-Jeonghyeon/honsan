@@ -64,7 +64,7 @@ public class DressController {
 		map.put("rows",rows);
 		
 		List<Dress> list = service.listDress(map); 
-		
+		List<String> images;
 		int listNum;
 		int n=0;
 		for(Dress dto:list) {
@@ -74,7 +74,10 @@ public class DressController {
 			if(dto.getHashtag()!=null) {
 				String []ss = dto.getHashtag().split(",");
 				dto.setTags(Arrays.asList(ss));
-				
+			}
+			images = myUtil.getImgSrc(dto.getContent());
+			if(images.size()>0) {
+				dto.setSaveFilename(images.get(0));	// (0)으로 처음 한 장만!
 			}
 			
 		}

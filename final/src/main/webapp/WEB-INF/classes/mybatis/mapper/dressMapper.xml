@@ -4,9 +4,9 @@
 <mapper namespace="dress">
 	<insert id="insertDress" parameterType="com.sp.app.dress.Dress">
 		INSERT INTO clothesStory(
-			num, userId, subject, content, hashtag, register_date, hitCount, saveFilename)
+			num, userId, subject, content, hashtag, register_date, hitCount)
 		VALUES(clothesStory_seq.NEXTVAL, #{userId},#{subject}, #{content},
-			#{hashtag,jdbcType=VARCHAR}, SYSDATE, 0, #{saveFilename, jdbcType=VARCHAR})
+			#{hashtag,jdbcType=VARCHAR}, SYSDATE, 0)
 	</insert>
 
 	<select id="listDress" parameterType="map"

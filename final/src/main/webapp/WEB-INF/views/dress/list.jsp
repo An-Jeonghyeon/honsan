@@ -31,9 +31,10 @@
 				<div class="dress-BestContentText">여기에 무엇을 넣어야 할까?</div>
 			</div>
 			<c:forEach var="dto" items="${list}">
+			
 				<div class="dress-subContent">
-					<div class="dress-subContent-InnerImage" onclick="javascript:location.href='${articleUrl}&num=${dto.num}'">
-						<!-- <img class="dress-img" alt="" src="/app/uploads/image/2020122216132927367114491562.png"> -->
+					<div class="dress-subContent-InnerImage" onclick="javascript:location.href='${articleUrl}&num=${dto.num}'">						
+						<img class="dress-img" src="${dto.saveFilename}">${dto.saveFilename}
 					</div>
 					<div class="dress-subContent-InnerText">
 						<a href="${articleUrl}&num=${dto.num}">${dto.subject}</a>
@@ -49,6 +50,7 @@
 						</span>
 					</div>
 				</div>
+			
 			</c:forEach>
 		</div>
 		<form action="${pageContext.request.contextPath}/dress/list"

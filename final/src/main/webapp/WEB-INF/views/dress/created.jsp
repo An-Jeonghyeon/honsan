@@ -68,7 +68,6 @@
                         <div class="inputBody1">
                             <textarea id="content" name="content">${dto.content}</textarea>
                               <div class="">
-                              <input type="file" name="upload" accept="image/*">
                           </div>
                         </div>                     
                         <div class="tagBody">

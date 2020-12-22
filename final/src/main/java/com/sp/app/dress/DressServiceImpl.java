@@ -21,10 +21,6 @@ public class DressServiceImpl implements DressService{
 	@Override
 	public void insertDress(Dress dto, String pathname) throws Exception {
 		try {
-			String saveFilename= fileManager.doFileUpload(dto.getUpload(), pathname);
-			if(saveFilename !=null) {
-				dto.setSaveFilename(saveFilename);
-			}
 			dao.insertData("dress.insertDress",dto); 
 		} catch (Exception e) {
 			e.printStackTrace();
