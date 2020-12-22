@@ -32,8 +32,8 @@
 			</div>
 			<c:forEach var="dto" items="${list}">
 				<div class="dress-subContent">
-					<div class="dress-subContent-InnerImage"
-						onclick="javascript:location.href='${articleUrl}&num=${dto.num}'">
+					<div class="dress-subContent-InnerImage" onclick="javascript:location.href='${articleUrl}&num=${dto.num}'">
+						<!-- <img class="dress-img" alt="" src="/app/uploads/image/2020122216132927367114491562.png"> -->
 					</div>
 					<div class="dress-subContent-InnerText">
 						<a href="${articleUrl}&num=${dto.num}">${dto.subject}</a>
@@ -41,7 +41,8 @@
 					<div class="dress-subContent-InnerImageInnerBox">
 						<span class="dress-subContent-InnerUserName">작성자:${dto.userName }</span>
 						<span class="dress-subContent-InnerHitCount">조회수:${dto.hitCount }</span>
-						<span class="dress-subContent-InnerTags"> <c:forEach
+						<span class="dress-subContent-InnerTags">
+							 <c:forEach
 								var="s" items="${dto.tags}">
 								<a href="#">${s}</a>
 							</c:forEach>

@@ -71,6 +71,10 @@ function sendOk(){
        
          f.submit();
     }
-
+$(function(){
+    $(".writeBodyHeader").on("click",function(){
+        console.log($("img").prop('src'))
+    })
+})
 
 

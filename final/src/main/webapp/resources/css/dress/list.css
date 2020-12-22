@@ -293,6 +293,9 @@
     transform: scale(0.7);
     margin-top: 5px;
 }
-
+.dress-img{
+	width: 100%;
+	height:100%;
+}
 
 
