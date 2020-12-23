@@ -3,6 +3,7 @@ package com.sp.app.dress;
 import java.io.File;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -70,6 +71,12 @@ public class DressController {
 			listNum=dataCount-(offset+n);
 			dto.setListNum(listNum);
 			n++;
+			if(dto.getHashtag()!=null) {
+				String []ss = dto.getHashtag().split(",");
+				dto.setTags(Arrays.asList(ss));
+				
+			}
+			
 		}
 		String cp = req.getContextPath();
 		String query = "";

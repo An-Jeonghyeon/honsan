@@ -20,6 +20,7 @@
 
     <script src="${pageContext.request.contextPath}/resources/js/layout_login.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/dress/created.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/dress/article.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/home.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/dressTip/list.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/dressMain/main.js"></script>

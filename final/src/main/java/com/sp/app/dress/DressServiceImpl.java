@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.sp.app.common.FileManager;
 import com.sp.app.common.dao.CommonDAO;
 
 @Service("dress.dressService")
@@ -13,13 +14,18 @@ public class DressServiceImpl implements DressService{
 	
 	@Autowired
 	private CommonDAO dao;
-	
+	@Autowired
+	private FileManager fileManager;
 	
 	
 	@Override
 	public void insertDress(Dress dto, String pathname) throws Exception {
 		try {
-			dao.insertData("dress.insertDress",dto);
+			String saveFilename= fileManager.doFileUpload(dto.getUpload(), pathname);
+			if(saveFilename !=null) {
+				dto.setSaveFilename(saveFilename);
+			}
+			dao.insertData("dress.insertDress",dto); 
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;

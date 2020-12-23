@@ -6,15 +6,28 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/interior/boardItem.css" type="text/css">
 <script src="${pageContext.request.contextPath}/resources/js/interior/boardItem.js"></script>
 
+<script>
+function interior_created() {
+	var f = document.insert_mainboard_form;
+	
+	
+	 f.action = "${pageContext.request.contextPath}/interior/created";
+
+	 f.submit();
+}
+
+
+
+</script>
 <section>
-    <form name="insert_mainboard_form" class="input-form">
+    <form name="insert_mainboard_form" class="input-form" method="post" >
     <div class="board_interior_box">
         <div class="board_interior_leftbox">
             
             <!-- 게시판 제목 부분  -->
             <div class="board_interior_leftbox_header">
                 <div class="leftbox_header_subject">
-                    <textarea placeholder="제목을 입력해주세요." onkeydown="resize(this)" onkeyup="resize(this)" 
+                    <textarea name="subject" placeholder="제목을 입력해주세요." onkeydown="resize(this)" onkeyup="resize(this)" 
                                         class="leftbox_header_subject_textarea"></textarea>
                 </div>
 
@@ -118,12 +131,12 @@
             </div>
             <!-- 간단한 내용 -->
             <p class="leftbox_content">
-                <textarea placeholder="내용을 입력해주세요" onkeydown="resize(this)" onkeyup="resize(this)" 
+                <textarea name="content" placeholder="내용을 입력해주세요" onkeydown="resize(this)" onkeyup="resize(this)" 
                 class="leftbox_header_subject_textarea" ></textarea>
             </p>
             
             <!-- # 태그가 있을시 for 문 돌려서 사용할것 ! -->
-            <input type="text" value="#" name="tag" id="rdTag" > <span class="tag_notice">※ 태그 취소는 태그를 클릭해주세요. </span> 
+            <input type="text" value="#" name="tag" id="rdTag"> <span class="tag_notice">※ 태그 취소는 태그를 클릭해주세요. </span> 
             <!-- <button type="button" id="tagButton">태그등록</button> -->
             <ul class="leftbox_tag_ul">
                 
@@ -145,21 +158,21 @@
 
                         <div class="board_interior_buttonpage_bar">
                             <div class="board_interior_buttonbox">
-                                <button type="reset">
+                                <button type="button" onclick="javascript:location.href='${pageContext.request.contextPath}/interior/created'">
                                     <span class="buttonpage_span">초기화</span>
                                 </button>
                             </div>
                             <div class="board_interior_buttonbox">
-                                <button>
+                                <button type="button" onclick="javascript:location.href='${pageContext.request.contextPath}/interior/main'">
                                     <span class="buttonpage_span">취소</span>
                                 </button>
                             </div>
                         </div>
                         
                         <div class="board_interior_sendbutton_div">
-                            <button class="board_interior_sendbutton">게시판 작성</button>
+                            <button  type="button" class="board_interior_sendbutton" onclick="interior_created();">게시판 작성</button>
 
-
+						
                         </div>
                         
                     </div>

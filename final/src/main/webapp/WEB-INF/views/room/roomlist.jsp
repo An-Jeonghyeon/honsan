@@ -9,7 +9,8 @@
 
 <script type="text/javascript">
 	function bgLabel(ob, id) {
-		if (!ob.value) {
+		
+		if (!ob.value && "${keyword}"!="") {
 			document.getElementById(id).style.display = "";
 		} else {
 			document.getElementById(id).style.display = "none";
@@ -32,18 +33,18 @@
 	<hr>
 	<div style="width: 1000px; margin: 0px auto; padding-top: 100px;">
 		<!-- 검색 부분 -->
-		<form name="loginForm"
+		<form name="searchForm"
 			action="${pageContext.request.contextPath }/room/roomlist"
 			method="post">
 			<div class="searchlist">
 				<table style="width:1000px; margin: 15px auto; border-spacing: 0px;">
 					<tr height="60">
 						<td align="center"><label for="town" id="lblTown" class="lbl"><i class="fas fa-search" style="color: gray;"></i>동네 이름
-								ex)관악구</label> <input type="text" name="town" id="town"
+								ex)관악구</label> <input type="text" name="keyword" id="town"
 							class="searchTF" maxlength="20" tabindex="2"
 							onfocus="document.getElementById('lblTown').style.display='none';"
 							onblur="bgLabel(this, 'lblTown');">
-							<button type="button" class="searchbtn" onclick="searchList()">검색</button>
+							<button type="button" class="searchbtn" onclick="searchList();">검색</button>
 						</td>
 					</tr>
 					<tr>
@@ -60,6 +61,8 @@
 					</tr>
 					<tr>		
 						<td align="right">
+						<button type="button" class="btn"
+						onclick="javascript:location.href='${pageContext.request.contextPath}/room/roomlist';">새로고침</button>
 						<button type="button" class="btn"
 						onclick="javascript:location.href='${pageContext.request.contextPath}/room/roomCreated';">방
 						올리기</button>
@@ -84,22 +87,22 @@
 			<tr>
 				<td class="toplistTd">
 					<div class="topimg_box" id="topimg_box"
-							style="background: url('${pageContext.request.contextPath}/room/roomlist/${dto.fileName}');">
+							style="background: url('${pageContext.request.contextPath}/room/roomlist/ ');">
 					</div>
 				</td>
 				<td class="toplistTd">
 					<div class="topimg_box" id="topimg_box"
-							style="background: url('${pageContext.request.contextPath}/room/roomlist/${dto.fileName}');">
+							style="background: url('${pageContext.request.contextPath}/room/roomlist/ ');">
 					</div>
 				</td>
 				<td class="toplistTd">
 					<div class="topimg_box" id="topimg_box"
-							style="background: url('${pageContext.request.contextPath}/room/roomlist/${dto.fileName}');">
+							style="background: url('${pageContext.request.contextPath}/room/roomlist/ ');">
 					</div>
 				</td>
 				<td class="toplistTd">
 					<div class="topimg_box" id="topimg_box"
-							style="background: url('${pageContext.request.contextPath}/room/roomlist/${dto.fileName}');">
+							style="background: url('${pageContext.request.contextPath}/room/roomlist/ ');">
 					</div>
 				</td>
 			
@@ -116,32 +119,42 @@
 			<div class="roomlist">
 
 				<table style="width: 100%;">
-					<!-- 
+				
+				<tr style="height: 50px;">
+					<td align="right" colspan="4"> 
+					<c:if test="${not empty keyword}">
+					검색 결과 " ${keyword} " : 
+					</c:if>
+					 ${dataCount}개(${page}/${total_page} 페이지)</td>
+				</tr>
+				
+				
 			 <c:forEach var="dto" items="${list}" varStatus="status">
 			 	<c:if test="${status.index==0 }">
-			 	<tr>
+			 	<tr align="center">
 			 	</c:if>
-			 	<c:if test="${status.index!=0 && status.index%5==0}">
+			 	<c:if test="${status.index!=0 && status.index%4==0}">
 			 		<c:out value="</tr><tr>" escapeXml="false"/>
 			 	</c:if>
 			 	
-			 	<td width="230" align="center" >
+			 	<td class="listTd">
 			 		<div class="imgLayout" onclick="article('${dto.num}');"style="margin: 10px;">
-			 		<div class="img_box"style="background: url('${pageContext.request.contextPath}/uploads/photo/${dto.fileName}');
-				background-position: center;background-size:cover;background-position:center;height: 110px; border-radius: 15px; border:2px solid silver;">
-				</div><Br>
-				<p class="title-style" style="font-family: 'Jua', sans-serif; font-size: 15px;">
-				 ${dto.subject} <p>
-		 	
+				 		<div class="img_box"style="background: url('${pageContext.request.contextPath}/resources/images/room/securityService.jpg');
+							background-position: center;background-size:cover;background-position:center;height: 110px; border-radius: 5px; border:2px solid silver;"></div>
+						<br><p class="title-style">${dto.subject}<p>
+						<div class="mainexplain">
+							<p>${dto.dealtype } / ${dto.depo } / ${dto.mrent }</p>
+						</div>
+						<div class="mainexplain">
+							<p>${dto.m2} m<sup>2</sup>  ${dto.pyeoug } 평</p>
+						</div>
 			 		</div>
 			 	</td>
 			 </c:forEach>
-			 -->
 					<!-- n은 리스트 개수 -->
-					<!-- 
 			<c:set var="n" value="${list.size()}"/>
-			<c:if test="${n>0 && n%3!=0}">
-				<c:forEach var="i" begin="${n%3+1}" end="3">
+			<c:if test="${n>0 && n%4!=0}">
+				<c:forEach var="i" begin="${n%4+1}" end="4">
 					<td width="210">
 					<div class="imgLayout" style="cursor: default;">&nbsp;</div>
 					</td>
@@ -151,172 +164,10 @@
 				<c:out value="</tr>" escapeXml="false"/>
 			</c:if>
 			</table>
-			-->
-
-			<tr style="height: 50px;">
-				<td align="center" colspan="4"> 검색 결과 "강서구" </td>
-			</tr>
-			<tr align="center">
-				<td class="listTd">
-					<div class="imgLayout" onclick="article('${dto.num}');"
-						style="margin: 10px;">
-						<div class="img_box"
-							style="background: url('${pageContext.request.contextPath}/room/roomlist/${dto.fileName}');
-		background-position: center;background-size:cover;background-position:center;height: 110px; border-radius: 5px; border:2px solid silver;">
-						</div>
-						<br>
-						<div class="mainexplain">
-							<p>월세 500/45</p>
-						</div>
-						<div class="mainexplain">
-							<p>6평/4층</p>
-						</div>
-					</div>
-				</td>
-
-
-				<td class="listTd">
-					<div class="imgLayout" onclick="article('${dto.num}');"
-						style="margin: 10px;">
-						<div class="img_box"
-							style="background: url('${pageContext.request.contextPath}/room/roomlist/${dto.fileName}');
-		background-position: center;background-size:cover;background-position:center;height: 110px; border-radius: 5px; border:2px solid silver;">
-						</div>
-						<br>
-						<div class="mainexplain">
-							<p>전세 1억5천</p>
-						</div>
-						<div class="mainexplain">
-							<p>8평/2층</p>
-						</div>
-					</div>
-				</td>
-
-
-				<td class="listTd">
-					<div class="imgLayout" onclick="article('${dto.num}');"
-						style="margin: 10px;">
-						<div class="img_box"
-							style="background: url('${pageContext.request.contextPath}/room/roomlist/${dto.fileName}');
-		background-position: center;background-size:cover;background-position:center;height: 110px; border-radius: 5px; border:2px solid silver;">
-						</div>
-						<br>
-						<div class="mainexplain">
-							<p>월세 500/45</p>
-						</div>
-						<div class="mainexplain">
-							<p>6평/4층</p>
-						</div>
-					</div>
-				</td>
-
-
-				<td class="listTd">
-					<div class="imgLayout" onclick="article('${dto.num}');"
-						style="margin: 10px;">
-						<div class="img_box"
-							style="background: url('${pageContext.request.contextPath}/room/roomlist/${dto.fileName}');
-		background-position: center;background-size:cover;background-position:center;height: 110px; border-radius: 5px; border:2px solid silver;">
-						</div>
-						<br>
-						<div class="mainexplain">
-							<p>전세 1억5천</p>
-						</div>
-						<div class="mainexplain">
-							<p>8평/2층</p>
-						</div>
-					</div>
-				</td>
-
-
-			</tr>
-			
-			<tr align="center">
-				<td class="listTd">
-					<div class="imgLayout" onclick="article('${dto.num}');"
-						style="margin: 10px;">
-						<div class="img_box"
-							style="background: url('${pageContext.request.contextPath}/room/roomlist/${dto.fileName}');
-		background-position: center;background-size:cover;background-position:center;height: 110px; border-radius: 5px; border:2px solid silver;">
-						</div>
-						<br>
-						<div class="mainexplain">
-							<p>월세 500/45</p>
-						</div>
-						<div class="mainexplain">
-							<p>6평/4층</p>
-						</div>
-					</div>
-				</td>
-
-
-				<td class="listTd">
-					<div class="imgLayout" onclick="article('${dto.num}');"
-						style="margin: 10px;">
-						<div class="img_box"
-							style="background: url('${pageContext.request.contextPath}/room/roomlist/${dto.fileName}');
-		background-position: center;background-size:cover;background-position:center;height: 110px; border-radius: 5px; border:2px solid silver;">
-						</div>
-						<br>
-						<div class="mainexplain">
-							<p>전세 1억5천</p>
-						</div>
-						<div class="mainexplain">
-							<p>8평/2층</p>
-						</div>
-					</div>
-				</td>
-
-
-				<td class="listTd">
-					<div class="imgLayout" onclick="article('${dto.num}');"
-						style="margin: 10px;">
-						<div class="img_box"
-							style="background: url('${pageContext.request.contextPath}/room/roomlist/${dto.fileName}');
-		background-position: center;background-size:cover;background-position:center;height: 110px; border-radius: 5px; border:2px solid silver;">
-						</div>
-						<br>
-						<div class="mainexplain">
-							<p>월세 500/45</p>
-						</div>
-						<div class="mainexplain">
-							<p>6평/4층</p>
-						</div>
-					</div>
-				</td>
-
-
-				<td class="listTd">
-					<div class="imgLayout" onclick="article('${dto.num}');"
-						style="margin: 10px;">
-						<div class="img_box"
-							style="background: url('${pageContext.request.contextPath}/room/roomlist/${dto.fileName}');
-		background-position: center;background-size:cover;background-position:center;height: 110px; border-radius: 5px; border:2px solid silver;">
-						</div>
-						<br>
-						<div class="mainexplain">
-							<p>전세 1억5천</p>
-						</div>
-						<div class="mainexplain">
-							<p>8평/2층</p>
-						</div>
-					</div>
-				</td>
-
-
-			</tr>
-
 
 
 
 		</table>
-
-
-
-
-
-
-
 
 
 				<table style="width: 100%; border-spacing: 0;">
@@ -328,11 +179,8 @@
 				</table>
 
 
-
-
-
-
 		</div>
 				
 	</div>
+	<hr>
 </div>

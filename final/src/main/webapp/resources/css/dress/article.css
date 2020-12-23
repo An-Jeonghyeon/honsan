@@ -1,4 +1,3 @@
-@charset "UTF-8";
 .articleMainBody{
     width: 1300px;
     min-height: 800px;
@@ -122,6 +121,7 @@
     /* background-color: rgba(222, 188, 255, 0.31); */
 }
 .ReplyAnswerBody{
+    display: none;
     width: 100%;
     min-height:150px;
     margin: 0 auto;
@@ -130,6 +130,25 @@
      /* TestBackground */
     /* background-color: rgba(222, 188, 255, 0.31); */
 
+}
+.ReplyListUserX{
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    color: rgb(136, 136, 136);
+    text-align: center;
+    position: relative;
+    right: -1080px;
+    top: -10px;
+    line-height: 20px;
+    border-radius:5px;
+    transition: 0.4s;
+    box-shadow: rgba(128, 128, 128, 0.53) 0px 0px 10px;
+}
+.ReplyListUserX:hover{
+    background-color: #ff6347;
+    color: white;
+    cursor: pointer;
 }
 .ReplyAnswerContentBox{
     width: 90%;
@@ -146,6 +165,9 @@
     resize: none;
     display: block;
     border: none;
+}
+.ReplyAnswerContentBox>textarea:focus{
+    outline: none;
 }
 .ReplyAnswer{
     width: 90%;
@@ -216,13 +238,25 @@
     border: none;
     cursor: pointer;
 }
+.RelyWrite:hover{
+    color: #ff6347;
+}
 .RelyWrite:focus{
     outline: none;
 }
-
-.ReplyContentBox>span ,.ReplyAnswerContentBox>span{
+.ReplyAnswerContentUserName{
+  position: relative;
+  left: -25px;
+}
+.ReplyContentBox>span ,.ReplyAnswerContentUserName{
     font-size: 0.8rem;
     font-weight: 400;
+}
+form[name="ReplayListForm"]{
+    display: none;
+}
+.ReplySUbDown{
+    display: inline-block;
 }
 .ReplyContentBox>textarea{
     width: 100%;
@@ -241,9 +275,8 @@
     color: rgb(226,226,226);
 }
 .ReplySubmitButton{
- width: 100%;
+ width: 101%;
  height: 20%;
- margin-top: 10px;
  /* TestBackground */
  /* background-color: #ff6347; */
 }

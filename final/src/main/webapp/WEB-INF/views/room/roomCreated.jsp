@@ -307,11 +307,11 @@ function updateInputCount() {
                     <td>
                         <select style="width:180px" name="roomtype">
                             <option value="">선택하세요</option>
-                            <option value="01">오픈형 원룸 (방1)</option>
-                            <option value="02">분리형 원룸 (방1, 거실1)</option>
-                            <option value="03">복층형 원룸</option>
-                            <option value="04">투룸 (방2, 거실1)</option>
-                            <option value="05">쓰리룸+</option>
+                            <option value="오픈형 원룸 (방1)">오픈형 원룸 (방1)</option>
+                            <option value="분리형 원룸 (방1, 거실1)">분리형 원룸 (방1, 거실1)</option>
+                            <option value="복층형 원룸">복층형 원룸</option>
+                            <option value="투룸 (방2, 거실1)">투룸 (방2, 거실1)</option>
+                            <option value="쓰리룸+">쓰리룸+</option>
                         </select>
                     </td>
                 </tr>
@@ -324,11 +324,11 @@ function updateInputCount() {
                         <label><input type="checkbox" id="fee_none" name="fee_none"> 없음</label>
                         <p class="i-gray">
                             <strong>관리비 포함 항목</strong>
-                            <label><input name="aditem" type="checkbox" value="01"> 전기세</label>
-                            <label><input name="aditem" type="checkbox" value="02"> 가스</label>
-                            <label><input name="aditem" type="checkbox" value="03"> 수도</label>
-                            <label><input name="aditem" type="checkbox" value="04"> 인터넷</label>
-                            <label><input name="aditem" type="checkbox" value="05"> TV</label>
+                            <label><input name="aditem" type="checkbox" value="전기세"> 전기세</label>
+                            <label><input name="aditem" type="checkbox" value="가스"> 가스</label>
+                            <label><input name="aditem" type="checkbox" value="수도"> 수도</label>
+                            <label><input name="aditem" type="checkbox" value="인터넷"> 인터넷</label>
+                            <label><input name="aditem" type="checkbox" value="TV"> TV</label>
                             <input type="hidden" name="aditems" id="aditems" value=""/>
                         </p>
                     </td>
@@ -360,18 +360,18 @@ function updateInputCount() {
                 <tr>
                     <th>옵션</th>
                     <td class="i-options">
-                        <label><input type="checkbox" name="options" value="01"> 에어컨</label>
-                        <label><input type="checkbox" name="options" value="02"> 냉장고</label>
-                        <label><input type="checkbox" name="options" value="03"> 세탁기</label>
-                        <label><input type="checkbox" name="options" value="04"> 가스레인지</label>
-                        <label><input type="checkbox" name="options" value="05"> 인덕션</label>
-                        <label><input type="checkbox" name="options" value="06"> 전자레인지</label><br>
-                        <label><input type="checkbox" name="options" value="07"> 책상</label>
-                        <label><input type="checkbox" name="options" value="08"> 책장</label>
-                        <label><input type="checkbox" name="options" value="09"> 침대</label>
-                        <label><input type="checkbox" name="options" value="10"> 옷장</label>
-                        <label><input type="checkbox" name="options" value="11"> 신발장</label>
-                        <label><input type="checkbox" name="options" value="12"> 싱크대</label>
+                        <label><input type="checkbox" name="options" value="에어컨"> 에어컨</label>
+                        <label><input type="checkbox" name="options" value="냉장고"> 냉장고</label>
+                        <label><input type="checkbox" name="options" value="세탁기"> 세탁기</label>
+                        <label><input type="checkbox" name="options" value="가스레인지"> 가스레인지</label>
+                        <label><input type="checkbox" name="options" value="인덕션"> 인덕션</label>
+                        <label><input type="checkbox" name="options" value="전자레인지"> 전자레인지</label><br>
+                        <label><input type="checkbox" name="options" value="책상"> 책상</label>
+                        <label><input type="checkbox" name="options" value="책장"> 책장</label>
+                        <label><input type="checkbox" name="options" value="침대"> 침대</label>
+                        <label><input type="checkbox" name="options" value="옷장"> 옷장</label>
+                        <label><input type="checkbox" name="options" value="신발장"> 신발장</label>
+                        <label><input type="checkbox" name="options" value="싱크대"> 싱크대</label>
                         <input type="hidden" name="option" id="option" value=""/>
                     </td>
                 </tr>
