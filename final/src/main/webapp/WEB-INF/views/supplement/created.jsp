@@ -25,11 +25,15 @@ function check() {
     }
     
     var mode="${mode}";
-   	if(! f.upload.value!="") {
+   	if(mode=="created") {
+   		if(f.upload.value=="") {
 		alert('대표 이미지를 업로드해주세요.');
 		f.upload.focus();
 		return false;
-   	} else if(mode=="created"||mode=="update") {
+   		}
+   	} 
+   	
+   	if(f.upload.value) {
 		if(! /(\.gif|\.jpg|\.png|\.jpeg)$/i.test(f.upload.value)) {
 			alert('이미지 파일만 선택 가능합니다.');
 			f.upload.focus();
@@ -49,12 +53,12 @@ function check() {
         </div>
     
         <div class="h-subjectBody">
-            <input type="text" class="h-title-font" name="subject" id="subject" placeholder="제목을 입력해 주세요.">
+            <input type="text" class="h-title-font" name="subject" id="subject" placeholder="제목을 입력해 주세요." value="${dto.subject}">
         </div>
         
         <div class="h-contentBody">
             <div class="h-inputBody1">
-                <textarea class="h-textarea" name="content" id="content" ></textarea>                
+                <textarea class="h-textarea" name="content" id="content" >${dto.content}</textarea>                
             </div>
     
             <div class="h-image ">
@@ -77,8 +81,13 @@ function check() {
             </div>
         </div>
         <div class="h-buttonBoxBody">
-            <button type="button" id="CencelSubmit" onclick="javascript:location.href='${pageContext.request.contextPath}/supplement/list';">등록취소</button>
-            <button type="submit" id="writeSubmit">등록하기</button>
+            <button type="button" id="CencelSubmit" onclick="javascript:location.href='${pageContext.request.contextPath}/supplement/list';">${mode=='update'?'수정취소': '등록취소'}</button>
+            <button type="submit" id="writeSubmit">${mode=='update'?'수정완료': '등록하기'}</button>
+            <c:if test="${mode=='update'}">
+            	<input type="hidden" name="num" value="${dto.num}" >
+            	<input type="hidden" name="page" value="${page}" >
+            	<input type="hidden" name="imageFilename" value="${dto.imageFilename}" >
+            </c:if>
         </div>
     </article>
 </form>

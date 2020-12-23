@@ -1,4 +1,8 @@
 @charset "UTF-8";
+a {
+	text-decoration: none;
+	color: black;
+}
 .h-divvv {
     width: 1000px;
     margin: 100px auto 90px;
@@ -130,9 +134,10 @@
 }
 .h-LikeBox{
     width: 100%;
-    height: 100px;
+    height: 130px;
     margin: 0 auto 30px;
     box-sizing: border-box;
+    border-bottom:1px solid rgb(226,226,266);
     /* TestBackground */
     /* background-color: rgba(222, 188, 255, 0.31); */
 }
@@ -144,6 +149,14 @@
     text-align: center;
     cursor: pointer;
     margin: 0 auto;
+}
+.h-likecircle:active{
+   transform: scale(0.9);
+   margin-top: 10px;
+/*    box-shadow: 1px 3px 25px rgba(199, 0, 76, 0.755); */
+}
+.h-likecircle:focus{
+    outline: none;
 }
 .h-likelike {
     padding-top: 25px;
@@ -170,13 +183,17 @@
 }
 .h-ReplySUb{
     width: 100%;
-    height: 50px;
+    height: 40px;
     margin: 10px auto;
     box-sizing: border-box;
-    border-bottom:  1px solid rgb(226,226,266);;
+    border-bottom:  1px solid rgb(226,226,266);
     padding: 10px 30px;
     /* TestBackground */
     /* background-color: rgba(222, 188, 255, 0.31); */
+}
+.list-buttons {
+    height:  50px;
+    margin: 0 30px;
 }
 .h-listButton {
     float: right;
@@ -190,12 +207,35 @@
     color: rgb(136, 136, 136);
     background: white;
 }
+.h-updateButton {
+    width: 70px;
+    height: 30px;
+    border:1px solid #ccc;
+    cursor: pointer;
+    border-radius: 5px;
+    /* float: right; */
+    transition: 0.1s;
+    color: rgb(136, 136, 136);
+    background: white;
+    margin-right: 7px;
+}
+.h-deleteButton {
+    margin-right: 7px;
+    width: 70px;
+    height: 30px;
+    border:1px solid #ccc;
+    cursor: pointer;
+    border-radius: 5px;
+    /* float: right; */
+    transition: 0.1s;
+    color: rgb(136, 136, 136);
+    background: white;
+}
 .h-ReplyList{
     width: 100%;
     height: 30px;
     margin: 10px auto;
     box-sizing: border-box;
-    border-top: 1px solid rgb(226,226,266);
     /* TestBackground */
     /* background-color: rgba(222, 188, 255, 0.31); */
 }

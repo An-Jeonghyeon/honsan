@@ -8,6 +8,12 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@900&display=swap" rel="stylesheet">
 
 <script type="text/javascript">
+	function searchList() {
+		var f=document.searchForm;
+		f.submit();
+	}
+</script>
+<script type="text/javascript">
 $(function() {
 
 	var floatPosition = parseInt($(".floating-write").css('top'));
@@ -54,7 +60,7 @@ $(function() {
                            <div class="best-image">
                                <img class="best-imageFile" src="${pageContext.request.contextPath}/uploads/supplement/${dto.imageFilename}" onclick="javascript:location.href='${article_url}&num=${dto.num}';">
                            </div>
-                           <div class="best-num"><span class="best-num-span">${dto.bestNum}</span></div>
+                           <div class="best-num"><span class="best-num-span">${dto.bestNum}<small>위</small></span></div>
                        </div>
                        <div class="best-bottom">
                            <div class="best-subject"><a href="${articleUrl}">${dto.subject}</a></div>
@@ -98,21 +104,24 @@ $(function() {
                    ${dataCount==0?"등록된 게시물이 없습니다.":paging}
                </div>
    
-               <div class="supplement-bbs-search">
-                   <div class="search-reset">
-                       <button class="reset" onclick="javascript:location.href='${pageContext.request.contextPath}/supplement/list';"><i class="fas fa-redo-alt"></i>&nbsp;새로고침</button>
-                   </div>
-                   <div class="search-select-box">
-                       <select name="condition" class="sup-bbs-select">
-                           <option value="all" ${condition=="all"?"selected='selected'":""}>제목+내용</option>
-                           <option value="subject" ${condition=="subject"?"selected='selected'":""}>제목</option>
-                           <option value="register_date" ${condition=="register_date"?"selected='selected'":""}>작성일</option>
-                           <option value="userId" ${condition=="userId"?"selected='selected'":""}>작성자</option>
-                       </select>
-                       <input type="text" class="sup-bbs-input" name="keyword" value="${keyword}">
-                       <button class="sup-bbs-btn" onclick="">검색</button>
-                   </div>
-               </div>
+   				<form name="searchForm" action="${pageContext.request.contextPath}/supplement/list" method="post">
+	               <div class="supplement-bbs-search">
+	                   <div class="search-reset">
+	                       <button type="button" class="reset" onclick="javascript:location.href='${pageContext.request.contextPath}/supplement/list';"><i class="fas fa-redo-alt"></i>&nbsp;새로고침</button>
+	                   </div>
+		                   <div class="search-select-box">
+		                       <select name="condition" class="sup-bbs-select">
+		                           <option value="all" ${condition=="all"?"selected='selected'":""}>제목+내용</option>
+		                           <option value="subject" ${condition=="subject"?"selected='selected'":""}>제목</option>
+		                           <option value="content" ${condition=="content"?"selected='selected'":""}>내용</option>
+		                           <option value="register_date" ${condition=="register_date"?"selected='selected'":""}>작성일</option>
+		                           <option value="userId" ${condition=="userId"?"selected='selected'":""}>작성자</option>
+		                       </select>
+		                       <input type="text" class="sup-bbs-input" name="keyword" value="${keyword}">
+		                       <button type="button" class="sup-bbs-btn" onclick="searchList();">검색</button>
+		                   </div>
+	               </div>
+				</form>
            </div>
    
            <!-- 글쓰기 플로팅 -->

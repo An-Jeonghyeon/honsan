@@ -79,6 +79,17 @@ public class SupplementServiceImpl implements SupplementService {
 		
 	}
 
+	@Override
+	public void deleteSupplementLike(Map<String, Object> map) throws Exception {
+		try {
+			dao.deleteData("supplement.deleteSupplementLike", map);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+		
+	}
+
 
 	@Override
 	public int supplementLikeCount(int num) {
@@ -106,15 +117,42 @@ public class SupplementServiceImpl implements SupplementService {
 
 	@Override
 	public void deleteSupplement(int num, String pathname, String userId) throws Exception {
-		// TODO Auto-generated method stub
-		
+		try {
+			Supplement dto=readSupplement(num);
+			if(dto==null || (! userId.equals("admin") && ! userId.equals(dto.getUserId()))) {
+				return;
+			}
+			
+			if(dto.getImageFilename()!=null) {
+				fileManager.doFileDelete(dto.getImageFilename(), pathname);
+			}
+			
+			dao.deleteData("supplement.deleteSupplement", num);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
 	}
 
 
 	@Override
 	public void updateSupplement(Supplement dto, String pathname) throws Exception {
-		// TODO Auto-generated method stub
-		
+		try {
+			String imageFileneme = fileManager.doFileUpload(dto.getUpload(), pathname);
+			
+			if(imageFileneme!=null) {
+				if(dto.getImageFilename().length()!=0) {
+					fileManager.doFileDelete(dto.getImageFilename(), pathname);
+				}
+				
+				dto.setImageFilename(imageFileneme);
+			}
+			dao.updateData("supplement.updateSupplement", dto);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
 	}
 
 
@@ -131,17 +169,31 @@ public class SupplementServiceImpl implements SupplementService {
 
 
 	@Override
-	public void preReadSupplement(Map<String, Object> map) {
-		// TODO Auto-generated method stub
+	public Supplement preReadSupplement(Map<String, Object> map) {
+		Supplement dto =null;
+		try {
+			dto=dao.selectOne("supplement.preReadSupplement", map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return dto;
 		
 	}
 
 
 	@Override
-	public void nextReadSupplement(Map<String, Object> map) {
-		// TODO Auto-generated method stub
+	public Supplement nextReadSupplement(Map<String, Object> map) {
+		Supplement dto=null;
+		try {
+			dto=dao.selectOne("supplement.nextReadSupplement", map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
+		return dto;
 	}
+
 
 
 	

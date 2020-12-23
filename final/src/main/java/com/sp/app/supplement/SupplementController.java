@@ -10,7 +10,6 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.collections.map.HashedMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,6 +31,7 @@ public class SupplementController {
 	@Autowired
 	private MyUtil myUtil;
 	
+	//리스트
 	@RequestMapping(value = "list")
 	public String list(
 			@RequestParam(value = "page", defaultValue = "1") int current_page,
@@ -129,6 +129,7 @@ public class SupplementController {
 		return ".supplement.list";
 	}
 	
+	//글쓰기 폼
 	@RequestMapping(value = "created", method = RequestMethod.GET)
 	public String created(Model model) throws Exception {
 		
@@ -136,6 +137,7 @@ public class SupplementController {
 		return ".supplement.created";
 	}
 	
+	//글쓰기
 	@RequestMapping(value = "created", method = RequestMethod.POST) //value는 주소값 -ㅣ> 위에 supplement/created
 	public String createdSubmit(Supplement dto, HttpSession session) throws Exception {
 		
@@ -154,16 +156,15 @@ public class SupplementController {
 		return "redirect:/supplement/list";
 	}
 	
-	//게시글 추천수
+	//게시글 추천 추가( ajax-json)
 	@RequestMapping(value = "insertSupplementLike", method = RequestMethod.POST)
 	@ResponseBody
-		//@ResponseBody
 	public Map<String, Object> insertSupplementLike(
 			@RequestParam int num, HttpSession sesstion) throws Exception {
 		
 		SessionInfo info=(SessionInfo)sesstion.getAttribute("member");
 		String state="true";
-		int supplementLickeCount=0;
+		int supplementLikeCount=0;
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("num", num);
@@ -172,18 +173,20 @@ public class SupplementController {
 		try {
 			service.insertSupplementLike(map);
 		} catch (Exception e) {
+			service.deleteSupplementLike(map);
 			state="false";
 		}
 		
-		supplementLickeCount=service.supplementLikeCount(num);
+		supplementLikeCount=service.supplementLikeCount(num);
 		Map<String, Object> model = new HashMap<String, Object>();
 		model.put("state", state);
-		model.put("supplementLickeCount", supplementLickeCount);
+		model.put("supplementLikeCount", supplementLikeCount);
 		
 		return model;
 	}
 	
-	@RequestMapping(value = "article", method = RequestMethod.GET)
+	//글보기
+	@RequestMapping(value = "article")
 	public String article(
 			@RequestParam int num,
 			@RequestParam String page,
@@ -196,7 +199,7 @@ public class SupplementController {
 		
 		//쿼리
 		String query = "page="+page;
-		if(keyword!=null) {
+		if(keyword.length()!=0) {
 			query +="&condition="+condition+"&keyword="+URLEncoder.encode(keyword, "utf-8");
 		}
 		
@@ -216,14 +219,89 @@ public class SupplementController {
 		map.put("num", num);
 		
 		//이전글, 다음글
+		Supplement preReadDto = service.preReadSupplement(map);
+		Supplement nextReadDto = service.nextReadSupplement(map);
 		
 		//보내기
 		model.addAttribute("dto", dto);
 		model.addAttribute("page", page);
 		model.addAttribute("query", query);
+		model.addAttribute("preReadDto", preReadDto);
+		model.addAttribute("nextReadDto", nextReadDto);
 		
 		return ".supplement.article";
 	}
 	
+	//수정폼
+	@RequestMapping(value = "update", method = RequestMethod.GET)
+	public String update(
+			@RequestParam int num,
+			@RequestParam String page,
+			HttpSession session,
+			Model model) throws Exception {
+		
+		SessionInfo info = (SessionInfo)session.getAttribute("member");
+		
+		Supplement dto = service.readSupplement(num);
+		if(dto==null) {
+			return "redirect:/supplement/list?page="+page;
+		}
+		if(! info.getUserId().equals(dto.getUserId())) {
+			return "redirect:/supplement/list?page="+page;
+		}
+		
+		model.addAttribute("mode","update");
+		model.addAttribute("page", page);
+		model.addAttribute("dto", dto);
+		
+		return ".supplement.created";
+	}
+	
+	//수정완료
+	@RequestMapping(value = "update", method = RequestMethod.POST)
+	public String updateSubmit(
+			Supplement dto,
+			@RequestParam String page,
+			HttpSession session
+			) throws Exception {
+		
+		String root = session.getServletContext().getRealPath("/");
+		String pathname=root+"uploads"+File.separator+"supplement";
+		
+		try {
+			service.updateSupplement(dto, pathname);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return "redirect:/supplement/article?num="+dto.getNum()+"&page="+page;
+	}
+
+	//삭제
+	@RequestMapping(value = "delete", method = RequestMethod.GET)
+	public String deleteSupplement(
+			@RequestParam int num,
+			@RequestParam(defaultValue = "all") String condition,
+			@RequestParam(defaultValue = "") String keyword,
+			@RequestParam String page,
+			HttpSession session
+			) throws Exception {
+		SessionInfo info=(SessionInfo)session.getAttribute("member");
+		
+		keyword=URLDecoder.decode(keyword, "utf-8");
+		String query="page="+page;
+		if(keyword.length()!=0) {
+			query+="condition="+condition+"&keyword="+URLEncoder.encode(keyword, "utf-8");
+		}
+		
+		String root=session.getServletContext().getRealPath("/");
+		String pathname=root+"uploads"+File.separator+"supplement";
+			
+		service.deleteSupplement(num, pathname, info.getUserId()); // 이 아이디 로그인한 아이디
+
+		return "redirect:/supplement/list?"+query;
+	}
+	
+
 	
 }

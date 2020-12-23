@@ -16,8 +16,8 @@ public interface SupplementService {
 	public void updateHitCount(int num) throws Exception;
 	
 	//이전, 다음 게시글
-	public void preReadSupplement(Map<String, Object> map);
-	public void nextReadSupplement(Map<String, Object> map);
+	public Supplement preReadSupplement(Map<String, Object> map);
+	public Supplement nextReadSupplement(Map<String, Object> map);
 	
 	//베스트 리스트
 	public List<Supplement> bestListSupplement(Map<String, Object> map);
@@ -25,6 +25,7 @@ public interface SupplementService {
 	//게시글 추천(like)
 	public void insertSupplementLike(Map<String, Object> map) throws Exception;
 	public int supplementLikeCount(int num);
+	public void deleteSupplementLike(Map<String, Object> map) throws Exception;
 	
 
 }
