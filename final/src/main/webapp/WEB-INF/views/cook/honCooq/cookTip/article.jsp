@@ -62,10 +62,19 @@ function deleteBoard() {
 			${dto.content}
 	</div>
 	<div class="cookTip_LikeBox">
-		<span class="cookTip_LikeHeart"> <i class="far fa-heart ILikeHeart"></i>좋아요
-			13
-		</span> <span class="cookTip_Comment"><i class="far fa-comments"></i>댓글 54</span> <span
-			class="cookTip_fullLikeHeart"> <i class="fas fa-heart"></i></span>
+		<span class="cookTip_LikeHeart"> 
+			<button type="button" class="cookTip_LikeButton"><i class="far fa-heart ILikeHeart"></i></button>13
+		</span> 
+	</div>
+	<div class="cookTip_updateAndDelete">
+		<div class="cookTip_articleButtons">
+			<div class="cookTip_articleButtonBox ">
+					<button class="cookTip_update" type="button" onclick="updateBoard('${dto.num}');">수정</button>
+			</div>
+			<div class="cookTip_articleButtonBox ">
+					<button class="cookTip_delete" type="button" onclick="deleteBoard('${dto.num}');">삭제</button>			
+			</div>
+		</div>
 	</div>
 	<div class="cookTip_preAndNext">
 		<div class="cookTip_articleButtons">			

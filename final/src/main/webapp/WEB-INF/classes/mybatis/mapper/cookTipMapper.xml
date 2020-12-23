@@ -58,7 +58,7 @@
 
 	<!-- 글보기(article) -->
 	<select id="readCookTip" parameterType="Integer" resultType="com.sp.app.cook.honCooq.cookTip.CookTip">
-		SELECT num, c.userId, userName, subject, content, TO_CHAR(register_date, 'YYYY-MM-DD') register_date, hitCount
+		SELECT num, c.userId, userName, subject, content, TO_CHAR(register_date, 'YYYY-MM-DD') register_date, hitCount, category
 		FROM cookTip c
 		JOIN  member1 m ON c.userId = m.userId
 		WHERE num = #{num}                       
@@ -99,11 +99,13 @@
 		FETCH FIRST 1 ROWS ONLY                      
 	</select>
 	
+	<!-- 수정 -->
 	<update id="updateCookTip" parameterType="com.sp.app.bbs.Board">
-		UPDATE cookTip SET category=#{category}, subject=#{subject}, content=#{content},
+		UPDATE cookTip SET category=#{category}, subject=#{subject}, content=#{content}
 				WHERE num=#{num} AND userId = #{userId}
 	</update>	
 
+	<!-- 삭제 -->
 	<delete id="deleteCookTip" parameterType="map">
 		DELETE FROM cookTip WHERE num = #{num}
 		<if test="userId != 'admin' ">

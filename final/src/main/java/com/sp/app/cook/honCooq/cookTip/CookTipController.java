@@ -15,7 +15,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sp.app.common.FileManager;
 import com.sp.app.common.MyUtil;
@@ -190,6 +189,75 @@ public class CookTipController {
 		
 		return ".cook.honCooq.cookTip.article";
 	}
+
+	@RequestMapping(value="update", method=RequestMethod.GET)
+	public String updateForm(
+			@RequestParam int num,
+			@RequestParam String page,
+			HttpSession session,
+			Model model
+			) {
+		
+		SessionInfo info = (SessionInfo)session.getAttribute("member");
+		
+		CookTip dto = service.readCookTip(num);
+		
+		if (dto==null) {
+			return "redirect:/cook/honCooq/cookTip/list?page="+page;
+		}
+		
+		if (! info.getUserId().equals(dto.getUserId())) {
+			return "redirect:/cook/honCooq/cookTip/list?page="+page;
+		}
+		
+		model.addAttribute("dto", dto);
+		model.addAttribute("mode", "update");
+		model.addAttribute("page", page);
+		
+		return ".cook.honCooq.cookTip.created";
+	}	
 	
+	@RequestMapping(value="update", method=RequestMethod.POST)
+	public String updateSubmit(
+			CookTip dto,
+			@RequestParam String page,
+			HttpSession session
+			) {
+		SessionInfo info = (SessionInfo)session.getAttribute("member");
+		dto.setUserId(info.getUserId());
+		
+		try {
+			service.updateCookTip(dto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return "redirect:/cook/honCooq/cookTip/list?page="+page;
+	}
+	
+	@RequestMapping(value = "delete")
+	public String delete(
+			@RequestParam int num,
+			@RequestParam String page,
+			@RequestParam(defaultValue="all") String condition,
+			@RequestParam(defaultValue="") String keyword,
+			HttpSession session
+			) throws Exception {
+		SessionInfo info=(SessionInfo)session.getAttribute("member");
+		
+		keyword = URLDecoder.decode(keyword, "utf-8");
+		String query="page="+page;
+		if(keyword.length()!=0) {
+			query+="&condition="+condition+"&keyword="+URLEncoder.encode(keyword, "UTF-8");
+		}
+		
+		try {	
+			service.deleteCookTip(num, info.getUserId());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return "redirect:/cook/honCooq/cookTip/list?"+query;
+	}	
 	
 }

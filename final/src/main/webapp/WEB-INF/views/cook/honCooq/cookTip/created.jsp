@@ -8,7 +8,6 @@
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/se/js/HuskyEZCreator.js"
 	charset="utf-8"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/jquery/js/jquery-1.12.4.min.js"></script>
 
 <script type="text/javascript">
 	function check() {
@@ -21,13 +20,21 @@
 			return false;
 		}
 
+		str = f.category.value;
+		if (!str) {
+			alert("분류를 선택하세요. ");
+			f.category.focus();
+			return false;
+		}
+
+		
 		str = f.content.value;
 		if (!str || str == "<p>&nbsp;</p>") {
 			alert("내용을 입력하세요. ");
 			f.content.focus();
 			return false;
 		}
-
+		
 		f.action = "${pageContext.request.contextPath}/cook/honCooq/cookTip/${mode}";
 
 		return true;
@@ -70,7 +77,7 @@
 			<span class="cookTip_smallTitle">분류선택</span> 
 		</div>
 		<div class="">
-			<select name="category" class="cookTip_select" id="cookTip_select">
+			<select name="category" class="cookTip_select" id="category">
 				<option value="::카테고리 선택하기::" ${dto.category=="::카테고리 선택하기::"?"selected='selected'":"" }>:: 선택해 주세요 ::</option>
 				<option value="장보기" ${dto.category=="장보기"?"selected='selected'":"" }>장보기</option>
 				<option value="조미료 관리"
@@ -98,19 +105,11 @@
 		</div>
 
 		<div class="cookTip_subjectTitle">
-			<span class="cookTip_smallTitle">첨부 파일</span> 
-		</div>
-		<div class="cookTip_subjectBody">
-			<input type="file" name="upload" id="cookTip_files"
-				placeholder="유튜브 영상코드를 입력해 주세요." value="${dto.subject}">
-		</div>
-
-		<div class="cookTip_subjectTitle">
 			<span class="cookTip_smallTitle">유튜브 URL</span> 
 		</div>
 		<div class="cookTip_subjectBody">
 			<input type="text" name="youtubeURL" id="youtubeURL"
-				placeholder="유튜브 영상코드를 입력해 주세요." value="${dto.subject}">
+				placeholder="유튜브 영상코드를 입력해 주세요." value="">
 		</div>
 
 		<div class="cookTip_subjectTitle">
@@ -118,23 +117,9 @@
 		</div>
 		<div class="cookTip_subjectBody">
 			<input type="text" name="youtubeSubtitle" id="youtubeSubtitle"
-				placeholder="유튜브 영상 자막을 입력해 주세요." value="${dto.subject}">
+				placeholder="유튜브 영상 자막을 입력해 주세요." value="">
 		</div>
-		
-
-			  <c:if test="${mode=='update' }">
-				  <tr align="left" height="40" style="border-bottom: 1px solid #cccccc;">
-				      <td width="100" bgcolor="#eeeeee" style="text-align: center;">첨부된파일</td>
-				      <td style="padding-left:10px;">
-				          <c:if test="${not empty dto.saveFilename}">
-				          		<a href="${pageContext.request.contextPath}/cook/honCooq/cookTip/deleteFile?num=${dto.num}&page=${page}"><i class="far fa-trash-alt"></i></a>
-				          </c:if>
-						  ${dto.originalFilename}
-				       </td>
-				  </tr>
-			  </c:if>		
-		
-		
+				
 		<div class="cookTip_buttonBoxBody">
 			<button type="submit" id="cookTip_writeSubmit" class="cookTip_btn" >${mode=='update'?'수정완료':'등록하기'}</button>
 			<button type="button" id="cookTip_CancelSubmit" class="cookTip_btn">${mode=='update'?'수정취소':'등록취소'}</button>

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sp.app.common.FileManager;
+import com.sp.app.common.MyUtil;
 import com.sp.app.common.dao.CommonDAO;
 
 @Service("honCooq.cookTipService")
@@ -14,6 +15,9 @@ public class CookTipServiceImpl implements CookTipService{
 	@Autowired
 	private CommonDAO dao;
 
+	@Autowired
+	private MyUtil myUtil;
+	
 	@Autowired
 	private FileManager fileManager;
 	
@@ -95,15 +99,34 @@ public class CookTipServiceImpl implements CookTipService{
 	}
 
 	@Override
-	public void updateCookTip(CookTip dto, String pathname) throws Exception {
-		dao.updateData("cookTip.updateCookTip", dto);
-		
+	public void updateCookTip(CookTip dto) throws Exception {
+		try {
+			dao.updateData("cookTip.updateCookTip", dto);			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}		
 	}
 
 	@Override
-	public void deleteCookTip(int num, String pathname, String userId) throws Exception {
-		// TODO Auto-generated method stub
-		
+	public void deleteCookTip(int num, String userId) throws Exception {
+		try {
+			CookTip dto = readCookTip(num);
+			if (dto==null || (! userId.equals("admin") && ! dto.getUserId().equals(userId))) {
+				return;
+			}
+			// 스마트에디터 사용해 저장한 이미지 삭제하기 
+			List<String> images;
+			images = myUtil.getImgSrc(dto.getContent());
+			if (images.size() != 0) {
+				for (String image : images) {
+					fileManager.doFileDelete(image);
+				}
+			}
+
+			dao.deleteData("cookTip.deleteCookTip", dto);			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
