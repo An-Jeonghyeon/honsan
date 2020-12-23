@@ -41,16 +41,16 @@ function links() {
 
 // 
 
+
 $(function() {
-		 var color = '#'; 
-		 var letters = ['f6c9cc', 'a8c0c0', 'FEBF36', 'FF7238', '6475A0', 'acc7bf', '5e5f67', 'c37070', 'eae160', 'bf7aa3', 'd7d967']; 
-		 color += letters[Math.floor(Math.random() * letters.length)]; 
-		$(".cookTip_content").css("background", color);		
-
-/* 	$(".cookTip_content").css("background", "red");
-	alert("aaa"); */
-});	
-
+	var color = '#'; 
+	var letters = ['f6c9cc', 'a8c0c0', 'FEBF36', 'FF7238', '6475A0', 'acc7bf', 'c37070', 'eae160', 'bf7aa3', 'd7d967', 'a3d2ca', 'ff8e71', 'c6ebc9', 'a7c5eb', '949cdf', 'ffb396', 'c5a880']; 
+	$(".cookTip_content-box .cookTip_content").each(function(){
+		color = '#';
+		color += letters[Math.floor(Math.random() * letters.length)]; 
+		$(this).css("background", color);
+	});
+});
 
 </script>
 

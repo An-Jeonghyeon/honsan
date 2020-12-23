@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sp.app.common.FileManager;
 import com.sp.app.common.MyUtil;
@@ -150,6 +151,7 @@ public class CookTipController {
 			@RequestParam String page,
 			@RequestParam(defaultValue="all") String condition,
 			@RequestParam(defaultValue="") String keyword,
+			HttpSession session,
 			Model model			
 			) throws Exception {
 		
@@ -180,10 +182,27 @@ public class CookTipController {
 		CookTip preReadDto = service.preReadCookTip(map);
 		CookTip nextReadDto = service.nextReadCookTip(map);
 		
+		
 		model.addAttribute("dto", dto);		
 		model.addAttribute("preReadDto", preReadDto);		
 		model.addAttribute("nextReadDto", nextReadDto);		
 		
+		// 좋아요 여부 가져오기
+		SessionInfo info=(SessionInfo)session.getAttribute("member");
+
+		Map<String, Object> paramMap=new HashMap<>();
+		paramMap.put("num", num);
+		paramMap.put("userId", info.getUserId());
+		
+		int readcookTipLike=0;
+		
+		try {
+			readcookTipLike = service.readCookTipLike(paramMap);					
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		model.addAttribute("userLike", readcookTipLike);
 		model.addAttribute("page", page);
 		model.addAttribute("query", query);
 		
@@ -260,4 +279,65 @@ public class CookTipController {
 		return "redirect:/cook/honCooq/cookTip/list?"+query;
 	}	
 	
+	// 게시글 좋아요 추가(insert) : AJAX-JSON
+	@RequestMapping(value="insertCookTipLike", method=RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> insertCookTipLike(
+			@RequestParam int num,
+			HttpSession session
+			) {
+		String state="true";
+		int cookTipLikeCount=0;
+		SessionInfo info=(SessionInfo)session.getAttribute("member");
+		
+		Map<String, Object> paramMap=new HashMap<>();
+		paramMap.put("num", num);
+		paramMap.put("userId", info.getUserId());
+		
+		try {
+			service.insertCookTipLike(paramMap);					
+		} catch (Exception e) {
+			e.printStackTrace();
+			state="false";
+		}
+			
+		cookTipLikeCount = service.cookTipLikeCount(num);
+		
+		Map<String, Object> model=new HashMap<>();
+		model.put("state", state);
+		model.put("cookTipLikeCount", cookTipLikeCount);
+		
+		return model;
+	}	
+	
+	// 게시글 좋아요 삭제(delete) : AJAX-JSON
+	@RequestMapping(value="deleteCookTipLike", method=RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> deleteCookTipLike(
+			@RequestParam int num,
+			HttpSession session
+			) {
+		String state="true";
+		int cookTipLikeCount=0;
+		SessionInfo info=(SessionInfo)session.getAttribute("member");
+		
+		Map<String, Object> paramMap=new HashMap<>();
+		paramMap.put("num", num);
+		paramMap.put("userId", info.getUserId());
+		
+		try {
+			service.deleteCookTipLike(paramMap);					
+		} catch (Exception e) {
+			e.printStackTrace();
+			state="false";
+		}
+			
+		cookTipLikeCount = service.cookTipLikeCount(num);
+		 
+		Map<String, Object> model=new HashMap<>();
+		model.put("state", state);
+		model.put("cookTipLikeCount", cookTipLikeCount);
+		
+		return model;
+	}		
 }

@@ -131,16 +131,46 @@ public class CookTipServiceImpl implements CookTipService{
 
 	@Override
 	public void insertCookTipLike(Map<String, Object> map) throws Exception {
-		// TODO Auto-generated method stub
-		
+		try {
+			dao.insertData("cookTip.insertCookTipLike", map);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
 	}
 
 	@Override
-	public int CookTipLikeCount(int num) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int cookTipLikeCount(int num) {
+		int result=0;
+		try {
+			result=dao.selectOne("cookTip.cookTipLikeCount", num);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
 	}
 
+	@Override
+	public int readCookTipLike(Map<String, Object> map) throws Exception{
+		int result=0;
+		try {
+			result=dao.selectOne("cookTip.readCookTipLike", map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	@Override
+	public void deleteCookTipLike(Map<String, Object> map) throws Exception {
+		try {
+			dao.deleteData("cookTip.deleteCookTipLike", map);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}		
+	
 	@Override
 	public void insertReply(Reply dto) throws Exception {
 		// TODO Auto-generated method stub
@@ -175,6 +205,6 @@ public class CookTipServiceImpl implements CookTipService{
 	public int replyAnswerCount(int answer) {
 		// TODO Auto-generated method stub
 		return 0;
-	}	
+	}
 	
 }

@@ -32,6 +32,137 @@ function deleteBoard() {
 	}
 </script>
 
+<script type="text/javascript">
+function ajaxJSON(url, method, query, fn) {
+	$.ajax({
+		type:method
+		,url:url
+		,data:query
+		,dataType:"json"
+		,success:function(data) {
+			fn(data);
+		}
+		,beforeSend:function(jqXHR) {
+	        jqXHR.setRequestHeader("AJAX", true);
+	    }
+	    ,error:function(jqXHR) {
+	    	if(jqXHR.status===403) {
+	    		login();
+	    		return false;
+	    	}
+	    	
+	    	console.log(jqXHR.responseText);
+	    }
+	});
+}
+
+function ajaxHTML(url, method, query, selector) {
+	$.ajax({
+		type:method
+		,url:url
+		,data:query
+		,success:function(data) {
+			$(selector).html(data);
+		}
+		,beforeSend:function(jqXHR) {
+	        jqXHR.setRequestHeader("AJAX", true);
+	    }
+	    ,error:function(jqXHR) {
+	    	if(jqXHR.status===403) {
+	    		login();
+	    		return false;
+	    	}
+	    	
+	    	console.log(jqXHR.responseText);
+	    }
+	});
+}
+
+//게시글 좋아요 여부
+$(function(){
+	$(".btnSendCookTipLike").click(function(){
+		var userLike=$("#cookTipLikeCount").attr("data-userLike");
+		if(userLike=="0") {
+			if(! confirm("게시물이 마음에 드세요?")) {
+				return false;
+			}
+			var url="${pageContext.request.contextPath}/cook/honCooq/cookTip/insertCookTipLike";
+			var num="${dto.num}";
+			// var query={num:num}; 이렇게 써도 아래와 같은 의미
+			var query="num="+num;
+			
+			var fn = function(data){
+				var state=data.state;
+				if(state==="true") {
+					var count = data.cookTipLikeCount;
+					$("#cookTipLikeCount").text(count);
+					$("#cookTipLikeCount").attr("data-userLike", "1");
+					
+				} else if(state==="false") {
+					
+					alert("좋아요 추가에 문제가 발생했습니다.");
+				}
+			};		
+		} else {
+			if (! confirm("좋아요를 취소하실 건가요?")) {
+				return false;
+			}
+			var url="${pageContext.request.contextPath}/cook/honCooq/cookTip/deleteCookTipLike";
+			var num="${dto.num}";
+			var query="num="+num;
+			
+			var fn = function(data){
+				var state=data.state;
+				if(state==="true") {
+					var count = data.cookTipLikeCount;
+					$("#cookTipLikeCount").text(count);
+					$("#cookTipLikeCount").attr("data-userLike", "0");
+				} else if(state==="false") {
+					alert("좋아요 삭제에 문제가 발생했습니다.");
+				}
+			};								
+		}	
+		ajaxJSON(url, "post", query, fn);
+	});
+	
+/* 	function readCookTipLike() {
+		var url="${pageContext.request.contextPath}/cook/honCooq/cookTip/readCookTipLike";
+		var num="${dto.num}";
+		// var query={num:num}; 이렇게 써도 아래와 같은 의미
+		var query="num="+num;
+		
+		var fn = function(data){
+			var state=data.state;
+			if(state==="true") {
+				alert("남긴 적이 없으시네요!!");
+			} else if(state==="false") {
+				alert("좋아요는 한번만 가능합니다. !!!");
+			}
+		};
+		
+		ajaxJSON(url, "post", query, fn);
+	}	 */
+	
+	
+});
+
+// 페이징 처리
+$(function() {
+	listPage(1);
+});
+
+// 댓글 리스트 보이기
+function listPage(page) {
+	var url = "${pageContext.request.contextPath}/cook/honCooq/cookTip/listReply";
+	var query = "num=${dto.num}&pageNo="+page;
+	var selector = "#listReply";
+	
+	ajaxHTML(url, "get", query, selector);
+}
+
+
+
+</script>
 
 <div class="cookTip_articleMainBody">
 	<div class="cookTip_articleMainHeader">
@@ -63,7 +194,7 @@ function deleteBoard() {
 	</div>
 	<div class="cookTip_LikeBox">
 		<span class="cookTip_LikeHeart"> 
-			<button type="button" class="cookTip_LikeButton"><i class="far fa-heart ILikeHeart"></i></button>13
+			<button type="button" class="cookTip_LikeButton btnSendCookTipLike"><i class="far fa-heart ILikeHeart"></i><span id="cookTipLikeCount" data-userLike="${userLike}">${dto.cookTipLikeCount}</span></button>
 		</span> 
 	</div>
 	<div class="cookTip_updateAndDelete">
@@ -98,6 +229,7 @@ function deleteBoard() {
 		</div>
 	</div>
 
+	<div id="cookTip_listReply"></div>
 
 	<div class="cookTip_ReplyAll">
 		<div class="cookTip_ReplySub">
