@@ -110,7 +110,7 @@ public class RoomController {
 	
 	@GetMapping("roomCreated")
 	public String roomCread(Model model) throws Exception {
-		model.addAttribute("mode", "created");
+		model.addAttribute("mode", "roomCreated");
 		return ".room.roomCreated";
 	}
 	
@@ -193,6 +193,7 @@ public class RoomController {
 		
 		Room dto = service.readRoom(num);
 		
+		
 		if (dto==null) {
 			return "redirect:/room/roomlist?page="+page;
 		}
@@ -200,9 +201,10 @@ public class RoomController {
 		if (! info.getUserId().equals(dto.getUserId())) {
 			return "redirect:/room/roomlist?page="+page;
 		}
+
 		
 		model.addAttribute("dto", dto);
-		model.addAttribute("mode", "update");
+		model.addAttribute("mode", "roomUpdate");
 		model.addAttribute("page", page);
 		
 		return ".room.roomCreated";
@@ -210,20 +212,28 @@ public class RoomController {
 	
 	@PostMapping("roomUpdate")
 	public String updateSubmit(
+			@RequestParam(value = "aditem_none", defaultValue = "1") String aditem_none,
+			@RequestParam(value = "options_none", defaultValue = "1") String options_none,
 			Room dto,
 			@RequestParam String page,
 			HttpSession session
 			) {
 		String root = session.getServletContext().getRealPath("/");
-		String pathname=root+"uploads"+File.separator+"bbs";
+		String pathname=root+"uploads"+File.separator+"room";
 		
 		try {
+			if(!aditem_none.equals("1")) {
+				dto.setAditem(aditem_none);
+			}
+			if(!options_none.equals("1")) {
+				dto.setOptions(options_none);
+			}
+			
 			service.updateRoom(dto, pathname);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		return "redirect:/bbs/list?page="+page;
+		return "redirect:/room/roomlist?page="+page;
 	}
 	
 	@RequestMapping("deleteFile")
@@ -236,7 +246,7 @@ public class RoomController {
 		SessionInfo info = (SessionInfo)session.getAttribute("member");
 		
 		String root = session.getServletContext().getRealPath("/");
-		String pathname = root+"uploads"+File.separator+"bbs";
+		String pathname = root+"uploads"+File.separator+"room";
 		
 		Room dto = service.readRoom(num);
 		if (dto==null) {
@@ -258,7 +268,7 @@ public class RoomController {
 			e.printStackTrace();
 		}
 		
-		return "redirect:/bbs/update?num="+num+"&page="+page;
+		return "redirect:/room/roomUpdate?num="+num+"&page="+page;
 	}
 	
 	@RequestMapping("delete")
@@ -271,7 +281,7 @@ public class RoomController {
 		
 		SessionInfo info =(SessionInfo)session.getAttribute("member");
 		String root = session.getServletContext().getRealPath("/");
-		String pathname=root+"uploads"+File.separator+"bbs";
+		String pathname=root+"uploads"+File.separator+"room";
 		
 		keyword = URLDecoder.decode(keyword, "utf-8");
 		String query = "page="+page;

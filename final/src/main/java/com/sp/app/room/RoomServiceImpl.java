@@ -31,7 +31,6 @@ public class RoomServiceImpl implements RoomService{
 			dto.setNum(roomSeq);
 			
 			
-			// 회원정보 저장
 			dao.insertData("room.insertRoom", dto);
 			
 			dao.insertData("room.insertRoomlist", dto);
@@ -97,7 +96,14 @@ public class RoomServiceImpl implements RoomService{
 				dto.setOriginalFilename(dto.getUpload().getOriginalFilename());
 			}*/
 			
+			if(dto.getMrent()==0) {
+				dto.setDealtype("전세");
+			}else {
+				dto.setDealtype("월세");
+			}
+			
 			dao.updateData("room.updateRoom", dto);
+			dao.updateData("room.updateRoomlist", dto);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

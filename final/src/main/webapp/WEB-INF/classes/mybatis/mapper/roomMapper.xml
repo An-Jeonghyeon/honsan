@@ -104,9 +104,9 @@
 		WHERE num=#{num}
 	</update>
 	<update id="updateRoomlist" parameterType="com.sp.app.room.Room">
-		UPDATE room SET
+		UPDATE roomlist SET
 		addr1=#{addr1}, addr2=#{addr2, jdbcType=VARCHAR},
-		dealtype=#{dealtype}, depo=#{depo}, mrent=#{mrent},
+		dealtype=#{dealtype, jdbcType=VARCHAR}, depo=#{depo}, mrent=#{mrent},
 		adcost=#{adcost},
 		aditem=#{aditem}, totfloor=#{totfloor}, corfloor=#{corfloor},
 		roomtype=#{roomtype}, m2=#{m2}, pyeoug=#{pyeoug}, elev=#{elev},

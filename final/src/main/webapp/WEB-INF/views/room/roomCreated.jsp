@@ -26,7 +26,7 @@ function roomOk(){
 	var f = document.roomForm;
 	var str;
 	
-	str = f.zip.value;
+	str = f.addr1.value;
 	str = str.trim();
 	if(!str) {
 		alert("주소를 입력하세요.");
@@ -106,7 +106,7 @@ function roomOk(){
 		f.m2.focus();
 		return;
 	}
-	if(!isNaN(str)) {
+	if(isNaN(str)) {
 	      alert("숫자만 가능합니다.");
 	      f.m2.focus();
 	      return;
@@ -119,7 +119,7 @@ function roomOk(){
 		f.pyeoug.focus();
 		return;
 	}
-	if(!isNaN(str)) {
+	if(isNaN(str)) {
 	      alert("숫자만 가능합니다.");
 	      f.m2.focus();
 	      return;
@@ -191,7 +191,7 @@ function roomOk(){
 	
 	
 	
-	 f.action = "${pageContext.request.contextPath}/room/roomCreated";
+	 f.action = "${pageContext.request.contextPath}/room/${mode}";
 
 	 f.submit();
 }
@@ -233,11 +233,45 @@ function calculator(chk){
 	  }
 }
 
+</script>
 
+
+<script type="text/javascript">
+
+$(function(){
+	   
+var sel_files;
+	   $("body").on("change", ".roomForm input[type='file']", function(e){ 
+	       
+	      var files = e.target.files;
+	      var filesArr = Array.prototype.slice.call(files);
+	      
+	      filesArr.forEach(function(f) {
+	         // 이미지 파일이 아닌경우
+	         if(! f.type.match("image.*")) {
+	        	alert("이미지 파일만 가능합니다.");
+	            return;
+	         }
+	         
+	         sel_files=f;
+	         
+	         var reader = new FileReader();
+	         reader.onload = function(e1) {
+	            $("#mainimg").attr("src",e1.target.result);
+	            
+	            
+	         }
+	         reader.readAsDataURL(f);
+	      });
+	       
+	   });
+	});
 
 
 
 </script>
+
+
 
 
 
@@ -251,7 +285,7 @@ function calculator(chk){
 	</div>
 
 <div class="totaldiv" style="">
-<form name="roomForm" method="post">
+<form class="roomForm" name="roomForm" method="post">
 
 <!-- 주소 부분 -->
 <div style="width: 1000px; margin: 0px auto; padding-top: 100px;">
@@ -308,14 +342,14 @@ function calculator(chk){
                 <tbody><tr>
                     <th>보증금</th>
                     <td>
-                        <input type="text" class="text" name="depo" onkeydown="return number_validate1(event);"> 만원
+                        <input type="text" class="text" name="depo" value="${dto.depo }" onkeydown="return number_validate1(event);"> 만원
                         <span class="fc-red1">※무보증일 경우, 한 달 월세를 입력하세요</span>
                     </td>
                 </tr>
                 <tr>
                     <th>월세</th>
                     <td>
-                        <input type="text" class="text" name="mrent" onkeydown="return number_validate1(event);"> 만원
+                        <input type="text" class="text" name="mrent" value="${dto.mrent }" onkeydown="return number_validate1(event);"> 만원
                         <span class="fc-red1">※전세일 경우, 0을 입력 하세요</span>
                     </td>
                 </tr>
@@ -324,11 +358,11 @@ function calculator(chk){
                     <td>
                         <select style="width:180px" name="roomtype">
                             <option value="">선택하세요</option>
-                            <option value="오픈형 원룸 (방1)">오픈형 원룸 (방1)</option>
-                            <option value="분리형 원룸 (방1, 거실1)">분리형 원룸 (방1, 거실1)</option>
-                            <option value="복층형 원룸">복층형 원룸</option>
-                            <option value="투룸 (방2, 거실1)">투룸 (방2, 거실1)</option>
-                            <option value="쓰리룸+">쓰리룸+</option>
+                            <option value="오픈형 원룸 (방1)" ${dto.roomtype=="오픈형 원룸 (방1)"?"selected='selected'":""}>오픈형 원룸 (방1)</option>
+                            <option value="분리형 원룸 (방1, 거실1)" ${dto.roomtype=="분리형 원룸 (방1, 거실1)"?"selected='selected'":""}>분리형 원룸 (방1, 거실1)</option>
+                            <option value="복층형 원룸" ${dto.roomtype=="복층형 원룸"?"selected='selected'":""}>복층형 원룸</option>
+                            <option value="투룸 (방2, 거실1)" ${dto.roomtype=="투룸 (방2, 거실1)"?"selected='selected'":""}>투룸 (방2, 거실1)</option>
+                            <option value="쓰리룸+" ${dto.roomtype=="쓰리룸+"?"selected='selected'":""}>쓰리룸+</option>
                         </select>
                     </td>
                 </tr>
@@ -336,7 +370,7 @@ function calculator(chk){
                 <tr height="70">
                     <th>관리비</th>
                     <td>
-                        <input type="text" class="text" name="adcost" id="adcost"> 만원
+                        <input type="text" class="text" name="adcost" id="adcost" value="${dto.adcost }"> 만원
                         &nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;
                         <label><input type="checkbox" id="fee_none" name="fee_none" onclick="check()"> 없음</label>
                         <p class="i-gray">
@@ -347,7 +381,7 @@ function calculator(chk){
                             <label><input name="aditem" id="aditem" type="checkbox" value="인터넷"> 인터넷</label>
                             <label><input name="aditem" id="aditem" type="checkbox" value="TV"> TV</label>
                             &nbsp;|&nbsp;
-                            <label><input name="aditem_none" id="aditem_none" type="checkbox" value="없음"> 없음</label><br>
+                            <label><input name="aditem_none" id="aditem_none" type="checkbox" value="없음" value="없음" ${dto.aditem=="없음"?"checked='checked'":""}> 없음</label><br>
 	                        <span class="fc-red1">※없음 선택 시 항목 없음</span>
                         </p>
                     </td>
@@ -355,7 +389,7 @@ function calculator(chk){
                 <tr>
                     <th height="80">크기</th>
                     <td class="size">
-                            계약면적 : <input type="text" class="text min" name="m2" id="cal2" onkeyup="calculator(2);"> m<sup>2</sup> = <input type="text" class="text min" name="pyeoug" id="cal1" onkeyup="calculator(1);"> P
+                            계약면적 : <input type="text" class="text min" value="${dto.m2 }" name="m2" id="cal2" onkeyup="calculator(2);"> m<sup>2</sup> = <input type="text" class="text min" name="pyeoug" value="${dto.pyeoug }" id="cal1" onkeyup="calculator(1);"> P
                         <br>
                         <span class="fc-red1">※한 단위만 입력하면 자동으로 전환됩니다</span>
                     </td>
@@ -371,8 +405,8 @@ function calculator(chk){
                         해당 층 :
                         <select name="corfloor">
                             <option value="">선택하세요</option>
-                            <option value="반지하">반지하</option>
-                            <option value="옥탑방">옥탑방</option>
+                            <option value="반지하" ${dto.corfloor=="반지하"?"selected='selected'":""}>반지하</option>
+                            <option value="옥탑방" ${dto.corfloor=="옥탑방"?"selected='selected'":""}>옥탑방</option>
                         <option value="1">1층</option><option value="2">2층</option><option value="3">3층</option><option value="4">4층</option><option value="5">5층</option><option value="6">6층</option><option value="7">7층</option><option value="8">8층</option><option value="9">9층</option><option value="10">10층</option><option value="11">11층</option><option value="12">12층</option><option value="13">13층</option><option value="14">14층</option><option value="15">15층</option><option value="16">16층</option><option value="17">17층</option><option value="18">18층</option><option value="19">19층</option><option value="20">20층</option><option value="21">21층</option><option value="22">22층</option><option value="23">23층</option><option value="24">24층</option><option value="25">25층</option><option value="26">26층</option><option value="27">27층</option><option value="28">28층</option><option value="29">29층</option><option value="30">30층</option><option value="31">31층</option><option value="32">32층</option><option value="33">33층</option><option value="34">34층</option><option value="35">35층</option><option value="36">36층</option><option value="37">37층</option><option value="38">38층</option><option value="39">39층</option><option value="40">40층</option><option value="41">41층</option><option value="42">42층</option><option value="43">43층</option><option value="44">44층</option><option value="45">45층</option><option value="46">46층</option><option value="47">47층</option><option value="48">48층</option><option value="49">49층</option><option value="50">50층</option><option value="51">51층</option><option value="52">52층</option><option value="53">53층</option><option value="54">54층</option><option value="55">55층</option><option value="56">56층</option><option value="57">57층</option><option value="58">58층</option><option value="59">59층</option><option value="60">60층</option><option value="61">61층</option><option value="62">62층</option><option value="63">63층</option><option value="64">64층</option><option value="65">65층</option><option value="66">66층</option><option value="67">67층</option><option value="68">68층</option><option value="69">69층</option><option value="70">70층</option><option value="71">71층</option><option value="72">72층</option><option value="73">73층</option><option value="74">74층</option><option value="75">75층</option><option value="76">76층</option><option value="77">77층</option><option value="78">78층</option><option value="79">79층</option><option value="80">80층</option></select>
                     </td>
                 </tr>
@@ -392,7 +426,7 @@ function calculator(chk){
                         <label><input type="checkbox" name="options" value="신발장"> 신발장</label>
                         <label><input type="checkbox" name="options" value="싱크대"> 싱크대</label>
                         <p class="i-gray">
-                            <label><input name="options_none" id="options_none" type="checkbox" value="없음"> 없음</label><br>
+                            <label><input name="options_none" id="options_none" type="checkbox" value="없음" ${dto.options=="없음"?"checked='checked'":""}> 없음</label><br>
 	                        <span class="fc-red1">※없음 선택 시 항목 없음</span>
                         </p>
                     </td>
@@ -400,27 +434,27 @@ function calculator(chk){
                 <tr>
                     <th>주차</th>
                     <td class="has-col">
-                        <label><input type="radio" name="park" value="1"> 가능</label>
-                        <label><input type="radio" name="park" value="0"> 없음</label>
+                        <label><input type="radio" name="park" value="1" ${dto.park=="1"?"checked='checked'":""}> 가능</label>
+                        <label><input type="radio" name="park" value="0" ${dto.park=="0"?"checked='checked'":""}> 없음</label>
                     </td>
                 </tr>
                 <tr>
                 	<th>엘리베이터</th>
                 	<td class="elev">
-                	 	<label><input type="radio" name="elev" value="1"> 있음</label>
-                        <label><input type="radio" name="elev" value="0"> 없음</label>
+                	 	<label><input type="radio" name="elev" value="1" ${dto.elev=="1"?"checked='checked'":""}> 있음</label>
+                        <label><input type="radio" name="elev" value="0" ${dto.elev=="0"?"checked='checked'":""}> 없음</label>
                 	</td>
                 </tr>
                 <tr>
                     <th>입주가능일</th>
                     <td>
-                        <input type="text" class="text max" name="movedate">
+                        <input type="text" value="${dto.movedate }" class="text max" name="movedate">
                     </td>
                 </tr>
                 <tr>
                     <th>제목</th>
                     <td>
-                        <input type="text" class="text max" name="subject">
+                        <input type="text" value="${dto.subject }" class="text max" name="subject">
                     </td>
                 </tr>
                 <tr>
@@ -431,7 +465,7 @@ function calculator(chk){
 방의 느낌 등을 작성해 주세요.      
 다른 방에 대한 설명, 연락처, 홍보 메시지 등 해당 방과 관련없는 내용을 입력하거나 
 해당 방에 대한 설명이 부적절할 경우 중개가 종료될 수 있습니다.
-                                  "></textarea>
+                                  ">${dto.content }</textarea>
                         <div class="i-description-status">
                             <em>방 설명을 최소 50자 이상 입력해 주세요.</em>
                         </div>
@@ -452,95 +486,37 @@ function calculator(chk){
 			<h3 style="background:#ffeb5e; height: 30px; font-size: 20px; color: black; border: none;"><i class="fas fa-camera"></i>  방 상세 사진</h3>
 			<div>
 			
-			
 				<div class="add-photo">
-                <p class="item-txt ischrome">
-                    · 사진 최소 5장 최대 15장 까지 등록할 수 있습니다.<br>
-                    · 아래에 등록 버튼을 클릭하여 사진을 선택하거나, 마우스로 사진을 끌어와서 등록할 수도 있습니다.<br>
-                    · 한꺼번에 여러 장 등록도 가능합니다.<br>
-                    <span class="fc-red1">· 직접 찍은 실제 방 사진의 원본을 등록해야 합니다.</span><br>
-                    <span class="fc-red1">· 워터마크, 날짜, 전화번호 등이 포함된 사진이나 방과 관련없는 사진을 등록할 경우 중개가 종료될 수 있습니다.</span>
-                </p>
-                <p class="item-txt isnotchrome" style="display:none">
-                    · 등록 버튼을 이용하여 사진 최소 5장 최대 15장 까지 등록할 수 있습니다.<br>
-                    · 사진을 여러장 선택하여 한번에 등록도 가능합니다.
-                </p>
-                <p class="item-txt islowIE" style="display:none">
-                    · 등록 버튼을 이용하여 사진 최소 5장 최대 15장 까지 등록할 수 있습니다.
-                </p>
-
-                <div class="item-photo" id="add-photo-box">
-                    <ul class="ui-sortable">
-                        <li id="li1" class="ui-sortable-handle">
-                            <span class="i-count">1</span>
-                            <button class="i-btn" type="button" id="add_image1" value="true" data-index="0" style="z-index: 1;">+등록</button>
-                            <em class="i-tit">대표사진</em>
-                        <div id="html5_1epm60rsr1igd1g3i17nr477vqv3_container" class="moxie-shim moxie-shim-html5" style="position: absolute; top: 28px; left: 33px; width: 41px; height: 28px; overflow: hidden; z-index: 0;"><input id="html5_1epm60rsr1igd1g3i17nr477vqv3" type="file" style="font-size: 999px; opacity: 0; position: absolute; top: 0px; left: 0px; width: 100%; height: 100%;" multiple="" accept="image/jpeg,image/png"></div></li>
-                        <li id="li2" class="ui-sortable-handle">
-                            <span class="i-count">2</span>
-                            <button class="i-btn" type="button" id="add_image2" value="true" data-index="1" style="z-index: 1;">+등록</button>
-                            <em class="i-tit">화장실</em>
-                        <div id="html5_1epm60rsu2ru1iift791rdp1fc56_container" class="moxie-shim moxie-shim-html5" style="position: absolute; top: 28px; left: 33px; width: 41px; height: 28px; overflow: hidden; z-index: 0;"><input id="html5_1epm60rsu2ru1iift791rdp1fc56" type="file" style="font-size: 999px; opacity: 0; position: absolute; top: 0px; left: 0px; width: 100%; height: 100%;" multiple="" accept="image/jpeg,image/png"></div></li>
-                        <li id="li3" class="ui-sortable-handle">
-                            <span class="i-count">3</span>
-                            <button class="i-btn" type="button" id="add_image3" value="true" data-index="2" style="z-index: 1;">+등록</button>
-                            <em class="i-tit">주방</em>
-                        <div id="html5_1epm60rt11ljpoucan31q5q5s09_container" class="moxie-shim moxie-shim-html5" style="position: absolute; top: 28px; left: 33px; width: 41px; height: 28px; overflow: hidden; z-index: 0;"><input id="html5_1epm60rt11ljpoucan31q5q5s09" type="file" style="font-size: 999px; opacity: 0; position: absolute; top: 0px; left: 0px; width: 100%; height: 100%;" multiple="" accept="image/jpeg,image/png"></div></li>
-                        <li id="li4" class="ui-sortable-handle">
-                            <span class="i-count">4</span>
-                            <button class="i-btn" type="button" id="add_image4" data-index="3" style="z-index: 1;">+등록</button>
-                            <em class="i-tit">방사진</em>
-                        <div id="html5_1epm60rt2q531s1ejqglvg1roqc_container" class="moxie-shim moxie-shim-html5" style="position: absolute; top: 28px; left: 33px; width: 41px; height: 28px; overflow: hidden; z-index: 0;"><input id="html5_1epm60rt2q531s1ejqglvg1roqc" type="file" style="font-size: 999px; opacity: 0; position: absolute; top: 0px; left: 0px; width: 100%; height: 100%;" multiple="" accept="image/jpeg,image/png"></div></li>
-                        <li id="li5" class="ui-sortable-handle">
-                            <span class="i-count">5</span>
-                            <button class="i-btn" type="button" id="add_image5" data-index="4" style="z-index: 1;">+등록</button>
-                            <em class="i-tit">방사진</em>
-                        <div id="html5_1epm60rt4h311u9n1j481l6ddgbf_container" class="moxie-shim moxie-shim-html5" style="position: absolute; top: 28px; left: 33px; width: 41px; height: 28px; overflow: hidden; z-index: 0;"><input id="html5_1epm60rt4h311u9n1j481l6ddgbf" type="file" style="font-size: 999px; opacity: 0; position: absolute; top: 0px; left: 0px; width: 100%; height: 100%;" multiple="" accept="image/jpeg,image/png"></div></li>
-                        <li id="li6" class="ui-sortable-handle">
-                            <span class="i-count">6</span>
-                            <button class="i-btn" type="button" id="add_image6" data-index="5" style="z-index: 1;">+등록</button>
-                        <div id="html5_1epm60rt71a031k9n26pmg2g9ci_container" class="moxie-shim moxie-shim-html5" style="position: absolute; top: 28px; left: 33px; width: 41px; height: 28px; overflow: hidden; z-index: 0;"><input id="html5_1epm60rt71a031k9n26pmg2g9ci" type="file" style="font-size: 999px; opacity: 0; position: absolute; top: 0px; left: 0px; width: 100%; height: 100%;" multiple="" accept="image/jpeg,image/png"></div></li>
-                        <li id="li7" class="ui-sortable-handle">
-                            <span class="i-count">7</span>
-                            <button class="i-btn" type="button" id="add_image7" data-index="6" style="z-index: 1;">+등록</button>
-                        <div id="html5_1epm60rt9gtn1l071q4n18b1sr6l_container" class="moxie-shim moxie-shim-html5" style="position: absolute; top: 28px; left: 33px; width: 41px; height: 28px; overflow: hidden; z-index: 0;"><input id="html5_1epm60rt9gtn1l071q4n18b1sr6l" type="file" style="font-size: 999px; opacity: 0; position: absolute; top: 0px; left: 0px; width: 100%; height: 100%;" multiple="" accept="image/jpeg,image/png"></div></li>
-                        <li id="li8" class="ui-sortable-handle">
-                            <span class="i-count">8</span>
-                            <button class="i-btn" type="button" id="add_image8" data-index="7" style="z-index: 1;">+등록</button>
-                        <div id="html5_1epm60rtbka4vkg74murb1uro_container" class="moxie-shim moxie-shim-html5" style="position: absolute; top: 28px; left: 33px; width: 41px; height: 28px; overflow: hidden; z-index: 0;"><input id="html5_1epm60rtbka4vkg74murb1uro" type="file" style="font-size: 999px; opacity: 0; position: absolute; top: 0px; left: 0px; width: 100%; height: 100%;" multiple="" accept="image/jpeg,image/png"></div></li>
-                        <li id="li9" class="ui-sortable-handle">
-                            <span class="i-count">9</span>
-                            <button class="i-btn" type="button" id="add_image9" data-index="8" style="z-index: 1;">+등록</button>
-                        <div id="html5_1epm60rtdkm41qh8bvj5t8bn0r_container" class="moxie-shim moxie-shim-html5" style="position: absolute; top: 28px; left: 33px; width: 41px; height: 28px; overflow: hidden; z-index: 0;"><input id="html5_1epm60rtdkm41qh8bvj5t8bn0r" type="file" style="font-size: 999px; opacity: 0; position: absolute; top: 0px; left: 0px; width: 100%; height: 100%;" multiple="" accept="image/jpeg,image/png"></div></li>
-                        <li id="li10" class="ui-sortable-handle">
-                            <span class="i-count">10</span>
-                            <button class="i-btn" type="button" id="add_image10" data-index="9" style="z-index: 1;">+등록</button>
-                        <div id="html5_1epm60rtf15961c8c118f1civ1r11u_container" class="moxie-shim moxie-shim-html5" style="position: absolute; top: 28px; left: 33px; width: 41px; height: 28px; overflow: hidden; z-index: 0;"><input id="html5_1epm60rtf15961c8c118f1civ1r11u" type="file" style="font-size: 999px; opacity: 0; position: absolute; top: 0px; left: 0px; width: 100%; height: 100%;" multiple="" accept="image/jpeg,image/png"></div></li>
-                        <li id="li11" class="ui-sortable-handle">
-                            <span class="i-count">11</span>
-                            <button class="i-btn" type="button" id="add_image11" data-index="10" style="z-index: 1;">+등록</button>
-                        <div id="html5_1epm60rtj141q8og17om1qu1c8111_container" class="moxie-shim moxie-shim-html5" style="position: absolute; top: 28px; left: 33px; width: 41px; height: 28px; overflow: hidden; z-index: 0;"><input id="html5_1epm60rtj141q8og17om1qu1c8111" type="file" style="font-size: 999px; opacity: 0; position: absolute; top: 0px; left: 0px; width: 100%; height: 100%;" multiple="" accept="image/jpeg,image/png"></div></li>
-                        <li id="li12" class="ui-sortable-handle">
-                            <span class="i-count">12</span>
-                            <button class="i-btn" type="button" id="add_image12" data-index="11" style="z-index: 1;">+등록</button>
-                        <div id="html5_1epm60rtk118p19r91uipidqsu014_container" class="moxie-shim moxie-shim-html5" style="position: absolute; top: 28px; left: 33px; width: 41px; height: 28px; overflow: hidden; z-index: 0;"><input id="html5_1epm60rtk118p19r91uipidqsu014" type="file" style="font-size: 999px; opacity: 0; position: absolute; top: 0px; left: 0px; width: 100%; height: 100%;" multiple="" accept="image/jpeg,image/png"></div></li>
-                        <li id="li13" class="ui-sortable-handle">
-                            <span class="i-count">13</span>
-                            <button class="i-btn" type="button" id="add_image13" data-index="12" style="z-index: 1;">+등록</button>
-                        <div id="html5_1epm60rto18ak1kq6mv1vot1og617_container" class="moxie-shim moxie-shim-html5" style="position: absolute; top: 28px; left: 33px; width: 41px; height: 28px; overflow: hidden; z-index: 0;"><input id="html5_1epm60rto18ak1kq6mv1vot1og617" type="file" style="font-size: 999px; opacity: 0; position: absolute; top: 0px; left: 0px; width: 100%; height: 100%;" multiple="" accept="image/jpeg,image/png"></div></li>
-                        <li id="li14" class="ui-sortable-handle">
-                            <span class="i-count">14</span>
-                            <button class="i-btn" type="button" id="add_image14" data-index="13" style="z-index: 1;">+등록</button>
-                        <div id="html5_1epm60rtqjhe1chjj1a1ifh100g1a_container" class="moxie-shim moxie-shim-html5" style="position: absolute; top: 28px; left: 33px; width: 41px; height: 28px; overflow: hidden; z-index: 0;"><input id="html5_1epm60rtqjhe1chjj1a1ifh100g1a" type="file" style="font-size: 999px; opacity: 0; position: absolute; top: 0px; left: 0px; width: 100%; height: 100%;" multiple="" accept="image/jpeg,image/png"></div></li>
-                        <li id="li15" class="ui-sortable-handle">
-                            <span class="i-count">15</span>
-                            <button class="i-btn" type="button" id="add_image15" data-index="14" style="z-index: 1;">+등록</button>
-                        <div id="html5_1epm60rtr1em3iv3enu5jj1nup1d_container" class="moxie-shim moxie-shim-html5" style="position: absolute; top: 28px; left: 33px; width: 41px; height: 28px; overflow: hidden; z-index: 0;"><input id="html5_1epm60rtr1em3iv3enu5jj1nup1d" type="file" style="font-size: 999px; opacity: 0; position: absolute; top: 0px; left: 0px; width: 100%; height: 100%;" multiple="" accept="image/jpeg,image/png"></div></li>
-                    </ul>
-                </div>
-
-            </div>
-            
+	                <p class="item-txt ischrome">
+	                    · 사진 최소 5장 최대 15장 까지 등록할 수 있습니다.<br>
+	                    · 아래에 등록 버튼을 클릭하여 사진을 선택하거나, 마우스로 사진을 끌어와서 등록할 수도 있습니다.<br>
+	                    · 한꺼번에 여러 장 등록도 가능합니다.<br>
+	                    <span class="fc-red1">· 직접 찍은 실제 방 사진의 원본을 등록해야 합니다.</span><br>
+	                    <span class="fc-red1">· 워터마크, 날짜, 전화번호 등이 포함된 사진이나 방과 관련없는 사진을 등록할 경우 중개가 종료될 수 있습니다.</span>
+	                </p>
+	                <p class="item-txt isnotchrome" style="display:none">
+	                    · 등록 버튼을 이용하여 사진 최소 5장 최대 15장 까지 등록할 수 있습니다.<br>
+	                    · 사진을 여러장 선택하여 한번에 등록도 가능합니다.
+	                </p>
+	                <p class="item-txt islowIE" style="display:none">
+	                    · 등록 버튼을 이용하여 사진 최소 5장 최대 15장 까지 등록할 수 있습니다.
+	                </p>
+            	</div>
+            	
+            	<div class="imgfilediv">
+            	
+            		<div>
+				       <div class="imagePreView" onclick="document.all.upload.click();">
+				       	<p style="position: relative;"> 메인 사진</p>
+				       	<img class="mainimg" alt="" id="mainimg">
+				       </div>
+				    </div>
+				    <div>
+				          <input type="file" style="display: none;" name="upload">
+				    </div>
+            	
+            	
+            	</div>
             
             
 			</div>
@@ -559,9 +535,13 @@ function calculator(chk){
 
 	<table style="width: 100%;">
 	<tr>
-		<td align="center"><button class="roomCreatedbtn" type="button" onclick="roomOk();">등록하기</button> </td>
+		<c:if test="${mode=='roomUpdate'}">
+			<input type="hidden" name="num" value="${dto.num}">
+			<input type="hidden" name="page" value="${page}">
+		</c:if>
+		<td align="center"><button class="roomCreatedbtn" type="button" onclick="roomOk();">${mode=='roomUpdate'?'수정완료':'등록하기'}</button> </td>
 		<td align="center"><button class="roomCreatedbtn" type="reset">다시 입력</button> </td>
-		<td align="center"><button class="roomCreatedbtn" type="button" onclick="javascript:location.href='${pageContext.request.contextPath}/room/roomlist';">돌아가기</button> </td>
+		<td align="center"><button class="roomCreatedbtn" type="button" onclick="javascript:location.href='${pageContext.request.contextPath}/room/roomlist';">${mode=='roomUpdate'?'수정취소':'등록취소'}</button> </td>
 	</tr>
 	</table>
 
