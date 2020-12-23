@@ -8,6 +8,7 @@
 		var f = document.dressCreatedFrom;
 		f.submit();
 	}
+	
 </script>
 <div class="dress-Body">
 	<div class="dress-MainBody">
@@ -34,7 +35,7 @@
 			
 				<div class="dress-subContent">
 					<div class="dress-subContent-InnerImage" onclick="javascript:location.href='${articleUrl}&num=${dto.num}'">						
-						<img class="dress-img" src="${dto.saveFilename}">
+						<img class="dress-img" src="${dto.saveFilename}" onerror="this.src='${pageContext.request.contextPath}/resources/images/dress/dd.png'">
 					</div>
 					<div class="dress-subContent-InnerText">
 						<a href="${articleUrl}&num=${dto.num}">${dto.subject}</a>
