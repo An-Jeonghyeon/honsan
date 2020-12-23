@@ -116,6 +116,8 @@ public class RoomController {
 	
 	@PostMapping("roomCreated")
 	public String roomCreatedSubmit(
+			@RequestParam(value = "aditem_none", defaultValue = "1") String aditem_none,
+			@RequestParam(value = "options_none", defaultValue = "1") String options_none,
 			Room dto,
 			HttpSession session
 			) throws Exception {
@@ -123,6 +125,12 @@ public class RoomController {
 		SessionInfo info = (SessionInfo)session.getAttribute("member");
 		
 		try {
+			if(aditem_none != "1") {
+				dto.setAditem(aditem_none);
+			}
+			if(options_none != "1") {
+				dto.setOptions(options_none);
+			}
 			dto.setUserId(info.getUserId());
 			
 			service.insertRoom(dto);
@@ -154,6 +162,9 @@ public class RoomController {
 			return "redirect:/room/roomlist?"+query;
 		}
 		
+		String[] options=dto.getOptions().split(",");
+		String[] aditems=dto.getAditem().split(",");
+		
 		// 스마트에디터를 사용하는 경우 아래 주석처리(스마트에디터는 자체적으로 고쳐서..?)
 		// dto.setContent(myUtil.htmlSymbols(dto.getContent()));
 		
@@ -161,6 +172,8 @@ public class RoomController {
 		map.put("num", num);
 		map.put("keyword", keyword);
 		
+		model.addAttribute("options",options);
+		model.addAttribute("aditems",aditems);
 		model.addAttribute("dto", dto);
 		model.addAttribute("page", page);
 		model.addAttribute("query", query);
@@ -195,7 +208,7 @@ public class RoomController {
 		return ".room.roomCreated";
 	}
 	
-	@PostMapping("update")
+	@PostMapping("roomUpdate")
 	public String updateSubmit(
 			Room dto,
 			@RequestParam String page,

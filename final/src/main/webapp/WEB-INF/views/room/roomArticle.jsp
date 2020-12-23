@@ -8,15 +8,44 @@
 	type="text/css">
 	
 	
+<script type="text/javascript">
+function deleteBoard(num) {
+<c:if test="${sessionScope.member.userId==dto.userId || sessionScope.member.userId=='admin' }">
+	if(confirm("게시물을 삭제 하시겠습니까 ?")) {
+		var q="num="+num+"&${query}";
+		var url="${pageContext.request.contextPath}/room/roomDelete?"+q;
+		location.href=url;
+	}
+</c:if>
+
+<c:if test="${sessionScope.member.userId!=dto.userId || sessionScope.member.userId!='admin' }"> 
+	alert("게시글을 삭제할 수 없습니다.");
+</c:if>
+
+}
+
+function updateBoard(num) {
+	<c:if test="${sessionScope.member.userId==dto.userId}">
+		var q="num="+num+"&page=${page}";
+		var url="${pageContext.request.contextPath}/room/roomUpdate?"+q;
+		location.href=url;
+	</c:if>
+	<c:if test="${sessionScope.member.userId!=dto.userId}">
+		alert("게시글을 수정할 수 없습니다.");
+	</c:if>	
+}
+
+</script>	
+	
 <div class="body-container">
 	<hr>
-	<div style="width: 1000px; margin: 0px auto; padding-top: 100px;">	
+	<div style="width: 1000px; margin: 0px auto; padding-top: 100px; padding-bottom: 100px;">	
 		<!-- 사진이 들어가는 곳 -->
 		<div class="imagediv" style="border: 1px solid gray; margin: 10px auto 30px; height: 500px;">
-		
-		
-		
-		
+
+
+
+
 		</div>
 		
 		<!-- 방 상세 정보 -->
@@ -84,55 +113,57 @@
 			
 			<div class="linediv">
 				<p>관리비  &nbsp;&nbsp;| &nbsp;&nbsp; ${dto.adcost}</p>
-				aditem 고치고 넣기
+				<c:if test="${not empty aditems}">
+					<c:forEach var="list" items="${aditems}">
+						<div class="option">${list}</div>
+					</c:forEach>
+				</c:if>
+			</div>
+			
+			<!-- 스크립트에서 split으로 배열에 넣어서 여기서 foreach 로 돌려서 하나씩 비교? -->
+			<div class="linediv">
+				<p style="margin: 10px;">옵션</p>
+				
+				<c:if test="${not empty options}">
+					<c:forEach var="list" items="${options}">
+						<div class="option">${list}</div>
+					</c:forEach>
+				</c:if>
+				
+				
 			</div>
 			
 			<div class="linediv">
-				<p style="margin: 10px;">옵션</p>
-				<c:if test="${dto.option.indexOf('에어컨') != 0}">
-					<div class="option">에어컨</div>
-				</c:if>
-				<c:if test="${dto.option.indexOf('냉장고') != 0}">
-					<div class="option" >냉장고</div>
-				</c:if>
-				<c:if test="${dto.option.indexOf('세탁기') != 0}">
-					<div class="option">세탁기</div>
-				</c:if>
-				<c:if test="${dto.option.indexOf('가스레인지') != 0}">
-					<div class="option">가스레인지</div>
-				</c:if>
-				<c:if test="${dto.option.indexOf('인덕션') != 0}">
-					<div class="option">인덕션</div>
-				</c:if>
-				<c:if test="${dto.option.indexOf('전자레인지') != 0}">
-					<div class="option">전자레인지</div>
-				</c:if>
-				<c:if test="${dto.option.indexOf('책상') != 0}">
-					<div class="option">책상</div>
-				</c:if>
-				<c:if test="${dto.option.indexOf('책장') != 0}">
-					<div class="option">책장</div>
-				</c:if>
-				<c:if test="${dto.option.indexOf('침대') != 0}">
-					<div class="option">침대</div>
-				</c:if>
-				<c:if test="${dto.option.indexOf('옷장') != 0}">
-					<div class="option">옷장</div>
-				</c:if>
-				<c:if test="${dto.option.indexOf('신발장') != 0}">
-					<div class="option">신발장</div>
-				</c:if>
-				<c:if test="${dto.option.indexOf('싱크대') != 0}">
-					<div class="option">싱크대</div>
-				</c:if>
+				<p>상세 설명</p>
+				<p>${dto.content }</p>
 			</div>
 			
+			<div class="linediv">
+				<p style="height: 100px;">지도를............</p>
+			</div>
 			
+		</div>
+		
+		<div class="btndiv">
 			
-			
-		</div>		
+		
+		</div>
 		
 		
+		<div class="replydiv">
+			<table style="width:100%; margin: 15px auto; border-spacing: 0px;">
+			<tr>
+				<td width="300" align="left">
+					<button type="button" class="btn" onclick="updateBoard('${dto.num}');">수정</button>
+					<button type="button" class="btn" onclick="deleteBoard('${dto.num}');">삭제</button>
+				</td>
+
+				<td align="right">
+					<button type="button" class="btn" onclick="javascript:location.href='${pageContext.request.contextPath}/room/roomlist?${query}';">리스트</button>
+				</td>
+			</tr>
+			</table>
+		</div>
 		
 	</div>
 <hr>

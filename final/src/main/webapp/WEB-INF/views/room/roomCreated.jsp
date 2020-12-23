@@ -50,6 +50,11 @@ function roomOk(){
 		f.depo.focus();
 		return;
 	}
+	if(!/^(\d+)$/.test(str)) {
+	      alert("숫자만 가능합니다.");
+	      f.depo.focus();
+	      return;
+	}
 	
 	str = f.mrent.value;
 	str = str.trim();
@@ -57,6 +62,11 @@ function roomOk(){
 		alert("월세를 입력하세요.");
 		f.mrent.focus();
 		return;
+	}
+	if(!/^(\d+)$/.test(str)) {
+	      alert("숫자만 가능합니다.");
+	      f.mrent.focus();
+	      return;
 	}
 	
 	str = f.roomtype.value;
@@ -74,6 +84,20 @@ function roomOk(){
 		f.adcost.focus();
 		return;
 	}
+	if(!/^(\d+)$/.test(str)) {
+	      alert("숫자만 가능합니다.");
+	      f.adcost.focus();
+	      return;
+	}
+	
+	var str1 = $("input[name='aditem']").is(":checked");
+	var str2 = $('#aditem_none').is(":checked");
+	if(str1==false && str2==false) {
+		alert("관리비 포함 항목을 선택하세요.");
+		f.aditem.focus();
+		return;
+	}
+	
 	
 	str = f.m2.value;
 	str = str.trim();
@@ -82,6 +106,11 @@ function roomOk(){
 		f.m2.focus();
 		return;
 	}
+	if(!isNaN(str)) {
+	      alert("숫자만 가능합니다.");
+	      f.m2.focus();
+	      return;
+	}
 	
 	str = f.pyeoug.value;
 	str = str.trim();
@@ -89,6 +118,11 @@ function roomOk(){
 		alert("면적을 입력하세요.");
 		f.pyeoug.focus();
 		return;
+	}
+	if(!isNaN(str)) {
+	      alert("숫자만 가능합니다.");
+	      f.m2.focus();
+	      return;
 	}
 	
 	str = f.totfloor.value;
@@ -104,6 +138,14 @@ function roomOk(){
 	if(!str) {
 		alert("해당 층 수를 입력하세요.");
 		f.corfloor.focus();
+		return;
+	}
+	
+	str1 = $("input[name='options']").is(':checked');
+	str2 = $('#options_none').is(':checked');
+	if(!(str1==true) && !(str2==true)) {
+		alert("옵션 포함 항목을 선택하세요.");
+		f.aditem.focus();
 		return;
 	}
 	
@@ -160,23 +202,17 @@ function roomOk(){
 
 <script type="text/javascript">
 
-//aditems 배열 받기
-function checkboxArr() {
-    var checkArr = [];     // 배열 초기화
-    $("input[name='aditem']:checked").each(function(i) {
-        checkArr.push($(this).val());     // 체크된 것만 값을 뽑아서 배열에 push
-    });
-    $('#aditems').val(checkArr);
-    
-    
-    var checkArr2 = [];
-    $("input[name='options']:checked").each(function(i) {
-        checkArr2.push($(this).val());     // 체크된 것만 값을 뽑아서 배열에 push
-    });
-    $('#option').val(checkArr2);
-    
- 
+
+function check(){
+	if($('#fee_none').is(':checked') == true){
+		$('#adcost').attr('readonly',true);
+		$('#adcost').val(0);
+	}else if ($("input:checkbox[name=fee_none]").is(":checked") == false) {
+		$("input:text[name=adcost]").prop('readonly',false);
+		$('#adcost').val("");
+	}
 }
+
 
 
 </script>
@@ -199,25 +235,6 @@ function calculator(chk){
 
 
 
-
-
-function updateInputCount() {
-    var textLength = $('.description').val().replace(/^\s+|\s+$|\s+(?=\s)/g, '').length;
-    var count = textLength;
-    $('.i-description-status strong').text(count);
-    if (count < 50) {
-        $('.i-description-status em').text("방 설명을 최소 50자 이상 입력해 주세요.");
-        $('.i-description-status em, .i-description-status strong').removeClass("on");
-    } else if (count < 200) {
-        $('.i-description-status em').text("좀 더 상세하게 방을 설명해 주세요.");
-        $('.i-description-status em').removeClass("on");
-        $('.i-description-status strong').addClass("on");
-    } else {
-        $('.i-description-status em').text("상세한 설명은 신뢰감을 줄 수 있습니다.");
-        $('.i-description-status em').addClass("on");
-        $('.i-description-status strong').addClass("on");
-    }
-}
 
 
 </script>
@@ -319,17 +336,19 @@ function updateInputCount() {
                 <tr height="70">
                     <th>관리비</th>
                     <td>
-                        <input type="text" class="text" name="adcost" onkeydown="return number_validate2(event);"> 만원
+                        <input type="text" class="text" name="adcost" id="adcost"> 만원
                         &nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;
-                        <label><input type="checkbox" id="fee_none" name="fee_none"> 없음</label>
+                        <label><input type="checkbox" id="fee_none" name="fee_none" onclick="check()"> 없음</label>
                         <p class="i-gray">
                             <strong>관리비 포함 항목</strong>
-                            <label><input name="aditem" type="checkbox" value="전기세"> 전기세</label>
-                            <label><input name="aditem" type="checkbox" value="가스"> 가스</label>
-                            <label><input name="aditem" type="checkbox" value="수도"> 수도</label>
-                            <label><input name="aditem" type="checkbox" value="인터넷"> 인터넷</label>
-                            <label><input name="aditem" type="checkbox" value="TV"> TV</label>
-                            <input type="hidden" name="aditems" id="aditems" value=""/>
+                            <label><input name="aditem" id="aditem" type="checkbox" value="전기세"> 전기세</label>
+                            <label><input name="aditem" id="aditem" type="checkbox" value="가스"> 가스</label>
+                            <label><input name="aditem" id="aditem" type="checkbox" value="수도"> 수도</label>
+                            <label><input name="aditem" id="aditem" type="checkbox" value="인터넷"> 인터넷</label>
+                            <label><input name="aditem" id="aditem" type="checkbox" value="TV"> TV</label>
+                            &nbsp;|&nbsp;
+                            <label><input name="aditem_none" id="aditem_none" type="checkbox" value="없음"> 없음</label><br>
+	                        <span class="fc-red1">※없음 선택 시 항목 없음</span>
                         </p>
                     </td>
                 </tr>
@@ -372,7 +391,10 @@ function updateInputCount() {
                         <label><input type="checkbox" name="options" value="옷장"> 옷장</label>
                         <label><input type="checkbox" name="options" value="신발장"> 신발장</label>
                         <label><input type="checkbox" name="options" value="싱크대"> 싱크대</label>
-                        <input type="hidden" name="option" id="option" value=""/>
+                        <p class="i-gray">
+                            <label><input name="options_none" id="options_none" type="checkbox" value="없음"> 없음</label><br>
+	                        <span class="fc-red1">※없음 선택 시 항목 없음</span>
+                        </p>
                     </td>
                 </tr>
                 <tr>
@@ -539,7 +561,7 @@ function updateInputCount() {
 	<tr>
 		<td align="center"><button class="roomCreatedbtn" type="button" onclick="roomOk();">등록하기</button> </td>
 		<td align="center"><button class="roomCreatedbtn" type="reset">다시 입력</button> </td>
-		<td align="center"><button class="roomCreatedbtn" type="button">돌아가기</button> </td>
+		<td align="center"><button class="roomCreatedbtn" type="button" onclick="javascript:location.href='${pageContext.request.contextPath}/room/roomlist';">돌아가기</button> </td>
 	</tr>
 	</table>
 
