@@ -1,5 +1,6 @@
 package com.sp.app.interior;
 
+import java.io.File;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.util.HashMap;
@@ -16,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.sp.app.bbs.Board;
 import com.sp.app.common.MyUtil;
 import com.sp.app.member.SessionInfo;
 
@@ -108,12 +108,18 @@ public class InteriorController {
 	public String Interiorsubmit(
 			Interior dto,
 			HttpSession session,
+			Model model ,
 			@RequestParam(value="category" ,defaultValue = "" , required = true) List<String> categorys)
+
 			 throws Exception{
 		
 		
 		
 		SessionInfo info = (SessionInfo)session.getAttribute("member");
+		
+		String root = session.getServletContext().getRealPath("/");
+	    String pathname=root+"uploads"+File.separator+"interior";
+		
 		try {
 			String tags = "" ;
 			for(String category : categorys) {
@@ -123,12 +129,14 @@ public class InteriorController {
 			
 			dto.setUserId(info.getUserId());
 			dto.setCategory(tags);
-			service.insertInterior(dto);
+			service.insertInterior(dto , pathname);
 			
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		
+		model.addAttribute("pathname","pathname");
+		 
+		 
 		return "redirect:/interior/main";
 		
 	}
@@ -148,11 +156,12 @@ public class InteriorController {
 					+URLEncoder.encode(keyword, "utf-8");
 		}
 		
-		//service.updateHitCount(num);
+		service.updateHitCount(num);
 
 			
 		Interior dto = service.readBoard(num);
-		if (dto==null) {
+		List<Interior> flist = service.readBoardImg(num);
+		if (dto==null && flist==null) {
 			return "redirect:/interior/main?"+query;
 		}
 		
@@ -163,6 +172,7 @@ public class InteriorController {
 		map.put("keyword", keyword);
 					
 		model.addAttribute("dto", dto);
+		model.addAttribute("flist",flist);
 		model.addAttribute("page", page);
 		model.addAttribute("query", query);
 		String category = dto.getCategory();

@@ -55,7 +55,7 @@
 	                </div>
 	                <!-- 메인 사진  -->
 	                <div class="interior_object_mainImg">
-	                    <a href="${articleUrl}&num=${dto.num}"><img src="${pageContext.request.contextPath}/resources/images/interior/a1.jpg" ></a>
+	                    <a href="${articleUrl}&num=${dto.num}"><img src="${pageContext.request.contextPath}/uploads/interior/${dto.saveFilename}" ></a>
 	                    
 	                </div>
 	                <!-- 카운트 숫자 게시판 (찜 , 댓글 , 좋아요 )  -->

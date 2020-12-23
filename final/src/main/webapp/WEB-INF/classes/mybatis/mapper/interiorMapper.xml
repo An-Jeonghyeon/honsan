@@ -11,9 +11,17 @@
 		INSERT INTO interior(num, userId, subject, content, category, hitCount, register_date)
 				VALUES(#{num}, #{userId}, #{subject}, #{content}, #{category}, 0, SYSDATE)
 	</insert>
-	
-	
-		<sql id="where-list">
+<!-- 파일 DB에 넣어주는 -->
+	<select id="interiorfile_seq" resultType="Integer">
+		SELECT InteriorFile_seq.NEXTVAL FROM dual
+	</select>
+
+   <insert id="interiorFile" parameterType="com.sp.app.interior.Interior">
+      INSERT INTO interiorFile(Filenum, num, main ,saveFilename)
+         VALUES (#{filenum}, #{num}, #{mainnum} ,#{saveFilename})
+   </insert>
+   
+	<sql id="where-list">
 		<choose>
 
 			<otherwise>
@@ -40,22 +48,37 @@
 	
 	<select id="interiorlist" parameterType="map"
 		resultType="com.sp.app.interior.Interior"> <!-- map에는 condition, keyword, offset, rows 등이 저장되어 넘어온다 -->
-		SELECT num, userId, subject, content, category, hitCount, register_date 
-		FROM interior 
+		SELECT i.num, i.userId, userName, subject, filenum, savefilename, content, category, hitCount, register_date 
+		FROM interior i
+		JOIN member1 m ON i.userId = m.userId
+		LEFT OUTER JOIN (
+            SELECT filenum , num, main ,savefilename FROM INTERIORFILE WHERE main = 1
+        ) f ON i.num = f.num
 		<where>
 			<if test="keyword!=null and keyword!=''">
 				<include refid="where-list"/>
 			</if>
 		</where>
-		ORDER BY num DESC
+		ORDER BY i.num DESC
 		OFFSET #{offset} ROWS FETCH FIRST #{rows} ROWS ONLY
 	</select>	
 	
 	<select id="readBoard" parameterType="Integer" resultType="com.sp.app.interior.Interior">
-		SELECT num, userId, subject, content, category, hitCount, register_date 
-		FROM interior 
+		SELECT num, i.userId,userName, subject, content, category, hitCount, register_date 
+		FROM interior i
+		JOIN member1 m ON i.userId = m.userId
 		WHERE num = #{num}
 	</select>
+	<!-- 게시판 리드 -->
+	<select id="readBoardImg" parameterType="Integer" resultType="com.sp.app.interior.Interior">
+		Select filenum , num , saveFilename 
+		FROM InteriorFile 
+		WHERE num = #{num}
+		ORDER BY num
+	</select>
 	
+	<update id="updateHitCount" parameterType="Integer">
+		UPDATE interior SET hitCount = hitCount+1 WHERE num=#{num} 
+	</update>
 	
 </mapper>

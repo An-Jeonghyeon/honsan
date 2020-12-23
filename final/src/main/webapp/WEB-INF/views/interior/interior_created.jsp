@@ -20,7 +20,7 @@ function interior_created() {
 
 </script>
 <section>
-    <form name="insert_mainboard_form" class="input-form" method="post" >
+    <form name="insert_mainboard_form" class="input-form" method="post" enctype="multipart/form-data">
     <div class="board_interior_box">
         <div class="board_interior_leftbox">
             
@@ -37,7 +37,7 @@ function interior_created() {
                 <img class="leftbox_mainImg_img" >
             </div>
             <div class="mainImg_append"> 설정
-                <input id="mainImg_upload" type="file" name="mainUpload" >
+                <input id="mainImg_upload" type="file" name="upload" >
             </div>
             <!-- 서브 사진들 -->
             <div class="leftbox_subImg">

@@ -20,40 +20,24 @@
                 </div>
             </div>
             <!-- 메인 사진 -->
-            <div class="leftbox_mainImg">
-                <a href="#"><img class="leftbox_mainImg_img" src="${pageContext.request.contextPath}/resources/images/interior/c1.webp"></a>
-            </div>
-            <!-- 서브 사진들 -->
-            <div class="leftbox_subImg">
-                <div class="leftbox_subImg_obj">
-                    <!-- 서브 사진들 1  -->
-                    <a href=""><img class="leftbox_subImg_obj_sub" src="${pageContext.request.contextPath}/resources/images/interior/c2.webp"></a>
-                </div>
-                <div class="leftbox_subImg_obj">
-                    <!-- 서브 사진들 2  -->
-                    <a href=""><img class="leftbox_subImg_obj_sub" src="${pageContext.request.contextPath}/resources/images/interior/c3.webp"></a>                    
-                </div>
-                <div class="leftbox_subImg_obj">
-                    <!-- 서브 사진들 3  -->
-                    <a href=""><img class="leftbox_subImg_obj_sub" src="${pageContext.request.contextPath}/resources/images/interior/c4.webp"></a>
-                </div>
-                <div class="leftbox_subImg_obj">
-                    <!-- 서브 사진들 4  -->
-                    <a href=""><img class="leftbox_subImg_obj_sub" src="${pageContext.request.contextPath}/resources/images/interior/c5.webp"></a>
-                </div>
-                <div class="leftbox_subImg_obj">
-                    <!-- 서브 사진들 5  -->
-                    <a href=""><img class="leftbox_subImg_obj_sub" src="${pageContext.request.contextPath}/resources/images/interior/c6.webp"></a>
-                </div>
-                <div class="leftbox_subImg_obj">
-                    <!-- 서브 사진들 6  -->
-                    <a href=""><img class="leftbox_subImg_obj_sub" src="${pageContext.request.contextPath}/resources/images/interior/c7.webp"></a>
-                </div>
-                <div class="leftbox_subImg_obj">
-                    <!-- 서브 사진들 7  -->
-                    <a href=""><img class="leftbox_subImg_obj_sub" src="${pageContext.request.contextPath}/resources/images/interior/c8.webp"></a>
-                </div>
-            </div>
+           <c:forEach var="fto" items="${flist}" varStatus="stauts" begin="0" end="0">
+            	
+		            <div class="leftbox_mainImg">
+		            
+		                <a href="#"><img class="leftbox_mainImg_img" src="${pageContext.request.contextPath}/uploads/interior/${fto.saveFilename}"></a>
+		            </div>
+		       
+		    </c:forEach>	 
+		            <!-- 서브 사진들 -->
+		            <div class="leftbox_subImg">
+		     <c:forEach var="fto" items="${flist}" begin="1" end="7" step="1">       
+		                <div class="leftbox_subImg_obj">
+		                    <!-- 서브 사진들 1  -->
+		                    <a href=""><img class="leftbox_subImg_obj_sub" src="${pageContext.request.contextPath}/uploads/interior/${fto.saveFilename}"></a>
+		                </div>
+		        
+           </c:forEach>            
+					</div>
             <!-- 간단한 내용 -->
             <p class="leftbox_content">${dto.content}</p>
             
@@ -65,7 +49,7 @@
             </ul>
 
             <p class="leftbox_item_box_p">
-                <span class="leftbox_item_box_span">조회수 39,615</span>
+                <span class="leftbox_item_box_span">조회수 ${dto.hitCount}</span>
                 <span class="leftbox_item_box_span">댓글 64</span>
                 <span class="leftbox_item_box_span">찜 58</span>
                 <button class="leftbox_item_box_button">신고</button>
@@ -241,10 +225,10 @@
                             <div class="board_interior_users_subject">
                                 <div class="board_interior_users_subject_atr">
                                     <a class="board_interior_users_subject_a">
-                                        <img class="board_interior_users_subject_profle" src="${pageContext.request.contextPath}/resources/images/interior/a1.jpg">뀨뀨꺄꺄
+                                        <img class="board_interior_users_subject_profle" src="${pageContext.request.contextPath}/resources/images/interior/a1.jpg">${dto.userName}
                                     </a>
                                     <p class="board_interior_users_subject_userid">
-                                        @pss1870
+                                        ${dto.userId}
                                     </p>
                                 </div>
                             </div>

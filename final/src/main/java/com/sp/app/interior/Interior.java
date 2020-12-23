@@ -1,15 +1,68 @@
 package com.sp.app.interior;
 
+import java.util.List;
+
+import org.springframework.web.multipart.MultipartFile;
+
 public class Interior {
 	private int num;
+	private int filenum;
 	private String userId;
 	private String subject;
 	private String content;
 	private String category;
 	private String register_date;
 	private int hitCount;
+	private String saveFilename;
+	private int mainnum;
+	
+	private List<MultipartFile> upload;
 	
 	
+
+	public String getSaveFilename() {
+	
+	
+		return saveFilename;
+	}
+	
+	public void setSaveFilename(String saveFilename) {
+		this.saveFilename = saveFilename;
+	}
+	
+	
+
+	
+	
+	
+	public int getMainnum() {
+		return mainnum;
+	}
+
+	public void setMainnum(int mainnum) {
+		this.mainnum = mainnum;
+	}
+
+	public int getFilenum() {
+		return filenum;
+	}
+	public void setFilenum(int filenum) {
+		this.filenum = filenum;
+	}
+	private String userName;
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+	
+	public List<MultipartFile> getUpload() {
+		return upload;
+	}
+	public void setUpload(List<MultipartFile> upload) {
+		this.upload = upload;
+	}
 	public int getNum() {
 		return num;
 	}
