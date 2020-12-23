@@ -49,8 +49,8 @@ function updatebutton(num){
                 <c:if test="${sessionScope.member.userId==dto.userId || sessionScope.member.userId=='admin' }">
                     <div class="dress-articleMainButtonBoxBody">
                         <div class="dress-articleButtonBoxBody">
-                            <button type="button" id="updateButton" onclick="updatebutton('${dto.num}')">수정하기</button>
-                            <button type="button" id="deleteButton" onclick="deletbutton('${dto.num}')">삭제하기</button>
+                            <button type="button" id="updateButton" onclick="updatebutton('${dto.num}');">수정하기</button>
+                            <button type="button" id="deleteButton" onclick="deletbutton('${dto.num}');">삭제하기</button>
                         </div>
                     </div>
                 </c:if>

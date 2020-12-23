@@ -182,4 +182,24 @@ public class DressController {
 		
 		return "redirect:/dress/list?"+query;
 	}
+	@GetMapping("update")
+	public String updateForm(@RequestParam int num,
+			 				 @RequestParam String page,
+			 				 HttpSession session,
+			 				 Model model ) throws Exception{
+		
+		SessionInfo info =(SessionInfo)session.getAttribute("member");
+		Dress dto = service.readDress(num);
+		if(dto==null) {
+			return"redirect:/dress/list?page="+page;
+		}
+		if(! info.getUserId().equals(dto.getUserId())) {
+			return "redirect:/dress/list?page="+page;
+		}
+		model.addAttribute("dto", dto);
+		model.addAttribute("mode", "update");
+		model.addAttribute("page",page);
+		
+		return "dress/created";
+	}
 }

@@ -73,7 +73,11 @@ public class DressServiceImpl implements DressService{
 
 	@Override
 	public void updateDress(Dress dto) throws Exception {
-		// TODO Auto-generated method stub
+		try {
+			dao.updateData("dress.updateDress",dto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 	}
 
@@ -81,12 +85,12 @@ public class DressServiceImpl implements DressService{
 	public void deleteDress(int num, String userId) throws Exception {
 		try {
 			Dress dto =readDress(num);
-			if(dto==null || (userId!="admin") && (dto.getUserId().equals(userId))) {
+			if(dto==null || (!userId.equals("admin")) && ! dto.getUserId().equals(userId)) {
 				return;
 			}
 			dao.deleteData("dress.deleteDress",num);
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		}
 		
 	}
