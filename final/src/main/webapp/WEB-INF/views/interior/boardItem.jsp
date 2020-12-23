@@ -13,59 +13,43 @@
             <!-- 게시판 제목 부분  -->
             <div class="board_interior_leftbox_header">
                 <div class="leftbox_header_subject">
-                    30평대 | 내추럴 스타일 | 아파트 
+                    ${dto.subject}
                 </div>
                 <div class="leftbox_header_created">
-                    2020-10-10
+                    ${dto.register_date}
                 </div>
             </div>
             <!-- 메인 사진 -->
-            <div class="leftbox_mainImg">
-                <a href="#"><img class="leftbox_mainImg_img" src="${pageContext.request.contextPath}/resources/images/interior/c1.webp"></a>
-            </div>
-            <!-- 서브 사진들 -->
-            <div class="leftbox_subImg">
-                <div class="leftbox_subImg_obj">
-                    <!-- 서브 사진들 1  -->
-                    <a href=""><img class="leftbox_subImg_obj_sub" src="${pageContext.request.contextPath}/resources/images/interior/c2.webp"></a>
-                </div>
-                <div class="leftbox_subImg_obj">
-                    <!-- 서브 사진들 2  -->
-                    <a href=""><img class="leftbox_subImg_obj_sub" src="${pageContext.request.contextPath}/resources/images/interior/c3.webp"></a>                    
-                </div>
-                <div class="leftbox_subImg_obj">
-                    <!-- 서브 사진들 3  -->
-                    <a href=""><img class="leftbox_subImg_obj_sub" src="${pageContext.request.contextPath}/resources/images/interior/c4.webp"></a>
-                </div>
-                <div class="leftbox_subImg_obj">
-                    <!-- 서브 사진들 4  -->
-                    <a href=""><img class="leftbox_subImg_obj_sub" src="${pageContext.request.contextPath}/resources/images/interior/c5.webp"></a>
-                </div>
-                <div class="leftbox_subImg_obj">
-                    <!-- 서브 사진들 5  -->
-                    <a href=""><img class="leftbox_subImg_obj_sub" src="${pageContext.request.contextPath}/resources/images/interior/c6.webp"></a>
-                </div>
-                <div class="leftbox_subImg_obj">
-                    <!-- 서브 사진들 6  -->
-                    <a href=""><img class="leftbox_subImg_obj_sub" src="${pageContext.request.contextPath}/resources/images/interior/c7.webp"></a>
-                </div>
-                <div class="leftbox_subImg_obj">
-                    <!-- 서브 사진들 7  -->
-                    <a href=""><img class="leftbox_subImg_obj_sub" src="${pageContext.request.contextPath}/resources/images/interior/c8.webp"></a>
-                </div>
-            </div>
+           <c:forEach var="fto" items="${flist}" varStatus="stauts" begin="0" end="0">
+            	
+		            <div class="leftbox_mainImg">
+		            
+		                <a href="#"><img class="leftbox_mainImg_img" src="${pageContext.request.contextPath}/uploads/interior/${fto.saveFilename}"></a>
+		            </div>
+		       
+		    </c:forEach>	 
+		            <!-- 서브 사진들 -->
+		            <div class="leftbox_subImg">
+		     <c:forEach var="fto" items="${flist}" begin="1" end="7" step="1">       
+		                <div class="leftbox_subImg_obj">
+		                    <!-- 서브 사진들 1  -->
+		                    <a href=""><img class="leftbox_subImg_obj_sub" src="${pageContext.request.contextPath}/uploads/interior/${fto.saveFilename}"></a>
+		                </div>
+		        
+           </c:forEach>            
+					</div>
             <!-- 간단한 내용 -->
-            <p class="leftbox_content">새로 구입한 쿠션 커버인데 쇼파랑 세트같네요 ㅎ.ㅎ</p>
+            <p class="leftbox_content">${dto.content}</p>
             
             <!-- # 태그가 있을시 for 문 돌려서 사용할것 ! -->
             <ul class="leftbox_tag_ul">
-                <li class="leftbox_tag_li"><a class="leftbox_tag_li_a">#크리스</a></li>
-                <li class="leftbox_tag_li"><a class="leftbox_tag_li_a">#크리스마스데코</a></li>
-                <li class="leftbox_tag_li"><a class="leftbox_tag_li_a">#크리스마스</a></li>
+				<c:forEach var="tag" items="${categorylist}" varStatus="n">
+               		<li class="leftbox_tag_li"><a class="leftbox_tag_li_a"># ${tag}</a></li>
+				</c:forEach>
             </ul>
 
             <p class="leftbox_item_box_p">
-                <span class="leftbox_item_box_span">조회수 39,615</span>
+                <span class="leftbox_item_box_span">조회수 ${dto.hitCount}</span>
                 <span class="leftbox_item_box_span">댓글 64</span>
                 <span class="leftbox_item_box_span">찜 58</span>
                 <button class="leftbox_item_box_button">신고</button>
@@ -241,10 +225,10 @@
                             <div class="board_interior_users_subject">
                                 <div class="board_interior_users_subject_atr">
                                     <a class="board_interior_users_subject_a">
-                                        <img class="board_interior_users_subject_profle" src="${pageContext.request.contextPath}/resources/images/interior/a1.jpg">뀨뀨꺄꺄
+                                        <img class="board_interior_users_subject_profle" src="${pageContext.request.contextPath}/resources/images/interior/a1.jpg">${dto.userName}
                                     </a>
                                     <p class="board_interior_users_subject_userid">
-                                        @pss1870
+                                        ${dto.userId}
                                     </p>
                                 </div>
                             </div>

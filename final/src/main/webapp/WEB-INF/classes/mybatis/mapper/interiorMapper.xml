@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="interior">
+	
+	<select id="seq" resultType="Integer">
+		SELECT interior_seq.NEXTVAL FROM dual
+	</select>
+	
+	<insert id="insertInterior" parameterType="com.sp.app.interior.Interior">
+		INSERT INTO interior(num, userId, subject, content, category, hitCount, register_date)
+				VALUES(#{num}, #{userId}, #{subject}, #{content}, #{category}, 0, SYSDATE)
+	</insert>
+<!-- 파일 DB에 넣어주는 -->
+	<select id="interiorfile_seq" resultType="Integer">
+		SELECT InteriorFile_seq.NEXTVAL FROM dual
+	</select>
+
+   <insert id="interiorFile" parameterType="com.sp.app.interior.Interior">
+      INSERT INTO interiorFile(Filenum, num, main ,saveFilename)
+         VALUES (#{filenum}, #{num}, #{mainnum} ,#{saveFilename})
+   </insert>
+   
+	<sql id="where-list">
+		<choose>
+
+			<otherwise>
+				( INSTR(subject, #{keyword}) &gt; 0 
+					OR DBMS_LOB.INSTR(content, #{keyword}) &gt; 0 
+					OR INSTR(userId , #{keyword}) &gt; 0 
+					OR TO_CHAR(register_date, 'YYYYMMDD') = #{keyword}
+					OR TO_CHAR(created, 'YYYY-MM-DD') = #{keyword} )
+			</otherwise>
+			
+		</choose>
+	</sql>
+	
+	
+	<select id="dataCount" parameterType="map" resultType="Integer">
+		SELECT NVL(COUNT(*), 0) 
+		FROM interior
+			<where>
+				<if test="keyword!=null and keyword!=''">
+						<include refid="where-list"/>
+				</if>
+			</where>
+	</select>
+	
+	<select id="interiorlist" parameterType="map"
+		resultType="com.sp.app.interior.Interior"> <!-- map에는 condition, keyword, offset, rows 등이 저장되어 넘어온다 -->
+		SELECT i.num, i.userId, userName, subject, filenum, savefilename, content, category, hitCount, register_date 
+		FROM interior i
+		JOIN member1 m ON i.userId = m.userId
+		LEFT OUTER JOIN (
+            SELECT filenum , num, main ,savefilename FROM INTERIORFILE WHERE main = 1
+        ) f ON i.num = f.num
+		<where>
+			<if test="keyword!=null and keyword!=''">
+				<include refid="where-list"/>
+			</if>
+		</where>
+		ORDER BY i.num DESC
+		OFFSET #{offset} ROWS FETCH FIRST #{rows} ROWS ONLY
+	</select>	
+	
+	<select id="readBoard" parameterType="Integer" resultType="com.sp.app.interior.Interior">
+		SELECT num, i.userId,userName, subject, content, category, hitCount, register_date 
+		FROM interior i
+		JOIN member1 m ON i.userId = m.userId
+		WHERE num = #{num}
+	</select>
+	<!-- 게시판 리드 -->
+	<select id="readBoardImg" parameterType="Integer" resultType="com.sp.app.interior.Interior">
+		Select filenum , num , saveFilename 
+		FROM InteriorFile 
+		WHERE num = #{num}
+		ORDER BY num
+	</select>
+	
+	<update id="updateHitCount" parameterType="Integer">
+		UPDATE interior SET hitCount = hitCount+1 WHERE num=#{num} 
+	</update>
+	
+</mapper>

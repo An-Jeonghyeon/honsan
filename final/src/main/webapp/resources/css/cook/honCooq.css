@@ -267,6 +267,23 @@ CookTip 게시판 리스트폼
 	flex-direction: column;
 }
 
+.cookTip_list-container a:link {
+	color:inherit;
+	text-decoration: none;
+}
+.cookTip_list-container a:hover {
+	color:inherit;
+	text-decoration: none;
+}
+.cookTip_list-container a:active{
+	color:inherit;
+	text-decoration: none;
+}
+.cookTip_list-container a:visited{
+	color:inherit;
+	text-decoration: none;
+}
+
 .cookTip_list-header {
 	min-width: 100%;
 	height: 18%;
@@ -384,7 +401,7 @@ CookTip 게시판 리스트폼
 	height: 85%;
 /* 	background-color: rgb(242 236 236 / 16%); */
 /*     background-color:rgb(255 251 237 / 49%); */
-    background: linear-gradient(
+/*     background: linear-gradient(
             to right,
             rgba(255, 251, 237, 0) 10%,
             rgba(255, 251, 237, 0.25) 20%,
@@ -393,7 +410,7 @@ CookTip 게시판 리스트폼
             rgba(255, 251, 237, 0.75) 60%,
             rgba(255, 251, 237, 0.25) 80%,
             rgba(255, 251, 237, 0) 100%
-          )
+          ) */
 
 }
 
@@ -411,29 +428,7 @@ CookTip 게시판 리스트폼
 	
 	text-decoration : none; 
 }
-/*
-section button {
-  margin: 0 auto;
-  font-size: 2.0rem;
-  padding: 1.25rem 2.5rem;
-  display: block;
-  background-color: #009ac9;
-  border: 1px solid transparent;
-  color: #ffffff;
-  font-weight: 300;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
-  -webkit-transition: all 0.3s ease-in-out;
-  -moz-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
-}
 
-section button:hover {
-  background-color: #ffffff;
-  color: #009ac9;
-  border-color: #009ac9;
-}
-*/
 .cookTip_li_category {
 	width: 140px;
 	height:30px;
@@ -1007,17 +1002,18 @@ CookTip 게시판 글보기 폼
 .cookTip_LikeBox{
     width: 90%;
     height: 20px;
-    margin: 0 auto;
+    margin: 0 auto 2.5rem;;
+    text-align:center;
+    font-size:1.0rem;
     box-sizing: border-box;
-    border-bottom: 1px solid rgb(226,226,226);
+/*     border-bottom: 1px solid rgb(226,226,226); */
     /* TestBackground */
-    /* background-color: rgba(222, 188, 255, 0.31); */
+/*     background-color: rgba(222, 188, 255, 0.31); */
 }
 .cookTip_fa-heart{
     margin: 0 10px 0 0;
     color: red;
     cursor: pointer;
-    
 }
 .cookTip_LikeHeart{
     margin: 0 15px 0 0;
@@ -1060,11 +1056,7 @@ CookTip 게시판 글보기 폼
 /* 	background-color: pink; */
 }
 
-.cookTip_articleButtonBox > span {
-/* 	line-height:50px; */
-}
-
-.cookTip_preRead, .cookTip_nextRead, .cookTip_toList{
+.cookTip_preRead, .cookTip_nextRead, .cookTip_toList, .cookTip_LikeButton{
     width: 40px;
     height: 40px;
     margin: 0 10px;
@@ -1078,13 +1070,41 @@ CookTip 게시판 글보기 폼
     color: rgb(136, 136, 136);
 /*     box-shadow: 0px 0px 10px  rgba(128, 128, 128, 0.529); */
 }
-.cookTip_preRead:hover, .cookTip_nextRead:hover, .cookTip_toList:hover{
+
+.cookTip_updateAndDelete{
+	box-sizing:border-box;
+/* 	background-color:yellow; */
+	width:90%;
+	height:auto;
+    margin: 0 auto;
+    box-sizing: border-box;
+    border-bottom: 1px solid rgb(226,226,266); 
+    display:flex;
+    justify-content:flex-end;
+}
+
+.cookTip_update, .cookTip_delete {
+    width: 60px;
+    height: 40px;
+    margin: 0 10px;
+    border-radius:10% 10%;
+    font-size:1.0rem;
+    font-weight:700;
+    border:none;
+    cursor: pointer;
+/*     float:right; */
+/*     position:relative; */
+    transition:all .4s ease-in-out;
+    color: rgb(136, 136, 136);	
+}
+
+.cookTip_preRead:hover, .cookTip_nextRead:hover, .cookTip_toList:hover, .cookTip_update:hover, .cookTip_delete:hover{
     background: #ffe79a;
 }
-.cookTip_preRead:active, .cookTip_nextRead:active, .cookTip_toList:active{
+.cookTip_preRead:active, .cookTip_nextRead:active, .cookTip_toList:active, .cookTip_update:active, .cookTip_delete:active{
     transform: scale(0.9);
 }
-.cookTip_preRead:focus, .cookTip_nextRead:focus, .cookTip_toList:focus{
+.cookTip_preRead:focus, .cookTip_nextRead:focus, .cookTip_toList:focus, .cookTip_update:focus, .cookTip_delete:active{
     outline: none;
 }
 

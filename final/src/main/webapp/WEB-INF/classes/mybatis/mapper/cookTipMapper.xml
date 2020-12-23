@@ -58,7 +58,7 @@
 
 	<!-- 글보기(article) -->
 	<select id="readCookTip" parameterType="Integer" resultType="com.sp.app.cook.honCooq.cookTip.CookTip">
-		SELECT num, c.userId, userName, subject, content, TO_CHAR(register_date, 'YYYY-MM-DD') register_date, hitCount
+		SELECT num, c.userId, userName, subject, content, TO_CHAR(register_date, 'YYYY-MM-DD') register_date, hitCount, category
 		FROM cookTip c
 		JOIN  member1 m ON c.userId = m.userId
 		WHERE num = #{num}                       
@@ -99,16 +99,37 @@
 		FETCH FIRST 1 ROWS ONLY                      
 	</select>
 	
+	<!-- 수정 -->
 	<update id="updateCookTip" parameterType="com.sp.app.bbs.Board">
-		UPDATE cookTip SET category=#{category}, subject=#{subject}, content=#{content},
+		UPDATE cookTip SET category=#{category}, subject=#{subject}, content=#{content}
 				WHERE num=#{num} AND userId = #{userId}
 	</update>	
 
+	<!-- 삭제 -->
 	<delete id="deleteCookTip" parameterType="map">
 		DELETE FROM cookTip WHERE num = #{num}
 		<if test="userId != 'admin' ">
 			AND userId = #{userId}
 		</if>
 	</delete>
+
+	<!-- 게시글 좋아요 추가 -->
+	<insert id="insertCookTipLike" parameterType="map">
+		INSERT INTO cookTip_like(num, userId) VALUES (#{num}, #{userId})
+	</insert>
+      
+	<!-- 게시글 좋아요 개수 -->
+	<select id="cookTipLikeCount" parameterType="Integer" resultType="Integer">
+		SELECT COUNT(*) FROM cookTip_like WHERE num=#{num}
+	</select>
 	
+	<!-- 유저당 게시글 좋아요 여부 확인 -->
+	<select id="readCookTipLike" parameterType="map" resultType="Integer">
+		SELECT NVL(COUNT(*),0) FROM cookTip_like WHERE num=#{num} AND userId=#{userId}
+	</select>
+	
+	<!-- 게시글 좋아요 삭제 -->
+	<delete id="deleteCookTipLike" parameterType="map">
+		DELETE FROM cookTip_like WHERE num=#{num} AND userId=#{userId}
+	</delete>
 </mapper>

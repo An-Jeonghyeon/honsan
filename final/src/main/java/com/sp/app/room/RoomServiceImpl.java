@@ -21,24 +21,6 @@ public class RoomServiceImpl implements RoomService{
 	public void insertRoom(Room dto) throws Exception {
 		try {
 			
-			List<String> aditemslist=dto.getAditems();
-			String aditem="";
-			
-			for(String aditems:aditemslist) {
-				aditem+=aditems+" ";
-			}
-			dto.setAditem(aditem);
-			
-			
-			List<String> optionlist=dto.getOption();
-			
-			String options="";
-			
-			for(String option:optionlist) {
-				options+=option+" ";
-			}
-			dto.setAditem(options);
-			
 			if(dto.getMrent()==0) {
 				dto.setDealtype("전세");
 			}else {

@@ -11,11 +11,13 @@ public interface CookTipService {
 	public void updateHitCount(int num) throws Exception;
 	public CookTip preReadCookTip(Map<String, Object> map);
 	public CookTip nextReadCookTip(Map<String, Object> map);
-	public void updateCookTip(CookTip dto, String pathname) throws Exception;
-	public void deleteCookTip(int num, String pathname, String userId) throws Exception;
+	public void updateCookTip(CookTip dto) throws Exception;
+	public void deleteCookTip(int num, String userId) throws Exception;
 	
 	public void insertCookTipLike(Map<String, Object> map) throws Exception;
-	public int CookTipLikeCount(int num);
+	public int cookTipLikeCount(int num);
+	public int readCookTipLike(Map<String, Object> map) throws Exception;
+	public void deleteCookTipLike(Map<String, Object> map) throws Exception;
 	
 	public void insertReply(Reply dto) throws Exception;
 	public List<Reply> listReply(Map<String, Object> map);

@@ -151,6 +151,7 @@ public class CookTipController {
 			@RequestParam String page,
 			@RequestParam(defaultValue="all") String condition,
 			@RequestParam(defaultValue="") String keyword,
+			HttpSession session,
 			Model model			
 			) throws Exception {
 		
@@ -181,15 +182,162 @@ public class CookTipController {
 		CookTip preReadDto = service.preReadCookTip(map);
 		CookTip nextReadDto = service.nextReadCookTip(map);
 		
+		
 		model.addAttribute("dto", dto);		
 		model.addAttribute("preReadDto", preReadDto);		
 		model.addAttribute("nextReadDto", nextReadDto);		
 		
+		// 좋아요 여부 가져오기
+		SessionInfo info=(SessionInfo)session.getAttribute("member");
+
+		Map<String, Object> paramMap=new HashMap<>();
+		paramMap.put("num", num);
+		paramMap.put("userId", info.getUserId());
+		
+		int readcookTipLike=0;
+		
+		try {
+			readcookTipLike = service.readCookTipLike(paramMap);					
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		model.addAttribute("userLike", readcookTipLike);
 		model.addAttribute("page", page);
 		model.addAttribute("query", query);
 		
 		return ".cook.honCooq.cookTip.article";
 	}
+
+	@RequestMapping(value="update", method=RequestMethod.GET)
+	public String updateForm(
+			@RequestParam int num,
+			@RequestParam String page,
+			HttpSession session,
+			Model model
+			) {
+		
+		SessionInfo info = (SessionInfo)session.getAttribute("member");
+		
+		CookTip dto = service.readCookTip(num);
+		
+		if (dto==null) {
+			return "redirect:/cook/honCooq/cookTip/list?page="+page;
+		}
+		
+		if (! info.getUserId().equals(dto.getUserId())) {
+			return "redirect:/cook/honCooq/cookTip/list?page="+page;
+		}
+		
+		model.addAttribute("dto", dto);
+		model.addAttribute("mode", "update");
+		model.addAttribute("page", page);
+		
+		return ".cook.honCooq.cookTip.created";
+	}	
 	
+	@RequestMapping(value="update", method=RequestMethod.POST)
+	public String updateSubmit(
+			CookTip dto,
+			@RequestParam String page,
+			HttpSession session
+			) {
+		SessionInfo info = (SessionInfo)session.getAttribute("member");
+		dto.setUserId(info.getUserId());
+		
+		try {
+			service.updateCookTip(dto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return "redirect:/cook/honCooq/cookTip/list?page="+page;
+	}
 	
+	@RequestMapping(value = "delete")
+	public String delete(
+			@RequestParam int num,
+			@RequestParam String page,
+			@RequestParam(defaultValue="all") String condition,
+			@RequestParam(defaultValue="") String keyword,
+			HttpSession session
+			) throws Exception {
+		SessionInfo info=(SessionInfo)session.getAttribute("member");
+		
+		keyword = URLDecoder.decode(keyword, "utf-8");
+		String query="page="+page;
+		if(keyword.length()!=0) {
+			query+="&condition="+condition+"&keyword="+URLEncoder.encode(keyword, "UTF-8");
+		}
+		
+		try {	
+			service.deleteCookTip(num, info.getUserId());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return "redirect:/cook/honCooq/cookTip/list?"+query;
+	}	
+	
+	// 게시글 좋아요 추가(insert) : AJAX-JSON
+	@RequestMapping(value="insertCookTipLike", method=RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> insertCookTipLike(
+			@RequestParam int num,
+			HttpSession session
+			) {
+		String state="true";
+		int cookTipLikeCount=0;
+		SessionInfo info=(SessionInfo)session.getAttribute("member");
+		
+		Map<String, Object> paramMap=new HashMap<>();
+		paramMap.put("num", num);
+		paramMap.put("userId", info.getUserId());
+		
+		try {
+			service.insertCookTipLike(paramMap);					
+		} catch (Exception e) {
+			e.printStackTrace();
+			state="false";
+		}
+			
+		cookTipLikeCount = service.cookTipLikeCount(num);
+		
+		Map<String, Object> model=new HashMap<>();
+		model.put("state", state);
+		model.put("cookTipLikeCount", cookTipLikeCount);
+		
+		return model;
+	}	
+	
+	// 게시글 좋아요 삭제(delete) : AJAX-JSON
+	@RequestMapping(value="deleteCookTipLike", method=RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> deleteCookTipLike(
+			@RequestParam int num,
+			HttpSession session
+			) {
+		String state="true";
+		int cookTipLikeCount=0;
+		SessionInfo info=(SessionInfo)session.getAttribute("member");
+		
+		Map<String, Object> paramMap=new HashMap<>();
+		paramMap.put("num", num);
+		paramMap.put("userId", info.getUserId());
+		
+		try {
+			service.deleteCookTipLike(paramMap);					
+		} catch (Exception e) {
+			e.printStackTrace();
+			state="false";
+		}
+			
+		cookTipLikeCount = service.cookTipLikeCount(num);
+		 
+		Map<String, Object> model=new HashMap<>();
+		model.put("state", state);
+		model.put("cookTipLikeCount", cookTipLikeCount);
+		
+		return model;
+	}		
 }
