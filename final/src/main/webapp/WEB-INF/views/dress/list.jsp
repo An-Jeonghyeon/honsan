@@ -34,7 +34,7 @@
 			
 				<div class="dress-subContent">
 					<div class="dress-subContent-InnerImage" onclick="javascript:location.href='${articleUrl}&num=${dto.num}'">						
-						<img class="dress-img" src="${dto.saveFilename}">${dto.saveFilename}
+						<img class="dress-img" src="${dto.saveFilename}">
 					</div>
 					<div class="dress-subContent-InnerText">
 						<a href="${articleUrl}&num=${dto.num}">${dto.subject}</a>

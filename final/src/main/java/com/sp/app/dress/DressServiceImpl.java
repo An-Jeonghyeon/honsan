@@ -6,7 +6,6 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.sp.app.common.FileManager;
 import com.sp.app.common.dao.CommonDAO;
 
 @Service("dress.dressService")
@@ -14,8 +13,6 @@ public class DressServiceImpl implements DressService{
 	
 	@Autowired
 	private CommonDAO dao;
-	@Autowired
-	private FileManager fileManager;
 	
 	
 	@Override
@@ -75,15 +72,19 @@ public class DressServiceImpl implements DressService{
 	}
 
 	@Override
-	public void updateDress(Dress dto, String pathname) throws Exception {
+	public void updateDress(Dress dto) throws Exception {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void deleteDress(int num, String pathname, String userId) throws Exception {
+	public void deleteDress(int num, String userId) throws Exception {
 		try {
-			
+			Dress dto =readDress(num);
+			if(dto==null || (userId!="admin") && (dto.getUserId().equals(userId))) {
+				return;
+			}
+			dao.deleteData("dress.deleteDress",num);
 		} catch (Exception e) {
 			// TODO: handle exception
 		}

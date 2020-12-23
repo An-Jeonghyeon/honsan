@@ -108,8 +108,18 @@
     height: 30px;
     margin: 10px auto;
     box-sizing: border-box;
+    cursor: pointer;
     /* TestBackground */
     /* background-color: rgba(222, 188, 255, 0.31); */
+}
+.ReplySUb>span{
+    transition: 0.5s;
+    border-radius: 5px;
+}
+.ReplySUb>span:hover{
+   
+    box-shadow: 0px 0px 15px  rgba(202, 164, 255, 0.529);
+   
 }
 .ReplyList{
     width: 90%;
@@ -232,6 +242,30 @@
     font-size: 12px;
     font-weight: 400;
 }
+.dress-ReplyLike{
+    padding: 5px;
+    height:25px; 
+    display: inline-block;
+    float: right;
+    font-weight: 400;
+    font-size: 13px;
+    cursor: pointer;
+    box-sizing: border-box;
+    border-radius: 5px;
+    transition: 0.5s;
+    color: rgb(136, 136, 136);
+    background: rgb(255, 255, 255);
+    box-shadow: 0px 0px 5px  rgba(128, 128, 128, 0.529);
+}
+.fa-thumbs-up{
+    margin: 0 5px;
+    transition:0.5s;
+    color: rgb(136, 136, 136);
+}
+.dress-ReplyLike:hover,.dress-ReplyLike:hover .fa-thumbs-up{
+    color: tomato;
+   
+}
 .RelyWrite{
     font-size: 12px;
     background: white;
@@ -289,10 +323,12 @@ form[name="ReplayListForm"]{
     float: right;
     transition: 0.1s;
     color: rgb(136, 136, 136);
-    box-shadow: 0px 0px 10px  rgba(128, 128, 128, 0.529);
+    background-color: white;
+    box-shadow: 0px 0px 5px  rgba(128, 128, 128, 0.529);
 }
-.Replybtn:hover{
+.Replybtn:hover,#deleteButton:hover, #updateButton:hover{
 background: rgb(174, 174, 174);
+box-shadow: 0px 0px 15px  rgba(202, 164, 255, 0.529);
 color: aliceblue;
 }
 .Replybtn:active{
@@ -300,4 +336,69 @@ transform: scale(0.9);
 }
 .Replybtn:focus{
 outline: none;
+}
+#updateButton{
+	width: 100px;
+    height: 40px;
+    transition: 0.5s;
+   	float: right;
+    font-size: 16px;
+    color: rgb(136, 136, 136);
+    background: rgb(255, 255, 255);
+    border:none;
+    cursor: pointer;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px  rgba(128, 128, 128, 0.529);
+}
+#deleteButton{
+	width: 100px;
+    height: 40px;
+    float: left; 
+    transition: 0.5s;
+    font-size: 16px;
+    color: rgb(136, 136, 136);
+    background: rgb(255, 255, 255);
+    border:none;
+    cursor: pointer;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px  rgba(128, 128, 128, 0.529);
+   
+}
+.dress-articleMainButtonBoxBody{
+	width: 90%;
+    height: 50px;
+    margin: 30px auto;
+    box-sizing:border-box;
+    border-top: 1px solid rgb(226,226,226);
+}
+
+.dress-articleButtonBoxBody{
+	width:250px;
+	padding-top:20px;
+	margin:0 auto;
+	box-sizing:border-box;
+}
+.EmpathyBotton{
+    width: 90%;
+    height: 130px;
+    padding-top: 15px;
+    box-sizing: border-box;
+    margin: 0 auto;
+    text-align: center;
+    border-top: 1px solid rgb(226,226,226);
+}
+.dress-thumbs-up{
+    padding-top: 30px;
+    border-radius: 50%;
+    transition: 0.5s;
+    cursor: pointer;
+    width: 130px;
+    height: 100px;
+    box-shadow: 0px 0px 10px rgba(128, 128, 128, 0.529);
+    background-color: white;
+}
+.dress-thumbs-up:hover{
+    background: rgb(174, 174, 174);
+    box-shadow: 0px 0px 15px  rgba(202, 164, 255, 0.529);
+    color: aliceblue;
 }

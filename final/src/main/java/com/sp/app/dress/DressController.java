@@ -77,7 +77,7 @@ public class DressController {
 			}
 			images = myUtil.getImgSrc(dto.getContent());
 			if(images.size()>0) {
-				dto.setSaveFilename(images.get(0));	// (0)으로 처음 한 장만!
+				dto.setSaveFilename(images.get(0));	
 			}
 			
 		}
@@ -142,9 +142,10 @@ public class DressController {
 			) throws Exception{
 		keyword = URLDecoder.decode(keyword,"utf-8");
 		
-		String query = "page"+page;
-		if(keyword.length()!=0) {
-			query+="&condition="+condition+"&keyword="+URLEncoder.encode(keyword,"utf-8");
+		String query = "page="+page;
+		if (keyword.length()!=0) {
+			query+="&condition="+condition+"&keyword="
+					+URLEncoder.encode(keyword, "utf-8");
 		}
 		
 		service.updateHitCount(num);
@@ -162,5 +163,23 @@ public class DressController {
 		model.addAttribute("query", query);
 		
 		return ".dress.article";
+	}
+	@RequestMapping("delete")
+	public String deleteDress(@RequestParam int num,
+							  @RequestParam String page,
+							  @RequestParam(defaultValue = "all")String condition,
+							  @RequestParam(defaultValue = "")String keyword,
+							  HttpSession session
+								) throws Exception{
+		
+		SessionInfo info = (SessionInfo)session.getAttribute("member");
+		keyword= URLDecoder.decode(keyword,"utf-8");
+		String query= "page="+page;
+		if(keyword.length()!=0) {
+			query+="&condition="+condition+"&keyword="+URLEncoder.encode(keyword,"utf-8");
+		}
+		service.deleteDress(num, info.getUserId());
+		
+		return "redirect:/dress/list?"+query;
 	}
 }

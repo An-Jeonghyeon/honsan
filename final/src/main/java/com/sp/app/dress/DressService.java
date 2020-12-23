@@ -9,8 +9,8 @@ public interface DressService {
 	public int dataCount(Map<String, Object> map);
 	public Dress readDress(int num);
 	public void updateHitCount(int num) throws Exception;
-	public void updateDress(Dress dto,String pathname)throws Exception;
-	public void deleteDress(int num, String pathname, String userId)throws Exception;
+	public void updateDress(Dress dto)throws Exception;
+	public void deleteDress(int num,String userId)throws Exception;
 	
 	
 }
