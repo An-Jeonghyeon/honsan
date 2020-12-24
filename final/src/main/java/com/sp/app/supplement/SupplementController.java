@@ -302,6 +302,74 @@ public class SupplementController {
 		return "redirect:/supplement/list?"+query;
 	}
 	
+	//댓글 등록(대댓글도)
+	@RequestMapping(value = "insertReply", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> insertReply(
+			Reply dto,
+			HttpSession session
+			) throws Exception {
+		SessionInfo info=(SessionInfo)session.getAttribute("member");
+		
+		String state = "true";
+		
+		try {
+			dto.setUserId(info.getUserId());
+			service.insertReply(dto);
+		} catch (Exception e) { //등록 안되면
+			state="false";
+		}
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("state", state);
+		
+		return map; 
+	}
+	
+	//댓글 리스트
+	@RequestMapping(value = "listReply")
+	public String listReply(
+				@RequestParam int num,
+				@RequestParam(value = "pageNo", defaultValue = "1") int current_page,
+				Model model
+			) throws Exception {
+		
+		int rows=5;
+		int total_page = 0;
+		int dataCount=0;
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("num", num);
+		
+		dataCount = service.ReplyCount(map);
+		total_page = myUtil.pageCount(rows, dataCount);
+		if(current_page>total_page) {
+			current_page=total_page;
+		}
+		
+		int offset = (current_page-1) *rows;
+		if(offset< 0) {
+			offset=0;
+		}
+		map.put("offset", offset);
+		map.put("rows", rows);
+		List<Reply> listReply = service.listReply(map);
+		
+		for(Reply dto : listReply) {
+			dto.setContent(dto.getContent().replaceAll("\n", "<br>"));
+		}
+		
+		String paging = myUtil.pagingMethod(current_page, total_page, "listPage");
+		
+		model.addAttribute("listReply", listReply);
+		model.addAttribute("pageNo", current_page );
+		model.addAttribute("replyCount", dataCount);
+		model.addAttribute("total_page", total_page);
+		model.addAttribute("paging", paging);
+		
+		return "supplement/listReply";
+	}
+	
 
 	
 }

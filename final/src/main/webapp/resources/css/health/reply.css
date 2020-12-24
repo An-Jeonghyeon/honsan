@@ -1,0 +1,88 @@
+@charset "UTF-8";
+.h-reply-table{
+    width: 900px;
+    border-spacing: 0px;
+    margin: 0 auto;
+} 
+.replybody-tr {
+    height: 30px;
+}
+.replybody-td1 {
+    width : 50%; 
+    padding:5px 5px; 
+    border-top:1px solid #cccccc; 
+    border-right:none;
+}
+.replybody-td2 {
+    width : 50%; 
+    padding:5px 5px; 
+    border-top : 1px solid #cccccc; 
+    border-left:none; 
+    text-align: right;
+}
+.h-deleteReply {
+    cursor: pointer;
+}
+.reply-content {
+    column-span: 2;
+    padding:5px 5px;
+    vertical-align: top;
+}
+.h-reply-count {
+    padding:7px 5px;
+}
+.h-reply-like {
+    padding:7px 5px; 
+    text-align : right;
+}
+/* 왜 안먹는가... */
+/* .replym { */
+/*     margin-bottom: 10px; */
+/* } */
+.h-reply-btnlike {
+    width: 70px;
+    height: 30px;
+    border: none;
+    border-radius: 5px;
+}
+.h-btnReplyAnswerLayout {
+    width: 90px;
+    height: 30px;
+    border: none;
+    border-radius: 5px;
+
+}
+.replyAnswer{
+	
+}
+.h-answerList {
+    border-top: 1px solid #cccccc;'
+}
+.h-replytextbox {
+    clear: both; 
+    padding: 10px 30px;
+}
+.replyL{
+    float: left; 
+    width: 30px;
+}
+.replyareabox {
+    float: left; 
+    width:800px;
+}
+.replyarea {
+    width:800px;
+    height: 70px;
+}
+.reply2button {
+    width: 800px;
+    text-align: right;
+    margin: 20px auto;
+    height: 40px;
+}
+.h-sendreply2btn {
+    width: 70px;
+    height: 30px;
+    border: none;
+    border-radius: 5px;
+}

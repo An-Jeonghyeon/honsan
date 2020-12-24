@@ -153,7 +153,49 @@
 		FETCH FIRST 1 ROWS ONLY
 	</select>
 	
+	<!--       댓글              -->
+	<!-- 댓글 등록 -->
+	<insert id="insertReply" parameterType="com.sp.app.supplement.Reply">
+		INSERT INTO supplement_reply(replyNum, num, userId, content, register_date, answer)
+			VALUES(supplementReply_seq.NEXTVAL, #{num}, #{userId}, #{content}, SYSDATE, #{answer})
+	</insert>
+	
+	<!--게시글별 댓글 갯수 -->
+	<select id="replyCount" parameterType="map" resultType="Integer">
+		SELECT NVL(COUNT(*), 0) 
+		FROM supplement_reply
+		WHERE num=#{num} AND answer=0
+	</select>
+	
+	<!-- 댓글 리스트(전체x , 댓글마다) -->
+	<!-- member에서 name /  댓글에서 댓글갯수 / 댓글좋아요에서 댓글번호+좋아요싫어요갯수-->
+	<!-- 첫번째  LEFT OUTER JOIN : 댯글이 아닌, 대댓글의 부모넘+ 총갯수-->
+	<!-- 두번째  LEFT OUTER JOIN : 대댓글의 부모넘(댓글넘) + 좋아요, 싫어요갯수-->
+	<select id="listReply" parameterType="map" resultType="com.sp.app.supplement.Reply">
+		SELECT r.replyNum, num, r.userId, userName, content, register_date,
+		    NVL(answerCount, 0) answerCount,
+		    NVL(likeCount, 0) likeCount,
+		    NVL(disLikeCount, 0) disLikeCount
+		FROM supplement_reply r
+		JOIN member1 m ON r.userId=m.userId
+		LEFT OUTER JOIN (
+		    SELECT answer, COUNT(*) answerCount
+		    FROM supplement_reply
+		    WHERE answer!=0
+		    GROUP BY answer
+		) sr ON r.replyNum= sr.answer
+		LEFT OUTER JOIN (
+		    SELECT replyNum,
+		        COUNT(DECODE(replyLike, 1, 1)) likeCount,
+		        COUNT(DECODE(replyLike, 10, 1)) disLikeCount
+		    FROM supplement_reply_like
+		    GROUP BY replyNum
+		) srl ON r.replyNum = srl.replyNum
+		WHERE num=#{num} AND r.answer=0
+		ORDER BY r.replyNum DESC
+		OFFSET #{offset} ROWS FETCH FIRST #{rows} ROWS ONLY
+	</select>
 	
 	
-	
+		
 </mapper>

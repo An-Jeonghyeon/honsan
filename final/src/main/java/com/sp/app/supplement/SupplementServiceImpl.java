@@ -195,6 +195,76 @@ public class SupplementServiceImpl implements SupplementService {
 	}
 
 
+	@Override
+	public void insertReply(Reply dto) throws Exception {
+		try {
+			dao.insertData("supplement.insertReply", dto);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+		
+	}
+
+	@Override
+	public List<Reply> listReply(Map<String, Object> map) {
+		List<Reply> list=null;
+		try {
+			list = dao.selectList("supplement.listReply", map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+
+	@Override
+	public int ReplyCount(Map<String, Object> map) {
+		int result=0;
+		try {
+			result=dao.selectOne("supplement.replyCount", map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+
+	@Override
+	public void deleteReply(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public List<Reply> listReplyAnswer(int answer) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public int ReplyAnswerCount(int answer) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	@Override
+	public void insertReplyLike(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public Map<String, Object> replyLikeCount(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
 
 	
 	
