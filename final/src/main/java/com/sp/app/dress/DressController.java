@@ -111,8 +111,8 @@ public class DressController {
 	
 	
 	@GetMapping("created")
-	public String DressCreated() throws Exception{
-		
+	public String DressCreated(Model model) throws Exception{
+		model.addAttribute("mode","created");
 		return ".dress.created";
 	}
 	@PostMapping("created")

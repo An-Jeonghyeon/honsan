@@ -30,7 +30,7 @@
 			return false;
 		}
 
-		f.action = "${pageContext.request.contextPath}/dress/created";
+		f.action = "${pageContext.request.contextPath}/dress/${mode}";
 
 		return true;
 	}
@@ -90,9 +90,8 @@
 
 
                     <div class="buttonBoxBody">
-                        <button type="button" id="CencelSubmit"
-                            onclick="javascript:location.href='${pageContext.request.contextPath}/dress/list'">등록취소</button>
-                        <button type="submit" id="writeSubmit">등록하기</button>
+                        <button type="button" id="CencelSubmit">${mode=='update'? '수정취소':'등록취소'}</button>
+                        <button type="submit" id="writeSubmit">${mode=='update'?'수정완료':'등록하기'}</button>
                     </div>
                 </article>
             </form>
