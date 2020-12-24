@@ -45,7 +45,7 @@
 	                    <!-- 아이디 , 좋아요  및 게시판 제목  -->
 	                    <div class="interior_subject_id_title">
 	                                <div class="interior_subject_userId">
-	                                    <a class="interior_subject_userId_idTag">${dto.userId}</a>
+	                                    <a class="interior_subject_userId_idTag">${dto.userName}</a>
 	                                    ·<a class="interior_subject_userId_likeTag"> 좋아요 </a>
 	                                </div>
 	                                <div class="interior_subject_subject">

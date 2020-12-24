@@ -37,7 +37,7 @@ function interior_created() {
                 <img class="leftbox_mainImg_img" >
             </div>
             <div class="mainImg_append"> 설정
-                <input id="mainImg_upload" type="file" name="upload" >
+                <input id="mainImg_upload" type="file" name="upload" > <!--${dto.saveFilename} 다운받아져있는 이미지넣는다  -->
             </div>
             <!-- 서브 사진들 -->
             <div class="leftbox_subImg">
