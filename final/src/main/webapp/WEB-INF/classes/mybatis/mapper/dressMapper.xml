@@ -11,10 +11,17 @@
 
 	<select id="listDress" parameterType="map"
 		resultType="com.sp.app.dress.Dress">
-		SELECT num, b.userId, userName , subject,hashtag
-			,HITCOUNT,TO_CHAR(REGISTER_DATE,'YYYY-MM-DD')created,content
+		SELECT b.num, b.userId, userName , subject,hashtag,
+		HITCOUNT,TO_CHAR(REGISTER_DATE,'YYYY-MM-DD')created,
+		content, NVL(replyCount, 0)replyCount
 		FROM CLOTHESSTORY b
 		JOIN member1 m ON b.userId = m.userId
+		LEFT OUTER JOIN(
+			SELECT num, COUNT(*) replyCount FROM clothesStory_reply
+				WHERE answer = 0
+			GROUP BY num
+		)c ON b.num=c.num
+		
 		<where>
 			<if test="keyword!=null and keyword!=''">
 				<include refid="where-list"></include>
@@ -57,10 +64,22 @@
 	</update>
 	
 	<select id="readDress" parameterType="Integer" resultType="com.sp.app.dress.Dress">
-		SELECT num, b.userId, userName, subject, content, TO_CHAR(REGISTER_DATE,'YYYY-MM-DD')register_date, HitCount
+		<!-- SELECT num, b.userId, userName, subject, content, TO_CHAR(REGISTER_DATE,'YYYY-MM-DD')register_date, HitCount
 		FROM clothesStory b
 		JOIN member1 m ON b.userId = m.userId
-		WHERE num = #{num}
+	
+		WHERE num = #{num} -->
+		
+		SELECT b.num,subject, b.userId,content, TO_CHAR(REGISTER_DATE,'YYYY-MM-DD')register_date, HitCount,NVL(replyCount,0)replyCount
+		FROM clothesStory b
+		JOIN member1 m ON b.userId = m.userId
+		LEFT OUTER JOIN(
+			SELECT num, COUNT(*)replyCount FROM clothesStory_reply
+			WHERE answer=0 
+			GROUP BY num 
+		)c ON b.num=c.num 		
+		WHERE b.num = #{num}
+	
 	</select>
 	
 	<delete id="deleteDress" parameterType="Integer">

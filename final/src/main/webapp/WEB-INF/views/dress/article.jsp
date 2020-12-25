@@ -48,9 +48,6 @@ function ajaxJSON(url,method, query, fn){
 		}
 	});
 }
-function reload(){
-	location.reload();
-}
 
 	
 function ajaxHTML(url, method, query, selector){
@@ -137,12 +134,12 @@ $(function() {
 	})
 
 	$("body").on("click",".ReplySUb > span",function() {
-		if ($("form[name=ReplayListForm]").is(':visible') == false) {
+		if ($(".ReplayListForm").is(':visible') == false) {
 			$(".ReplySUbDown").css("transform", "rotate(180deg)");
-			$("form").slideDown(1000);
+			$(".ReplayListForm").slideDown(1000);
 		} else {
 			$(".ReplySUbDown").css("transform", "rotate(360deg)");
-			$("form").slideUp(1000);
+			$(".ReplayListForm").slideUp(1000);
 		}
 	})
 
@@ -191,7 +188,7 @@ $(function() {
                             <span class="hitCountNumber">조회 ${dto.hitCount}</span>
                         </div>
                         <div class="articleMainHeaderReply">
-                            <span> <a href="${pageContext.request.contextPath}"> 댓글54</a></span>
+                            <span> <a href="#Comment"> 댓글 ${dto.replyCount }</a></span>
                         </div>
                     </div>
                 </div>
@@ -208,13 +205,13 @@ $(function() {
                 <div class="LikeBox">
                     <span class="LikeHeart"> <i class="far fa-heart ILikeHeart"></i>좋아요
                         13
-                    </span> <span class="Comment"><i class="far fa-comments"></i>댓글 54</span> <span
+                    </span> <span class="Comment" id="Comment"><i class="far fa-comments"></i>댓글 ${dto.replyCount }</span> <span
                         class="fullLikeHeart"> <i class="fas fa-heart"></i></span>
                 </div>
                 <div class="ReplySUb">
                     <span>댓글 <span class="ReplySUbDown">▾</span></span>
                 </div>
-                <form action="" method="post" name="ReplayListForm">
+                <div class="ReplayListForm"> 
                     <div id="listReply">
                        
                     </div>
@@ -228,5 +225,6 @@ $(function() {
                         </div>
                     </div>
 
-                </form>
+                
+                </div>
             </div>

@@ -16,12 +16,19 @@ public class Dress {
 	private int hitCount;
 	private	List<String> tags;
 	
+	private int replyCount;
 	
 	private MultipartFile upload; 
 	private String saveFilename;
 	
 	
 	
+	public int getReplyCount() {
+		return replyCount;
+	}
+	public void setReplyCount(int replyCount) {
+		this.replyCount = replyCount;
+	}
 	public MultipartFile getUpload() {
 		return upload;
 	}

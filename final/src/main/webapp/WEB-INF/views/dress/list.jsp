@@ -43,6 +43,7 @@
 					<div class="dress-subContent-InnerImageInnerBox">
 						<span class="dress-subContent-InnerUserName">작성자:${dto.userName }</span>
 						<span class="dress-subContent-InnerHitCount">조회수:${dto.hitCount }</span>
+						<span class="dress-subContent-InnerReplyCount">(${dto.replyCount })</span>
 						<span class="dress-subContent-InnerTags">
 							 <c:forEach
 								var="s" items="${dto.tags}">
