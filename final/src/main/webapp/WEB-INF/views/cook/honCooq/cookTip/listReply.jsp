@@ -3,7 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-	<div class="cookTip_ReplyAll">
 		<div class="cookTip_ReplySub">
 			<span>댓글 ${replyCount}개</span> <span>[댓글 목록, ${pageNo}/${total_page} 페이지]</span>
 		</div>
@@ -36,14 +35,3 @@
 				</div>
 			</div>
 		</div>
-		<div class="cookTip_ReplyBody">
-			<div class="cookTip_ReplyContentBox">
-				<span>주다혜</span>
-				<textarea class="cookTip_ReplyContentBox-textarea" id="" placeholder="댓글을 남겨보세요"></textarea>
-				<div class="cookTip_ReplySubmitButton">
-					<button class="cookTip_Replybtn" type="button">등록</button>
-				</div>
-			</div>
-		</div>
-
-	</div>

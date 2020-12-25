@@ -100,7 +100,7 @@
 	</select>
 	
 	<!-- 수정 -->
-	<update id="updateCookTip" parameterType="com.sp.app.bbs.Board">
+	<update id="updateCookTip" parameterType="com.sp.app.cook.honCooq.cookTip.CookTip">
 		UPDATE cookTip SET category=#{category}, subject=#{subject}, content=#{content}
 				WHERE num=#{num} AND userId = #{userId}
 	</update>	
@@ -132,4 +132,74 @@
 	<delete id="deleteCookTipLike" parameterType="map">
 		DELETE FROM cookTip_like WHERE num=#{num} AND userId=#{userId}
 	</delete>
+	
+	<!-- 댓글 추가(insert) -->
+	<insert id="insertCookTipReply" parameterType="com.sp.app.cook.honCooq.cookTip.Reply">
+		INSERT INTO cookTip_reply (replyNum, num, userId, content, answer, register_date)
+			VALUES (cookTipR_seq.NEXTVAL, #{num}, #{userId}, #{content}, #{answer}, SYSDATE)
+	</insert>	
+	
+	<select id="cookTipReplyCount" parameterType="map" resultType="Integer">
+		SELECT NVL(COUNT(*), 0) FROM cookTip_reply
+		WHERE num=#{num} AND answer=0
+	</select>
+
+	<!-- 댓글리스트 -->
+	<select id="listCookTipReply" parameterType="map" resultType="com.sp.app.cook.honCooq.cookTip.Reply">
+		SELECT c.replyNum, c.userId, userName, num, content, c.register_date, 
+		       NVL(answerCount, 0) answerCount,
+		       NVL(likeCount, 0) likeCount,
+		       NVL(disLikeCount, 0) disLikeCount
+		FROM cookTip_reply c
+		JOIN member1 m ON c.userId = m.userId
+		LEFT OUTER JOIN (
+			SELECT answer, COUNT(*) answerCount
+			FROM cookTip_reply WHERE answer!=0 GROUP BY answer
+		) a ON c.replyNum = a.answer
+		LEFT OUTER JOIN (
+			SELECT replyNum, COUNT(DECODE(replyLike, 1, 1)) likeCount,
+				   COUNT(DECODE(replyLike, 0, 1)) disLikeCount
+			FROM cookTip_replyLike GROUP BY replyNum
+		) b ON c.replyNum = b.replyNum
+		WHERE num=#{num}  AND c.answer=0
+		ORDER BY c.replyNum DESC
+		OFFSET #{offset} ROWS FETCH FIRST #{rows} ROWS ONLY
+	</select>	
+
+	<!-- 댓글 및 답글 삭제 -->
+	<delete id="deleteCookTipReply" parameterType="map">
+		DELETE FROM cookTip_reply
+		WHERE replyNum=#{replyNum}
+		<if test="mode=='reply'">
+			OR answer=#{replyNum}
+		</if>
+	</delete>
+	
+	<!-- 댓글의 답글 리스트 -->
+	<select id="ListCookTipReplyAnswer" parameterType="Integer" resultType="com.sp.app.cook.honCooq.cookTip.Reply">
+		SELECT replyNum, num, c.userId, userName, content, register_date, answer
+		FROM cookTip_reply c
+		JOIN member1 m ON c.userId = m.userId
+		WHERE answer = #{answer}
+		ORDER BY replyNum DESC
+	</select>
+	
+	<!-- 댓글의 답글 개수 -->
+	<select id="cookTipReplyAnswerCount" parameterType="Integer" resultType="Integer">
+		SELECT NVL(COUNT(*), 0)
+		FROM cookTip_reply WHERE answer = #{answer}
+	</select>
+	
+	<!-- 좋아요/싫어요 추가 -->
+	<insert id="insertCookTipReplyLike" parameterType="map">
+		INSERT INTO cookTip_replyLike(replyNum, userId, replyLike)
+			VALUES (#{replyNum}, #{userId}, #{replyLike})
+	</insert>
+	
+	<!-- 좋아요/싫어요 개수 -->
+	<select id="cookTipReplyLikeCount" parameterType="map" resultType="map">
+		SELECT COUNT(DECODE(replyLike, 1, 1)) likeCount,
+			   COUNT(DECODE(replyLike, 0, 1)) disLikeCount
+		FROM cookTip_replyLike WHERE replyNum = #{replyNum}
+	</select>	
 </mapper>
