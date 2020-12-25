@@ -15,10 +15,30 @@ public class Interior {
 	private int hitCount;
 	private String saveFilename;
 	private int mainnum;
+	private String mainImg;
 	
 	private List<MultipartFile> upload;
 	
+	private MultipartFile mainUpload; 
 	
+	
+	
+
+	public String getMainImg() {
+		return mainImg;
+	}
+
+	public void setMainImg(String mainImg) {
+		this.mainImg = mainImg;
+	}
+
+	public MultipartFile getMainUpload() {
+		return mainUpload;
+	}
+
+	public void setMainUpload(MultipartFile mainUpload) {
+		this.mainUpload = mainUpload;
+	}
 
 	public String getSaveFilename() {
 	

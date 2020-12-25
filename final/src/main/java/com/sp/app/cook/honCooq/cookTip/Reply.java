@@ -6,7 +6,7 @@ public class Reply {
 	private String userId;
 	private String userName;
 	private String content;
-	private String created;
+	private String register_date;
 	private int answer;
 	
 	private int answerCount;
@@ -43,11 +43,11 @@ public class Reply {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public String getCreated() {
-		return created;
+	public String getregister_date() {
+		return register_date;
 	}
-	public void setCreated(String created) {
-		this.created = created;
+	public void setregister_date(String register_date) {
+		this.register_date = register_date;
 	}
 	public int getAnswer() {
 		return answer;

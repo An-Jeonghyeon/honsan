@@ -185,4 +185,32 @@ public class InteriorController {
 
 		return ".interior.boardItem";
 	}
+	
+	@RequestMapping(value="update" , method = RequestMethod.GET)
+	public String updateForm(
+			Interior dto,
+			int num,
+			Model model
+			) throws Exception{
+		
+		dto = service.readBoard(num);
+		List<Interior> flist = service.readBoardImg(num);
+		if (dto==null && flist==null) {
+			return "redirect:/interior/main";
+		}
+		
+		model.addAttribute("dto", dto);
+		model.addAttribute("flist",flist);
+		
+		String category = dto.getCategory();
+		
+		if(category!=null) {
+			String categorylist[] = dto.getCategory().trim().split("#");			
+			model.addAttribute("categorylist", categorylist);
+		}
+	
+		
+			
+		return ".interior.interior_update";
+	}
 }

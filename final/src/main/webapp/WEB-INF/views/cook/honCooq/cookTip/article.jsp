@@ -124,29 +124,9 @@ $(function(){
 		}	
 		ajaxJSON(url, "post", query, fn);
 	});
-	
-/* 	function readCookTipLike() {
-		var url="${pageContext.request.contextPath}/cook/honCooq/cookTip/readCookTipLike";
-		var num="${dto.num}";
-		// var query={num:num}; 이렇게 써도 아래와 같은 의미
-		var query="num="+num;
-		
-		var fn = function(data){
-			var state=data.state;
-			if(state==="true") {
-				alert("남긴 적이 없으시네요!!");
-			} else if(state==="false") {
-				alert("좋아요는 한번만 가능합니다. !!!");
-			}
-		};
-		
-		ajaxJSON(url, "post", query, fn);
-	}	 */
-	
-	
 });
 
-// 페이징 처리
+// 게시글 로딩시 페이징 처리
 $(function() {
 	listPage(1);
 });
@@ -155,10 +135,74 @@ $(function() {
 function listPage(page) {
 	var url = "${pageContext.request.contextPath}/cook/honCooq/cookTip/listReply";
 	var query = "num=${dto.num}&pageNo="+page;
-	var selector = "#listReply";
+	var selector = "#listCookTipReply";
 	
 	ajaxHTML(url, "get", query, selector);
 }
+
+//리플 등록
+$(function(){
+	$(".btnSendReply").click(function(){
+		var num="${dto.num}";
+		//var $tb = $(this).closest("table");
+		var $div = $(this).parents(".cookTip_ReplyContentBox"); 
+		
+//		var content=$tb.find("textarea").val().trim();
+		var content=$div.find("textarea").val().trim();
+		
+		
+		if(! content) {
+			$div.find("textarea").focus();
+			return false;
+		}
+		content = encodeURIComponent(content);
+		
+		var url="${pageContext.request.contextPath}/cook/honCooq/cookTip/insertReply";
+		var query="num="+num+"&content="+content+"&answer=0";
+		
+		var fn = function(data){
+			$div.find("textarea").val("");
+			
+			var state=data.state;
+			if(state==="true") {
+				listPage(1);
+			} else if(state==="false") {
+				alert("댓글을 추가 하지 못했습니다.");
+			}
+		};
+		
+		ajaxJSON(url, "post", query, fn);
+	});
+});
+
+//댓글 삭제
+$(function(){
+	$("body").on("click", ".deleteReply", function(){
+		if(! confirm("게시물을 삭제하시겠습니까 ? ")) {
+		    return false;
+		}
+		
+		var replyNum=$(this).attr("data-replyNum");
+		var page=$(this).attr("data-pageNo");
+		
+		var url="${pageContext.request.contextPath}/cook/honCooq/cookTip/deleteReply";
+		var query="replyNum="+replyNum+"&mode=reply";
+		
+		var fn = function(data){
+			// var state=data.state;
+			listPage(page);
+		};
+		
+		ajaxJSON(url, "post", query, fn);
+	});
+});
+
+
+
+
+
+
+
 
 
 
@@ -232,6 +276,8 @@ function listPage(page) {
 	<div id="cookTip_listReply"></div>
 
 	<div class="cookTip_ReplyAll">
+		<!-- 여기부터 다음 주석까지 listReply로 -->
+		<!-- 
 		<div class="cookTip_ReplySub">
 			<span>댓글 ${replyDataCount}7개</span>
 		</div>
@@ -246,12 +292,15 @@ function listPage(page) {
 					</div>
 			</div>				
 		</div>
+		 -->
+		 <div id="listCookTipReply"></div>
+		<!-- -------------------------------------------------- -->
 		<div class="cookTip_ReplyBody">
 			<div class="cookTip_ReplyContentBox">
 				<span>주다혜</span>
 				<textarea class="cookTip_ReplyContentBox-textarea" id="" placeholder="댓글을 남겨보세요"></textarea>
 				<div class="cookTip_ReplySubmitButton">
-					<button class="cookTip_Replybtn" type="button">등록</button>
+					<button class="cookTip_Replybtn btnSendReply" type="button">등록</button>
 				</div>
 			</div>
 		</div>

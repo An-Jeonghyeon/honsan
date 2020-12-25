@@ -12,7 +12,10 @@ public class CookTip {
 	private String category;
 	private String register_date;
 	private int hitCount;
-
+	
+	private String yUrl;
+	private String ySub;
+	
 	private String imageFilename;
 	
 	private String saveFilename;
@@ -111,6 +114,18 @@ public class CookTip {
 	}
 	public void setImageFilename(String imageFilename) {
 		this.imageFilename = imageFilename;
+	}
+	public String getyUrl() {
+		return yUrl;
+	}
+	public void setyUrl(String yUrl) {
+		this.yUrl = yUrl;
+	}
+	public String getySub() {
+		return ySub;
+	}
+	public void setySub(String ySub) {
+		this.ySub = ySub;
 	}
 	
 	

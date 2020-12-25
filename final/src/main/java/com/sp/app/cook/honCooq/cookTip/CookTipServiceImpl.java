@@ -173,38 +173,88 @@ public class CookTipServiceImpl implements CookTipService{
 	
 	@Override
 	public void insertReply(Reply dto) throws Exception {
-		// TODO Auto-generated method stub
-		
+		try {
+			dao.insertData("cookTip.insertCookTipReply", dto);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
 	}
 
 	@Override
 	public List<Reply> listReply(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Reply> list = null;
+		try {
+			list = dao.selectList("cookTip.listCookTipReply", map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
 	}
 
 	@Override
 	public int replyCount(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		return 0;
+		int result=0;
+		try {
+			result=dao.selectOne("cookTip.cookTipReplyCount", map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
 	}
 
 	@Override
 	public void deleteReply(Map<String, Object> map) throws Exception {
-		// TODO Auto-generated method stub
-		
+		try {
+			dao.deleteData("cookTip.deleteCookTipReply", map);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
 	}
 
 	@Override
 	public List<Reply> listReplyAnswer(int answer) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Reply> list=null;
+		try {
+			list=dao.selectList("cookTip.listCookTipReplyAnswer", answer);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
 	}
 
 	@Override
 	public int replyAnswerCount(int answer) {
-		// TODO Auto-generated method stub
-		return 0;
+		int result=0;
+		try {
+			result=dao.selectOne("cookTip.cookTipReplyAnswerCount", answer);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
 	}
+
+	@Override
+	public void insertReplyLike(Map<String, Object> map) throws Exception{
+		try {
+			dao.insertData("cookTip.insertCookTipReplyLike", map);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
+
+	@Override
+	public Map<String, Object> replyLikeCount(Map<String, Object> map) {
+		Map<String, Object> countMap=null;
+		try {
+			countMap=dao.selectOne("cookTip.cookTipReplyLikeCount", map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return countMap;
+	}
+	
 	
 }
