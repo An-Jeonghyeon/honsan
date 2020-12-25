@@ -63,7 +63,7 @@ function updateBoard(num) {
 		                    <h3>Slide #${status.count }</h3>
 		                    <span>Sub-title #${status.count }</span>
 		                </div>                
-						<img src="{pageContext.request.contextPath}/uploads/room/${vo.saveFile}">
+						<img src="${pageContext.request.contextPath}/uploads/room/${vo.saveFile}">
 		             </li>
 					
 				</c:forEach>
