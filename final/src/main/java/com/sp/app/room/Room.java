@@ -2,6 +2,8 @@ package com.sp.app.room;
 
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class Room {
 	//room
 	private int num; //방 번호
@@ -34,6 +36,13 @@ public class Room {
 	
 	private String movedate; //입주 가능일 ex) 상의, 즉시입주 등
 	
+	
+	private int fileNum;
+	private String saveFile;
+	private int fileCount;
+	
+	// 스프링에서 파일 받기
+	private List<MultipartFile> upload; // <input type="file" name="upload"
 	
 	
 	public int getNum() {
@@ -174,12 +183,7 @@ public class Room {
 		this.options = options;
 	}
 	
-	
-	
-	
-	
-	
-	
+
 	public String getMovedate() {
 		return movedate;
 	}
@@ -189,7 +193,33 @@ public class Room {
 	
 	
 	
+	public int getFileNum() {
+		return fileNum;
+	}
+	public void setFileNum(int fileNum) {
+		this.fileNum = fileNum;
+	}
+
+	public String getSaveFile() {
+		return saveFile;
+	}
+	public void setSaveFile(String saveFile) {
+		this.saveFile = saveFile;
+	}
 	
+	public int getFileCount() {
+		return fileCount;
+	}
+	public void setFileCount(int fileCount) {
+		this.fileCount = fileCount;
+	}
+
+	public List<MultipartFile> getUpload() {
+		return upload;
+	}
+	public void setUpload(List<MultipartFile> upload) {
+		this.upload = upload;
+	}
 	
 	
 	

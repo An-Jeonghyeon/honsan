@@ -1,11 +1,14 @@
 package com.sp.app.room;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.sp.app.common.FileManager;
 import com.sp.app.common.dao.CommonDAO;
 
 @Service("room.roomSerivce")
@@ -13,12 +16,10 @@ public class RoomServiceImpl implements RoomService{
 	
 	@Autowired
 	private CommonDAO dao;
-	/*
 	@Autowired
 	private FileManager fileManager;
-	*/
 	@Override
-	public void insertRoom(Room dto) throws Exception {
+	public void insertRoom(Room dto, String pathname) throws Exception {
 		try {
 			
 			if(dto.getMrent()==0) {
@@ -35,7 +36,19 @@ public class RoomServiceImpl implements RoomService{
 			
 			dao.insertData("room.insertRoomlist", dto);
 			
-			
+			// 파일 업로드
+			if(! dto.getUpload().isEmpty()) {
+				for(MultipartFile mf:dto.getUpload()) {
+					String saveFile=fileManager.doFileUpload(mf, pathname);
+					if(saveFile==null) continue;
+					
+					dto.setSaveFile(saveFile);
+					
+					insertFile(dto);
+				}
+			}
+
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
@@ -83,19 +96,6 @@ public class RoomServiceImpl implements RoomService{
 	@Override
 	public void updateRoom(Room dto, String pathname) throws Exception {
 		try {
-			/*  파일 처리
-			String saveFilename=fileManager.doFileUpload(dto.getUpload(), pathname);
-			if (saveFilename!=null) {
-				if (dto.getSaveFilename().length()!=0) {
-					// 기존 파일 삭제하기
-					fileManager.doFileDelete(dto.getSaveFilename(), pathname);
-				}
-				
-				// 새로 업로드 된 파일
-				dto.setSaveFilename(saveFilename);
-				dto.setOriginalFilename(dto.getUpload().getOriginalFilename());
-			}*/
-			
 			if(dto.getMrent()==0) {
 				dto.setDealtype("전세");
 			}else {
@@ -104,6 +104,18 @@ public class RoomServiceImpl implements RoomService{
 			
 			dao.updateData("room.updateRoom", dto);
 			dao.updateData("room.updateRoomlist", dto);
+			//  파일 처리
+			if(! dto.getUpload().isEmpty()) {
+				for(MultipartFile mf:dto.getUpload()) {
+					String saveFile=fileManager.doFileUpload(mf, pathname);
+					if(saveFile==null) continue;
+					
+					dto.setSaveFile(saveFile);
+					
+					insertFile(dto);
+				}
+			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -117,15 +129,71 @@ public class RoomServiceImpl implements RoomService{
 			if (dto==null || (! userId.equals("admin") && ! dto.getUserId().equals(userId))) {
 				return;
 			}
-			/*
-			if (dto.getSaveFilename()!=null) {
-				fileManager.doFileDelete(dto.getSaveFilename(), pathname);
-			}*/
+			// 파일 지우기
+			List<Room> listFile=listFile(num);
+			if(listFile!=null) {
+				for(Room dtos:listFile) {
+					fileManager.doFileDelete(dtos.getSaveFile(), pathname);
+				}
+			}
+			
+			// 파일 테이블 내용 지우기
+			Map<String, Object> map=new HashMap<String, Object>();
+			map.put("field", "num");
+			map.put("num", num);
+			deleteFile(map);
 			
 			dao.deleteData("room.deleteRoom", num);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
+	
+	
+	@Override
+	public void insertFile(Room dto) throws Exception {
+		try {
+			dao.insertData("room.insertFile", dto);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
+	@Override
+	public List<Room> listFile(int num) {
+		List<Room> listFile=null;
+		
+		try {
+			listFile=dao.selectList("room.listFile", num);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return listFile;
+	}
+
+	@Override
+	public Room readFile(int fileNum) {
+		Room dto=null;
+		
+		try {
+			dto=dao.selectOne("room.readFile", fileNum);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return dto;
+	}
+
+	@Override
+	public void deleteFile(Map<String, Object> map) throws Exception {
+		try {
+			dao.deleteData("room.deleteFile", map);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
+	
 
 }

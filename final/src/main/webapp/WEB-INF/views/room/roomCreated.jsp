@@ -214,7 +214,6 @@ function check(){
 }
 
 
-
 </script>
 
 
@@ -232,6 +231,27 @@ function calculator(chk){
 	      document.getElementById('cal1').value = parseFloat(document.getElementById('cal2').value) / 3.3058;
 	  }
 }
+$(function(){
+	$(".mainimg1").click(function(){
+		$(".upload1").click();
+	});
+	
+	$(".mainimg2").click(function(){
+		$(".upload2").click();
+	});
+	
+	$(".mainimg3").click(function(){
+		$(".upload3").click();
+	});
+	
+	$(".mainimg4").click(function(){
+		$(".upload4").click();
+	});
+	
+});
+
+
+
 
 </script>
 
@@ -241,7 +261,7 @@ function calculator(chk){
 $(function(){
 	   
 var sel_files;
-	   $("body").on("change", ".roomForm input[type='file']", function(e){ 
+	   $("body").on("change", ".upload1", function(e){ 
 	       
 	      var files = e.target.files;
 	      var filesArr = Array.prototype.slice.call(files);
@@ -254,19 +274,94 @@ var sel_files;
 	         }
 	         
 	         sel_files=f;
-	         
 	         var reader = new FileReader();
 	         reader.onload = function(e1) {
-	            $("#mainimg").attr("src",e1.target.result);
-	            
+	            $("#mainimg1").attr("src",e1.target.result);
 	            
 	         }
 	         reader.readAsDataURL(f);
 	      });
 	       
 	   });
-	});
+	   
+});
+	   
+$(function(){	   
+	   $("body").on("change", ".upload2", function(e){ 
+	       
+		      var files = e.target.files;
+		      var filesArr = Array.prototype.slice.call(files);
+		      
+		      filesArr.forEach(function(f) {
+		         // 이미지 파일이 아닌경우
+		         if(! f.type.match("image.*")) {
+		        	alert("이미지 파일만 가능합니다.");
+		            return;
+		         }
+		         
+		         sel_files=f;
+		         var reader = new FileReader();
+		         reader.onload = function(e1) {
+		            $("#mainimg2").attr("src",e1.target.result);
+		            
+		         }
+		         reader.readAsDataURL(f);
+		      });
+		       
+		   });
+	   
+});
 
+$(function(){		   
+	   $("body").on("change", ".upload3", function(e){ 
+	       
+		      var files = e.target.files;
+		      var filesArr = Array.prototype.slice.call(files);
+		      
+		      filesArr.forEach(function(f) {
+		         // 이미지 파일이 아닌경우
+		         if(! f.type.match("image.*")) {
+		        	alert("이미지 파일만 가능합니다.");
+		            return;
+		         }
+		         
+		         sel_files=f;
+		         var reader = new FileReader();
+		         reader.onload = function(e1) {
+		            $("#mainimg3").attr("src",e1.target.result);
+		            
+		         }
+		         reader.readAsDataURL(f);
+		      });
+		       
+		   });
+	   
+});
+
+$(function(){		   
+	   $("body").on("change", ".upload4", function(e){ 
+	       
+		      var files = e.target.files;
+		      var filesArr = Array.prototype.slice.call(files);
+		      
+		      filesArr.forEach(function(f) {
+		         // 이미지 파일이 아닌경우
+		         if(! f.type.match("image.*")) {
+		        	alert("이미지 파일만 가능합니다.");
+		            return;
+		         }
+		         
+		         sel_files=f;
+		         var reader = new FileReader();
+		         reader.onload = function(e1) {
+		            $("#mainimg4").attr("src",e1.target.result);
+		            
+		         }
+		         reader.readAsDataURL(f);
+		      });
+		       
+		   });
+});
 
 
 </script>
@@ -285,7 +380,7 @@ var sel_files;
 	</div>
 
 <div class="totaldiv" style="">
-<form class="roomForm" name="roomForm" method="post">
+<form class="roomForm" name="roomForm" method="post" enctype="multipart/form-data">
 
 <!-- 주소 부분 -->
 <div style="width: 1000px; margin: 0px auto; padding-top: 100px;">
@@ -505,16 +600,59 @@ var sel_files;
             	
             	<div class="imgfilediv">
             	
-            		<div>
-				       <div class="imagePreView" onclick="document.all.upload.click();">
-				       	<p style="position: relative;"> 메인 사진</p>
-				       	<img class="mainimg" alt="" id="mainimg">
-				       </div>
-				    </div>
-				    <div>
-				          <input type="file" style="display: none;" name="upload">
-				    </div>
+            	<table>
+            	<tr>
+            		<td colspan="3" align="center">
+            			<div>
+					       <div class="imagePreView">
+					       	<p style="position: relative;"> 메인 사진</p>
+					       	<img class="mainimg1" alt="" id="mainimg1" style="width: 600px; height: 300px;">
+					       </div>
+					    </div>
+					    <div>
+					          <input type="file" style="display: none;" name="upload" class="upload1" id="upload1">
+					    </div>
+            		</td>
+            	</tr>
+            	<tr>
+            		<td>
+	            		<div>
+					       <div class="imagePreView">
+					       	<p style="position: relative;"> 주방 사진</p>
+					       	<img class="mainimg2" alt="" id="mainimg2">
+					       </div>
+					    </div>
+					    <div>
+					          <input type="file" style="display: none;" name="upload" class="upload2">
+					    </div>
+            		</td>
+            		<td>
+            			<div>
+					       <div class="imagePreView">
+					       	<p style="position: relative;"> 화장실 사진</p>
+					       	<img class="mainimg3" alt="" id="mainimg3">
+					       </div>
+					    </div>
+					    <div>
+					          <input type="file" style="display: none;" name="upload" class="upload3">
+					    </div>
+            		</td>
+            		<td>
+            			<div>
+					       <div class="imagePreView">
+					       	<p style="position: relative;"> 기타 사진</p>
+					       	<img class="mainimg4" alt="" id="mainimg4">
+					       </div>
+					    </div>
+					    <div>
+					          <input type="file" style="display: none;" name="upload" class="upload4">
+					    </div>
+            		</td>
+            	</tr>
             	
+            	</table>
+            	
+				  
             	
             	</div>
             
