@@ -63,14 +63,8 @@
 		UPDATE clothesStory SET HitCount= HitCount+1 WHERE num=#{num}
 	</update>
 	
-	<select id="readDress" parameterType="Integer" resultType="com.sp.app.dress.Dress">
-		<!-- SELECT num, b.userId, userName, subject, content, TO_CHAR(REGISTER_DATE,'YYYY-MM-DD')register_date, HitCount
-		FROM clothesStory b
-		JOIN member1 m ON b.userId = m.userId
-	
-		WHERE num = #{num} -->
-		
-		SELECT b.num,subject, b.userId,content, TO_CHAR(REGISTER_DATE,'YYYY-MM-DD')register_date, HitCount,NVL(replyCount,0)replyCount
+	<select id="readDress" parameterType="Integer" resultType="com.sp.app.dress.Dress">	
+		SELECT b.num,subject,hashtag, b.userId,content, TO_CHAR(REGISTER_DATE,'YYYY-MM-DD')register_date, HitCount,NVL(replyCount,0)replyCount
 		FROM clothesStory b
 		JOIN member1 m ON b.userId = m.userId
 		LEFT OUTER JOIN(
@@ -79,8 +73,12 @@
 			GROUP BY num 
 		)c ON b.num=c.num 		
 		WHERE b.num = #{num}
-	
 	</select>
+	
+	<update id="updateDress" parameterType="com.sp.app.dress.Dress">
+		UPDATE clothesStory SET subject=#{subject}, content=#{content}, hashtag=#{hashtag}
+		WHERE num= #{num}
+	</update>
 	
 	<delete id="deleteDress" parameterType="Integer">
 		DELETE FROM CLOTHESSTORY WHERE num= #{num}

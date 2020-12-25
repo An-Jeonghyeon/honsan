@@ -16,7 +16,7 @@ public class DressServiceImpl implements DressService{
 	
 	
 	@Override
-	public void insertDress(Dress dto, String pathname) throws Exception {
+	public void insertDress(Dress dto) throws Exception {
 		try {
 			dao.insertData("dress.insertDress",dto); 
 		} catch (Exception e) {

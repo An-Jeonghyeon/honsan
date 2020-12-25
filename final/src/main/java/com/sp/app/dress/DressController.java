@@ -1,6 +1,5 @@
 package com.sp.app.dress;
 
-import java.io.File;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.util.Arrays;
@@ -17,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -121,13 +121,9 @@ public class DressController {
 		
 		SessionInfo info = (SessionInfo)session.getAttribute("member");
 		
-		
-		String root = session.getServletContext().getRealPath("/");
-		String pathname = root+"uploads"+File.separator+"bbs";
-		
 		try {
 			dto.setUserId(info.getUserId());
-			service.insertDress(dto, pathname);
+			service.insertDress(dto);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -183,7 +179,7 @@ public class DressController {
 		
 		return "redirect:/dress/list?"+query;
 	}
-	@GetMapping("update")
+	@RequestMapping(value = "update",method =RequestMethod.GET)
 	public String updateForm(@RequestParam int num,
 			 				 @RequestParam String page,
 			 				 HttpSession session,
@@ -201,7 +197,17 @@ public class DressController {
 		model.addAttribute("mode", "update");
 		model.addAttribute("page",page);
 		
-		return "dress/created";
+		return ".dress.created";
+	}
+	@RequestMapping(value = "update" , method =RequestMethod.POST)
+	public String updateSubmit(Dress dto, @RequestParam String page,HttpSession session) throws Exception{
+			try {
+				service.updateDress(dto);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		return "redirect:/dress/list?page="+page;
 	}
 	@PostMapping("insertDressReply")
 	@ResponseBody

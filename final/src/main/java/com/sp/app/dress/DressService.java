@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 public interface DressService {
-	public void insertDress(Dress dto, String pathname) throws Exception;
+	public void insertDress(Dress dto) throws Exception;
 	public List<Dress> listDress(Map<String, Object> map);
 	public int dataCount(Map<String, Object> map);
 	public Dress readDress(int num);

@@ -29,7 +29,7 @@
 			f.content.focus();
 			return false;
 		}
-
+		 $("#rdTag").val(tag)
 		f.action = "${pageContext.request.contextPath}/dress/${mode}";
 
 		return true;
@@ -75,11 +75,19 @@
                               
                             </div>
                             <div class="dress-TagSpanBodyBox">
-                                <div class="dress-TagSpanBody"></div>
+                                <div class="dress-TagSpanBody">
+                               	<c:forEach var="s" items="${dto.hashtag}">
+                                <div class='TagAbody' style='display:inline-block;'>
+                                <a class="dress-TagA" style="height: 20px; padding:0 5px 0 5px;box-sizing: border-box;  background-color:rgba(184, 224, 255, 0.461);  text-align:center; display:inline-block; border-radius:5px; color:rgba(var(--fe0,0,55,107),1); margin: 0 1px 0 5px; 
+                                text-decoration:none;" data-value="${s}">${s}</a>
+                                <span class='CancelTag' style='box-sizing:border-box; background-color:rgba(184, 224, 255, 0.461); width: 20px;height: 20px;display: inline-block;text-align: center;border-radius: 5px;color: rgb(0, 0, 0);font-weight: 900; margin-right:10px; cursor: pointer;'>x</span></div>
+                               		
+                               	</c:forEach>
+                                </div>
                             </div>
                             <div class="inputBody2">
                               <input type="hidden" value="" name="hashtag" id="rdTag" />
-                                <input type="text" class="InputTag"  placeholder="#태그를 입렵해 주세요.(최대5개)">
+                                <input type="text" class="InputTag" placeholder="#태그를 입렵해 주세요.(최대5개)">
                                 <div class="tagbtnBody">
                                     <button class="Tag-btn" type="button" onclick="TagbtnSend()">TAG</button>
                                 </div>
@@ -90,8 +98,12 @@
 
 
                     <div class="buttonBoxBody">
-                        <button type="button" id="CencelSubmit">${mode=='update'? '수정취소':'등록취소'}</button>
+                        <button type="button" id="CencelSubmit" onclick="javascript:location.href='${pageContext.request.contextPath}/dress/article?num=${dto.num}&page=${page}'">${mode=='update'? '수정취소':'등록취소'}</button>
                         <button type="submit" id="writeSubmit">${mode=='update'?'수정완료':'등록하기'}</button>
+                        <c:if test="${mode=='update'}">
+                        	<input type="hidden" name="num" value="${dto.num}">
+                        	<input type="hidden" name="page" value="${page}">
+                        </c:if>
                     </div>
                 </article>
             </form>
