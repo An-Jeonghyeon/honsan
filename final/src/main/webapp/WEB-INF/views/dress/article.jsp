@@ -21,6 +21,36 @@ function updatebutton(num){
 	location.href=url;
 	}
 }
+$(function() {
+	$("body").on("click", ".ILikeHeart", function() {
+		$(".fullLikeHeart").show();
+	})
+	$("body").on("click", ".fullLikeHeart", function() {
+		$(this).hide();
+
+	})
+
+	$("body").on("click",".RelyWrite",function() {
+		var pa =$(this).parent().next("div");
+		pa.slideDown();
+	})
+
+	$("body").on("click",".ReplyListUserX",function() {
+		var papa=$(this).parent().parent();
+		papa.slideUp();
+	})
+
+	$("body").on("click",".ReplySUb > span",function() {
+		if ($(".ReplayListForm").is(':visible') == false) {
+			$(".ReplySUbDown").css("transform", "rotate(180deg)");
+			$(".ReplayListForm").slideDown(1000);
+		} else {
+			$(".ReplySUbDown").css("transform", "rotate(360deg)");
+			$(".ReplayListForm").slideUp(1000);
+		}
+	})
+
+})
 
 function login(){
 	location.href="${pageContext.request.contextPath}/memeber/login";
@@ -114,36 +144,7 @@ $(function(){
 	});
 });
 
-$(function() {
-	$("body").on("click", ".ILikeHeart", function() {
-		$(".fullLikeHeart").show();
-	})
-	$("body").on("click", ".fullLikeHeart", function() {
-		$(this).hide();
 
-	})
-
-	$("body").on("click",".RelyWrite",function() {
-		var pa =$(this).parent().next("div");
-		pa.slideDown();
-	})
-
-	$("body").on("click",".ReplyListUserX",function() {
-		var papa=$(this).parent().parent();
-		papa.slideUp();
-	})
-
-	$("body").on("click",".ReplySUb > span",function() {
-		if ($(".ReplayListForm").is(':visible') == false) {
-			$(".ReplySUbDown").css("transform", "rotate(180deg)");
-			$(".ReplayListForm").slideDown(1000);
-		} else {
-			$(".ReplySUbDown").css("transform", "rotate(360deg)");
-			$(".ReplayListForm").slideUp(1000);
-		}
-	})
-
-})
 $(function() {
 	var counter = 0;
 	$(".dress-thumbs-up").click(
@@ -217,8 +218,8 @@ $(function() {
                     </div>
                     <div class="ReplyBody">
                         <div class="ReplyContentBox">
-                            <span>주다혜</span>
-                            <textarea name="" id="" placeholder="댓글을 남겨보세요"></textarea>
+                            <span>${dto.userName}</span>
+                            <textarea placeholder="댓글을 남겨보세요"></textarea>
                             <div class="ReplySubmitButton">
                                 <button class="Replybtn" type="button">등록</button>
                             </div>

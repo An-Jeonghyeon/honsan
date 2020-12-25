@@ -64,7 +64,7 @@
 	</update>
 	
 	<select id="readDress" parameterType="Integer" resultType="com.sp.app.dress.Dress">	
-		SELECT b.num,subject,hashtag, b.userId,content, TO_CHAR(REGISTER_DATE,'YYYY-MM-DD')register_date, HitCount,NVL(replyCount,0)replyCount
+		SELECT b.num,subject,hashtag,userName, b.userId,content, TO_CHAR(REGISTER_DATE,'YYYY-MM-DD')register_date, HitCount,NVL(replyCount,0)replyCount
 		FROM clothesStory b
 		JOIN member1 m ON b.userId = m.userId
 		LEFT OUTER JOIN(

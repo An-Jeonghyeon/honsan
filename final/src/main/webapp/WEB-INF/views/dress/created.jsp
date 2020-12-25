@@ -29,11 +29,14 @@
 			f.content.focus();
 			return false;
 		}
+		addTag($(".dress-TagA").data("value"))
+		
 		 $("#rdTag").val(tag)
 		f.action = "${pageContext.request.contextPath}/dress/${mode}";
 
 		return true;
 	}
+	
 	
 </script>
 
