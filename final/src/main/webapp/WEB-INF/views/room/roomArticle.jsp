@@ -55,6 +55,23 @@ function updateBoard(num) {
 			<div id="wrapper">
 		      <div id="slider-wrap">
 		          <ul id="slider">
+			
+				<c:forEach var="vo" items="${listFile}" varStatus="status">
+
+				 	<li>
+		                <div>
+		                    <h3>Slide #${status.count }</h3>
+		                    <span>Sub-title #${status.count }</span>
+		                </div>                
+						<img src="${pageContext.request.contextPath}/uploads/room/${vo.saveFile}">
+		             </li>
+					
+				</c:forEach>
+			
+			
+		             
+		             
+		             <!--  
 		             <li>
 		                <div>
 		                    <h3>Slide #1</h3>
@@ -94,7 +111,7 @@ function updateBoard(num) {
 		                </div>
 		<img src="https://fakeimg.pl/350x200/0064CD/000?text=55555">
 		             </li>
-		             
+		             -->
 		             
 		          </ul>
 		          

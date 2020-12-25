@@ -133,11 +133,13 @@ public class RoomController {
 			}
 			dto.setUserId(info.getUserId());
 			
-			service.insertRoom(dto);
+			String root = session.getServletContext().getRealPath("/");
+			String pathname = root + "uploads" + File.separator + "room";		
+			
+			service.insertRoom(dto, pathname);
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		
 		return "redirect:/room/roomlist";
 	}
 	
@@ -168,6 +170,8 @@ public class RoomController {
 		// 스마트에디터를 사용하는 경우 아래 주석처리(스마트에디터는 자체적으로 고쳐서..?)
 		// dto.setContent(myUtil.htmlSymbols(dto.getContent()));
 		
+		List<Room> listFile=service.listFile(num);
+		
 		Map<String, Object> map = new HashMap<>();
 		map.put("num", num);
 		map.put("keyword", keyword);
@@ -177,6 +181,7 @@ public class RoomController {
 		model.addAttribute("dto", dto);
 		model.addAttribute("page", page);
 		model.addAttribute("query", query);
+		model.addAttribute("listFile", listFile);
 		
 		return ".room.roomArticle";
 	}
@@ -202,7 +207,9 @@ public class RoomController {
 			return "redirect:/room/roomlist?page="+page;
 		}
 
+		List<Room> listFile=service.listFile(num);
 		
+		model.addAttribute("listFile", listFile);
 		model.addAttribute("dto", dto);
 		model.addAttribute("mode", "roomUpdate");
 		model.addAttribute("page", page);

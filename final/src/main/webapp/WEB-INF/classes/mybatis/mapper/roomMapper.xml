@@ -123,6 +123,33 @@
 		WHERE
 		num=#{num}
 	</delete>
+	
+	<!-- 파일 -->
+	<insert id="insertFile" parameterType="com.sp.app.room.Room">
+		INSERT INTO roomfile(fileNum, num, saveFile) VALUES
+				(roomFile_seq.NEXTVAL, #{num}, #{saveFile})
+	</insert>
+	
+	<select id="listFile" parameterType="Integer" resultType="com.sp.app.room.Room">
+		SELECT fileNum, num, saveFile
+		FROM roomfile
+		WHERE num=#{num}    
+	</select>
+	
+	<select id="readFile" parameterType="Integer" resultType="com.sp.app.room.Room">
+		SELECT fileNum, num, saveFile
+		FROM roomfile
+	    WHERE fileNum=#{fileNum}      
+	</select>
+	
+	<delete id="deleteFile" parameterType="map">
+		DELETE FROM roomfile WHERE ${field} = #{num}
+	</delete>
+	
+	
+	
+	
+	
 
 
 	<!-- 리플(댓글) -->
