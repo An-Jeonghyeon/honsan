@@ -25,20 +25,26 @@ public class InteriorServiceImpl implements InteriorService{
 			int seq= dao.selectOne("interior.seq");
 			dto.setNum(seq);
 			
+			//메인 이미지 업로드 시 
+			 
+			MultipartFile mainImg = dto.getMainUpload();
+			String mainFilename = fileManager.doFileUpload(mainImg, pathname);
+			dto.setMainImg(mainFilename);
+			
 			dao.insertData("interior.insertInterior", dto);
+			
 	        
 			// 파일 업로드
 	         if(! dto.getUpload().isEmpty()) {
-	        	int mainnum = 1;
+	        	
 	            for(MultipartFile mf:dto.getUpload()) {
 	               String imageFilename=fileManager.doFileUpload(mf, pathname);
 	               if(imageFilename==null) continue;   
 	               dto.setSaveFilename(imageFilename);
 	               int image_seq = dao.selectOne("interior.interiorfile_seq");
 	               dto.setFilenum(image_seq);
-	               dto.setMainnum(mainnum);
 	               insertFile(dto);
-	               mainnum++;
+	              
 	            }
 	         }
 		} catch (Exception e) {

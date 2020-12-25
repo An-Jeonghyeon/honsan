@@ -7,6 +7,8 @@
 <script src="${pageContext.request.contextPath}/resources/js/interior/boardItem.js"></script>
 
 <section>
+<form name="Interior_form" >
+	<button type="button" onclick="javascript:location.href='${pageContext.request.contextPath}/interior/update?num=${dto.num}';" >수정하기 </button>
     <div class="board_interior_box">
         <div class="board_interior_leftbox">
             
@@ -19,18 +21,16 @@
                     ${dto.register_date}
                 </div>
             </div>
-            <!-- 메인 사진 -->
-           <c:forEach var="fto" items="${flist}" varStatus="stauts" begin="0" end="0">
-            	
+            <!-- 메인 사진 -->   	
 		            <div class="leftbox_mainImg">
 		            
-		                <a href="#"><img class="leftbox_mainImg_img" src="${pageContext.request.contextPath}/uploads/interior/${fto.saveFilename}"></a>
+		                <a href="#"><img class="leftbox_mainImg_img" src="${pageContext.request.contextPath}/uploads/interior/${dto.mainImg}"></a>
 		            </div>
 		       
-		    </c:forEach>	 
+ 
 		            <!-- 서브 사진들 -->
 		            <div class="leftbox_subImg">
-		     <c:forEach var="fto" items="${flist}" begin="1" end="7" step="1">       
+		     <c:forEach var="fto" items="${flist}" begin="0" end="6" step="1">       
 		                <div class="leftbox_subImg_obj">
 		                    <!-- 서브 사진들 1  -->
 		                    <a href=""><img class="leftbox_subImg_obj_sub" src="${pageContext.request.contextPath}/uploads/interior/${fto.saveFilename}"></a>
@@ -265,4 +265,5 @@
                 </div>
             </div>
     </div>	
+</form> 
 </section>
