@@ -95,4 +95,44 @@ public class DressServiceImpl implements DressService{
 		
 	}
 
+	@Override
+	public void insertDressReply(DressReply dto) throws Exception {
+		try {
+			dao.insertData("dress.insertDressReply",dto);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+		
+	}
+
+	@Override
+	public List<DressReply> listReply(Map<String, Object> map) {
+		List<DressReply> list =null;
+		try {
+			list=dao.selectList("dress.listReply",map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+	@Override
+	public int DressReplyCount(Map<String, Object> map) {
+		int result =0;
+		try {
+			result= dao.selectOne("dress.DressReplyCount",map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	@Override
+	public void delreDressReply(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

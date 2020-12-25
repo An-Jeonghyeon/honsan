@@ -12,5 +12,9 @@ public interface DressService {
 	public void updateDress(Dress dto)throws Exception;
 	public void deleteDress(int num,String userId)throws Exception;
 	
+	public void insertDressReply(DressReply dto) throws Exception;
+	public List<DressReply> listReply(Map<String, Object> map);
+	public int DressReplyCount(Map<String, Object> map);
+	public void delreDressReply(Map<String, Object>map) throws Exception;
 	
 }

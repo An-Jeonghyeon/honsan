@@ -66,5 +66,24 @@
 	<delete id="deleteDress" parameterType="Integer">
 		DELETE FROM CLOTHESSTORY WHERE num= #{num}
 	</delete>
+	<!--댓글 인서트 하기  -->
+	<insert id="insertDressReply" parameterType="com.sp.app.dress.DressReply">
+		INSERT INTO clothesStory_reply(replyNum,num,userId,content,register_date ,answer)
+		VALUES(clothesStoryR_seq.NEXTVAL,#{num},#{userId},#{content},SYSDATE,#{answer})
+	</insert>
 	
+	
+	<select id="listReply" parameterType="map" resultType="com.sp.app.dress.DressReply">
+		SELECT replyNum, r.userId, userName, num, content, r.register_date
+		FROM CLOTHESSTORY_REPLY r
+		JOIN member1 m on r.userId = m.userId
+		WHERE num=#{num} AND answer=0
+		ORDER BY r.replyNum DESC
+		OFFSET #{offset} ROWS FETCH FIRST #{rows} ROWS ONLY
+	</select>
+	
+	<select id="DressReplyCount" parameterType="map" resultType="Integer">
+	SELECT NVL(COUNT (*),0) FROM clothesStory_reply
+	WHERE  num = #{num} AND answer=0
+	</select>
 </mapper>

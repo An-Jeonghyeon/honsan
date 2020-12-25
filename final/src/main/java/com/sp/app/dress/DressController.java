@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sp.app.common.MyUtil;
 import com.sp.app.member.SessionInfo;
@@ -201,5 +202,60 @@ public class DressController {
 		model.addAttribute("page",page);
 		
 		return "dress/created";
+	}
+	@PostMapping("insertDressReply")
+	@ResponseBody
+	public Map<String, Object> insertDressReply(DressReply dto, HttpSession session){
+		SessionInfo info= (SessionInfo)session.getAttribute("member");
+		String state="ture";
+		
+		try {
+			dto.setUserId(info.getUserId());
+			service.insertDressReply(dto);
+		} catch (Exception e) {
+			state="false";
+		}
+		Map<String, Object>model= new HashMap<String, Object>();
+		model.put("state", state);
+		return model;
+		
+	}
+	@RequestMapping(value = "listReply")
+	public String listReply(@RequestParam int num,
+							@RequestParam(value="pageNo",defaultValue = "1")int current_page,
+							Model model) throws Exception{
+		int rows= 5;
+		int total_page=0;
+		int dataCount= 0;
+		
+		Map<String, Object>map =new HashMap<String, Object>();
+		map.put("num", num);
+		
+		dataCount= service.DressReplyCount(map);
+		total_page= myUtil.pageCount(rows, dataCount);
+		if(current_page> total_page) {
+			current_page= total_page;
+		}
+		int offset =(current_page-1)*rows;
+		if(offset<0)offset =0;
+		map.put("offset", offset);
+		map.put("rows", rows);
+		
+		
+		List<DressReply> listReply= service.listReply(map);
+
+		for(DressReply dto : listReply) {
+			dto.setContent(dto.getContent().replaceAll("\n", "<br>"));
+		
+		}
+		String paging = myUtil.pagingMethod(current_page, total_page, "listPage");
+		
+		model.addAttribute("listReply",listReply);
+		model.addAttribute("pageNo",current_page);
+		model.addAttribute("replyCount",dataCount);
+		model.addAttribute("total_page",total_page);
+		model.addAttribute("paging",paging);
+
+		return"dress/listReply";
 	}
 }
