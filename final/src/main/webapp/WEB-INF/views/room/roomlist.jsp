@@ -139,7 +139,7 @@
 			 	
 			 	<td class="listTd">
 			 		<div class="imgLayout" onclick="article('${dto.num}');"style="margin: 10px;">
-				 		<div class="img_box"style="background: url('${pageContext.request.contextPath}/resources/images/room/securityService.jpg');
+				 		<div class="img_box"style="background: url('${pageContext.request.contextPath}/uploads/room/${dto.mainimg}');
 							background-position: center;background-size:cover;background-position:center;height: 110px; border-radius: 5px; border:2px solid silver;"></div>
 						<br><p class="title-style">${dto.subject}<p>
 						<div class="mainexplain">

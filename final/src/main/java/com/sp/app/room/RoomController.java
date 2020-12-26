@@ -16,8 +16,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.sp.app.common.FileManager;
 import com.sp.app.common.MyUtil;
 import com.sp.app.member.SessionInfo;
 
@@ -31,10 +34,9 @@ public class RoomController {
 	
 	@Autowired
 	private MyUtil myUtil;
-	/*
 	@Autowired
 	private FileManager fileManager;
-	*/
+	
 	@RequestMapping(value="roomlist")
 	public String roomForm(
 			@RequestParam(value = "page", defaultValue = "1") int current_page,			
@@ -125,12 +127,17 @@ public class RoomController {
 		SessionInfo info = (SessionInfo)session.getAttribute("member");
 		
 		try {
-			if(aditem_none != "1") {
+			if(aditem_none.equals("없음")) {
+				
 				dto.setAditem(aditem_none);
+				
 			}
-			if(options_none != "1") {
+			if(options_none.equals("없음")) {
+				
 				dto.setOptions(options_none);
+				
 			}
+			
 			dto.setUserId(info.getUserId());
 			
 			String root = session.getServletContext().getRealPath("/");
@@ -243,64 +250,62 @@ public class RoomController {
 		return "redirect:/room/roomlist?page="+page;
 	}
 	
-	@RequestMapping("deleteFile")
-	public String deleteFile(
+	@RequestMapping(value="roomDelete")
+	public String roomDelete(
 			@RequestParam int num,
 			@RequestParam String page,
-			HttpSession session
-			) {
-		// 수정에서 파일 삭제
-		SessionInfo info = (SessionInfo)session.getAttribute("member");
-		
-		String root = session.getServletContext().getRealPath("/");
-		String pathname = root+"uploads"+File.separator+"room";
-		
-		Room dto = service.readRoom(num);
-		if (dto==null) {
-			return "redirect:/room/roomlist?page="+page;
-		}
-		
-		if (! info.getUserId().equals(dto.getUserId())) {
-			return "redirect:/room/roomlist?page="+page;
-		}
-		
-		try {/*
-			if (dto.getSaveFilename()!=null) {
-				fileManager.doFileDelete(dto.getSaveFilename(), pathname);
-				dto.setSaveFilename("");
-				dto.setOriginalFilename("");*/
-				service.updateRoom(dto, pathname); // 삭제한 파일정보 수정
-			/*}*/
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		return "redirect:/room/roomUpdate?num="+num+"&page="+page;
-	}
-	
-	@RequestMapping("delete")
-	public String delete(
-			@RequestParam int num,
-			@RequestParam String page,
-			@RequestParam(defaultValue = "") String keyword,
-			HttpSession session
-			) throws Exception {
-		
-		SessionInfo info =(SessionInfo)session.getAttribute("member");
-		String root = session.getServletContext().getRealPath("/");
-		String pathname=root+"uploads"+File.separator+"room";
+			@RequestParam(defaultValue="all") String condition,
+			@RequestParam(defaultValue="") String keyword,
+			HttpSession session) throws Exception {
+		SessionInfo info=(SessionInfo)session.getAttribute("member");
 		
 		keyword = URLDecoder.decode(keyword, "utf-8");
-		String query = "page="+page;
-		if (keyword.length()!=0) {
-			query+="&keyword="+
-					URLEncoder.encode(keyword, "utf-8");
+		String query="page="+page;
+		if(keyword.length()!=0) {
+			query+="&condition="+condition+"&keyword="+URLEncoder.encode(keyword, "UTF-8");
 		}
 		
-		service.deleteRoom(num, pathname, info.getUserId());
+		if(! info.getUserId().equals("admin")) {
+			return "redirect:/room/roomlist?"+query;
+		}
+		
+		try {
+			String root = session.getServletContext().getRealPath("/");
+			String pathname = root + "uploads" + File.separator + "room";
+			service.deleteRoom(num, pathname, info.getUserId());
+		} catch (Exception e) {
+		}
 		
 		return "redirect:/room/roomlist?"+query;
 	}
+	
+	
+	@RequestMapping(value="deleteFile", method=RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> deleteFile(
+			@RequestParam int fileNum,
+			HttpSession session) throws Exception {
+		
+		String root = session.getServletContext().getRealPath("/");
+		String pathname = root + "uploads" + File.separator + "room";
+		
+		Room dto=service.readFile(fileNum);
+		if(dto!=null) {
+			fileManager.doFileDelete(dto.getSaveFile(), pathname);
+		}
+		
+		Map<String, Object> map=new HashMap<String, Object>();
+		map.put("field", "fileNum");
+		map.put("num", fileNum);
+		service.deleteFile(map);
+		
+   	    // 작업 결과를 json으로 전송
+		Map<String, Object> model = new HashMap<>(); 
+		model.put("state", "true");
+		return model;
+	}
+	
+	
 	
 	
 	

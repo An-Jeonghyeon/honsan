@@ -32,6 +32,12 @@ public class RoomServiceImpl implements RoomService{
 			dto.setNum(roomSeq);
 			
 			
+			//메인 이미지
+			MultipartFile mainImg = dto.getMainUpload();
+			String mainFilename = fileManager.doFileUpload(mainImg, pathname);
+			dto.setMainimg(mainFilename);
+			
+			
 			dao.insertData("room.insertRoom", dto);
 			
 			dao.insertData("room.insertRoomlist", dto);
@@ -102,6 +108,11 @@ public class RoomServiceImpl implements RoomService{
 				dto.setDealtype("월세");
 			}
 			
+			//메인 이미지
+			MultipartFile mainImg = dto.getMainUpload();
+			String mainFilename = fileManager.doFileUpload(mainImg, pathname);
+			dto.setMainimg(mainFilename);
+			
 			dao.updateData("room.updateRoom", dto);
 			dao.updateData("room.updateRoomlist", dto);
 			//  파일 처리
@@ -142,7 +153,7 @@ public class RoomServiceImpl implements RoomService{
 			map.put("field", "num");
 			map.put("num", num);
 			deleteFile(map);
-			
+			dao.deleteData("room.deleteRoomlist", num);
 			dao.deleteData("room.deleteRoom", num);
 		} catch (Exception e) {
 			e.printStackTrace();
