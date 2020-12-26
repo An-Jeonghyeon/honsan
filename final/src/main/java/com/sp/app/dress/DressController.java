@@ -266,13 +266,14 @@ public class DressController {
 	}
 	@RequestMapping(value = "deleteDressReply" , method= RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> deleteDressReply(@RequestParam Map<String, Object> paramMap ) throws Exception{
+	public Map<String, Object> deleteDressReply(@RequestParam Map<String, Object> paramMap ){
 		String state="true";
 		try {
 			service.deleteDressReply(paramMap);
 			
 		} catch (Exception e) {
 			state="false";
+			e.printStackTrace();
 		}
 		Map<String, Object> map= new HashMap<>();
 		map.put("state", state);

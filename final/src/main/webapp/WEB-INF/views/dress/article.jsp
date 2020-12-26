@@ -152,7 +152,7 @@ $(function(){
 			return false;
 		}
 		var replyNum= $(this).attr("data-replyNum");
-		var page=$(this).attr("date-pageNo");
+		var page=$(this).attr("data-pageNo");
 		
 		var url="${pageContext.request.contextPath}/dress/deleteDressReply";
 		var query ="replyNum="+replyNum+"&mode=DressReply";

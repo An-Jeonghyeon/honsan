@@ -132,7 +132,7 @@ public class DressServiceImpl implements DressService{
 	@Override
 	public void deleteDressReply(Map<String, Object> map) throws Exception {
 		try {
-				dao.deleteData("dress.deleteDressReply");
+				dao.deleteData("dress.deleteDressReply",map);
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
