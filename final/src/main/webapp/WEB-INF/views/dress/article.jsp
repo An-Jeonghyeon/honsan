@@ -223,7 +223,15 @@ $(function() {
                         </div>
                     </div>
                 </div>
+              
                 <div class="ContentBody">${dto.content}</div>
+                  <div style="margin:0 auto; width:300px; text-align: center;">
+                  <span>
+                  	<c:forEach var="s" items="${dto.hashtag}">
+                  		${s }
+                  	</c:forEach>
+                  	</span>
+                  </div>
                 <div class="EmpathyBotton">
                 <i class="far fa-thumbs-up fa-4x dress-thumbs-up"><span id="DressLikeCount">${dto.dressLikeCount}</span></i>
                 </div>
@@ -235,6 +243,7 @@ $(function() {
                         </div>
                     </div>
                 </c:if>
+               
                 <div class="LikeBox">
                     <span class="LikeHeart"> <i class="far fa-heart ILikeHeart"></i>좋아요
                         13

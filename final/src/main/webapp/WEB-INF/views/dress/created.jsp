@@ -29,6 +29,7 @@
 			f.content.focus();
 			return false;
 		}
+		
 		addTag($(".dress-TagA").data("value"))
 		
 		 $("#rdTag").val(tag)
@@ -36,7 +37,11 @@
 
 		return true;
 	}
-	
+	/* $(function(){
+		$("body").on("click",function(){
+			console.log($(".dress-TagA").length)
+		})
+	}) *//*".dress-TagA" 이거를 배열로 돌려서 addTag에 넣어야 될 것 같다. 2020.12.27메모 */
 	
 </script>
 
