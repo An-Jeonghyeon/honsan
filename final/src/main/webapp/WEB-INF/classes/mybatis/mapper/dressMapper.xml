@@ -64,14 +64,19 @@
 	</update>
 	
 	<select id="readDress" parameterType="Integer" resultType="com.sp.app.dress.Dress">	
-		SELECT b.num, subject, hashtag, userName, b.userId,content,b.register_date, HitCount, NVL(replyCount,0)replyCount
+		
+		SELECT b.num, subject, hashtag, userName, b.userId, content, b.register_date, HitCount, NVL(replyCount,0)replyCount, NVL(DressLikeCount,0)DressLikeCount
 		FROM clothesStory b
 		JOIN member1 m ON b.userId = m.userId
 		LEFT OUTER JOIN(
 			SELECT num, COUNT(*)replyCount FROM clothesStory_reply
 			WHERE answer=0 
 			GROUP BY num 
-		)c ON b.num=c.num 		
+		)c ON b.num=c.num	
+		LEFT OUTER JOIN(
+			SELECT num ,COUNT(*)DressLikeCount FROM clothesStory_like
+			GROUP BY num 
+		)d ON b.num=d.num	
 		WHERE b.num = #{num}
 	</select>
 	
@@ -110,7 +115,17 @@
 			<if test="mode=='DressReply'">
 			OR answer=#{replyNum}
 		</if>
-		
 	</delete>
 	
+	<insert id="insertDressLikeCount" parameterType="map">
+	INSERT INTO clothesStory_like(num,userId)VALUES(#{num},#{userId}) 
+	</insert>
+	
+	<select id="DressLikeCount" parameterType="Integer" resultType="Integer">
+	SELECT COUNT(*) FROM clothesStory_like
+	WHERE num=#{num}
+	</select>
+	<delete id="deletDressLikeCount" parameterType="Integer">
+		DELETE FROM clothesStory_like WHERE userId=#{userId} AND num=#{num}
+	</delete>
 </mapper>

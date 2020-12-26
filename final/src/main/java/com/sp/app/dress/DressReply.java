@@ -10,7 +10,15 @@ public class DressReply {
 	
 	private int answer;
 	
+    private int DressLikeCount;
+    
 	
+	public int getDressLikeCount() {
+		return DressLikeCount;
+	}
+	public void setDressLikeCount(int dressLikeCount) {
+		DressLikeCount = dressLikeCount;
+	}
 	public String getUserName() {
 		return userName;
 	}

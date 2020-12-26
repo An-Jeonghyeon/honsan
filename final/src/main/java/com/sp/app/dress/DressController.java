@@ -279,4 +279,40 @@ public class DressController {
 		map.put("state", state);
 		return map; 
 	}
+	@RequestMapping(value = "insertDressLikeCount",method= RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> insertDressLikeCount(
+								@RequestParam int num,
+								HttpSession session) throws Exception{
+		SessionInfo info = (SessionInfo)session.getAttribute("member");
+		String state ="true";
+		int DressLikeCount=0;
+		
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("num",num);
+		paramMap.put("userId", info.getUserId());
+		try {
+			service.insertDressLikeCount(paramMap);
+		} catch (Exception e) {
+			e.printStackTrace();
+			state="false";
+		}
+		DressLikeCount = service.DressLikeCount(num);
+		Map<String, Object> model = new HashMap<String, Object>();
+		model.put("state",state);
+		model.put("DressLikeCount", DressLikeCount);
+		return model;
+	}
+	@RequestMapping(value = "deleteDressLikeCount")
+	@ResponseBody
+	public String deleteDressLikeCount(@RequestParam int num,HttpSession session, @RequestParam String page) throws Exception{
+		SessionInfo info= (SessionInfo)session.getAttribute("member");
+		String query="page="+page;
+		try {
+			service.deleteDressLikeCount(num, info.getUserId());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "redirect:/dress/article?"+query;
+	}
 }

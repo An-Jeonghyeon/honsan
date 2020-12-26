@@ -140,4 +140,41 @@ public class DressServiceImpl implements DressService{
 		
 	}
 
+	@Override
+	public void insertDressLikeCount(Map<String, Object> map) throws Exception {
+		
+		try {
+			 dao.insertData("dress.insertDressLikeCount",map);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+		
+	}
+
+	@Override
+	public int DressLikeCount(int num) {
+		int result= 0;
+		try {
+			result= dao.selectOne("dress.DressLikeCount",num);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	@Override
+	public void deleteDressLikeCount(int num, String userId) throws Exception {
+		try {
+			Dress dto=readDress(num);
+			if(dto==null || (!userId.equals("admin")) && !dto.getUserId().equals(userId))
+				return;
+			dao.deleteData("dress.deleteDressLikeCount",num);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+		
+	}
+
 }
