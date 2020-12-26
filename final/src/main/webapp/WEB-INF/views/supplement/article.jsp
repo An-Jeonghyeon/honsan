@@ -129,7 +129,7 @@ $(function(){
 			if(state==="true") {
 				listPage(1);				
 			} else if(state==="false") {
-				console.log(data);			
+				//console.log(data);			
 				alert("댓글 등록에 실패하였습니다.");				
 			}
 		};
@@ -161,7 +161,170 @@ $(function(){
 	
 });
 
+//댓글 삭제(대댓글도 포함)
+$(function(){
+	$("body").on("click", ".h-deleteReply", function(){
+		if(! confirm("게시물을 삭제하시겠습니까 ? ")) {
+		    return false;
+		}
+		
+		var replyNum=$(this).attr("data-replyNum");
+		var page=$(this).attr("data-pageNo");
+		
+		var url="${pageContext.request.contextPath}/supplement/deleteReply";
+		var query="replyNum="+replyNum+"&mode=reply";
+		
+		var fn = function(data){
+			listPage(page);
+		};
+		
+		ajaxJSON(url, "post", query, fn);
+	});
+});
+
+//     ----대댓글 ----
+//댓글별 대댓글 리스트
+function listReplyAnswer(answer) {
+	var url="${pageContext.request.contextPath}/supplement/listReplyAnswer";
+	var query="answer="+answer;
+	var selector="#listReplyAnswer"+answer;
+	
+	ajaxHTML(url, "get", query, selector);
+}
+//댓글별 대댓글 갯수
+function countReplyAnswer(answer) {
+	var url="${pageContext.request.contextPath}/supplement/replyAnswerCount";
+	var query="answer="+answer;
+	
+	var fn = function(data){
+		var count=data.count;
+		var vid="#answerCount"+answer;
+		$(vid).html(count);
+	};
+	
+	ajaxJSON(url, "post", query, fn);
+}
+//답글 등록 
+$(function() {
+	$("body").on("click", ".h-sendreply2btn", function() {
+		var num = "${dto.num}";
+		var replyNum = $(this).attr("data-replyNum");
+		var $td = $(this).closest("td");
+		
+		var content = $td.find("textarea").val().trim()
+		if(! content) {
+			$td.find("textarea").focus();			
+			return false;			
+		}
+		
+		content = encodeURIComponent(content);
+		
+		var url="${pageContext.request.contextPath}/supplement/insertReply";
+		var query="num="+num+"&content="+content+"&answer="+replyNum;
+		
+		var fn = function(data){
+			$td.find("textarea").val("");
+			
+			var state=data.state;
+			if(state==="true") {
+				listReplyAnswer(replyNum);
+				countReplyAnswer(replyNum);
+			}
+		};
+		
+		ajaxJSON(url, "post", query, fn);
+		
+	});
+});
+
+//대댓글 삭제 
+$(function(){
+	$("body").on("click", ".deleteReplyAnswer", function(){
+		if(! confirm("게시물을 삭제하시겠습니까 ? ")) {
+		    return;
+		}
+		
+		var replyNum=$(this).attr("data-replyNum");
+		var answer=$(this).attr("data-answer");
+		
+		var url="${pageContext.request.contextPath}/supplement/deleteReply";
+		var query="replyNum="+replyNum+"&mode=answer";
+		
+		var fn = function(data){
+			listReplyAnswer(answer);
+			countReplyAnswer(answer);
+		};
+		
+		ajaxJSON(url, "post", query, fn);
+	});
+});
+
+//댓글 좋아요/ 싫어요 추가 +취소
+$(function(){
+	//h-reply-btnlike : 이거 좋아요 싫어요 둘다 이 이름임
+	$("body").on("click", ".sreplybtn", function(){
+		var replyNum = $(this).attr("data-replyNum");		
+		var replyLike = $(this).attr("data-replyLike");		//좋아요1 싫어요 0 
+		var $btn = $(this);
+		
+		//console.log(replyLike)
+	
+		var url="${pageContext.request.contextPath}/supplement/insertReplyLike";
+		var query="replyNum="+replyNum+"&replyLike="+replyLike;
+		
+		var fn = function(data){
+			var state = data.state;
+			
+			var likeCount = data.likeCount;
+			var disLikeCount = data.disLikeCount;
+			
+			if(state==="true") {
+				$btn.parent("td").children().eq(0).find("span").html(likeCount);
+				$btn.parent("td").children().eq(1).find("span").html(disLikeCount);
+			} else if(state==="false") {
+				alert("요요");
+
+
+
+				$btn.parent("td").children().eq(0).find("span").html(likeCount);
+				$btn.parent("td").children().eq(1).find("span").html(disLikeCount);
+			}
+		};
+		
+		ajaxJSON(url, "post", query, fn)
+		
+	});
+});
+
+
+$(document).ready(function() {
+    
+    var xOffset = 10;
+    var yOffset = 30;
+
+    $(document).on("mouseover",".imageout",function(e){ //마우스 오버시
+		
+		$("body").append("<p id='preview'><img src='${pageContext.request.contextPath}/uploads/supplement/${dto.imageFilename}'  width='300px' alt='이미지없음'></p>"); //보여줄 이미지를 선언						 
+		$("#preview")
+			.css("top",(e.pageY - xOffset) + "px")
+			.css("left",(e.pageX + yOffset) + "px")
+			.fadeIn("fast"); //미리보기 화면 설정 셋팅
+	});
+	
+	$(document).on("mousemove",".imageout",function(e){ //마우스 이동시
+		$("#preview")
+			.css("top",(e.pageY - xOffset) + "px")
+			.css("left",(e.pageX + yOffset) + "px");
+	});
+	
+	$(document).on("mouseout",".imageout",function(){ //마우스 아웃시
+		$("#preview").remove();
+	});
+     
+});
+
 </script>
+
 
 <section>
 	<div class="h-divvv">
@@ -183,6 +346,9 @@ $(function(){
 	    </div>
 	    <div class="h-articleMainBody">
 	        <div class="h-articleMainHeader">
+	            <div class="imagetop">
+	            	<p class="imgatetop2 imageout"><i class="far fa-image fa-2x imamge3"></i> <span class="imagespan"> 대표이미지  보기</span> <i class="fas fa-mouse-pointer"></i></p>
+	            </div>
 	            <div class="h-articleMainHeaderSubject">
 	                <span>${dto.subject}</span>
 	            </div>
@@ -194,6 +360,7 @@ $(function(){
 	                <div class="h-articleMainHeaderReply">
 	                    <span>조회수 ${dto.hitCount}</span>
 	                </div>
+	                
 	            </div>
 	        </div>
 	

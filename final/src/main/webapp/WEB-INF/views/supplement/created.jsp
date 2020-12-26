@@ -63,7 +63,7 @@ function check() {
     
             <div class="h-image ">
                 <div class="h-image-title"><i class="fas fa-check"></i> 대표 이미지</div>
-                <input type="file" class="h-imageFile" name="upload" accept="image/*">
+	                <input type="file" class="h-imageFile" name="upload" id="img22" accept="image/*">
             </div>
 
             <div class="h-tagBody">

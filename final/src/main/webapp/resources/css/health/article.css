@@ -86,13 +86,14 @@ a {
 .h-articleMainHeaderSubject{
     width: 95%;
     height: 60px;
-    margin: 0px auto 70px;
-    padding-top: 20px;
+    margin: 0px auto 40px;
+    padding-top: 5px;
     box-sizing: border-box;
     /* border: 1px solid rgb(226, 226, 226); */
     /* TestBackground */
     /* background-color: rgba(232, 216, 247, 0.31); */
 }
+
 .h-articleMainHeaderSubject >span{
     font-size: 30px;
     font-weight: 800;
@@ -308,4 +309,41 @@ transform: scale(0.9);
 }
 .h-Replybtn:focus{
 outline: none;
+}
+/* 이미지 미리보기  */
+.imagetop {
+	margin: 0 auto;
+	margin-left: 25px;
+	margin-right: 25px;
+}
+#preview{
+	z-index: 9999;
+	position:absolute;
+	background:red;
+	border : 1px solid #ccc;
+	padding:1px;
+	display:none;
+	color:#fff;
+}
+.imageout {
+	cursor: pointer;
+}
+.imgatetop2 {
+	display: inline-block;
+	width: 160px;
+	background: rgb(231 231 231);
+	height :30px;
+	margin : 0 auto;
+	border-radius: 5px;
+	padding-bottom: 3px;
+}
+.imagespan {
+	display: inline-block;
+	height: 25px;
+	line-height: inherit;
+}
+.imamge3 { 
+	margin-left: 6px;
+	margin-top: 4px;
+	vertical-align: sub;
 }

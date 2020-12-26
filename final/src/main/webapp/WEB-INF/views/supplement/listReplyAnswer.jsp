@@ -8,9 +8,9 @@
         <div style='clear:both; padding: 10px 0px;'>
             <div style='float: left; width: 5%;'>└</div>
             <div style='float: left; width:95%;'>
-                <div style='float: left;'><b>${vo.userName}</b></div>
+                <div style='float: left;'><b>${vo.userId}</b></div>
                 <div style='float: right;'>
-                    <span>${vo.created}</span> |
+                    <small>${vo.register_date}</small> |
                     <c:if test="${sessionScope.member.userId==vo.userId || sessionScope.member.userId=='admin'}">
                     	<span class='deleteReplyAnswer' style='cursor: pointer;' data-replyNum='${vo.replyNum}' data-answer='${vo.answer}'>삭제</span>
                     </c:if>

@@ -10,7 +10,7 @@ $(function() {
 	$(".InputTag").click(function() {
 		tt.val("#").css("color","skyblue");
 	})
-
+	
 })
 
 	
@@ -40,37 +40,20 @@ function TagbtnSend() {
         $(".Tag-btn").prop("disabled", true)
     }
 
-
-    $(".CancelTag").on("click", function () {
-        var p = $(this).parent();
-        var cnt = $(".dress-TagA").length;
-        if (cnt <= 5) {
-            $(".InputTag").attr("disabled", false)
-            $(".Tag-btn").attr("disabled", false)
-        }
-        p.remove();
-        console.log(cnt);
-    })
 }
+$(function(){
+	 $("body").on("click",".CancelTag", function () {
+	        var p = $(this).parent();
+	        var cnt = $(".dress-TagA").length;
+	        if (cnt <= 5) {
+	            $(".InputTag").attr("disabled", false)
+	            $(".Tag-btn").attr("disabled", false)
+	        }
+	        p.remove();
+	        console.log(cnt);
+	    })	
+})
 
-function sendOk(){
-        var f= document.writeForm;
-        if(!f.subject.value){
-            alert("유효성 검사 제목 임시");
-            f.subject.focus();
-            return ;
-        }
-        if(!f.content.value){
-            alert("유효성 검사 내용 임시");
-            f.content.focus();
-            return;
-        }
-
-       $("#rdTag").val(tag)
-
-       
-         f.submit();
-    }
 $(function(){
     $(".writeBodyHeader").on("click",function(){
         console.log($("img").prop('src'))

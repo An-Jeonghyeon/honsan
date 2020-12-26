@@ -2,8 +2,6 @@ package com.sp.app.dress;
 
 import java.util.List;
 
-import org.springframework.web.multipart.MultipartFile;
-
 public class Dress {
 	private int num;
 	private String userId;
@@ -16,18 +14,25 @@ public class Dress {
 	private int hitCount;
 	private	List<String> tags;
 	
+	private int replyCount;
 	
-	private MultipartFile upload; 
+//	private MultipartFile upload; 
 	private String saveFilename;
 	
 	
 	
-	public MultipartFile getUpload() {
-		return upload;
+	public int getReplyCount() {
+		return replyCount;
 	}
-	public void setUpload(MultipartFile upload) {
-		this.upload = upload;
+	public void setReplyCount(int replyCount) {
+		this.replyCount = replyCount;
 	}
+//	public MultipartFile getUpload() {
+//		return upload;
+//	}
+//	public void setUpload(MultipartFile upload) {
+//		this.upload = upload;
+//	}
 	public String getSaveFilename() {
 		return saveFilename;
 	}
