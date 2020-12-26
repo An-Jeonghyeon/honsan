@@ -50,13 +50,13 @@
                     </button>
                 </td>
                 <td class="h-reply-like">
-                    <button type='button' class='h-reply-btnlike' data-replyNum='${vo.replyNum}' data-replyLike='1' title="좋아요"><i class="far fa-thumbs-up"></i> <span>${vo.likeCount}</span></button>
-                    <button type='button' class='h-reply-btnlike' data-replyNum='${vo.replyNum}' data-replyLike='0' title="싫어요"><i class="far fa-thumbs-down"></i> <span>${vo.disLikeCount}</span></button>	        
+                    <button type='button' class='h-reply-btnlike sreplybtn' data-replyNum='${vo.replyNum}' data-replyLike='1' title="좋아요"><i class="far fa-thumbs-up"></i> <span>${vo.likeCount}</span></button>
+                    <button type='button' class='h-reply-btnlike sreplybtn' data-replyNum='${vo.replyNum}' data-replyLike='0' title="싫어요"><i class="far fa-thumbs-down"></i> <span>${vo.disLikeCount}</span></button>	        
                 </td>
             </tr>
         
             <tr class='replyAnswer' style='display: none;'>
-                <td colspan='2' style="height: 150px;">
+                <td colspan='2'>
                     <div id='listReplyAnswer${vo.replyNum}' class='h-answerList'>
 
                     </div>

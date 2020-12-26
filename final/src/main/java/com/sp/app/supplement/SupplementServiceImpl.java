@@ -232,41 +232,73 @@ public class SupplementServiceImpl implements SupplementService {
 
 	@Override
 	public void deleteReply(Map<String, Object> map) throws Exception {
-		// TODO Auto-generated method stub
+		try {
+			dao.deleteData("supplement.deleteReply", map);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
 		
 	}
 
 
 	@Override
 	public List<Reply> listReplyAnswer(int answer) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Reply> list = null;
+		try {
+			list=dao.selectList("supplement.listReplyAnswer", answer);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
 	}
 
 
 	@Override
 	public int ReplyAnswerCount(int answer) {
-		// TODO Auto-generated method stub
-		return 0;
+		int result =0;
+		try {
+			result=dao.selectOne("supplement.replyAnswerCount", answer);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
 	}
 
 
 	@Override
 	public void insertReplyLike(Map<String, Object> map) throws Exception {
-		// TODO Auto-generated method stub
-		
+		try {
+			dao.insertData("supplement.insertReplyLike", map);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
 	}
 
 
 	@Override
 	public Map<String, Object> replyLikeCount(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		return null;
+		Map<String, Object> countMap = null;
+		try {
+			map=dao.selectOne("supplement.replyLikeCount", map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return countMap;
 	}
 
 
+	@Override
+	public void deleteReplyLike(Map<String, Object> map) throws Exception {
+		try {
+			dao.deleteData("supplement.deleteReplyLike", map);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+		
+	}
 
-	
-	
 
 }
