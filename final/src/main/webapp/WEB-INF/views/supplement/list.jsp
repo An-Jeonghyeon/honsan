@@ -58,7 +58,8 @@ $(function() {
                    <div class="s-best">
                        <div class="best-top"> 
                            <div class="best-image">
-                               <img class="best-imageFile" src="${pageContext.request.contextPath}/uploads/supplement/${dto.imageFilename}" onclick="javascript:location.href='${article_url}&num=${dto.num}';">
+                               <img class="best-imageFile" src="${pageContext.request.contextPath}/uploads/supplement/${dto.imageFilename}" 
+                               		onclick="javascript:location.href='${article_url}&num=${dto.num}';" onerror="this.src='${pageContext.request.contextPath}/resources/images/health/sup4.png'">
                            </div>
                            <div class="best-num"><span class="best-num-span">${dto.bestNum}<small>위</small></span></div>
                        </div>
@@ -75,6 +76,7 @@ $(function() {
            </div>     
            <!-- 영양제 게시판 -->
            <div class="supplement-bbs">
+                <div class="pagediv"> ${dataCount}개 [${page}/${total_page} 페이지] </div>
                <table class="supplement-table">
                    <thead class="s-thead">
                        <tr>
@@ -91,7 +93,7 @@ $(function() {
                            <tr class="s-tbody-tr">
                                <td>${dto.listNum}</td>
                                <td class="s-subject">
-                                   <a href="${article_url}&num=${dto.num}">${dto.subject}</a></td>
+                                   <a href="${article_url}&num=${dto.num}">${dto.subject} (${dto.replyCount})</a></td>
                                <td>${dto.userId}</td>
                                <td>${dto.register_date}</td>
                                <td>${dto.likeCount}</td>

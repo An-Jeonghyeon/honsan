@@ -156,6 +156,12 @@ a {
     text-align: center;
     
 }
+.pagediv {
+	width: 1000px;
+	text-align: left;
+	margin: 0 auto;
+	margin-bottom: 10px;
+}
 .supplement-table {
     width: 1000px;
     margin: 0 auto;
@@ -168,6 +174,9 @@ a {
     border-top: 1px solid black;
     border-bottom:  1px solid #dbdbdb;
     height: 35px;
+}
+.pagetr {
+	text-align: left;
 }
 /* 게시글 비율 */
 .s-table-num {
