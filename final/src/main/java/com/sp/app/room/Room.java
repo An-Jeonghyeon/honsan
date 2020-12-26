@@ -44,7 +44,24 @@ public class Room {
 	// 스프링에서 파일 받기
 	private List<MultipartFile> upload; // <input type="file" name="upload"
 	
+	private String mainimg;
+	private MultipartFile mainUpload;
 	
+	
+	
+	
+	public MultipartFile getMainUpload() {
+		return mainUpload;
+	}
+	public void setMainUpload(MultipartFile mainUpload) {
+		this.mainUpload = mainUpload;
+	}
+	public String getMainimg() {
+		return mainimg;
+	}
+	public void setMainimg(String mainimg) {
+		this.mainimg = mainimg;
+	}
 	public int getNum() {
 		return num;
 	}

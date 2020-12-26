@@ -21,13 +21,13 @@
 		INSERT INTO
 		roomlist(num,addr1, addr2, dealtype, depo, mrent, adcost, aditem,
 		totfloor, corfloor, roomtype, m2, pyeoug, elev, park, options,
-		movedate) VALUES
+		movedate, mainimg) VALUES
 		( #{num}, #{addr1}, #{addr2, jdbcType=VARCHAR},
 		#{dealtype}, #{depo},
 		#{mrent}, #{adcost}, #{aditem}, #{totfloor},
 		#{corfloor}, #{roomtype},
 		#{m2}, #{pyeoug}, #{elev}, #{park},
-		#{options}, #{movedate})
+		#{options}, #{movedate}, #{mainimg})
 	</insert>
 
 
@@ -68,7 +68,7 @@
 		resultType="com.sp.app.room.Room"> <!-- map에는 condition, keyword, offset, rows 등이 저장되어 넘어온다 -->
 		SELECT b.num, b.userId, subject, content, register_date, addr1, addr2,
 		dealtype, depo, mrent, adcost, aditem, totfloor, corfloor, roomtype,
-		m2, pyeoug, elev, park, options, movedate
+		m2, pyeoug, elev, park, options, movedate,mainimg
 		FROM room b
 		LEFT OUTER JOIN
 		member1 m ON b.userId = m.userId
@@ -89,7 +89,7 @@
 		resultType="com.sp.app.room.Room">
 		SELECT b.num, b.userId, subject, content, register_date,
 		addr1, addr2, dealtype, depo, mrent, adcost, aditem, totfloor,
-		corfloor, roomtype, m2, pyeoug, elev, park, options, movedate
+		corfloor, roomtype, m2, pyeoug, elev, park, options, movedate, mainimg
 		FROM room
 		b
 		LEFT OUTER JOIN member1 m ON b.userId = m.userId
@@ -110,7 +110,7 @@
 		adcost=#{adcost},
 		aditem=#{aditem}, totfloor=#{totfloor}, corfloor=#{corfloor},
 		roomtype=#{roomtype}, m2=#{m2}, pyeoug=#{pyeoug}, elev=#{elev},
-		park=#{park}, options=#{options}, movedate=#{movedate}
+		park=#{park}, options=#{options}, movedate=#{movedate}, mainimg=#{mainimg}
 		WHERE num=#{num}
 	</update>
 

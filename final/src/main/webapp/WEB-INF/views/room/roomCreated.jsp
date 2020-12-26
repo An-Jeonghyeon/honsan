@@ -145,7 +145,7 @@ function roomOk(){
 	str2 = $('#options_none').is(':checked');
 	if(!(str1==true) && !(str2==true)) {
 		alert("옵션 포함 항목을 선택하세요.");
-		f.aditem.focus();
+		f.options.focus();
 		return;
 	}
 	
@@ -189,7 +189,24 @@ function roomOk(){
 		return;
 	}
 	
-	
+	var fileCheck1 = document.getElementById("upload1").value;
+    if(!fileCheck1){
+        alert(" 메인 사진 파일을 첨부해 주세요");
+        return false;
+    }
+/*	
+    var fileCheck2 = document.getElementById("upload2").value;
+    if(!fileCheck2){
+        alert(" 주방 사진 파일을 첨부해 주세요");
+        return false;
+    }
+    
+    var fileCheck3 = document.getElementById("upload3").value;
+    if(!fileCheck3){
+        alert(" 화장실 사진 파일을 첨부해 주세요");
+        return false;
+    }
+*/	
 	
 	 f.action = "${pageContext.request.contextPath}/room/${mode}";
 
@@ -214,6 +231,16 @@ function check(){
 }
 
 
+
+<c:if test="${mode=='roomUpdate'}">
+function deleteFile(fileNum) {
+		var url="${pageContext.request.contextPath}/room/deleteFile";
+		$.post(url, {fileNum:fileNum}, function(data){
+			$("#f"+fileNum).remove();
+		}, "json");
+}
+</c:if>
+
 </script>
 
 
@@ -233,18 +260,46 @@ function calculator(chk){
 }
 $(function(){
 	$(".mainimg1").click(function(){
+		<c:if test="${mode=='roomUpdate'}">
+			<c:forEach var="vo" items="${listFile}">
+				deleteFile('${vo.fileNum}');
+			</c:forEach>
+		</c:if>
+		
 		$(".upload1").click();
 	});
 	
 	$(".mainimg2").click(function(){
+		
+		<c:if test="${mode=='roomUpdate'}">
+		<c:forEach var="vo" items="${listFile}">
+			deleteFile('${vo.fileNum}');
+		</c:forEach>
+	</c:if>
+	
 		$(".upload2").click();
 	});
 	
 	$(".mainimg3").click(function(){
+		
+		<c:if test="${mode=='roomUpdate'}">
+		<c:forEach var="vo" items="${listFile}">
+			deleteFile('${vo.fileNum}');
+		</c:forEach>
+	</c:if>
+	
+	
 		$(".upload3").click();
 	});
 	
 	$(".mainimg4").click(function(){
+		
+		<c:if test="${mode=='roomUpdate'}">
+		<c:forEach var="vo" items="${listFile}">
+			deleteFile('${vo.fileNum}');
+		</c:forEach>
+	</c:if>
+		
 		$(".upload4").click();
 	});
 	
@@ -476,7 +531,7 @@ $(function(){
                             <label><input name="aditem" id="aditem" type="checkbox" value="인터넷"> 인터넷</label>
                             <label><input name="aditem" id="aditem" type="checkbox" value="TV"> TV</label>
                             &nbsp;|&nbsp;
-                            <label><input name="aditem_none" id="aditem_none" type="checkbox" value="없음" value="없음" ${dto.aditem=="없음"?"checked='checked'":""}> 없음</label><br>
+                            <label><input name="aditem_none" id="aditem_none" type="checkbox" value="없음" ${dto.aditem=="없음"?"checked='checked'":""}> 없음</label><br>
 	                        <span class="fc-red1">※없음 선택 시 항목 없음</span>
                         </p>
                     </td>
@@ -508,20 +563,20 @@ $(function(){
                 <tr>
                     <th>옵션</th>
                     <td class="i-options">
-                        <label><input type="checkbox" name="options" value="에어컨"> 에어컨</label>
-                        <label><input type="checkbox" name="options" value="냉장고"> 냉장고</label>
-                        <label><input type="checkbox" name="options" value="세탁기"> 세탁기</label>
-                        <label><input type="checkbox" name="options" value="가스레인지"> 가스레인지</label>
-                        <label><input type="checkbox" name="options" value="인덕션"> 인덕션</label>
-                        <label><input type="checkbox" name="options" value="전자레인지"> 전자레인지</label><br>
-                        <label><input type="checkbox" name="options" value="책상"> 책상</label>
-                        <label><input type="checkbox" name="options" value="책장"> 책장</label>
-                        <label><input type="checkbox" name="options" value="침대"> 침대</label>
-                        <label><input type="checkbox" name="options" value="옷장"> 옷장</label>
-                        <label><input type="checkbox" name="options" value="신발장"> 신발장</label>
-                        <label><input type="checkbox" name="options" value="싱크대"> 싱크대</label>
+                        <label><input type="checkbox" id="options" name="options" value="에어컨"> 에어컨</label>
+                        <label><input type="checkbox" id="options" name="options" value="냉장고"> 냉장고</label>
+                        <label><input type="checkbox" id="options" name="options" value="세탁기"> 세탁기</label>
+                        <label><input type="checkbox" id="options" name="options" value="가스레인지"> 가스레인지</label>
+                        <label><input type="checkbox" id="options" name="options" value="인덕션"> 인덕션</label>
+                        <label><input type="checkbox" id="options" name="options" value="전자레인지"> 전자레인지</label><br>
+                        <label><input type="checkbox" id="options" name="options" value="책상"> 책상</label>
+                        <label><input type="checkbox" id="options" name="options" value="책장"> 책장</label>
+                        <label><input type="checkbox" id="options" name="options" value="침대"> 침대</label>
+                        <label><input type="checkbox" id="options" name="options" value="옷장"> 옷장</label>
+                        <label><input type="checkbox" id="options" name="options" value="신발장"> 신발장</label>
+                        <label><input type="checkbox" id="options" name="options" value="싱크대"> 싱크대</label>
                         <p class="i-gray">
-                            <label><input name="options_none" id="options_none" type="checkbox" value="없음" ${dto.options=="없음"?"checked='checked'":""}> 없음</label><br>
+                            <label><input type="checkbox" name="options_none" id="options_none" value="없음" ${dto.options=="없음"?"checked='checked'":""}> 없음</label><br>
 	                        <span class="fc-red1">※없음 선택 시 항목 없음</span>
                         </p>
                     </td>
@@ -610,7 +665,7 @@ $(function(){
 					       </div>
 					    </div>
 					    <div>
-					          <input type="file" style="display: none;" name="upload" class="upload1" id="upload1">
+					          <input type="file" style="display: none;" name="mainUpload" class="upload1" id="upload1">
 					    </div>
             		</td>
             	</tr>

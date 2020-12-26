@@ -55,6 +55,14 @@ function updateBoard(num) {
 			<div id="wrapper">
 		      <div id="slider-wrap">
 		          <ul id="slider">
+		          
+		          <li>
+		                <div>
+		                    <h3>Slide #${status.count }</h3>
+		                    <span>Sub-title #${status.count }</span>
+		                </div>                
+						<img src="${pageContext.request.contextPath}/uploads/room/${dto.mainimg}">
+		             </li>
 			
 				<c:forEach var="vo" items="${listFile}" varStatus="status">
 
@@ -68,51 +76,7 @@ function updateBoard(num) {
 					
 				</c:forEach>
 			
-			
-		             
-		             
-		             <!--  
-		             <li>
-		                <div>
-		                    <h3>Slide #1</h3>
-		                    <span>Sub-title #1</span>
-		                </div>                
-		<img src="https://fakeimg.pl/350x200/960a96/000?text=11111">
-		             </li>
-		             
-		             <li>
-		                <div>
-		                    <h3>Slide #2</h3>
-		                    <span>Sub-title #2</span>
-		                </div>
-		<img src="https://fakeimg.pl/350x200/D27328/000?text=22222">
-		             </li>
-		             
-		             <li>
-		                <div>
-		                    <h3>Slide #3</h3>
-		                    <span>Sub-title #3</span>
-		                </div>
-		<img src="https://fakeimg.pl/350x200/FF607F/000?text=33333">
-		             </li>
-		             
-		             <li>
-		                <div>
-		                    <h3>Slide #4</h3>
-		                    <span>Sub-title #4</span>
-		                </div>
-		<img src="https://fakeimg.pl/350x200/0A6E0A/000?text=44444">
-		             </li>
-		             
-		             <li>
-		                <div>
-		                    <h3>Slide #5</h3>
-		                    <span>Sub-title #5</span>
-		                </div>
-		<img src="https://fakeimg.pl/350x200/0064CD/000?text=55555">
-		             </li>
-		             -->
-		             
+
 		          </ul>
 		          
 		           <!--controls-->

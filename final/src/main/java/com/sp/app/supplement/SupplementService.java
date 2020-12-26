@@ -40,5 +40,6 @@ public interface SupplementService {
 	//답글 추천,비추천
 	public void insertReplyLike(Map<String, Object> map) throws Exception;
 	public Map<String, Object> replyLikeCount(Map<String, Object> map);
+	public void deleteReplyLike(Map<String, Object> map) throws Exception;
 }
 	

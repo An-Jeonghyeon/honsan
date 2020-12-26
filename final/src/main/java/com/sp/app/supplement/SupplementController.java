@@ -1,6 +1,7 @@
 package com.sp.app.supplement;
 
 import java.io.File;
+import java.math.BigDecimal;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.util.HashMap;
@@ -326,7 +327,7 @@ public class SupplementController {
 		return map; 
 	}
 	
-	//댓글 리스트
+	//댓글 리스트 - text
 	@RequestMapping(value = "listReply")
 	public String listReply(
 				@RequestParam int num,
@@ -369,7 +370,111 @@ public class SupplementController {
 		
 		return "supplement/listReply";
 	}
+	// 댓글 삭제(대댓글도) -json
+	@RequestMapping(value="deleteReply", method=RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> deleteReply(
+			@RequestParam Map<String, Object> paramMap
+			) {
+		
+		String state="true";
+		try {
+			service.deleteReply(paramMap);
+		} catch (Exception e) {
+			state="false";
+		}
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("state", state);
+		return map;
+	}
 	
+	//대댓글 리스트  - text (출력)
+	@RequestMapping(value = "listReplyAnswer")
+	public String listReplyAnswer(
+			@RequestParam int answer,
+			Model model
+			) throws Exception {
+		
+		List<Reply> listReplyAnswer = service.listReplyAnswer(answer);
+		
+		for(Reply dto : listReplyAnswer) {
+			dto.setContent(dto.getContent().replaceAll("/n", "<br>"));
+		}
+		model.addAttribute("listReplyAnswer", listReplyAnswer);
+		
+		return "supplement/listReplyAnswer";
+	}
+	
+	//대댓글의 갯수
+	@RequestMapping(value = "replyAnswerCount")
+	@ResponseBody
+	public Map<String , Object> replyAnswerCount(
+			@RequestParam(value = "answer") int answer
+			) {
+		
+		int count = service.ReplyAnswerCount(answer);
+		Map<String, Object> model = new HashMap<String, Object>();
+		model.put("count", count);
+		
+		return model;
+	}
+	
+	//댓글의 좋아요/싫어요 추가 
+	@RequestMapping(value = "insertReplyLike", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> insertReplyLike(
+			@RequestParam Map<String, Object> paramMap,
+			HttpSession sesstion
+			) throws Exception {
+		
+		String state="true";
+		SessionInfo info=(SessionInfo)sesstion.getAttribute("member");
+		
+		Map<String, Object> model = new HashMap<String, Object>();
+		
+		try {
+			paramMap.put("userId", info.getUserId());
+			service.insertReplyLike(paramMap);
+		} catch (Exception e) { //무결성 위반시
+			service.deleteReplyLike(paramMap);
+			e.printStackTrace();
+			state="false";
+		}
+		
+		Map<String, Object> countMap =service.replyLikeCount(paramMap); //보내느게 맵임
 
+		int likeCount=((BigDecimal)countMap.get("LIKECOUNT")).intValue();
+		int disLikeCount=((BigDecimal)countMap.get("DISLIKECOUNT")).intValue();
+		
+		//System.out.println(disLikeCount);
+		model.put("state", state);
+		model.put("likeCount", likeCount);
+		model.put("disLikeCount", disLikeCount);
+		
+		return model;
+	}
+	
+	//댓글의 좋아요 싫어요 갯수
+	@RequestMapping(value="replyLikeCount", method=RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> replyLikeCountㄴ(
+			@RequestParam Map<String, Object> map,
+			HttpSession session
+			) {
+		
+		Map<String, Object> countMap=service.replyLikeCount(map);
+		
+		int likeCount=((BigDecimal)countMap.get("LIKECOUNT")).intValue();
+		int disLikeCount=((BigDecimal)countMap.get("DISLIKECOUNT")).intValue();
+		
+		Map<String, Object> model=new HashMap<>();
+		model.put("likeCount", likeCount);
+		model.put("disLikeCount", disLikeCount);
+			
+		return model;
+	}
+	
+	
 	
 }
