@@ -14,6 +14,7 @@ function deletbutton(num){
 		location.href=url;
 	}
 }
+
 function updatebutton(num){	
 	if(confirm("게시물을 수정 하시겠습니까?")){
 	var q= "num="+num+"&page=${page}";
@@ -141,8 +142,30 @@ $(function(){
 				
 		};
 			ajaxJSON(url,"post",query,fn);
+			location.reload();
 	});
 });
+//댓글 삭제 
+$(function(){
+	$("body").on("click",".Replydelete",function(){
+		if(! confirm("댓글을 삭제 하시겠습니까? ")){
+			return false;
+		}
+		var replyNum= $(this).attr("data-replyNum");
+		var page=$(this).attr("date-pageNo");
+		
+		var url="${pageContext.request.contextPath}/dress/deleteDressReply";
+		var query ="replyNum="+replyNum+"&mode=DressReply";
+		var fn=function(data){
+			listPage(page);
+		}
+		ajaxJSON(url,"post",query,fn);
+	})
+})
+
+
+
+
 
 
 $(function() {
@@ -218,7 +241,6 @@ $(function() {
                     </div>
                     <div class="ReplyBody">
                         <div class="ReplyContentBox">
-                            <span>${dto.userName}</span>
                             <textarea placeholder="댓글을 남겨보세요"></textarea>
                             <div class="ReplySubmitButton">
                                 <button class="Replybtn" type="button">등록</button>

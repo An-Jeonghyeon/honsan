@@ -264,4 +264,18 @@ public class DressController {
 
 		return"dress/listReply";
 	}
+	@RequestMapping(value = "deleteDressReply" , method= RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> deleteDressReply(@RequestParam Map<String, Object> paramMap ) throws Exception{
+		String state="true";
+		try {
+			service.deleteDressReply(paramMap);
+			
+		} catch (Exception e) {
+			state="false";
+		}
+		Map<String, Object> map= new HashMap<>();
+		map.put("state", state);
+		return map; 
+	}
 }

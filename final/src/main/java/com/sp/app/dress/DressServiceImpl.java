@@ -130,8 +130,13 @@ public class DressServiceImpl implements DressService{
 	}
 
 	@Override
-	public void delreDressReply(Map<String, Object> map) throws Exception {
-		// TODO Auto-generated method stub
+	public void deleteDressReply(Map<String, Object> map) throws Exception {
+		try {
+				dao.deleteData("dress.deleteDressReply");
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
 		
 	}
 

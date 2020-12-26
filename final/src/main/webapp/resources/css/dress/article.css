@@ -237,6 +237,7 @@
 }
 .ReplyListUserName{
     font-size: 13px;
+    color:gray;
 }
 .ReplyListContent{
     font-size: 12px;
@@ -267,22 +268,53 @@
    
 }
 .RelyWrite{
-    font-size: 12px;
-    background: white;
+  	font-size: 12px;
     border: none;
     cursor: pointer;
+ 
+    padding: 5px;
+    height:25px; 
+    
+    font-weight: 400;
+   
+    cursor: pointer;
+    box-sizing: border-box;
+    border-radius: 5px;
+    transition: 0.5s;
+    color: rgb(136, 136, 136);
+    background: rgb(255, 255, 255);
+    box-shadow: 0px 0px 5px  rgba(128, 128, 128, 0.529);
 }
-.RelyWrite:hover{
+.RelyWrite:hover,.Replydelete:hover{
     color: #ff6347;
 }
-.RelyWrite:focus{
+.RelyWrite:focus,.Replydelete:focus{
     outline: none;
 }
+.Replydelete{
+	font-size: 12px;
+    border: none;
+    cursor: pointer;
+    float: right;
+    padding: 5px;
+    height:25px; 
+    float: right;
+    font-weight: 400;
+   
+    cursor: pointer;
+    box-sizing: border-box;
+    border-radius: 5px;
+    transition: 0.5s;
+    color: rgb(136, 136, 136);
+    background: rgb(255, 255, 255);
+    box-shadow: 0px 0px 5px  rgba(128, 128, 128, 0.529);
+}
+
 .ReplyAnswerContentUserName{
   position: relative;
   left: -25px;
 }
-.ReplyContentBox>span ,.ReplyAnswerContentUserName{
+.ReplyAnswerContentUserName{
     font-size: 0.8rem;
     font-weight: 400;
 }
@@ -303,7 +335,6 @@
 }
 .ReplyContentBox>textarea:focus{
    outline: none;
-   
 }
 .ReplyContentBox>textarea::placeholder{
     color: rgb(226,226,226);

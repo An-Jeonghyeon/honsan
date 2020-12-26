@@ -14,17 +14,10 @@
 		</p>
 		<span class="createdNumber">${vo.register_date}</span>
 		<button type="button" class="RelyWrite">답글쓰기</button>
+		<c:if test="${vo.userId==sessionScope.member.userId || sessionScope.member.userId=='admin' }">
+		<button type="button" class="Replydelete" data-replyNum='${vo.replyNum}' data-pageNo='${page}'>삭제</button>
+		</c:if>
 	</div>
-	<!-- <div class="ReplyAnswer">
-		<div class="dress-ReplyLike">
-			<span>좋아요</span><i class="far fa-thumbs-up"></i>13
-		</div>
-		<span class="ReplyListUserName">주다혜</span>
-		<p>
-			<span class="ReplyListContent">여러 항목을 체크해야죠 ㅡㅡ;</span>
-		</p>
-		<span class="createdNumber">2020.12.03. 01:03</span>
-	</div> -->
 	<div class="ReplyAnswerBody">
 		<div class="ReplyAnswerContentBox">
 			<span class="ReplyListUserX">x</span> <span
