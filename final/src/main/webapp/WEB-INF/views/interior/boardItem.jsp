@@ -8,7 +8,7 @@
 
 <section>
 <form name="Interior_form" >
-	<button type="button" onclick="javascript:location.href='${pageContext.request.contextPath}/interior/update?num=${dto.num}';" >수정하기 </button>
+	
     <div class="board_interior_box">
         <div class="board_interior_leftbox">
             
@@ -44,7 +44,7 @@
             <!-- # 태그가 있을시 for 문 돌려서 사용할것 ! -->
             <ul class="leftbox_tag_ul">
 				<c:forEach var="tag" items="${categorylist}" varStatus="n">
-               		<li class="leftbox_tag_li"><a class="leftbox_tag_li_a"># ${tag}</a></li>
+               		<li class="leftbox_tag_li"><a class="leftbox_tag_li_a">${tag}</a></li>
 				</c:forEach>
             </ul>
 
@@ -234,32 +234,42 @@
                             </div>
 
                             <div class="board_interior_users_imgs">
-                                <div class="board_interior_users_imgs_bar">
+                                <div class="board_interior_users_imgs_bar"> 
+                            <c:forEach var="uto" items="${ublist}" varStatus="n"> 
+                                    <c:if test="${n.index==2}">
+                                    	<c:out value="</div><div class='board_interior_users_imgs_bar'>" escapeXml="false"/>
+                                    </c:if>
                                     <div class="board_interior_users_imgs_img">
                                         <!-- 회원 게시판 최근 1  -->
-                                        <a><img class="board_interior_users_imgs_a_img" style="border-radius: 10px 0 0 0;"
-                                             src="${pageContext.request.contextPath}/resources/images/interior/d1.webp"></a>
+                                        <a href="${pageContext.request.contextPath}/interior/boardItem?num=${uto.num}"><img class="board_interior_users_imgs_a_img"
+                                             src="${pageContext.request.contextPath}/uploads/interior/${uto.mainImg}"></a>
                                     </div>
-                                    <div class="board_interior_users_imgs_img">
-                                        <!-- 회원 게시판 최근 2  -->
-                                        <a><img class="board_interior_users_imgs_a_img" style="border-radius: 0 10px 0 0;"
-                                             src="${pageContext.request.contextPath}/resources/images/interior/d2.webp"></a>
+                            </c:forEach>
+                            <c:forEach var="i" begin="${ublistCount+1}" end="4" step="1" varStatus="n">
+                            	    <c:if test="${n.index==3}">
+                                    	<c:out value="</div><div class='board_interior_users_imgs_bar'>" escapeXml="false"/>
+                                    </c:if>
+                            	    <div class="board_interior_users_imgs_img">
+                                        <!-- 회원 게시판 최근 1  -->
+                                        <a><img class="board_interior_users_imgs_a_img"></a>
                                     </div>
-                                </div>
-                                <div class="board_interior_users_imgs_bar">
-                                    <div class="board_interior_users_imgs_img">
-                                        <!-- 회원 게시판 최근 3  -->
-                                        <a><img class="board_interior_users_imgs_a_img" style="border-radius: 0 0 0 10px;"
-                                             src="${pageContext.request.contextPath}/resources/images/interior/d3.webp"></a>
-                                    </div>
-                                    <div class="board_interior_users_imgs_img">
-                                        <!-- 회원 게시판 최근 4  -->
-                                        <a><img class="board_interior_users_imgs_a_img" style="border-radius: 0 0 10px 0;"
-                                              src="${pageContext.request.contextPath}/resources/images/interior/d4.webp"></a>
-                                    </div>
-                                </div>
-
+                            </c:forEach>
+								</div>
                             </div>
+                            <c:if test="${sessionScope.member.userId==dto.userId || sessionScope.member.userId=='admin' }">
+		                        <div class="board_interior_userpage_buttonbar">
+		                            <div class="board_interior_userpage_buttonbarbox">
+		                                <button type="button" onclick="javascript:location.href='${pageContext.request.contextPath}/interior/update?num=${dto.num}';" >
+		                                	<span class="userpage_buttonspan">수정</span>
+		                                 </button>
+		                            </div>
+		                            <div class="board_interior_userpage_buttonbarbox">
+		                                <button>
+		                                    <span class="userpage_buttonspan">삭제</span>
+		                                </button>
+		                            </div>
+		                        </div>
+	                        </c:if>
                         </div>
                     </div>
                 </div>

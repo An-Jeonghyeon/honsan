@@ -573,6 +573,8 @@
     height: 287px;
     
     margin: 20px 0;
+    border-radius: 10px;
+    overflow: hidden;
 }
 
 .board_interior_users_imgs_bar {
@@ -787,4 +789,60 @@
     border-radius: 5px;
 }
 
+.board_interior_userpage_buttonbar   {
+    display: flex;
+    width: 100%;
+    height: 51px;
+    margin-bottom: 40px;
+    box-sizing: border-box;
+    justify-content: space-between;
+    
+}
+
+.board_interior_userpage_buttonbarbox {
+    color: #424242;
+    padding: 11px 10px;
+    width: 50%;
+    background-color: #35c5f0;
+    border-color: #35c5f0;
+    color: 757575;
+    border-radius: 8px;
+    margin: 0 5px;
+    text-align: center;
+}
+
+.board_interior_userpage_buttonbarbox > button {
+    
+    width: 100%;
+    height: 100%;
+    font-size: 17px;
+    text-align: center;
+    background-color: #35c5f0;
+    color: 757575; 
+    border: none;
+}
+
+.userpage_buttonspan{
+    margin-left: 6px;
+    font-size: 20px;
+    font-weight: 700;
+    color: white;
+    line-height: 1.3;
+    vertical-align: top;
+    
+    
+}
+
+.spon_banner{
+	width: 100%;
+	height: 550px;
+	background: red;
+}
+
+.subimg_delete_button{
+	border: none;
+	background: none;
+	position: absolute;
+	margin-left: 97px;
+}
 </style>
