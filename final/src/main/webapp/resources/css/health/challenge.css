@@ -1,0 +1,145 @@
+@charset "UTF-8";
+
+.challenge-content {
+    /* background: #ccc; */
+    margin: 0 auto;
+    text-align: center;
+}
+.challenge-top {
+    width: 100%;
+    height: 400px;
+    /* padding-top : calc (400 / 1000 * 100 %); */
+    background: url(../../images/health/haruchallenge.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    border: 1px solid #ccc;
+}
+.challengebody {
+    width: 1200px;
+    margin: 0 auto;
+    /* background: yellow; */
+    height: 1000px;
+    margin-top: 50px;
+}
+.challengebody ul {
+    list-style: none;
+}
+.bodyul { 
+    /* background: wheat; */
+    margin: 0 auto;
+    text-align: left;
+}
+.bodyul li {
+    box-sizing: border-box;
+    display: inline-block;
+    width: 48%;
+    margin: 0 8px 30px;
+}
+.bodyli:hover .text1, .bodyli:hover .image1{
+    transform: scale(1.05);
+}
+.imagech {
+    height: 130px;
+    border-radius: 20px;
+    background: silver;
+    position: relative;
+    overflow: hidden;
+}
+.textch {
+    text-align: left;
+    margin-top: 5px;
+    margin-left: 20px;
+    font-weight: 600;
+}
+.image1 {
+    align-items: center;
+    width: 580px;
+    transition: transform .2s;
+}
+.text1 {
+    height: 130px;
+    /* background: rgba(70, 131, 180, 0.808); */
+    width: 60%;
+    padding-top: 30px;
+    box-sizing: border-box;
+    margin-left: 40px;
+    z-index: 2;
+    position: absolute;
+    transition: transform .2s;
+}
+.text1 h2 {
+    font-size: 30px;
+    font-weight: 900;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+.text1 p {
+    font-weight: 600;
+}
+/* 더보기 버튼 */
+.morebtn {
+    /* position: relative; */
+    width: 100px;
+    height: 40px;
+    display: flex;
+    /* align-items: center; */
+    justify-content: center;
+    margin: 0 auto;
+    /* overflow: hidden; */
+    border: none;
+    background: none;
+    cursor: pointer;
+    outline: none;
+}
+.hcircle {
+    /* display: inline-block; */
+    border-radius: 1.625rem;
+    background: #000;
+    /* background: #f3c04ac7; */
+    /* position: relative; */
+    width: 40px;
+    height: 40px;
+    transition: all .7s cubic-bezier(.65,0,.076,1);
+}
+.morebtn:hover .hcircle{
+    width: 100%;
+}
+.iconplus:before {
+    content: "";
+    display: block;
+    width: 20px;
+    height: 2px;
+    background: #fff;
+    /* background: black; */
+    position: relative;
+    top: 20px;
+    left: 10px;
+    margin-top: -1px;
+}
+.iconplus:after {
+    content: "";
+    display: block;
+    width: 2px;
+    height: 20px;
+    background: #fff;
+    /* background: black; */
+    position: relative;
+    top: 9px;
+    left: 20px;
+    margin-left: -1px;
+} 
+.hplus {
+    position: absolute;
+    /* color: black; */
+    color: #fff;
+    opacity: 0;
+    padding: 10px 5px;
+    font-size: 14px;
+    font-weight: bold;
+    right: 50%;
+    transform: translate(2.5rem);
+    transition: all .7s cubic-bezier(.65,0,.076,1);
+}
+.morebtn:hover .hplus{
+    opacity: 1;
+}

@@ -179,9 +179,12 @@ public class RoomController {
 		
 		List<Room> listFile=service.listFile(num);
 		
+
+		
 		Map<String, Object> map = new HashMap<>();
 		map.put("num", num);
 		map.put("keyword", keyword);
+		
 		
 		model.addAttribute("options",options);
 		model.addAttribute("aditems",aditems);
@@ -216,6 +219,9 @@ public class RoomController {
 
 		List<Room> listFile=service.listFile(num);
 		
+		int listCount=listFile.size();
+		model.addAttribute("listCount",listCount);
+		
 		model.addAttribute("listFile", listFile);
 		model.addAttribute("dto", dto);
 		model.addAttribute("mode", "roomUpdate");
@@ -232,8 +238,6 @@ public class RoomController {
 			@RequestParam String page,
 			HttpSession session
 			) {
-		String root = session.getServletContext().getRealPath("/");
-		String pathname=root+"uploads"+File.separator+"room";
 		
 		try {
 			if(!aditem_none.equals("1")) {
@@ -242,6 +246,8 @@ public class RoomController {
 			if(!options_none.equals("1")) {
 				dto.setOptions(options_none);
 			}
+			String root = session.getServletContext().getRealPath("/");
+			String pathname=root+"uploads"+File.separator+"room";
 			
 			service.updateRoom(dto, pathname);
 		} catch (Exception e) {

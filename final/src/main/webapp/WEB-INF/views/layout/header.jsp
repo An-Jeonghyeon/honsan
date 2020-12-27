@@ -17,7 +17,7 @@
                 <div class="menuBox"> <a href="${pageContext.request.contextPath}">혼자 뭐 먹지?</a></div>
                 <div class="menuBox"> <a href="${pageContext.request.contextPath}/room/roomlist">방구할래?</a></div>
                 <div class="menuBox"> <a href="${pageContext.request.contextPath}">인테리어</a></div>
-                <div class="menuBox"> <a href="${pageContext.request.contextPath}">건강챙기기</a></div>
+                <div class="menuBox"> <a href="${pageContext.request.contextPath}/supplement/list">건강챙기기</a></div>
                 <div class="loginBox">
                     <div class="loginName">
               			<c:if test="${not empty sessionScope.member}">
@@ -75,7 +75,7 @@
                     </ul>
                     <ul class="menuObject">
                         <li> <a href="${pageContext.request.contextPath}/supplement/list">영양제 뭐 먹을까?</a></li>
-                        <li> <a href="${pageContext.request.contextPath}">하루 운동 챌린지</a></li>
+                        <li> <a href="${pageContext.request.contextPath}/challenge/list">하루 운동 챌린지</a></li>
                         <li> <a href="${pageContext.request.contextPath}">오늘 운동을 보여줘</a></li>
                         <li> <a href="${pageContext.request.contextPath}">건강 지킴이</a></li>
                     </ul>

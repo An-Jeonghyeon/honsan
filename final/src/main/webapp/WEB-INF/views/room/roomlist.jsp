@@ -26,12 +26,26 @@
 		var url = "${articleUrl}&num=" + num;
 		location.href = url;
 	}
+	
+
+	
 </script>
 
 
 	<div class="body-container">
 	<hr>
-	<div style="width: 1000px; margin: 0px auto; padding-top: 100px;">
+	
+	<div class="banner">
+		
+	
+		<button type="button" class="createdbtn"
+		onclick="javascript:location.href='${pageContext.request.contextPath}/room/roomCreated';">방	올리기</button>
+	
+	
+	</div>
+	
+	
+	<div style="width: 1000px; margin: 0px auto;">
 		<!-- 검색 부분 -->
 		<form name="searchForm"
 			action="${pageContext.request.contextPath }/room/roomlist"
@@ -63,9 +77,6 @@
 						<td align="right">
 						<button type="button" class="btn"
 						onclick="javascript:location.href='${pageContext.request.contextPath}/room/roomlist';">새로고침</button>
-						<button type="button" class="btn"
-						onclick="javascript:location.href='${pageContext.request.contextPath}/room/roomCreated';">방
-						올리기</button>
 						</td>
 					</tr>
 
