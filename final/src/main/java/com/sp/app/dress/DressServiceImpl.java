@@ -164,17 +164,26 @@ public class DressServiceImpl implements DressService{
 	}
 
 	@Override
-	public void deleteDressLikeCount(int num, String userId) throws Exception {
+	public void deleteDressLikeCount(Map<String, Object> map) throws Exception {
 		try {
-			Dress dto=readDress(num);
-			if(dto==null || (!userId.equals("admin")) && !dto.getUserId().equals(userId))
-				return;
-			dao.deleteData("dress.deleteDressLikeCount",num);
+		
+			dao.deleteData("dress.deleteDressLikeCount",map);
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
 		}
 		
+	}
+
+	@Override
+	public List<Dress> bestlist(Map<String, Object> map) {
+		List<Dress> list = null;
+		try {
+			list=dao.selectList("dress.bestlist",map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
 	}
 
 }

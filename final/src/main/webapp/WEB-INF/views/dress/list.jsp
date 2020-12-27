@@ -12,8 +12,7 @@
 </script>
 <div class="dress-Body">
 	<div class="dress-MainBody">
-		<span class="dress-paging">${dataCount}개(${page}/${total_page}
-			페이지)</span>
+		<span class="dress-paging">${dataCount}개(${page}/${total_page} 페이지)</span>
 		<div class="dress-InnerBody">
 			<div class="dress-MainContent">
 				<div class="dress-BestContentName">
@@ -23,12 +22,27 @@
 					<span class="dress-Text">인기</span><span>게시글</span>
 
 				</div>
+				<c:forEach var="best" items="${bestList}"> 
 				<div class="dress-BestContent">
-					<div class="dress-BestContent-InnerImage"></div>
-					<div class="dress-subContent-InnerText">
-						<span>오늘 출근 할때 입었던 옷이에요 정말입고 싶었던 옷인데</span>
+					<div class="dress-BestContent-InnerImage" onclick="javascript:location.href='${articleUrl}&num=${best.num}'">
+						<img class="dress-img" src="${best.saveFilename}" onerror="this.src='${pageContext.request.contextPath}/resources/images/dress/dd.png'">
+					</div>
+					<div class="dress-bestContent-InnerText">
+						<span>제목: ${best.subject}</span>
+					</div>
+						<div class="dress-bestContent-InnerImageInnerBox">
+						<span class="dress-subContent-InnerUserName">작성자:${best.userName }</span>
+						<span class="dress-subContent-InnerHitCount">조회수:${best.hitCount }</span>
+						<span class="dress-subContent-InnerReplyCount">(${best.replyCount })</span>
+						<span class="dress-subContent-InnerTags">
+							 <c:forEach
+								var="s" items="${best.hashtag}">
+								<a href="#">${s}</a>
+							</c:forEach>
+						</span>
 					</div>
 				</div>
+				</c:forEach>
 				<div class="dress-BestContentText">여기에 무엇을 넣어야 할까?</div>
 			</div>
 			<c:forEach var="dto" items="${list}">

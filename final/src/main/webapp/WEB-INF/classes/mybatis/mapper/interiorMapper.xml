@@ -59,7 +59,17 @@
 		</where>
 		ORDER BY i.num DESC
 		OFFSET #{offset} ROWS FETCH FIRST #{rows} ROWS ONLY
-	</select>	
+	</select>
+	
+	<select id="userinteriorlist" parameterType="String"
+		resultType="com.sp.app.interior.Interior"> <!-- map에는 condition, keyword, offset, rows 등이 저장되어 넘어온다 -->
+		SELECT i.num, i.userId, userName, subject, content, category, hitCount, register_date , mainImg
+		FROM interior i
+		JOIN member1 m ON i.userId = m.userId
+		WHERE i.userId = #{userId}
+		ORDER BY i.num DESC
+		OFFSET 0 ROWS FETCH FIRST 4 ROWS ONLY
+	</select>
 	
 	<select id="readBoard" parameterType="Integer" resultType="com.sp.app.interior.Interior">
 		SELECT num, i.userId,userName, subject, content, category, hitCount, register_date ,mainImg
@@ -78,5 +88,27 @@
 	<update id="updateHitCount" parameterType="Integer">
 		UPDATE interior SET hitCount = hitCount+1 WHERE num=#{num} 
 	</update>
+	
+	<select id="readFile" parameterType="Integer" resultType="com.sp.app.interior.Interior">
+		SELECT fileNum, num, saveFilename
+		FROM InteriorFile
+	    WHERE fileNum=#{filenum}      
+	</select>
+	
+	<delete id="deleteFile" parameterType="map">
+		DELETE FROM InteriorFile WHERE ${field} = #{num}
+	</delete>
+
+	<update id="interiorUpdate2" parameterType="com.sp.app.interior.Interior">
+		UPDATE interior SET subject = #{subject} , content= #{content} , category= #{category} , mainImg = #{mainImg}
+		WHERE num=#{num}
+	</update>	
+	
+	<update id="interiorUpdate1" parameterType="com.sp.app.interior.Interior">
+		UPDATE interior SET subject = #{subject} , content= #{content} , category= #{category} 
+		WHERE num=#{num}
+	</update>
+	
+	
 	
 </mapper>

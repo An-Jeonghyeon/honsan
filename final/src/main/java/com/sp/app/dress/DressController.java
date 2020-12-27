@@ -63,7 +63,7 @@ public class DressController {
 			offset=0;
 		map.put("offset", offset);
 		map.put("rows",rows);
-		
+		List<Dress> bestList=service.bestlist(map);
 		List<Dress> list = service.listDress(map); 
 		List<String> images;
 		int listNum;
@@ -82,6 +82,13 @@ public class DressController {
 			}
 			
 		}
+		for(Dress dto: bestList) {
+			images = myUtil.getImgSrc(dto.getContent());
+			if(images.size()>0) {
+				dto.setSaveFilename(images.get(0));	
+			}
+		}
+	
 		String cp = req.getContextPath();
 		String query = "";
 		String listUrl = cp+"/dress/list";
@@ -99,6 +106,7 @@ public class DressController {
 		String paging = myUtil.paging(current_page, total_page, listUrl);
 		
 		model.addAttribute("list", list);
+		model.addAttribute("bestList", bestList);
 		model.addAttribute("articleUrl", articleUrl);
 		model.addAttribute("page", current_page);
 		model.addAttribute("dataCount", dataCount);
@@ -294,7 +302,7 @@ public class DressController {
 		try {
 			service.insertDressLikeCount(paramMap);
 		} catch (Exception e) {
-			e.printStackTrace();
+			service.deleteDressLikeCount(paramMap);
 			state="false";
 		}
 		DressLikeCount = service.DressLikeCount(num);
@@ -303,16 +311,5 @@ public class DressController {
 		model.put("DressLikeCount", DressLikeCount);
 		return model;
 	}
-	@RequestMapping(value = "deleteDressLikeCount")
-	@ResponseBody
-	public String deleteDressLikeCount(@RequestParam int num,HttpSession session, @RequestParam String page) throws Exception{
-		SessionInfo info= (SessionInfo)session.getAttribute("member");
-		String query="page="+page;
-		try {
-			service.deleteDressLikeCount(num, info.getUserId());
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return "redirect:/dress/article?"+query;
-	}
+
 }

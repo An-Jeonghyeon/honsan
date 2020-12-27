@@ -19,8 +19,15 @@ public class Dress {
 	private int DressLikeCount;
 	private String saveFilename;
 	
+	private String bestlist;
 	
 	
+	public String getBestlist() {
+		return bestlist;
+	}
+	public void setBestlist(String bestlist) {
+		this.bestlist = bestlist;
+	}
 	public int getDressLikeCount() {
 		return DressLikeCount;
 	}
@@ -33,12 +40,7 @@ public class Dress {
 	public void setReplyCount(int replyCount) {
 		this.replyCount = replyCount;
 	}
-//	public MultipartFile getUpload() {
-//		return upload;
-//	}
-//	public void setUpload(MultipartFile upload) {
-//		this.upload = upload;
-//	}
+
 	public String getSaveFilename() {
 		return saveFilename;
 	}

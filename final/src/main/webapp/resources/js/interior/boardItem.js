@@ -305,7 +305,7 @@
                 $("#rdTag").val("#");
 
                 var out = "<li class='leftbox_tag_li' onclick='$(this).remove();' > <input name='category' type='text' class='leftbox_tag_li_a' style='width:"+widthSize+"px;'"+
-                " value=' "+ tagContent+"' > </li>";
+                " value='"+ tagContent+"' > </li>";
 
                 $(".leftbox_tag_ul").append(out);
 
