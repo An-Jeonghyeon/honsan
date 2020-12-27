@@ -128,4 +128,24 @@
 	<delete id="deleteDressLikeCount" parameterType="map">
 		DELETE FROM clothesStory_like WHERE num=#{num} AND userId=#{userId}
 	</delete>
+	
+	<!--bestDressList  -->
+	<select id="bestlist" parameterType="map" resultType="com.sp.app.dress.Dress">
+	SELECT A.* FROM(SELECT b.num, b.userId, userName , subject,hashtag,
+					HITCOUNT,TO_CHAR(REGISTER_DATE,'YYYY-MM-DD')created,
+					content, NVL(replyCount, 0)replyCount,NVL(v, 0)v
+					FROM CLOTHESSTORY b
+				JOIN member1 m ON b.userId = m.userId
+				LEFT OUTER JOIN(
+							SELECT num, COUNT(*) replyCount FROM clothesStory_reply
+							WHERE answer = 0
+							GROUP BY num
+					)c ON b.num=c.num
+				LEFT OUTER JOIN (
+							SELECT num ,COUNT(*)v FROM CLOTHESSTORY_LIKE GROUP BY num ORDER BY v DESC
+					)d ON b.num= d.num
+		ORDER BY v DESC )A
+		WHERE ROWNUM=1
+	</select>
+	
 </mapper>

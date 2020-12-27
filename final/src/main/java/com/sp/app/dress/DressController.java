@@ -63,7 +63,7 @@ public class DressController {
 			offset=0;
 		map.put("offset", offset);
 		map.put("rows",rows);
-		
+		List<Dress> bestList=service.bestlist(map);
 		List<Dress> list = service.listDress(map); 
 		List<String> images;
 		int listNum;
@@ -82,6 +82,13 @@ public class DressController {
 			}
 			
 		}
+		for(Dress dto: bestList) {
+			images = myUtil.getImgSrc(dto.getContent());
+			if(images.size()>0) {
+				dto.setSaveFilename(images.get(0));	
+			}
+		}
+	
 		String cp = req.getContextPath();
 		String query = "";
 		String listUrl = cp+"/dress/list";
@@ -99,6 +106,7 @@ public class DressController {
 		String paging = myUtil.paging(current_page, total_page, listUrl);
 		
 		model.addAttribute("list", list);
+		model.addAttribute("bestList", bestList);
 		model.addAttribute("articleUrl", articleUrl);
 		model.addAttribute("page", current_page);
 		model.addAttribute("dataCount", dataCount);

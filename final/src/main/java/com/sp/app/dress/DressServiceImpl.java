@@ -175,4 +175,15 @@ public class DressServiceImpl implements DressService{
 		
 	}
 
+	@Override
+	public List<Dress> bestlist(Map<String, Object> map) {
+		List<Dress> list = null;
+		try {
+			list=dao.selectList("dress.bestlist",map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
 }

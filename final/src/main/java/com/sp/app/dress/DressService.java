@@ -14,6 +14,8 @@ public interface DressService {
 	public void insertDressLikeCount(Map<String, Object>map) throws Exception;
 	public int DressLikeCount(int num);
 	public void deleteDressLikeCount(Map<String, Object>map) throws Exception;
+	public List<Dress> bestlist(Map<String, Object>map);
+	
 	
 	public void insertDressReply(DressReply dto) throws Exception;
 	public List<DressReply> listReply(Map<String, Object> map);

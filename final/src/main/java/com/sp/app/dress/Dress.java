@@ -19,8 +19,15 @@ public class Dress {
 	private int DressLikeCount;
 	private String saveFilename;
 	
+	private String bestlist;
 	
 	
+	public String getBestlist() {
+		return bestlist;
+	}
+	public void setBestlist(String bestlist) {
+		this.bestlist = bestlist;
+	}
 	public int getDressLikeCount() {
 		return DressLikeCount;
 	}
