@@ -170,14 +170,6 @@ $(function(){
 
 $(function() {
 	$(".dress-thumbs-up").click(function() {
-
-				if (!confirm("공감을 하시겠습니까?")) {
-					$(".dress-thumbs-up").css("background", "white")
-					$(".dress-thumbs-up").css("box-shadow","0px 0px 5px  rgba(128, 128, 128, 0.529)")
-					$(".dress-thumbs-up").css("color", "rgb(136, 136, 136)")
-					return false;
-				}
-					
 					var url="${pageContext.request.contextPath}/dress/insertDressLikeCount";
 					var num="${dto.num}";
 					var query="num="+num;
@@ -187,12 +179,15 @@ $(function() {
 							var count= data.DressLikeCount;
 							$("#DressLikeCount").text(count);
 							$(".dress-thumbs-up").css("background", "rgb(174, 174, 174)")
-							$(".dress-thumbs-up").css("box-shadow",
-									"0px 0px 15px  rgba(202, 164, 255, 0.529)")
+							$(".dress-thumbs-up").css("box-shadow","0px 0px 15px  rgba(202, 164, 255, 0.529)")
 							$(".dress-thumbs-up").css("color", "aliceblue")
 
 						}else if(state==="false"){
-							alert("공감은 한번 가능합니다");
+							var count= data.DressLikeCount;
+							$("#DressLikeCount").text(count);
+							$(".dress-thumbs-up").css("background", "white")
+							$(".dress-thumbs-up").css("box-shadow","0px 0px 5px  rgba(128, 128, 128, 0.529)")
+							$(".dress-thumbs-up").css("color", "rgb(136, 136, 136)")
 						}
 					};
 					ajaxJSON(url,"post",query,fn);

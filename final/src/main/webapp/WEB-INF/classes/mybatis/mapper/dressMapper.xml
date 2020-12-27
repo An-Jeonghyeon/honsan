@@ -125,7 +125,7 @@
 	SELECT COUNT(*) FROM clothesStory_like
 	WHERE num=#{num}
 	</select>
-	<delete id="deletDressLikeCount" parameterType="Integer">
-		DELETE FROM clothesStory_like WHERE userId=#{userId} AND num=#{num}
+	<delete id="deleteDressLikeCount" parameterType="map">
+		DELETE FROM clothesStory_like WHERE num=#{num} AND userId=#{userId}
 	</delete>
 </mapper>

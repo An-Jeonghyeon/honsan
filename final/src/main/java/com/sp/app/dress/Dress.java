@@ -33,12 +33,7 @@ public class Dress {
 	public void setReplyCount(int replyCount) {
 		this.replyCount = replyCount;
 	}
-//	public MultipartFile getUpload() {
-//		return upload;
-//	}
-//	public void setUpload(MultipartFile upload) {
-//		this.upload = upload;
-//	}
+
 	public String getSaveFilename() {
 		return saveFilename;
 	}

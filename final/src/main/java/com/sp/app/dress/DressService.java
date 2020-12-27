@@ -13,7 +13,7 @@ public interface DressService {
 	public void deleteDress(int num,String userId)throws Exception;
 	public void insertDressLikeCount(Map<String, Object>map) throws Exception;
 	public int DressLikeCount(int num);
-	public void deleteDressLikeCount(int num, String userId) throws Exception;
+	public void deleteDressLikeCount(Map<String, Object>map) throws Exception;
 	
 	public void insertDressReply(DressReply dto) throws Exception;
 	public List<DressReply> listReply(Map<String, Object> map);
