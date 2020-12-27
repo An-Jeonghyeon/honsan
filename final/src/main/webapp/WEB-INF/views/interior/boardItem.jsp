@@ -8,7 +8,7 @@
 
 <section>
 <form name="Interior_form" >
-	<button type="button" onclick="javascript:location.href='${pageContext.request.contextPath}/interior/update?num=${dto.num}';" >수정하기 </button>
+	
     <div class="board_interior_box">
         <div class="board_interior_leftbox">
             
@@ -44,7 +44,7 @@
             <!-- # 태그가 있을시 for 문 돌려서 사용할것 ! -->
             <ul class="leftbox_tag_ul">
 				<c:forEach var="tag" items="${categorylist}" varStatus="n">
-               		<li class="leftbox_tag_li"><a class="leftbox_tag_li_a"># ${tag}</a></li>
+               		<li class="leftbox_tag_li"><a class="leftbox_tag_li_a">${tag}</a></li>
 				</c:forEach>
             </ul>
 
@@ -260,6 +260,18 @@
                                 </div>
 
                             </div>
+                        <div class="board_interior_userpage_buttonbar">
+                            <div class="board_interior_userpage_buttonbarbox">
+                                <button type="button" onclick="javascript:location.href='${pageContext.request.contextPath}/interior/update?num=${dto.num}';" >
+                                	<span class="userpage_buttonspan">수정</span>
+                                 </button>
+                            </div>
+                            <div class="board_interior_userpage_buttonbarbox">
+                                <button>
+                                    <span class="userpage_buttonspan">삭제</span>
+                                </button>
+                            </div>
+                        </div>
                         </div>
                     </div>
                 </div>

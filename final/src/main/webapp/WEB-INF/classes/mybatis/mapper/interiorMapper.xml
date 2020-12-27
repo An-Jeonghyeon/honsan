@@ -79,4 +79,26 @@
 		UPDATE interior SET hitCount = hitCount+1 WHERE num=#{num} 
 	</update>
 	
+	<select id="readFile" parameterType="Integer" resultType="com.sp.app.interior.Interior">
+		SELECT fileNum, num, saveFilename
+		FROM InteriorFile
+	    WHERE fileNum=#{filenum}      
+	</select>
+	
+	<delete id="deleteFile" parameterType="map">
+		DELETE FROM InteriorFile WHERE ${field} = #{num}
+	</delete>
+
+	<update id="interiorUpdate2" parameterType="com.sp.app.interior.Interior">
+		UPDATE interior SET subject = #{subject} , content= #{content} , category= #{category} , mainImg = #{mainImg}
+		WHERE num=#{num}
+	</update>	
+	
+	<update id="interiorUpdate1" parameterType="com.sp.app.interior.Interior">
+		UPDATE interior SET subject = #{subject} , content= #{content} , category= #{category} 
+		WHERE num=#{num}
+	</update>
+	
+	
+	
 </mapper>
