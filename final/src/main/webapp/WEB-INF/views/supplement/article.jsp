@@ -365,7 +365,7 @@ $(document).ready(function() {
 	        </div>
 	
 	        <div class="h-ContentBody">
-	            <pre>
+	            <pre class="hpre">
 	                ${dto.content}
 	             </pre>
 	        </div>
