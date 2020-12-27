@@ -14,17 +14,24 @@
 		</p>
 		<span class="createdNumber">${vo.register_date}</span>
 		<button type="button" class="RelyWrite">답글쓰기</button>
-		<c:if test="${vo.userId==sessionScope.member.userId || sessionScope.member.userId=='admin' }">
-		<button type="button" class="Replydelete" data-replyNum='${vo.replyNum}' data-pageNo='${pageNo}'>삭제</button>
+		<c:if
+			test="${vo.userId==sessionScope.member.userId || sessionScope.member.userId=='admin' }">
+			<button type="button" class="Replydelete"
+				data-replyNum='${vo.replyNum}' data-pageNo='${pageNo}'>삭제</button>
 		</c:if>
 	</div>
+
+	<div class="ReplyAnswerAnswer"> 
+	
+	</div>
+
 	<div class="ReplyAnswerBody">
 		<div class="ReplyAnswerContentBox">
 			<span class="ReplyListUserX">x</span> <span
 				class="ReplyAnswerContentUserName">주다혜</span>
 			<textarea placeholder="댓글을 남겨보세요">여기는 대댓글</textarea>
 			<div class="ReplySubmitButton">
-				<button class="Replybtn" type="button">등록</button>
+				<button class="Replybtn" data-replyNum="${vo.replyNum}"type="button">등록</button>
 			</div>
 		</div>
 	</div>

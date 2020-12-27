@@ -32,7 +32,7 @@ $(function() {
 	})
 
 	$("body").on("click",".RelyWrite",function() {
-		var pa =$(this).parent().next("div");
+		var pa =$(this).parent().next().next("div");
 		pa.slideDown();
 	})
 
@@ -117,7 +117,7 @@ function listPage(page){
 }
 
 $(function(){
-	$(".Replybtn").click(function(){
+	$("#MainReplybtn").click(function(){
 		var num= ${dto.num};
 		var $parent=$(this).parent().parent();
 		var content=$parent.find("textarea").val().trim();
@@ -194,8 +194,33 @@ $(function() {
 				
 			})
 })
-
-
+$(function(){
+	$("body").on("click",".Replybtn",function(){
+		var num ="{dto.num}";
+		var replyNum = $(this).attr(data_replyNum);
+		var pa= $(this).parent().find("textarea");
+		var content= pa.val().trim();
+		if(!content){
+			pa.focus();
+			return false;
+		}
+		content= encodeURIComponent(content);
+		var url="${pageContext.request.contextPath}/dress/insertDressReply";
+		var query="num="+num+"&content="+content+"&answer="+replyNum;
+		var fn = function(data){
+			pa.val("");
+			var state=data.state;
+			if(state="true"){
+				listReplyAnswer(replyNum);
+				countReplyAnswer(replyNum);
+			}
+		}
+		ajaxJSON(url,"post",query,fn);
+	})
+})
+function listReplyAnswer(answer){
+	var url="${pageContext.request.contextPath}/";
+}
 </script>
 
 
@@ -251,12 +276,14 @@ $(function() {
                 <div class="ReplayListForm"> 
                     <div id="listReply">
                        
+
+                       
                     </div>
                     <div class="ReplyBody">
                         <div class="ReplyContentBox">
                             <textarea placeholder="댓글을 남겨보세요"></textarea>
                             <div class="ReplySubmitButton">
-                                <button class="Replybtn" type="button">등록</button>
+                                <button class="Replybtn" id="MainReplybtn" type="button">등록</button>
                             </div>
                         </div>
                     </div>
