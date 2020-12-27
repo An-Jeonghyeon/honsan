@@ -189,8 +189,8 @@ function roomOk(){
 		return;
 	}
 	
-	var fileCheck1 = document.getElementById("upload1").value;
-    if(!fileCheck1){
+	var img = new Image();
+	 img.onerror=function(){
         alert(" 메인 사진 파일을 첨부해 주세요");
         return false;
     }
@@ -207,6 +207,12 @@ function roomOk(){
         return false;
     }
 */	
+	/*
+	<c:if test="${mode=='roomUpdate'}">
+		<c:forEach var="vo" items="${listFile}">
+			deleteFile('${vo.fileNum}');
+		</c:forEach>
+	</c:if>*/
 	
 	 f.action = "${pageContext.request.contextPath}/room/${mode}";
 
@@ -233,7 +239,12 @@ function check(){
 
 
 <c:if test="${mode=='roomUpdate'}">
-function deleteFile(fileNum) {
+$(function(){
+	$('.mainimg').attr("src","${pageContext.request.contextPath}/uploads/room/${dto.mainimg}");
+});
+
+function deleteFile(fileNum,uploadNum) {
+		$('.mainimg'+uploadNum).removeAttr('src');
 		var url="${pageContext.request.contextPath}/room/deleteFile";
 		$.post(url, {fileNum:fileNum}, function(data){
 			$("#f"+fileNum).remove();
@@ -259,48 +270,46 @@ function calculator(chk){
 	  }
 }
 $(function(){
+	$(".mainimg").click(function(){
+		$(".upload").click();
+	});
+	
 	$(".mainimg1").click(function(){
-		<c:if test="${mode=='roomUpdate'}">
-			<c:forEach var="vo" items="${listFile}">
-				deleteFile('${vo.fileNum}');
+		$(this).change(function(){
+			<c:if test="${mode=='roomUpdate'}">
+			$('.mainimg1').removeAttr('src');
+			<c:forEach var="vo" items="${listFile}" varStatus="status">
+				<c:if test="${status.count}==0">
+					deleteFile('${vo.fileNum}');
+				</c:if>
 			</c:forEach>
-		</c:if>
-		
+			</c:if>
+		});
 		$(".upload1").click();
 	});
 	
 	$(".mainimg2").click(function(){
-		
 		<c:if test="${mode=='roomUpdate'}">
-		<c:forEach var="vo" items="${listFile}">
-			deleteFile('${vo.fileNum}');
+		$('.mainimg2').removeAttr('src');
+		<c:forEach var="vo" items="${listFile}" varStatus="status">
+			<c:if test="${status.count}==1">
+				deleteFile('${vo.fileNum}');
+			</c:if>
 		</c:forEach>
-	</c:if>
-	
+		</c:if>
 		$(".upload2").click();
 	});
 	
 	$(".mainimg3").click(function(){
-		
 		<c:if test="${mode=='roomUpdate'}">
-		<c:forEach var="vo" items="${listFile}">
-			deleteFile('${vo.fileNum}');
+		$('.mainimg3').removeAttr('src');
+		<c:forEach var="vo" items="${listFile}" varStatus="status">
+			<c:if test="${status.count}==2">
+				deleteFile('${vo.fileNum}');
+			</c:if>
 		</c:forEach>
-	</c:if>
-	
-	
+		</c:if>
 		$(".upload3").click();
-	});
-	
-	$(".mainimg4").click(function(){
-		
-		<c:if test="${mode=='roomUpdate'}">
-		<c:forEach var="vo" items="${listFile}">
-			deleteFile('${vo.fileNum}');
-		</c:forEach>
-	</c:if>
-		
-		$(".upload4").click();
 	});
 	
 });
@@ -316,7 +325,7 @@ $(function(){
 $(function(){
 	   
 var sel_files;
-	   $("body").on("change", ".upload1", function(e){ 
+	   $("body").on("change", ".upload", function(e){ 
 	       
 	      var files = e.target.files;
 	      var filesArr = Array.prototype.slice.call(files);
@@ -331,7 +340,7 @@ var sel_files;
 	         sel_files=f;
 	         var reader = new FileReader();
 	         reader.onload = function(e1) {
-	            $("#mainimg1").attr("src",e1.target.result);
+	            $("#mainimg").attr("src",e1.target.result);
 	            
 	         }
 	         reader.readAsDataURL(f);
@@ -342,6 +351,32 @@ var sel_files;
 });
 	   
 $(function(){	   
+	   $("body").on("change", ".upload1", function(e){ 
+	       
+		      var files = e.target.files;
+		      var filesArr = Array.prototype.slice.call(files);
+		      
+		      filesArr.forEach(function(f) {
+		         // 이미지 파일이 아닌경우
+		         if(! f.type.match("image.*")) {
+		        	alert("이미지 파일만 가능합니다.");
+		            return;
+		         }
+		         
+		         sel_files=f;
+		         var reader = new FileReader();
+		         reader.onload = function(e1) {
+		            $("#mainimg1").attr("src",e1.target.result);
+		            
+		         }
+		         reader.readAsDataURL(f);
+		      });
+		       
+		   });
+	   
+});
+
+$(function(){		   
 	   $("body").on("change", ".upload2", function(e){ 
 	       
 		      var files = e.target.files;
@@ -384,32 +419,6 @@ $(function(){
 		         var reader = new FileReader();
 		         reader.onload = function(e1) {
 		            $("#mainimg3").attr("src",e1.target.result);
-		            
-		         }
-		         reader.readAsDataURL(f);
-		      });
-		       
-		   });
-	   
-});
-
-$(function(){		   
-	   $("body").on("change", ".upload4", function(e){ 
-	       
-		      var files = e.target.files;
-		      var filesArr = Array.prototype.slice.call(files);
-		      
-		      filesArr.forEach(function(f) {
-		         // 이미지 파일이 아닌경우
-		         if(! f.type.match("image.*")) {
-		        	alert("이미지 파일만 가능합니다.");
-		            return;
-		         }
-		         
-		         sel_files=f;
-		         var reader = new FileReader();
-		         reader.onload = function(e1) {
-		            $("#mainimg4").attr("src",e1.target.result);
 		            
 		         }
 		         reader.readAsDataURL(f);
@@ -660,20 +669,63 @@ $(function(){
             		<td colspan="3" align="center">
             			<div>
 					       <div class="imagePreView">
-					       	<p style="position: relative;"> 메인 사진</p>
-					       	<img class="mainimg1" alt="" id="mainimg1" style="width: 600px; height: 300px;">
+					       	<p style="position: relative;"> 메인 사진 </p>
+					       	<img class="mainimg" alt="" id="mainimg" style="width: 600px; height: 300px;">
 					       </div>
 					    </div>
 					    <div>
-					          <input type="file" style="display: none;" name="mainUpload" class="upload1" id="upload1">
+					          <input type="file" style="display: none;" name="mainUpload" class="upload" id="upload">
 					    </div>
             		</td>
             	</tr>
             	<tr>
+            	<c:if test="${mode=='roomUpdate'}">
+            	<c:forEach var="vo" items="${listFile}" varStatus="status">
             		<td>
 	            		<div>
 					       <div class="imagePreView">
-					       	<p style="position: relative;"> 주방 사진</p>
+					       	<p style="position: relative;text-align: center;"> 서브 사진  ${status.count } <a href="javascript:deleteFile('${vo.fileNum}, ${status.count }');"><i class="far fa-trash-alt"></i></a></p>
+					       	<img class="mainimg${status.count}" alt="" src="${pageContext.request.contextPath}/uploads/room/${vo.saveFile}" id="mainimg${status.count }">
+					       </div>
+					    </div>
+					    <div>
+					          <input type="file" style="display: none;" name="upload" class="upload${status.count }">
+					    </div>
+            		</td>
+            	</c:forEach>
+            	
+            	<c:forEach begin="1" end="${3-listCount }" varStatus="status">
+            		<td>
+	            		<div>
+					       <div class="imagePreView">
+					       	<p style="position: relative; text-align: center;"> 서브 사진 ${listCount+status.index }</p>
+					       	<img class="mainimg${listCount+status.index}" alt="" id="mainimg${listCount+status.index }">
+					       </div>
+					    </div>
+					    <div>
+					          <input type="file" style="display: none;" name="upload" class="upload${listCount+status.index }">
+					    </div>
+            		</td>
+            	</c:forEach>
+            	</c:if>
+            	
+            	
+            	<c:if test="${mode=='roomCreated'}">
+            		<td>
+	            		<div>
+					       <div class="imagePreView">
+					       	<p style="position: relative;text-align: center;"> 주방 사진</p>
+					       	<img class="mainimg1" alt="" id="mainimg1">
+					       </div>
+					    </div>
+					    <div>
+					          <input type="file" style="display: none;" name="upload" class="upload1">
+					    </div>
+            		</td>
+            		<td>
+            			<div>
+					       <div class="imagePreView">
+					       	<p style="position: relative;text-align: center;"> 화장실 사진</p>
 					       	<img class="mainimg2" alt="" id="mainimg2">
 					       </div>
 					    </div>
@@ -684,7 +736,7 @@ $(function(){
             		<td>
             			<div>
 					       <div class="imagePreView">
-					       	<p style="position: relative;"> 화장실 사진</p>
+					       	<p style="position: relative;text-align: center;"> 기타 사진</p>
 					       	<img class="mainimg3" alt="" id="mainimg3">
 					       </div>
 					    </div>
@@ -692,17 +744,7 @@ $(function(){
 					          <input type="file" style="display: none;" name="upload" class="upload3">
 					    </div>
             		</td>
-            		<td>
-            			<div>
-					       <div class="imagePreView">
-					       	<p style="position: relative;"> 기타 사진</p>
-					       	<img class="mainimg4" alt="" id="mainimg4">
-					       </div>
-					    </div>
-					    <div>
-					          <input type="file" style="display: none;" name="upload" class="upload4">
-					    </div>
-            		</td>
+            	</c:if>
             	</tr>
             	
             	</table>

@@ -121,6 +121,7 @@ public class RoomServiceImpl implements RoomService{
 					String saveFile=fileManager.doFileUpload(mf, pathname);
 					if(saveFile==null) continue;
 					
+					
 					dto.setSaveFile(saveFile);
 					
 					insertFile(dto);
