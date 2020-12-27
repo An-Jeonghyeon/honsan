@@ -164,19 +164,23 @@ public class InteriorController {
 		
 		service.updateHitCount(num);
 
-			
 		Interior dto = service.readBoard(num);
 		List<Interior> flist = service.readBoardImg(num);
 		if (dto==null && flist==null) {
 			return "redirect:/interior/main?"+query;
 		}
 		
+		List<Interior> ublist = service.userlistBoard(dto.getUserId());
+		int ublistCount = ublist.size();
+		
 			
 		Map<String, Object> map = new HashMap<>();
 		map.put("num", num);
 			
 		map.put("keyword", keyword);
-					
+		
+		model.addAttribute("ublist", ublist);
+		model.addAttribute("ublistCount", ublistCount);		
 		model.addAttribute("dto", dto);
 		model.addAttribute("flist",flist);
 		model.addAttribute("page", page);

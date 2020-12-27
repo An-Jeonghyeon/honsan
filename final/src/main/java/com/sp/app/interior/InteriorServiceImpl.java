@@ -195,6 +195,21 @@ public class InteriorServiceImpl implements InteriorService{
 		}
 		
 	}
+
+
+
+	@Override
+	public List<Interior> userlistBoard(String userId) {
+		List<Interior> list = null;
+		try {
+			list = dao.selectList("interior.userinteriorlist", userId);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return list;
+		
+	}
 		
 
 	
