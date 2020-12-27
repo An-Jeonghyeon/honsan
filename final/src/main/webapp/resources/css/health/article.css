@@ -142,6 +142,9 @@ a {
     /* TestBackground */
     /* background-color: rgba(222, 188, 255, 0.31); */
 }
+.hpre { 
+	white-space: pre-wrap;
+}
 .h-likecircle {
     width: 100px;
     height: 100px;

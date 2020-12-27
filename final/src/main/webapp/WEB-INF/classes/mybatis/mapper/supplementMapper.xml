@@ -32,7 +32,8 @@
 	<!-- 글 리스트  -->
 	<select id="listSupplement" parameterType="map" resultType="com.sp.app.supplement.Supplement">
 		SELECT s.num, s.userId, userName, subject, TO_CHAR(register_date, 'YYYY-MM-DD') register_date, hitCount, imageFilename, 
-   			 NVL(likeCount, 0) likeCount
+   			 NVL(likeCount, 0) likeCount, 
+   			 NVL(replyCount, 0) replyCount
 		FROM supplement s
 		JOIN member1 m ON s.userId = m.userId 
 		LEFT OUTER JOIN(
@@ -40,6 +41,12 @@
 			FROM supplement_like
 			GROUP BY num
 		) slk ON s.num = slk.num
+		LEFT OUTER JOIN (
+			SELECT num, COUNT(*) replyCount 
+			FROM supplement_reply 
+			WHERE answer = 0
+			GROUP BY num
+		) sr ON s.num = sr.num
 		<where>
 			<if test="keyword !=null and keyword !=''">
 				<include refid="where-list"/>

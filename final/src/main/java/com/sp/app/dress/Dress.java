@@ -16,11 +16,17 @@ public class Dress {
 	
 	private int replyCount;
 	
-//	private MultipartFile upload; 
+	private int DressLikeCount;
 	private String saveFilename;
 	
 	
 	
+	public int getDressLikeCount() {
+		return DressLikeCount;
+	}
+	public void setDressLikeCount(int dressLikeCount) {
+		DressLikeCount = dressLikeCount;
+	}
 	public int getReplyCount() {
 		return replyCount;
 	}

@@ -14,6 +14,7 @@ function deletbutton(num){
 		location.href=url;
 	}
 }
+
 function updatebutton(num){	
 	if(confirm("게시물을 수정 하시겠습니까?")){
 	var q= "num="+num+"&page=${page}";
@@ -141,32 +142,61 @@ $(function(){
 				
 		};
 			ajaxJSON(url,"post",query,fn);
+			location.reload();
 	});
 });
+//댓글 삭제 
+$(function(){
+	$("body").on("click",".Replydelete",function(){
+		if(! confirm("댓글을 삭제 하시겠습니까? ")){
+			return false;
+		}
+		var replyNum= $(this).attr("data-replyNum");
+		var page=$(this).attr("data-pageNo");
+		
+		var url="${pageContext.request.contextPath}/dress/deleteDressReply";
+		var query ="replyNum="+replyNum+"&mode=DressReply";
+		var fn=function(data){
+			listPage(page);
+		}
+		ajaxJSON(url,"post",query,fn);
+	})
+})
+
+
+
+
 
 
 $(function() {
-	var counter = 0;
-	$(".dress-thumbs-up").click(
-			function() {
+	$(".dress-thumbs-up").click(function() {
 
-				if (counter >= 1) {
-					confirm("공감을 취소 하시겠습니까?")
-					$(this).css("background", "white")
-					$(this).css("box-shadow",
-							"0px 0px 5px  rgba(128, 128, 128, 0.529)")
-					$(this).css("color", "rgb(136, 136, 136)")
-					counter--;
-					console.log(counter)
-				} else {
-					confirm("공감을 누르시겠습니까?")
-					$(this).css("background", "rgb(174, 174, 174)")
-					$(this).css("box-shadow",
-							"0px 0px 15px  rgba(202, 164, 255, 0.529)")
-					$(this).css("color", "aliceblue")
-					counter++;
-					console.log(counter)
+				if (!confirm("공감을 하시겠습니까?")) {
+					$(".dress-thumbs-up").css("background", "white")
+					$(".dress-thumbs-up").css("box-shadow","0px 0px 5px  rgba(128, 128, 128, 0.529)")
+					$(".dress-thumbs-up").css("color", "rgb(136, 136, 136)")
+					return false;
 				}
+					
+					var url="${pageContext.request.contextPath}/dress/insertDressLikeCount";
+					var num="${dto.num}";
+					var query="num="+num;
+					var fn =function(data){
+						var state=data.state;
+						if(state==="true"){
+							var count= data.DressLikeCount;
+							$("#DressLikeCount").text(count);
+							$(".dress-thumbs-up").css("background", "rgb(174, 174, 174)")
+							$(".dress-thumbs-up").css("box-shadow",
+									"0px 0px 15px  rgba(202, 164, 255, 0.529)")
+							$(".dress-thumbs-up").css("color", "aliceblue")
+
+						}else if(state==="false"){
+							alert("공감은 한번 가능합니다");
+						}
+					};
+					ajaxJSON(url,"post",query,fn);
+				
 			})
 })
 
@@ -193,8 +223,18 @@ $(function() {
                         </div>
                     </div>
                 </div>
+              
                 <div class="ContentBody">${dto.content}</div>
-                <div class="EmpathyBotton"><i class="far fa-thumbs-up fa-4x dress-thumbs-up"></i></div>
+                  <div style="margin:0 auto; width:300px; text-align: center;">
+                  <span>
+                  	<c:forEach var="s" items="${dto.hashtag}">
+                  		${s }
+                  	</c:forEach>
+                  	</span>
+                  </div>
+                <div class="EmpathyBotton">
+                <i class="far fa-thumbs-up fa-4x dress-thumbs-up"><span id="DressLikeCount">${dto.dressLikeCount}</span></i>
+                </div>
                 <c:if test="${sessionScope.member.userId==dto.userId || sessionScope.member.userId=='admin' }">
                     <div class="dress-articleMainButtonBoxBody">
                         <div class="dress-articleButtonBoxBody">
@@ -203,6 +243,7 @@ $(function() {
                         </div>
                     </div>
                 </c:if>
+               
                 <div class="LikeBox">
                     <span class="LikeHeart"> <i class="far fa-heart ILikeHeart"></i>좋아요
                         13
@@ -218,7 +259,6 @@ $(function() {
                     </div>
                     <div class="ReplyBody">
                         <div class="ReplyContentBox">
-                            <span>${dto.userName}</span>
                             <textarea placeholder="댓글을 남겨보세요"></textarea>
                             <div class="ReplySubmitButton">
                                 <button class="Replybtn" type="button">등록</button>
