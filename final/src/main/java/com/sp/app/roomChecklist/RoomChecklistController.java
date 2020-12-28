@@ -20,6 +20,6 @@ public class RoomChecklistController {
 		
 		return ".room.roomChecklist";
 	}
-	
+	 
 	
 }
