@@ -12,7 +12,11 @@ $(function(){
         if(sliderIndex>slides.length){
             sliderIndex=1;
         }
+        if( slides[sliderIndex-1]===undefined) {
+        	return false;
+        }
         slides[sliderIndex-1].style.display="block";
         setTimeout(showSlider,2500);
+        
     }
-})
+});

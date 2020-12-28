@@ -221,7 +221,7 @@ public class DressController {
 	@ResponseBody
 	public Map<String, Object> insertDressReply(DressReply dto, HttpSession session){
 		SessionInfo info= (SessionInfo)session.getAttribute("member");
-		String state="ture";
+		String state="true";
 		
 		try {
 			dto.setUserId(info.getUserId());

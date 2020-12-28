@@ -17,11 +17,12 @@ function deletbutton(num){
 
 function updatebutton(num){	
 	if(confirm("게시물을 수정 하시겠습니까?")){
-	var q= "num="+num+"&page=${page}";
-	var url="${pageContext.request.contextPath}/dress/update?"+q;
-	location.href=url;
+		var q= "num="+num+"&page=${page}";
+		var url="${pageContext.request.contextPath}/dress/update?"+q;
+		location.href=url;
 	}
 }
+
 $(function() {
 	$("body").on("click", ".ILikeHeart", function() {
 		$(".fullLikeHeart").show();
@@ -29,17 +30,17 @@ $(function() {
 	$("body").on("click", ".fullLikeHeart", function() {
 		$(this).hide();
 
-	})
+	});
 
 	$("body").on("click",".RelyWrite",function() {
 		var pa =$(this).parent().next().next("div");
 		pa.slideDown();
-	})
+	});
 
 	$("body").on("click",".ReplyListUserX",function() {
 		var papa=$(this).parent().parent();
 		papa.slideUp();
-	})
+	});
 
 	$("body").on("click",".ReplySUb > span",function() {
 		if ($(".ReplayListForm").is(':visible') == false) {
@@ -51,7 +52,7 @@ $(function() {
 		}
 	})
 
-})
+});
 
 function login(){
 	location.href="${pageContext.request.contextPath}/memeber/login";
@@ -118,7 +119,7 @@ function listPage(page){
 
 $(function(){
 	$("#MainReplybtn").click(function(){
-		var num= ${dto.num};
+		var num= "${dto.num}";
 		var $parent=$(this).parent().parent();
 		var content=$parent.find("textarea").val().trim();
 		if(!content){
@@ -133,8 +134,9 @@ $(function(){
 			$parent.find("textarea").val("");
 			
 			var state=data.state;
-			if(state=="true"){
-			listpage(1);
+		
+			if(state==="true"){
+				listPage(1);
 				
 			} else if(state==="false"){
 				alert("댓글을 추가 하지 못했습니다.")
@@ -142,7 +144,7 @@ $(function(){
 				
 		};
 			ajaxJSON(url,"post",query,fn);
-			location.reload();
+		
 	});
 });
 //댓글 삭제 
