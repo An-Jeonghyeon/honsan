@@ -3,7 +3,7 @@
     padding: 0;
 }
 #mainBody{
-    max-width: 1900px;
+    max-width: 1700px;
     min-height: 1900px;
     margin: 30px auto;
     
@@ -12,16 +12,16 @@
 }
 header{
     height: 200px;
-    margin: 30px auto;
-    padding: 40px;
+    margin: 20px auto 0;
     box-sizing: border-box;
     display: flex;
     /* 확인용 background */
     /* background-color: rgba(189, 189, 189, 0.536); */
 }
 .Logo{
-    width: 530px;
-    padding: 30px;
+    width: 100%;
+    text-align: center;
+    
 
     /* 확인용 background */
     /* background-color: rgba(0, 255, 255, 0.283); */
@@ -30,49 +30,88 @@ header{
     font-size: 50px;
     text-decoration: none;
 }
+/* .logout_logo {
+	display: inline-block;
+	width: 180px;
+	height: 160px;
+    background: url("../images/layout_logout/hollo_y.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top center;
+}
 .headerText{
     padding: 30px;
     box-sizing: border-box;
     line-height: 60px;
     margin: 0 auto;
 
-    /* 확인용 background */
-    /* background-color: rgba(127, 255, 212, 0.344); */
+    확인용 background
+    background-color: rgba(127, 255, 212, 0.344);
 
+} */
+.logout_logo {
+	display: inline-block;
+	width: 180px;
+	height: 160px;
+    background: url("../images/layout_logout/hollo_y.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top center;
+    margin: 0 auto;
 }
 #section1{
     width: 100%;
     height: 1000px;
-    margin: 30px auto;
+    margin: 0 auto 30px;
     /* background-color: rgba(127, 255, 212, 0.344); */
 }
+
 .section1Image{
     width: 100%;
     height: 100%;
-    background-image: url("../images/layout_logout/main.jpg");
+    background-image: url("../images/layout_logout/main_6.png");
     background-repeat: no-repeat;
     background-size: contain;
     background-position: 70%;
+    padding-left: 80px;
+    padding-right: 80px;
+    box-sizing: border-box;
     
     /* background-color: red; */
 }
 .textBox{
+    font-family: 'Noto Sans KR', sans-serif;
     width: 50%;
     display: none;
-  
     position: relative;
     top: 40px;
     left: 70px;
     /* background-color: red; */
   
 }
-h2{
+.textBox h1 {
+    font-size: 3rem;
+}
+.textBox h2{
     font-size: 2rem;
+}
+.textBox h3{
+    font-size: 1.5rem;
+}
+
+.maintexttop {
+	padding-top:60px;
+}
+.textBox h2, .textBox h3, .textBox h4, .textBox h1 {
+	padding-bottom: 30px;
 }
 #section2{
     width: 100%;
     height: 700px;
     display: none;
+    padding-left: 80px;
+    padding-right: 80px;
+    box-sizing: border-box;
      /* 확인용 background */
      /* background-color: rgba(211, 152, 237, 0.707); */
 }
@@ -104,10 +143,10 @@ h2{
 .login{
     width: 300px;
     height: 50px;
-    margin: 200px auto;
+    margin: 200px auto 100px;
     border-radius: 25px;
 }
-button[type="button"]{
+.logoutbtn {
     width: 250px;
     height: 100%;
     font-size: 20px;
@@ -117,6 +156,9 @@ button[type="button"]{
     border: none;
     background-color: rgba(220, 219, 219, 0.652);
     transition: 0.3s;
+    margin-left: 25px;
+    font-weight: 800;
+    
     
 }
 button[type="button"]:hover{
