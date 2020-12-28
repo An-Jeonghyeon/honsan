@@ -21,4 +21,11 @@ public interface InteriorService {
 	public List<Interior> readBoardImg(int num);
 	public Interior readFile(int filenum);
 	public void deleteFile(Map<String, Object> map) throws Exception ;
+	
+	// 게시판 좋아요 
+	
+	public void insertInteriorLike(Map<String, Object> map) throws Exception;
+	public int interiorLikeCount(int num);
+	public int readInteriorLike(Map<String, Object> map) throws Exception;
+	public void deleteInteriorLike(Map<String, Object> map) throws Exception;
 }
