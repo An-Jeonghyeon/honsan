@@ -1,0 +1,210 @@
+@charset "UTF-8";
+
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+.userPage_mainbody{
+    margin: 100px 0;
+    width: 100%;
+    min-height: 1200px;
+    
+}
+
+.userPage_box{
+    width: 1150px;
+    min-height: 1200px;
+    
+    margin: 0 auto;
+    display: flex;
+}
+
+.userPage_leftbox{
+    width: 25%;
+    padding: 30px 10px 0px;
+    
+}
+
+.userPage_leftbox_controller{
+    
+    height: 400px;
+    position: sticky;
+    top: 150px;
+}
+
+
+
+.user_prople{
+    margin-top: 20px;
+    width: 100%;
+    height: 347px;
+    padding: 30px 25px 0px;
+    border: 1px solid #dadce0;
+    border-radius: 4px;
+    box-sizing: border-box;
+    
+}
+.user_prople_img{
+    width: 120px;
+    height: 120px;
+    background: #525b61;
+    border-radius: 100%;
+    margin: 0 auto;
+    margin-bottom: 24px;
+}
+
+.user_prople_userId{
+    width: 100%;
+    height: 29px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.user_prople_userId > span {
+    font-size: 26px;
+    text-align: center;
+    font-weight: 700;
+    
+}
+
+.user_prople_atr{
+    height: 13px;
+    font-size: 14px;
+    color: #828c94;
+    font-weight: 700;
+    letter-spacing: -1;
+    text-align: center;
+    margin-bottom: 16px;
+}
+
+.user_prople_atr > span{
+    font-weight: 700;
+    font-size: 14px;
+    color: #525b61;
+    letter-spacing: -1;
+    
+}
+.user_prople_likebuttonBox {
+    width: 140px;
+    height: 34px;
+    margin: 0 auto;
+    margin-bottom: 10px;
+}
+
+.user_prople_likebuttonBox > button{
+    width: 100%;
+    height: 100%;
+    border: 1px solid #35c5f0;
+    background: #35c5f0;
+    padding: 6px 16px;
+    color: white;
+    font-weight: 700;
+    font-size: 15px;
+    border-radius: 4px;
+}
+.user_prople_msg{
+    height: 50px;
+    
+}
+
+.userPage_listbox{
+    width: 100%;
+    margin-bottom: 50px;
+}
+
+.userPage_listbox_subject{
+    width: 100%;
+    height: 18px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.userPage_listbox_send{
+    color: #35c5f0;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 2.2;
+}
+
+.userPage_listbox_items{
+    
+    display: flex;
+
+}
+
+.userPage_listbox_item{
+    width: 172px;
+    height: 172px;
+    padding: 0px 9px;
+    
+    
+}
+
+.userPage_listbox_item_img{
+    width: 172px;
+    height: 172px;
+    border-radius: 6px;
+    
+}
+/* 큰틀 밑 오른쪽 큰 박스 */
+.userPage_rightbox{
+    width: 66.6%;
+    padding: 50px 10px 0px;
+    
+    margin-left: 8%;
+    
+}
+
+.userPage_board_list{
+    width: 100%;
+    min-height: 240px;
+    
+    display: flex;
+}
+
+.userPage_board_list_item{
+    width: 30%;
+    
+    height: 240px;
+    padding: 0px 15px;
+    
+}
+
+.userPage_board_list_item_atr{
+    width: 100%;
+    height: 100%;
+    
+    text-align: center;
+
+}
+
+.userPage_board_list_item_atr_imgbox{
+    width: 100%;
+    height: 55%;
+    
+    padding-top: 20px ;
+}
+
+.userPage_board_list_item_atr_img{
+    width: 100%;
+    height: 100%;
+    
+    border-radius: 8px;
+}
+
+.userPage_board_list_item_atr_subject{
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: -3px;
+    margin: 15px 10px 10px 10px;
+}
+
+.userPage_board_list_item_atr_counts{
+    font-size: 13px;
+    color: #BDBDBD;
+    font-weight: 700;
+    letter-spacing: -1px;
+}

@@ -224,7 +224,7 @@
                         <div class="board_interior_users">
                             <div class="board_interior_users_subject">
                                 <div class="board_interior_users_subject_atr">
-                                    <a class="board_interior_users_subject_a">
+                                    <a class="board_interior_users_subject_a" href="${pageContext.request.contextPath}/interior/mList?userId=${dto.userId}">
                                         <img class="board_interior_users_subject_profle" src="${pageContext.request.contextPath}/resources/images/interior/a1.jpg">${dto.userName}
                                     </a>
                                     <p class="board_interior_users_subject_userid">

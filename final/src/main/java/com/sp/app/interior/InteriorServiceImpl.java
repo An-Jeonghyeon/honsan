@@ -199,6 +199,19 @@ public class InteriorServiceImpl implements InteriorService{
 
 
 	@Override
+	public List<Interior> userlistBoard(Map<String, Object> map) {
+		List<Interior> list = null;
+		try {
+			list = dao.selectList("interior.userinteriorlist", map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return list;
+		
+	}
+		
+	@Override
 	public List<Interior> userlistBoard(String userId) {
 		List<Interior> list = null;
 		try {
@@ -210,8 +223,6 @@ public class InteriorServiceImpl implements InteriorService{
 		return list;
 		
 	}
-		
-
 	
 
 }
