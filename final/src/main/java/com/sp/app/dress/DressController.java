@@ -311,5 +311,17 @@ public class DressController {
 		model.put("DressLikeCount", DressLikeCount);
 		return model;
 	}
+	//댓글의 댓글 리스트
+	@RequestMapping(value = "listReplyAnswer")
+	public String listReplyAnswer(@RequestParam int answer, Model model )throws Exception{
+		
+		List<DressReply> listReplyAnswer = service.listReplyAnswer(answer);
+		for(DressReply dto: listReplyAnswer) {
+			dto.setContent(dto.getContent().replaceAll("\n", "<br>"));
+		}
+		model.addAttribute("listReplyAnswer",listReplyAnswer);
+		return "dress/listReplyAnswer";
+	}
+	
 
 }

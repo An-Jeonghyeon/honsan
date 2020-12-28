@@ -22,4 +22,6 @@ public interface DressService {
 	public int DressReplyCount(Map<String, Object> map);
 	public void deleteDressReply(Map<String, Object>map) throws Exception;
 	
+	public List<DressReply> listReplyAnswer(int answer);
+	public int replyAnswerCount(int answer);
 }

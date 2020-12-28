@@ -199,9 +199,9 @@ $(function() {
 $(function(){
 	$("body").on("click",".Replybtn",function(){
 		var num ="{dto.num}";
-		var replyNum = $(this).attr(data_replyNum);
+		var replyNum = $(this).attr("data-replyNum");
 		var pa= $(this).parent().find("textarea");
-		var content= pa.val().trim();
+		var content= pa.val();
 		if(!content){
 			pa.focus();
 			return false;
@@ -212,6 +212,7 @@ $(function(){
 		var fn = function(data){
 			pa.val("");
 			var state=data.state;
+			console.log(state)
 			if(state="true"){
 				listReplyAnswer(replyNum);
 				countReplyAnswer(replyNum);
@@ -221,7 +222,10 @@ $(function(){
 	})
 })
 function listReplyAnswer(answer){
-	var url="${pageContext.request.contextPath}/";
+	var url="${pageContext.request.contextPath}/dress/listReplyAnswer";
+	var query="answer="+answer;
+	var selector="#ReplyAnswerAnswer"+answer;
+	ajaxHTML(url,"get",query,selector);
 }
 </script>
 

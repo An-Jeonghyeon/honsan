@@ -186,4 +186,16 @@ public class DressServiceImpl implements DressService{
 		return list;
 	}
 
+	@Override
+	public List<DressReply> listReplyAnswer(int answer) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int replyAnswerCount(int answer) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }
