@@ -42,7 +42,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
     
-    <title>Document</title>
+    <link href="${pageContext.request.contextPath}/resources/images/layout_logout/hollo_title.png" rel="shortcut icon" type="image/x-icon">
+    <title>Hollo - Home live alone</title>
 </head>
 
 <body>
