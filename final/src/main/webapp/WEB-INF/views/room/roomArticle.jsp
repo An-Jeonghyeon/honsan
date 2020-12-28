@@ -21,7 +21,7 @@ function deleteBoard(num) {
 	}
 </c:if>
 
-<c:if test="${sessionScope.member.userId!=dto.userId || sessionScope.member.userId!='admin' }"> 
+<c:if test="${sessionScope.member.userId!=dto.userId && sessionScope.member.userId!='admin' }"> 
 	alert("게시글을 삭제할 수 없습니다.");
 </c:if>
 
