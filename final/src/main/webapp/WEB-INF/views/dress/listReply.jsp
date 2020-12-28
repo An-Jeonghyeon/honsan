@@ -13,14 +13,14 @@
 			<span class="ReplyListContent">${vo.content }</span>
 		</p>
 		<span class="createdNumber">${vo.register_date}</span>
-		<button type="button" class="RelyWrite" data-replyNum="${vo.replyNum}">답글쓰기</button>
+		<button type="button" class="RelyWrite" data-replyNum="${vo.replyNum}">답글쓰기 <span id="answerCount${vo.replyNum}">${vo.answerCount}</span></button>
 		<c:if
 			test="${vo.userId==sessionScope.member.userId || sessionScope.member.userId=='admin' }">
 			<button type="button" class="Replydelete" data-replyNum='${vo.replyNum}' data-pageNo='${pageNo}'>삭제</button>
 		</c:if>
 	</div>
 
-	<div id="listReplyAnswer${vo.replyNum}"> 
+	<div id="listReplyAnswer${vo.replyNum}" class="listReplyAnswerHide"> 
 	
 	</div>
 

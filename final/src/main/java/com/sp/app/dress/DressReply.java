@@ -11,8 +11,15 @@ public class DressReply {
 	private int answer;
 	
     private int DressLikeCount;
+    private int answerCount;
     
 	
+	public int getAnswerCount() {
+		return answerCount;
+	}
+	public void setAnswerCount(int answerCount) {
+		this.answerCount = answerCount;
+	}
 	public int getDressLikeCount() {
 		return DressLikeCount;
 	}

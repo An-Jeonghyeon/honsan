@@ -188,14 +188,24 @@ public class DressServiceImpl implements DressService{
 
 	@Override
 	public List<DressReply> listReplyAnswer(int answer) {
-		// TODO Auto-generated method stub
-		return null;
+	 List<DressReply> list=null;
+	 try {
+		list= dao.selectList("dress.listReplyAnswer",answer);
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
+		return list;
 	}
 
 	@Override
 	public int replyAnswerCount(int answer) {
-		// TODO Auto-generated method stub
-		return 0;
+		int result=0;
+		try {
+			dao.selectOne("dress.answerCount",answer);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
 	}
 
 }

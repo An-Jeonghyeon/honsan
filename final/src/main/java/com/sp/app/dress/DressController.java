@@ -322,6 +322,14 @@ public class DressController {
 		model.addAttribute("listReplyAnswer",listReplyAnswer);
 		return "dress/listReplyAnswer";
 	}
-	
+	//댓글의 댓글 카운트
+	@RequestMapping(value = "replyAnswerCount")
+	@ResponseBody
+	public Map<String, Object> answerCount(@RequestParam(value = "answer") int answer) {
+		int count=service.replyAnswerCount(answer);
+		Map<String, Object> model= new HashMap<String, Object>();
+		model.put("count", count);
+		return model;
+	}
 
 }

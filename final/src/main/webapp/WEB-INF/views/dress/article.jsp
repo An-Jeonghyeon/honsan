@@ -33,13 +33,32 @@ $(function() {
 	});
 
 	$("body").on("click",".RelyWrite",function() {
-		var pa =$(this).parent().next().next("div");
-		pa.slideDown();
+		var pa =$(this).parent().next("div");
+		var papap =$(this).parent().next().next("div");
+		var isVisible= pa.is(":visible");
+		var replyNum= $(this).attr("data-replyNum");
+		
+		
+		
+		listReplyAnswer(replyNum);
+		 if(isVisible){
+			pa.hide();	
+			papap.hide();
+		}else{
+			pa.slideDown();
+			papap.slideDown();
+			listReplyAnswer(replyNum);
+			countReplyAnswer(replyNum);
+		} 
+		
 	});
 
 	$("body").on("click",".ReplyListUserX",function() {
 		var papa=$(this).parent().parent();
+		var  pa =$(this).parent().parent().parent().find(".listReplyAnswerHide");
+	
 		papa.slideUp();
+		pa.slideUp();
 	});
 
 	$("body").on("click",".ReplySUb > span",function() {
@@ -129,7 +148,7 @@ $(function(){
 		content= encodeURIComponent(content);
 		var url="${pageContext.request.contextPath}/dress/insertDressReply";
 		var query="num="+num+"&content="+content+"&answer=0";
-		
+	
 		var fn=function(data){
 			$parent.find("textarea").val("");
 			
@@ -144,9 +163,10 @@ $(function(){
 				
 		};
 			ajaxJSON(url,"post",query,fn);
-		
+			
 	});
 });
+				
 //댓글 삭제 
 $(function(){
 	$("body").on("click",".Replydelete",function(){
@@ -198,11 +218,11 @@ $(function() {
 })
 $(function(){
 	$("body").on("click",".Replybtn",function(){
-		var num ="{dto.num}";
+		var num ="${dto.num}";
 		var replyNum = $(this).attr("data-replyNum");
-		var pa= $(this).parent().find("textarea");
+		var pa= $(this).parent().parent().find("textarea");
 		var content= pa.val();
-		console.log(pa)
+	
 		if(!content){
 			pa.focus(); 
 			return false;
@@ -214,9 +234,10 @@ $(function(){
 			pa.val("");
 			var state=data.state;
 			if(state="true"){
-			console.log(state)
+				
 				listReplyAnswer(replyNum);
 				countReplyAnswer(replyNum);
+				/* console.log(replyNum) */
 			}
 		}
 		ajaxJSON(url,"post",query,fn);
@@ -225,9 +246,23 @@ $(function(){
 function listReplyAnswer(answer){
 	var url="${pageContext.request.contextPath}/dress/listReplyAnswer";
 	var query="answer="+answer;
-	var selector="#ReplyAnswerAnswer"+answer;
+	var selector="#listReplyAnswer"+answer;
 	ajaxHTML(url,"get",query,selector);
 }
+
+//answerCount 
+function countReplyAnswer(answer){
+	var url= "${pageContext.request.contextPath}/dress/replyAnswerCount";
+	var query= "answer="+answer;
+	
+	
+	var fn= function(data){
+		var count=data.count;
+		var vid="#answerCount"+answer;
+		$(vid).html(count);
+	};
+	 ajaxJSON(url,"post",query, fn);	
+};
 </script>
 
 

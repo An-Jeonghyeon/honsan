@@ -11,8 +11,9 @@
 	
 		<span class="ReplyListUserName">${vo.userName}</span>
 		<p>
-			<span class="ReplyListContent">여러 항목을 체크해야죠 ㅡㅡ;</span>
+			<span class="ReplyListContent">${vo.content }</span>
 		</p>
 		<span class="createdNumber">${vo.register_date}</span>
+		
 	</div>
 </c:forEach>	
