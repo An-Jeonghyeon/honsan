@@ -41,17 +41,13 @@
             <ul class="nav navbar-top-links navbar-right"> 
 				<li><a class="dropdown-button waves-effect waves-dark" href="#!" data-activates="dropdown4"><i class="fa fa-envelope fa-fw"></i> <i class="material-icons right">arrow_drop_down</i></a></li>				
 				<li><a class="dropdown-button waves-effect waves-dark" href="#!" data-activates="dropdown3"><i class="fa fa-tasks fa-fw"></i> <i class="material-icons right">arrow_drop_down</i></a></li>
-				  <li><a class="dropdown-button waves-effect waves-dark" href="#!" data-activates="dropdown1"><i class="fa fa-user fa-fw"></i> <b>admin</b> <i class="material-icons right">arrow_drop_down</i></a></li>
+				  <li><a class="dropdown-button waves-effect waves-dark" href="#!" data-activates="dropdown1"><i class="fa fa-user fa-fw"></i> <b>관리자</b> <i class="material-icons right">arrow_drop_down</i></a></li>
             </ul>
         </nav>
         <!-- 위 최상단 아이콘 안의 1번 속성   -->
 		<!-- Dropdown Structure -->
 <ul id="dropdown1" class="dropdown-content">
-<li><a href="#"><i class="fa fa-user fa-fw"></i> 머머머</a>
-</li>
-<li><a href="#"><i class="fa fa-gear fa-fw"></i> 모모모</a>
-</li> 
-<li><a href="#"><i class="fa fa-sign-out fa-fw"></i> 뚜뚜뚜</a>
+<li><a href="${pageContext.request.contextPath}/home"><i class="fa fa-sign-out fa-fw"></i>돌아가기</a>
 </li>
 </ul>
 		<!--  최상단 이미지 2번 속성  w : 길이 조절  -->
@@ -175,30 +171,23 @@
             <div class="sidebar-collapse">
                 <ul class="nav" id="main-menu">
 
-                        <li>
-                        <a class="active-menu waves-effect waves-dark" href="${pageContext.request.contextPath}/adm/chart"><i class="fa fa-bar-chart-o"></i> 게시판 현황</a>
-                    </li>
                     <li>
-                        <a href="${pageContext.request.contextPath}/adm/memberInfo" class="waves-effect waves-dark"><i class="fa fa-desktop"></i> 회원관리 정보확인</a>
+                        <a class="active-menu waves-effect waves-dark" href="${pageContext.request.contextPath}/adm/chart"><i class="fa fa-bar-chart-o"></i> 게시판 새글 현황</a>
                     </li>
 					<li>
-                        <a href="${pageContext.request.contextPath}/adm/blacklist" class=" waves-effect waves-dark"><i class="fa fa-bar-chart-o"></i> 멀봐 </a>
+                        <a href="${pageContext.request.contextPath}/adm/visitorStatus" class=" waves-effect waves-dark"><i class="fa fa-bar-chart-o"></i>방문자 현황</a>
                     </li>
                     <li>
-                        <a href="${pageContext.request.contextPath}/adm/reportlist" class="waves-effect waves-dark"><i class="fa fa-qrcode"></i> 게시판 정지 관련</a>
-                    </li>
-                    
-                    <li>
-                        <a href="${pageContext.request.contextPath}/adm/table" class="waves-effect waves-dark"><i class="fa fa-table"></i> 안녕하세요 </a>
+                        <a href="${pageContext.request.contextPath}/adm/memberManagement" class="waves-effect waves-dark"><i class="fa fa-desktop"></i> 회원 관리</a>
                     </li>
                     <li>
-                        <a href="${pageContext.request.contextPath}/adm/form" class="waves-effect waves-dark"><i class="fa fa-edit"></i> 시아 준수 입니다. </a>
+                        <a href="${pageContext.request.contextPath}/adm/boardManagement" class="waves-effect waves-dark"><i class="fa fa-qrcode"></i> 게시판 관리</a>
                     </li>
-
-
-           
                     <li>
-                        <a href="${pageContext.request.contextPath}/adm/empty" class="waves-effect waves-dark"><i class="fa fa-fw fa-file"></i> 관리자 공지방</a>
+                        <a href="${pageContext.request.contextPath}/adm/health" class="waves-effect waves-dark"><i class="fa fa-table"></i>[하루운동챌린지] 관리</a>
+                    </li>
+                    <li>
+                        <a href="${pageContext.request.contextPath}/adm/cook" class="waves-effect waves-dark"><i class="fa fa-edit"></i>[우리집 냉장고] 관리</a>
                     </li>
                 </ul>
 
@@ -210,7 +199,7 @@
 		<div id="page-wrapper">
 		  <div class="header"> 
                         <h1 class="page-header">
-                            	게시판 현황
+                            	게시판 작성 현황
                         </h1>
 						<ol class="breadcrumb">
 					  <li><a href="#">Home</a></li>
@@ -232,7 +221,7 @@
 						</div>
 						<div class="card-stacked red">
 						<div class="card-content">
-						<h3>니옷 내옷 </h3> 
+						<h3>오늘 뭐 입어?</h3> 
 						</div>
 						<div class="card-action">
 						<strong>10,375 개</strong>
@@ -249,7 +238,7 @@
 						</div>
 						<div class="card-stacked orange">
 						<div class="card-content">
-						<h3>요리 나라</h3> 
+						<h3>혼자 뭐 먹지?</h3> 
 						</div>
 						<div class="card-action">
 						<strong>36,540</strong>
@@ -265,7 +254,7 @@
 						</div>
 						<div class="card-stacked blue">
 						<div class="card-content">
-						<h3>건물주느님</h3> 
+						<h3>방구할래?</h3> 
 						</div>
 						<div class="card-action">
 						<strong>24,225</strong>
@@ -282,7 +271,7 @@
 						</div>
 						<div class="card-stacked green">
 						<div class="card-content">
-						<h3>내 방탄소련단</h3> 
+						<h3>인테리어</h3> 
 						</div>
 						<div class="card-action">
 						<strong>88,658</strong>
@@ -303,7 +292,7 @@
 						</div>
 						<div class="card-stacked brown">
 						<div class="card-content">
-						<h3>헬헬운동헬</h3> 
+						<h3>건강챙기기</h3> 
 						</div>
 						<div class="card-action">
 						<strong>10,375 개</strong>
@@ -312,23 +301,6 @@
 						</div>
 	 
                     </div>
-                    
-                    <div class="col-xs-12 col-sm-6 col-md-3">
-						<div class="card horizontal cardIcon waves-effect waves-dark">
-						<div class="card-image purple">
-						<i class="material-icons dp48">import_export</i>
-						</div>
-						<div class="card-stacked purple">
-						<div class="card-content">
-						<h3>잡동사니 </h3> 
-						</div>
-						<div class="card-action">
-						<strong>10,375 개</strong>
-						</div>
-						</div>
-						</div>
-	 
-                    </div>                     
                  </div>
 			   </div>
 				<!-- /. ROW  --> 
