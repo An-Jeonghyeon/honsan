@@ -23,11 +23,17 @@
 						<div class="cookTip_replyList-content">
 							${vo.content}
 						</div>
-						<div>
-						
-						</div>
-				</div>				
+				</div>
+							
+			<div class="cookTip_replyAnswer">
+				<div id="cookTip_listReplyAnswer${vo.replyNum}"></div>
+				
+			</div>
+			
+			
 			</c:forEach>
+			
+			
 			
 			<div class="cookTip_ReplyList-footer">
 				<div class="ReplyList-paging">

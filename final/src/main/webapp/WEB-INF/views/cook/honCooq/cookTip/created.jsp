@@ -21,7 +21,7 @@
 		}
 
 		str = f.category.value;
-		if (!str) {
+		if (!str || str == "::카테고리 선택하기::") {
 			alert("분류를 선택하세요. ");
 			f.category.focus();
 			return false;

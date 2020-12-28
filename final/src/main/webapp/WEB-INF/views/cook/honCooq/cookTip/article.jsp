@@ -297,7 +297,7 @@ $(function(){
 		<!-- -------------------------------------------------- -->
 		<div class="cookTip_ReplyBody">
 			<div class="cookTip_ReplyContentBox">
-				<span>주다혜</span>
+				<span>${sessionScope.member.userName}</span>
 				<textarea class="cookTip_ReplyContentBox-textarea" id="" placeholder="댓글을 남겨보세요"></textarea>
 				<div class="cookTip_ReplySubmitButton">
 					<button class="cookTip_Replybtn btnSendReply" type="button">등록</button>

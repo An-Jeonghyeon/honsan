@@ -52,6 +52,12 @@ $(function() {
 	});
 });
 
+function cookTip_searchList() {
+	var f=document.cookTip_searchForm;
+	f.submit();
+}
+
+
 </script>
 
 
@@ -81,7 +87,7 @@ $(function() {
 				총 ${dataCount}건 / ${total_page} 페이지 <span class="cookTip_list-dataCount-small"> * 게시판 성격에 맞지않은 글은 예고없이 삭제됩니다.</span>
 			</div>
 			<div class="cookTip_list-search">
-					<form name="cookTip_searchForm" action="${pageContext.request.contextPath}" method="post">
+					<form name="cookTip_searchForm" action="${pageContext.request.contextPath}/cook/honCooq/cookTip/list" method="post">
 						<select name="condition" class="cookTip_select cookTip_list_select">
 							<option value="all" ${condition=="all"?"selected='selected'":""}>모두</option>
 							<option value="subject" ${condition=="subject"?"selected='selected'":""}>제목</option>
@@ -120,8 +126,8 @@ $(function() {
 													<li class="cookTip_li_data_img cookTip_li_data-userName_img"><span><i class="far fa-user"></i> ${dto.userName}</span></li>
 													<li class="cookTip_li_data_img cookTip_li_data-created_img"><span><i class="far fa-clock"></i> ${dto.register_date}</span></li>
 													<li class="cookTip_li_data_img cookTip_li_data-hitCount_img"><span><i class="far fa-eye"></i> ${dto.hitCount}</span></li>
-													<li class="cookTip_li_util_img cookTip_li_util-reply_img"><span><i class="far fa-comment-dots"></i> 7</span></li>
-													<li class="cookTip_li_util_img cookTip_li_util-like_img"><span><i class="far fa-heart" id="cookTip-like"></i> 2</span></li>
+													<li class="cookTip_li_util_img cookTip_li_util-reply_img"><span><i class="far fa-comment-dots"></i> ${dto.replyCount}</span></li>
+													<li class="cookTip_li_util_img cookTip_li_util-like_img"><span><i class="far fa-heart" id="cookTip-like"></i>${dto.cookTipLikeCount}</span></li>
 												</ul>
 											</div>
 										</div>
@@ -146,8 +152,8 @@ $(function() {
 										</div>
 										<div class="cookTip_util">
 											<ul>	<!-- db에서 댓글 수, 좋아요 수 가져오도록 차후 수정 -->
-												<li class="cookTip_li_util cookTip_li_util-reply"><span><i class="far fa-comment-dots"></i> 7</span></li>
-												<li class="cookTip_li_util cookTip_li_util-like"><span><i class="far fa-heart" id="cookTip-like"></i> 2</span></li>
+												<li class="cookTip_li_util cookTip_li_util-reply"><span><i class="far fa-comment-dots"></i> ${dto.replyCount}</span></li>
+												<li class="cookTip_li_util cookTip_li_util-like"><span><i class="far fa-heart" id="cookTip-like"></i>${dto.cookTipLikeCount}</span></li>
 											</ul>						
 										</div>
 									</div>								

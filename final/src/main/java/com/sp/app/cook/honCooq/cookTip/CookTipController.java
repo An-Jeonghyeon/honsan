@@ -58,10 +58,12 @@ public class CookTipController {
 			total_page = myUtil.pageCount(rows, dataCount);
 		}
 		
+		// 다른 사람이 자료를 삭제하여 전체 페이지수가 변화 된 경우
 		if (total_page < current_page) {
 			current_page = total_page;
 		}
 		
+		// 리스트에 출력할 데이터를 가져오기
 		int offset = (current_page-1) * rows;
 		if (offset<0) offset=0;
 		map.put("offset", offset);
@@ -92,11 +94,15 @@ public class CookTipController {
 		}
 
 		if (query.length()!=0) {
-			listUrl += "?"+query;
-			articleUrl += "&" + query;
+			listUrl = cp+"/cook/honCooq/cookTip/list?"+query;
+			articleUrl = cp+"/cook/honCooq/cookTip/article?page=" + current_page +"&"+ query;
 		}
 		
 		String paging = myUtil.paging(current_page, total_page, listUrl);
+		
+		// 좋아요 수, 댓글 수 띄우기
+		
+		
 		
 		model.addAttribute("list", list);
 		model.addAttribute("articleUrl", articleUrl);

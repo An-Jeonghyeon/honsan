@@ -9,24 +9,31 @@
 				#{category}, SYSDATE, 0 )	
 	</insert>
 	
-	<sql id="where-list">
-		<if test="condition=='all' ">
-			( INSTR(subject, #{keyword}) &gt; 0
-				OR DBMS_LOB.INSTR(content, #{keyword}) &gt; 0 )
-		</if>
-		<if test="condition=='subject'">
-			INSTR(subject, #{keyword}) &gt; 0
-		</if>
-		<if test="condition=='content'">
-			DBMS_LOB.INSTR(content, #{keyword}) &gt; 0 
-		</if>
-		<if test="condition=='userName'">
-			userName=#{keyword}
-		</if>
-		<if test="condition=='register_date'">
-			( TO_CHAR(c.register_date, 'YYYY-MM-DD') = #{keyword}
-				OR TO_CHAR(c.register_date, 'YYYYMMDD') = #{keyword} )
-		</if>
+	<sql id="where-list">		
+		<choose>
+			<when test="condition == 'all' ">
+			   ( INSTR(subject, #{keyword}) &gt; 0
+		          OR DBMS_LOB.INSTR(content, #{keyword}) &gt; 0
+		          OR userName=#{keyword} )
+			</when>
+			<when test="condition == 'created' ">
+			   ( TO_CHAR(register_date, 'YYYYMMDD') = #{keyword}
+		          OR TO_CHAR(register_date, 'YYYY-MM-DD') = #{keyword} )
+			</when>
+			<when test="condition == 'subject'">
+			    INSTR(subject, #{keyword}) &gt; 0
+			</when>
+			<when test="condition == 'content'">
+			    DBMS_LOB.INSTR(content, #{keyword}) &gt; 0
+			</when>
+			<when test="condition == 'userName'">
+			    userName=#{keyword}
+			</when>
+			<otherwise>
+			    INSTR(${condition}, #{keyword}) &gt; 0
+			</otherwise>
+		</choose>
+		
 	</sql>	
 	
 	<!-- 글개수 -->
@@ -43,10 +50,24 @@
 	
 	<!-- 글리스트 -->
     <select id="listCookTip" parameterType="map" resultType="com.sp.app.cook.honCooq.cookTip.CookTip">
-		SELECT num, c.userId, userName, category, subject, content, 
-		       TO_CHAR(register_date, 'YYYY-MM-DD') register_date
+		SELECT c.num, c.userId, userName, category, subject, content, 
+		       TO_CHAR(register_date, 'YYYY-MM-DD') register_date,
+		       NVL(cookTipLikeCount, 0) cookTipLikeCount, 
+   			   NVL(replyCount, 0) replyCount
 		FROM cookTip c
 		JOIN member1 m ON c.userId=m.userId
+		LEFT OUTER JOIN (
+			SELECT num, COUNT(*) cookTipLikeCount 
+			FROM cookTip_like
+			GROUP BY num
+		) cl ON c.num = cl.num
+		LEFT OUTER JOIN (
+			SELECT num, COUNT(*) replyCount 
+			FROM cookTip_reply 
+			WHERE answer = 0
+			GROUP BY num
+		) cr ON c.num = cr.num
+		
 		<where>
 			<if test="keyword!=null and keyword!='' ">
 				<include refid="where-list"/> 
@@ -58,10 +79,15 @@
 
 	<!-- 글보기(article) -->
 	<select id="readCookTip" parameterType="Integer" resultType="com.sp.app.cook.honCooq.cookTip.CookTip">
-		SELECT num, c.userId, userName, subject, content, TO_CHAR(register_date, 'YYYY-MM-DD') register_date, hitCount, category
+		SELECT c.num, c.userId, userName, subject, content, TO_CHAR(register_date, 'YYYY-MM-DD') register_date, 
+		hitCount, category, NVL(cookTipLikeCount, 0) cookTipLikeCount
 		FROM cookTip c
 		JOIN  member1 m ON c.userId = m.userId
-		WHERE num = #{num}                       
+		LEFT OUTER JOIN (
+			SELECT num, COUNT(*) cookTipLikeCount FROM cookTip_like
+			GROUP BY num
+		) clc ON c.num = clc.num
+		WHERE c.num = #{num}                       
 	</select>
 	
 	<!-- 조회수 증가 -->
