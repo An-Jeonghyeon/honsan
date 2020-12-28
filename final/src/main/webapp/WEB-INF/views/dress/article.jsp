@@ -202,8 +202,9 @@ $(function(){
 		var replyNum = $(this).attr("data-replyNum");
 		var pa= $(this).parent().find("textarea");
 		var content= pa.val();
+		console.log(pa)
 		if(!content){
-			pa.focus();
+			pa.focus(); 
 			return false;
 		}
 		content= encodeURIComponent(content);
@@ -212,8 +213,8 @@ $(function(){
 		var fn = function(data){
 			pa.val("");
 			var state=data.state;
-			console.log(state)
 			if(state="true"){
+			console.log(state)
 				listReplyAnswer(replyNum);
 				countReplyAnswer(replyNum);
 			}
@@ -233,8 +234,7 @@ function listReplyAnswer(answer){
   <div class="articleMainBody">
                 <div class="articleMainHeader">
                     <div class="articleGo">
-                        <span><a href="${pageContext.request.contextPath}/dress/list">자랑게시판
-                                &gt;</a></span>
+                        <span><a href="${pageContext.request.contextPath}/dress/list">자랑게시판&gt;</a></span>
                     </div>
                     <div class="articleMainHeaderSubject">
                         <span>${dto.subject}</span>

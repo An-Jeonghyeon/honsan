@@ -16,8 +16,7 @@
 		<button type="button" class="RelyWrite" data-replyNum="${vo.replyNum}">답글쓰기</button>
 		<c:if
 			test="${vo.userId==sessionScope.member.userId || sessionScope.member.userId=='admin' }">
-			<button type="button" class="Replydelete"
-				data-replyNum='${vo.replyNum}' data-pageNo='${pageNo}'>삭제</button>
+			<button type="button" class="Replydelete" data-replyNum='${vo.replyNum}' data-pageNo='${pageNo}'>삭제</button>
 		</c:if>
 	</div>
 

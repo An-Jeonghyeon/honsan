@@ -131,7 +131,7 @@
 	
 	<!--bestDressList  -->
 	<select id="bestlist" parameterType="map" resultType="com.sp.app.dress.Dress">
-	SELECT A.* FROM(SELECT b.num, b.userId, userName , subject,hashtag,
+		SELECT A.* FROM(SELECT b.num, b.userId, userName , subject,hashtag,
 					HITCOUNT,TO_CHAR(REGISTER_DATE,'YYYY-MM-DD')created,
 					content, NVL(replyCount, 0)replyCount,NVL(v, 0)v
 					FROM CLOTHESSTORY b
@@ -147,5 +147,6 @@
 		ORDER BY v DESC )A
 		WHERE ROWNUM=1
 	</select>
+	
 	
 </mapper>
