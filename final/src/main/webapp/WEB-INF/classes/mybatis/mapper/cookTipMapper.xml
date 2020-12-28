@@ -50,7 +50,7 @@
 	
 	<!-- 글리스트 -->
     <select id="listCookTip" parameterType="map" resultType="com.sp.app.cook.honCooq.cookTip.CookTip">
-		SELECT c.num, c.userId, userName, category, subject, content, 
+		SELECT c.num, c.userId, userName, category, subject, content, hitCount,
 		       TO_CHAR(register_date, 'YYYY-MM-DD') register_date,
 		       NVL(cookTipLikeCount, 0) cookTipLikeCount, 
    			   NVL(replyCount, 0) replyCount
@@ -188,7 +188,7 @@
 			FROM cookTip_replyLike GROUP BY replyNum
 		) b ON c.replyNum = b.replyNum
 		WHERE num=#{num}  AND c.answer=0
-		ORDER BY c.replyNum DESC
+		ORDER BY c.replyNum ASC
 		OFFSET #{offset} ROWS FETCH FIRST #{rows} ROWS ONLY
 	</select>	
 
@@ -202,12 +202,12 @@
 	</delete>
 	
 	<!-- 댓글의 답글 리스트 -->
-	<select id="ListCookTipReplyAnswer" parameterType="Integer" resultType="com.sp.app.cook.honCooq.cookTip.Reply">
+	<select id="listCookTipReplyAnswer" parameterType="Integer" resultType="com.sp.app.cook.honCooq.cookTip.Reply">
 		SELECT replyNum, num, c.userId, userName, content, register_date, answer
 		FROM cookTip_reply c
 		JOIN member1 m ON c.userId = m.userId
 		WHERE answer = #{answer}
-		ORDER BY replyNum DESC
+		ORDER BY replyNum ASC
 	</select>
 	
 	<!-- 댓글의 답글 개수 -->

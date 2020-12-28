@@ -89,7 +89,7 @@ function cookTip_searchList() {
 			<div class="cookTip_list-search">
 					<form name="cookTip_searchForm" action="${pageContext.request.contextPath}/cook/honCooq/cookTip/list" method="post">
 						<select name="condition" class="cookTip_select cookTip_list_select">
-							<option value="all" ${condition=="all"?"selected='selected'":""}>모두</option>
+							<option value="all" ${condition=="all"?"selected='selected'":""}>전체</option>
 							<option value="subject" ${condition=="subject"?"selected='selected'":""}>제목</option>
 							<option value="content" ${condition=="content"?"selected='selected'":""}>내용</option>
 							<option value="userName" ${condition=="userName"?"selected='selected'":""}>작성자</option>
@@ -123,11 +123,11 @@ function cookTip_searchList() {
 										<div class="cookTip_flex">
 											<div class="cookTip_dataAndUtil_img">
 												<ul>
-													<li class="cookTip_li_data_img cookTip_li_data-userName_img"><span><i class="far fa-user"></i> ${dto.userName}</span></li>
-													<li class="cookTip_li_data_img cookTip_li_data-created_img"><span><i class="far fa-clock"></i> ${dto.register_date}</span></li>
-													<li class="cookTip_li_data_img cookTip_li_data-hitCount_img"><span><i class="far fa-eye"></i> ${dto.hitCount}</span></li>
-													<li class="cookTip_li_util_img cookTip_li_util-reply_img"><span><i class="far fa-comment-dots"></i> ${dto.replyCount}</span></li>
-													<li class="cookTip_li_util_img cookTip_li_util-like_img"><span><i class="far fa-heart" id="cookTip-like"></i>${dto.cookTipLikeCount}</span></li>
+													<li class="cookTip_li_data cookTip_li_data-userName_img"><span><i class="far fa-user"></i> ${dto.userName}</span></li>
+													<li class="cookTip_li_data cookTip_li_data-created_img"><span><i class="far fa-clock"></i> ${dto.register_date}</span></li>
+													<li class="cookTip_li_data cookTip_li_data-hitCount_img"><span><i class="far fa-eye"></i> ${dto.hitCount}</span></li>
+													<li class="cookTip_li_util cookTip_li_util-reply_img"><span><i class="far fa-comment-dots"></i> ${dto.replyCount}</span></li>
+													<li class="cookTip_li_util cookTip_li_util-like_img"><span><i class="far fa-heart" id="cookTip-like"></i>${dto.cookTipLikeCount}</span></li>
 												</ul>
 											</div>
 										</div>
@@ -174,15 +174,16 @@ function cookTip_searchList() {
     </div>
 
 	<div class="cookTip_list-page">
-		<button type="button" class="btn" onclick="javascript:location.href='${pageContext.request.contextPath}/cook/honCooq/cookTip/list';">새로고침</button>
+		<button type="button" class="cookTip_reload-btn" onclick="javascript:location.href='${pageContext.request.contextPath}/cook/honCooq/cookTip/list';">새로고침</button>
 		
 		${dataCount==0?"등록된 게시물이 없습니다.":paging}
-		<div class="cookTip_list-paging">&lt;</div>
+
+<!-- 		<div class="cookTip_list-paging">&lt;</div>
 		<div class="cookTip_list-pagingBody">1</div>
 		<div class="cookTip_list-pagingBody">2</div>
 		<div class="cookTip_list-pagingBody">3</div>
 		<div class="cookTip_list-pagingBody">4</div>
-		<div class="cookTip_list-paging">&gt;</div>
+		<div class="cookTip_list-paging">&gt;</div> -->
 	</div>
 
 </div>

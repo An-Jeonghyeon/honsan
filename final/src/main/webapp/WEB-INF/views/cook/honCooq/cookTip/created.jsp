@@ -38,6 +38,7 @@
 
 		return true;
 	}
+
 </script>
 
 <script type="text/javascript">
@@ -173,7 +174,7 @@ function ajaxHTML(url, method, query, selector) {
 
 		<div class="cookTip_buttonBoxBody">
 			<button type="submit" id="cookTip_writeSubmit" class="cookTip_btn">${mode=='update'?'수정완료':'등록하기'}</button>
-			<button type="button" id="cookTip_CancelSubmit" class="cookTip_btn">${mode=='update'?'수정취소':'등록취소'}</button>
+			<button type="button" id="cookTip_CancelSubmit" class="cookTip_btn" onclick="javascript:location.href='${pageContext.request.contextPath}/cook/honCooq/cookTip/list';">${mode=='update'?'수정취소':'등록취소'}</button>
 		</div>
 		<c:if test="${mode=='update'}">
 			<input type="hidden" name="num" value="${dto.num}">

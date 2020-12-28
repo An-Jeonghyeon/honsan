@@ -1,5 +1,6 @@
 package com.sp.app.cook.honCooq.cookTip;
 
+import java.math.BigDecimal;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.util.HashMap;
@@ -98,12 +99,8 @@ public class CookTipController {
 			articleUrl = cp+"/cook/honCooq/cookTip/article?page=" + current_page +"&"+ query;
 		}
 		
-		String paging = myUtil.paging(current_page, total_page, listUrl);
-		
-		// 좋아요 수, 댓글 수 띄우기
-		
-		
-		
+		String paging = myUtil.paging2(current_page, total_page, listUrl);
+				
 		model.addAttribute("list", list);
 		model.addAttribute("articleUrl", articleUrl);
 		model.addAttribute("page", current_page);
@@ -431,28 +428,85 @@ public class CookTipController {
 		return map;
 	}	
 	
+	 // 댓글의 답글 리스트 : AJAX-TEXT
+	@RequestMapping(value="listReplyAnswer")
+	public String listReplyAnswer(
+			@RequestParam int answer,
+			Model model
+			) throws Exception {
+		
+		List<Reply> listReplyAnswer=service.listReplyAnswer(answer);
+		for(Reply dto : listReplyAnswer) {
+			dto.setContent(dto.getContent().replaceAll("\n", "<br>"));
+		}
+		
+		model.addAttribute("listReplyAnswer", listReplyAnswer);
+		return "cook/honCooq/cookTip/listReplyAnswer";
+	}
 	
+	// 댓글의 답글 개수 : AJAX-JSON
+	@RequestMapping(value="countReplyAnswer")
+	@ResponseBody
+	public Map<String, Object> countReplyAnswer(
+			@RequestParam(value="answer") int answer
+			) {
+		
+		int count=service.replyAnswerCount(answer);
+		
+		Map<String, Object> model=new HashMap<>();
+		model.put("count", count);
+		return model;
+	}	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	// 댓글의 좋아요/싫어요 추가 : AJAX-JSON
+	@RequestMapping(value="insertReplyLike", method=RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> insertReplyLike(
+			@RequestParam Map<String, Object> paramMap,
+			HttpSession session
+			) {
+		String state="true";
+		
+		SessionInfo info=(SessionInfo)session.getAttribute("member");
+		Map<String, Object> model=new HashMap<>();
+		
+		try {
+			paramMap.put("userId", info.getUserId());
+			service.insertReplyLike(paramMap);
+		} catch (Exception e) {
+			state="false";
+		}
+		
+		Map<String, Object> countMap=service.replyLikeCount(paramMap);
+				
+		// 마이바티스의 resultType이 map인 경우 int는 BigDecimal로 넘어옴
+		int likeCount=((BigDecimal)countMap.get("LIKECOUNT")).intValue();
+		int disLikeCount=((BigDecimal)countMap.get("DISLIKECOUNT")).intValue();
+		
+		model.put("likeCount", likeCount);
+		model.put("disLikeCount", disLikeCount);
+		model.put("state", state);
+		return model;
+	}
+
+	// 댓글의 좋아요/싫어요 개수 : AJAX-JSON
+	@RequestMapping(value="countReplyLike", method=RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> countReplyLike(
+			@RequestParam Map<String, Object> paramMap,
+			HttpSession session
+			) {
+		
+		Map<String, Object> countMap=service.replyLikeCount(paramMap);
+		// 마이바티스의 resultType이 map인 경우 int는 BigDecimal로 넘어옴
+		int likeCount=((BigDecimal)countMap.get("LIKECOUNT")).intValue();
+		int disLikeCount=((BigDecimal)countMap.get("DISLIKECOUNT")).intValue();
+		
+		Map<String, Object> model=new HashMap<>();
+		model.put("likeCount", likeCount);
+		model.put("disLikeCount", disLikeCount);
+			
+		return model;
+	}		
 	
 }
