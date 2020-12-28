@@ -143,7 +143,7 @@ public class MyUtil {
 			if(page==current_page) {
 				sb.append("<div class='cookTip_list-pagingBody curBox'>"+page+"</div>");
 			} else {
-				sb.append("<div class='cookTip_list-pagingBody'><a href='"+list_url+"page="+page+"' class='numBox'>"+page+"</a></div>");
+				sb.append("<div class='cookTip_list-pagingBody' onclick='location.href='"+list_url+"page="+page+"'><a href='"+list_url+"page="+page+"' class='numBox'>"+page+"</a></div>");
 			}
 			page++;
 		}

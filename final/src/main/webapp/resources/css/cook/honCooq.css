@@ -634,6 +634,21 @@ CookTip 게시판 리스트폼
     font-size:1.2rem;
     font-weight:700;
     margin:2.5rem 0;
+
+    display: inline-block; 
+    width: 100%; 
+    white-space: nowrap;
+    white-space:normal;
+/*     line-height:1.5rem; */
+    height: 3rem;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    text-align: left; 
+    word-wrap: break-word; 
+    display: -webkit-box; 
+    -webkit-line-clamp: 2; 
+    -webkit-box-orient: vertical;
+/*     background-color:skyblue; */
 }
 
 .cookTip_title > a{
@@ -865,7 +880,7 @@ CookTip 게시판 리스트폼
     white-space: nowrap; 
     overflow: hidden; 
     text-overflow: ellipsis;
-    background-color:skyblue;
+/*     background-color:skyblue; */
 }
 
 .cookTip_title_img > a{
