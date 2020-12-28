@@ -859,7 +859,13 @@ CookTip 게시판 리스트폼
     margin-bottom:0.1rem;
     position:relative;
     top:-2.0rem;
-/*     background-color:skyblue; */
+    
+    display: inline-block; 
+    width: 100%; 
+    white-space: nowrap; 
+    overflow: hidden; 
+    text-overflow: ellipsis;
+    background-color:skyblue;
 }
 
 .cookTip_title_img > a{
