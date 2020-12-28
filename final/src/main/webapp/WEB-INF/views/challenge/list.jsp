@@ -70,6 +70,34 @@
 	                <div class="textch">진행중인 회원 3명</div>
 	            </div>
 	        </li>
+	        
+	        <li class="bodyli">
+	            <div class="bodybox">
+	                <div class="imagech">
+	                    <div class="text1">
+	                        <p>코어근육을 발달시키는</p>
+	                        <h2>스쿼트 30일 챌린지</h2>
+	                    </div>
+	                    <img class="image1" src="images/squatimage.png"  height="130px" width="570px">
+	                    
+	                </div>
+	                <div class="textch">진행중인 회원 3명</div>
+	            </div>
+	        </li>
+	        
+	        <li class="bodyli">
+	            <div class="bodybox">
+	                <div class="imagech">
+	                    <div class="text1">
+	                        <p>코어근육을 발달시키는</p>
+	                        <h2>스쿼트 30일 챌린지</h2>
+	                    </div>
+	                    <img class="image1" src="images/squatimage.png"  height="130px" width="570px">
+	                    
+	                </div>
+	                <div class="textch">진행중인 회원 3명</div>
+	            </div>
+	        </li>
 	    </ul>
 	
 	    <button class="morebtn">

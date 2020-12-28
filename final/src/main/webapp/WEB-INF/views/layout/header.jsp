@@ -37,7 +37,7 @@
 	                       	<div class="userBox">
 	                            <ul>
 	                             	<li><a href="${pageContext.request.contextPath}/member/logout">로그아웃</a></li>
-		                            <li><a href="${pageContext.request.contextPath}">마이페이지</a></li>
+		                            <li><a href="${pageContext.request.contextPath}/mypage/main">마이페이지</a></li>
 	                           	</ul>
 	                        </div>
                  		</c:if>
