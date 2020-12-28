@@ -80,6 +80,10 @@ function ajaxHTML(url, method, query, selector) {
 
 //게시글 좋아요 여부
 $(function(){
+	if($("#cookTipLikeCount").attr("data-userLike")=="1") {
+		$("#heart").removeClass("far").addClass("fas");
+	}
+	
 	$(".btnSendCookTipLike").click(function(){
 		var userLike=$("#cookTipLikeCount").attr("data-userLike");
 		if(userLike=="0") {
@@ -97,13 +101,13 @@ $(function(){
 					var count = data.cookTipLikeCount;
 					$("#cookTipLikeCount").text(count);
 					$("#cookTipLikeCount").attr("data-userLike", "1");
+					$("#heart").removeClass("far").addClass("fas");
 					
-				} else if(state==="false") {
-					
+				} else if(state==="false") {					
 					alert("좋아요 추가에 문제가 발생했습니다.");
 				}
 			};		
-		} else {
+		} else {			
 			if (! confirm("좋아요를 취소하실 건가요?")) {
 				return false;
 			}
@@ -117,6 +121,8 @@ $(function(){
 					var count = data.cookTipLikeCount;
 					$("#cookTipLikeCount").text(count);
 					$("#cookTipLikeCount").attr("data-userLike", "0");
+					$("#heart").removeClass("fas").addClass("far");
+
 				} else if(state==="false") {
 					alert("좋아요 삭제에 문제가 발생했습니다.");
 				}
@@ -197,20 +203,148 @@ $(function(){
 	});
 });
 
+//댓글 좋아요 / 싫어요
+$(function(){
+	// 댓글 좋아요 / 싫어요 등록
+	$("body").on("click", ".btnSendReplyLike", function(){
+		var replyNum=$(this).attr("data-replyNum");
+		var replyLike=$(this).attr("data-replyLike");
+		var $btn = $(this);
+		
+		var msg="댓글이 마음에 들지 않으신가요?";
+		if(replyLike==='1') {
+			msg="댓글이 마음에 드시나요?";
+		}
+		if(! confirm(msg)) {
+			return false;
+		}
+		
+		var url="${pageContext.request.contextPath}/cook/honCooq/cookTip/insertReplyLike";
+		var query="replyNum="+replyNum+"&replyLike="+replyLike;
+		
+		var fn = function(data){
+			var state=data.state;
+			if(state==="true") {
+				var likeCount=data.likeCount;
+				var disLikeCount=data.disLikeCount;
+				
+				$btn.parent("div").children().eq(0).find("span").html(likeCount);
+				$btn.parent("div").children().eq(1).find("span").html(disLikeCount);
+			} else if(state==="false") {
+				alert("댓글 좋아요/싫어요는 한 번만 가능합니다.");
+			}
+		};
+		
+		ajaxJSON(url, "post", query, fn);
+	});
+});
 
+//댓글별 답글 리스트
+function listReplyAnswer(answer) {
+	var url="${pageContext.request.contextPath}/cook/honCooq/cookTip/listReplyAnswer";
+	var query="answer="+answer;
+	var selector="#cookTip_listReplyAnswer"+answer;
+	
+	ajaxHTML(url, "get", query, selector);
+}
 
+//댓글별 답글 개수
+function countReplyAnswer(answer) {
+	var url="${pageContext.request.contextPath}/cook/honCooq/cookTip/countReplyAnswer";
+	var query="answer="+answer;
+	
+	var fn = function(data){
+		var count=data.count;
+		var vid="#answerCount"+answer;
+		$(vid).html(count);
+	};
+	
+	ajaxJSON(url, "post", query, fn);
+}
 
+//답글 버튼(댓글별 답글 등록폼 및 답글리스트)
+$(function(){	
+	$("body").on("click", ".btnReplyAnswerLayout", function(){
+		var $divReplyAnswer = $(this).closest("div").next();
+		// var $trReplyAnswer = $(this).parent().parent().next();
+		// var $answerList = $trReplyAnswer.children().children().eq(0);
+		
+		var isVisible = $divReplyAnswer.is(':visible');
+		var replyNum = $(this).attr("data-replyNum");
+			
+		if(isVisible) {
+			$divReplyAnswer.hide();
+		} else {
+			$divReplyAnswer.show();
+            
+			// 답글 리스트
+			listReplyAnswer(replyNum);
+			
+			// 답글 개수
+			countReplyAnswer(replyNum);
+		}
+	});	
+});
 
+//댓글별 답글 등록
+$(function(){
+	$("body").on("click", ".btnSendReplyAnswer", function(){
+		var num="${dto.num}";
+		var replyNum=$(this).attr("data-replyNum");
+		var $div=$(this).closest("div");
+		
+		var content=$div.find("textarea").val().trim();
+		if(! content) {
+			$div.find("textarea").focus();
+			return false;
+		}
+		content = encodeURIComponent(content);
+		
+		var url="${pageContext.request.contextPath}/cook/honCooq/cookTip/insertReply";
+		var query="num="+num+"&content="+content+"&answer="+replyNum;
+		
+		var fn = function(data){
+			$div.find("textarea").val("");
+			
+			var state=data.state;
+			if(state==="true") {
+				listReplyAnswer(replyNum);
+				countReplyAnswer(replyNum);
+			}
+		};
+		
+		ajaxJSON(url, "post", query, fn);
+		
+	});
+});
 
-
-
-
+// 댓글별 답글 삭제
+$(function(){
+	$("body").on("click", ".deleteReplyAnswer", function(){
+		if(! confirm("게시물을 삭제하시겠습니까 ? ")) {
+		    return;
+		}
+		
+		var replyNum=$(this).attr("data-replyNum");
+		var answer=$(this).attr("data-answer");
+		
+		var url="${pageContext.request.contextPath}/cook/honCooq/cookTip/deleteReply";
+		var query="replyNum="+replyNum+"&mode=answer";
+		
+		var fn = function(data){
+			listReplyAnswer(answer);
+			countReplyAnswer(answer);
+		};
+		
+		ajaxJSON(url, "post", query, fn);
+	});
+});
 
 </script>
 
 <div class="cookTip_articleMainBody">
 	<div class="cookTip_articleMainHeader">
-<%-- 		<div class="cookTip_articleGo">
+		<%-- 		<div class="cookTip_articleGo">
 			<span><a href="${pageContext.request.contextPath}/cook/honCooq/cookTip/list">CookTip게시판
 					&gt;</a></span>
 		</div> --%>
@@ -219,86 +353,95 @@ $(function(){
 		</div>
 		<div class="cookTip_category article_category">
 			<span>${dto.category!=null? dto.category : "설거지 및 주방정리"}</span>
-		</div>		
-		
+		</div>
+
 		<div class="cookTip_articleMainHeaderSubject">
 			<span>${dto.subject}</span>
 		</div>
 		<div class="cookTip_articleSub">
 			<div class="cookTip_articleMainHeaderInfo">
-				<div class="cookTip_writer"><span class="cookTip_articleInfo"><i class="far fa-user"></i> ${dto.userName}</span></div>
-				<div class="cookTip_registerDateNumber"><span class="cookTip_articleInfo">등록일 ${dto.register_date}</span></div>
-				<div class="cookTip_hitCountNumber"><span class="cookTip_articleInfo">조회수 ${dto.hitCount}</span></div>
+				<div class="cookTip_writer">
+					<span class="cookTip_articleInfo"><i class="far fa-user"></i>
+						${dto.userName}</span>
+				</div>
+				<div class="cookTip_registerDateNumber">
+					<span class="cookTip_articleInfo">등록일 ${dto.register_date}</span>
+				</div>
+				<div class="cookTip_hitCountNumber">
+					<span class="cookTip_articleInfo">조회수 ${dto.hitCount}</span>
+				</div>
 			</div>
 		</div>
 	</div>
 
-	<div class="cookTip_ContentBody">
-			${dto.content}
-	</div>
+	<div class="cookTip_ContentBody">${dto.content}</div>
 	<div class="cookTip_LikeBox">
-		<span class="cookTip_LikeHeart"> 
-			<button type="button" class="cookTip_LikeButton btnSendCookTipLike"><i class="far fa-heart ILikeHeart"></i><span id="cookTipLikeCount" data-userLike="${userLike}">${dto.cookTipLikeCount}</span></button>
-		</span> 
+		<span class="cookTip_LikeHeart">
+			<button type="button" class="cookTip_LikeButton btnSendCookTipLike">
+				<i id="heart" class="far fa-heart"></i> <span id="cookTipLikeCount"
+					data-userLike="${userLike}">${dto.cookTipLikeCount}</span>
+			</button>
+		</span>
 	</div>
 	<div class="cookTip_updateAndDelete">
-		<div class="cookTip_articleButtons">
-			<div class="cookTip_articleButtonBox ">
-					<button class="cookTip_update" type="button" onclick="updateBoard('${dto.num}');">수정</button>
-			</div>
-			<div class="cookTip_articleButtonBox ">
-					<button class="cookTip_delete" type="button" onclick="deleteBoard('${dto.num}');">삭제</button>			
-			</div>
+		<div class="cookTip_articleButtons_updateAndDelete">
+			<c:if test="${dto.userName == sessionScope.member.userId}">
+				<div class="cookTip_articleButtonBox2">
+					<button class="cookTip_update" type="button"
+						onclick="updateBoard('${dto.num}');">수정</button>
+				</div>
+			</c:if>
+			<c:if
+				test="${dto.userName == sessionScope.member.userId ||  sessionScope.member.userId == 'admin' }">
+				<div class="cookTip_articleButtonBox2">
+					<button class="cookTip_delete" type="button"
+						onclick="deleteBoard('${dto.num}');">삭제</button>
+				</div>
+			</c:if>
 		</div>
 	</div>
 	<div class="cookTip_preAndNext">
-		<div class="cookTip_articleButtons">			
-				<div class="cookTip_articleButtonBox">
-					<c:if test="${not empty preReadDto}">
-						<button class="cookTip_preRead" type="button" onclick="javascript:location.href='${pageContext.request.contextPath}/cook/honCooq/cookTip/article?${query}&num=${preReadDto.num}';"><i class="fas fa-angle-left"></i></button>
-						<span>이전글 |  ${preReadDto.subject}</span>
-					</c:if>		
-				</div>
+		<div class="cookTip_articleButtons">
+			<div class="cookTip_articleButtonBox">
+				<c:if test="${not empty preReadDto}">
+					<button class="cookTip_preRead" type="button"
+						onclick="javascript:location.href='${pageContext.request.contextPath}/cook/honCooq/cookTip/article?${query}&num=${preReadDto.num}';">
+						<i class="fas fa-angle-left"></i>
+					</button>
+					<span>이전글 | ${preReadDto.subject}</span>
+				</c:if>
+			</div>
 
 			<div class="cookTip_articleButtonBox">
-				<button class="cookTip_toList" type="button" onclick="javascript:location.href='${pageContext.request.contextPath}/cook/honCooq/cookTip/list?${query}';"><i class="fas fa-bars"></i></button><span> 리스트로</span>
-			</div>			
+				<button class="cookTip_toList" type="button"
+					onclick="javascript:location.href='${pageContext.request.contextPath}/cook/honCooq/cookTip/list?${query}';">
+					<i class="fas fa-bars"></i>
+				</button>
+				<span> 리스트로</span>
+			</div>
 
 			<div class="cookTip_articleButtonBox">
 				<c:if test="${not empty nextReadDto}">
-					<span>${nextReadDto.subject}  | 다음글</span>
-					<button class="cookTip_nextRead" type="button" onclick="javascript:location.href='${pageContext.request.contextPath}/cook/honCooq/cookTip/article?${query}&num=${nextReadDto.num}';"><i class="fas fa-angle-right"></i></button>
-				</c:if>	
-			</div>		
+					<span>${nextReadDto.subject} | 다음글</span>
+					<button class="cookTip_nextRead" type="button"
+						onclick="javascript:location.href='${pageContext.request.contextPath}/cook/honCooq/cookTip/article?${query}&num=${nextReadDto.num}';">
+						<i class="fas fa-angle-right"></i>
+					</button>
+				</c:if>
+			</div>
 		</div>
 	</div>
 
 	<div id="cookTip_listReply"></div>
 
 	<div class="cookTip_ReplyAll">
-		<!-- 여기부터 다음 주석까지 listReply로 -->
-		<!-- 
-		<div class="cookTip_ReplySub">
-			<span>댓글 ${replyDataCount}7개</span>
-		</div>
-		<div class="cookTip_ReplyList">		
-			<div class="cookTip_ReplyListBody">
-					<div class="cookTip_replyList-userInfo">
-						<div class="cookTip_replyList-userInfo-userName">작성자</div>
-						<div class="cookTip_replyList-userInfo-etc">작성일</div>
-					</div>
-					<div class="cookTip_replyList-content">
-						댓글 내용입니다.
-					</div>
-			</div>				
-		</div>
-		 -->
-		 <div id="listCookTipReply"></div>
-		<!-- -------------------------------------------------- -->
+		<div id="listCookTipReply"></div>
+		<!-- 댓글 불러오기 : ajax -->
 		<div class="cookTip_ReplyBody">
 			<div class="cookTip_ReplyContentBox">
 				<span>${sessionScope.member.userName}</span>
-				<textarea class="cookTip_ReplyContentBox-textarea" id="" placeholder="댓글을 남겨보세요"></textarea>
+				<textarea class="cookTip_ReplyContentBox-textarea" id=""
+					placeholder="댓글을 남겨보세요"></textarea>
 				<div class="cookTip_ReplySubmitButton">
 					<button class="cookTip_Replybtn btnSendReply" type="button">등록</button>
 				</div>

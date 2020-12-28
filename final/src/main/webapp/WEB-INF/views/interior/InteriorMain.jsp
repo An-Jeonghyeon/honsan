@@ -40,7 +40,9 @@
 	                <div class="interior_subject">
 	                	<!-- 작성자 프로필 사진  -->
 	                    <div class="interior_subject_user_img">
-	                        <img src="${pageContext.request.contextPath}/resources/images/interior/a1.jpg">
+	                        <a href="${pageContext.request.contextPath}/interior/mList?userId=${dto.userId}">
+	                        	<img src="${pageContext.request.contextPath}/resources/images/interior/a1.jpg">
+	                        </a>
 	                    </div>
 	                    <!-- 아이디 , 좋아요  및 게시판 제목  -->
 	                    <div class="interior_subject_id_title">
