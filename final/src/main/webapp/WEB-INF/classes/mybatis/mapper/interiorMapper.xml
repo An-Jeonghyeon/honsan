@@ -61,14 +61,18 @@
 		OFFSET #{offset} ROWS FETCH FIRST #{rows} ROWS ONLY
 	</select>
 	
-	<select id="userinteriorlist" parameterType="String"
+	<select id="userinteriorlist" parameterType="map"
 		resultType="com.sp.app.interior.Interior"> <!-- map에는 condition, keyword, offset, rows 등이 저장되어 넘어온다 -->
 		SELECT i.num, i.userId, userName, subject, content, category, hitCount, register_date , mainImg
 		FROM interior i
 		JOIN member1 m ON i.userId = m.userId
 		WHERE i.userId = #{userId}
 		ORDER BY i.num DESC
-		OFFSET 0 ROWS FETCH FIRST 4 ROWS ONLY
+		
+		<if test="rows==4">
+			OFFSET 0 ROWS FETCH FIRST #{rows} ROWS ONLY
+		</if>
+		
 	</select>
 	
 	<select id="readBoard" parameterType="Integer" resultType="com.sp.app.interior.Interior">

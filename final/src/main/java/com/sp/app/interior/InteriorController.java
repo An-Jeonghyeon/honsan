@@ -169,12 +169,14 @@ public class InteriorController {
 		if (dto==null && flist==null) {
 			return "redirect:/interior/main?"+query;
 		}
+		Map<String, Object> map = new HashMap<>();
+		map.put("userId", dto.getUserId());
+		map.put("rows", 4);
 		
-		List<Interior> ublist = service.userlistBoard(dto.getUserId());
+		List<Interior> ublist = service.userlistBoard(map);
 		int ublistCount = ublist.size();
 		
-			
-		Map<String, Object> map = new HashMap<>();
+		
 		map.put("num", num);
 			
 		map.put("keyword", keyword);
@@ -295,5 +297,44 @@ public class InteriorController {
 			fileManager.doFileDelete(dto.getMainImg(), pathname);
 		}
 		
+	}
+	
+	@RequestMapping(value="mList" ,method = RequestMethod.GET)
+	public String memberList(
+			@RequestParam String userId,
+			Model model
+			) throws Exception {
+		
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("userId", userId);
+		map.put("rows" , 4);
+		
+		List<Interior> list = service.userlistBoard(map);
+		
+		model.addAttribute("list", list);
+		model.addAttribute("userId", userId);
+		
+		
+		return ".interior.memberList";
+	}
+	
+	@RequestMapping(value="mListAll" ,method = RequestMethod.GET)
+	public String memberListAll(
+			@RequestParam String userId,
+			Model model
+			) throws Exception {
+		
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("userId", userId);
+		map.put("rows" , 0);
+		
+		List<Interior> list = service.userlistBoard(map);
+		
+		model.addAttribute("list", list);
+		
+		
+		return ".interior.interiorList";
 	}
 }

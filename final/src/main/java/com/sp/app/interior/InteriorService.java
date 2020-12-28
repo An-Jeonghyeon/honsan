@@ -13,6 +13,7 @@ public interface InteriorService {
 	public void updateHitCount(int num) throws Exception;
 	
 	public void updateInterior(Interior dto ,String pathname) throws Exception;
+	public List<Interior> userlistBoard(Map<String, Object> map);
 	public List<Interior> userlistBoard(String userId);
 	
 	// 파일 인서트 
