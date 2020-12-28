@@ -18,35 +18,35 @@ public class admController {
 		return ".adm.chart";
 	}
 	
-	@RequestMapping("memberInfo")
-	public String memberInfo() {
-		return ".adm.memberInfo";
-	}
-	
-	@RequestMapping("blacklist")
+	@RequestMapping("visitorStatus")
 	public String blacklist() {
-		return ".adm.blacklist";
+		return ".adm.visitorStatus";
 	}
 	
-	@RequestMapping("reportlist")
+	@RequestMapping("memberManagement")
+	public String memberInfo() {
+		return ".adm.memberManagement";
+	}
+	
+	@RequestMapping("boardManagement")
 	public String reportlist() {
-		return ".adm.reportlist";
+		return ".adm.boardManagement";
 	}
 	
-	@RequestMapping("form")
-	public String form() {
-		return ".adm.form";
-	}
-	
-	@RequestMapping("table")
+	@RequestMapping("health")
 	public String table() {
-		return ".adm.table";
+		return ".adm.health";
 	}
 	
-	@RequestMapping("empty")
-	public String empty() {
-		return ".adm.empty";
+	@RequestMapping("cook")
+	public String form() {
+		return ".adm.cook";
 	}
+	
+//	@RequestMapping("empty")
+//	public String empty() {
+//		return ".adm.empty";
+//	}
 	
 	
 }

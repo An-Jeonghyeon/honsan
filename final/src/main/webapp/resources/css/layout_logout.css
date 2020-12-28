@@ -228,6 +228,9 @@ footer a{
      /* background-color: rgba(157, 191, 191, 0.728);  */
 
 }
+.footerUl1 a {
+	font-weight: 700;
+}
 .footerUl1 li a:last-child{
     color: tomato;
 }

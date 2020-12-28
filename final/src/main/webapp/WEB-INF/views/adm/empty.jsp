@@ -173,31 +173,23 @@
         <nav class="navbar-default navbar-side" role="navigation">
             <div class="sidebar-collapse">
                 <ul class="nav" id="main-menu">
-
-                        <li>
-                        <a class="waves-effect waves-dark" href="${pageContext.request.contextPath}/adm/chart"><i class="fa fa-bar-chart-o"></i> 게시판 현황</a>
-                    </li>
                     <li>
-                        <a href="${pageContext.request.contextPath}/adm/memberInfo" class="waves-effect waves-dark"><i class="fa fa-desktop"></i> 회원관리 정보확인</a>
+                        <a class="active-menu waves-effect waves-dark" href="${pageContext.request.contextPath}/adm/chart"><i class="fa fa-bar-chart-o"></i> 게시판 새글 현황</a>
                     </li>
 					<li>
-                        <a href="${pageContext.request.contextPath}/adm/blacklist" class=" waves-effect waves-dark"><i class="fa fa-bar-chart-o"></i> 멀봐 </a>
+                        <a href="${pageContext.request.contextPath}/adm/blacklist" class=" waves-effect waves-dark"><i class="fa fa-bar-chart-o"></i>방문자 현황</a>
                     </li>
                     <li>
-                        <a href="${pageContext.request.contextPath}/adm/reportlist" class="waves-effect waves-dark"><i class="fa fa-qrcode"></i> 게시판 정지 관련</a>
-                    </li>
-                    
-                    <li>
-                        <a href="${pageContext.request.contextPath}/adm/table" class="waves-effect waves-dark"><i class="fa fa-table"></i> 안녕하세요 </a>
+                        <a href="${pageContext.request.contextPath}/adm/memberInfo" class="waves-effect waves-dark"><i class="fa fa-desktop"></i> 회원 관리</a>
                     </li>
                     <li>
-                        <a href="${pageContext.request.contextPath}/adm/form" class="waves-effect waves-dark"><i class="fa fa-edit"></i> 시아 준수 입니다. </a>
+                        <a href="${pageContext.request.contextPath}/adm/reportlist" class="waves-effect waves-dark"><i class="fa fa-qrcode"></i> 게시판 관리</a>
                     </li>
-
-
-           
                     <li>
-                        <a href="${pageContext.request.contextPath}/adm/empty" class="active-menu waves-effect waves-dark"><i class="fa fa-fw fa-file"></i> 관리자 공지방</a>
+                        <a href="${pageContext.request.contextPath}/adm/table" class="waves-effect waves-dark"><i class="fa fa-table"></i>[하루운동챌린지]관리</a>
+                    </li>
+                    <li>
+                        <a href="${pageContext.request.contextPath}/adm/form" class="waves-effect waves-dark"><i class="fa fa-edit"></i>[우리집 냉장고]관리</a>
                     </li>
                 </ul>
 
