@@ -5,8 +5,13 @@
 
 <c:forEach var="vo" items="${listReply}">
 	<div class="ReplyList">
-		<div class="dress-ReplyLike">
-			<span>좋아요</span><i class="far fa-thumbs-up"></i>13
+		<div class="dress-ReplyLike btnSendReplyLike" title="좋아요" data-replyNum="${vo.replyNum}" data-replyLike="1">
+			<i class="far fa-thumbs-up"></i>
+			<span>${vo.likeCount}</span>
+		</div>
+		<div class="dress-ReplyDisLike btnSendReplyLike" title="싫어요" data-replyNum='${vo.replyNum}' data-replyLike="0">
+			<i class="far fa-thumbs-up fa-thumbs-down"></i>
+			<span>${vo.disLikeCount}</span>
 		</div>
 		<span class="ReplyListUserName">${vo.userName}</span>
 		<p>
@@ -30,7 +35,7 @@
 				class="ReplyAnswerContentUserName">${vo.userName}</span>
 			<textarea placeholder="댓글을 남겨보세요"></textarea>
 			<div class="ReplySubmitButton">
-				<button class="Replybtn" data-replyNum="${vo.replyNum}"type="button">등록</button>
+				<button class="Replybtn" id="ReplybtnSubmit" data-replyNum="${vo.replyNum}"type="button">등록</button>
 			</div>
 		</div>
 	</div>

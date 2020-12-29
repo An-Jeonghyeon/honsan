@@ -97,12 +97,19 @@
 	
 	<select id="listReply" parameterType="map" resultType="com.sp.app.dress.DressReply">
 		SELECT r.replyNum, r.userId, userName, num, content, r.register_date, NVL(answerCount, 0) answerCount
+				, NVL(likeCount, 0) likeCount,
+		       	  NVL(disLikeCount, 0) disLikeCount
 			FROM CLOTHESSTORY_REPLY r
 			JOIN member1 m on r.userId = m.userId
 		LEFT OUTER JOIN (
 			SELECT answer, COUNT(*) answerCount
 			FROM CLOTHESSTORY_REPLY WHERE answer!=0 GROUP BY answer
 		) a ON r.replyNum = a.answer
+		LEFT OUTER JOIN (
+			SELECT replyNum, COUNT(DECODE(replyLike, 1, 1)) likeCount,
+				   COUNT(DECODE(replyLike, 0, 1)) disLikeCount
+			FROM clothesStory_replyLike GROUP BY replyNum
+		) c ON r.replyNum = c.replyNum
 			WHERE num=#{num} AND r.answer=0
 			ORDER BY r.replyNum DESC
 			OFFSET #{offset} ROWS FETCH FIRST #{rows} ROWS ONLY
@@ -164,7 +171,17 @@
 			SELECT NVL(COUNT(*),0) FROM CLOTHESSTORY_REPLY WHERE answer = #{answer}
 	</select>
 	<!-- 게시물당 특정 유저 좋아요 여부   -->
-	<select id="thumbColor" parameterType="Integer" resultType="com.sp.app.dress.Dress">
-		SELECT NVL(COUNT(*),0) FROM cookTip_like WHERE num=#{num} AND userId=#{userId}
+	<select id="thumbColor" parameterType="map" resultType="Integer">
+		SELECT NVL(COUNT(*),0) FROM clothesStory_Like WHERE num=#{num} AND userId=#{userId}
+	</select>
+	<!--댓글 좋아요/싫어요 추가  -->
+	<insert id="insertReplyLike" parameterType="map">
+		INSERT INTO clothesStory_replyLike (replyNum, userId, replyLike) VALUES (#{replyNum},#{userId},#{replyLike})
+	</insert>
+	<!--댓글 좋아요/싫어요 개수 -->
+	<select id="replyLikeCount" parameterType="map" resultType="map">
+		SELECT COUNT(DECODE(replyLike,1, 1))likeCount,
+				COUNT(DECODE(replyLike,0,1))disLikeCount
+		FROM clothesStory_replyLike WHERE replyNum = #{replyNum}
 	</select>
 </mapper>

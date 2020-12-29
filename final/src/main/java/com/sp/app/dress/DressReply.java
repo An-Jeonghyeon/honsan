@@ -9,11 +9,25 @@ public class DressReply {
 	private String register_date;
 	
 	private int answer;
+	private int likeCount;
+	private int disLikeCount;
 	
     private int DressLikeCount;
     private int answerCount;
     
 	
+	public int getLikeCount() {
+		return likeCount;
+	}
+	public void setLikeCount(int likeCount) {
+		this.likeCount = likeCount;
+	}
+	public int getDisLikeCount() {
+		return disLikeCount;
+	}
+	public void setDisLikeCount(int disLikeCount) {
+		this.disLikeCount = disLikeCount;
+	}
 	public int getAnswerCount() {
 		return answerCount;
 	}

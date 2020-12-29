@@ -24,14 +24,7 @@ function updatebutton(num){
 }
 
 $(function() {
-	$("body").on("click", ".ILikeHeart", function() {
-		$(".fullLikeHeart").show();
-	})
-	$("body").on("click", ".fullLikeHeart", function() {
-		$(this).hide();
-
-	});
-
+	
 	$("body").on("click",".RelyWrite",function() {
 		var pa =$(this).parent().next("div");
 		var papap =$(this).parent().next().next("div");
@@ -39,14 +32,15 @@ $(function() {
 		var replyNum= $(this).attr("data-replyNum");
 		
 		
-		
-		listReplyAnswer(replyNum);
-		 if(isVisible){
+			
+		if(isVisible){
 			pa.hide();	
 			papap.hide();
+			
 		}else{
 			pa.slideDown();
 			papap.slideDown();
+			
 			listReplyAnswer(replyNum);
 			countReplyAnswer(replyNum);
 		} 
@@ -191,33 +185,42 @@ $(function(){
 
 
 $(function() {
+	 if($("#DressLikeCount").attr("data-userLike")=="1"){
+			$(".dress-thumbs-up").css("background", "rgb(174, 174, 174)")
+			$(".dress-thumbs-up").css("box-shadow","0px 0px 15px  rgba(202, 164, 255, 0.529)")
+			$(".dress-thumbs-up").css("color", "aliceblue")
+	}
 	$(".dress-thumbs-up").click(function() {
-					var url="${pageContext.request.contextPath}/dress/insertDressLikeCount";
-					var num="${dto.num}";
-					var query="num="+num;
-					var fn =function(data){
-						var state=data.state;
-						if(state==="true"){
-							var count= data.DressLikeCount;
-							$("#DressLikeCount").text(count);
-							$(".dress-thumbs-up").css("background", "rgb(174, 174, 174)")
-							$(".dress-thumbs-up").css("box-shadow","0px 0px 15px  rgba(202, 164, 255, 0.529)")
-							$(".dress-thumbs-up").css("color", "aliceblue")
+			var userLike=$("#DressLikeCount").attr("data-userLike");
+			var url="${pageContext.request.contextPath}/dress/insertDressLikeCount";
+			var num="${dto.num}";
+			var query="num="+num;
+			var fn =function(data){
+				var state=data.state;
+			if(state==="true"){
+					var count= data.DressLikeCount;
+					$("#DressLikeCount").text(count);
+					$("#DressLikeCount").attr("data-userLike","1");	
+					$(".dress-thumbs-up").css("background", "rgb(174, 174, 174)")
+					$(".dress-thumbs-up").css("box-shadow","0px 0px 15px  rgba(202, 164, 255, 0.529)")
+					$(".dress-thumbs-up").css("color", "aliceblue")
+					
+				}else if(state==="false"){
+					var count= data.DressLikeCount;
+					$("#DressLikeCount").text(count);
+					$(".dress-thumbs-up").css("background", "white")
+					$(".dress-thumbs-up").css("box-shadow","0px 0px 5px  rgba(128, 128, 128, 0.529)")
+					$(".dress-thumbs-up").css("color", "rgb(136, 136, 136)")
 
-						}else if(state==="false"){
-							var count= data.DressLikeCount;
-							$("#DressLikeCount").text(count);
-							$(".dress-thumbs-up").css("background", "white")
-							$(".dress-thumbs-up").css("box-shadow","0px 0px 5px  rgba(128, 128, 128, 0.529)")
-							$(".dress-thumbs-up").css("color", "rgb(136, 136, 136)")
-						}
-					};
-					ajaxJSON(url,"post",query,fn);
+				}
+		 	}
+		
+		ajaxJSON(url,"post",query,fn);
 				
-			})
+	})
 })
 $(function(){
-	$("body").on("click",".Replybtn",function(){
+	$("body").on("click","#ReplybtnSubmit",function(){
 		var num ="${dto.num}";
 		var replyNum = $(this).attr("data-replyNum");
 		var pa= $(this).parent().parent().find("textarea");
@@ -237,7 +240,7 @@ $(function(){
 				
 				listReplyAnswer(replyNum);
 				countReplyAnswer(replyNum);
-				/* console.log(replyNum) */
+				
 			}
 		}
 		ajaxJSON(url,"post",query,fn);
@@ -250,7 +253,7 @@ function listReplyAnswer(answer){
 	ajaxHTML(url,"get",query,selector);
 }
 
-//answerCount 
+//댓글에 댓글 개수 
 function countReplyAnswer(answer){
 	var url= "${pageContext.request.contextPath}/dress/replyAnswerCount";
 	var query= "answer="+answer;
@@ -263,6 +266,40 @@ function countReplyAnswer(answer){
 	};
 	 ajaxJSON(url,"post",query, fn);	
 };
+//댓글 좋아요/ 싫어요
+$(function() {
+$("body").on("click",".btnSendReplyLike",function(){
+	var replyNum=$(this).attr("data-replyNum");
+	var replyLike=$(this).attr("data-replyLike");
+	var $btn =$(this);
+	
+	var msg= "내용이 마음에 들지 않으십니까?";
+	
+	if(replyLike==="1"){
+		msg="게시물이 마음에 드십니까?";
+	}
+	if(! confirm(msg)){
+		return false;
+	}
+	var url = "${pageContext.request.contextPath}/dress/insertReplyLike";
+	var query ="replyNum="+replyNum+"&replyLike="+replyLike;
+	
+	var fn = function(data){
+		var state=data.state;
+		if(state==="true"){
+			var likeCount=data.likeCount;
+			var disLikeCount= data.disLikeCount;
+			$btn.children("span").html(likeCount);
+			$btn.children("span").html(disLikeCount);
+			
+		}else if(state==="false"){
+			alert("게시물 좋아요 여부는 한번만 가능합니다");
+		}
+		
+	};
+		ajaxJSON(url,"post", query,fn);
+	});
+});
 </script>
 
 
@@ -294,7 +331,7 @@ function countReplyAnswer(answer){
                   	</span>
                   </div>
                 <div class="EmpathyBotton">
-                <i class="far fa-thumbs-up fa-4x dress-thumbs-up"><span id="DressLikeCount">${dto.dressLikeCount}</span></i>
+                <i class="far fa-thumbs-up fa-4x dress-thumbs-up"><span id="DressLikeCount" data-userLike="${userLike}">${dto.dressLikeCount}</span></i>
                 </div>
                 <c:if test="${sessionScope.member.userId==dto.userId || sessionScope.member.userId=='admin' }">
                     <div class="dress-articleMainButtonBoxBody">

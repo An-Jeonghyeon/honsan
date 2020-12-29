@@ -1,5 +1,6 @@
 package com.sp.app.dress;
 
+import java.math.BigDecimal;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.util.Arrays;
@@ -143,6 +144,7 @@ public class DressController {
 			@RequestParam (defaultValue = "")String page,
 			@RequestParam (defaultValue = "all")String condition,
 			@RequestParam (defaultValue = "")String keyword,
+			HttpSession session,
 			Model model
 			) throws Exception{
 		keyword = URLDecoder.decode(keyword,"utf-8");
@@ -158,11 +160,24 @@ public class DressController {
 		if(dto==null) {
 			return"redirect:/dress/list?"+query;
 		}
+		SessionInfo info= (SessionInfo)session.getAttribute("member");
+		Map<String, Object> paramMap= new HashMap<String, Object>();
+		paramMap.put("num", num);
+		paramMap.put("userId",info.getUserId());
+		
+		int userLike=0;
+		try {
+			userLike=service.thumbColor(paramMap);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 		Map<String, Object> map = new HashMap<String, Object>();
+		
 		map.put("num",num);
 		map.put("condition",condition);
 		map.put("keyword",keyword);
+		model.addAttribute("userLike",userLike);
 		model.addAttribute("dto", dto);
 		model.addAttribute("page", page);
 		model.addAttribute("query", query);
@@ -325,11 +340,51 @@ public class DressController {
 	//댓글의 댓글 카운트
 	@RequestMapping(value = "replyAnswerCount")
 	@ResponseBody
-	public Map<String, Object> answerCount(@RequestParam(value = "answer") int answer) {
+	public Map<String, Object> answerCount(@RequestParam int answer) {
 		int count=service.replyAnswerCount(answer);
 		Map<String, Object> model= new HashMap<String, Object>();
 		model.put("count", count);
 		return model;
 	}
+	//댓글의 좋아요/싫어요 추가 :AJAX -JSON
+	@RequestMapping(value ="insertReplyLike" ,method= RequestMethod.POST)
+	@ResponseBody
+	public  Map<String, Object> insertReplyLike(@RequestParam Map<String,Object>paramMap,HttpSession session) throws Exception{
+		String state="true";
+		SessionInfo info =(SessionInfo)session.getAttribute("member");
+		Map<String, Object> model =new HashMap<String, Object>();
+		try {
+			paramMap.put("userId", info.getUserId());
+			service.insertReplyLike(paramMap);
+			
+		} catch (Exception e) {
+			state="false";
+		}
+		Map<String, Object> CountMap= service.replyLikeCount(paramMap);
+		int likeCount= ((BigDecimal)CountMap.get("LIKECOUNT")).intValue();
+		int disLikeCount=((BigDecimal)CountMap.get("DISLIKECOUNT")).intValue();
+		
+		model.put("likeCount",likeCount);
+		model.put("disLikeCount", disLikeCount);
+		model.put("state", state);
+		return model;
+	}
+	//댓글의 좋아요/싫어요 개수 : AJAX-JSON
+	@RequestMapping(value = "replyLikeCount" , method=RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> countReplyLike(@RequestParam Map<String, Object> paramMap,HttpSession session){
+		Map<String, Object> countMap=service.replyLikeCount(paramMap);
+		
+		int likeCount=((BigDecimal)countMap.get("LIKECOUNT")).intValue();
+		int disLikeCount=((BigDecimal)countMap.get("DISLIKECOUNT")).intValue();
+		
+		Map<String, Object> model=new HashMap<>();
+		model.put("likeCount", likeCount);
+		model.put("disLikeCount", disLikeCount);
+			
+		return model;
+		
+	}
+	
 
 }

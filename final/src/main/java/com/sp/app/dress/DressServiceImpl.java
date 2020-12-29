@@ -201,11 +201,44 @@ public class DressServiceImpl implements DressService{
 	public int replyAnswerCount(int answer) {
 		int result=0;
 		try {
-			dao.selectOne("dress.answerCount",answer);
+			result=dao.selectOne("dress.answerCount",answer);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return result;
+	}
+
+	@Override
+	public int thumbColor(Map<String, Object> map) throws Exception {
+		int result=0;
+		try {
+			result= dao.selectOne("dress.thumbColor",map);
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+		}
+		return result;
+	}
+
+	@Override
+	public void insertReplyLike(Map<String, Object> map) throws Exception {
+		try {
+			dao.insertData("dress.insertReplyLike",map);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
+
+	@Override
+	public Map<String, Object> replyLikeCount(Map<String, Object> map) {
+		Map<String, Object> countMap =null;
+		try {
+			countMap= dao.selectOne("dress.replyLikeCount",map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return countMap;
 	}
 
 }
