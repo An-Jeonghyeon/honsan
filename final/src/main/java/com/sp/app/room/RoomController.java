@@ -44,7 +44,7 @@ public class RoomController {
 			HttpServletRequest req,
 			Model model
 			) throws Exception {
-		int rows = 12;
+		int rows = 8;
 		int total_page=0;
 		int dataCount=0;
 		
