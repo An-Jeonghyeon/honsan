@@ -159,16 +159,68 @@ figure.snip1384.hover i {
 }
 
 
+
+
 /*보안 자가진단*/
+.body-containertest{
+	clear:both;
+    box-sizing: border-box;  /* padding과 border는 크기에 포함되지 않음 */
+    margin: 80px auto 100px;
+    min-height: 500px;
+    padding-top: 20px;
+	width: 1300px;
+	background-color: #f3f3f3;
+}
+.titlename{
+	width: 100%;
+	margin: 0 auto;
+	text-align: center;
+	font-weight: bold;
+	font-size: 25px;
+}
 
 
+.body-title {
+    color: #424951;
+    padding-bottom: 5px;
+    margin: 0 0 25px 0;
+    width: 1300px;
+	margin: 100px auto 50px;
+}
 
 
+.inputLayout {
+   width: 80%;
+   min-height: 30px; 
+   margin: 10px auto 0px; 
+   padding: 5px;
+   border: 1px solid #cccccc;
+}
 
+.firsttable td{
+	border: 1px solid;
+}
+.pagenum{
+	text-align: center;
+	font-size: 15px;
+	font-weight: bold;
+	padding: 30px;
+}
 
+.testbtn{
+	width: 100px;
+	height: 50px;
+}
+.testbtn:hover{
+	box-shadow: 0 0 5px #c0c0c0;
+}
+.testbtn:active{
+    background-color: #808080;
+}
 
-
-
+.question{
+	margin-bottom: 10px;
+}
 
 
 

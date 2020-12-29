@@ -147,7 +147,8 @@ public class RoomController {
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		return "redirect:/room/roomlist";
+		//return null;
+		return "redirect:/room/roomArticle?num="+dto.getNum();
 	}
 	
 	

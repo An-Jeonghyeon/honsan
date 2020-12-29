@@ -414,9 +414,6 @@ hr {
 
 /*GLOBALS*/
 *{margin:0; padding:0; list-style:none;}
-a{text-decoration:none; color:#666;}
-a:hover{color:#1bc1a3;}
-body, hmtl{font-family: 'Anton', sans-serif;}
 
 
 #wrapper{
