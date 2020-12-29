@@ -336,7 +336,7 @@ $(function(){
                             <span class="hitCountNumber">조회 ${dto.hitCount}</span>
                         </div>
                         <div class="articleMainHeaderReply">
-                            <span> <a href="#Comment"> 댓글 ${dto.replyCount }</a></span>
+                            <span> <a href="#Comment" class="Commnet"> 댓글 <b>${dto.replyCount }개</b> 보러가기></a></span>
                         </div>
                     </div>
                 </div>
