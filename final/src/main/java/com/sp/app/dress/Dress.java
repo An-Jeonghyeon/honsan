@@ -18,10 +18,17 @@ public class Dress {
 	
 	private int DressLikeCount;
 	private String saveFilename;
-	
 	private String bestlist;
 	
+	private int thumbColor;
 	
+	
+	public int getThumbColor() {
+		return thumbColor;
+	}
+	public void setThumbColor(int thumbColor) {
+		this.thumbColor = thumbColor;
+	}
 	public String getBestlist() {
 		return bestlist;
 	}

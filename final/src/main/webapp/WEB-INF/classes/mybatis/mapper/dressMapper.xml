@@ -163,4 +163,8 @@
 	<select id="answerCount" parameterType="Integer" resultType="Integer">
 			SELECT NVL(COUNT(*),0) FROM CLOTHESSTORY_REPLY WHERE answer = #{answer}
 	</select>
+	<!-- 게시물당 특정 유저 좋아요 여부   -->
+	<select id="thumbColor" parameterType="Integer" resultType="com.sp.app.dress.Dress">
+		SELECT NVL(COUNT(*),0) FROM cookTip_like WHERE num=#{num} AND userId=#{userId}
+	</select>
 </mapper>

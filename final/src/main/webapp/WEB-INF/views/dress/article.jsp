@@ -308,8 +308,7 @@ function countReplyAnswer(answer){
                 <div class="LikeBox">
                     <span class="LikeHeart"> <i class="far fa-heart ILikeHeart"></i>좋아요
                         13
-                    </span> <span class="Comment" id="Comment"><i class="far fa-comments"></i>댓글 ${dto.replyCount }</span> <span
-                        class="fullLikeHeart"> <i class="fas fa-heart"></i></span>
+                    </span> <span class="Comment" id="Comment"><i class="far fa-comments"></i>댓글 ${dto.replyCount }</span> 
                 </div>
                 <div class="ReplySUb">
                     <span>댓글 <span class="ReplySUbDown">▾</span></span>
