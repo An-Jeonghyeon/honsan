@@ -223,6 +223,58 @@ public class InteriorServiceImpl implements InteriorService{
 		return list;
 		
 	}
+
+
+
+	@Override
+	public void insertInteriorLike(Map<String, Object> map) throws Exception {
+		try {
+			dao.insertData("interior.insertInteriorLike", map);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+		
+	}
+
+
+
+	@Override
+	public int interiorLikeCount(int num) {
+		int result=0;
+		try {
+			result=dao.selectOne("interior.interiorLikeCount", num);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+
+
+	@Override
+	public int readInteriorLike(Map<String, Object> map) throws Exception {
+		int result=0;
+		try {
+			result=dao.selectOne("interior.readInteriorLike", map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+
+
+	@Override
+	public void deleteInteriorLike(Map<String, Object> map) throws Exception {
+		try {
+			dao.deleteData("interior.deleteInteriorLike", map);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+		
+	}
 	
 
 }

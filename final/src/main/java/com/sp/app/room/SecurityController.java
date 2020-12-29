@@ -13,5 +13,11 @@ public class SecurityController {
 		
 		return ".room.security";
 	}
+	
+	@RequestMapping(value="securityTest")
+	public String securtiyTest() {
+		
+		return ".room.securityTest";
+	}
 
 }

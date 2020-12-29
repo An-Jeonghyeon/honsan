@@ -36,17 +36,19 @@ $(".hover").mouseleave(
     <h3>보안 자가 진단 테스트</h3>
     <p><br>
     혼자 살기 무서운 세상!<br>
-나의 생활이 위험으로 부터 안전한지 테스트를 해볼까요?
+나의 생활이 위험으로 부터 안전한지 테스트를 해볼까요?<br><br><br><br><br><br><br>
 </p><i class="fas fa-angle-right"></i>
+<p style="font-size: 10px;">※ 테스트 결과는 참고용으로 활용하시고, 놓치는 보안에 주의하세요<p>
+
   </figcaption>
-  <a href="${pageContext.request.contextPath }/security/securtiyTest"></a>
+  <a href="${pageContext.request.contextPath }/room/securityTest"></a>
 </figure>
 
 
 	
 				</td>
 				
-				<td align="center" style="padding: 50px;"></td>
+				<td align="center" style="padding: 150px;"></td>
 				
 				<td align="center">
 					

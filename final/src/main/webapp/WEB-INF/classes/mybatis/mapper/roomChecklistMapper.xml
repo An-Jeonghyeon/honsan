@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="roomChecklist">
+	<insert id="insertRoomChecklist" parameterType="com.sp.app.roomChecklist.RoomChecklist">
+		INSERT INTO roomChecklist(num, subject,
+		userId, memo, item, register_date) VALUES
+		( roomlist_seq.NEXTVAL,#{subject}, #{userId},
+		#{memo, jdbcType=VARCHAR},#{item, jdbcType=VARCHAR}, SYSDATE )
+	</insert>
+	
+	<select id="dataCount" parameterType="String" resultType="Integer">
+		SELECT NVL(COUNT(*), 0)
+		FROM roomChecklist r
+		JOIN member1 m ON r.userId =m.userId
+		WHERE m.userId=#{userId}
+	</select>
+	
+	<select id="listRoomChecklist" parameterType="map"
+		resultType="com.sp.app.roomChecklist.RoomChecklist"> <!-- map에는 condition, keyword, offset, rows 등이 저장되어 넘어온다 -->
+		SELECT num, b.userId,subject, memo, item, register_date
+		FROM roomChecklist b
+		JOIN member1 m ON b.userId = m.userId
+		WHERE m.userId=#{userId}
+		ORDER BY num DESC
+	</select>	
+	
+	<select id="readRoomChecklist" parameterType="map" 
+			resultType="com.sp.app.roomChecklist.RoomChecklist">
+		SELECT num, b.userId,subject, memo, item, register_date
+		FROM roomChecklist b
+		JOIN member1 m ON b.userId=m.userId
+		WHERE num=#{num} AND m.userId=#{userId}
+	</select>
+	
+	<update id="updateRoomChecklist" parameterType="com.sp.app.roomChecklist.RoomChecklist">
+		UPDATE roomChecklist SET memo=#{memo, jdbcType=VARCHAR},subject=#{subject}, item=#{item, jdbcType=VARCHAR}
+			WHERE num=#{num} 
+	</update>
+
+	<delete id="deleteRoomChecklist" parameterType="Integer">
+		DELETE FROM roomChecklist WHERE num=#{num}
+	</delete>
+	
+	
+	
+	
+	
+	
+	
+</mapper>

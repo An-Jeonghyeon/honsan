@@ -6,21 +6,22 @@
 	<select id="seq" resultType="Integer">
 		SELECT interior_seq.NEXTVAL FROM dual
 	</select>
-	
+	<!-- 인테리어 게시판 추가  -->
 	<insert id="insertInterior" parameterType="com.sp.app.interior.Interior">
 		INSERT INTO interior(num, userId, subject, content, category, hitCount, register_date , mainImg)
 				VALUES(#{num}, #{userId}, #{subject}, #{content}, #{category}, 0, SYSDATE , #{mainImg})
 	</insert>
-<!-- 파일 DB에 넣어주는 -->
+<!-- 파일 DB에 넣어주는 seq -->
 	<select id="interiorfile_seq" resultType="Integer">
 		SELECT InteriorFile_seq.NEXTVAL FROM dual
 	</select>
-
+<!-- 인테리어 서브 사진들 테이블  -->
    <insert id="interiorFile" parameterType="com.sp.app.interior.Interior">
       INSERT INTO interiorFile(Filenum, num, main ,saveFilename)
          VALUES (#{filenum}, #{num}, #{mainnum} ,#{saveFilename})
    </insert>
-   
+  
+   <!-- where 조건문 만들기  -->
 	<sql id="where-list">
 		<choose>
 
@@ -35,7 +36,7 @@
 		</choose>
 	</sql>
 	
-	
+	<!-- 게시판 총 수  -->
 	<select id="dataCount" parameterType="map" resultType="Integer">
 		SELECT NVL(COUNT(*), 0) 
 		FROM interior
@@ -46,6 +47,7 @@
 			</where>
 	</select>
 	
+	<!-- 인테리어 게시판 리스트  -->
 	<select id="interiorlist" parameterType="map"
 		resultType="com.sp.app.interior.Interior"> <!-- map에는 condition, keyword, offset, rows 등이 저장되어 넘어온다 -->
 		SELECT i.num, i.userId, userName, subject, content, category, hitCount, register_date , mainImg
@@ -60,7 +62,7 @@
 		ORDER BY i.num DESC
 		OFFSET #{offset} ROWS FETCH FIRST #{rows} ROWS ONLY
 	</select>
-	
+	<!-- 유저의 인테리어 게시판 리스트  -->
 	<select id="userinteriorlist" parameterType="map"
 		resultType="com.sp.app.interior.Interior"> <!-- map에는 condition, keyword, offset, rows 등이 저장되어 넘어온다 -->
 		SELECT i.num, i.userId, userName, subject, content, category, hitCount, register_date , mainImg
@@ -74,21 +76,21 @@
 		</if>
 		
 	</select>
-	
+	<!-- 게시판번호로 게시판 찾기  -->
 	<select id="readBoard" parameterType="Integer" resultType="com.sp.app.interior.Interior">
 		SELECT num, i.userId,userName, subject, content, category, hitCount, register_date ,mainImg
 		FROM interior i
 		JOIN member1 m ON i.userId = m.userId
 		WHERE num = #{num}
 	</select>
-	<!-- 게시판 리드 -->
+	<!-- 인테리어 서브이미지 불러오기  -->
 	<select id="readBoardImg" parameterType="Integer" resultType="com.sp.app.interior.Interior">
 		Select filenum , num , saveFilename 
 		FROM InteriorFile 
 		WHERE num = #{num}
 		ORDER BY num
 	</select>
-	
+	<!-- 접속시 조회수 +1  -->
 	<update id="updateHitCount" parameterType="Integer">
 		UPDATE interior SET hitCount = hitCount+1 WHERE num=#{num} 
 	</update>
@@ -98,21 +100,42 @@
 		FROM InteriorFile
 	    WHERE fileNum=#{filenum}      
 	</select>
-	
+	<!-- 선택 파일 삭제  -->
 	<delete id="deleteFile" parameterType="map">
 		DELETE FROM InteriorFile WHERE ${field} = #{num}
 	</delete>
-
+ <!-- 메인이미지 수정시 -->
 	<update id="interiorUpdate2" parameterType="com.sp.app.interior.Interior">
 		UPDATE interior SET subject = #{subject} , content= #{content} , category= #{category} , mainImg = #{mainImg}
 		WHERE num=#{num}
 	</update>	
-	
+	<!-- 메인이미지 수정 하지 않을시 -->
 	<update id="interiorUpdate1" parameterType="com.sp.app.interior.Interior">
 		UPDATE interior SET subject = #{subject} , content= #{content} , category= #{category} 
 		WHERE num=#{num}
 	</update>
 	
+	
+	
+	<!-- 좋아요 추가 -->
+	<insert id="insertInteriorLike" parameterType="map">
+		INSERT INTO interior_like(num, userId) VALUES (#{num}, #{userId})
+	</insert>
+      
+	<!-- 게시글 좋아요 개수 -->
+	<select id="interiorLikeCount" parameterType="Integer" resultType="Integer">
+		SELECT COUNT(*) FROM interior_like WHERE num=#{num}
+	</select>
+
+	<!-- 유저당 게시글 좋아요 여부 확인 -->
+	<select id="readInteriorLike" parameterType="map" resultType="Integer">
+		SELECT NVL(COUNT(*),0) FROM interior_like WHERE num=#{num} AND userId=#{userId}
+	</select>
+	
+	<!-- 게시글 좋아요 삭제 -->
+	<delete id="deleteInteriorLike" parameterType="map">
+		DELETE FROM interior_like WHERE num=#{num} AND userId=#{userId}
+	</delete>
 	
 	
 </mapper>

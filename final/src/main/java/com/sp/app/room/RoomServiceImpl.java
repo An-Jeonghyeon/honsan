@@ -109,12 +109,19 @@ public class RoomServiceImpl implements RoomService{
 			}
 			
 			//메인 이미지
-			MultipartFile mainImg = dto.getMainUpload();
-			String mainFilename = fileManager.doFileUpload(mainImg, pathname);
-			dto.setMainimg(mainFilename);
+			if(! dto.getMainUpload().isEmpty()) {
+				MultipartFile mainImg = dto.getMainUpload();
+				String mainFilename = fileManager.doFileUpload(mainImg, pathname);
+				dto.setMainimg(mainFilename);
+				
+				dao.updateData("room.updateRoom", dto);
+				dao.updateData("room.updateRoomlist", dto);
+			}else {
+				
+				dao.updateData("room.updateRoom", dto);
+				dao.updateData("room.updateRoomlist2", dto);
+			}
 			
-			dao.updateData("room.updateRoom", dto);
-			dao.updateData("room.updateRoomlist", dto);
 			//  파일 처리
 			if(! dto.getUpload().isEmpty()) {
 				for(MultipartFile mf:dto.getUpload()) {

@@ -253,6 +253,7 @@ public class RoomController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		//return null;
 		return "redirect:/room/roomlist?page="+page;
 	}
 	
