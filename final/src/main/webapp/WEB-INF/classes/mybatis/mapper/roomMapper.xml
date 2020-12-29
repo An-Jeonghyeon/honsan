@@ -114,6 +114,17 @@
 		WHERE num=#{num}
 	</update>
 
+	<update id="updateRoomlist2" parameterType="com.sp.app.room.Room">
+		UPDATE roomlist SET
+		addr1=#{addr1}, addr2=#{addr2, jdbcType=VARCHAR},
+		dealtype=#{dealtype, jdbcType=VARCHAR}, depo=#{depo}, mrent=#{mrent},
+		adcost=#{adcost},
+		aditem=#{aditem}, totfloor=#{totfloor}, corfloor=#{corfloor},
+		roomtype=#{roomtype}, m2=#{m2}, pyeoug=#{pyeoug}, elev=#{elev},
+		park=#{park}, options=#{options}, movedate=#{movedate}
+		WHERE num=#{num}
+	</update>
+	
 	<delete id="deleteRoom" parameterType="Integer">
 		DELETE FROM room WHERE
 		num=#{num}
