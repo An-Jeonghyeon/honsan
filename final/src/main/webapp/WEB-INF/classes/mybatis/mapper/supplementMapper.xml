@@ -101,6 +101,11 @@
 		DELETE FROM supplement_like WHERE num=#{num} AND userId=#{userId}
 	</delete>
 	
+	<!-- 유저당 게시글 좋아요 여부 확인 -->
+	<select id="readSupplementLike" parameterType="map" resultType="Integer">
+		SELECT NVL(COUNT(*),0) FROM supplement_like WHERE num=#{num} AND userId=#{userId}
+	</select>
+	
 	<!-- 게시글 추천수 -->
 	<select id="supplementLikeCount" parameterType="Integer" resultType="Integer">
 		SELECT COUNT(*) FROM supplement_like WHERE num=#{num}

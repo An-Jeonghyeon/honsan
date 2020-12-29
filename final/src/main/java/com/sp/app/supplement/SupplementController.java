@@ -193,6 +193,7 @@ public class SupplementController {
 			@RequestParam String page,
 			@RequestParam(defaultValue = "all") String condition,
 			@RequestParam(defaultValue = "") String keyword,
+			HttpSession session,
 			Model model
 			) throws Exception {
 
@@ -223,7 +224,23 @@ public class SupplementController {
 		Supplement preReadDto = service.preReadSupplement(map);
 		Supplement nextReadDto = service.nextReadSupplement(map);
 		
+		// 좋아요 여부 가져오기
+		SessionInfo info=(SessionInfo)session.getAttribute("member");
+
+		Map<String, Object> paramMap=new HashMap<>();
+		paramMap.put("num", num);
+		paramMap.put("userId", info.getUserId());
+		
+		int readcookTipLike=0;
+		
+		try {
+			readcookTipLike = service.readSupplementLike(paramMap);		
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 		//보내기
+		model.addAttribute("userLike", readcookTipLike);
 		model.addAttribute("dto", dto);
 		model.addAttribute("page", page);
 		model.addAttribute("query", query);

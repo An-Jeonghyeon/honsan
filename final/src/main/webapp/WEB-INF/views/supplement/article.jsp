@@ -65,8 +65,9 @@ function ajaxHTML(url, method, query, selector){
 
 //게시글 추천 
 $(function() {
-// 	 var likebtndiv = document.getElementById("likebtn");
-// 	 likebtndiv.addEventListener('click', function (event) {
+	if($("#likebtn").attr("data-userLike")=="1") {
+		$(".h-likecircle").css("background", "#f3c04ac7")	
+	}
 	$("#likebtn").click(function(){
 		var url="${pageContext.request.contextPath}/supplement/insertSupplementLike";
 		var num ="${dto.num}";
@@ -370,7 +371,7 @@ $(document).ready(function() {
 	             </pre>
 	        </div>
 	        <div class="h-LikeBox">
-	            <div class="h-likecircle" id="likebtn">
+	            <div class="h-likecircle" id="likebtn" data-userLike="${userLike}">
 	                <div class="h-likelike"><i class="fas fa-thumbs-up fa-2x"></i></div>
 	                <div class="h-likeCountdiv"><span id="slikeCount"> ${dto.likeCount}</span></div>
 	            </div>

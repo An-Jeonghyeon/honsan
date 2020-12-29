@@ -26,6 +26,7 @@ public interface SupplementService {
 	public void insertSupplementLike(Map<String, Object> map) throws Exception;
 	public int supplementLikeCount(int num);
 	public void deleteSupplementLike(Map<String, Object> map) throws Exception;
+	public int readSupplementLike(Map<String, Object> map) throws Exception;
 	
 	//댓글(인서트,딜리트는 답글도 같이)
 	public void insertReply(Reply dto) throws Exception;

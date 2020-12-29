@@ -301,4 +301,17 @@ public class SupplementServiceImpl implements SupplementService {
 	}
 
 
+	@Override
+	public int readSupplementLike(Map<String, Object> map) throws Exception {
+		int result=0;
+		try {
+			result=dao.selectOne("supplement.readSupplementLike", map);
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+		}
+		return result;
+	}
+
+
 }
