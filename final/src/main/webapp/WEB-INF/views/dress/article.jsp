@@ -300,6 +300,25 @@ $("body").on("click",".btnSendReplyLike",function(){
 		ajaxJSON(url,"post", query,fn);
 	});
 });
+//댓글별 답글 삭제
+$(function(){
+	 $("body").on("click",".ReplyListDeleteButton",function(){
+		 if(! confirm("게시물을 삭제 하시겠습니까?")){
+			 return;
+		 }
+		 var replyNum=$(this).attr("data-replyNum");
+		 var answer =$(this).attr("data-answer");
+		 
+		 var url="${pageContext.request.contextPath}/dress/deleteDressReply";
+		 var query ="replyNum="+replyNum+"&mode=answer";
+		 
+		 var fn = function(data){
+			listReplyAnswer(answer);
+			countReplyAnswer(answer);
+		 };
+		 ajaxJSON(url, "post",query,fn);
+	 })
+}) 
 </script>
 
 
