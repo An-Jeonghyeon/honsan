@@ -289,7 +289,7 @@ $("body").on("click",".btnSendReplyLike",function(){
 		if(state==="true"){
 			var likeCount=data.likeCount;
 			var disLikeCount= data.disLikeCount;
-			$btn.children("span").html(likeCount);
+			$btn.children("a").html(likeCount);	
 			$btn.children("span").html(disLikeCount);
 			
 		}else if(state==="false"){
