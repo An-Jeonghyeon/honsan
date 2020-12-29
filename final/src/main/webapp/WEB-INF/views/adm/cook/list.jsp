@@ -7,9 +7,9 @@
 	<div id="page-wrapper">
 	  	
 	  	<div class="header"> 
-           <h1 class="page-header">
+           <h2 class="page-header jyheader">
                	[우리집냉장고] 관리
-           </h1>
+           </h2>
            
            <!-- 각 게시판제목 아래 서브메뉴(ajax로 하면 될듯?)   -->
 			<ol class="breadcrumb">

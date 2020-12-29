@@ -1,0 +1,240 @@
+@charset "UTF-8";
+
+.challengeCreate {
+    width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+    /* background: yellow; */
+    box-sizing: border-box;
+}
+.jyheader {
+	font-family: 'Noto Sans KR', sans-serif;
+}
+/*  목록 */
+/* 기본정보 */
+.ch_content_basic {
+    width: 100%;
+    /* background: wheat; */
+    margin:  0 auto;
+    padding-top: 50px;
+    text-align: center;
+}
+.basic_title {
+    text-align: left;
+    font-size: 25px;
+    font-weight: 900;
+    margin: 0 100px 20px;
+    border-left: 5px solid;
+    padding-left: 10px;
+}
+.ch_table {
+    table-layout:fixed; 
+    border:1px solid #d7d5d5; 
+    line-height:180%;
+    width: 1000px;
+    margin: 0 auto;
+    border-collapse: collapse;
+}
+.ch_table tr {
+    width:110px; 
+    padding:10px 0 8px 20px; 
+    border-top:1px solid #e8e8e8; 
+    border-right:1px solid #e8e8e8; 
+    background-color:#fbfafa; 
+    text-align:left; 
+    font-weight:normal; 
+    vertical-align:middle; 
+}
+.ch_table td {
+    width:auto; 
+    padding:10px 0 8px 10px; 
+    border-top:1px solid #e8e8e8; 
+}
+.ch_table th {
+    border-top:1px solid #e8e8e8; 
+}
+.ch_table th {
+    width: 200px;
+    background: #fcf8e3;
+    border: 1px solid #ccc;
+    text-align: center;
+}
+.ch_table input[type=text]{
+    height: 30px;
+}
+.chname input {
+    width: 750px;
+    padding: 0 10px;
+}
+.chsub input {
+    width: 750px;
+    padding: 0 10px;
+}
+.chdet textarea {
+    width: 750px;
+    padding: 10px 10px;
+}
+.chdate input {
+    width: 80px;
+    text-align: right;
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+.chkcal input {
+    width: 80px;
+    text-align: right;
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+/* 상세정보 */
+.ch_content_more {
+    width: 1200px;
+    margin:  0 auto;
+    padding-top: 50px;
+    text-align: center;
+    padding-bottom: 50px;
+    /* background: yellowgreen; */
+}
+.more_title {
+    text-align: left;
+    font-size: 25px;
+    font-weight: 900;
+    margin: 0 100px 20px;
+    border-left: 5px solid;
+    padding-left: 10px;
+}
+.chperiod input{
+    width: 50px;
+    text-align: right;
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+.morebtn button {
+ 	width: 100px;
+    height: 35px;
+    margin-right: 10px;
+    border-radius: 8px;
+    border: 1px solid black;
+    background: white;
+    outline: none;
+    font-weight: 800;
+    box-shadow: 5px 5px 5px 2px rgba(56, 55, 55, 0.425);
+    margin-top: 10px;
+}
+
+.morebtn button:active {
+    transform: scale(0.95);
+}
+/* 버튼 */
+.h-buttonBoxBody{
+    width: 280px;
+    height: 50px;
+    margin: 40px auto 90px;
+     /* TestBackground */
+    /* background-color: rgb(89, 89, 179);    */
+}
+#CencelSubmit{
+    width: 130px;
+    height: 40px;
+    font-size: 16px;
+    color: white;
+    background: #ccc;
+    border : none;
+    cursor : pointer;
+    border-radius: 5px;
+    font-weight: 700;
+}
+#writeSubmit{
+    width: 130px;
+    height: 40px;
+    transition: 0.1s;
+    font-size: 16px;
+    color: white;
+    background: #f3c04ac7;
+    border : none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: 700;
+}
+
+/* 상세 추가시 나타나는 테이블 */
+.moreplustable {
+    table-layout:fixed; 
+    border:1px solid #d7d5d5; 
+    line-height:180%;
+    width: 1000px;
+    margin: 0 auto;
+    border-collapse: collapse;
+    margin: 20px auto 100px;
+}
+.moreplustable tr {
+	height: 35px;
+}
+.plusnum {
+    width: 10%;
+}
+.plusdate {
+    width: 20%;
+}
+.plustotal {
+    width: 10%;
+}
+.pluscontent {
+    width: 60%;
+}
+.moreplustable tr {
+    border : 1px solid #d7d5d5;
+}
+.moreplustable tr td {
+    border : 1px solid #d7d5d5;
+    background: #fbfafa;
+}
+.moreplustable tr th {
+    border : 1px solid #d7d5d5;
+    background: #fcf8e3;
+}
+.pluscontent_ {
+    display: inline-block;
+    width: 94%;
+    margin-left: 8px;
+    box-sizing: border-box;
+        vertical-align: center;
+}
+.pluscontent_btn {
+   display: inline-block;
+    width: 4%;
+    vertical-align: center;
+}
+.plusdelete {
+/*     width: 20px;
+ */    height: 25px;
+/*     border-radius: 3px;
+    outline: none;
+    border: 1px solid black;
+    background: white; */
+    line-height: 25px;
+}
+.plusdelete:active {
+    transform: scale(1.05);
+}
+
+
+.#bootstrap-overrides input[type=text]{
+    background-color: white;
+    border: none;
+    border : 1px solid black;
+    border-radius: 0;
+    outline: none;
+    height: 30px;
+    width: 100%;
+    font-size: 14px;
+    margin: 0 0 0 0;
+    padding: 0;
+    box-shadow: none;
+    box-sizing: content-box;
+    transition: all 0.3s;
+}
+input[type=text] {
+	margin-bottom: 0!important;
+	
+}
