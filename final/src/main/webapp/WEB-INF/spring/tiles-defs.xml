@@ -28,12 +28,10 @@
 	</definition>
 
 
-   <!-- 3단 관리자 -->
-	<definition name=".admLayout" template="/WEB-INF/views/adm/layout.jsp">
-		
-	  	
+   <!-- 3단 관리자(우리꺼) -->
+	<definition name=".admLayout" template="/WEB-INF/views/adm/layout/layout.jsp">
+	  	<put-attribute name="header" value="/WEB-INF/views/adm/layout/header.jsp" />
 		<put-attribute name="body" value="/WEB-INF/views/adm/main/main.jsp" />
-
 	</definition>
 	<definition name=".adm.*.*.*" extends=".admLayout">
 		<put-attribute name="body" value="/WEB-INF/views/adm/{1}/{2}/{3}.jsp"/>
