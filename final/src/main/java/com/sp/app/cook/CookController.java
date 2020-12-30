@@ -18,6 +18,12 @@ public class CookController {
 		return ".cook.honCooq.honCooqMain";	
 	}
 	
-	
-	
+	// 메인으로 가기..?
+	@RequestMapping("main")
+	public String honCooq(
+			Model model
+			) throws Exception {
+		
+		return ".cook.honCooq.honCooqMain";
+	}
 }

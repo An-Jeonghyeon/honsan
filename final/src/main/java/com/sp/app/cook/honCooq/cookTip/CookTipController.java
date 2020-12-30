@@ -30,8 +30,6 @@ public class CookTipController {
 	private CookTipService service;
 	@Autowired
 	private MyUtil myUtil;
-	@Autowired
-	private FileManager filemanager;
 	
 	@RequestMapping(value = "list")
 	public String list(
