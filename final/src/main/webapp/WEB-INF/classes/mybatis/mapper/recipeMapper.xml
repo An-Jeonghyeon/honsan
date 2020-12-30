@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="recipe">
+	<sql id="where-list">		
+		<choose>
+			<when test="condition == 'all' ">
+			   ( INSTR(recipe_nm_ko, #{keyword}) &gt; 0
+		          OR INSTR(cooking_dc, #{keyword}) &gt; 0
+		        )
+			</when>
+			<when test="condition == 'subject'">
+			    INSTR(recipe_nm_ko, #{keyword}) &gt; 0
+			</when>
+			<when test="condition == 'content'">
+			    INSTR(cooking_dc, #{keyword}) &gt; 0
+			</when>
+			<otherwise>
+			    INSTR(${condition}, #{keyword}) &gt; 0
+			</otherwise>
+		</choose>
+		
+	</sql>	
+	
+	<!-- 글개수 -->
+	<select id="dataCount" parameterType="map" resultType="Integer">
+		SELECT NVL(COUNT(*), 0)
+		FROM  recipe_basic
+		<where>
+			<if test="keyword!=null and keyword!='' ">
+				<include refid="where-list"/> 
+			</if>
+		</where>   
+	</select>	
+	
+	<!-- 글리스트 -->
+    <select id="listRecipe" parameterType="map" resultType="com.sp.app.cook.honCooq.recipe.Recipe">
+		SELECT	rb.recipe_id, recipe_nm_ko, sumry, nation_code, nation_nm, ty_code, ty_nm,
+				cooking_time, qnt, level_nm, img_url,
+				irdnt_nm,
+				
+		       	NVL(recipeLikeCount, 0) recipeLikeCount, 
+   			   	NVL(replyCount, 0) replyCount				
+   			   
+		FROM recipe_basic rb
+		
+		LEFT OUTER JOIN (
+			SELECT recipe_id, LISTAGG(irdnt_nm, ',')  WITHIN  GROUP(ORDER BY recipe_id)  irdnt_nm
+            FROM  recipe_ingre
+            WHERE irdnt_ty_nm = '주재료'
+            GROUP BY recipe_id
+		) ri ON rb.recipe_id = ri.recipe_id
+		
+		LEFT OUTER JOIN (
+			SELECT recipe_id, COUNT(*) recipeLikeCount 
+			FROM recipe_like
+			GROUP BY recipe_id
+		) rlc ON rb.recipe_id = rlc.recipe_id
+		
+		LEFT OUTER JOIN (
+			SELECT recipe_id, COUNT(*) replyCount 
+			FROM recipe_reply 
+			WHERE answer = 0
+			GROUP BY recipe_id
+		) rr ON rb.recipe_id = rr.recipe_id
+		
+		<where>
+			<if test="keyword!=null and keyword!='' ">
+				<include refid="where-list"/> 
+			</if>
+		</where>   
+		ORDER BY rb.recipe_id DESC
+		OFFSET #{offset} ROWS FETCH FIRST #{rows} ROWS ONLY
+	</select>	
+
+	<!-- 글보기(article) -->
+	<select id="readRecipe" parameterType="Integer" resultType="com.sp.app.cook.honCooq.recipe.Recipe">
+		SELECT	rb.recipe_id, recipe_nm_ko, sumry, nation_code, nation_nm, ty_code, ty_nm,
+				cooking_time, qnt, level_nm, img_url,
+				irdnt_sn, irdnt_nm, irdnt_cpcty, irdnt_ty_code, irdnt_ty_nm,
+				cooking_no, cooking_dc, stre_step_image_url, step_tip,			
+		       	NVL(recipeLikeCount, 0) recipeLikeCount 
+		
+		FROM recipe_basic rb
+		
+		LEFT OUTER JOIN (
+			SELECT recipe_id, irdnt_sn, irdnt_nm, irdnt_cpcty, irdnt_ty_code, irdnt_ty_nm
+			FROM recipe_ingre
+			GROUP BY recipe_id
+		) ri ON rb.recipe_id = ri.recipe_id
+		
+		LEFT OUTER JOIN (
+			SELECT recipe_id, cooking_no, cooking_dc, stre_step_image_url, step_tip
+			FROM recipe_process
+			GROUP BY recipe_id
+		) rp ON rb.recipe_id = rp.recipe_id
+		
+		LEFT OUTER JOIN (
+			SELECT recipe_id, COUNT(*) recipeLikeCount 
+			FROM recipe_like
+			GROUP BY recipe_id
+		) rlc ON rb.recipe_id = rlc.recipe_id
+		
+		WHERE rb.recipe_id = #{recipe_id}	                      
+	</select>
+	
+	<!-- 조회수 증가 -->
+	<!-- 
+	<update id="updateHitCount" parameterType="Integer">
+		UPDATE cookTip SET hitCount = hitCount+1 WHERE num = #{num}
+	</update>	
+	 -->
+	
+	<!-- 이전글 -->
+	<select id="preReadRecipe" parameterType="map" resultType="com.sp.app.cook.honCooq.recipe.Recipe">
+		SELECT recipe_id, recipe_nm_ko, cooking_dc
+		FROM recipe_basic
+		<where>
+			<if test="keyword != null and keyword != '' ">
+				<include refid="where-list"/>
+			</if>
+			AND (recipe_id &gt; #{recipe_id})
+		</where>
+		ORDER BY recipe_id ASC
+		FETCH FIRST 1 ROWS ONLY                      
+	</select>
+	
+	<!-- 다음글 -->	
+	<select id="nextReadRecipe" parameterType="map" resultType="com.sp.app.cook.honCooq.recipe.Recipe">
+		SELECT recipe_id, recipe_nm_ko, cooking_dc
+		FROM recipe_basic
+		<where>
+			<if test="keyword != null and keyword != '' ">
+				<include refid="where-list"/>
+			</if>
+			AND (recipe_id &lt; #{recipe_id})
+		</where>
+		ORDER BY recipe_id DESC
+		FETCH FIRST 1 ROWS ONLY                      
+	</select>
+	
+	<!-- 수정 -->
+	<!-- 
+	<update id="updateCookTip" parameterType="com.sp.app.cook.honCooq.recipe.Recipe">
+		UPDATE cookTip SET category=#{category}, subject=#{subject}, content=#{content}
+				WHERE num=#{num} AND userId = #{userId}
+	</update>	
+	 -->
+
+
+	<!-- 삭제 -->
+	<!-- 
+	<delete id="deleteCookTip" parameterType="map">
+		DELETE FROM cookTip WHERE num = #{num}
+		<if test="userId != 'admin' ">
+			AND userId = #{userId}
+		</if>
+	</delete>
+	 -->
+
+	<!-- 게시글 좋아요 추가 -->
+	<insert id="insertRecipeLike" parameterType="map">
+		INSERT INTO recipe_like(recipe_id, userId) VALUES (#{recipe_id}, #{userId})
+	</insert>
+      
+	<!-- 게시글 좋아요 개수 -->
+	<select id="recipeLikeCount" parameterType="Integer" resultType="Integer">
+		SELECT COUNT(*) FROM recipe_like WHERE recipe_id=#{recipe_id}
+	</select>
+	
+	<!-- 유저당 게시글 좋아요 여부 확인 -->
+	<select id="readRecipeLike" parameterType="map" resultType="Integer">
+		SELECT NVL(COUNT(*),0) FROM recipe_like WHERE recipe_id=#{recipe_id} AND userId=#{userId}
+	</select>
+	
+	<!-- 게시글 좋아요 삭제 -->
+	<delete id="deleteRecipeLike" parameterType="map">
+		DELETE FROM recipe_like WHERE recipe_id=#{recipe_id} AND userId=#{userId}
+	</delete>
+	
+	<!-- 댓글 추가(insert) -->
+	<insert id="insertRecipeReply" parameterType="com.sp.app.cook.honCooq.recipe.Reply">
+		INSERT INTO recipe_reply (replyNum, recipe_id, userId, content, answer, register_date)
+			VALUES (recipeR_seq.NEXTVAL, #{recipe_id}, #{userId}, #{content}, #{answer}, SYSDATE)
+	</insert>	
+	
+	<select id="recipeReplyCount" parameterType="map" resultType="Integer">
+		SELECT NVL(COUNT(*), 0) FROM recipe_reply
+		WHERE recipe_id=#{recipe_id} AND answer=0
+	</select>
+
+	<!-- 댓글리스트 -->
+	<select id="listRecipeReply" parameterType="map" resultType="com.sp.app.cook.honCooq.recipe.Reply">
+		SELECT rr.replyNum, rr.userId, userName, recipe_id, content, rr.register_date, 
+		       NVL(answerCount, 0) answerCount,
+		       NVL(likeCount, 0) likeCount,
+		       NVL(disLikeCount, 0) disLikeCount
+		FROM recipe_reply rr	
+		JOIN member1 m ON c.userId = m.userId
+		LEFT OUTER JOIN (
+			SELECT answer, COUNT(*) answerCount
+			FROM recipe_reply WHERE answer!=0 GROUP BY answer
+		) a ON rr.replyNum = a.answer
+		LEFT OUTER JOIN (
+			SELECT replyNum, COUNT(DECODE(replyLike, 1, 1)) likeCount,
+				   COUNT(DECODE(replyLike, 0, 1)) disLikeCount
+			FROM recipe_replyLike GROUP BY replyNum
+		) b ON rr.replyNum = b.replyNum
+		WHERE recipe_id=#{recipe_id}  AND rr.answer=0
+		ORDER BY rr.replyNum ASC
+		OFFSET #{offset} ROWS FETCH FIRST #{rows} ROWS ONLY
+	</select>	
+
+	<!-- 댓글 및 답글 삭제 -->
+	<delete id="deleteRecipeReply" parameterType="map">
+		DELETE FROM recipe_reply
+		WHERE replyNum=#{replyNum}
+		<if test="mode=='reply'">
+			OR answer=#{replyNum}
+		</if>
+	</delete>
+	
+	<!-- 댓글의 답글 리스트 -->
+	<select id="listRecipeReplyAnswer" parameterType="Integer" resultType="com.sp.app.cook.honCooq.recipe.Reply">
+		SELECT replyNum, recipe_id, rr.userId, userName, content, register_date, answer
+		FROM recipe_reply rr
+		JOIN member1 m ON rr.userId = m.userId
+		WHERE answer = #{answer}
+		ORDER BY replyNum ASC
+	</select>
+	
+	<!-- 댓글의 답글 개수 -->
+	<select id="recipeReplyAnswerCount" parameterType="Integer" resultType="Integer">
+		SELECT NVL(COUNT(*), 0)
+		FROM recipe_reply WHERE answer = #{answer}
+	</select>
+	
+	<!-- 좋아요/싫어요 추가 -->
+	<insert id="insertRecipeReplyLike" parameterType="map">
+		INSERT INTO recipe_replyLike(replyNum, userId, replyLike)
+			VALUES (#{replyNum}, #{userId}, #{replyLike})
+	</insert>
+	
+	<!-- 좋아요/싫어요 개수 -->
+	<select id="recipeReplyLikeCount" parameterType="map" resultType="map">
+		SELECT COUNT(DECODE(replyLike, 1, 1)) likeCount,
+			   COUNT(DECODE(replyLike, 0, 1)) disLikeCount
+		FROM recipe_replyLike WHERE replyNum = #{replyNum}
+	</select>	
+</mapper>

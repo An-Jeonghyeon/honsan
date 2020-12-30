@@ -13,7 +13,7 @@
               </div>
               
               <div class="menuBox"> <a href="${pageContext.request.contextPath}">오늘 뭐 입어?</a></div>
-              <div class="menuBox"> <a href="${pageContext.request.contextPath}">혼자 뭐 먹지?</a></div>
+              <div class="menuBox"> <a href="${pageContext.request.contextPath}/cook/honCooq/main">혼자 뭐 먹지?</a></div>
               <div class="menuBox"> <a href="${pageContext.request.contextPath}/room/roomlist">방구할래?</a></div>
               <div class="menuBox"> <a href="${pageContext.request.contextPath}">인테리어</a></div>
               <div class="menuBox"> <a href="${pageContext.request.contextPath}/supplement/list">건강챙기기</a></div>
@@ -56,7 +56,7 @@
 
                   </ul>
                   <ul class="menuObject">
-                      <li> <a href="${pageContext.request.contextPath}/cook/honCooq/cookTip/list">HONCOOQ</a></li>
+                      <li> <a href="${pageContext.request.contextPath}/cook/honCooq/honCooq/main">HONCOOQ</a></li>
                       <li> <a href="${pageContext.request.contextPath}">우리집 냉장고</a></li>
                       <li> <a href="${pageContext.request.contextPath}">우리동네 마트</a></li>
                       <li> <a href="${pageContext.request.contextPath}">나만의 요리 후기</a></li>
