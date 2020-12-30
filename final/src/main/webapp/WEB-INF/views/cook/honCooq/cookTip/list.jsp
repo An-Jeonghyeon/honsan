@@ -75,6 +75,7 @@ function ajaxHTML(url, method, query, selector) {
 </script>
 
 <div class="cookTip_list-container">
+<!-- 
 	<div class="cookTip_list-header">
 		<div class="cookTip_list-banner">아아 여기는 배너</div>
 		<div class="honCooq-tabs">
@@ -83,6 +84,7 @@ function ajaxHTML(url, method, query, selector) {
 			<button type="button" class="honCooq-tab-button">오늘 뭐 먹지?</button>
 		</div>
 	</div>
+ -->
 
 	<div class="cookTip_list-body">
 		<div class="cookTip_inner-tab">

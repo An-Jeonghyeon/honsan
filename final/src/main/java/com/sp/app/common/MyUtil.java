@@ -223,6 +223,62 @@ public class MyUtil {
 
         return sb.toString();
     }
+    
+    /**
+     * javascript를 이용하여 페이징 처리를하는 메소드 : javascript의 지정한 함수(methodName)를 호출
+     * @param current_page		화면에 출력할 페이지 번호
+     * @param total_page			총 페이지 수
+     * @param methodName		호출할 자바스크립트 함수명
+     * @return							페이징 처리 결과
+     */
+    public String pagingMethod2(int current_page, int total_page, String methodName) {
+    	if(current_page < 1 || total_page < 1) {
+    		return "";
+    	}
+    	
+    	int numPerBlock = 10;   // 리스트에 나타낼 페이지 수
+    	int currentPageSetUp;
+    	int n;
+    	int page;
+    	StringBuffer sb=new StringBuffer();
+    	
+    	// 표시할 첫 페이지
+    	currentPageSetUp = (current_page / numPerBlock) * numPerBlock;
+    	if (current_page % numPerBlock == 0) {
+    		currentPageSetUp = currentPageSetUp - numPerBlock;
+    	}
+    	
+		sb.append("<div class='cookTip_list-paging'>");
+		
+		// 처음페이지, 이전(10페이지 전)
+		n=current_page-numPerBlock;
+		if(total_page > numPerBlock && currentPageSetUp > 0) {
+			sb.append("<div class='cookTip_list-paging'><a onclick='"+methodName+"(1);'>처음</a></div>");
+			sb.append("<div class='cookTip_list-paging'><a onclick='"+methodName+"("+n+");'>&lt;</a></div>");
+		}	
+		
+		// 바로가기
+		page=currentPageSetUp+1;
+		while(page<=total_page && page <=(currentPageSetUp+numPerBlock)) {
+			if(page==current_page) {
+				sb.append("<div class='cookTip_list-pagingBody curBox'>"+page+"</div>");
+			} else {
+				sb.append("<div class='cookTip_list-pagingBody numBox'><a onclick='"+methodName+"("+page+");'>"+page+"</a></div>");
+			}				
+			page++;
+		}		
+		
+		// 다음(10페이지 후), 마지막페이지
+		n=current_page+numPerBlock;
+		if(n>total_page) n=total_page;
+		if(total_page-currentPageSetUp>numPerBlock) {
+			sb.append("<div class='cookTip_list-paging'><a onclick='"+methodName+"("+n+");'>&gt</a></div>");
+			sb.append("<div class='cookTip_list-paging'><a onclick='"+methodName+"("+total_page+");'>끝</a></div>");
+		}
+		sb.append("</div>");
+
+    	return sb.toString();
+    }
 
     /**
      * 문자열에서 HTML 태그를 제거하는 메소드

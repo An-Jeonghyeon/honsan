@@ -10,7 +10,7 @@ public class Recipe {
 	private int ty_code;
 	private String ty_nm; 		// 음식분류 : 빵/과자, 구이, 도시락/간식, 볶음..
 	private String cooking_time; // 요리시간
-	private int qnt; 			// 음식양(예: 3인분)
+	private String qnt; 			// 음식양(예: 3인분)
 	private String level_nm; 	// 난이도
 	private String img_url; 	// 대표 이미지 url
 
@@ -27,6 +27,8 @@ public class Recipe {
 	private String stre_step_image_url;	// 과정별 이미지
 	private String step_tip;	// 과정별 팁
 	
+	private int replyCount;
+	private int recipeLikeCount;		
 	
 	public int getRecipe_id() {
 		return recipe_id;
@@ -76,10 +78,10 @@ public class Recipe {
 	public void setCooking_time(String cooking_time) {
 		this.cooking_time = cooking_time;
 	}
-	public int getQnt() {
+	public String getQnt() {
 		return qnt;
 	}
-	public void setQnt(int qnt) {
+	public void setQnt(String qnt) {
 		this.qnt = qnt;
 	}
 	public String getLevel_nm() {
@@ -147,6 +149,18 @@ public class Recipe {
 	}
 	public void setStep_tip(String step_tip) {
 		this.step_tip = step_tip;
+	}
+	public int getReplyCount() {
+		return replyCount;
+	}
+	public void setReplyCount(int replyCount) {
+		this.replyCount = replyCount;
+	}
+	public int getRecipeLikeCount() {
+		return recipeLikeCount;
+	}
+	public void setRecipeLikeCount(int cookTipLikeCount) {
+		this.recipeLikeCount = cookTipLikeCount;
 	}
 
 	

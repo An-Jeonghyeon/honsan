@@ -37,22 +37,19 @@
     <select id="listRecipe" parameterType="map" resultType="com.sp.app.cook.honCooq.recipe.Recipe">
 		SELECT	rb.recipe_id, recipe_nm_ko, sumry, nation_code, nation_nm, ty_code, ty_nm,
 				cooking_time, qnt, level_nm, img_url,
+				irdnt_nm,
+				
 		       	NVL(recipeLikeCount, 0) recipeLikeCount, 
    			   	NVL(replyCount, 0) replyCount				
    			   
 		FROM recipe_basic rb
 		
 		LEFT OUTER JOIN (
-			SELECT recipe_id, irdnt_sn, irdnt_nm, irdnt_cpcty, irdnt_ty_code, irdnt_ty_nm
-			FROM recipe_ingre
-			GROUP BY recipe_id
+			SELECT recipe_id, LISTAGG(irdnt_nm, ',')  WITHIN  GROUP(ORDER BY recipe_id)  irdnt_nm
+            FROM  recipe_ingre
+            WHERE irdnt_ty_nm = '주재료'
+            GROUP BY recipe_id
 		) ri ON rb.recipe_id = ri.recipe_id
-		
-		LEFT OUTER JOIN (
-			SELECT recipe_id, cooking_no, cooking_dc, stre_step_image_url, step_tip
-			FROM recipe_process
-			GROUP BY recipe_id
-		) rp ON rb.recipe_id = rp.recipe_id
 		
 		LEFT OUTER JOIN (
 			SELECT recipe_id, COUNT(*) recipeLikeCount 

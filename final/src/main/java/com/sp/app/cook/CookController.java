@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller("cook.cookController")
-@RequestMapping("/cook/*")
 public class CookController {
 	
 	@RequestMapping("/cook/honCooq/{menuItem}")
@@ -16,14 +15,5 @@ public class CookController {
 		
 		model.addAttribute("menuItem", menuItem);
 		return ".cook.honCooq.honCooqMain";	
-	}
-	
-	// 메인으로 가기..?
-	@RequestMapping("main")
-	public String honCooq(
-			Model model
-			) throws Exception {
-		
-		return ".cook.honCooq.honCooqMain";
 	}
 }

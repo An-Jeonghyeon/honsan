@@ -27,13 +27,6 @@ function recipe_searchList() {
 
 	<div class="recipe_list-body">
 		<div class="recipe_inner-tab">
-			<ul>
-				<li class="recipe_li_category"><a href="" class="recipe-tab" title="ALL">전체</a></li>
-				<li class="recipe_li_category"><a href="" class="recipe-tab" title="장보기"><i class="fas fa-shopping-basket"></i> 장보기</a></li>
-				<li class="recipe_li_category"><a href="" class="recipe-tab" title="조미료 관리"><i class="fas fa-spray-can"></i> 조미료 관리</a></li>
-				<li class="recipe_li_category"><a href="" class="recipe-tab" title="음식 보관법"><i class="fas fa-carrot"></i> 음식 보관법</a></li>
-				<li class="recipe_li_category"><a href="" class="recipe-tab" title="설거지 및 주방정리"><i class="fas fa-pump-soap"></i> 설거지 및 주방정리</a></li>
-			</ul>
 		</div>
 		
 		<div class="recipe_list-dataCountAndSearch">
@@ -46,8 +39,6 @@ function recipe_searchList() {
 							<option value="all" ${condition=="all"?"selected='selected'":""}>전체</option>
 							<option value="subject" ${condition=="subject"?"selected='selected'":""}>제목</option>
 							<option value="content" ${condition=="content"?"selected='selected'":""}>내용</option>
-							<option value="userName" ${condition=="userName"?"selected='selected'":""}>작성자</option>
-							<option value="created" ${condition=="created"?"selected='selected'":""}>등록일</option>
 						</select>
 						<input type="text" name="keyword" value="${keyword}" class="recipe_search-input">
 						<button type="button" class="recipe_search-btn" onclick="recipe_searchList()">검색</button>
@@ -61,25 +52,22 @@ function recipe_searchList() {
 			<div class="recipe_content-box">
 				<div class="recipe_content">
 							<c:choose>
-								<c:when test="${not empty dto.imageFilename}">
+								<c:when test="${not empty dto.img_url}">
 									<div class="recipe_content_info_img">
 										<div class="recipe_category_img">
-											<span>${dto.category!=null? dto.category : "설거지 및 주방정리"}</span>
+											<span>${dto.nation_nm!=null? dto.nation_nm : "미분류"}</span>
 										</div>
 				
 										<div class="recipe_listImg">
-											<img class="recipe_img" src="${dto.imageFilename}">
+											<img class="recipe_img" src="${dto.img_url}">
 										</div>
 
 										<div class="recipe_title_img"> <a
-											href="${articleUrl}&num=${dto.num}">${dto.subject} (${dto.replyCount})</a>
+											href="${articleUrl}&num=${dto.recipe_id}">${dto.recipe_nm_ko} (${dto.replyCount})</a>
 										</div>
 										<div class="recipe_flex">
 											<div class="recipe_dataAndUtil_img">
 												<ul>
-													<li class="recipe_li_data recipe_li_data-userName_img"><span><i class="far fa-user"></i> ${dto.userName}</span></li>
-													<li class="recipe_li_data recipe_li_data-created_img"><span><i class="far fa-clock"></i> ${dto.register_date}</span></li>
-													<li class="recipe_li_data recipe_li_data-hitCount_img"><span><i class="far fa-eye"></i> ${dto.hitCount}</span></li>
 													<li class="recipe_li_util recipe_li_util-reply_img"><span><i class="far fa-comment-dots"></i> ${dto.replyCount}</span></li>
 													<li class="recipe_li_util recipe_li_util-like_img"><span><i class="far fa-heart" id="recipe-like"></i>${dto.recipeLikeCount}</span></li>
 												</ul>
@@ -91,18 +79,11 @@ function recipe_searchList() {
 								<c:otherwise>
 									<div class="recipe_content_info">
 										<div class="recipe_category">
-											<span>${dto.category!=null? dto.category : "설거지 및 주방정리"}</span>
+											<span>${dto.nation_nm!=null? dto.nation_nm : "미분류"}</span>
 										</div>
 				
 										<div class="recipe_title"> <a
-											href="${articleUrl}&num=${dto.num}">${dto.subject} (${dto.replyCount})</a>
-										</div>
-										<div class="recipe_data">
-											<ul>
-												<li class="recipe_li_data recipe_li_data-userName"><span><i class="far fa-user"></i> ${dto.userName}</span></li>
-												<li class="recipe_li_data recipe_li_data-created"><span><i class="far fa-clock"></i> ${dto.register_date}</span></li>
-												<li class="recipe_li_data recipe_li_data-hitCount"><span><i class="far fa-eye"></i> ${dto.hitCount}</span></li>
-											</ul>
+											href="${articleUrl}&num=${dto.recipe_id}">${dto.recipe_nm_ko} (${dto.replyCount})</a>
 										</div>
 										<div class="recipe_util">
 											<ul>	<!-- db에서 댓글 수, 좋아요 수 가져오도록 차후 수정 -->
@@ -118,5 +99,10 @@ function recipe_searchList() {
 			</c:forEach>
 		</div>
 	</div>
+	<div class="cookTip_list-page">
+		<button type="button" class="cookTip_reload-btn" onclick="javascript:location.href='${pageContext.request.contextPath}/cook/honCooq/recipe/list';">새로고침</button>
+		
+		${dataCount==0?"등록된 게시물이 없습니다.":paging}
 
+	</div>	
 

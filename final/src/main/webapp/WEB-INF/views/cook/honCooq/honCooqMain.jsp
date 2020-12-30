@@ -6,15 +6,25 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/tabs.css" type="text/css">
 
 <script type="text/javascript">
+$(function() {
+		var url="${pageContext.request.contextPath}/cook/honCooq/recipe/list";
+		var query="pageNo="+1;
+		var search=$('form[name=honCooqSearchForm]').serialize();
+		query=query+"&"+search;
+		var selector = "#honCooq-tab-content"; // 결과 뿌리는 곳(jsp 제일 아래)
+		
+		ajaxHTML(url, "get", query, selector);
+});
+
 $(function(){
 	var menu = "${menuItem}";
-	$("#tab-"+menu).addClass("active");
-	listPage(1);
+	$("#tab-"+menu).addClass("active");	//	id=tab-recipe 등에 active 클래스를 줌.
+	listPage(1);	
 
-	$("ul.tabs li").click(function() {
+	$(".honCooq-tabs button").click(function() {
 		tab = $(this).attr("data-tab");
 		
-		$("ul.tabs li").each(function(){
+		$(".honCooq-tabs button").each(function(){
 			$(this).removeClass("active");
 		});
 		
@@ -107,21 +117,21 @@ function ajaxHTML(url, method, query, selector) {
 
 // 글리스트 및 페이징 처리
 function listPage(page) {
-	var $tab = $(".tabs .active"); // 누가 활성화 된 상태인지 가져오기
+	var $tab = $(".honCooq-tabs .active"); // 누가 활성화 된 상태인지 가져오기
 	var tab = $tab.attr("data-tab"); // 활성화된 db에서 자료 가져오기
 	
-	var url="${pageContext.request.contextPath}/customer/"+tab+"/list";
+	var url="${pageContext.request.contextPath}/cook/honCooq/"+tab+"/list";
 	var query="pageNo="+page;
-	var search=$('form[name=customerSearchForm]').serialize();
+	var search=$('form[name=honCooqSearchForm]').serialize();
 	query=query+"&"+search;
-	var selector = "#tab-content"; // 결과 뿌리는 곳(파일 제일 아래)
+	var selector = "#honCooq-tab-content"; // 결과 뿌리는 곳(jsp 제일 아래)
 	
 	ajaxHTML(url, "get", query, selector);
 }
 
 // 검색
 function searchList() {
-	var f=document.customerSearchForm;
+	var f=document.honCooqSearchForm;
 	f.condition.value=$("#condition").val();
 	f.keyword.value=$.trim($("#keyword").val());
 
@@ -130,7 +140,7 @@ function searchList() {
 
 // 새로고침
 function reloadBoard() {
-	var f=document.customerSearchForm;
+	var f=document.honCooqSearchForm;
 	f.condition.value="all";
 	f.keyword.value="";
 	
@@ -139,19 +149,19 @@ function reloadBoard() {
 
 // 글쓰기폼
 function insertForm() {
-	var $tab = $(".tabs .active");
+	var $tab = $(".honCooq-tabs .active");
 	var tab = $tab.attr("data-tab");
 	
-	var url="${pageContext.request.contextPath}/customer/"+tab+"/created";
+	var url="${pageContext.request.contextPath}/honCooq/"+tab+"/created";
 	var query="tmp="+new Date().getTime(); // get방식은 주소가 똑같기 때문에 구분하기 위해 넣어줌. 현재 컴퓨터 시간
-	var selector = "#tab-content"; // 쿼리가 바뀌면 주소가 동일해도 서버로 다시 감 
+	var selector = "#honCooq-tab-content"; // 쿼리가 바뀌면 주소가 동일해도 서버로 다시 감 
 	
 	ajaxHTML(url, "get", query, selector);
 }
 
 // 글등록, 수정등록, 답변등록
 function sendOk(mode, page) {
-	var $tab = $(".tabs .active");
+	var $tab = $(".honCooq-tabs .active");
 	var tab = $tab.attr("data-tab");
 	
     var f = document.boardForm;
@@ -170,7 +180,7 @@ function sendOk(mode, page) {
         return;
     }
     
-    if(tab=="inquiry" && mode=="created") {
+/*     if(tab=="inquiry" && mode=="created") {
     	if(f.emailRecv.checked && ! f.email.value) {
     		alert("이메일을 입력하세요. ");
             f.email.focus();
@@ -182,9 +192,9 @@ function sendOk(mode, page) {
             f.phone.focus();
             return;
     	}
-    }
+    } */
 	
-    var url="${pageContext.request.contextPath}/customer/"+tab+"/"+mode;
+    var url="${pageContext.request.contextPath}/honCooq/"+tab+"/"+mode;
     var query = new FormData(f); // IE는 10이상에서만 가능
     
 	var fn = function(data){
@@ -215,52 +225,52 @@ function sendCancel(page) {
 
 // 게시글 보기
 function articleBoard(num, page) {
-	var $tab = $(".tabs .active");
+	var $tab = $(".honCooq-tabs .active");
 	var tab = $tab.attr("data-tab");
 	
-	var url="${pageContext.request.contextPath}/customer/"+tab+"/article";
+	var url="${pageContext.request.contextPath}/honCooq/"+tab+"/article";
 	var query="num="+num;
-	var search=$('form[name=customerSearchForm]').serialize();
+	var search=$('form[name=honCooqSearchForm]').serialize();
 	query=query+"&pageNo="+page+"&"+search;
-	var selector = "#tab-content";
+	var selector = "#honCooq-tab-content";
 	
 	ajaxHTML(url, "get", query, selector);
 }
 
 // 글 수정폼
 function updateForm(num, page) {
-	var $tab = $(".tabs .active");
+	var $tab = $(".honCooq-tabs .active");
 	var tab = $tab.attr("data-tab");
 	
-	var url="${pageContext.request.contextPath}/customer/"+tab+"/update";
+	var url="${pageContext.request.contextPath}/honCooq/"+tab+"/update";
 	var query;
 	if(tab=="board")
 		query="boardNum="+num;
 	else
 		query="num="+num;
 	query=query+"&pageNo="+page
-	var selector = "#tab-content";
+	var selector = "#honCooq-tab-content";
 	
 	ajaxHTML(url, "get", query, selector);
 }
 
 // 글 답변폼
 function replyForm(num, page) {
-	var $tab = $(".tabs .active");
+	var $tab = $(".honCooq-tabs .active");
 	var tab = $tab.attr("data-tab");
 	
-	var url="${pageContext.request.contextPath}/customer/"+tab+"/answer";
+	var url="${pageContext.request.contextPath}/honCooq/"+tab+"/answer";
 	var query="num="+num+"&pageNo="+page
-	var selector = "#tab-content";
+	var selector = "#honCooq-tab-content";
 	
 	ajaxHTML(url, "get", query, selector);
 }
 
 // 글 삭제
 function deleteBoard(num, page, mode) {
-	var $tab = $(".tabs .active");
+	var $tab = $(".honCooq-tabs .active");
 	var tab = $tab.attr("data-tab");
-	var url="${pageContext.request.contextPath}/customer/"+tab+"/delete";
+	var url="${pageContext.request.contextPath}/honCooq/"+tab+"/delete";
 	
 	var query="num="+num;
 	if(tab=="qna") {
@@ -280,27 +290,20 @@ function deleteBoard(num, page, mode) {
 </script>
 
 <div class="honCooq-container">	
-	<div class="cookTip_list-header">
-		<div class="cookTip_list-banner">아아 여기는 배너</div>
+	<div class="honCooq-header">
+		<div class="honCooq-banner">아아 여기는 배너</div>
 		<div class="honCooq-tabs">
-			<button type="button" class="honCooq-tab-button">요리 정보</button>
-			<button type="button" class="honCooq-tab-button">CookTip</button>
-			<button type="button" class="honCooq-tab-button">오늘 뭐 먹지?</button>
+			<button type="button" class="honCooq-tab-button" id="tab-recipe" data-tab="recipe">요리 정보</button>
+			<button type="button" class="honCooq-tab-button" id="tab-cookTip" data-tab="cookTip">CookTip</button>
+			<button type="button" class="honCooq-tab-button" id="tab-wdie" data-tab="wdie">오늘 뭐 먹지?</button>
 		</div>
 	</div>
 	
-	<div class="honCooq-tab-content"></div>
+	<div class="honCooq-tab-content" id="honCooq-tab-content"></div>
 	
-    <div class="cookTip_floating-button">
-    	<a href="${pageContext.request.contextPath}/cook/honCooq/cookTip/created"><span>
-    		<i class="fas fa-pen"></i> CookTip 쓰기</span>
-    	</a>
-    </div>
+	<form name="honCooqSearchForm" action="" method="post">
+	    <input type="hidden" name="condition" value="all">
+	    <input type="hidden" name="keyword" value="">
+	</form>
 
-	<div class="cookTip_list-page">
-		<button type="button" class="cookTip_reload-btn" onclick="javascript:location.href='${pageContext.request.contextPath}/cook/honCooq/cookTip/list';">새로고침</button>
-		
-		${dataCount==0?"등록된 게시물이 없습니다.":paging}
-
-	</div>	
 </div>

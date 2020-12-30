@@ -33,12 +33,15 @@ public class CookTipController {
 	
 	@RequestMapping(value = "list")
 	public String list(
-			@RequestParam(value = "page", defaultValue = "1") int current_page,			
+			@RequestParam(value = "pageNo", defaultValue = "1") int current_page,			
 			@RequestParam(defaultValue = "all") String condition,
 			@RequestParam(defaultValue = "") String keyword,
 			HttpServletRequest req,
+			HttpSession session,
 			Model model
 			) throws Exception {
+		
+		SessionInfo info = (SessionInfo)session.getAttribute("member");
 		
 		int rows = 12;	// 한 화면에 보여주는 게시물 수
 		int total_page=0;
@@ -48,9 +51,11 @@ public class CookTipController {
 			keyword = URLDecoder.decode(keyword, "utf-8");
 		}
 		
+		// 전체 페이지 수
 		Map<String, Object> map = new HashMap<>();
 		map.put("condition", condition);
 		map.put("keyword", keyword);
+		map.put("userId", info.getUserId());
 		
 		dataCount = service.dataCount(map);
 		if (dataCount!=0) {
@@ -83,32 +88,34 @@ public class CookTipController {
 			}
 		}
 		
-		String cp = req.getContextPath();
-		String query = "";
-		String listUrl = cp+"/cook/honCooq/cookTip/list";
-		String articleUrl = cp+"/cook/honCooq/cookTip/article?page=" + current_page;
-		if (keyword.length() != 0) {
-			query = "condition="+condition + "&keyword=" 
-						+ URLEncoder.encode(keyword, "utf-8");
-		}
+//		String cp = req.getContextPath();
+//		String query = "";
+//		String listUrl = cp+"/cook/honCooq/cookTip/list";
+//		String articleUrl = cp+"/cook/honCooq/cookTip/article?page=" + current_page;
+//		if (keyword.length() != 0) {
+//			query = "condition="+condition + "&keyword=" 
+//						+ URLEncoder.encode(keyword, "utf-8");
+//		}
+//
+//		if (query.length()!=0) {
+//			listUrl = cp+"/cook/honCooq/cookTip/list?"+query;
+//			articleUrl = cp+"/cook/honCooq/cookTip/article?page=" + current_page +"&"+ query;
+//		}
 
-		if (query.length()!=0) {
-			listUrl = cp+"/cook/honCooq/cookTip/list?"+query;
-			articleUrl = cp+"/cook/honCooq/cookTip/article?page=" + current_page +"&"+ query;
-		}
-		
-		String paging = myUtil.paging2(current_page, total_page, listUrl);
+        // ajax 페이징처리
+        String paging = myUtil.pagingMethod2(current_page, total_page, "listPage");
+//		String paging = myUtil.paging2(current_page, total_page, listUrl);
 				
 		model.addAttribute("list", list);
-		model.addAttribute("articleUrl", articleUrl);
-		model.addAttribute("page", current_page);
+//		model.addAttribute("articleUrl", articleUrl);
+		model.addAttribute("pageNo", current_page);
 		model.addAttribute("dataCount", dataCount);
 		model.addAttribute("total_page", total_page);
 		model.addAttribute("paging", paging);
 		model.addAttribute("condition", condition);
 		model.addAttribute("keyword", keyword);		
 		
-		return ".cook.honCooq.cookTip.list";
+		return "/cook/honCooq/cookTip/list";
 	}
 	
 	@RequestMapping(value = "created", method = RequestMethod.GET)
