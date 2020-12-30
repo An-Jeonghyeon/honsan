@@ -47,6 +47,16 @@
 			</when>
 		</choose>
 	</sql>
+	
+	<sql id="where-list2">
+		<choose>
+			<when test="roomtype != null and roomtype !='' ">
+				( INSTR(#{roomtype},roomtype) &gt; 0
+				OR
+				INSTR(#{roomtype}, corfloor) &gt; 0)
+			</when>
+		</choose>
+	</sql>
 
 	<select id="dataCount" parameterType="map" resultType="Integer">
 		SELECT NVL(COUNT(*), 0)
@@ -59,6 +69,12 @@
 		<where>
 			<if test="keyword!=null and keyword!=''">
 				<include refid="where-list" />
+			</if>
+			<if test="roomtype!=null and roomtype!=''">
+				<if test="keyword!=null and keyword!=''">
+					OR
+				</if>
+				<include refid="where-list2" />
 			</if>
 		</where>
 	</select>
@@ -78,6 +94,12 @@
 		<where>
 			<if test="keyword!=null and keyword!=''">
 				<include refid="where-list" />
+			</if>
+			<if test="roomtype!=null and roomtype!=''">
+				<if test="keyword!=null and keyword!=''">
+					OR
+				</if>
+				<include refid="where-list2" />
 			</if>
 		</where>
 		ORDER BY num DESC
