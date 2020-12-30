@@ -46,7 +46,8 @@ honCooq 게시판 리스트폼
 /* THE DIV */
 .honCooq-header .honCooq-banner {
 	width: 100%;
-	height: 80%;
+/* 	height: 80%; */
+    height: 16.5rem;
 	background-color: skyblue;
 	text-align: center;
 	font-size: 3.0rem;
