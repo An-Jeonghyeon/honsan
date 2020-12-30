@@ -194,6 +194,17 @@ function roomOk(){
         alert(" 메인 사진 파일을 첨부해 주세요");
         return false;
     }
+	 
+	 <c:if test="${mode=='roomCreated'}">
+	 str = f.mainUpload.value;
+		str = str.trim();
+		if(!str) {
+			alert("메인 사진 파일을 첨부해 주세요");
+			f.mainUpload.focus();
+			return;
+		}
+	</c:if>
+	 
 /*	
     var fileCheck2 = document.getElementById("upload2").value;
     if(!fileCheck2){
@@ -671,6 +682,7 @@ $(function(){
 					       <div class="imagePreView">
 					       	<p style="position: relative;"> 메인 사진 </p>
 					       	<img class="mainimg" alt="" id="mainimg" style="width: 600px; height: 300px;">
+
 					       </div>
 					    </div>
 					    <div>
@@ -685,7 +697,7 @@ $(function(){
 	            		<div>
 					       <div class="imagePreView">
 					       	<p style="position: relative;text-align: center;"> 서브 사진  ${status.count } <a href="javascript:deleteFile('${vo.fileNum}, ${status.count }');"><i class="far fa-trash-alt"></i></a></p>
-					       	<img class="mainimg${status.count}" alt="" src="${pageContext.request.contextPath}/uploads/room/${vo.saveFile}" id="mainimg${status.count }">
+					       	<img class="mainimg${status.count}" alt="" src="${pageContext.request.contextPath}/uploads/room/${vo.saveFile}" id="mainimg${status.count }" onerror="this.parentNode.style.display='none'">
 					       </div>
 					    </div>
 					    <div>

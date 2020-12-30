@@ -3,6 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@900&display=swap" rel="stylesheet">
 
 <div id="wrapper">
         <nav class="navbar navbar-default top-navbar" role="navigation">
@@ -14,7 +16,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <!-- 왼쪽 최상단 홈페이지 이름 부분  -->
-                <a class="navbar-brand waves-effect waves-dark" href="${pageContext.request.contextPath}/home"> <strong>honsan</strong></a>
+                <a class="navbar-brand waves-effect waves-dark" href="${pageContext.request.contextPath}/home"> <strong>Hollo</strong></a>
 				
 				<!-- 최상단 리스트 표시 !!  -->
 				<div id="sideNav" href=""><i class="material-icons dp48">toc</i></div>
@@ -170,7 +172,7 @@
                         <a href="${pageContext.request.contextPath}/adm/boardMng" class="waves-effect waves-dark"><i class="fa fa-qrcode"></i> 게시판 관리</a>
                     </li>
                     <li>
-                        <a href="${pageContext.request.contextPath}/adm/health" class="waves-effect waves-dark"><i class="fa fa-table"></i>[하루운동챌린지] 관리</a>
+                        <a href="${pageContext.request.contextPath}/adm/health/list" class="waves-effect waves-dark"><i class="fa fa-table"></i>[하루운동챌린지] 관리</a>
                     </li>
                     <li>
                         <a href="${pageContext.request.contextPath}/adm/cook" class="waves-effect waves-dark"><i class="fa fa-edit"></i>[우리집 냉장고] 관리</a>

@@ -44,16 +44,15 @@
 	
 	</div>
 	
-	
-	<div style="width: 1000px; margin: 0px auto;">
-		<!-- 검색 부분 -->
+	<div>
+	<!-- 검색 부분 -->
 		<form name="searchForm"
 			action="${pageContext.request.contextPath }/room/roomlist"
 			method="post">
 			<div class="searchlist">
 				<table style="width:1000px; margin: 15px auto; border-spacing: 0px;">
 					<tr height="60">
-						<td align="center"><label for="town" id="lblTown" class="lbl"><i class="fas fa-search" style="color: gray;"></i>동네 이름
+						<td align="center" style="padding: 40px 0 20px 0;"><label for="town" id="lblTown" class="lbl"><i class="fas fa-search" style="color: gray;"></i>동네 이름
 								ex)관악구</label> <input type="text" name="keyword" id="town"
 							class="searchTF" maxlength="20" tabindex="2"
 							onfocus="document.getElementById('lblTown').style.display='none';"
@@ -62,21 +61,20 @@
 						</td>
 					</tr>
 					<tr>
-						<td align="center"><input type="checkbox" name="roomtype" value="원룸">
-							원룸 <input type="checkbox" name="roomtype" value="1.5룸">
-							1.5룸 <input type="checkbox" name="roomtype" value="투룸">
-							투룸 <input type="checkbox" name="roomtype" value="쓰리룸">
-							쓰리룸 <input type="checkbox" name="roomtype" value="오피스텔">
-							오피스텔 <input type="checkbox" name="roomtype" value="복층">
-							복층
-						    <input type="checkbox" name="corfloor " value="반지하">
-							반지하 <input type="checkbox" name="corfloor " value="옥탑">
-							옥탑</td>
+						<td align="center" style="searchcheckbox"><input type="checkbox" class="searchcheckbox" name="roomtype" value="원룸">
+							&nbsp;원룸 &nbsp;&nbsp;<input type="checkbox" class="checkbox" name="roomtype" value="1.5룸">
+							&nbsp;1.5룸 &nbsp;&nbsp;<input type="checkbox" class="checkbox" name="roomtype" value="투룸">
+							&nbsp;투룸 &nbsp;&nbsp;<input type="checkbox" class="checkbox" name="roomtype" value="쓰리룸">
+							&nbsp;쓰리룸 &nbsp;&nbsp;<input type="checkbox" class="checkbox" name="roomtype" value="오피스텔">
+							&nbsp;오피스텔 &nbsp;&nbsp;<input type="checkbox" class="checkbox" name="roomtype" value="복층">
+							&nbsp;복층&nbsp;&nbsp;<input type="checkbox" name="corfloor "  class="checkbox" value="반지하">
+							&nbsp;반지하 &nbsp;&nbsp;<input type="checkbox"  class="checkbox" name="corfloor " value="옥탑">
+							&nbsp;옥탑&nbsp;&nbsp;</td>
 					</tr>
 					<tr>		
 						<td align="right">
-						<button type="button" class="btn"
-						onclick="javascript:location.href='${pageContext.request.contextPath}/room/roomlist';">새로고침</button>
+						<button type="button" class="redobtn"
+						onclick="javascript:location.href='${pageContext.request.contextPath}/room/roomlist';"><i class="fas fa-redo-alt"></i>새로고침</button>
 						</td>
 					</tr>
 
@@ -87,7 +85,11 @@
 		</form>
 
 		<hr>
-
+	
+	</div>
+	
+	<div style="width: 1300px; margin: 0px auto;">
+		
 	
 	<!-- 새로뜬 게시물 또는 인기 게시물 -->
 	<div class="toplist">
@@ -151,7 +153,7 @@
 			 	<td class="listTd">
 			 		<div class="imgLayout" onclick="article('${dto.num}');"style="margin: 10px;">
 				 		<div class="img_box"style="background: url('${pageContext.request.contextPath}/uploads/room/${dto.mainimg}');
-							background-position: center;background-size:cover;background-position:center;height: 110px; border-radius: 5px; border:2px solid silver;"></div>
+							background-position: center;background-size:cover;background-position:center;height: 200px; border-radius: 5px; border:1px solid silver; text-overflow: ellipsis;"></div>
 						<br><p class="title-style">${dto.subject}<p>
 						<div class="mainexplain">
 							<p>${dto.dealtype } / ${dto.depo } / ${dto.mrent }</p>
@@ -178,7 +180,6 @@
 
 
 
-		</table>
 				<table style="width: 100%; border-spacing: 0px;">
 					<tr height="35">
 						<td align="center">

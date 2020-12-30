@@ -44,7 +44,7 @@ public class RoomController {
 			HttpServletRequest req,
 			Model model
 			) throws Exception {
-		int rows = 12;
+		int rows = 8;
 		int total_page=0;
 		int dataCount=0;
 		
@@ -147,7 +147,8 @@ public class RoomController {
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		return "redirect:/room/roomlist";
+		//return null;
+		return "redirect:/room/roomArticle?num="+dto.getNum();
 	}
 	
 	

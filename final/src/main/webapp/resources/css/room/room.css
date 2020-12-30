@@ -21,7 +21,7 @@ hr {
 
 .searchlist{
 	background: #e4e4e4;
-	height: 130px;
+	height: 200px;
 	
 }
 
@@ -32,18 +32,16 @@ hr {
 	margin-left: 15px;
 	margin-top: 15px;
 	color: #999999;
-	font-size: 10pt;
+	font-size: 15pt;
 }
 
 .searchTF {
-	width: 200px;
-	height: 20px;
+	width: 400px;
+	height: 40px;
 	padding: 5px;
 	padding-left: 15px;
 	border: 1px solid #999999;
 	color: #333333;
-	margin-top: 5px;
-	margin-bottom: 5px;
 	font-size: 14px;
 	border-radius: 4px;
 }
@@ -52,25 +50,26 @@ hr {
 	border: 1px solid #ff8000;
 }
 .searchbtn{
-	font-size: 15px; 
+	font-size: 20px; 
 	border:none;
 	background:#d7def7;
-	width: 60px;
-	height: 35px;
+	width: 90px;
+	height: 55px;
 	border-radius:4px;
 	color: #000;
 }
 
-.searchbtn:hover, .btn:hover {
+.searchbtn:hover, .redobtn:hover {
 	background:#a7b7ed;
+	box-shadow: 0 0 10px #c0c0c0;
 }
 
-.btn{
+.redobtn{
 	font-size: 15px; 
 	border:none;
 	background:#d7def7;
-	width: 100px;
-	height: 35px;
+	width: 150px;
+	height: 45px;
 	border-radius:4px;
 	color: #000;
 	margin: 10px;
@@ -84,15 +83,15 @@ hr {
 }
 
 .listTd{
-	margin:5px;
 	width:220px;
-	padding: 10px;
 	align-items: center;
-	border: 1px solid #808080;
 }
 
-.listTd:hover{
+.imgLayout:hover{
 	box-shadow: 10px 10px 20px #c0c0c0;
+}
+.imgLayout{
+	padding: 10px;
 }
 
 .roomlist{
@@ -102,7 +101,7 @@ hr {
 
 .toplist{
 	width:100%;
-	height: 200px;
+	height: 300px;
 	margin: 10px auto;
 }
 
@@ -114,8 +113,8 @@ hr {
 	background-position: center;
 	background-size:cover;
 	background-position:center; 
-	width:230px;  
-	height: 130px; 
+	width:300px;  
+	height: 200px; 
 	border:2px solid silver;
 }
 
@@ -149,8 +148,31 @@ hr {
 }
 .createdbtn:hover{
 	background:#a7b7ed;
+	box-shadow: 0 0 10px #c0c0c0;
+}
+.createdbtn:active{
+	background:#617dde;
+	color: white;
+	border: none;
 	
 }
+.title-style{
+	text-overflow: ellipsis;
+}
+
+.searchcheckbox{
+	font-size: 15px;
+}
+
+.searchcheckbox{
+	transform : scale(1.5);
+}
+
+
+
+
+
+
 
 
 
@@ -414,9 +436,6 @@ hr {
 
 /*GLOBALS*/
 *{margin:0; padding:0; list-style:none;}
-a{text-decoration:none; color:#666;}
-a:hover{color:#1bc1a3;}
-body, hmtl{font-family: 'Anton', sans-serif;}
 
 
 #wrapper{

@@ -20,7 +20,7 @@ body {
 #page-wrapper {
     padding: 15px 15px;
     min-height: 600px;
-    background: #ececec;
+/*     background: #ececec; */
 }
 #page-inner {
     width:100%;
@@ -705,6 +705,13 @@ padding: 0 15px 0px 15px;
     padding-top: 5px;
     color: #f44336;
 }
+/* 추가한거 */
+.jbtn:focus {
+	background: none!important;
+}
+.jyheader {
+	font-family: 'Noto Sans KR', sans-serif;
+}
  @media(max-width:768px) {
 	  
 	 .navbar-header {
@@ -740,3 +747,4 @@ padding: 0 15px 0px 15px;
 			padding:17px 9px;
 		}
  }
+ 
