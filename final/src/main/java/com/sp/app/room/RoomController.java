@@ -129,7 +129,10 @@ public class RoomController {
 			keyword = URLDecoder.decode(keyword, "utf-8");
 			roomtype = URLDecoder.decode(roomtype, "utf-8");
 		}
-
+		
+		if(!roomtype.equals("")) {
+			roomtype= roomtype.replaceAll("쓰리룸 ", "쓰리룸+");
+		}
 		
 		Map<String, Object> map = new HashMap<>();
 		map.put("keyword", keyword);
