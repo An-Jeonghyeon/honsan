@@ -68,7 +68,7 @@
 .dress-temper::after{
     content:"";
     position: absolute;
-    top: 713px;
+    top: 748px;
     width: 30px;
     height: 30px;
     background-image: url("/app/resources/images/dress/celsius.png");
@@ -174,4 +174,32 @@
 }
 .dialog-randomColor{
     color:rgb(173, 226, 255);
+}
+#dress-searchWeather{
+   
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    top: 200px;
+}
+.dress-searchWeatherInput{
+    width: 300px;
+    height: 35px;
+    background-color: #e8e8e8;
+    border-radius: 30px;
+    padding-left: 30px;
+    border: none;
+    cursor: pointer;
+}
+
+.dress-searchWeatherInput:focus,.dress-searchWeatherButton:focus{
+    outline: none;
+}
+.dress-searchWeatherButton{
+    width: 100px;
+    height: 35px;
+    border: 0;
+    background-color: #e8e8e8;
+    border-radius: 35px;
+    cursor: pointer;
 }
