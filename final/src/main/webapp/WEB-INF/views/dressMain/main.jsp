@@ -4,9 +4,50 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <script type="text/javascript">
+/* dress-searchWeatherInput에서 value 값 가지고 오기 */
+function inpVal(IV){	
+	var rsIV=IV;
+	$(".dress-tmeperText").html(rsIV);
+}
 
+/* 지역 입력 하면 name="weather"에 nx=x , ny=y 값치환 해서 보내기  */
+/* $(function(){
+	
+})
+ */
+ 
+ /* 확인 */
+ $(function(){
+	 $(".ex").click(function(){
+		var areaName =$(this).attr("data-value");
+		
+			 $.ajax({
+					type:"post",
+					url:"${pageContext.request.contextPath}/dressMain/weatherRequest",
+					data:"areaName="+areaName,
+					dataType:"json",
+					success:function(data){
+						fn(data);
+					},
+					error:function(e){
+						console.log(e.responseText);
+					}
+				});
+	 })
+ })
+ 
+
+/*name="weather"API 에서 날씨 정보 가지고 오기  */
 $(function(){
 	$(".dress-searchWeatherButton").click(function(){
+		
+		//버튼 눌러서 $(".dress-searchWeatherInput").val();값 가지고 오기
+		var IV=$(".dress-searchWeatherInput")
+		if(IV!= null){
+			inpVal(IV.val());
+			IV.val("");	
+		}
+		
 		//날씨 - 동네 예보 확인
 		var url ="${pageContext.request.contextPath}/dressMain/weatherApi";
 		var base_date="20201230";
@@ -81,7 +122,7 @@ function ajaxFun(url, method, dataType,query, fn){
             </div>
             <div id="dress-searchWeather">
                
-                    <input class="dress-searchWeatherInput" type="text" placeholder="지역을 입력해주세여">
+                    <input class="dress-searchWeatherInput" type="text" name="areaName" placeholder="지역을 입력해주세여">
                 
                 <button class="dress-searchWeatherButton" type="button">area</button>
             </div>
@@ -94,6 +135,7 @@ function ajaxFun(url, method, dataType,query, fn){
                         
                         </span>
                         <span>입니다.</span>
+                        <a class="ex" data-value="1">1</a>
 
                     </div>
                     <div class="dress-tmeperText"><span>날씨가 매우 추니 두꺼운 외투를 입으세요!</span></div>

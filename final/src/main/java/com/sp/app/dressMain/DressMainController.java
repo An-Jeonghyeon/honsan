@@ -53,5 +53,10 @@ public class DressMainController {
 		
 		return result;
 	}
+	@RequestMapping(value = "weatherRequest", method= RequestMethod.POST)
+	public void submitAreaName(@RequestParam String areaName)throws Exception{
+		System.out.println(areaName);
+	}
+	
 
 }
