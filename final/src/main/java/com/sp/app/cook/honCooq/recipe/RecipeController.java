@@ -6,12 +6,14 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.sp.app.common.MyUtil;
@@ -103,6 +105,41 @@ public class RecipeController {
 		return "/cook/honCooq/recipe/list";
 	}
 	
-	
+	@RequestMapping(value = "article", method = RequestMethod.GET)
+	public String article(
+			@RequestParam(value = "recipe_id") int num,
+			@RequestParam String pageNo,
+			@RequestParam(defaultValue="all") String condition,
+			@RequestParam(defaultValue="") String keyword,
+			HttpServletResponse resp,
+			Model model) throws Exception {
+
+		keyword = URLDecoder.decode(keyword, "utf-8");
+
+		Recipe dto = service.readRecipe(num);
+		if(dto==null) {
+			resp.sendError(410, "삭제된 게시물입니다."); // main.jsp에서 설정한 에러코드를 보내기
+			return null;
+		}
+		
+		// 스마트 에디터인 경우 주석 처리
+//        dto.setContent(dto.getContent().replaceAll("\n", "<br>"));
+         
+		// 이전 글, 다음 글
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("condition", condition);
+		map.put("keyword", keyword);
+		map.put("num", num);
+
+//		Recipe preReadDto = service.preReadRecipe(map);
+//		Recipe nextReadDto = service.nextReadRecipe(map);
+				
+		model.addAttribute("dto", dto);
+//		model.addAttribute("preReadDto", preReadDto);
+//		model.addAttribute("nextReadDto", nextReadDto);
+		model.addAttribute("pageNo", pageNo);
+		
+		return "cook/honCooq/recipe/article";
+	}	
 	
 }

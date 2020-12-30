@@ -129,28 +129,28 @@ public class CookTipController {
 	}
 	
 	@RequestMapping(value="created", method=RequestMethod.POST)
-//	@ResponseBody
-//	public Map<String, Object> createdSubmit(	// ajax 화면 구성시
-	public String createdSubmit(
+	@ResponseBody
+	public Map<String, Object> createdSubmit(	// ajax 화면 구성시
+//	public String createdSubmit(
 			CookTip dto,
 			HttpSession session
 			) throws Exception {
 		
 		SessionInfo info=(SessionInfo)session.getAttribute("member");
-		//String state="true";
+		String state="true";
 		try {
 			dto.setUserId(info.getUserId());
 			service.insertCookTip(dto, "created");
 		} catch (Exception e) {
 			e.printStackTrace();
-			//state="false";
+			state="false";
 			throw e;
 		}
 		
-//		Map<String, Object> model=new HashMap<>();
-//		model.put("state", state);
-//		return model;
-		return "redirect:/cook/honCooq/cookTip/list";
+		Map<String, Object> model=new HashMap<>();
+		model.put("state", state);
+		return model;
+//		return "redirect:/cook/honCooq/cookTip/list";
 	}
 	
 	@RequestMapping("article")

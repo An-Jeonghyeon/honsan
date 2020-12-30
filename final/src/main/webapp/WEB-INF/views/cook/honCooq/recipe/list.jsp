@@ -99,8 +99,8 @@ function recipe_searchList() {
 			</c:forEach>
 		</div>
 	</div>
-	<div class="cookTip_list-page">
-		<button type="button" class="cookTip_reload-btn" onclick="javascript:location.href='${pageContext.request.contextPath}/cook/honCooq/recipe/list';">새로고침</button>
+	<div class="recipe_list-page">
+		<button type="button" class="recipe_reload-btn" onclick="reloadBoard();">새로고침</button>
 		
 		${dataCount==0?"등록된 게시물이 없습니다.":paging}
 

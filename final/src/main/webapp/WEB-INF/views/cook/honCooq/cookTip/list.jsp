@@ -189,16 +189,10 @@ function ajaxHTML(url, method, query, selector) {
     </div>
 
 	<div class="cookTip_list-page">
-		<button type="button" class="cookTip_reload-btn" onclick="javascript:location.href='${pageContext.request.contextPath}/cook/honCooq/cookTip/list';">새로고침</button>
+		<button type="button" class="cookTip_reload-btn" onclick="reloadBoard();">새로고침</button>
 		
 		${dataCount==0?"등록된 게시물이 없습니다.":paging}
 
-<!-- 		<div class="cookTip_list-paging">&lt;</div>
-		<div class="cookTip_list-pagingBody">1</div>
-		<div class="cookTip_list-pagingBody">2</div>
-		<div class="cookTip_list-pagingBody">3</div>
-		<div class="cookTip_list-pagingBody">4</div>
-		<div class="cookTip_list-paging">&gt;</div> -->
 	</div>
 
 </div>
