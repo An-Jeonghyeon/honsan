@@ -18,6 +18,7 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
 import org.apache.commons.io.IOUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -26,10 +27,15 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
+import com.sp.app.common.dao.CommonDAO;
+
 
 @Service("dress.dressMainService")
 public class DressMainServiceImpl implements DressMainService{
 
+	@Autowired
+	private CommonDAO dao;
+		
 	@Override
 	public Map<String, Object> serializeNode(String spec) {
 		//XML 문서를 파싱하여 Map에 저장
@@ -141,6 +147,17 @@ public class DressMainServiceImpl implements DressMainService{
 			}
 		}
 		return writer.toString();
+	}
+
+	@Override
+	public List<DressMain> selectXYcode(String city) {
+		List<DressMain> list =null;
+		try {
+			list=dao.selectOne("dressMain.dressMaincity", city);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
 	}
 
 }

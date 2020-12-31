@@ -14,6 +14,10 @@ public class DressMainController {
 	
 	@Autowired
 	private APISerializer apiSerializer;
+
+	
+//	@Autowired
+//	private DressMainService service;
 	
 	
 	@RequestMapping("main")
@@ -38,7 +42,7 @@ public class DressMainController {
 		String serviceKey="upM4eIzJDLRKUoXAemVRGZPAc0169zQ7YEmY6DxW1KCqi30hsnEDxjPjWT629RyETfT8haxrKzVb7KfAThHXEw%3D%3D";
 		
 		//한페이지 결과 수 
-		int numOfRows =9;
+		int numOfRows =20;
 		//페이지 번호
 		int pageNo=1;
 		//데이터 타입 -XML/JSON , 기본 :XML
@@ -54,8 +58,10 @@ public class DressMainController {
 		return result;
 	}
 	@RequestMapping(value = "weatherRequest", method= RequestMethod.POST)
-	public void submitAreaName(@RequestParam String areaName)throws Exception{
+	public String submitAreaName(@RequestParam String areaName)throws Exception{
 		System.out.println(areaName);
+	
+	return "";
 	}
 	
 
