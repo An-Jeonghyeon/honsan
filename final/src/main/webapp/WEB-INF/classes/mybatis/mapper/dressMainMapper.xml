@@ -2,7 +2,7 @@
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="dressMain">
-	<select id="dressMaincity" parameterType="map" resultType="com.sp.app.dress.Dress">
+	<select id="dressMaincity" parameterType="map" resultType="com.sp.app.dressMain.DressMain">
 		SELECT xcode,ycode FROM weaterAPI WHERE city = #{city}
 	</select>
 	

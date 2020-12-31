@@ -10,14 +10,26 @@
 		let year = today.getFullYear();
 		let month = today.getMonth() + 1;
 		let date = today.getDate();
+		let hour = today.getHours();
 
+		if(hour===0){
+			date=date-1;
+			return "" + year + month + date;
+		}else if(month<12){
+			month= "0"+month;
+			if(date<10){
+				date= "0"+date
+			}
+			return "" + year + month + date;
+		}
+		
 		return "" + year + month + date;
 	}
 	/*현재 시간구하기  */
 	function nowTime() {
 		let today = new Date();
 		let hour = today.getHours();
-
+		
 		if (hour < 5) {
 			hour = "02"
 			return hour + "00";
@@ -39,10 +51,8 @@
 		} else if (hour < 23) {
 			hour = "20"
 			return hour + "00";
-		} else if (hour < 24) {
-			hour = "23"
-			return hour + "00";
-		}
+		} 
+		return hour;
 
 	}
 	/* dress-searchWeatherInput에서 value 값 가지고 오기 */
@@ -57,63 +67,58 @@
 	 })
 	 */
 	/*                  지역이름 자바로 넘겨주기                    */
-	function parsingJavaAreaName() {
-		var areaName = $(".dress-searchWeatherInput").val();
-
-		$
-				.ajax({
+		function parsingJavaAreaName() {
+		var city = $(".dress-searchWeatherInput").val();
+		console.log(city);
+			$.ajax({
 					type : "post",
 					url : "${pageContext.request.contextPath}/dressMain/weatherRequest",
-					data : "areaName=" + areaName,
+					data : "city=" + city,
 					dataType : "json",
 					success : function(data) {
 						fn(data);
 					},
 					error : function(e) {
 						console.log(e.responseText);
+						
 					}
 				});
 	}
 
 	/*name="weather"API 에서 날씨 정보 가지고 오기  */
-	$(function() {
-		$(".dress-searchWeatherButton")
-				.click(
-						function() {
-							parsingJavaAreaName();
-							//버튼 눌러서 $(".dress-searchWeatherInput").val();값 가지고 오기
-							var IV = $(".dress-searchWeatherInput")
-							if (IV != null) {
-								inpVal(IV.val());
-								IV.val("");
+$(function() {
+	$(".dress-searchWeatherButton").click(function() {
+			 parsingJavaAreaName(); 
+			//버튼 눌러서 $(".dress-searchWeatherInput").val();값 가지고 오기
+			var IV = $(".dress-searchWeatherInput")
+			if (IV != null) {
+				inpVal(IV.val());
+				IV.val("");
+			}
+			//날짜 가지고 오기
+		 	var todate = date();
+			console.log(todate)
+			//발표 시간 가지고 오기
+			var nowtime = nowTime();
+			console.log(nowtime)
+		
+			//날씨 - 동네 예보 확인
+			var url = "${pageContext.request.contextPath}/dressMain/weatherApi";
+			var base_date = todate;
+			var base_time = nowtime;
+			//마파구 서교동, 기상청18_동네예보_조회서비스_오픈API활용가이드.zip 의 엑셀에 있음
+			var nx = "59";
+			var ny = "126";
+			var query = "base_date=" + base_date+ "&base_time=" + base_time + "&nx=" + nx+ "&ny=" + ny;
+			
+			var fn = function(data) {
+				console.log(data);
+				printJSON(data);
+			};
+		ajaxFun(url, "get", "json", query, fn);
+})
 
-							}
-							//날짜 가지고 오기
-							var todate = date();
-							console.log(todate)
-							//발표 시간 가지고 오기
-							var nowtime = nowTime();
-							console.log(nowtime)
-
-							//날씨 - 동네 예보 확인
-							var url = "${pageContext.request.contextPath}/dressMain/weatherApi";
-							var base_date = todate;
-							var base_time = nowtime;
-							//마파구 서교동, 기상청18_동네예보_조회서비스_오픈API활용가이드.zip 의 엑셀에 있음
-							var nx = "59";
-							var ny = "126";
-							var query = "base_date=" + base_date
-									+ "&base_time=" + base_time + "&nx=" + nx
-									+ "&ny=" + ny;
-
-							var fn = function(data) {
-								console.log(data);
-								printJSON(data);
-							};
-							ajaxFun(url, "get", "json", query, fn);
-						})
-
-		function printJSON(data) {
+function printJSON(data) {
 			var out;
 			var category;
 			var fcstDate, fcstTime;//예측일자, 예측 시간
@@ -177,8 +182,7 @@
 </div>
 <div id="dress-searchWeather">
 
-	<input class="dress-searchWeatherInput" type="text" name="areaName"
-		placeholder="지역을 입력해주세여">
+	<input class="dress-searchWeatherInput" type="text" name="city" placeholder="지역을 입력해주세여">
 
 	<button class="dress-searchWeatherButton" type="button">area</button>
 </div>
@@ -189,8 +193,10 @@
 				class="dress-weatherArea">입력한 지역 </span><span> 기온은</span> <span
 				class="dress-temper"></span> <span>입니다.</span> <span>기준시간:</span> <span
 				class="outTime"></span>
-
-
+ 			<c:forEach var="dto" items="${list}">
+ 			<a>${dto.xcode}</a>
+ 				${dto.ycode}
+ 			</c:forEach>
 		</div>
 		<div class="dress-tmeperText">
 			<span>날씨가 매우 추니 두꺼운 외투를 입으세요!</span>

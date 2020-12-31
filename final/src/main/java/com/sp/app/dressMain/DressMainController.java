@@ -1,7 +1,10 @@
 package com.sp.app.dressMain;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,8 +19,8 @@ public class DressMainController {
 	private APISerializer apiSerializer;
 
 	
-//	@Autowired
-//	private DressMainService service;
+	@Autowired
+	private DressMainService service;
 	
 	
 	@RequestMapping("main")
@@ -58,10 +61,17 @@ public class DressMainController {
 		return result;
 	}
 	@RequestMapping(value = "weatherRequest", method= RequestMethod.POST)
-	public String submitAreaName(@RequestParam String areaName)throws Exception{
-		System.out.println(areaName);
+	public String submitAreaName(@RequestParam String city ,Model model)throws Exception{
+		System.out.println(city);
 	
-	return "";
+		List<DressMain>list=service.selectXYcode(city);
+		
+//			for(int i=0; i<list.size(); i++) {
+//				System.out.println(list.get(i));
+//			}
+		
+		model.addAttribute("list",list);			
+		return ".dressMain.main";
 	}
 	
 

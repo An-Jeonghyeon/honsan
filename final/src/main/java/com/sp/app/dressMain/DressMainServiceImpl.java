@@ -153,7 +153,7 @@ public class DressMainServiceImpl implements DressMainService{
 	public List<DressMain> selectXYcode(String city) {
 		List<DressMain> list =null;
 		try {
-			list=dao.selectOne("dressMain.dressMaincity", city);
+			list=dao.selectList("dressMain.dressMaincity", city);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
