@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.sp.app.common.FileManager;
 import com.sp.app.common.MyUtil;
@@ -37,27 +38,31 @@ public class RoomController {
 	@Autowired
 	private FileManager fileManager;
 	
+	
 	@RequestMapping(value="roomlist")
-	public String roomForm(
-			@RequestParam(value = "page", defaultValue = "1") int current_page,			
+	public ModelAndView roomlist(
+			@RequestParam(value = "pageNo", defaultValue = "1") int current_page,			
 			@RequestParam(defaultValue = "") String keyword,
+			@RequestParam(defaultValue = "") String roomtype,
 			HttpServletRequest req,
 			Model model
-			) throws Exception {
+			) throws Exception{
 		int rows = 8;
 		int total_page=0;
 		int dataCount=0;
 		
 		if (req.getMethod().equalsIgnoreCase("GET")) {
 			keyword = URLDecoder.decode(keyword, "utf-8");
+			roomtype = URLDecoder.decode(roomtype, "utf-8");
 		}
+
 		
 		Map<String, Object> map = new HashMap<>();
 		map.put("keyword", keyword);
+		map.put("roomtype", roomtype);
 		
 		dataCount = service.dataCount(map);
 		
-		System.out.println(dataCount+"개---------------");
 		
 		if (dataCount!=0) {
 			total_page = myUtil.pageCount(rows, dataCount);
@@ -73,14 +78,7 @@ public class RoomController {
 		map.put("rows", rows);
 		
 		List<Room> list = service.listRoom(map);
-		/*
-		int listNum, n=0;
-		for(Room dto : list) {
-			listNum = dataCount - (offset+n);
-			dto.setNum(listNum);
-			n++;
-		}*/
-		
+
 		String cp = req.getContextPath();
 		String query = "";
 		String listUrl = cp+"/room/roomlist";
@@ -88,6 +86,11 @@ public class RoomController {
 		if (keyword.length() != 0) {
 			query = "keyword=" 
 						+ URLEncoder.encode(keyword, "utf-8");
+		}
+		if((keyword.length() != 0) && (roomtype.length()!=0) ) {
+			query+="&roomtype="+ URLEncoder.encode(roomtype, "utf-8");
+		}else if (roomtype.length()!=0) {
+			query="roomtype="+ URLEncoder.encode(roomtype, "utf-8");
 		}
 
 		if (query.length()!=0) {
@@ -97,16 +100,97 @@ public class RoomController {
 		
 		String paging = myUtil.paging(current_page, total_page, listUrl);
 		
+		
 		model.addAttribute("list", list);
 		model.addAttribute("articleUrl", articleUrl);
-		model.addAttribute("page", current_page);
+		model.addAttribute("pageNo", current_page);
 		model.addAttribute("dataCount", dataCount);
 		model.addAttribute("total_page", total_page);
 		model.addAttribute("paging", paging);
 		model.addAttribute("keyword", keyword);
+		model.addAttribute("roomtype", roomtype);
+		
+		return new ModelAndView(".room.roomlist");
+	}
+	
+	@RequestMapping(value="roomlist1")
+	@ResponseBody
+	public Map<String, Object> roomForm(
+			@RequestParam(value = "pageNo", defaultValue = "1") int current_page,			
+			@RequestParam(value="keyword", defaultValue = "") String keyword,
+			@RequestParam(value="roomtype", defaultValue = "") String roomtype,
+			HttpServletRequest req
+			) throws Exception {
+		int rows = 8;
+		int total_page=0;
+		int dataCount=0;
+		
+		if (req.getMethod().equalsIgnoreCase("GET")) {
+			keyword = URLDecoder.decode(keyword, "utf-8");
+			roomtype = URLDecoder.decode(roomtype, "utf-8");
+		}
+		
+		if(!roomtype.equals("")) {
+			roomtype= roomtype.replaceAll("쓰리룸 ", "쓰리룸+");
+		}
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("keyword", keyword);
+		map.put("roomtype", roomtype);
+		
+		dataCount = service.dataCount(map);
 		
 		
-		return ".room.roomlist";
+		if (dataCount!=0) {
+			total_page = myUtil.pageCount(rows, dataCount);
+		}
+		
+		if (total_page < current_page) {
+			current_page = total_page;
+		}
+		
+		int offset = (current_page-1) * rows;
+		if (offset<0) offset=0;
+		map.put("offset", offset);
+		map.put("rows", rows);
+		
+		List<Room> list = service.listRoom(map);
+
+		
+		String cp = req.getContextPath();
+		String query = "";
+		String listUrl = cp+"/room/roomlist";
+		String articleUrl = cp+"/room/roomArticle?page=" + current_page;
+		if (keyword.length() != 0) {
+			query = "keyword=" 
+						+ URLEncoder.encode(keyword, "utf-8");
+		}
+		if((keyword.length() != 0) && (roomtype.length()!=0) ) {
+			query+="&roomtype="+ URLEncoder.encode(roomtype, "utf-8");
+		}else if (roomtype.length()!=0) {
+			query="roomtype="+ URLEncoder.encode(roomtype, "utf-8");
+		}
+
+		if (query.length()!=0) {
+			listUrl += "?"+query;
+			articleUrl += "&" + query;
+		}
+		
+		String paging = myUtil.paging(current_page, total_page, listUrl);
+		
+		Map<String, Object> model=new HashMap<>();
+		
+		model.put("list", list);
+		model.put("articleUrl", articleUrl);
+		model.put("pageNo", current_page);
+		model.put("dataCount", dataCount);
+		model.put("total_page", total_page);
+		model.put("paging", paging);
+		model.put("keyword", keyword);
+		model.put("roomtype", roomtype);
+		
+		
+		return model;
 	}
 
 	

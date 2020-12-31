@@ -168,8 +168,13 @@ hr {
 	transform : scale(1.5);
 }
 
-
-
+.guest-more:hover{
+	cursor:pointer;
+	color: #2524FF;
+}
+.guest-more{
+	
+}
 
 
 
