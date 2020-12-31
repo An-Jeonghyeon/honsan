@@ -4,10 +4,20 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <script type="text/javascript">
+/*현재 날짜구하기  */
+ function date(){
+ let today= new Date();
+ let year=today.getFullYear();
+ let month=today.getMonth()+1;
+ let date=today.getDate()-1;
+ 
+ return ""+year+month+date;
+}
+ 
 /* dress-searchWeatherInput에서 value 값 가지고 오기 */
 function inpVal(IV){	
 	var rsIV=IV;
-	$(".dress-tmeperText").html(rsIV);
+	$(".dress-weatherArea").html(rsIV);
 }
 
 /* 지역 입력 하면 name="weather"에 nx=x , ny=y 값치환 해서 보내기  */
@@ -47,10 +57,13 @@ $(function(){
 			inpVal(IV.val());
 			IV.val("");	
 		}
+		//날짜 가지고 오기
+		var todate=date(); 
+		console.log(todate)
 		
 		//날씨 - 동네 예보 확인
 		var url ="${pageContext.request.contextPath}/dressMain/weatherApi";
-		var base_date="20201230";
+		var base_date=todate;
 		var base_time="0530";
 		//마파구 서교동, 기상청18_동네예보_조회서비스_오픈API활용가이드.zip 의 엑셀에 있음
 		var nx="59";
@@ -71,7 +84,7 @@ $(function(){
 		var pop, t3h, sky;
 		
 		if(! data.response.body){
-			arlert("등록된 정보가 없습니다.");
+			alert("등록된 정보가 없습니다.");
 			return false;
 		}
 		var list= data.response.body.items.item;
@@ -130,7 +143,7 @@ function ajaxFun(url, method, dataType,query, fn){
                 <div class="dress-WeatherTmpBody">
                     <div class="dress-WeatherTmp">
                         <i class="fas fa-temperature-high fa-2x"></i>
-                        <span>서울 </span><span>기온은</span>
+                        <span class="dress-weatherArea">입력한 지역 </span><span> 기온은</span>
                         <span class="dress-temper">
                         
                         </span>
