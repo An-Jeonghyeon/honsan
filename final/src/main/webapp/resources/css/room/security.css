@@ -192,14 +192,24 @@ figure.snip1384.hover i {
 .inputLayout {
    width: 80%;
    min-height: 30px; 
-   margin: 10px auto 0px; 
+   margin: 10px auto 10px; 
    padding: 5px;
    border: 1px solid #cccccc;
+}
+
+.firsttable{
+	border:1px solid; 
+	border-collapse: collapse; 
+	text-align:center; 
+	width: 100%; 
+	margin-top: 20px; 
+	border-spacing: 0;
 }
 
 .firsttable td{
 	border: 1px solid;
 }
+
 .pagenum{
 	text-align: center;
 	font-size: 15px;
@@ -213,6 +223,7 @@ figure.snip1384.hover i {
 }
 .testbtn:hover{
 	box-shadow: 0 0 5px #c0c0c0;
+	cursor: pointer;
 }
 .testbtn:active{
     background-color: #808080;
@@ -222,6 +233,70 @@ figure.snip1384.hover i {
 	margin-bottom: 10px;
 }
 
+
+
+
+
+
+
+
+
+/*securityTestSubmit*/
+
+
+.body-containertestsubmit{
+	clear:both;
+    box-sizing: border-box;  /* padding과 border는 크기에 포함되지 않음 */
+    margin: 80px auto 100px;
+    min-height: 500px;
+    padding-top: 20px;
+	width: 1300px;
+	border: 1px solid gray;
+	height: 1000px;
+}
+
+.submitLayout {
+   width: 80%;
+   min-height: 30px; 
+   margin: 10px auto 10px; 
+   padding: 20px;
+}
+
+.submittable{
+	border:1px solid; 
+	border-collapse: collapse; 
+	text-align:center; 
+	width: 100%; 
+	border-spacing: 0;
+	opacity:0;
+	margin-top:-100px;
+    max-width:100%;
+}
+
+.submittable td{
+	border: 1px solid;
+}
+
+.submittable:hover{
+	box-shadow: 0 0 10px #c0c0c0;
+}
+
+
+
+
+
+
+
+
+/*securityService*/
+.body-containertestService{
+	clear:both;
+    box-sizing: border-box;  /* padding과 border는 크기에 포함되지 않음 */
+    margin: 80px auto 100px;
+    min-height: 500px;
+    padding-top: 20px;
+	width: 1300px;
+}
 
 
 

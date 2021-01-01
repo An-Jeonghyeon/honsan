@@ -28,12 +28,12 @@ function deleteBoard(num) {
 }
 
 function updateBoard(num) {
-	<c:if test="${sessionScope.member.userId==dto.userId}">
+	<c:if test="${sessionScope.member.userId==dto.userId || sessionScope.member.userId=='admin' }">
 		var q="num="+num+"&page=${page}";
 		var url="${pageContext.request.contextPath}/room/roomUpdate?"+q;
 		location.href=url;
 	</c:if>
-	<c:if test="${sessionScope.member.userId!=dto.userId}">
+	<c:if test="${sessionScope.member.userId!=dto.userId && sessionScope.member.userId!='admin' }">
 		alert("게시글을 수정할 수 없습니다.");
 	</c:if>	
 }

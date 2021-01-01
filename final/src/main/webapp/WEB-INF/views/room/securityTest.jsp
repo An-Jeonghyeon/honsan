@@ -7,7 +7,6 @@
 	href="${pageContext.request.contextPath}/resources/css/room/security.css"
 	type="text/css">
 
-
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
 $(function() {
@@ -18,22 +17,54 @@ $(function() {
 	
 	$("#btnNext").click(function() {
 		
+		var f=document.securityTestForm;
+		
+		var str;
+		
+		
 		/*
 		// 필수 입력사항 - 이 부분에서 유효성 검사하면 됨
 		//현재 보이는 곳에서 required클래스를 가지고 있니?
-		if ($(".inputLayout:visible").hasClass("required")) {
-			if($(".inputLayout").first().is(":visible")){
-				// 이메일 인증 화면
-				alert("이메일 인증을 해야 합니다...");
-			}else {
-				alert("필수 입력 사항입니다."); 
+		if ($(".inputLayout:visible").hasClass("required1")) {
+			str = f.a1.value;
+			str = str.trim();
+			if(!str) {
+				alert("1번 문제의 답을 입력하세요.");
+				f.a1.focus();
+				return;
 			}
+			str = f.b1.value;
+			str = str.trim();
+			if(!str) {
+				alert("2번 문제의 답을 입력하세요.");
+				f.b1.focus();
+				return;
+			}
+			str = f.c1.value;
+			str = str.trim();
+			if(!str) {
+				alert("3번 문제의 답을 입력하세요.");
+				f.c1.focus();
+				return;
+			}
+			str = f.d1.value;
+			str = str.trim();
+			if(!str) {
+				alert("4번 문제의 답을 입력하세요.");
+				f.d1.focus();
+				return;
+			}
+			str = f.e1.value;
+			str = str.trim();
+			if(!str) {
+				alert("5번 문제의 답을 입력하세요.");
+				f.e1.focus();
+				return;
+			}
+			
 		}
+		
 		*/
-		
-		//유효성 검사
-		
-		
 		
 		
 		
@@ -88,9 +119,13 @@ $(function() {
 
 function memberOk() {
 	if(confirm("테스트를 종료하시겠습니까 ? ")){
-		alert("제출 완료");
-	}
-}
+		var f=document.securityTestForm;
+				
+				f.action = "${pageContext.request.contextPath}/room/securityTestSubmit";
+		
+				f.submit();
+			}
+		}
 
 </script>
 
@@ -105,7 +140,7 @@ function memberOk() {
     
         <div>
 			<form name="securityTestForm" method="post">
-				<div class='inputLayout required'>
+				<div class='inputLayout'>
 					<table class="firsttable" style="border:1px solid; border-collapse: collapse; text-align:center; width: 100%; margin-top: 20px; border-spacing: 0;">
 					<tr>
 						<td height="30" style="font-weight: bold;">종&nbsp;&nbsp;목</td>
@@ -118,7 +153,7 @@ function memberOk() {
 						<td>15</td>
 					</tr>
 					</table>
-					<table class="firsttable" style="border:1px solid; border-collapse: collapse; text-align:center; width: 100%; margin-top: 20px; border-spacing: 0;">
+					<table class="firsttable">
 					<tr>
 						<td height="50" style="font-weight: bold;">수험 번호</td>
 						<td>00000-00000000</td>
@@ -158,7 +193,7 @@ function memberOk() {
 					<p class="pagenum"> - 1 - </p>
 				</div>
 			
-				<div class='inputLayout required'>
+				<div class='inputLayout required1'>
 					<table style="width: 100%; margin-top: 10px; border-spacing: 0;">
 					<tr>
 					<td>
@@ -184,10 +219,10 @@ function memberOk() {
 						
 							<div class="question">
 								<p><strong>3.</strong> 건물 입구 및 내부 cctv 유무? </p><br>
-								<input type="radio" name="b1" value="1"> 없음 &nbsp; &nbsp;
-								<input type="radio" name="b1" value="2"> 집 앞&nbsp; &nbsp;
-								<input type="radio" name="b1" value="3"> 공동현관(건물 입구)만&nbsp; &nbsp;
-								<input type="radio" name="b1" value="4"> 집 복도, 현관까지<br><br><br>
+								<input type="radio" name="c1" value="1"> 없음 &nbsp; &nbsp;
+								<input type="radio" name="c1" value="2"> 집 앞&nbsp; &nbsp;
+								<input type="radio" name="c1" value="3"> 공동현관(건물 입구)만&nbsp; &nbsp;
+								<input type="radio" name="c1" value="4"> 집 복도, 현관까지<br><br><br>
 							</div>
 						
 						
@@ -196,21 +231,21 @@ function memberOk() {
 						<div style="width: 500px;height:400px; float: left; border-bottom : 1px solid #000;border-top : 1px solid #000; padding:10px 0 10px 10px;">
 							<div class="question">
 								<p><strong>4.</strong> 집 현관 잠금 장치는 ?  </p><br>
-								<input type="radio" name="a1" value="1"> 없음  &nbsp; &nbsp;
-								<input type="radio" name="a1" value="2"> 열쇠 &nbsp; &nbsp;
-								<input type="radio" name="a1" value="3"> 도어락 등 전자장치 <br><br>
-								<input type="radio" name="a1" value="4"> 도어락+안전바 &nbsp; &nbsp;
-								<input type="radio" name="a1" value="5"> 3가지 이상 <br><br><br>
+								<input type="radio" name="d1" value="1"> 없음  &nbsp; &nbsp;
+								<input type="radio" name="d1" value="2"> 열쇠 &nbsp; &nbsp;
+								<input type="radio" name="d1" value="3"> 도어락 등 전자장치 <br><br>
+								<input type="radio" name="d1" value="4"> 도어락+안전바 &nbsp; &nbsp;
+								<input type="radio" name="d1" value="5"> 3가지 이상 <br><br><br>
 							</div>
 						
 							<div class="question">
 								<p><strong>5.</strong> 집 내부 창문 보안은 ? </p><br>
-								<input type="radio" name="b1" value="1"> 잠금 장치 없음&nbsp; &nbsp;
-								<input type="radio" name="b1" value="2"> 1중 창 잠금&nbsp; &nbsp;
-								<input type="radio" name="b1" value="3"> 1중 창 잠금 + 보호 철창 <br><br>
-								<input type="radio" name="b1" value="3"> 2중 창 잠금 &nbsp; &nbsp;
-								<input type="radio" name="b1" value="4"> 2중 창 잠금 + 보호 철창 &nbsp; &nbsp;<br><br>
-								<input type="radio" name="b1" value="5"> 그 외 추가 보안 설치<br><br><br>
+								<input type="radio" name="e1" value="1"> 잠금 장치 없음&nbsp; &nbsp;
+								<input type="radio" name="e1" value="2"> 1중 창 잠금&nbsp; &nbsp;
+								<input type="radio" name="e1" value="3"> 1중 창 잠금 + 보호 철창 <br><br>
+								<input type="radio" name="e1" value="3"> 2중 창 잠금 &nbsp; &nbsp;
+								<input type="radio" name="e1" value="4"> 2중 창 잠금 + 보호 철창 &nbsp; &nbsp;<br><br>
+								<input type="radio" name="e1" value="5"> 그 외 추가 보안 설치<br><br><br>
 							</div>
 
 						</div>
@@ -221,36 +256,32 @@ function memberOk() {
 						<p class="pagenum"> - 2 - </p>	
 				</div>
 			
-				<div class='inputLayout'>
+				<div class='inputLayout required2'>
 					<table style="width: 100%; margin-top: 10px; border-spacing: 0; ">
 										<tr>
 					<td>
 						<div style="width: 500px;height:400px; float: left; border-right: 1px solid #000;border-bottom : 1px solid #000;border-top : 1px solid #000; margin-left: 10px;padding:10px 0 10px 10px;">
 							<div class="question">
-								<p><strong>6.</strong> 나의 집 층수는 ? </p><br>
-								<input type="radio" name="a1" value="1"> 지하~반지하  &nbsp; &nbsp;
-								<input type="radio" name="a1" value="2"> 1층 &nbsp; &nbsp;
-								<input type="radio" name="a1" value="3"> 2층  &nbsp; &nbsp;
-								<input type="radio" name="a1" value="4"> 3~4층 <br><br>
-								<input type="radio" name="a1" value="5"> 5층 이상 &nbsp; &nbsp;
-								<input type="radio" name="a1" value="4"> 최고층 &nbsp; &nbsp;
-								<input type="radio" name="a1" value="3"> 옥탑  <br><br><br>
+								<p><strong>6.</strong> 택배 수령 하는 법 ?  </p><br>
+								<input type="radio" name="f1" value="4"> 보안이 되어있는 택배함  &nbsp; &nbsp;
+								<input type="radio" name="f1" value="3"> 보안 없이 있는 택배 보관 &nbsp; &nbsp;
+								<input type="radio" name="f1" value="2"> 택배 기사님임을 인증하고 집 앞으로  &nbsp; &nbsp;
+								<input type="radio" name="f1" value="1"> 인증 없이 다이렉트로 집 앞으로 <br><br>
 							</div>
 						
 							<div class="question">
-								<p><strong>7.</strong> 공동현관(건물 입구) 잠금 장치는 ? </p><br>
-								<input type="radio" name="b1" value="1"> 문 없음(오픈형)&nbsp; &nbsp;
-								<input type="radio" name="b1" value="2"> 잠금장치 없음&nbsp; &nbsp;
-								<input type="radio" name="b1" value="3"> 열쇠<br><br>
-								<input type="radio" name="b1" value="4"> 도어락 등 전자장치<br><br><br>
+								<p><strong>7.</strong> 외부에서 집 내부를 볼 경우 ? </p><br>
+								<input type="radio" name="g1" value="1"> 없음 &nbsp; &nbsp;
+								<input type="radio" name="g1" value="2"> 있음<br><br><br>
 							</div>
 						
 							<div class="question">
-								<p><strong>8.</strong> 건물 입구 및 내부 cctv 유무? </p><br>
-								<input type="radio" name="b1" value="1"> 없음 &nbsp; &nbsp;
-								<input type="radio" name="b1" value="2"> 집 앞&nbsp; &nbsp;
-								<input type="radio" name="b1" value="3"> 공동현관(건물 입구)만&nbsp; &nbsp;
-								<input type="radio" name="b1" value="4"> 집 복도, 현관까지<br><br><br>
+								<p><strong>8.</strong> 집가는 길 도움을 요청할 장소가 많은가 ?  </p><br>
+								<input type="radio" name="h1" value="5"> 집 도착까지 계속 &nbsp; &nbsp;
+								<input type="radio" name="h1" value="4"> 5분거리 마다 있음&nbsp; &nbsp;
+								<input type="radio" name="h1" value="3"> 드문드문 있임<br><br>
+								<input type="radio" name="h1" value="2"> 거의 없음&nbsp; &nbsp;
+								<input type="radio" name="h1" value="1"> 전혀 없음<br><br><br>
 							</div>
 						
 						
@@ -258,22 +289,22 @@ function memberOk() {
 						</div>
 						<div style="width: 500px;height:400px; float: left; border-bottom : 1px solid #000;border-top : 1px solid #000; padding:10px 0 10px 10px;">
 							<div class="question">
-								<p><strong>9.</strong> 집 현관 잠금 장치는 ?  </p><br>
-								<input type="radio" name="a1" value="1"> 없음  &nbsp; &nbsp;
-								<input type="radio" name="a1" value="2"> 열쇠 &nbsp; &nbsp;
-								<input type="radio" name="a1" value="3"> 도어락 등 전자장치 <br><br>
-								<input type="radio" name="a1" value="4"> 도어락+안전바 &nbsp; &nbsp;
-								<input type="radio" name="a1" value="5"> 3가지 이상 <br><br><br>
+								<p><strong>9.</strong> 아 질문 뭐하지  </p><br>
+								<input type="radio" name="i1" value="1"> 없음  &nbsp; &nbsp;
+								<input type="radio" name="i1" value="2"> 열쇠 &nbsp; &nbsp;
+								<input type="radio" name="i1" value="3"> 도어락 등 전자장치 <br><br>
+								<input type="radio" name="i1" value="4"> 도어락+안전바 &nbsp; &nbsp;
+								<input type="radio" name="i1" value="5"> 3가지 이상 <br><br><br>
 							</div>
 						
 							<div class="question">
 								<p><strong>10.</strong> 집 내부 창문 보안은 ? </p><br>
-								<input type="radio" name="b1" value="1"> 잠금 장치 없음&nbsp; &nbsp;
-								<input type="radio" name="b1" value="2"> 1중 창 잠금&nbsp; &nbsp;
-								<input type="radio" name="b1" value="3"> 1중 창 잠금 + 보호 철창 <br><br>
-								<input type="radio" name="b1" value="3"> 2중 창 잠금 &nbsp; &nbsp;
-								<input type="radio" name="b1" value="4"> 2중 창 잠금 + 보호 철창 &nbsp; &nbsp;<br><br>
-								<input type="radio" name="b1" value="5"> 그 외 추가 보안 설치<br><br><br>
+								<input type="radio" name="j1" value="1"> 잠금 장치 없음&nbsp; &nbsp;
+								<input type="radio" name="j1" value="2"> 1중 창 잠금&nbsp; &nbsp;
+								<input type="radio" name="j1" value="3"> 1중 창 잠금 + 보호 철창 <br><br>
+								<input type="radio" name="j1" value="3"> 2중 창 잠금 &nbsp; &nbsp;
+								<input type="radio" name="j1" value="4"> 2중 창 잠금 + 보호 철창 &nbsp; &nbsp;<br><br>
+								<input type="radio" name="j1" value="5"> 그 외 추가 보안 설치<br><br><br>
 							</div>
 
 						</div>
@@ -283,36 +314,36 @@ function memberOk() {
 					<p class="pagenum"> - 3 - </p>		
 				</div>
 			
-				<div class='inputLayout'>
+				<div class='inputLayout required3'>
 					<table style="width: 100%; margin-top: 10px; border-spacing: 0; border-collapse: collapse;">
 										<tr>
 					<td>
 						<div style="width: 500px;height:400px; float: left; border-right: 1px solid #000;border-bottom : 1px solid #000;border-top : 1px solid #000; margin-left: 10px;padding:10px 0 10px 10px;">
 							<div class="question">
 								<p><strong>11.</strong> 나의 집 층수는 ? </p><br>
-								<input type="radio" name="a1" value="1"> 지하~반지하  &nbsp; &nbsp;
-								<input type="radio" name="a1" value="2"> 1층 &nbsp; &nbsp;
-								<input type="radio" name="a1" value="3"> 2층  &nbsp; &nbsp;
-								<input type="radio" name="a1" value="4"> 3~4층 <br><br>
-								<input type="radio" name="a1" value="5"> 5층 이상 &nbsp; &nbsp;
+								<input type="radio" name="k1" value="1"> 지하~반지하  &nbsp; &nbsp;
+								<input type="radio" name="k1" value="2"> 1층 &nbsp; &nbsp;
+								<input type="radio" name="k1" value="3"> 2층  &nbsp; &nbsp;
+								<input type="radio" name="k1" value="4"> 3~4층 <br><br>
+								<input type="radio" name="k1" value="5"> 5층 이상 &nbsp; &nbsp;
 								<input type="radio" name="a1" value="4"> 최고층 &nbsp; &nbsp;
 								<input type="radio" name="a1" value="3"> 옥탑  <br><br><br>
 							</div>
 						
 							<div class="question">
 								<p><strong>12.</strong> 공동현관(건물 입구) 잠금 장치는 ? </p><br>
-								<input type="radio" name="b1" value="1"> 문 없음(오픈형)&nbsp; &nbsp;
-								<input type="radio" name="b1" value="2"> 잠금장치 없음&nbsp; &nbsp;
-								<input type="radio" name="b1" value="3"> 열쇠<br><br>
-								<input type="radio" name="b1" value="4"> 도어락 등 전자장치<br><br><br>
+								<input type="radio" name="l1" value="1"> 문 없음(오픈형)&nbsp; &nbsp;
+								<input type="radio" name="l1" value="2"> 잠금장치 없음&nbsp; &nbsp;
+								<input type="radio" name="l1" value="3"> 열쇠<br><br>
+								<input type="radio" name="l1" value="4"> 도어락 등 전자장치<br><br><br>
 							</div>
 						
 							<div class="question">
 								<p><strong>13.</strong> 건물 입구 및 내부 cctv 유무? </p><br>
-								<input type="radio" name="b1" value="1"> 없음 &nbsp; &nbsp;
-								<input type="radio" name="b1" value="2"> 집 앞&nbsp; &nbsp;
-								<input type="radio" name="b1" value="3"> 공동현관(건물 입구)만&nbsp; &nbsp;
-								<input type="radio" name="b1" value="4"> 집 복도, 현관까지<br><br><br>
+								<input type="radio" name="m1" value="1"> 없음 &nbsp; &nbsp;
+								<input type="radio" name="m1" value="2"> 집 앞&nbsp; &nbsp;
+								<input type="radio" name="m1" value="3"> 공동현관(건물 입구)만&nbsp; &nbsp;
+								<input type="radio" name="m1" value="4"> 집 복도, 현관까지<br><br><br>
 							</div>
 						
 						
@@ -321,19 +352,19 @@ function memberOk() {
 						<div style="width: 500px;height:400px; float: left; border-bottom : 1px solid #000;border-top : 1px solid #000; padding:10px 0 10px 10px;">
 							<div class="question">
 								<p><strong>14.</strong> 집 현관 잠금 장치는 ?  </p><br>
-								<input type="radio" name="a1" value="1"> 없음  &nbsp; &nbsp;
-								<input type="radio" name="a1" value="2"> 열쇠 &nbsp; &nbsp;
-								<input type="radio" name="a1" value="3"> 도어락 등 전자장치 <br><br>
-								<input type="radio" name="a1" value="4"> 도어락+안전바 &nbsp; &nbsp;
-								<input type="radio" name="a1" value="5"> 3가지 이상 <br><br><br>
+								<input type="radio" name="n1" value="1"> 없음  &nbsp; &nbsp;
+								<input type="radio" name="n1" value="2"> 열쇠 &nbsp; &nbsp;
+								<input type="radio" name="n1" value="3"> 도어락 등 전자장치 <br><br>
+								<input type="radio" name="n1" value="4"> 도어락+안전바 &nbsp; &nbsp;
+								<input type="radio" name="n1" value="5"> 3가지 이상 <br><br><br>
 							</div>
 						
 							<div class="question">
 								<p><strong>15.</strong> 집 내부 창문 보안은 ? </p><br>
-								<input type="radio" name="b1" value="1"> 잠금 장치 없음&nbsp; &nbsp;
-								<input type="radio" name="b1" value="2"> 1중 창 잠금&nbsp; &nbsp;
-								<input type="radio" name="b1" value="3"> 1중 창 잠금 + 보호 철창 <br><br>
-								<input type="radio" name="b1" value="3"> 2중 창 잠금 &nbsp; &nbsp;
+								<input type="radio" name="o1" value="1"> 잠금 장치 없음&nbsp; &nbsp;
+								<input type="radio" name="o1" value="2"> 1중 창 잠금&nbsp; &nbsp;
+								<input type="radio" name="o1" value="3"> 1중 창 잠금 + 보호 철창 <br><br>
+								<input type="radio" name="o1" value="3"> 2중 창 잠금 &nbsp; &nbsp;
 								<input type="radio" name="b1" value="4"> 2중 창 잠금 + 보호 철창 &nbsp; &nbsp;<br><br>
 								<input type="radio" name="b1" value="5"> 그 외 추가 보안 설치<br><br><br>
 							</div>
