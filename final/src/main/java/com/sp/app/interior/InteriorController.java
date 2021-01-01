@@ -500,7 +500,7 @@ public class InteriorController {
 			}
 			
 			// AJAX 용 페이징
-			String paging=myUtil.pagingMethod(current_page, total_page, "listPage");
+			String paging=myUtil.pagingMethod3(current_page, total_page, "listPage");
 			
 			// 포워딩할 jsp로 넘길 데이터
 			model.addAttribute("listReply", listReply);

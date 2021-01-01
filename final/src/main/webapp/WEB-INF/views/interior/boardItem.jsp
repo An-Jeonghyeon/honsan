@@ -8,24 +8,47 @@
 	color: #35c5f0;
 }
 
-#paginate #curBox_sub{
+#curBox_sub{
 	border: 1px solid #35c5f0;
 	background:  #35c5f0;
 	color: white;
 	border-radius: 4px;
 	font-weight: 700;
 	font-size: 15px;
+	font-weight:bold;
+	height:28px;
+	padding:4px 10px 4px 10px;
+	margin-left:3px;
+	line-height:normal;
+	vertical-align:middle;
 }
 
-#paginate #numBox_sub{
+
+#numBox_sub{
 	font-size: 15px;
 	border : none;
 
+	height:28px;
+	font-weight:bold;
+	text-decoration:none;
+	padding:4px 7px 4px 7px;
+	margin-left:3px;
+	line-height:normal;
+	vertical-align:middle;
 }
 
-#paginate #tlBox{
+#tlBox{
 	font-size: 15px;
 	border : none;
+	border:1px solid #ccc;
+	height:28px;color:#000000;
+	text-decoration:none;
+	padding:4px 10px 4px 10px;
+	margin-left:3px;
+	line-height:normal;
+	vertical-align:middle;
+	outline:none; 
+	select-dummy: expression(this.hideFocus=true);
 }
 
 </style>
