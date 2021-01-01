@@ -17,7 +17,7 @@
 	font-size: 15px;
 	font-weight:bold;
 	height:28px;
-	padding:4px 10px 4px 10px;
+	padding:4px 7px 4px 7px;
 	margin-left:3px;
 	line-height:normal;
 	vertical-align:middle;
@@ -45,10 +45,27 @@
 	text-decoration:none;
 	padding:4px 10px 4px 10px;
 	margin-left:3px;
+	margin-right : 20px;
 	line-height:normal;
 	vertical-align:middle;
 	outline:none; 
-	select-dummy: expression(this.hideFocus=true);
+	border-radius: 4px;
+}
+
+#trBox{
+	font-size: 15px;
+	border : none;
+	border:1px solid #ccc;
+	height:28px;color:#000000;
+	text-decoration:none;
+	padding:4px 10px 4px 10px;
+	margin-left:20px;
+	margin-right : 3px;
+	line-height:normal;
+	vertical-align:middle;
+	outline:none; 
+	border-radius: 4px;
+	
 }
 
 </style>
