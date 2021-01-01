@@ -46,8 +46,8 @@ public class MemberServiceImpl implements MemberService {
 			
 			// 회원정보 저장
 			dao.insertData("member.insertMember", memberSeq);
-			
 			dao.updateData("member.insertMember12", dto); // member1, member2 테이블 동시에 
+			dao.insertData("member.insertMemberProfile", dto.getUserId()); // 멤버 프로필 생성 
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
