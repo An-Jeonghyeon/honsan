@@ -63,7 +63,7 @@ public class DressMainController {
 		return result;
 	}
 	@RequestMapping(value = "weatherRequest", method= RequestMethod.GET)
-	public String submitAreaName(@RequestParam String city ,Model model)throws Exception{
+	public String submitAreaName(@RequestParam(value="city", required=false) String city ,Model model)throws Exception{
 		System.out.println(city);
 		Map<String, Object> map = new HashMap<String, Object>();
 		try {
