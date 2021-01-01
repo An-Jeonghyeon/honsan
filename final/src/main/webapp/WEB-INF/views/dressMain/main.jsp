@@ -69,18 +69,19 @@
 	/*                  지역이름 자바로 넘겨주기                    */
 		function parsingJavaAreaName() {
 		var city = $(".dress-searchWeatherInput").val();
+	
 		console.log(city);
 			$.ajax({
-					type : "post",
+					type : "get",
 					url : "${pageContext.request.contextPath}/dressMain/weatherRequest",
 					data : "city=" + city,
 					dataType : "json",
 					success : function(data) {
-						fn(data);
+						alert(data);
 					},
 					error : function(e) {
 						console.log(e.responseText);
-						
+						alert(data);
 					}
 				});
 	}

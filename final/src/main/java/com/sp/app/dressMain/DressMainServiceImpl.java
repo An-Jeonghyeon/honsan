@@ -150,10 +150,10 @@ public class DressMainServiceImpl implements DressMainService{
 	}
 
 	@Override
-	public List<DressMain> selectXYcode(String city) {
+	public List<DressMain> selectXYcode(Map<String, Object> map) {
 		List<DressMain> list =null;
 		try {
-			list=dao.selectList("dressMain.dressMaincity", city);
+			list=dao.selectList("dressMain.dressMaincity", map);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

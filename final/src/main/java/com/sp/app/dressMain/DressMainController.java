@@ -1,6 +1,8 @@
 package com.sp.app.dressMain;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -60,17 +62,22 @@ public class DressMainController {
 		
 		return result;
 	}
-	@RequestMapping(value = "weatherRequest", method= RequestMethod.POST)
+	@RequestMapping(value = "weatherRequest", method= RequestMethod.GET)
 	public String submitAreaName(@RequestParam String city ,Model model)throws Exception{
 		System.out.println(city);
-	
-		List<DressMain>list=service.selectXYcode(city);
+		Map<String, Object> map = new HashMap<String, Object>();
+		try {
+			map.put("city", city);
+			List<DressMain>list=service.selectXYcode(map);
+			model.addAttribute("list",list);			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 //			for(int i=0; i<list.size(); i++) {
 //				System.out.println(list.get(i));
 //			}
 		
-		model.addAttribute("list",list);			
 		return ".dressMain.main";
 	}
 	

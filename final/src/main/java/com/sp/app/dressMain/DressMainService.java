@@ -7,5 +7,5 @@ public interface DressMainService {
 	public Map<String, Object> serializeNode(String spec);
 	public String documnetWriter(String spec);
 	
-	public List<DressMain> selectXYcode(String city);
+	public List<DressMain> selectXYcode(Map<String, Object> map);
 }
