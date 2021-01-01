@@ -54,6 +54,12 @@
     margin-bottom: 24px;
 }
 
+.user_prople_img > img{
+	width: 100%;
+	height: 100%;
+	border-radius: 100%;
+}
+
 .user_prople_userId{
     width: 100%;
     height: 29px;

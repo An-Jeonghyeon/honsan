@@ -21,6 +21,9 @@ public class Interior {
 	private String replyuserId;
 	private int replyCount;
 	
+	// 프로 필 이미지 들 
+	private String profileImg;
+	private String replyProfileImg;
 	
 	private List<MultipartFile> upload;
 	
@@ -33,6 +36,21 @@ public class Interior {
 	
 	
 	
+	public String getProfileImg() {
+		return profileImg;
+	}
+	
+	public void setProfileImg(String profileImg) {
+		this.profileImg = profileImg;
+	}
+	
+	public String getReplyProfileImg() {
+		return replyProfileImg;
+	}
+	
+	public void setReplyProfileImg(String replyProfileImg) {
+		this.replyProfileImg = replyProfileImg;
+	}
 	public int getReplyCount() {
 		return replyCount;
 	}

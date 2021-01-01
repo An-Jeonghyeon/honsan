@@ -28,3 +28,66 @@ ul.tabs li.active{
 	border: 1px solid #dddddd;
 	border-bottom-color:  transparent;
 }
+
+/*질문과 답변*/
+.qnasearchlist{
+	width:100%;
+	background: #ebebeb;
+	height: 200px;
+	
+}
+
+.qnasearchTF {
+	width: 400px;
+	height: 20px;
+	padding: 5px;
+	padding-left: 15px;
+	border: 1px solid #999999;
+	color: #333333;
+	margin-top: 3px;
+	margin-bottom: 5px;
+	font-size: 14px;
+	border-radius: 4px;
+}
+
+.qnasearchTF:focus{
+	border: 1px solid #80ffff;
+	box-shadow: 0 0 10px #35ffff;
+}
+
+.qnasearchbtn{
+	font-size: 15px; 
+	border:none;
+	background:#d7def7;
+	width: 60px;
+	height: 35px;
+	border-radius:4px;
+	color: #000;
+}
+
+.qnasearchbtn:hover{
+	background:#a7b7ed;
+}
+
+.qnalbl {
+	position: absolute;
+	margin-left: 15px;
+	margin-top: 11px;
+	color: #999999;
+	font-size: 11pt;
+}
+
+.qnatitle{
+	font-size: 25pt;
+	font-weight: 600;
+}
+a{
+	text-decoration: none;
+	
+}
+
+
+
+
+
+

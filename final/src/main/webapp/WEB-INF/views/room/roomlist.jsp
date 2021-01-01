@@ -346,7 +346,13 @@ $(function(){
            			<tfoot id="listGuestFooter">
            				<tr height="50">
            					<td align="center" colspan="4" >
-           						<span class="guest-more">게시글 더보기</span>
+           						<div class="section">
+								  <div class="section__item">
+								    <a class="r-link text-flat text-flat_v10">
+								      <span class="text-flat__label guest-more">게시글 더보기</span>
+								    </a>
+								  </div>
+								</div>
            					</td>
            				</tr>
            			</tfoot>

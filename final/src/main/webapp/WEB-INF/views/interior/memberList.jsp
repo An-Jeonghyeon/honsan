@@ -13,9 +13,10 @@
                 <div class="userPage_leftbox_controller">
                     <div class="user_prople">
                         <div class="user_prople_img">
+                        	<img src="${pageContext.request.contextPath}/uploads/profile/${dto.profileImg}">
                         </div>
                         <div class="user_prople_userId">
-                            <span>회원닉네임</span>
+                            <span>${dto.userId}</span>
                         </div>  
                         <div class="user_prople_atr">
                             좋아요 <span>1,264</span>
@@ -24,7 +25,7 @@
                             <button>좋아요</button>
                         </div>
                         <div class="user_prople_msg">
-                            인풋 사이즈 크기 최대 28자로 할것 
+                            ${dto.profileMsg}
                         </div>
                     </div>
                 </div>

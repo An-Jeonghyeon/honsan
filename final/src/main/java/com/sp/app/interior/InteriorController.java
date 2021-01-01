@@ -22,6 +22,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.sp.app.common.FileManager;
 import com.sp.app.common.MyUtil;
 import com.sp.app.member.SessionInfo;
+import com.sp.app.mypage.Mypage;
+import com.sp.app.mypage.MypageService;
 
 @Controller("interior.interiorController")
 @RequestMapping("/interior/*")
@@ -29,6 +31,9 @@ public class InteriorController {
 	
 	@Autowired
 	private InteriorService service;
+	
+	@Autowired
+	private MypageService mypageSerivce;
 	
 	@Autowired
 	private MyUtil myUtil;
@@ -356,8 +361,14 @@ public class InteriorController {
 		map.put("userId", userId);
 		map.put("rows" , 4);
 		
+		Mypage dto = new Mypage();
+		dto.setUserId(userId);
+				
+		dto = mypageSerivce.readProfile(dto);
+		
 		List<Interior> list = service.userlistBoard(map);
 		
+		model.addAttribute("dto", dto);
 		model.addAttribute("list", list);
 		model.addAttribute("userId", userId);
 		
@@ -378,6 +389,12 @@ public class InteriorController {
 		
 		List<Interior> list = service.userlistBoard(map);
 		
+		Mypage dto = new Mypage();
+		dto.setUserId(userId);
+				
+		dto = mypageSerivce.readProfile(dto);
+		
+		model.addAttribute("dto", dto);
 		model.addAttribute("list", list);
 		
 		

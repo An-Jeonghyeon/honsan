@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mypage">
+	
+	<select id="readProfile" parameterType="com.sp.app.mypage.Mypage" resultType="com.sp.app.mypage.Mypage">
+		SELECT userId , profileImg ,profileMsg 
+		FROM memberProfile
+		WHERE userId = #{userId}
+	</select>
+	
+	<update id="updateProfile" parameterType="com.sp.app.mypage.Mypage">
+		UPDATE memberProfile SET profileMsg=#{profileMsg} 
+		WHERE  userId = #{userId}
+	</update>
+	
+		<update id="updateProfile2" parameterType="com.sp.app.mypage.Mypage">
+		UPDATE memberProfile SET profileImg=#{profileImg} , profileMsg=#{profileMsg} 
+		WHERE  userId = #{userId}
+	</update>
+</mapper>
