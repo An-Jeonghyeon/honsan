@@ -109,7 +109,7 @@ function sendProfileUpdate(){
 						</div>
 							<div class="mainImg_append"> 설정
 				                <input id="mainImg_upload" type="file" name="profileUpload" > <!-- 다운받아져있는 이미지넣는다  -->
-				                <input type="text" name="profileImg" value="${dto.profileImg}">
+				                <input type="text" value="${dto.profileImg}">
 				            </div>
 					</div>
 					<div class="profile-userBasicInfo">
@@ -123,9 +123,9 @@ function sendProfileUpdate(){
 						</div>
 						<div class="profile-update-userBasicInfo profile-center">
 							<button class="btn btn-default" type="button" onclick="sendProfileUpdate();">프로필 수정 완료</button>
-							<c:if test="${sessionScope.member.userId==userId || sessionScope.member.userId=='admin' }">
+							
 							<input type="hidden" name="userId" value="${dto.userId}">
-							</c:if>
+							
 						</div>				
 					</div>
 					<div class="profile-like">

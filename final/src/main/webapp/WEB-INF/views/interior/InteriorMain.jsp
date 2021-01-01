@@ -41,7 +41,7 @@
 	                	<!-- 작성자 프로필 사진  -->
 	                    <div class="interior_subject_user_img">
 	                        <a href="${pageContext.request.contextPath}/interior/mList?userId=${dto.userId}">
-	                        	<img src="${pageContext.request.contextPath}/resources/images/interior/a1.jpg">
+	                        	<img src="${pageContext.request.contextPath}/uploads/profile/${dto.profileImg}">
 	                        </a>
 	                    </div>
 	                    <!-- 아이디 , 좋아요  및 게시판 제목  -->
@@ -86,7 +86,7 @@
 	                <!-- 다른유저 아이디 및 댓글  -->
 	                <div class="interior_first_review">
 	                    <div class="interior_first_review_img">
-	                        <img class="" src="${pageContext.request.contextPath}/resources/images/interior/a1.jpg" >
+	                        <img class="" src="${pageContext.request.contextPath}/uploads/profile/${dto.replyProfileImg}" >
 	                    </div>
 	                    <div class="interior_first_review_content">
 	                        <a>${dto.replyuserId}</a> ${dto.replycontent}

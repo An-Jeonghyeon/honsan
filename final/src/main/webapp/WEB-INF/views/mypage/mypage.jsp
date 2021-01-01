@@ -53,9 +53,8 @@ function sendUpdate(){
 						</div>
 						<div class="profile-update-userBasicInfo profile-center">
 							<button class="btn btn-default" type="button" onclick="sendUpdate();">내 정보 수정</button>
-							<c:if test="${sessionScope.member.userId==userId || sessionScope.member.userId=='admin' }">
-							<input type="hidden" name="userId" value="${dto.userId}">
-							</c:if>
+							<input type="hidden" name="userId" value="${sessionScope.member.userId}">
+							
 							<button class="btn btn-default" type="button" onclick="sendDelete()">회원 탈퇴</button>
 						</div>				
 					</div>

@@ -37,6 +37,7 @@ public class MypageServiceImpl implements MypageService{
 			String mainFilename = fileManager.doFileUpload(mainImg, pathname);
 			dto.setProfileImg(mainFilename);
 			
+			
 			dao.updateData("mypage.updateProfile2", dto);
 			}else {
 
