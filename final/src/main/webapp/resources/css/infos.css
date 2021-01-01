@@ -139,7 +139,7 @@
 
 .notice_content_box{
 	width: 1134px;
-	height: 403px;
+	min-height : 380px;
 	margin: 0px auto;
 }
 
