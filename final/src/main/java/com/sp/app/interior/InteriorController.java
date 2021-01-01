@@ -1,5 +1,6 @@
 package com.sp.app.interior;
 
+
 import java.io.File;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
@@ -21,7 +22,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.sp.app.common.FileManager;
 import com.sp.app.common.MyUtil;
 import com.sp.app.member.SessionInfo;
-import com.sp.app.notice.Notice;
 
 @Controller("interior.interiorController")
 @RequestMapping("/interior/*")
@@ -40,6 +40,7 @@ public class InteriorController {
 			@RequestParam(value = "page", defaultValue = "1") int current_page,			
 			@RequestParam(defaultValue = "") String keyword,
 			HttpServletRequest req,
+			HttpSession session,
 			Model model
 			) throws Exception{
 
@@ -72,7 +73,7 @@ public class InteriorController {
 			
 		String cp = req.getContextPath();
 		String query = "";
-		String listUrl = cp+"/interior/list";
+		String listUrl = cp+"/interior/main";
 		String articleUrl = cp+"/interior/boardItem?page=" + current_page;
 		if (keyword.length() != 0) {
 			query =  "&keyword=" 
@@ -85,6 +86,7 @@ public class InteriorController {
 		}
 		
 		String paging = myUtil.paging(current_page, total_page, listUrl);
+		
 		
 		model.addAttribute("list", list);
 		model.addAttribute("articleUrl", articleUrl);
@@ -147,7 +149,7 @@ public class InteriorController {
 		
 	}
 	
-	@RequestMapping(value = "boardItem" , method = RequestMethod.GET)
+	@RequestMapping(value = "boardItem")
 	public String boardItem(
 			@RequestParam (defaultValue = "1")int num,
 			@RequestParam (defaultValue = "1")String page,
@@ -170,6 +172,7 @@ public class InteriorController {
 		if (dto==null && flist==null) {
 			return "redirect:/interior/main?"+query;
 		}
+		
 		Map<String, Object> map = new HashMap<>();
 		map.put("userId", dto.getUserId());
 		map.put("rows", 4);
@@ -183,6 +186,7 @@ public class InteriorController {
 		Map<String, Object> paramMap=new HashMap<>();
 		paramMap.put("num", num);
 		paramMap.put("userId", info.getUserId());
+		int replyCount=service.replyCount(paramMap);
 		
 		int readinteriorLike=0;
 		int interiorLikecount =0;
@@ -195,12 +199,12 @@ public class InteriorController {
 		
 		model.addAttribute("userLike", readinteriorLike);
 		model.addAttribute("interiorLikeCount", interiorLikecount);
-		
-		
+
 		map.put("num", num);
 			
 		map.put("keyword", keyword);
 		
+		model.addAttribute("replyCount",replyCount);
 		model.addAttribute("ublist", ublist);
 		model.addAttribute("ublistCount", ublistCount);		
 		model.addAttribute("dto", dto);
@@ -279,6 +283,28 @@ public class InteriorController {
 		
 		
 		return "redirect:/interior/main";
+	}
+	
+	@RequestMapping(value = "deleteInterior")
+	@ResponseBody
+	public Map<String, Object> deleteInterior(
+			@RequestParam Map<String, Object> paramMap
+			) {
+		
+		String state="true";
+		try {
+			//service.deleteReply(paramMap);
+			service.deleteBoard(paramMap);
+
+			
+		} catch (Exception e) {
+			state="false";
+		}
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("state", state);
+		
+		return map;
 	}
 	
 	@RequestMapping(value="deleteFile", method=RequestMethod.POST)
@@ -419,5 +445,107 @@ public class InteriorController {
 			return model;
 		}
 	
-	
+		// 댓글 및 댓글의 답글 등록 : AJAX-JSON
+		@RequestMapping(value="insertReply", method=RequestMethod.POST)
+		@ResponseBody
+		public Map<String, Object> insertReply(
+				Reply dto,
+				HttpSession session
+				) {
+			SessionInfo info=(SessionInfo)session.getAttribute("member");
+			String state="true";
+			
+			try {
+				dto.setUserId(info.getUserId());
+				service.insertReply(dto);
+			} catch (Exception e) {
+				state="false";
+			}
+			
+			Map<String, Object> model = new HashMap<>();
+			model.put("state", state);
+			
+			return model;
+		}	
+		
+		// 댓글 리스트 
+		@RequestMapping(value="listReply")
+		public String listReply(
+				@RequestParam int num,
+				@RequestParam(value="pageNo", defaultValue="1") int current_page,
+				Model model
+				) throws Exception {
+			
+			int rows=4;
+			int total_page=0;
+			int dataCount=0;
+			
+			Map<String, Object> map=new HashMap<>();
+			map.put("num", num);
+			
+			dataCount = service.replyCount(map);
+
+			total_page = myUtil.pageCount(rows, dataCount);
+			if(current_page>total_page)
+				current_page=total_page;
+			
+	        int offset = (current_page-1) * rows;
+			if(offset < 0) offset = 0;
+	        map.put("offset", offset);
+	        map.put("rows", rows);
+			List<Reply> listReply=service.listReply(map);
+			
+			for(Reply dto : listReply) {
+				dto.setContent(dto.getContent().replaceAll("\n", "<br>"));
+			}
+			
+			// AJAX 용 페이징
+			String paging=myUtil.pagingMethod3(current_page, total_page, "listPage");
+			
+			// 포워딩할 jsp로 넘길 데이터
+			model.addAttribute("listReply", listReply);
+			model.addAttribute("pageNo", current_page);
+			model.addAttribute("replyCount", dataCount);
+			model.addAttribute("total_page", total_page);
+			model.addAttribute("paging", paging);
+			
+			return "interior/listReply";
+		}	
+		
+		@RequestMapping(value="deleteReply", method=RequestMethod.POST)
+		@ResponseBody
+		public Map<String, Object> deleteReply(
+				@RequestParam Map<String, Object> paramMap
+				) {
+			
+			String state="true";
+			try {
+				service.deleteReply(paramMap);
+			} catch (Exception e) {
+				state="false";
+			}
+			
+			Map<String, Object> map = new HashMap<>();
+			map.put("state", state);
+			return map;
+		}	
+		
+		 // 댓글의 답글 리스트 : AJAX-TEXT
+		@RequestMapping(value="listReplyAnswer")
+		public String listReplyAnswer(
+				@RequestParam int answer,
+				Model model
+				) throws Exception {
+			
+			List<Reply> listReplyAnswer=service.listReplyAnswer(answer);
+
+			
+			for(Reply dto : listReplyAnswer) {
+				dto.setContent(dto.getContent().replaceAll("\n", "<br>"));
+			}
+			
+			model.addAttribute("listReplyAnswer", listReplyAnswer);
+			model.addAttribute("replyNum",answer);
+			return "interior/listReplyAnswer";
+		}
 }

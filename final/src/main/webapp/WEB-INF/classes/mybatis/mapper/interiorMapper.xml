@@ -50,17 +50,32 @@
 	<!-- 인테리어 게시판 리스트  -->
 	<select id="interiorlist" parameterType="map"
 		resultType="com.sp.app.interior.Interior"> <!-- map에는 condition, keyword, offset, rows 등이 저장되어 넘어온다 -->
-		SELECT i.num, i.userId, userName, subject, content, category, hitCount, register_date , mainImg
+	
+		SELECT i.num, i.userId, userName, subject, content, category, hitCount, register_date, mainImg,
+        NVL(interiorLikeCount, 0) interiorLikeCount,
+        replycontent , replyuserId ,replyCount
 		FROM interior i
 		JOIN member1 m ON i.userId = m.userId
-
-		<where>
+		LEFT OUTER JOIN (
+			SELECT num, COUNT(*) interiorLikeCount 
+			FROM interior_like
+			GROUP BY num
+		) c ON i.num = c.num
+        LEFT OUTER JOIN (
+            SELECT n.replyNum , n.num , content AS replycontent ,userid AS replyuserId ,replyCount
+            FROM interior_reply n
+            join (
+            SELECT count(*) replyCount, max(replyNum) replyNum, num  FROM interior_reply 
+            where answer = 0
+            GROUP BY num ) b on n.replyNum = b.replyNum
+        ) n ON i.num = n.num
+        <where>
 			<if test="keyword!=null and keyword!=''">
 				<include refid="where-list"/>
 			</if>
 		</where>
-		ORDER BY i.num DESC
-		OFFSET #{offset} ROWS FETCH FIRST #{rows} ROWS ONLY
+        ORDER BY i.num DESC
+        OFFSET #{offset} ROWS FETCH FIRST #{rows} ROWS ONLY
 	</select>
 	<!-- 유저의 인테리어 게시판 리스트  -->
 	<select id="userinteriorlist" parameterType="map"
@@ -115,7 +130,10 @@
 		WHERE num=#{num}
 	</update>
 	
-	
+	<delete id="deleteBoard" parameterType="map">
+		DELETE FROM interior
+		WHERE num=#{num}
+	</delete>
 	
 	<!-- 좋아요 추가 -->
 	<insert id="insertInteriorLike" parameterType="map">
@@ -138,4 +156,44 @@
 	</delete>
 	
 	
+	<!-- 댓글 등록  -->
+	<insert id="insertInteriorReply" parameterType="com.sp.app.interior.Reply">
+		INSERT INTO interior_reply (replyNum, num, userId, content, answer, register_date)
+			VALUES (InteriorReply_seq.NEXTVAL, #{num}, #{userId}, #{content}, #{answer}, SYSDATE)
+	</insert>	
+	
+	<!-- 리스트 수 -->
+	<select id="interiorReplyCount" parameterType="map" resultType="Integer">
+		SELECT NVL(COUNT(*), 0) FROM interior_reply
+		WHERE num=#{num} AND answer=0
+	</select>
+	
+	<!-- 댓글 리스트 -->
+	<select id="listInteriorReply" parameterType="map" resultType="com.sp.app.interior.Reply">
+		SELECT replyNum, i.userId, userName, num, content, register_date
+		FROM interior_reply i
+		JOIN member1 m ON i.userId = m.userId
+		WHERE num=#{num}  AND i.answer=0
+		ORDER BY i.replyNum DESC
+		OFFSET #{offset} ROWS FETCH FIRST #{rows} ROWS ONLY
+	</select>
+	
+	
+	<!-- 리플 삭제 -->
+	<delete id="deleteInteriorReply" parameterType="map">
+		DELETE FROM interior_reply
+		WHERE replyNum=#{replyNum}
+		<if test="mode=='reply'">
+			OR answer=#{replyNum}
+		</if>
+	</delete>
+	
+	<!-- 대댓글 리스트 -->
+	<select id="listInteriorReplyAnswer" parameterType="Integer" resultType="com.sp.app.interior.Reply">
+		SELECT replyNum, num, i.userId, userName, content, register_date, answer
+		FROM interior_reply i
+		JOIN member1 m ON i.userId = m.userId
+		WHERE answer = #{answer}
+		ORDER BY replyNum ASC
+	</select>
 </mapper>

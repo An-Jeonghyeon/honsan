@@ -8,100 +8,8 @@
 
 <script type="text/javascript">
 function sendOk() {
-	function sendOk() {
-		 var f = document.challengeForm;
-
-			var str = f.name.value;
-		    if(!str) {
-		        alert("챌린지명을 입력하세요.");
-		        f.name.focus();
-		        return;
-		    }
-			var str = f.subName.value;
-		    if(!str) {
-		        alert("간단설명을 입력하세요.");
-		        f.subName.focus();
-		        return;
-		    }
-			var str = f.content.value;
-		    if(!str) {
-		        alert("상세설명을 입력하세요.");
-		        f.content.focus();
-		        return;
-		    }
-			var str = f.challengePeriod.value;
-		    if(!str) {
-		        alert("챌린지 기간을 입력하세요.");
-		        f.challengePeriod.focus();
-		        return;
-		    }
-			var str = f.startDates.value;
-		    if(!str) {
-		        alert("시작일을 입력하세요.");
-		        f.startDates.focus();
-		        return;
-		    }
-			var str = f.endDates.value;
-		    if(!str) {
-		        alert("마지막일을 입력하세요.");
-		        f.endDates.focus();
-		        return;
-		    }
-			var str = f.exContents.value;
-		    if(!str) {
-		        alert("상세내용을 입력하세요.");
-		        f.exContents.focus();
-		        return;
-		    }
-		    
-			f.action="${pageContext.request.contextPath}/adm/health/created";
-
-			return true;
-
-	}
 	
 }
-</script>
-<script type="text/javascript">
-$(function(){
-	
-	$("#plusbtn").click(function(){
-		var f = document.challengeForm;
-		
-/* 		var str = f.startDate.value;
-	    if(!str) {
-	        alert("시작일을 입력하세요.");
-	        f.startDate.focus();
-	        return;
-	    }
-		var str = f.endDate.value;
-	    if(!str) {
-	        alert("마지막일을 입력하세요.");
-	        f.endDate.focus();
-	        return;
-	    }
-		var str = f.dContent.value;
-	    if(!str) {
-	        alert("상세정보를 입력하세요.");
-	        f.dContent.focus();
-	        return;
-	    }
-	     */
-	     
-	    
-	    $table = $(this).closest("#moreTable");
-
-		var plus = $table.clone(true);
- 		$table.find("#start").val("");
-		$table.find("#end").val("");
-		$table.find("#excontent").val(""); 
-		
-//		$(".ch_content_more").append(plus);
- 		plus .appendTo('.plustable');
-		
-	});
-	
-});
 
 </script>
 
@@ -153,41 +61,57 @@ $(function(){
 					                            <th scope="row">대표이미지</th>
 					                            <td><input type="file" name="upload"></td>
 					                        </tr>
-					                        <tr>
-				                           		<th scope="row">동영상 주소(유튜브 url)</th>
-					                            <td class="cvideo"><input type="text" name="video"></td>
-					                        </tr>
 					                    </table>
 					                </div>
 					                
 					                <!-- 상세정보 -->
-					                <!-- 추가될것 -->
-					                
 					                <div class="ch_content_more">
 					                    <div class="more_title">  상세정보</div>
-					                    <div class="plustable">
-					                   		<!-- 여기 추가될것.. -->
-					                    </div>
-					                    <table border="1" class="ch_table" id="moreTable">
+					                    <table border="1" class="ch_table">
 					                        <tr>
 					                            <th scope="row">상세기간</th>
 					                            <td class="chperiod">
-					                                <input type="text" name="startDates" id="start"> 일차  ~
-					                                <input type="text" name="endDates" id="end"> 일차
+					                                <input type="text" name="startDate"> 일차  ~
+					                                <input type="text" name="endDate"> 일차
 					                            </td>
 					                        </tr>
 					                        <tr>
 					                            <th scope="row">하루 운동상세</th>
 					                            <td class="chsub">
-					                                <input type="text" name="exContents" id="excontent">
-					                                <button type="button" id="plusbtn">추가</button>
+					                                <input type="text" name="dContent">
 					                                <br><small>* 여러항목 등록시 '/' 로 구분작성</small>
 					                            </td>
 					                        </tr>
 					                    </table>
+					                    <div class="morebtn">
+					                        <button type="button" id="plusbtn">추가</button>
+					                    </div>
 					                </div>
 
-								
+									<!-- 추가누르면 생기는 리스트 -->
+					                <div class="moreplus">
+					                    <table class="moreplustable">
+					                        <tr>
+					                            <th class="plusnum center">번호</th>
+					                            <th class="plusdate center">기간</th>
+					                            <th class="plustotal center">총 일수</th>
+					                            <th class="pluscontent center">내용</th>
+					                        </tr>
+					                        <tr>
+					                            <td class="center">1</td>
+					                            <td class="center">1 ~ 3 일차</td>
+					                            <td class="center">3일 </td>
+					                            <td>
+					                                <div class="pluscontent_">
+					                                  	  스쿼트 20회
+					                                </div>
+					                                <div class="pluscontent_btn">
+						                                <button type="button" class="plusdelete">X</button>
+					                                </div>
+					                            </td>
+					                        </tr>
+					                    </table>
+					                </div>
 					       		</div>
 						
 						        <div class="h-buttonBoxBody">

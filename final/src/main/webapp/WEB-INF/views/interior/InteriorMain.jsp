@@ -48,7 +48,7 @@
 	                    <div class="interior_subject_id_title">
 	                                <div class="interior_subject_userId">
 	                                    <a class="interior_subject_userId_idTag">${dto.userName}</a>
-	                                    ·<a class="interior_subject_userId_likeTag"> 좋아요 </a>
+	                                    ·<a class="interior_subject_userId_likeTag"> 팔로우 </a>
 	                                </div>
 	                                <div class="interior_subject_subject">
 	                                    ${dto.subject}
@@ -62,25 +62,26 @@
 	                </div>
 	                <!-- 카운트 숫자 게시판 (찜 , 댓글 , 좋아요 )  -->
 	                <div class="interior_counts">
-	                    <button class="interior_counts_box">
+	                    <button type="button" class="interior_counts_box"  >
 	                        <!-- 게시물 찜 -->
 	                        <img src="${pageContext.request.contextPath}/resources/images/interior/h5.png">
 	                        <span> 101</span>
 	                    </button>
-	                    <button class="interior_counts_box">
+	                    <button type="button" class="interior_counts_box" onclick="javascript:location.href='${articleUrl}&num=${dto.num}';">
 	                        <!-- 댓글 수 -->
 	                        <img src="${pageContext.request.contextPath}/resources/images/interior/h1.png">
-	                        <span> 188</span>
+	                        <span> ${dto.replyCount}</span>
 	                    </button>
-	                    <button class="interior_counts_box">
+	                    <button type="button" class="interior_counts_box" onclick="javascript:location.href='${articleUrl}&num=${dto.num}';">
 	                        <!--  좋아요 수  -->
 	                        <img src="${pageContext.request.contextPath}/resources/images/interior/h2.png">
-	                        <span> 18</span>
+	                        <span> ${dto.interiorLikeCount}</span>
 	                    </button>
+	                    
 	                </div>
 	                <!-- 게시판 내용  -->
 	                <div class="interior_content">
-	                    크리스마스 분위기로 바꿔봤어요~ 그린은 워낙 많아서 빨간~ 쿠션추가하고 작은 미니트리를 들였어요
+	                    ${dto.content}
 	                </div>
 	                <!-- 다른유저 아이디 및 댓글  -->
 	                <div class="interior_first_review">
@@ -88,14 +89,20 @@
 	                        <img class="" src="${pageContext.request.contextPath}/resources/images/interior/a1.jpg" >
 	                    </div>
 	                    <div class="interior_first_review_content">
-	                        <a>지뚜9092</a>삐롱 혹시 빨간 쿠션 정보도 알수 있을까요 ? 크리스마스 인테리어 너무 좋네요 ㅠ ㅠ
+	                        <a>${dto.replyuserId}</a> ${dto.replycontent}
 	                    </div>
 	                </div>
 	            </td>
 	        
 		</c:forEach>
-        
     </table>
+      <table style="width: 100%; border-spacing: 0px;">
+         <tr height="35">
+            <td align="center">
+               ${dataCount==0?"등록된 게시물이 없습니다.":paging}
+            </td>
+         </tr>
+      </table>
     <div class="floating-write" onclick="javascript:location.href='${pageContext.request.contextPath}/interior/created';">
         <div class="f-div">
              <div class="floating-image"></div>

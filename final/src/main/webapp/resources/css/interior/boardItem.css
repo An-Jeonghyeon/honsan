@@ -284,7 +284,6 @@
 }
 /* 댓글의 유저이미지 , 유저 닉네임 , 댓글 내용을 갖고있는 p태그  */
 .comment_fild_item_content {
-    background: #f7f8fa;
     min-width: 0;
     max-width: 100%;
     font-size: 15px;
@@ -343,7 +342,7 @@
     width: 18px;
     height: 19px;
     border: none;
-   
+    background: none;
 
 }
 
@@ -360,6 +359,17 @@
     border: none;
     background: none;
     margin: 0px 3px;
+}
+
+.comment_fild_tfoot_like_count_num{
+	font-size: 13px;
+    color: #757575;
+    font-weight: 700;
+    line-height: 1;
+    border: none;
+    background: none;
+    margin: 0px 3px;
+    vertical-align: text-top;
 }
 
 .comment_fild_tfoot_singo{
@@ -398,6 +408,7 @@
 .comment_reply_list_ul{
     list-style: none;
 }
+
 
 /* 페이징 처리 */
 .comment_paging_box{

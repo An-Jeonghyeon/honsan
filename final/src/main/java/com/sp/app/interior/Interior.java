@@ -16,12 +16,51 @@ public class Interior {
 	private String saveFilename;
 	private int mainnum;
 	private String mainImg;
+	private int interiorLikeCount;
+	private String replycontent;
+	private String replyuserId;
+	private int replyCount;
+	
 	
 	private List<MultipartFile> upload;
 	
 	private MultipartFile mainUpload; 
 	
 	
+	
+	
+	
+	
+	
+	
+	public int getReplyCount() {
+		return replyCount;
+	}
+	
+	public void setReplyCount(int replyCount) {
+		this.replyCount = replyCount;
+	}
+	public String getReplyuserId() {
+		return replyuserId;
+	}
+	
+	public void setReplyuserId(String replyuserId) {
+		this.replyuserId = replyuserId;
+	}
+	public String getReplycontent() {
+		return replycontent;
+	}
+	
+	public void setReplycontent(String replycontent) {
+		this.replycontent = replycontent;
+	}
+	public int getInteriorLikeCount() {
+		return interiorLikeCount;
+	}
+	
+	public void setInteriorLikeCount(int interiorLikeCount) {
+		this.interiorLikeCount = interiorLikeCount;
+	}
 	
 
 	public String getMainImg() {
