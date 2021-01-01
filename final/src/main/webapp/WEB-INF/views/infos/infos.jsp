@@ -95,7 +95,7 @@
 <div class="notice_title">
 	<div class="notice_title_subject">
 		<h2 class="notice_title_left" style="float: left;">띠리링 소식</h2>
-		<a href="#" class="notice_title_right">더보기 </a>
+		<a href="${pageContext.request.contextPath}/notice/list" class="notice_title_right">더보기 </a>
 	</div>
 	<div class="notice_content_box">
 	
