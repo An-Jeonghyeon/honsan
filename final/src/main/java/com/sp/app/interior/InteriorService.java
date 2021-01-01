@@ -3,7 +3,7 @@ package com.sp.app.interior;
 import java.util.List;
 import java.util.Map;
 
-import com.sp.app.notice.Notice;
+
 
 public interface InteriorService {
 	public void insertInterior(Interior dto ,String pathname) throws Exception;
@@ -11,6 +11,7 @@ public interface InteriorService {
 	public int dataCount(Map<String, Object> map);
 	public Interior readBoard(int num);
 	public void updateHitCount(int num) throws Exception;
+	public void deleteBoard(Map<String, Object> map) throws Exception;
 	
 	public void updateInterior(Interior dto ,String pathname) throws Exception;
 	public List<Interior> userlistBoard(Map<String, Object> map);
@@ -28,4 +29,14 @@ public interface InteriorService {
 	public int interiorLikeCount(int num);
 	public int readInteriorLike(Map<String, Object> map) throws Exception;
 	public void deleteInteriorLike(Map<String, Object> map) throws Exception;
+	
+	//댓글 
+	public void insertReply(Reply dto) throws Exception ;
+	public List<Reply> listReply(Map<String, Object> map);
+	public int replyCount(Map<String, Object> map) ;
+	public void deleteReply(Map<String, Object> map) throws Exception;
+	
+	//대댓글 
+	public List<Reply> listReplyAnswer(int answer);
+
 }

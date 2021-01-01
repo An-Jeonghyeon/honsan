@@ -9,7 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.sp.app.common.FileManager;
 import com.sp.app.common.dao.CommonDAO;
-import com.sp.app.notice.Notice;
+
 
 @Service("interior.interiorService")
 public class InteriorServiceImpl implements InteriorService{
@@ -168,7 +168,16 @@ public class InteriorServiceImpl implements InteriorService{
 			
 	}
 
-
+	@Override
+	public void deleteBoard(Map<String, Object> map) throws Exception{
+		try {
+			dao.deleteData("interior.deleteBoard", map);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+		
+	}
 
 	@Override
 	public Interior readFile(int filenum) {
@@ -274,6 +283,63 @@ public class InteriorServiceImpl implements InteriorService{
 			throw e;
 		}
 		
+	}
+	//댓글 추가 
+
+	
+	// 댓글 카운트 
+	@Override
+	public int replyCount(Map<String, Object> map) {
+		int result=0;
+		try {
+			result=dao.selectOne("interior.interiorReplyCount", map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	@Override
+	public void insertReply(Reply dto) throws Exception {
+		try {
+			dao.insertData("interior.insertInteriorReply", dto);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
+	//댓글 리스트 
+	@Override
+	public List<Reply> listReply(Map<String, Object> map) {
+		List<Reply> list = null;
+		try {
+			list = dao.selectList("interior.listInteriorReply", map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
+	//댓글 삭제 
+	@Override
+	public void deleteReply(Map<String, Object> map) throws Exception {
+		try {
+			dao.deleteData("interior.deleteInteriorReply", map);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
+	// 대댓글 리스트
+	@Override
+	public List<Reply> listReplyAnswer(int answer) {
+		List<Reply> list=null;
+		try {
+			list=dao.selectList("interior.listInteriorReplyAnswer", answer);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
 	}
 	
 

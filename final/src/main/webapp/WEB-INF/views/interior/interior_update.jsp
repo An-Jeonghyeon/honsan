@@ -134,7 +134,7 @@ function interior_update(){
 						<div class="spon_banner">
 							
 						</div>
-                            <button  type="button" class="board_interior_sendbutton" onclick="interior_created();">수정 취소</button>			
+                            <button  type="button" class="board_interior_sendbutton"  onclick="javascript:location.href='${pageContext.request.contextPath}/interior/boardItem?num=${dto.num}';">수정 취소</button>			
                             <button  type="button" class="board_interior_sendbutton" style="margin-top: 10px;" onclick="interior_update();">수정 완료</button>		
                         </div>	
 

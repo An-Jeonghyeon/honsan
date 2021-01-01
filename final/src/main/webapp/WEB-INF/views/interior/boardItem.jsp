@@ -7,10 +7,34 @@
 .fa-thumbs-up {
 	color: #35c5f0;
 }
+
+#paginate #curBox_sub{
+	border: 1px solid #35c5f0;
+	background:  #35c5f0;
+	color: white;
+	border-radius: 4px;
+	font-weight: 700;
+	font-size: 15px;
+}
+
+#paginate #numBox_sub{
+	font-size: 15px;
+	border : none;
+
+}
+
+#paginate #tlBox{
+	font-size: 15px;
+	border : none;
+}
+
 </style>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/interior/boardItem.css" type="text/css">
 <script src="${pageContext.request.contextPath}/resources/js/interior/boardItem.js"></script>
-<script>
+<script src="${pageContext.request.contextPath}/resources/js/interior/interiorLike.js"></script>
+
+<script type="text/javascript">
+
 
 function ajaxJSON(url, method, query, fn) {
 	$.ajax({
@@ -34,6 +58,29 @@ function ajaxJSON(url, method, query, fn) {
 	    }
 	});
 }
+
+function ajaxHTML(url, method, query, selector) {
+	$.ajax({
+		type:method
+		,url:url
+		,data:query
+		,success:function(data) {
+			$(selector).html(data);
+		}
+		,beforeSend:function(jqXHR) {
+	        jqXHR.setRequestHeader("AJAX", true);
+	    }
+	    ,error:function(jqXHR) {
+	    	if(jqXHR.status===403) {
+	    		login();
+	    		return false;
+	    	}
+	    	
+	    	console.log(jqXHR.responseText);
+	    }
+	});
+}
+
 $(function(){
 	if($("#interiorLikeCount").attr("data-userLike")=="1") { // 데이터값이 1이면 
 		$("#thumbs").removeClass("far").addClass("fas"); // 클래스명 삭제 , 삽입으로 변경 
@@ -83,8 +130,193 @@ $(function(){
 	
 });
 
+//게시글 로딩시 페이징 처리
+$(function() {
+	listPage(1);
+});
+
+// 댓글 리스트 보이기
+function listPage(page) {
+	var url = "${pageContext.request.contextPath}/interior/listReply";
+	var query = "num=${dto.num}&pageNo="+page;
+	var selector = ".comment_list_box";
+	
+	ajaxHTML(url, "get", query, selector);
+}
+
+//리플 등록 
+$(function(){
+	$(".btnSendReply").click(function(){ // 버튼클릭시 
+		var num="${dto.num}"; // 댓글을 작성할 게시판의 넘 설정 
+		//var $tb = $(this).closest("table");
+		var $div = $(this).parents(".leftbox_comment_usercomment"); // content 를 찾을 위치 설정
+		
+//		var content=$tb.find("textarea").val().trim();
+		var content=$div.find("textarea").val().trim(); // 부모값 밑 textarea 값으로 content 설정
+		
+		
+		if(! content) {     // 값이 없으면 
+			$div.find("textarea").focus(); // 댓글을 입력하는 곳에 마우스 포인트 
+			return false; //펄스로 빠져나가기 
+		}
+		content = encodeURIComponent(content); // 한글 인코딩 
+		
+		var url="${pageContext.request.contextPath}/interior/insertReply"; //컨트롤러로 보내질 주소 
+		var query="num="+num+"&content="+content+"&answer=0"; //값으로 게시판번호 , 댓글내용 , 부모댓글로 사용할 넘버 
+		
+		var fn = function(data){
+			$div.find("textarea").val(""); // 전송 후 댓글창 값 공백 입력 
+			
+			var state=data.state;
+			if(state==="true") { // 성공하면 리스트 보이게 
+				listPage(1);
+			} else if(state==="false") { // 실패시 실패 안내 
+				alert("댓글을 추가 하지 못했습니다.");
+			}
+		};
+		
+		ajaxJSON(url, "post", query, fn); // 만들어 놓은 재이슨으로 전송 
+	});
+});
+
+//리플 삭제 
+$(function(){
+	$("body").on("click", ".deleteReply", function(){
+		if(! confirm("게시물을 삭제하시겠습니까 ? ")) {
+		    return false;
+		}
+		
+		var replyNum=$(this).attr("data-replyNum");
+		var page=$(this).attr("data-pageNo");
+		
+		var url="${pageContext.request.contextPath}/interior/deleteReply";
+		var query="replyNum="+replyNum+"&mode=reply";
+		
+		var fn = function(data){
+			// var state=data.state;
+			listPage(page);
+		};
+		
+		ajaxJSON(url, "post", query, fn);
+	});
+});
+
+//댓글별 답글 리스트
+function listReplyAnswer(answer) {
+	var url="${pageContext.request.contextPath}/interior/listReplyAnswer";
+	var query="answer="+answer;
+	var selector=".comment_reply_list_ul"+answer;
+	
+	ajaxHTML(url, "get", query, selector);
+}
+
+//답글 버튼(댓글별 답글 등록폼 및 답글리스트)
+
+$(function(){		
+	$("body").on("click", ".btnReplyAnswerLayout", function(){
+		var $divReplyAnswer = $(this).closest(".comment_fild_item").next();
+		// var $trReplyAnswer = $(this).parent().parent().next();
+		// var $answerList = $trReplyAnswer.children().children().eq(0);
+		var isVisible = $divReplyAnswer.is(':visible');
+		var replyNum = $(this).attr("data-replyNum");
+		
+		
+			
+		if(isVisible) {
+			$divReplyAnswer.hide();
+		} else {
+			$divReplyAnswer.show();
+		} 
+		listReplyAnswer(replyNum);
+		
+		// 답글 리스트
+		
+		// 답글 개수
+		
+	});		
+});
+
+// 대댓글 등록 
+$(function(){
+	$(".comment_list_box").on("click", ".btnSendReplyAnswer", function(){
+		var num="${dto.num}";
+		var replyNum=$(this).attr("data-replyNum");
+		var $div=$(this).parent().prev();
+		
+		var content=$div.find("textarea").val().trim();
+		if(! content) {
+			$div.find("textarea").focus();
+			return false;
+		}
+		content = encodeURIComponent(content);
+		
+		var url="${pageContext.request.contextPath}/interior/insertReply";
+		var query="num="+num+"&content="+content+"&answer="+replyNum;
+		
+		var fn = function(data){
+			$div.find("textarea").val("");
+			
+			var state=data.state;
+			if(state==="true") {
+				listReplyAnswer(replyNum);
+			}
+		};
+		
+		ajaxJSON(url, "post", query, fn);
+		
+	});
+});
+
+//댓글별 답글 삭제
+$(function(){
+	$("body").on("click", ".deleteReplyAnswer", function(){
+		if(! confirm("게시물을 삭제하시겠습니까 ? ")) {
+		    return;
+		}
+		
+		var replyNum=$(this).attr("data-replyNum");
+		var answer=$(this).attr("data-answer");
+		
+		var url="${pageContext.request.contextPath}/interior/deleteReply";
+		var query="replyNum="+replyNum+"&mode=answer";
+		
+		var fn = function(data){
+			listReplyAnswer(answer);
+
+		};
+		
+		ajaxJSON(url, "post", query, fn);
+	});
+});
+
+// 게시판 삭제 
+$(function(){
+	$(".interiorDeleteButton").click(function(){
+		if(! confirm("게시물을 삭제하시겠습니까 ? ")) {
+		    return;
+		}
+		
+		var num=$(this).attr("data-Num");
+		
+		var url="${pageContext.request.contextPath}/interior/deleteInterior";
+		var query="num="+num;
+		
+		var fn = function(data){
+			
+			var state=data.state;
+			if(state==="true") { // 성공하면 리스트 보이게 
+				location.href="${pageContext.request.contextPath}/interior/main";
+			} else if(state==="false") { // 실패시 실패 안내 
+				alert("게시판을 삭제하지 못했습니다.");
+			}
+		};
+		
+		ajaxJSON(url, "post", query, fn);
+	});
+});
 
 </script>
+
 <section>
 <form name="Interior_form" >
 	
@@ -95,6 +327,7 @@ $(function(){
             <div class="board_interior_leftbox_header">
                 <div class="leftbox_header_subject">
                     ${dto.subject}
+                    <input type="hidden" name="num" value="${dto.num}">
                 </div>
                 <div class="leftbox_header_created">
                     ${dto.register_date}
@@ -136,10 +369,10 @@ $(function(){
 
             <div class="leftbox_comment_box">
                 <div class="leftbox_comment_box_atr">
-                    <h1>댓글&nbsp;<span>64</span></h1>
+                    <h1>댓글&nbsp;<span>${replyCount}</span></h1>
                 
 
-                <form class="leftbox_comment_insert">
+                <div class="leftbox_comment_insert">
                     <div class="leftbox_comment_userImg">
                         <img src="${pageContext.request.contextPath}/resources/images/interior/comment.png">
                     </div>
@@ -150,123 +383,18 @@ $(function(){
                             </div>
                         </div>
                         <div class="leftbox_comment_usercomment_button">
-                            <button>등록</button>
+                            <button class="btnSendReply">등록</button>
                         </div>
                     </div>
-                </form>
+                </div>
                 <!-- 댓글 반복 구간  -->
                 <ul class="comment_list_box">
-                    <li class="comment_list_item">
-                        <article class="comment_fild_item">
-                            <p class="comment_fild_item_content">
-                                <a href="#"><img src="${pageContext.request.contextPath}/resources/images/interior/t1.webp"><span>이 카드는</span></a>
-                                <span>적절한 댓글에 무릎을 탁 치고 갑니다..!
-                                    갬성에 마음이 눈녹듯 녹아버리네요..
-                                </span>
-                                <nav class="comment_fild_tfoot">
-                                    <span style="font-size: 13px;" class="comment_fild_tfoot_span">8 시간전 </span>
-                                    <span class="comment_fild_tfoot_like">
-                                        <button class="comment_fild_tfoot_like_img"><img src="${pageContext.request.contextPath}/resources/images/interior/h5.png" alt=""></button>
-                                        <span class="comment_fild_tfoot_like_count">1</span>
-                                    </span>
-                                    <button class="comment_fild_tfoot_like_count">좋아요 · </button>
-                                    <button class="comment_fild_tfoot_like_count">답글 달기 · </button>
-                                    <button class="comment_fild_tfoot_singo">신고</button>
-                                </nav>
-
-                            </p>
-                        </article>
-                        <div class="comment_reply_list">
-                            <ul class="comment_reply_list_ul">
-                                <!-- 답변의 답변 반복 구간  -->
-                                <li class="comment_reply_list_li">
-                                    <article class="comment_reply_list_item">
-                                        <p class="comment_fild_item_content">
-                                            <a href="#"><img src="${pageContext.request.contextPath}/resources/images/interior/t1.webp"><span>이 카드는</span></a>
-                                            <span><a class="reply_idTag" href="#">@이카드는</a>&nbsp;적절한 댓글에 무릎을 탁 치고 갑니다..!
-                                                갬성에 마음이 눈녹듯 녹아버리네요..
-                                            </span>
-                                            <nav class="comment_fild_tfoot">
-                                                <span style="font-size: 13px;" class="comment_fild_tfoot_span">8 시간전 </span>
-                                                <span class="comment_fild_tfoot_like">
-                                                    <button class="comment_fild_tfoot_like_img"><img src="${pageContext.request.contextPath}/resources/images/interior/h5.png" alt=""></button>
-                                                    <span class="comment_fild_tfoot_like_count">1</span>
-                                                </span>
-                                                <button class="comment_fild_tfoot_like_count">좋아요 · </button>
-                                                <button class="comment_fild_tfoot_like_count">답글 달기 · </button>
-                                                <button class="comment_fild_tfoot_singo">신고</button>
-                                            </nav>
-            
-                                        </p>
-                                    </article>
-                                </li>
-
-                            </ul>
-                        </div>
-                    </li>
-
-                    <ul class="comment_list_box">
-                        <li class="comment_list_item">
-                            <article class="comment_fild_item">
-                                <p class="comment_fild_item_content">
-                                    <a href="#"><img src="${pageContext.request.contextPath}/resources/images/interior/t1.webp"><span>이 카드는</span></a>
-                                    <span>적절한 댓글에 무릎을 탁 치고 갑니다..!
-                                        갬성에 마음이 눈녹듯 녹아버리네요..
-                                    </span>
-                                    <nav class="comment_fild_tfoot">
-                                        <span style="font-size: 13px;" class="comment_fild_tfoot_span">8 시간전 </span>
-                                        <span class="comment_fild_tfoot_like">
-                                            <button class="comment_fild_tfoot_like_img"><img src="${pageContext.request.contextPath}/resources/images/interior/h5.png" alt=""></button>
-                                            <span class="comment_fild_tfoot_like_count">1</span>
-                                        </span>
-                                        <button class="comment_fild_tfoot_like_count">좋아요 · </button>
-                                        <button class="comment_fild_tfoot_like_count">답글 달기 · </button>
-                                        <button class="comment_fild_tfoot_singo">신고</button>
-                                    </nav>
-    
-                                </p>
-                            </article>
-                            <div class="comment_reply_list">
-                                <ul class="comment_reply_list_ul">
-                                    <!-- 답변의 답변 반복 구간  -->
-                                    <li class="comment_reply_list_li">
-                                        <article class="comment_reply_list_item">
-                                            <p class="comment_fild_item_content">
-                                                <a href="#"><img src="${pageContext.request.contextPath}/resources/images/interior/t1.webp"><span>이 카드는</span></a>
-                                                <span><a class="reply_idTag" href="#">@이카드는</a>&nbsp;적절한 댓글에 무릎을 탁 치고 갑니다..!
-                                                    갬성에 마음이 눈녹듯 녹아버리네요..
-                                                </span>
-                                                <nav class="comment_fild_tfoot">
-                                                    <span style="font-size: 13px;" class="comment_fild_tfoot_span">8 시간전 </span>
-                                                    <span class="comment_fild_tfoot_like">
-                                                        <button class="comment_fild_tfoot_like_img"><img src="${pageContext.request.contextPath}/resources/images/interior/h5.png" alt=""></button>
-                                                        <span class="comment_fild_tfoot_like_count">1</span>
-                                                    </span>
-                                                    <button class="comment_fild_tfoot_like_count">좋아요 · </button>
-                                                    <button class="comment_fild_tfoot_like_count">답글 달기 · </button>
-                                                    <button class="comment_fild_tfoot_singo">신고</button>
-                                                </nav>
-                
-                                            </p>
-                                        </article>
-                                    </li>
-    
-                                </ul>
-                            </div>
-                        </li>
-     
-
-
-
-                    <li class="comment_list_item"></li>
-
-
+                    <!-- 첫번째 반복  -->
+         			<!-- 두번째 반복  -->
                     <!-- 페이징 처리  -->
-                    <div class="comment_paging_box">
-                        1 2 3
-                    </div>
-                </ul>
 
+                
+				</ul>
                 </div>
                 <article>
 
@@ -293,7 +421,6 @@ $(function(){
                                 <button type="button" class="btnSendInteriorLike">
 									<i id="thumbs" class="far fa-thumbs-up" ></i>
 									<span id="interiorLikeCount" class="userpage_span" data-userLike="${userLike}">${interiorLikeCount}</span>
-                                    
                                 </button>
                             </div>
                         </div>
@@ -340,7 +467,7 @@ $(function(){
 		                                 </button>
 		                            </div>
 		                            <div class="board_interior_userpage_buttonbarbox">
-		                                <button>
+		                                <button type="button" class="interiorDeleteButton" data-Num='${dto.num}'>
 		                                    <span class="userpage_buttonspan">삭제</span>
 		                                </button>
 		                            </div>
