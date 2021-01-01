@@ -67,7 +67,7 @@
     padding: 0 10px;
 }
 .chsub input {
-    width: 750px;
+    width: 700px;
     padding: 0 10px;
 }
 .chdet textarea {
@@ -86,13 +86,16 @@
     padding: 0 10px;
     box-sizing: border-box;
 }
+.cvideo input {
+    width: 750px;
+    padding: 0 10px;
+}
 /* 상세정보 */
 .ch_content_more {
     width: 1200px;
     margin:  0 auto;
     padding-top: 50px;
     text-align: center;
-    padding-bottom: 50px;
     /* background: yellowgreen; */
 }
 .more_title {
@@ -127,14 +130,14 @@
 }
 /* 버튼 */
 .h-buttonBoxBody{
-    width: 280px;
+    width: 350px;
     height: 50px;
-    margin: 40px auto 90px;
+    margin: 70px auto 90px;
      /* TestBackground */
     /* background-color: rgb(89, 89, 179);    */
 }
 #CencelSubmit{
-    width: 130px;
+    width: 100px;
     height: 40px;
     font-size: 16px;
     color: white;
@@ -145,7 +148,7 @@
     font-weight: 700;
 }
 #writeSubmit{
-    width: 130px;
+    width: 100px;
     height: 40px;
     transition: 0.1s;
     font-size: 16px;
@@ -153,6 +156,17 @@
     background: #f3c04ac7;
     border : none;
     cursor: pointer;
+    border-radius: 5px;
+    font-weight: 700;
+}
+#resetSubmit {
+    width: 100px;
+    height: 40px;
+    font-size: 16px;
+    color: white;
+    background: #ccc;
+    border : none;
+    cursor : pointer;
     border-radius: 5px;
     font-weight: 700;
 }
