@@ -1,6 +1,7 @@
 package com.sp.app.adm.health;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,7 @@ public class HealthAdminServiceImpl implements HealthAdminService {
 	@Autowired
 	private FileManager fileManager;
 	
+	//challenge 1,2 같이 insert
 	@Override
 	public void insertChallenge(HealthAdmin dto, String pathname) throws Exception {
 		try {
@@ -52,6 +54,17 @@ public class HealthAdminServiceImpl implements HealthAdminService {
 		
 	}
 
+	//challenge 2만 insert 따로(위에 insert에서 사용)
+	@Override
+	public void insertChallengeMore(HealthAdmin dto) throws Exception {
+		try {
+			dao.insertData("healthAdmin.insertChallenge2", dto);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
+	
 	@Override
 	public void deleteChallenge(int num, String pathname) throws Exception {
 		// TODO Auto-generated method stub
@@ -64,14 +77,33 @@ public class HealthAdminServiceImpl implements HealthAdminService {
 		
 	}
 
+
 	@Override
-	public void insertChallengeMore(HealthAdmin dto) throws Exception {
+	public HealthAdmin readChallenge(int num) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<HealthAdmin> listChallenge(Map<String, Object> map) {
+		List<HealthAdmin> list = null;
 		try {
-			dao.insertData("healthAdmin.insertChallenge2", dto);
+			list = dao.selectList("healthAdmin.listChallenge", map);
 		} catch (Exception e) {
 			e.printStackTrace();
-			throw e;
 		}
+		return list;
+	}
+
+	@Override
+	public int dataCount(Map<String, Object> map) {
+		int result= 0;
+		try {
+			result = dao.selectOne("healthAdmin.dataCount", map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
 	}
 
 }
