@@ -13,15 +13,19 @@
 		let date = today.getDate();
 		let hour = today.getHours();
 
-		if(hour===0){
+		if(hour===0 && month<12){
 			date=date-1;
+			month= "0"+month;
+			if(date<10){
+				date= "0"+date;
+			}
 			return "" + year + month + date;
 		}else if(month<12){
 			month= "0"+month;
 			if(date<10){
-				date= "0"+date
+				date= "0"+date;
 			}
-			return "" + year + month + date;
+			return year+ month + date;
 		}
 		
 		return "" + year + month + date;
@@ -52,8 +56,10 @@
 		} else if (hour < 23) {
 			hour = "20"
 			return hour + "00";
-		} 
+		}
+	
 		return hour;
+		
 
 	}
 	
@@ -71,10 +77,10 @@ $(function() {
 			$(".dress-weatherArea").text(town);
 			//날짜 가지고 오기
 		 	var todate = date();
-			//console.log(todate)
+			console.log(todate)
 			//발표 시간 가지고 오기
 			var nowtime = nowTime();
-			//console.log(nowtime)
+			console.log(nowtime)
 		
 			//날씨 - 동네 예보 확인
 			var url = "${pageContext.request.contextPath}/dressMain/weatherRequest"
@@ -269,7 +275,6 @@ $(function(){
 <div id="dress-searchWeather">
 	
 	<input class="dress-searchWeatherInput" type="text" name="town" placeholder="지역명을 입력해주세요. ex)강서구, 해운대구,제주">
-
 	<button class="dress-searchWeatherButton" type="button">area</button>
 </div>
 <div class="dress-WeatherMainBody">
