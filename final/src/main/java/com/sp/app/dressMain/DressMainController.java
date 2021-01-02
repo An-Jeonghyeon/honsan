@@ -1,5 +1,10 @@
 package com.sp.app.dressMain;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -68,9 +73,34 @@ public class DressMainController {
 		result=apiSerializer.receiveToString(spec);
 		
 		return result;
-
-		
 	}
+	@RequestMapping(value = "areaWeather", method=RequestMethod.GET, produces = "application/xml; charset=utf-8")
+	@ResponseBody
+	public String areaweather()throws Exception{
+		String result= null;
+		
+		//현재 지역 날씨 확인
+		String spec="http://www.kma.go.kr/XML/weather/sfc_web_map.xml";
+		result=apiSerializer.receiveToString(spec);
+		
+		return result;
+	}
+	@RequestMapping("areaWeatherChart")
+	@ResponseBody
+	public Map<String, Object> areaWeatherChart() throws Exception{
+		Map<String, Object> model = new HashMap<String, Object>();
+		
+		List<Map<String, Object>> list  = new ArrayList<Map<String,Object>>();
+		Map<String, Object> map =new HashMap<String, Object>();
+		map.put("name", "서울,인천, 춘천, 강릉, 청주, 대전, 전주, 광주, 대구, 부산, 제주");
+		map.put("data", new double[] {-0.9,1.0,6.3,13.3,18.9,23.6,25.8,26.3,22.4,15.5,8.9,1.6});
+		list.add(map);
+		
+	
+		model.put("series", list);
+		return model;
+	}
+	
 	
 
 }

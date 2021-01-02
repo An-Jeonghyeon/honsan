@@ -137,20 +137,33 @@
     text-shadow:1px 1px 1px rgba(152, 152, 152, 0.454);
 }
 #dialog{
-    height: 100px;
+	display:none;
+	padding-top:100px;
     border-radius: 5px;
     background-color: rgba(210, 210, 210, 0.447);
     text-align: center;
-    line-height: 150px;
     backdrop-filter: saturate(180%) blur(3px);
     box-shadow: 1px 1px 5px rgba(92, 92, 92, 0.516);
 }
+
+#ui-id-1{
+	width: 200px;
+	display:inline-block;
+	text-align: center;
+	font-size: 20px;
+	margin:0 0 0 100px;
+	
+	
+}
 .ui-dialog-titlebar{
+	width:100%;
     text-align: center;
+    background: gray;
 }
 .ui-button{
     background-color: #fe642c;
     width: 70px;
+    height:24px;
     border: none;
     border-radius: 3px;
     float: right;
@@ -158,9 +171,15 @@
 .ui-button:focus,#dialog:focus{
     outline: none;
 }
-.dialog-randomColor{
-    color:rgb(173, 226, 255);
+.innerdialog{
+	width:80%;
+	height: 500px;
+	
+	margin:0 auto;
+	background: white;
+	
 }
+
 #dress-searchWeather{
   	width:1300px;
   	height:100px;
@@ -201,4 +220,7 @@
 }
 .dress-wind{
 	color:rgb(65, 116, 255);
+}
+#highcharts-e3pb21b-0{
+	width: 300px;
 }

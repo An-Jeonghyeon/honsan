@@ -2,7 +2,8 @@
 <%@ page trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/highcharts-3d.js"></script>
 <script type="text/javascript">
 	/*현재 날짜구하기  */
 	function date() {
@@ -62,11 +63,12 @@ $(function() {
 	
 			//버튼 눌러서 $(".dress-searchWeatherInput").val();값 가지고 오기
 			var town = $(".dress-searchWeatherInput").val();
-			$(".dress-weatherArea").text(town);
+			$(".dress-searchWeatherInput").val("");
 			if (!town) {
 				$(".dress-searchWeatherInput").focus();
 				return false;
 			}
+			$(".dress-weatherArea").text(town);
 			//날짜 가지고 오기
 		 	var todate = date();
 			//console.log(todate)
@@ -185,6 +187,79 @@ function printJSON(data) {
 			}
 		});
 	}
+	
+/* 모달에 지역별 날씨 뿌리기 */
+$(function(){
+	$("#scroll").click(function(){
+		// 현재 지역 날씨 
+		var url="${pageContext.request.contextPath}/dressMain/areaWeather";
+		var query="time="+new Date().getTime();
+		
+		var fn = function(data) {
+			console.log(data);
+			printXML(data);
+		};
+		
+		ajaxFun(url, "get", "xml", query, fn);
+	});
+	
+	function printXML(data) {
+		var out="<h3>날씨</h3><hr>";
+		
+		var year = $(data).find("weather").attr("year");
+		var month = $(data).find("weather").attr("month");
+		var day = $(data).find("weather").attr("day");
+		var hour = $(data).find("weather").attr("hour");
+		var namee;
+		var datae;
+		out+="<p>"+year+"년 "+month+"월 "+day+"일 "+hour+"시</p>";
+		
+		var icon, desc, ta, city;
+		$(data).find("local").each(function(){
+			city = $(this).text(); // 지역
+			icon = $(this).attr("icon"); // 아이콘
+			desc = $(this).attr("desc"); // 날씨
+			ta = $(this).attr("ta"); // 현재온도
+			
+		 	 if(city=="서울"||city=="인천"||city=="춘천"||city=="강릉"||city=="청주"||
+					city=="대전"||city=="전주"||city=="광주"||city=="대구"||
+					city=="부산"||city=="제주") {
+				out+="<p><b>"+city+"</b> 날씨:" + desc + ", 기온:"+ta+", 아이콘:"+icon+"</p>";
+			}  
+			
+			
+			
+		});
+		
+	  	$(".innerdialog").html(out);  
+	
+	}
+});
+  /*  $(function(){ 
+	 var url="${pageContext.request.contextPath}/dressMain/areaWeatherChart";
+	//$.getJSON(): AJAX 처리 결과를 json 으로 반환 받는 함수 
+	$.getJSON(url, function(data){ 
+		//console.log(data); 
+
+		Highcharts.chart("dialog", {
+			title:{
+				text:"서울 평균 기온 "
+			},
+			xAxis:{
+				categories:["서울"]
+			},
+		    yAxis:{
+		    	title:{
+		    		text:"기온(c)"
+		    	}
+		    },
+		   series:data.series
+		
+		})
+		
+ 	
+	 })
+ })     */
 </script>
 
 <div class="dress-WeatherHeaderImg"></div>
@@ -192,8 +267,8 @@ function printJSON(data) {
 	<span>지역별 날씨 확인 하러 가기&nbsp;&gt;</span>
 </div>
 <div id="dress-searchWeather">
-
-	<input class="dress-searchWeatherInput" type="text" name="town" placeholder="지역명칭을 바르게 입력해주세요. ex)강서구, 해운대구">
+	
+	<input class="dress-searchWeatherInput" type="text" name="town" placeholder="지역명을 입력해주세요. ex)강서구, 해운대구,제주">
 
 	<button class="dress-searchWeatherButton" type="button">area</button>
 </div>
@@ -218,16 +293,9 @@ function printJSON(data) {
 	<div class="dress-WeatherImgBody">
 		<div class="dress-WeatherImg"></div>
 	</div>
-	<div class="dress-WeatherImgText">
+	<div class="dress-WeatherImgText"></div>
 	
-	</div>
-	<div class="dress-Today-color-Body">
-		<button class="dress-Today-button" type="button" data-toggle="modal"
-			data-target="#inputDialog">ToDay Color</button>
-		<span>버튼을 눌러서 오늘을 기분좋게 해줄 색을 확인 하세요!</span>
-	</div>
-	<div id="dialog" title="">
-		<span>이경태</span> <span>님의 오늘의 색은</span> <span
-			class="dialog-randomColor">파랑</span> <span>입니다.</span>
+	<div id="dialog">
+		<div class="innerdialog"></div>
 	</div>
 </div>
