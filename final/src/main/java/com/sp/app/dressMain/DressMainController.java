@@ -1,9 +1,5 @@
 package com.sp.app.dressMain;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,14 +27,24 @@ public class DressMainController {
 		return (".dressMain.main");
 	}
 	
-	// AJAX -XML로 응답 
-	@RequestMapping(value = "weatherApi", method=RequestMethod.GET, produces ="application/json; charset=utf-8")
+	
+	@RequestMapping(value = "weatherRequest", method=RequestMethod.GET, produces ="application/json; charset=utf-8")
 	@ResponseBody
-	public String weather (@RequestParam String base_date,
-						@RequestParam String base_time,
-						@RequestParam String nx,
-						@RequestParam String ny )throws Exception{
+	public String submitAreaName(@RequestParam String town,
+								@RequestParam String base_date,
+								@RequestParam String base_time,
+									Model model)throws Exception{
+		
+		
+		DressMain dto = service.selectXYcode(town);
+		
 		String result= null;
+		
+		if(dto==null) {
+			result = "{\"state\":\"false\"}";
+			return result;
+		}
+		
 		
 		//동네 예보 확인
 		String spec="http://apis.data.go.kr/1360000/VilageFcstInfoService/getVilageFcst";
@@ -55,30 +61,15 @@ public class DressMainController {
 		
 		spec+="?serviceKey="+serviceKey+"&numOfRows="+numOfRows+"&pageNo="+pageNo;
 		spec+="&base_date="+base_date+"&base_time="+base_time;
-		spec+="&nx="+nx+"&ny="+ny;
+		spec+="&nx="+dto.getXcode()+"&ny="+dto.getYcode();
 		spec+="&dataType="+dataType;
+		
 		
 		result=apiSerializer.receiveToString(spec);
 		
 		return result;
-	}
-	@RequestMapping(value = "weatherRequest", method= RequestMethod.GET)
-	public String submitAreaName(@RequestParam(value="city", required=false) String city ,Model model)throws Exception{
-		System.out.println(city);
-		Map<String, Object> map = new HashMap<String, Object>();
-		try {
-			map.put("city", city);
-			List<DressMain>list=service.selectXYcode(map);
-			model.addAttribute("list",list);			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+
 		
-//			for(int i=0; i<list.size(); i++) {
-//				System.out.println(list.get(i));
-//			}
-		
-		return ".dressMain.main";
 	}
 	
 

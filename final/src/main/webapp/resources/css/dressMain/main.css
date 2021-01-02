@@ -49,19 +49,18 @@
     display: block;
 }
 .dress-WeatherTmp{
-   
-    height: 200px;
+    height: 150px;
     margin: 0 auto;
     box-sizing: border-box;
-    line-height: 200px;
+   line-height: 200px;
     text-align: center;
-  
-}
-.dress-WeatherTmp>span{
     font-size: 30px;
     text-shadow:1px 1px 1px rgb(169, 169, 169);
    
+  
 }
+
+
 .dress-temper{
     margin-right: 40px;
 }
@@ -76,8 +75,8 @@
     background-repeat: no-repeat;  
 }
 .dress-tmeperText{
-    width: 300px;
-    margin: 0 auto;
+   
+    margin: 50px auto;
     text-align: center;
     text-shadow:1px 1px 1px rgba(152, 152, 152, 0.454);
     color: #787878;
@@ -98,17 +97,6 @@
     background-size: 400px 300px;
     background-position: center;
     background-repeat: no-repeat;
-}
-.dress-WeatherImgText{
-    width: 500px;
-    height: 100px;
-    margin: 0 auto;
-    box-sizing: border-box;
-    text-align: center;
-    text-shadow:1px 1px 1px rgba(152, 152, 152, 0.454);
-}
-.dress-WeatherImgText-dress{
-    color:rgb(173, 226, 255);
 }
 .dress-Today-color-Body{
     width: 500px;
@@ -176,17 +164,18 @@
     color:rgb(173, 226, 255);
 }
 #dress-searchWeather{
-   
+  	width:1300px;
     margin: 0 auto;
     text-align: center;
     position: relative;
     top: 200px;
+    
 }
 .dress-searchWeatherInput{
     width: 300px;
     height: 35px;
     background-color: #e8e8e8;
-    border-radius: 30px;
+    border-radius: 10px 0 0 10px;
     padding-left: 30px;
     border: none;
     cursor: pointer;
@@ -200,6 +189,17 @@
     height: 35px;
     border: 0;
     background-color: #e8e8e8;
-    border-radius: 35px;
+    border-radius: 0 10px 10px 0;
     cursor: pointer;
+}
+.dress-baseTimeBody{
+	text-align: center;
+}
+.dress-baseTime{
+	line-height:10px;
+	height:30px;
+	color: gray;
+}
+.dress-wind{
+	color:rgb(65, 116, 255);
 }

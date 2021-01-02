@@ -55,75 +55,45 @@
 		return hour;
 
 	}
-	/* dress-searchWeatherInput에서 value 값 가지고 오기 */
-	function inpVal(value) {
-		var rsIV = value;
-		$(".dress-weatherArea").html(rsIV);
-	}
-
-	/* 지역 입력 하면 name="weather"에 nx=x , ny=y 값치환 해서 보내기  */
-	/* $(function(){
 	
-	 })
-	 */
-	/*                  지역이름 자바로 넘겨주기                    */
-function parsingJavaAreaName() {	
-		var city = $(".dress-searchWeatherInput").val();
-		console.log(city);
-			$.ajax({
-					type : "get",
-					url : "${pageContext.request.contextPath}/dressMain/weatherRequest",
-					data : "citt="+city,
-					dataType : "json",
-					success : function(data) {
-						alert(data);
-					},
-					error : function(e) {
-						console.log(e.responseText);
-						alert(data);
-					}
-				});
-	}
-
 	/*name="weather"API 에서 날씨 정보 가지고 오기  */
 $(function() {
 	$(".dress-searchWeatherButton").click(function() {
-			 parsingJavaAreaName(); 
+	
 			//버튼 눌러서 $(".dress-searchWeatherInput").val();값 가지고 오기
-			var IV = $(".dress-searchWeatherInput")
-			if (IV != null) {
-				inpVal(IV.val());
-				IV.val("");
+			var town = $(".dress-searchWeatherInput").val();
+			$(".dress-weatherArea").text(town);
+			if (!town) {
+				$(".dress-searchWeatherInput").focus();
+				return false;
 			}
 			//날짜 가지고 오기
 		 	var todate = date();
-			console.log(todate)
+			//console.log(todate)
 			//발표 시간 가지고 오기
 			var nowtime = nowTime();
-			console.log(nowtime)
+			//console.log(nowtime)
 		
 			//날씨 - 동네 예보 확인
-			var url = "${pageContext.request.contextPath}/dressMain/weatherApi";
-			var base_date = todate;
-			var base_time = nowtime;
-			//마파구 서교동, 기상청18_동네예보_조회서비스_오픈API활용가이드.zip 의 엑셀에 있음
-			var nx = "59";
-			var ny = "126";
-			var query = "base_date=" + base_date+ "&base_time=" + base_time + "&nx=" + nx+ "&ny=" + ny;
+			var url = "${pageContext.request.contextPath}/dressMain/weatherRequest"
+			
+
+			var query = "base_date=" + todate+ "&base_time=" +nowtime + "&town=" + encodeURIComponent(town);
 			
 			var fn = function(data) {
-				console.log(data);
 				printJSON(data);
 			};
-		ajaxFun(url, "get", "json", query, fn);
+			ajaxFun(url, "get", "json", query, fn);
 })
 
 function printJSON(data) {
+		console.log(data);
+			var wind;
 			var out;
 			var category;
 			var fcstDate, fcstTime;//예측일자, 예측 시간
 			var fcstValue;//예측값
-			var pop, t3h, sky, tmn, tmx;
+			var pop, t3h, sky, tmn, tmx ,wsd;
 
 			if (!data.response.body) {
 				alert("등록된 정보가 없습니다.");
@@ -149,17 +119,52 @@ function printJSON(data) {
 					}
 				} else if (category === "T3H") {//3시간 기온
 					t3h = fcstValue;
+				} else if (category==="WSD"){//풍속 		
+					var fcstvalue = fcstValue*1;
+					if(fcstvalue <4){
+						wsd="바람 약함"
+					}else if(fcstValue >4 && fcstValue < 9){
+						wsd="바람이 약간 강하다"						
+					}else if(fcstValue >9 && fcstValue < 14){
+						wsd="바람이 강함"						
+					}else if(fcstValue > 14){
+						wsd="바람이 매우 강하다"						
+					} 
 				}
 			});
 			out = t3h;
+			wind = wsd;
+			
+			if(out*1<1){
+					$(".dress-tmeperText span").html("기온은 영상권이지만  <span style='color:skyblue;'>패딩, 두꺼운코드, 목도리, 기모제품 </span>을(를) 준비하세요!")
+			}else if(out*1 > 5 &&out*1 < 8){
+					$(".dress-tmeperText span").html("날씨가 추워요 여러겹의 <span style='color:skyblue;'>코트, 가죽자켓, 히트텍, 니트, 레깅스 </span>을(를) 준비하세요!")
+			}else if(out*1 > 9 &&out*1 < 11){
+					$(".dress-tmeperText span").html("날씨가 추워요 <span style='color:skyblue;'>자켓, 트렌치코트, 야상, 니트, 청바지, 스타킹 </span>을(를) 준비하세요!")
+			}else if(out*1 >= 12 &&out*1 <= 16){
+					$(".dress-tmeperText span").html("여러겹의 옷을 준비하는게 좋겠어요!  <span style='color:skyblue;'>자켓, 가디건, 야상, 스타킹, 청바지, 면바지 </span>을(를) 준비하세요!")
+			}else if(out*1 >=17  &&out*1 <= 19){
+					$(".dress-tmeperText span").html("시원한 날씨입니다. <span style='color:skyblue;'>얇은니트, 맨투맨, 가디건, 청바지 </span>을(를) 준비하세요!")
+			}else if(out*1 >= 20 &&out*1 <= 22){
+					$(".dress-tmeperText span").html("날씨가 더워요! <span style='color:skyblue;'>얇은가디건, 긴팔, 면바지, 청바지 </span>을(를) 준비하세요!")
+			}else if(out*1 >= 23 &&out*1 <= 27){
+					$(".dress-tmeperText span").html("여름 날씨에요! <span style='color:skyblue;'>반팔, 얇은 셔츠, 반바지, 면바지 </span>을(를) 준비하세요!")
+			}else if(out*1 >= 28 ){
+					$(".dress-tmeperText span").html("날씨가 매우 더우니 더위에 조심하세요! <span style='color:skyblue;'>민소매, 반팔, 반바지, 원피스 </span>을(를) 준비하세요!")
+			}else{
+				$(".dress-tmeperText span").html("날씨가 영하권이니 <span style='color:skyblue;'>민소매, 반팔, 반바지, 원피스 </span>을(를) 준비하세요!")
+			}
+			
+			
 			$(".dress-temper").html(out);
-
+			$(".dress-wind").html(wsd);
 			var ti = nowTime()
 
 			outtime = ti;
 			$(".outTime").html(outtime);
 		}
-	})
+	});
+	
 	function ajaxFun(url, method, dataType, query, fn) {
 		$.ajax({
 			type : method,
@@ -182,32 +187,33 @@ function printJSON(data) {
 </div>
 <div id="dress-searchWeather">
 
-	<input class="dress-searchWeatherInput" type="text" name="city" placeholder="지역을 입력해주세여">
+	<input class="dress-searchWeatherInput" type="text" name="town" placeholder="지역명칭을 바르게 입력해주세요. ex)강서구, 해운대구">
 
 	<button class="dress-searchWeatherButton" type="button">area</button>
 </div>
 <div class="dress-WeatherMainBody">
 	<div class="dress-WeatherTmpBody">
 		<div class="dress-WeatherTmp">
-			<i class="fas fa-temperature-high fa-2x"></i> <span
-				class="dress-weatherArea">입력한 지역 </span><span> 기온은</span> <span
-				class="dress-temper"></span> <span>입니다.</span> <span>기준시간:</span> <span
-				class="outTime"></span>
- 			<c:forEach var="dto" items="${list}">
- 			<a>${dto.xcode}</a>
- 				${dto.ycode}
- 			</c:forEach>
+			<i class="fas fa-temperature-high fa-2x"></i>
+			<span class="dress-weatherArea">입력한 지역  </span>
+			<span> 기온은</span> 
+			<span class="dress-temper"></span> 
+			<span>입니다.</span>
+		</div>
+		<div class="dress-baseTimeBody">
+			<div><span class="dress-wind"></span></div>
+			<span class="dress-baseTime">기준시간:</span> 
+			<span class="outTime"></span>
 		</div>
 		<div class="dress-tmeperText">
-			<span>날씨가 매우 추니 두꺼운 외투를 입으세요!</span>
+			<span></span>
 		</div>
 	</div>
 	<div class="dress-WeatherImgBody">
 		<div class="dress-WeatherImg"></div>
 	</div>
 	<div class="dress-WeatherImgText">
-		<span>"</span> <span class="dress-WeatherImgText-dress">가디건</span> <span>"</span>
-		<span>같은 옷을 준비 하세요!</span>
+	
 	</div>
 	<div class="dress-Today-color-Body">
 		<button class="dress-Today-button" type="button" data-toggle="modal"

@@ -12,11 +12,19 @@ public class DressMain {
 	
 	private int xcode;
 	private int ycode;
-	private String city;
+	private String town;
 	
 	
 	
 	
+	
+	
+	public String getTown() {
+		return town;
+	}
+	public void setTown(String town) {
+		this.town = town;
+	}
 	public int getXcode() {
 		return xcode;
 	}
@@ -29,12 +37,7 @@ public class DressMain {
 	public void setYcode(int ycode) {
 		this.ycode = ycode;
 	}
-	public String getCity() {
-		return city;
-	}
-	public void setCity(String city) {
-		this.city = city;
-	}
+	
 	public String getName() {
 		return name;
 	}
