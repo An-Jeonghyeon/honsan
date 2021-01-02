@@ -72,7 +72,7 @@ public class MemberManageController {
 
         
         String query = "";
-        String listUrl = cp+"/adm/memberManage/boardMng";
+        String listUrl = cp+"/adm/memberManage/memberMng";
         
         if(keyword.length()!=0) {
         	query = "condition=" +condition + 

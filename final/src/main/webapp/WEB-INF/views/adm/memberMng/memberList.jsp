@@ -3,7 +3,18 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 
+<style>
 
+.listpageCard{
+	background: #337ab7;
+    height: 36px;
+    border-radius: 4px;
+    color: white;
+    text-align: center;
+    line-height: 2.5;
+    box-shadow: 1px 1px 1px grey;
+}
+</style>
 <script>
 function ajaxJSON(url, method, query, fn) {
 	$.ajax({
@@ -63,6 +74,24 @@ $(function(){
 	});
 });
 
+function listsearch(){
+	var keyword = $(".keywordPointer").val();
+	var query = "?page="+${page}+"&keyword="+keyword;
+	location.href="${pageContext.request.contextPath}/adm/memberManage/memberMng"+query;
+}
+
+$(function(){
+	$(".memberlistAll").click(function(){
+		location.href="${pageContext.request.contextPath}/adm/memberManage/memberMng";
+	});
+});
+
+$(function(){
+	$(".memberBlackList").click(function(){
+		var query = "?page=1&enabled=0";
+		location.href="${pageContext.request.contextPath}/adm/memberManage/memberMng"+query;
+	});
+});
 
 </script>
 
@@ -87,7 +116,29 @@ $(function(){
                 <div class="col-md-12 ">
                     <!-- Advanced Tables -->
 <!--                     <div class="card"> -->
-                     	        <div class="chList_total">총 ${total_page}개 [${page}페이지/${total_page}페이지]</div> 
+								<div class="col-md-12">
+ 	                    	        <div class="col-md-2 left">
+ 	                    	        	<p class="listpageCard">총 ${total_page} 개 [${page} 페이지 / ${total_page} 페이지]</p>
+ 	                    	        	
+ 	                    	        </div> 							
+									<div class="col-md-4">
+									</div>
+									<div class="col-md-1">
+										<button type="button" class="btn btn-warning memberlistAll" >List ALL</button>		  
+									</div>
+									<div class="col-md-1">
+										<button type="button" class="btn btn-danger memberBlackList" >Black List</button>		  		
+									</div>
+									<div class="col-md-3 right">	
+									 <div class="col-xs-10">
+									 	<input type="text" class="form-control keywordPointer"  style="border-radius :4px; background-color: white;"
+									 			name="keyword" placeholder="아이디를 검색.">
+									 </div>								 
+									  <div class="col-xs-1 right">
+									    <button type="button" class="btn btn-primary" onclick="listsearch();">검색</button>
+									  </div>
+									</div> 
+								</div>
                                 <table class="table table-bordered table-hover" id="dataTables-example">
                                     <thead>
                                         <tr class="warning">
