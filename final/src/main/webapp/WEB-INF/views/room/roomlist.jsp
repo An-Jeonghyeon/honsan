@@ -190,14 +190,14 @@ $(function(){
 	
 	</div>
 	
-	<div>
+	<div style="position: sticky; top: 0;">
 	<!-- 검색 부분 -->
 		<form name="searchForm"
 			method="post">
 			<div class="searchlist">
 				<table style="width:1000px; margin: 15px auto; border-spacing: 0px;">
 					<tr height="60">
-						<td align="center" style="padding: 40px 0 20px 0;"><label for="town" id="lblTown" class="lbl"><i class="fas fa-search" style="color: gray;"></i>동네 이름
+						<td align="center" style="padding: 15px 0 20px 0;"><label for="town" id="lblTown" class="lbl"><i class="fas fa-search" style="color: gray;"></i>동네 이름
 								ex)관악구</label> <input type="text" name="keyword" id="town" value="${keyword }"
 							class="searchTF" maxlength="20" tabindex="2"
 							onfocus="document.getElementById('lblTown').style.display='none';"

@@ -21,7 +21,7 @@ hr {
 
 .searchlist{
 	background: #e4e4e4;
-	height: 200px;
+	height: 160px;
 	
 }
 
@@ -72,7 +72,6 @@ hr {
 	height: 45px;
 	border-radius:4px;
 	color: #000;
-	margin: 10px;
 }
 
 
@@ -124,8 +123,8 @@ hr {
 
 .banner{
 	width: 100%;
-    height: 600px;
-    background-image: url(../../images/room/roomlistmainimg.jpg);
+    height: 500px;
+    background-image: url("https://s.zigbang.com/v1/web/main/hero_img_1440.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center -300px;
@@ -138,7 +137,7 @@ hr {
 	font-size: 30px; 
 	font-weight:bold;
 	border:none;
-	background:#d7def7;
+	background:#9dafec;
 	width: 300px;
 	height: 70px;
 	border-radius:4px;
@@ -172,6 +171,11 @@ hr {
 	cursor: pointer;
 	
 }
+
+
+
+
+
 
 .section{
   display: flex;
