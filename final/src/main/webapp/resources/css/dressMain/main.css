@@ -49,18 +49,15 @@
     display: block;
 }
 .dress-WeatherTmp{
-    width: 500px;
-    height: 200px;
+    height: 150px;
     margin: 0 auto;
     box-sizing: border-box;
-    line-height: 200px;
+   line-height: 200px;
     text-align: center;
-  
-}
-.dress-WeatherTmp>span{
     font-size: 30px;
     text-shadow:1px 1px 1px rgb(169, 169, 169);
    
+  
 }
 .dress-temper{
     margin-right: 40px;
@@ -68,7 +65,7 @@
 .dress-temper::after{
     content:"";
     position: absolute;
-    top: 713px;
+    top: 818px;
     width: 30px;
     height: 30px;
     background-image: url("/app/resources/images/dress/celsius.png");
@@ -76,8 +73,8 @@
     background-repeat: no-repeat;  
 }
 .dress-tmeperText{
-    width: 300px;
-    margin: 0 auto;
+   
+    margin: 50px auto;
     text-align: center;
     text-shadow:1px 1px 1px rgba(152, 152, 152, 0.454);
     color: #787878;
@@ -94,21 +91,10 @@
     width: 100%;
     height: 100%;
     box-sizing: border-box;
-    background-image: url("/app/resources/images/dress/dress.png");
+    background-image:none;
     background-size: 400px 300px;
     background-position: center;
     background-repeat: no-repeat;
-}
-.dress-WeatherImgText{
-    width: 500px;
-    height: 100px;
-    margin: 0 auto;
-    box-sizing: border-box;
-    text-align: center;
-    text-shadow:1px 1px 1px rgba(152, 152, 152, 0.454);
-}
-.dress-WeatherImgText-dress{
-    color:rgb(173, 226, 255);
 }
 .dress-Today-color-Body{
     width: 500px;
@@ -151,20 +137,33 @@
     text-shadow:1px 1px 1px rgba(152, 152, 152, 0.454);
 }
 #dialog{
-    height: 100px;
+	display:none;
+	padding-top:100px;
     border-radius: 5px;
     background-color: rgba(210, 210, 210, 0.447);
     text-align: center;
-    line-height: 150px;
     backdrop-filter: saturate(180%) blur(3px);
     box-shadow: 1px 1px 5px rgba(92, 92, 92, 0.516);
 }
+
+#ui-id-1{
+	width: 200px;
+	display:inline-block;
+	text-align: center;
+	font-size: 20px;
+	margin:0 0 0 100px;
+	
+	
+}
 .ui-dialog-titlebar{
+	width:100%;
     text-align: center;
+    background: gray;
 }
 .ui-button{
     background-color: #fe642c;
     width: 70px;
+    height:24px;
     border: none;
     border-radius: 3px;
     float: right;
@@ -172,6 +171,56 @@
 .ui-button:focus,#dialog:focus{
     outline: none;
 }
-.dialog-randomColor{
-    color:rgb(173, 226, 255);
+.innerdialog{
+	width:80%;
+	height: 500px;
+	
+	margin:0 auto;
+	background: white;
+	
+}
+
+#dress-searchWeather{
+  	width:1300px;
+  	height:100px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    top: 200px;
+    
+}
+.dress-searchWeatherInput{
+    width: 300px;
+    height: 35px;
+    background-color: #e8e8e8;
+    border-radius: 10px 0 0 10px;
+    padding-left: 30px;
+    border: none;
+    cursor: pointer;
+}
+
+.dress-searchWeatherInput:focus,.dress-searchWeatherButton:focus{
+    outline: none;
+}
+.dress-searchWeatherButton{
+    width: 100px;
+    height: 35px;
+    border: 0;
+    background-color: #e8e8e8;
+    border-radius: 0 10px 10px 0;
+    cursor: pointer;
+}
+.dress-baseTimeBody{
+	text-align: center;
+}
+.dress-baseTime{
+	line-height:10px;
+	height:30px;
+	color: gray;
+}
+.dress-wind{
+	color:rgb(65, 116, 255);
+}
+#highcharts-e3pb21b-0{
+	width: 300px;
 }

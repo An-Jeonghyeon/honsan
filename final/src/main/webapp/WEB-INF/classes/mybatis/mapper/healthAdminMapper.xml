@@ -18,7 +18,49 @@
 	<insert id="insertChallenge2" parameterType="com.sp.app.adm.health.HealthAdmin">
 		INSERT INTO challenge2(exNum, num, startDate, endDate, exContent)
 			VALUES(#{exNum}, #{num}, #{startDate}, #{endDate}, #{exContent})
-	</insert>	 
-
+	</insert>
+	
+		<!--  검색  -->
+	<sql id="where-list">
+		<choose>
+			<when test="condition=='created'">
+				(TO_CHAR(created, 'YYYYMMDD') = #{keyword} 
+					OR TO_CHAR(created, 'YYYY-MM-DD') = #{keyword})
+			</when>
+			<otherwise>
+				INSTR(#{condition}, #{keyword}) &gt; 0
+			</otherwise>
+		</choose>
+	</sql>
+	
+	<!-- 리스트 -> 일단 다 뽑고 필요한거만 가져다쓰기 ?-->
+	<select id="listChallenge" parameterType="map" resultType="com.sp.app.adm.health.HealthAdmin">
+		SELECT c.num, name, subName, challengePeriod, challengeFilename, TO_CHAR(created, 'YYYY-MM-DD') created,
+			NVL(playMember, 0) playMember
+		FROM challenge c
+		LEFT OUTER JOiN(
+			SELECT num, COUNT(*) playMember 
+			FROM userChallenge
+			GROUP BY num
+		) u ON c.num = u.num
+		<where>
+			<if test="keyword !=null and keyword !=''">
+				<include refid="where-list"/>
+			</if>
+		</where>
+		ORDER BY c.num DESC
+		OFFSET #{offset} ROWS FETCH FIRST #{rows} ROWS ONLY
+	</select>
+	
+	<!-- dataCount -->
+	<select id="dataCount" parameterType="map" resultType="Integer">
+		SELECT NVL(count(*), 0)
+		FROM challenge 
+		<where>
+			<if test="keyword!=null and keyword!=''">
+				<include refid="where-list"/>
+			</if>
+		</where>
+	</select>
 	
 </mapper>

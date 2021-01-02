@@ -3,9 +3,7 @@ $(function () {
     $(".dress-temper").css("font-size", "44px");
 
 
-    $(".dress-menuball").click(function () {
-        alert('꺼저');
-    });
+    
 
     function scroll_follow(id) {
         $(window).scroll(function () {
@@ -16,19 +14,14 @@ $(function () {
         scroll_follow("#scroll");      
 })
 $(function(){
-    $( "#dialog" ).dialog({
-        autoOpen: false,
-        show: {
-          effect: "blind",
-          duration: 1000
-        },
-        hide: {
-          effect: "explode",
-          duration: 1000
-        }
-      });
-   
-      $( ".dress-Today-button" ).on( "click", function() {
-        $( "#dialog" ).dialog( "open" );
-      });
-})
+	$(".dress-menuball").click(function(){
+		
+		$( "#dialog" ).dialog({
+			 title:"지역별 날씨 현황",
+			 width:1000,
+			 height: 1000,
+             modal:false,
+            
+		});
+	});
+});

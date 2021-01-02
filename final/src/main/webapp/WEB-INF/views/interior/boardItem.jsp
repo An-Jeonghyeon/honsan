@@ -2,6 +2,7 @@
 <%@ page trimDirectiveWhitespaces="true" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <style>
 .fa-thumbs-up {
@@ -396,7 +397,8 @@ $(function(){
             <!-- # 태그가 있을시 for 문 돌려서 사용할것 ! -->
             <ul class="leftbox_tag_ul">
 				<c:forEach var="tag" items="${categorylist}" varStatus="n">
-               		<li class="leftbox_tag_li"><a class="leftbox_tag_li_a">${tag}</a></li>
+               		<li class="leftbox_tag_li"><a class="leftbox_tag_li_a" 
+               					href="${pageContext.request.contextPath}/interior/main?keyword=${fn:substring(tag,1,tag.length())}">${tag}</a></li>
 				</c:forEach>
             </ul>
 
