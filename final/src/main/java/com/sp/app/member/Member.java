@@ -13,7 +13,22 @@ public class Member {
 	private String zip;
 	private String addr1, addr2;
 	private int enabled;
+	private String black_date;
+	private String reason;
 	
+	
+	public String getBlack_date() {
+		return black_date;
+	}
+	public void setBlack_date(String black_date) {
+		this.black_date = black_date;
+	}
+	public String getReason() {
+		return reason;
+	}
+	public void setReason(String reason) {
+		this.reason = reason;
+	}
 	public long getMemberIdx() {
 		return memberIdx;
 	}

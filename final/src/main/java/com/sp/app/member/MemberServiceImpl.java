@@ -167,14 +167,22 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public int dataCount(Map<String, Object> map) {
 		int result=0;
-
+		try {
+			result = dao.selectOne("member.dataCount", map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return result;
 	}
 
 	@Override
 	public List<Member> listMember(Map<String, Object> map) {
 		List<Member> list=null;
-
+		try {
+			list = dao.selectList("member.listMember", map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return list;
 	}
 	
@@ -193,9 +201,19 @@ public class MemberServiceImpl implements MemberService {
 		
 		return dto;
 	}
+
+	@Override
+	public void updateBlackList(Map<String, Object> map) throws Exception {
+		try {
+			dao.updateData("member.blacklistUpdate", map);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+		
+	}
 	
-	
-	
+
 	
 	
 	
