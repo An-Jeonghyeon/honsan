@@ -26,10 +26,9 @@ import com.sp.app.common.FileManager;
 import com.sp.app.common.MyUtil;
 import com.sp.app.member.SessionInfo;
 
-@Controller("notice.noticeController")
-@RequestMapping("/notice/*")
-public class NoticeController {
-	
+@Controller("notice.noticeController2")
+@RequestMapping("/notice2/*")
+public class NoticeController2 {
 	@Autowired
 	private NoticeService service;
 	@Autowired
@@ -37,58 +36,74 @@ public class NoticeController {
 	@Autowired
 	private FileManager fileManager;
 	
-	
 	@RequestMapping(value="list")
 	public String list(
 			@RequestParam(value="page", defaultValue="1") int current_page,
 			@RequestParam(defaultValue="all") String condition,
 			@RequestParam(defaultValue="") String keyword,
 			HttpServletRequest req,
-			Model model
-			) throws Exception {
+			Model model) throws Exception {
 		
-		int rows = 10; 
+		int rows = 10; // 한 화면에 보여주는 게시물 수
 		int total_page = 0;
 		int dataCount = 0;
-        
-		if(req.getMethod().equalsIgnoreCase("GET")) { 
+   	    
+		if(req.getMethod().equalsIgnoreCase("GET")) { // GET 방식인 경우
 			keyword = URLDecoder.decode(keyword, "utf-8");
 		}
 		
+        // 전체 페이지 수
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("condition", condition);
         map.put("keyword", keyword);
-        
+
         dataCount = service.dataCount(map);
         if(dataCount != 0)
             total_page = myUtil.pageCount(rows,  dataCount) ;
-        
+
+        // 다른 사람이 자료를 삭제하여 전체 페이지수가 변화 된 경우
         if(total_page < current_page) 
             current_page = total_page;
-        
-        //공지체크한 리스트        
+
+        // 1페이지인 경우 공지리스트 가져오기
         List<Notice> noticeList = null;
         if(current_page==1) {
-            noticeList=service.listNoticeTop();
+          noticeList=service.listNoticeTop();
         }
         
+        // 리스트에 출력할 데이터를 가져오기
         int offset = (current_page-1) * rows;
 		if(offset < 0) offset = 0;
         map.put("offset", offset);
         map.put("rows", rows);
 
-        //그냥 리스트
+        // 글 리스트
         List<Notice> list = service.listNotice(map);
 
-		//listNum
+        // 리스트의 번호
+        Date endDate = new Date();
+        long gap;
         int listNum, n = 0;
         for(Notice dto : list) {
             listNum = dataCount - (offset + n);
             dto.setListNum(listNum);
+            
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            Date beginDate = formatter.parse(dto.getCreated());
+/*            
+            // 날짜차이(일)
+            gap=(endDate.getTime() - beginDate.getTime()) / (24 * 60 * 60* 1000);
+            dto.setGap(gap);
+*/
+         // 날짜차이(시간)
+            gap=(endDate.getTime() - beginDate.getTime()) / (60*60* 1000);
+            dto.setGap(gap);
+            
+            dto.setCreated(dto.getCreated().substring(0, 10));
+            
             n++;
         }
-
-        //url
+        
         String cp=req.getContextPath();
         String query = "";
         String listUrl = cp+"/notice/list";
@@ -116,11 +131,10 @@ public class NoticeController {
 		model.addAttribute("condition", condition);
 		model.addAttribute("keyword", keyword);
 		
-		
 		return ".notice.list";
 	}
-	
-	@RequestMapping(value = "created", method = RequestMethod.GET)
+
+	@RequestMapping(value="created", method=RequestMethod.GET)
 	public String createdForm(
 			Model model,
 			HttpSession session
@@ -135,7 +149,7 @@ public class NoticeController {
 		
 		return ".notice.created";
 	}
-	
+
 	@RequestMapping(value="created", method=RequestMethod.POST)
 	public String createdSubmit(
 			Notice dto,
@@ -151,14 +165,14 @@ public class NoticeController {
 			String root = session.getServletContext().getRealPath("/");
 			String pathname = root + "uploads" + File.separator + "notice";		
 			
-			dto.setUserId(info.getUserId()); 
+			dto.setUserId(info.getUserId());
 			service.insertNotice(dto, pathname);
 		} catch (Exception e) {
 		}
 		
 		return "redirect:/notice/list";
 	}
-	
+
 	@RequestMapping(value="article")
 	public String article(
 			@RequestParam int num,
@@ -183,7 +197,7 @@ public class NoticeController {
 		
         dto.setContent(dto.getContent().replaceAll("\n", "<br>"));
          
-		// 이전/다음글
+		// 이전 글, 다음 글
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("condition", condition);
 		map.put("keyword", keyword);
@@ -193,18 +207,18 @@ public class NoticeController {
 		Notice nextReadDto = service.nextReadNotice(map);
         
 		// 파일
-		List<Notice> listFile=service.listFile(num); 
+		List<Notice> listFile=service.listFile(num);
 				
 		model.addAttribute("dto", dto);
 		model.addAttribute("preReadDto", preReadDto);
 		model.addAttribute("nextReadDto", nextReadDto);
-		model.addAttribute("listFile", listFile); //파일
+		model.addAttribute("listFile", listFile);
 		model.addAttribute("page", page);
 		model.addAttribute("query", query);
 		
 		return ".notice.article";
 	}
-	
+
 	@RequestMapping(value="update", method=RequestMethod.GET)
 	public String updateForm(
 			@RequestParam int num,
@@ -217,12 +231,12 @@ public class NoticeController {
 			return "redirect:/notice/list?page="+page;
 		}
 
-		Notice dto = service.readNotice(num); //게시글 가져오기 
+		Notice dto = service.readNotice(num);
 		if(dto==null) {
 			return "redirect:/notice/list?page="+page;
 		}
 		
-		List<Notice> listFile=service.listFile(num); //파일정보 가져오기 
+		List<Notice> listFile=service.listFile(num);
 			
 		model.addAttribute("mode", "update");
 		model.addAttribute("page", page);
@@ -312,8 +326,6 @@ public class NoticeController {
 		}
 	}
 	
-	//이거 집파일로 다운받는거  -> 리스트에서 파일모양 누르면 업로드한 파일 한번에 집파일로 받는거 -> 아 . 파일 한개라도 집파일로 받는대 
-	//아버지 번호 가져가서 해당되는 파일들의 이름을 가져옴 ..
 	@RequestMapping(value="zipdownload")
 	public void zipdownload(
 			@RequestParam int num,
@@ -324,15 +336,15 @@ public class NoticeController {
 
 		boolean b = false;
 		
-		List<Notice> listFile = service.listFile(num); //디비속에 존재하는 파일 정보 가져오기(해당 아버지 번호로)
-		if(listFile.size()>0) { //파일이 존재하면 
-			String []sources = new String[listFile.size()]; //세이브파일네임 담을곳
-			String []originals = new String[listFile.size()]; //오리지널파일네임 담을곳
-			String zipFilename = num+".zip"; //집파일이름 : 게시물번호.zip ==> 3.zip 이런식
+		List<Notice> listFile = service.listFile(num);
+		if(listFile.size()>0) {
+			String []sources = new String[listFile.size()];
+			String []originals = new String[listFile.size()];
+			String zipFilename = num+".zip";
 			
 			for(int idx = 0; idx<listFile.size(); idx++) {
 				sources[idx] = pathname+File.separator+listFile.get(idx).getSaveFilename();
-				originals[idx] = File.separator+listFile.get(idx).getOriginalFilename(); //파일 이름 가져다가 배열에 때려박기
+				originals[idx] = File.separator+listFile.get(idx).getOriginalFilename();
 			}
 			
 			b = fileManager.doZipFileDownload(sources, originals, zipFilename, resp);
@@ -348,11 +360,9 @@ public class NoticeController {
 		}
 	}
 	
-	
-	//파일 지우기 
 	@RequestMapping(value="deleteFile", method=RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> deleteFile( 
+	public Map<String, Object> deleteFile(
 			@RequestParam int fileNum,
 			HttpSession session) throws Exception {
 		

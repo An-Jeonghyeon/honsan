@@ -21,7 +21,7 @@ public class Notice {
 	private int fileCount;
 	
 	// 스프링에서 파일 받기
-	private List<MultipartFile> upload; // <input type="file" name="upload"
+	private List<MultipartFile> upload; 
 
 	private long gap;
 

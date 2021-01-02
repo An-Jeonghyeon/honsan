@@ -13,7 +13,7 @@
 }
 
 #board_qna_faq{
-	height : 610px;
+	min-height : 500px;
 	width: 1200px;
 	padding-left: 15px;
 	padding-right: 15px;
@@ -139,7 +139,7 @@
 
 .notice_content_box{
 	width: 1134px;
-	height: 403px;
+	min-height : 380px;
 	margin: 0px auto;
 }
 

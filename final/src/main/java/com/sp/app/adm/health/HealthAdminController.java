@@ -1,8 +1,6 @@
 package com.sp.app.adm.health;
 
 import java.io.File;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -11,8 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
-import com.sp.app.member.SessionInfo;
 
 @Controller("adm.health.healthAdminController")
 @RequestMapping("/adm/health/*")
@@ -28,7 +24,7 @@ public class HealthAdminController {
 	}
 	
 	@RequestMapping(value = "created", method = RequestMethod.GET)
-	public String created(Model model) throws Exception {
+	public String created(Model model) throws Exception {                          
 		
 		model.addAttribute("mode", "created");
 		return ".adm.health.created";

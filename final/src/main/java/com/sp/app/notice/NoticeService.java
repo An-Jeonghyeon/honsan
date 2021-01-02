@@ -22,4 +22,7 @@ public interface NoticeService {
 	public List<Notice> listFile(int num);
 	public Notice readFile(int fileNum);
 	public void deleteFile(Map<String, Object> map) throws Exception;
+	
+	//메인용 리스트
+	public List<Notice> mainListNotice();
 }
