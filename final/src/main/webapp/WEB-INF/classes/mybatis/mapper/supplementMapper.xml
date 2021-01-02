@@ -69,6 +69,7 @@
 		</where>
 	</select>
 	
+	<!-- 조회수 -->
 	<update id="updateHitCount" parameterType="Integer">
 		UPDATE supplement SET hitCount=hitCount+1 WHERE num=#{num}
 	</update>
