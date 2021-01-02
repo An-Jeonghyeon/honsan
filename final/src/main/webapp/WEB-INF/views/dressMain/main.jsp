@@ -143,8 +143,8 @@ function printJSON(data) {
 			out = t3h;
 			wind = wsd;
 			
-			if(out*1<1){
-					$(".dress-tmeperText span").html("기온은 영하권이에요!  <span style='color:skyblue;'>패딩, 두꺼운코드, 목도리, 기모제품 </span>을(를) 준비하세요!");
+			if(out*1<=1){
+					$(".dress-tmeperText span").html("상당히 추워요!  <span style='color:skyblue;'>패딩, 두꺼운코드, 목도리, 기모제품 </span>을(를) 준비하세요!");
 					$(".dress-WeatherImg").css("background-image","url('/app/resources/images/dress/pading.png')");
 			}else if(out*1 > 1 &&out*1 < 8){
 					$(".dress-tmeperText span").html("날씨가 추워요 여러겹의 <span style='color:skyblue;'>코트, 가죽자켓, 히트텍, 니트, 레깅스 </span>을(를) 준비하세요!");
