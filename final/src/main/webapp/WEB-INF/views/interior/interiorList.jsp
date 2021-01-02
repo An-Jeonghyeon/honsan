@@ -38,7 +38,7 @@
 	                    <div class="userPage_board_list_item">
 	                        <div class="userPage_board_list_item_atr">
 	                            <div class="userPage_board_list_item_atr_imgbox">
-	                                <a><img class="userPage_board_list_item_atr_img" src="${pageContext.request.contextPath}/uploads/interior/${dto.mainImg}"></a>
+	                                <a href="${pageContext.request.contextPath}/interior/boardItem?num=${dto.num}"><img class="userPage_board_list_item_atr_img" src="${pageContext.request.contextPath}/uploads/interior/${dto.mainImg}"></a>
 	                            </div>
 	                            <p class="userPage_board_list_item_atr_subject">${dto.subject}</p>
 	                            <span class="userPage_board_list_item_atr_counts">좋아요 727 · 조회수 ${dto.hitCount}</span>
