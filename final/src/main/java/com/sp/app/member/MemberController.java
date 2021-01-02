@@ -97,6 +97,11 @@ public class MemberController {
 			return ".member.login";
 		}
 		
+		if(dto==null || dto.getEnabled()==0) {
+			model.addAttribute("message", "정지된 계정입니다.");
+			return ".member.login";
+		}
+		
 		// 세션에 로그인 정보 저장
 		SessionInfo info=new SessionInfo();
 		info.setUserId(dto.getUserId());

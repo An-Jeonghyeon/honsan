@@ -22,4 +22,5 @@ public interface MemberService {
 	
 	//아이디 찾기
 	public Member findId(String userName);
+	public void updateBlackList(Map<String, Object> map) throws Exception;
 }
