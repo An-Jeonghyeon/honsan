@@ -136,29 +136,35 @@ function printJSON(data) {
 			wind = wsd;
 			
 			if(out*1<1){
-					$(".dress-tmeperText span").html("기온은 영상권이지만  <span style='color:skyblue;'>패딩, 두꺼운코드, 목도리, 기모제품 </span>을(를) 준비하세요!")
-			}else if(out*1 > 5 &&out*1 < 8){
-					$(".dress-tmeperText span").html("날씨가 추워요 여러겹의 <span style='color:skyblue;'>코트, 가죽자켓, 히트텍, 니트, 레깅스 </span>을(를) 준비하세요!")
+					$(".dress-tmeperText span").html("기온은 영하권이에요!  <span style='color:skyblue;'>패딩, 두꺼운코드, 목도리, 기모제품 </span>을(를) 준비하세요!");
+					$(".dress-WeatherImg").css("background-image","url('/app/resources/images/dress/pading.png')");
+			}else if(out*1 > 1 &&out*1 < 8){
+					$(".dress-tmeperText span").html("날씨가 추워요 여러겹의 <span style='color:skyblue;'>코트, 가죽자켓, 히트텍, 니트, 레깅스 </span>을(를) 준비하세요!");
+					$(".dress-WeatherImg").css("background-image","url('/app/resources/images/dress/mil.png')");
 			}else if(out*1 > 9 &&out*1 < 11){
-					$(".dress-tmeperText span").html("날씨가 추워요 <span style='color:skyblue;'>자켓, 트렌치코트, 야상, 니트, 청바지, 스타킹 </span>을(를) 준비하세요!")
+					$(".dress-tmeperText span").html("날씨가 추워요 <span style='color:skyblue;'>자켓, 트렌치코트, 야상, 니트, 청바지, 스타킹 </span>을(를) 준비하세요!");
+					$(".dress-WeatherImg").css("background-image","url('/app/resources/images/dress/trance.png')");
 			}else if(out*1 >= 12 &&out*1 <= 16){
-					$(".dress-tmeperText span").html("여러겹의 옷을 준비하는게 좋겠어요!  <span style='color:skyblue;'>자켓, 가디건, 야상, 스타킹, 청바지, 면바지 </span>을(를) 준비하세요!")
+					$(".dress-tmeperText span").html("여러겹의 옷을 준비하는게 좋겠어요!  <span style='color:skyblue;'>자켓, 가디건, 야상, 스타킹, 청바지, 면바지 </span>을(를) 준비하세요!");
+					$(".dress-WeatherImg").css("background-image","url('/app/resources/images/dress/jaket.png')");
 			}else if(out*1 >=17  &&out*1 <= 19){
-					$(".dress-tmeperText span").html("시원한 날씨입니다. <span style='color:skyblue;'>얇은니트, 맨투맨, 가디건, 청바지 </span>을(를) 준비하세요!")
+					$(".dress-tmeperText span").html("시원한 날씨입니다! <span style='color:skyblue;'>얇은니트, 맨투맨, 가디건, 청바지 </span>을(를) 준비하세요!");
+					$(".dress-WeatherImg").css("background-image","url('/app/resources/images/dress/mantoma.png')");
 			}else if(out*1 >= 20 &&out*1 <= 22){
-					$(".dress-tmeperText span").html("날씨가 더워요! <span style='color:skyblue;'>얇은가디건, 긴팔, 면바지, 청바지 </span>을(를) 준비하세요!")
+					$(".dress-tmeperText span").html("날씨가 더워요! <span style='color:skyblue;'>얇은가디건, 긴팔, 면바지, 청바지 </span>을(를) 준비하세요!");
+					$(".dress-WeatherImg").css("background-image","url('/app/resources/images/dress/mantoman.png')");
 			}else if(out*1 >= 23 &&out*1 <= 27){
-					$(".dress-tmeperText span").html("여름 날씨에요! <span style='color:skyblue;'>반팔, 얇은 셔츠, 반바지, 면바지 </span>을(를) 준비하세요!")
+					$(".dress-tmeperText span").html("여름 날씨에요! <span style='color:skyblue;'>반팔, 얇은 셔츠, 반바지, 면바지 </span>을(를) 준비하세요!");
+					$(".dress-WeatherImg").css("background-image","url('/app/resources/images/dress/tsluts.png')");
 			}else if(out*1 >= 28 ){
-					$(".dress-tmeperText span").html("날씨가 매우 더우니 더위에 조심하세요! <span style='color:skyblue;'>민소매, 반팔, 반바지, 원피스 </span>을(를) 준비하세요!")
-			}else{
-				$(".dress-tmeperText span").html("날씨가 영하권이니 <span style='color:skyblue;'>민소매, 반팔, 반바지, 원피스 </span>을(를) 준비하세요!")
+					$(".dress-tmeperText span").html("날씨가 매우 더우니 더위에 조심하세요! <span style='color:skyblue;'>민소매, 반팔, 반바지, 원피스 </span>을(를) 준비하세요!");
+					$(".dress-WeatherImg").css("background-image","url('/app/resources/images/dress/tsluts.png')");
 			}
 			
 			
 			$(".dress-temper").html(out);
 			$(".dress-wind").html(wsd);
-			var ti = nowTime()
+			var ti = nowTime();
 
 			outtime = ti;
 			$(".outTime").html(outtime);

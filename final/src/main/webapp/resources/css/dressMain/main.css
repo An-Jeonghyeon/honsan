@@ -67,7 +67,7 @@
 .dress-temper::after{
     content:"";
     position: absolute;
-    top: 748px;
+    top: 818px;
     width: 30px;
     height: 30px;
     background-image: url("/app/resources/images/dress/celsius.png");
@@ -93,7 +93,7 @@
     width: 100%;
     height: 100%;
     box-sizing: border-box;
-    background-image: url("/app/resources/images/dress/dress.png");
+    background-image:none;
     background-size: 400px 300px;
     background-position: center;
     background-repeat: no-repeat;
@@ -165,6 +165,7 @@
 }
 #dress-searchWeather{
   	width:1300px;
+  	height:100px;
     margin: 0 auto;
     text-align: center;
     position: relative;
