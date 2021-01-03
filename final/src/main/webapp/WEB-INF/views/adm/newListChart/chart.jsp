@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page trimDirectiveWhitespaces="true" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 
 
@@ -177,24 +177,25 @@
 				
 	 
 			<div class="row">
-				<div class="col-md-5"> 
+				<div class="col-md-9"> 
 					<div class="card">
 						<div class="card-image">
 							 <div id="morris-line-chart"></div>
 						</div> 
 						<div class="card-action">
-						 	 <b>Line Chart</b>
+						 	 <b>요일 별 그래프 </b>
 						</div>
 					</div>
 				</div>		
-			
-				<div class="col-md-7"> 
+			</div>
+			<div class="row">
+				<div class="col-md-9"> 
 					<div class="card">
 						<div class="card-image">
 					 		 <div id="morris-bar-chart"></div>
 						</div> 
 						<div class="card-action">
-							<b> Bar Chart Example</b>
+							<b> 요일 별 그래프 </b>
 						</div>
 					</div>					
 				</div>
@@ -227,20 +228,20 @@
             Morris.Bar({
                 element: 'morris-bar-chart',
                 data: [
-					  { y: '일', a: 50, b: 90 , c: 40 , d :55 , e:77 , f:33},
-					  { y: '월', a: 165,  b: 185 , c: 30 , d : 66 , e:88 , f:44},
-					  { y: '화', a: 150,  b: 130 , c: 20 , d : 66 , e:99 , f:55},
-					  { y: '수', a: 175,  b: 160 , c: 10 , d : 77 , e:11 , f:66},
-					  { y: '목', a: 80,  b: 65 , c: 60 , d : 88 , e:22 , f:77},
-					  { y: '금', a: 90,  b: 70 , c: 70 , d : 99 , e:33 , f:88},
-					  { y: '토', a: 100, b: 125 , c: 80 , d : 44 , e:44 , f:99}
+					  { y: '${pre6wday}', a: 50, b: 90 , c: 40 , d :55 , e:77 },
+					  { y: '${pre5wday}', a: 165,  b: 185 , c: 30 , d : 66 , e:88 },
+					  { y: '${pre4wday}', a: 150,  b: 130 , c: 20 , d : 66 , e:99 },
+					  { y: '${pre3wday}', a: 175,  b: 160 , c: 10 , d : 77 , e:11 },
+					  { y: '${pre2wday}', a: 80,  b: 65 , c: 60 , d : 88 , e:22},
+					  { y: '${pre1wday}', a: 90,  b: 70 , c: 70 , d : 99 , e:33 },
+					  { y: '${woday}', a: 100, b: 125 , c: 80 , d : 44 , e:44 }
 
 				],
                 xkey: 'y',
-                ykeys: ['a', 'b','c','d','e','f'],
-                labels: ['옷', '요리','부동산','인테리어','헬스','잡동사니'],
+                ykeys: ['a', 'b','c','d','e'],
+                labels: ['옷', '요리','부동산','인테리어','헬스'],
 				 barColors: [
-					 '#30A5FF','#EF4040', '#1EBFAE' , '#FFB53E' , '#795548' ,'#9C27B0'],
+					 '#30A5FF','#EF4040', '#1EBFAE' , '#FFB53E' , '#795548' ],
                 hideHover: 'auto',
                 resize: true
             });
@@ -280,30 +281,26 @@
             Morris.Line({
                 element: 'morris-line-chart',
                 data: [
-					  { y: '2014', a: 50, b: 90 , c: 40 , d :55 , e:77 , f:33},
-					  { y: '2015', a: 165,  b: 185 , c: 30 , d : 66 , e:88 , f:44},
-					  { y: '2016', a: 150,  b: 130 , c: 20 , d : 66 , e:99 , f:55},
-					  { y: '2017', a: 175,  b: 160 , c: 10 , d : 77 , e:11 , f:66},
-					  { y: '2018', a: 80,  b: 65 , c: 60 , d : 88 , e:22 , f:77},
-					  { y: '2019', a: 90,  b: 70 , c: 70 , d : 99 , e:33 , f:88},
-					  { y: '2020', a: 100, b: 125 , c: 80 , d : 44 , e:44 , f:99},
-					  { y: '2021', a: 155, b: 175 , c: 90 , d : 33 , e:55 , f:11},
-					  { y: '2022', a: 80, b: 85 , c: 44 , d :22 , e:66 , f:22},
-					  { y: '2023', a: 145, b: 155 , c: 55 , d :11 , e:74 , f:52},
-					  { y: '2024', a: 160, b: 195 , c: 66 , d :28 , e:37 , f:39}
+					  { y: "${pre6day}", a: 50, b: 90 , c: 40 , d :55 , e:77 },
+					  { y: "${pre5day}", a: 165,  b: 185 , c: 30 , d : 66 , e:88 },
+					  { y: "${pre4day}", a: 150,  b: 130 , c: 20 , d : 66 , e:99 },
+					  { y: "${pre3day}", a: 175,  b: 160 , c: 10 , d : 77 , e:11},
+					  { y: "${pre2day}", a: 80,  b: 65 , c: 60 , d : 88 , e:22 },
+					  { y: "${pre1day}", a: 90,  b: 70 , c: 70 , d : 99 , e:33 },
+					  { y: "${today}", a: 100, b: 125 , c: 80 , d : 44 , e:44 }
 				],
             
 				 
       xkey: 'y',
-      ykeys: ['a', 'b','c','d','e','f'],
-      labels: ['옷', '요리','부동산','인테리어','헬스','잡동사니'],
+      ykeys: ['a', 'b','c','d','e'],
+      labels: ['옷', '요리','부동산','인테리어','헬스'],
       fillOpacity: 0.6,
       hideHover: 'auto',
       behaveLikeLine: true,
       resize: true,
       pointFillColors:['#ffffff'],
       pointStrokeColors: ['black'],
-      lineColors:[ '#30A5FF','#EF4040', '#1EBFAE' , '#FFB53E' , '#795548' ,'#9C27B0']
+      lineColors:[ '#30A5FF','#EF4040', '#1EBFAE' , '#FFB53E' , '#795548' ]
 	  
             });
            

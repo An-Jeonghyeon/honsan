@@ -204,6 +204,18 @@ public class InteriorController {
 		
 		model.addAttribute("userLike", readinteriorLike);
 		model.addAttribute("interiorLikeCount", interiorLikecount);
+		
+		int readinteriorZzim=0;
+		int interiorZzimcount =0;
+		try {
+			readinteriorZzim = service.readInteriorZzim(paramMap);	
+			interiorZzimcount = service.interiorZzimCount(num);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		model.addAttribute("userZzim", readinteriorZzim);
+		model.addAttribute("interiorZzimCount", interiorZzimcount);
 
 		map.put("num", num);
 			
@@ -431,15 +443,45 @@ public class InteriorController {
 		return model;
 	}
 	
+	@RequestMapping(value="insertInteriorZzim", method=RequestMethod.POST) //포스트방식으로 왔을때 
+	@ResponseBody //에이작스 제이슨 등 쓸때는 리스폰스 바디필수 자동연결 
+	public Map<String, Object> insertInteriorZzim(
+			@RequestParam int num,  
+			HttpSession session
+			) {
+		String state="true";   // 처음은 무조건 좋아요가 진행된 상태가아니니 true 넘기게 디폴트 ture 로 작성한다.
+		int interiorZzimCount=0; 
+		SessionInfo info=(SessionInfo)session.getAttribute("member");
+		
+		Map<String, Object> paramMap=new HashMap<>();
+		paramMap.put("num", num); // 게시물의 번호 
+		paramMap.put("userId", info.getUserId()); //현재 로그인된 아이디 
+		
+		try {
+			service.insertInteriorZzim(paramMap);// 맵에 셋팅한 넘버와 아이디 테이블에 추가 	
+		} catch (Exception e) {
+			e.printStackTrace();  // 실패시 false 출력 
+			state="false";
+		}
+			
+		interiorZzimCount = service.interiorZzimCount(num); // 추가된 테이블의 총 카운트 입력 
+		
+		Map<String, Object> model=new HashMap<>();
+		model.put("state", state);   // jsp 에서 잘 작동하였는지 확인하기 위한 메세지
+		model.put("interiorZzimCount", interiorZzimCount); // 좋아요 총 수를 담은 변수 
+		
+		return model;
+	}
+	
 	// 게시글 좋아요 삭제(delete) : AJAX-JSON
-		@RequestMapping(value="deleteInteriorLike", method=RequestMethod.POST)
+		@RequestMapping(value="deleteInteriorZzim", method=RequestMethod.POST)
 		@ResponseBody
-		public Map<String, Object> deleteInteriorLike(
+		public Map<String, Object> deleteInteriorZzim(
 				@RequestParam int num,
 				HttpSession session
 				) {
 			String state="true";
-			int interiorLikeCount=0; //좋아요의 총 수를 담을 변수 
+			int interiorZzimCount=0; //좋아요의 총 수를 담을 변수 
 			SessionInfo info=(SessionInfo)session.getAttribute("member"); //로그인된 회원정보
 			
 			Map<String, Object> paramMap=new HashMap<>();
@@ -447,17 +489,17 @@ public class InteriorController {
 			paramMap.put("userId", info.getUserId()); // 접속중인 아이디 
 			
 			try {
-				service.deleteInteriorLike(paramMap);	// map 설정한 정보 테이블에서 삭제 
+				service.deleteInteriorZzim(paramMap);	// map 설정한 정보 테이블에서 삭제 
 			} catch (Exception e) {
 				e.printStackTrace();
 				state="false";   // 삭제 실패 시 메시지 전송을 위한 변수 
 			}
 				
-			interiorLikeCount = service.interiorLikeCount(num);
+			interiorZzimCount = service.interiorZzimCount(num);
 			 
 			Map<String, Object> model=new HashMap<>();
 			model.put("state", state);  // 상태의 성공 실패 여부 
-			model.put("interiorLikeCount", interiorLikeCount); // 실행 후 좋아요의 수 를 담은 변수
+			model.put("interiorZzimCount", interiorZzimCount); // 실행 후 좋아요의 수 를 담은 변수
 			
 			return model;
 		}

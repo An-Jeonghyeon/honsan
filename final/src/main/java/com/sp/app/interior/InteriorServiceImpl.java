@@ -234,7 +234,7 @@ public class InteriorServiceImpl implements InteriorService{
 	}
 
 
-
+	// 게시판 좋아요 
 	@Override
 	public void insertInteriorLike(Map<String, Object> map) throws Exception {
 		try {
@@ -284,6 +284,61 @@ public class InteriorServiceImpl implements InteriorService{
 		}
 		
 	}
+	
+	// 게시판 좋아요 
+	@Override
+	public void insertInteriorZzim(Map<String, Object> map) throws Exception {
+		try {
+			dao.insertData("interior.insertInteriorZzim", map);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+		
+	}
+
+
+
+	@Override
+	public int interiorZzimCount(int num) {
+		int result=0;
+		try {
+			result=dao.selectOne("interior.interiorZzimCount", num);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+
+
+	@Override
+	public int readInteriorZzim(Map<String, Object> map) throws Exception {
+		int result=0;
+		try {
+			result=dao.selectOne("interior.readInteriorZzim", map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+
+
+	@Override
+	public void deleteInteriorZzim(Map<String, Object> map) throws Exception {
+		try {
+			dao.deleteData("interior.deleteInteriorZzim", map);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+		
+	}
+	
+	
+	
+	
 	//댓글 추가 
 
 	

@@ -78,6 +78,7 @@
  padding-left: 400px;
  padding-top: 80px;
  z-index: -1;
+ pointer-events:none;
 }
 .search_bar{
 	width: 100%;
@@ -153,11 +154,16 @@
 
 .spanEx {
   display: block;
+  
 }
 
 .spanEx:not(.light) {
   opacity: 0;
   animation: flashText .5s ease-out alternate infinite;
+}
+
+.spanEx:hover{
+	pointer-events:none;
 }
 
 .spanEx.light {
@@ -181,12 +187,14 @@
 @keyframes flash{
   to {
     opacity: 1;
+    
   }
 }
 
 @keyframes flashText {
   to {
     opacity: 0.15;
+    
   }
 }
 
@@ -279,10 +287,10 @@ $(function(){
 	                </div>
 	                <!-- 카운트 숫자 게시판 (찜 , 댓글 , 좋아요 )  -->
 	                <div class="interior_counts">
-	                    <button type="button" class="interior_counts_box"  >
+	                    <button type="button" class="interior_counts_box" onclick="javascript:location.href='${articleUrl}&num=${dto.num}';">
 	                        <!-- 게시물 찜 -->
 	                        <img src="${pageContext.request.contextPath}/resources/images/interior/h5.png">
-	                        <span> 101</span>
+	                        <span> ${dto.interiorZzimCount}</span>
 	                    </button>
 	                    <button type="button" class="interior_counts_box" onclick="javascript:location.href='${articleUrl}&num=${dto.num}';">
 	                        <!-- 댓글 수 -->
