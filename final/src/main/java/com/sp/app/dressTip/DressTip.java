@@ -7,6 +7,7 @@ public class DressTip {
 	private String content;
 	private String register_date;
 	private int hitCount;
+	private String userName;
 	
 	private String SaveFileName;
 	
@@ -15,6 +16,12 @@ public class DressTip {
 	
 	
 	
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
 	public int getListNum() {
 		return listNum;
 	}

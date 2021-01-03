@@ -45,4 +45,52 @@ public class DressTipServiceImpl implements DressTipService{
 		return list;
 	}
 
+	@Override
+	public void updateHitCount(int num) throws Exception {
+		
+		try {
+			dao.selectOne("dressTip.updateHitCount",num);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+	}
+
+	@Override
+	public DressTip readDressTip(int num) {
+		DressTip dto= null;
+		try {
+			dto= dao.selectOne("dressTip.readDressTip",num);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return dto;
+	}
+
+	@Override
+	public void deleteDressTip(int num, String userId) {
+		DressTip dto = readDressTip(num);
+		if(dto==null||(!userId.equals("admin")) && !dto.getUserId().equals(userId)) {
+			return;
+		}
+		try {
+			 dao.deleteData("dressTip.deleteDressTip",num);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+
+	@Override
+	public void updateDressTip(DressTip dto) throws Exception {
+		try {
+			dao.updateData("dressTip.updateDressTip",dto);
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+		}
+		
+	}
+
 }

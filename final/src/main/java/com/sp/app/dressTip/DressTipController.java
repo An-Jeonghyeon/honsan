@@ -117,6 +117,87 @@ public class DressTipController {
 		
 		return ".dressTip.list";
 	}
+	@RequestMapping(value = "article" , method = RequestMethod.GET)
+	public String DressTipArticle(@RequestParam (defaultValue = "1")int num,
+							      @RequestParam (defaultValue = "" )String page,
+							      @RequestParam (defaultValue = "all")String condition,
+							      @RequestParam (defaultValue = "")String keyword,
+							      HttpSession session, Model model
+	)throws Exception{
 		
+		keyword = URLDecoder.decode(keyword, "utf-8");
+		String query = "page="+page;
+		if(keyword.length()!=0) {
+			query+="&condition="+condition+"&keyword="+URLEncoder.encode(keyword,"utf-8");
+		}
+		service.updateHitCount(num);
+		DressTip dto = service.readDressTip(num);
+		if(dto==null) {
+			return "redirect:/dressTip/list?"+query;
+		}
+		
+		SessionInfo info =(SessionInfo)session.getAttribute("member");
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("num", num);
+		paramMap.put("userId", info.getUserId());
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("num", num);
+		map.put("condition", condition);
+		map.put("keyword", keyword);
+		model.addAttribute("dto",dto);
+		model.addAttribute("page",page);
+		model.addAttribute("query",query);
+		
+		return ".dressTip.article";
+	}
+	@RequestMapping(value = "delete")
+	public String deleteDressTip(@RequestParam int num , 
+								  @RequestParam String page,
+								  @RequestParam(defaultValue= "all")String condition,
+								  @RequestParam(defaultValue= "")String keyword,
+								  HttpSession session
+									
+	)throws Exception{
+		SessionInfo info = (SessionInfo)session.getAttribute("member");
+		keyword = URLDecoder.decode(keyword,"utf-8");
+		String query ="page="+page;
+		if(keyword.length()!=0) {
+			 query+="&condition="+condition+"&keyword="+URLEncoder.encode(keyword,"utf-8");
+		}
+		service.deleteDressTip(num ,info.getUserId());
+		
+		return "redirect:/dressTip/list?"+query;
+	}
+	@RequestMapping(value = "update",method = RequestMethod.GET)
+	public String updateDressTipForm(@RequestParam int num,
+								 @RequestParam String page,
+								 HttpSession session,
+								 Model model
+	)throws Exception{
+			SessionInfo info = (SessionInfo)session.getAttribute("member");
+			DressTip dto = service.readDressTip(num);
+			if(dto == null) {
+				return "redirect:/dressTip/list?page="+page;
+			}
+			if(! info.getUserId().equals(dto.getUserId())) {
+				return "redirect:/dress/list?page="+page;
+			}
+			model.addAttribute("dto",dto);
+			model.addAttribute("mode","update");
+			model.addAttribute("page",page);
+		return ".dressTip.created";
+	}
+	@RequestMapping(value = "update", method = RequestMethod.POST)
+	public String updateDressTipSubmit(DressTip dto,@RequestParam String page, HttpSession session)throws Exception{
+		try {
+			service.updateDressTip(dto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "redirect:/dressTip/list?page="+page;
+		
+	}
 	
 }
