@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="roomtip">
+   <insert id="insertRoomtip" parameterType="com.sp.app.roomtip.RoomtipReply">
+      INSERT INTO roomTip_Reply(num , userId, content , register_date, categoryNum)
+      VALUES (roomTipReply_seq.NEXTVAL , #{userId}, #{content}, SYSDATE, #{categoryNum})
+   </insert>
+   
+   
+   
+   <select id="dataCount" parameterType="map" resultType="Integer">
+      	SELECT NVL(COUNT(*), 0 ) 
+      	FROM roomTip_Reply f
+      	JOIN member1 m ON f.userId=m.userId
+		JOIN roomTipCategory c ON f.categoryNum = c.categoryNum
+		<where>
+			<if test="categoryNum!=0">
+				( c.categoryNum = #{categoryNum} )
+			</if>
+			AND c.enabled = 1
+		</where>
+   </select>
+   
+   <select id="listRoomtip" parameterType="map"
+      resultType="com.sp.app.roomtip.RoomtipReply">
+      SELECT num, f.userId, userName, content, TO_CHAR(f.register_date, 'YYYY-MM-DD') register_date, c.categoryNum, category, orderNo
+      From roomTip_Reply f
+      JOIN member1 m ON f.userId=m.userId
+		JOIN roomTipCategory c ON f.categoryNum = c.categoryNum
+		<where>
+			<if test="categoryNum!=0">
+				( c.categoryNum = #{categoryNum} )
+			</if>
+			AND c.enabled = 1
+		</where>
+		ORDER BY orderNo, num DESC 
+		OFFSET #{offset} ROWS FETCH FIRST #{rows} ROWS ONLY
+   </select>
+   
+   <delete id="deleteRoomtip" parameterType="map">
+      DELETE FROM roomTip_Reply  WHERE num=#{num}
+      <if test="userId!='admin'">
+         AND userId = #{userId}
+      </if>
+   </delete>
+   
+   
+   	<select id="listCategory" parameterType="map" resultType="com.sp.app.roomtip.RoomtipReply">
+		SELECT categoryNum, category, enabled, orderNo
+		FROM roomTipCategory
+		<where>
+			<if test="mode=='enabled'">
+				enabled = 1
+			</if>
+		</where>
+		ORDER BY orderNo
+	</select>
+   
+   
+   
+   
+   
+   
+</mapper>
