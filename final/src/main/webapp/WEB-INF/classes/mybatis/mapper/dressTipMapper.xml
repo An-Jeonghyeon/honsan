@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dressTip">
+	<insert id="insertdressTip"
+		parameterType="com.sp.app.dressTip.DressTip">
+		INSERT INTO clothesTip(
+		num, userId, subject, content,
+		register_date, hitCount
+		)VALUES(clothesTip_seq.NEXTVAL, #{userId},
+		#{subject},
+		#{content},SYSDATE,0)
+
+	</insert>
+
+	
+
+	<select id="listDressTip" parameterType="map"
+		resultType="com.sp.app.dressTip.DressTip">
+		SELECT num, b.userId, subject, content, TO_CHAR(REGISTER_DATE,'YYYY-MM-DD')register_date, hitCount FROM
+		clothesTip b
+		JOIN member1 m ON b.userId = m.userId
+		<where>
+			<if test="keyword!=null and keyword!=''">
+				<include refid="where-list"></include>
+			</if>
+		</where>
+		ORDER BY num DESC
+		OFFSET #{offset} ROWS
+		FETCH FIRST #{rows} ROWS ONLY
+	</select>
+	<sql id="where-list">
+		<choose>
+			<when test="condition=='all' ">
+				( INSTR(subject, #{keyword}) &gt; 0
+				OR DBMS_LOB.INSTR(content, #{keyword}) &gt; 0 )
+			</when>
+			<when test="condition=='created'">
+				(TO_CHAR(created,'YYYYMMDD')= #{keyword} OR
+				TO_CHAR(created,'YYYY-MM-DD')=#{keyword} )
+			</when>
+			<when test="condition=='content'">
+				DBMS_LOB.INSTR(content, #{keyword}) &gt; 0
+			</when>
+			<otherwise>
+				INSTR(${condition}, #{keyword}) &gt; 0
+			</otherwise>
+		</choose>
+	</sql>
+	
+	<select id="dateCountDressTip" parameterType="map" resultType="Integer">
+		SELECT  NVL(COUNT(*), 0)  FROM clothesTip b
+			JOIN member1 m ON b.userId= m.userId
+			<where>
+				<if test="keyword!=null and keyword!=''">
+					<include refid="where-list"/>
+				</if>
+			</where>
+	</select>
+</mapper>
