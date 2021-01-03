@@ -56,6 +56,8 @@
 		} else if (hour < 23) {
 			hour = "20"
 			return hour + "00";
+		}else{
+			return hour + "00";
 		}
 	
 		return hour;
