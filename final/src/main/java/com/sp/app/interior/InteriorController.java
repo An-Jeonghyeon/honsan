@@ -147,7 +147,7 @@ public class InteriorController {
 			e.printStackTrace();
 			throw e;
 		}
-		model.addAttribute("pathname","pathname");
+		
 		 
 		 
 		return "redirect:/interior/main";
