@@ -1,0 +1,202 @@
+@charset "UTF-8";
+
+a {
+	color: black;
+}
+
+ul.tabs {
+	margin: 0;
+	padding: 0;
+	float: left;
+	list-style: none;
+	height: 35px;
+	border-bottom: 1px solid #dddddd;
+	width: 100%;
+}
+ul.tabs li {
+	float: left;
+	margin: 0;
+	cursor: pointer;
+	padding: 0px 21px ;
+	height: 35px;
+	line-height: 35px;
+	overflow: hidden;
+	position: relative;
+	background: #ffffff;
+}
+ul.tabs li:hover {
+	background: #e7e7e7;
+}	
+ul.tabs li.active{
+	font-weight: 700;
+	border: 1px solid #dddddd;
+	border-bottom-color:  transparent;
+}
+
+/*질문과 답변*/
+.noticeheader{
+	width:100%;
+	background: #ebebeb;
+	height: 200px;
+	
+}
+.noticeheader a {
+	color: black!important;
+	text-decoration: none;
+}
+
+.qnasearchTF {
+	width: 400px;
+	height: 20px;
+	padding: 5px;
+	padding-left: 15px;
+	border: 1px solid #999999;
+	color: #333333;
+	margin-top: 3px;
+	margin-bottom: 5px;
+	font-size: 14px;
+	border-radius: 4px;
+}
+
+.qnasearchTF:focus{
+	border: 1px solid #80ffff;
+	box-shadow: 0 0 10px #35ffff;
+}
+
+.qnasearchbtn{
+	font-size: 15px; 
+	border:none;
+	background:#d7def7;
+	width: 60px;
+	height: 35px;
+	border-radius:4px;
+	color: #000;
+}
+
+.qnasearchbtn:hover{
+	background:#a7b7ed;
+}
+
+.qnalbl {
+	position: absolute;
+	margin-left: 15px;
+	margin-top: 11px;
+	color: #999999;
+	font-size: 11pt;
+}
+
+.qnatitle{
+	font-size: 25pt;
+	font-weight: 600;
+}
+a{
+	text-decoration: none;
+	
+}
+
+
+/* --지엉 */
+.noticeTitle h1{
+	font-size: 30px;
+}
+.boxTF {
+	height: 30px;
+}
+.btncencle{
+    width: 100px;
+    height: 40px;
+    font-size: 16px;
+    color: white;
+    background: #ccc;
+    border : none;
+    cursor : pointer;
+    border-radius: 5px;
+    font-weight: 700;
+}
+.btnsubmit {
+    width: 100px;
+    height: 40px;
+    transition: 0.1s;
+    font-size: 16px;
+    color: white;
+    background: #f3c04ac7;
+    border : none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: 700;
+}
+.btnreset {
+    width: 100px;
+    height: 40px;
+    font-size: 16px;
+    color: white;
+    background: #ccc;
+    border : none;
+    cursor : pointer;
+    border-radius: 5px;
+    font-weight: 700;
+}
+
+/*버튼  */
+.reset { 
+    margin-left: 20px;
+    width: 90px;
+    height: 35px;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+.submitbtn {
+    margin-left: 20px;
+    width: 90px;
+    height: 35px;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+.sup-bbs-input {
+    height: 35px;
+    width: 230px;
+    border: 1px solid #e8e8e8;
+    padding-left: 8px;
+}
+.sup-bbs-btn {
+    width: 90px;
+    height: 35px;
+    border: none;
+    background: rgba(27, 27, 27, 0.692);
+    color: #e8e8e8;
+    border-radius: 6px;
+}
+.sup-bbs-select {
+    height: 35px;
+    width: 100px;
+    border: 1px solid #e8e8e8;
+}
+.subjecttr {
+	padding-top: 0;
+	margin-bottom: 20px;
+}
+/* article */
+.updatebtn {
+    width: 90px;
+    height: 35px;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+.deletebtn{
+    width: 90px;
+    height: 35px;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+.listbtn {
+    width: 90px;
+    height: 35px;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+

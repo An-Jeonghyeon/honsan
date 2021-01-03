@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dressMain">
+	<select id="dressMaincity" parameterType="String" resultType="com.sp.app.dressMain.DressMain">
+	SELECT DISTINCT xcode,ycode FROM weaterAPI WHERE  INSTR(town, #{town}) &gt; 0 AND ROWNUM=1
+	</select>
+	
+</mapper>

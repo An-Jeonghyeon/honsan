@@ -21,9 +21,21 @@
                     <!-- Advanced Tables -->
 <!--                     <div class="card"> -->
                         <div class="card-content">
-                	        <div class="chList_createbtn">
-                				<button type="button" onclick="javascript:location.href='${pageContext.request.contextPath}/adm/health/created';">챌린지 등록</button>
-            				</div>
+                 			<form name="searchForm" action="${pageContext.request.contextPath}/adm/health/list" method="post">
+                        	<div class="chlist_top">
+	                        	<div class="chlist_search">
+	                        		<select class="form-control searchSelect" name="condition">
+			                           <option value="subject" ${condition=="subject"?"selected='selected'":""}>챌린지명</option>
+			                           <option value="created" ${condition=="created"?"selected='selected'":""}>등록일</option>
+	                        		</select>
+	                        		<input type="text" class="form-control form-inline col-md-4" name="keyword" value="${keyword}">
+                    		       <button type="button" class="btn btn-default" onclick="searchList();">검색</button>
+	                        	</div>
+	                	        <div class="chList_createbtn">
+	                				<button type="button" onclick="javascript:location.href='${pageContext.request.contextPath}/adm/health/created';">챌린지 등록</button>
+	            				</div>
+                        	</div>
+                        	</form>
        
                             <div class="table-responsive">
                      	        <div class="chList_total">총 3개 [1페이지/3페이지]</div> 
@@ -38,47 +50,29 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                    <c:forEach var="dto" items="${list}">
                                         <tr class="odd gradeX">
-                                            <td class="center">Trident</td>
-                                            <td>Internet Explorer 4.0</td>
-                                            <td class="center">Win 95+</td>
-                                            <td class="center">4</td>
+                                            <td class="center">${dto.listNum}</td>
+                                            <td><small>${dto.subName}</small> ${dto.name}</td>
+                                            <td class="center">${dto.created}</td>
+                                            <td class="center">${dto.playMember}</td>
                                             <td class="center chListupanddel">
-                                            	<button type="button" class="jbtn btn-xs btn-outline-dark">수정</button>
-                                            	<button type="button" class="jbtn btn-xs btn-outline-dark">삭제</button>
+                                            	<button type="button" class="jbtn btn-xs btn btn-default">수정</button>
+                                            	<button type="button" class="jbtn btn-xs btn btn-default">삭제</button>
                                             </td>
                                         </tr>
-                                        <tr class="even gradeC">
-                                            <td>Trident</td>
-                                            <td>Internet Explorer 5.0</td>
-                                            <td>Win 95+</td>
-                                            <td class="center">5</td>
-                                            <td class="center">C</td>
-                                        </tr>
-                                        <tr class="gradeC">
-                                            <td>Misc</td>
-                                            <td>IE Mobile</td>
-                                            <td>Windows Mobile 6</td>
-                                            <td class="center">-</td>
-                                            <td class="center">C</td>
-                                        </tr>
-                                        <tr class="gradeC">
-                                            <td>Misc</td>
-                                            <td>PSP browser</td>
-                                            <td>PSP</td>
-                                            <td class="center">-</td>
-                                            <td class="center">C</td>
-                                        </tr>
-                                        <tr class="gradeU">
-                                            <td>Other browsers</td>
-                                            <td>All others</td>
-                                            <td>-</td>
-                                            <td class="center">-</td>
-                                            <td class="center">U</td>
-                                        </tr>
+                                    </c:forEach>
                                     </tbody>
                                 </table>
-                                <div class="chList_paging"> 1 2 3</div>
+                                <div class="chList_paging">
+                                	${dataCount==0?"등록된 게시물이 없습니다.":paging}
+                                </div>
+                                
+	             				  <div class="healthadmin_search">
+	                  				 <div class="col-md2">
+	                   	   				 <button type="button" class="btn btn-default" onclick="javascript:location.href='${pageContext.request.contextPath}/adm/health/list';"><i class="fas fa-redo-alt"></i>&nbsp;새로고침</button>
+	                   				</div>
+	               				</div>
                             </div>
                             
                         </div>

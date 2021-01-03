@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="healthAdmin">
+
+	<!-- 시퀀스 따로 -->
+     <select id="challengeSeq" resultType="Long">
+       SELECT challenge_seq.NEXTVAL FROM dual 
+    </select>
+	 
+	<!-- 기본정보 인서트 -->
+ 	<insert id="insertChallenge" parameterType="com.sp.app.adm.health.HealthAdmin">
+		INSERT INTO challenge(num, name, subName, content, challengePeriod, calorie, challengeFilename, video)
+			VALUES(#{num}, #{name}, #{subName}, #{content}, #{challengePeriod}, #{calorie, jdbcType=VARCHAR}, #{challengeFilename, jdbcType=VARCHAR}, #{video, jdbcType=VARCHAR})
+	</insert>	
+	
+	<!-- 상세정보 인서트 -->
+	<insert id="insertChallenge2" parameterType="com.sp.app.adm.health.HealthAdmin">
+		INSERT INTO challenge2(exNum, num, startDate, endDate, exContent)
+			VALUES(#{exNum}, #{num}, #{startDate}, #{endDate}, #{exContent})
+	</insert>
+	
+		<!--  검색  -->
+	<sql id="where-list">
+		<choose>
+			<when test="condition=='created'">
+				(TO_CHAR(created, 'YYYYMMDD') = #{keyword} 
+					OR TO_CHAR(created, 'YYYY-MM-DD') = #{keyword})
+			</when>
+			<otherwise>
+				INSTR(#{condition}, #{keyword}) &gt; 0
+			</otherwise>
+		</choose>
+	</sql>
+	
+	<!-- 리스트 -> 일단 다 뽑고 필요한거만 가져다쓰기 ?-->
+	<select id="listChallenge" parameterType="map" resultType="com.sp.app.adm.health.HealthAdmin">
+		SELECT c.num, name, subName, challengePeriod, challengeFilename, TO_CHAR(created, 'YYYY-MM-DD') created,
+			NVL(playMember, 0) playMember
+		FROM challenge c
+		LEFT OUTER JOiN(
+			SELECT num, COUNT(*) playMember 
+			FROM userChallenge
+			GROUP BY num
+		) u ON c.num = u.num
+		<where>
+			<if test="keyword !=null and keyword !=''">
+				<include refid="where-list"/>
+			</if>
+		</where>
+		ORDER BY c.num DESC
+		OFFSET #{offset} ROWS FETCH FIRST #{rows} ROWS ONLY
+	</select>
+	
+	<!-- dataCount -->
+	<select id="dataCount" parameterType="map" resultType="Integer">
+		SELECT NVL(count(*), 0)
+		FROM challenge 
+		<where>
+			<if test="keyword!=null and keyword!=''">
+				<include refid="where-list"/>
+			</if>
+		</where>
+	</select>
+	
+</mapper>

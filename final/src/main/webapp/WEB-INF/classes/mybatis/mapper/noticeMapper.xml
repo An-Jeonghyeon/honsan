@@ -62,7 +62,7 @@
 	<!-- 리스트 -->
 	<select id="listNotice" parameterType="map" resultType="com.sp.app.notice.Notice">
 		SELECT n.num, notice, n.userId, userName, subject, hitCount, 
-		       created, NVL(fileCount, 0) fileCount
+		       TO_CHAR(created, 'YYYY-MM-DD') created, NVL(fileCount, 0) fileCount
 		FROM notice n
 		JOIN member1 m ON n.userId=m.userId
 		LEFT OUTER JOIN (
@@ -156,4 +156,12 @@
 	<delete id="deleteFile" parameterType="map">
 		DELETE FROM noticeFile WHERE ${field} = #{num}
 	</delete>
+	
+	<!-- 고객센터 메인용 리스트 -->
+	<select id="mainListNotice" resultType="com.sp.app.notice.Notice">
+		SELECT num, notice, subject
+		FROM notice
+		ORDER BY num DESC
+	</select>
+	
 </mapper>

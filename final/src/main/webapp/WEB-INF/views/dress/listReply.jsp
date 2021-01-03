@@ -7,7 +7,7 @@
 	<div class="ReplyList">
 		<div class="dress-ReplyLike btnSendReplyLike" title="좋아요" data-replyNum="${vo.replyNum}" data-replyLike="1">
 			<i class="far fa-thumbs-up"></i>
-			<span>${vo.likeCount}</span>
+			<a>${vo.likeCount}</a>
 		</div>
 		<div class="dress-ReplyDisLike btnSendReplyLike" title="싫어요" data-replyNum='${vo.replyNum}' data-replyLike="0">
 			<i class="far fa-thumbs-up fa-thumbs-down"></i>

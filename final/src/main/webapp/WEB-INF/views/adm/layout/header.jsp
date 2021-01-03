@@ -166,7 +166,7 @@
                         <a href="${pageContext.request.contextPath}/adm/visitorStatus" class="waves-effect waves-dark"><i class="fa fa-bar-chart-o"></i>방문자 현황</a>
                     </li>
                     <li>
-                        <a href="${pageContext.request.contextPath}/adm/memberMng" class="waves-effect waves-dark"><i class="fa fa-desktop"></i> 회원 관리</a>
+                        <a href="${pageContext.request.contextPath}/adm/memberManage/memberMng" class="waves-effect waves-dark"><i class="fa fa-desktop"></i> 회원 관리</a>
                     </li>
                     <li>
                         <a href="${pageContext.request.contextPath}/adm/boardMng" class="waves-effect waves-dark"><i class="fa fa-qrcode"></i> 게시판 관리</a>

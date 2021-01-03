@@ -2,6 +2,7 @@
 <%@ page trimDirectiveWhitespaces="true" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <style>
 .fa-thumbs-up {
@@ -17,7 +18,7 @@
 	font-size: 15px;
 	font-weight:bold;
 	height:28px;
-	padding:4px 10px 4px 10px;
+	padding:4px 7px 4px 7px;
 	margin-left:3px;
 	line-height:normal;
 	vertical-align:middle;
@@ -45,10 +46,27 @@
 	text-decoration:none;
 	padding:4px 10px 4px 10px;
 	margin-left:3px;
+	margin-right : 20px;
 	line-height:normal;
 	vertical-align:middle;
 	outline:none; 
-	select-dummy: expression(this.hideFocus=true);
+	border-radius: 4px;
+}
+
+#trBox{
+	font-size: 15px;
+	border : none;
+	border:1px solid #ccc;
+	height:28px;color:#000000;
+	text-decoration:none;
+	padding:4px 10px 4px 10px;
+	margin-left:20px;
+	margin-right : 3px;
+	line-height:normal;
+	vertical-align:middle;
+	outline:none; 
+	border-radius: 4px;
+	
 }
 
 </style>
@@ -379,7 +397,8 @@ $(function(){
             <!-- # 태그가 있을시 for 문 돌려서 사용할것 ! -->
             <ul class="leftbox_tag_ul">
 				<c:forEach var="tag" items="${categorylist}" varStatus="n">
-               		<li class="leftbox_tag_li"><a class="leftbox_tag_li_a">${tag}</a></li>
+               		<li class="leftbox_tag_li"><a class="leftbox_tag_li_a" 
+               					href="${pageContext.request.contextPath}/interior/main?keyword=${fn:substring(tag,1,tag.length())}">${tag}</a></li>
 				</c:forEach>
             </ul>
 
@@ -451,7 +470,7 @@ $(function(){
                             <div class="board_interior_users_subject">
                                 <div class="board_interior_users_subject_atr">
                                     <a class="board_interior_users_subject_a" href="${pageContext.request.contextPath}/interior/mList?userId=${dto.userId}">
-                                        <img class="board_interior_users_subject_profle" src="${pageContext.request.contextPath}/resources/images/interior/a1.jpg">${dto.userName}
+                                        <img class="board_interior_users_subject_profle" src="${pageContext.request.contextPath}/uploads/profile/${dto.profileImg}">${dto.userName}
                                     </a>
                                     <p class="board_interior_users_subject_userid">
                                         ${dto.userId}

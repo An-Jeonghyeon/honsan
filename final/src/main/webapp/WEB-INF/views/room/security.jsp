@@ -57,7 +57,7 @@ $(".hover").mouseleave(
     <h3>귀갓길을 부탁해</h3>
     <p><br>국가에서 지원하는 안심 서비스를 살펴보세요 </p><i class="fas fa-angle-right"></i>
   </figcaption>
-  <a href="#"></a>
+  <a href="${pageContext.request.contextPath }/room/securityService"></a>
 </figure>
 					
 					

@@ -21,6 +21,8 @@
 }
 .articleGo> span >a{
     color: #8e88ff;
+    text-decoration:none;
+   
 }
 .articleGo> span >a:hover{
     color: #ff6347;
@@ -478,4 +480,9 @@ outline: none;
 .fa-thumbs-down{
 	transform:rotate(180deg);
 	
+}
+.Commnet{
+	text-decoration:none;
+	color:tomato;
+	text-shadow:0px 0px 15px rgba(202, 164, 255, 0.53); '
 }

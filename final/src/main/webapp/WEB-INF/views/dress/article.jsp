@@ -289,7 +289,7 @@ $("body").on("click",".btnSendReplyLike",function(){
 		if(state==="true"){
 			var likeCount=data.likeCount;
 			var disLikeCount= data.disLikeCount;
-			$btn.children("span").html(likeCount);
+			$btn.children("a").html(likeCount);	
 			$btn.children("span").html(disLikeCount);
 			
 		}else if(state==="false"){
@@ -336,7 +336,7 @@ $(function(){
                             <span class="hitCountNumber">조회 ${dto.hitCount}</span>
                         </div>
                         <div class="articleMainHeaderReply">
-                            <span> <a href="#Comment"> 댓글 ${dto.replyCount }</a></span>
+                            <span> <a href="#Comment" class="Commnet"> 댓글 <b>${dto.replyCount }개</b> 보러가기></a></span>
                         </div>
                     </div>
                 </div>

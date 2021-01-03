@@ -2,6 +2,18 @@
 <%@ page trimDirectiveWhitespaces="true" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
+<script>
+	function mypage_send(){
+		f = document.mypage_sendform;
+		
+		f.action = "${pageContext.request.contextPath}/mypage/main";
+		f.submit();
+	}
+
+</script>
+
+
  <nav>
                 <div class="logo">
                   <c:if test="${empty sessionScope.member}">
@@ -33,13 +45,18 @@
                   <div class="mypage">
                       <i class="fas fa-house-user fa-2x"></i>
                          <c:if test="${not empty sessionScope.member}">
+                              <form name="mypage_sendform" method="post">
                              <div class="userBox">
-                              <ul>
-                                   <li><a href="${pageContext.request.contextPath}/member/logout">로그아웃</a></li>
-                                  <li><a href="${pageContext.request.contextPath}/mypage/main">마이페이지</a></li>
-                                  <li><a href="${pageContext.request.contextPath}/infos/infos">고객센터</a></li>
-                                 </ul>
+	                              <ul>
+	                                   <li><a href="${pageContext.request.contextPath}/member/logout">로그아웃</a></li>   
+	                                   <li>
+	                                  		<a onclick="mypage_send();" >마이페이지</a>
+	                                  		<input type="hidden" name="userId" value="${sessionScope.member.userId}">
+	                                   </li>            
+	                                   <li><a href="${pageContext.request.contextPath}/infos/infos">고객센터</a></li>
+	                             </ul>
                           </div>
+                             </form>
                        </c:if>
                       <!-- 유저아이디 admin 이면 버튼생성 구간  -->
 

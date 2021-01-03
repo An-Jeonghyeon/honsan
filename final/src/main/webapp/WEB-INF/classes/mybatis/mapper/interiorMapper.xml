@@ -28,9 +28,9 @@
 			<otherwise>
 				( INSTR(subject, #{keyword}) &gt; 0 
 					OR DBMS_LOB.INSTR(content, #{keyword}) &gt; 0 
-					OR INSTR(userId , #{keyword}) &gt; 0 
-					OR TO_CHAR(register_date, 'YYYYMMDD') = #{keyword}
-					OR TO_CHAR(created, 'YYYY-MM-DD') = #{keyword} )
+					OR INSTR(i.userId , #{keyword}) &gt; 0 
+					OR INSTR(category , #{keyword}) &gt; 0 
+					OR TO_CHAR(register_date, 'YYYYMMDD') = #{keyword} )				
 			</otherwise>
 			
 		</choose>
@@ -53,7 +53,7 @@
 	
 		SELECT i.num, i.userId, userName, subject, content, category, hitCount, register_date, mainImg,
         NVL(interiorLikeCount, 0) interiorLikeCount,
-        replycontent , replyuserId ,replyCount
+        replycontent , replyuserId ,replyCount , profileImg , replyProfileImg
 		FROM interior i
 		JOIN member1 m ON i.userId = m.userId
 		LEFT OUTER JOIN (
@@ -69,6 +69,12 @@
             where answer = 0
             GROUP BY num ) b on n.replyNum = b.replyNum
         ) n ON i.num = n.num
+        LEFT OUTER JOIN (
+            SELECT userId , profileImg FROM memberProfile
+        ) p on i.userId = p.userId
+        LEFT OUTER JOIN (
+            SELECT userId , profileImg as replyProfileImg FROM memberProfile
+        ) pp on replyuserId = pp.userId
         <where>
 			<if test="keyword!=null and keyword!=''">
 				<include refid="where-list"/>
@@ -93,9 +99,12 @@
 	</select>
 	<!-- 게시판번호로 게시판 찾기  -->
 	<select id="readBoard" parameterType="Integer" resultType="com.sp.app.interior.Interior">
-		SELECT num, i.userId,userName, subject, content, category, hitCount, register_date ,mainImg
+		SELECT num, i.userId,userName, subject, content, category, hitCount, register_date ,mainImg , profileImg
 		FROM interior i
 		JOIN member1 m ON i.userId = m.userId
+		LEFT OUTER JOIN (
+        SELECT userId , profileImg FROM memberProfile
+        )p ON i.userId = p.userId
 		WHERE num = #{num}
 	</select>
 	<!-- 인테리어 서브이미지 불러오기  -->

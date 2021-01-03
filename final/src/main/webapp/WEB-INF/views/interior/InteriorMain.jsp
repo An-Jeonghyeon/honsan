@@ -7,6 +7,191 @@
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/interior/interior.css" type="text/css">
 
+<style>
+
+#curBox_sub{
+	border: 1px solid #35c5f0;
+	background:  #35c5f0;
+	color: white;
+	border-radius: 4px;
+	font-weight: 700;
+	font-size: 15px;
+	font-weight:bold;
+	height:28px;
+	padding:4px 7px 4px 7px;
+	margin-left:3px;
+	line-height:normal;
+	vertical-align:middle;
+}
+
+
+#numBox_sub{
+	font-size: 15px;
+	border : none;
+
+	height:28px;
+	font-weight:bold;
+	text-decoration:none;
+	padding:4px 7px 4px 7px;
+	margin-left:3px;
+	line-height:normal;
+	vertical-align:middle;
+}
+
+#tlBox{
+	font-size: 15px;
+	border : none;
+	border:1px solid #ccc;
+	height:28px;color:#000000;
+	text-decoration:none;
+	padding:4px 10px 4px 10px;
+	margin-left:3px;
+	margin-right : 20px;
+	line-height:normal;
+	vertical-align:middle;
+	outline:none; 
+	border-radius: 4px;
+}
+
+#trBox{
+	font-size: 15px;
+	border : none;
+	border:1px solid #ccc;
+	height:28px;color:#000000;
+	text-decoration:none;
+	padding:4px 10px 4px 10px;
+	margin-left:20px;
+	margin-right : 3px;
+	line-height:normal;
+	vertical-align:middle;
+	outline:none; 
+	border-radius: 4px;
+	
+}
+
+
+.exbar{
+ height: 320px;
+ background: url("${pageContext.request.contextPath}/resources/images/interior/interiorbanner.png");
+ background-position: 50%;
+ 
+ padding-left: 400px;
+ padding-top: 80px;
+
+}
+.search_bar{
+	width: 100%;
+	height: 60px;
+	position: sticky;
+	top: 0;
+	background: white;
+	border-bottom: 1px solid #dbdbdb;
+	border-top: 1px solid #dbdbdb;
+	
+}
+
+.search_bar_box{
+	
+	width: 1200px;
+	height: 100%;
+	margin: 0 auto;
+	
+}
+
+.search_bar_box_right{
+	
+	height: 100%;
+	width: 30%;
+	float: right;
+	
+}
+.search_bar_box_right_sub{
+	float: right;
+	height: inherit;
+	width: 80%;
+	padding-bottom: 8px;
+	box-sizing: border-box;
+}
+
+.search_bar_input{
+	width: 70%;
+	height: 75%;
+	margin-top: 10px;
+	border-radius: 4px;
+	border: 1px solid #dbdbdb;
+	
+	
+}
+
+.search_bar_button{
+	width: 25%;
+	height: 80%;
+	margin-top: 10px;
+	border-radius: 4px;
+	border: 1px solid #35c5f0;
+	background: #35c5f0;
+	color: white;
+	font-weight: 700;
+	font-size: 20px;
+	
+}
+
+
+/* 광고 배너 판  */
+
+.exfont {
+
+  font-family: 'Arial';
+  color: black;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 4.5rem;
+  line-height: 0.75;
+  z-index: -1;
+  
+}
+
+.spanEx {
+  display: block;
+}
+
+.spanEx:not(.light) {
+  opacity: 0;
+  animation: flashText .5s ease-out alternate infinite;
+}
+
+.spanEx.light {
+  position: relative;
+  display: inline-block;
+  
+  &:before {
+    position: absolute;
+    left: 0;
+    top: -10%;
+    width: 100%;
+    height: 120%;
+    background: #fff;
+    filter: blur(10px);
+    content: "";
+    opacity: 0;
+    animation: flash .5s ease-out alternate infinite;
+  }
+}
+
+@keyframes flash{
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes flashText {
+  to {
+    opacity: 0.15;
+  }
+}
+
+
+</style>
 <script type="text/javascript">
     $(document).ready(function() {
     
@@ -22,9 +207,41 @@
     
         }).scroll();
     });
+    
+$(function(){
+	$(".search_bar_button").click(function(){
+		var keyword = $(".search_bar_input").val();
+		var page = ${page};
+		var query = "?keyword="+keyword+"&page="+page;
+		
+		location.href="${pageContext.request.contextPath}/interior/main"+query;
+		
+	});
+});
 </script>
 
+
+
 <section>
+	<div class="exbar">
+		<h2 class="exfont">
+		  <span class="spanEx">Welcome</span>  
+		  <span class="spanEx">to the</span>  
+		  <span class="light">INTERIOR</span> 
+		  <span class="spanEx"> word</span> 
+
+		</h2>
+	</div>
+	<div class="search_bar">
+		<div class="search_bar_box">
+			<div class="search_bar_box_right">
+				<div class="search_bar_box_right_sub">
+				<input type="text" name="keyowrd" class="search_bar_input" placeholder="&nbsp;인테리어 통합검색">
+				<button type="button" class="search_bar_button">검색</button>
+				</div>
+			</div>
+		</div>
+	</div>
 	<table class="interior_box">
 
 	     <c:forEach var="dto" items="${list}" varStatus="status">
@@ -41,7 +258,7 @@
 	                	<!-- 작성자 프로필 사진  -->
 	                    <div class="interior_subject_user_img">
 	                        <a href="${pageContext.request.contextPath}/interior/mList?userId=${dto.userId}">
-	                        	<img src="${pageContext.request.contextPath}/resources/images/interior/a1.jpg">
+	                        	<img src="${pageContext.request.contextPath}/uploads/profile/${dto.profileImg}">
 	                        </a>
 	                    </div>
 	                    <!-- 아이디 , 좋아요  및 게시판 제목  -->
@@ -86,7 +303,7 @@
 	                <!-- 다른유저 아이디 및 댓글  -->
 	                <div class="interior_first_review">
 	                    <div class="interior_first_review_img">
-	                        <img class="" src="${pageContext.request.contextPath}/resources/images/interior/a1.jpg" >
+	                        <img class="" src="${pageContext.request.contextPath}/uploads/profile/${dto.replyProfileImg}" >
 	                    </div>
 	                    <div class="interior_first_review_content">
 	                        <a>${dto.replyuserId}</a> ${dto.replycontent}
@@ -103,6 +320,7 @@
             </td>
          </tr>
       </table>
+    
     <div class="floating-write" onclick="javascript:location.href='${pageContext.request.contextPath}/interior/created';">
         <div class="f-div">
              <div class="floating-image"></div>
