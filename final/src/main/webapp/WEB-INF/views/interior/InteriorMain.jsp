@@ -77,7 +77,7 @@
  
  padding-left: 400px;
  padding-top: 80px;
-
+ z-index: -1;
 }
 .search_bar{
 	width: 100%;
@@ -147,7 +147,7 @@
   font-weight: bold;
   font-size: 4.5rem;
   line-height: 0.75;
-  z-index: -1;
+  
   
 }
 

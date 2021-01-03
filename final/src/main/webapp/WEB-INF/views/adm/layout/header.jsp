@@ -160,7 +160,7 @@
             <div class="sidebar-collapse">
                 <ul class="nav navul" id="main-menu">
                     <li>
-                        <a href="${pageContext.request.contextPath}/adm/adm" class="waves-effect waves-dark"><i class="fa fa-bar-chart-o"></i> 게시판 새글 현황</a>
+                        <a href="${pageContext.request.contextPath}/adm/chart/chart" class="waves-effect waves-dark"><i class="fa fa-bar-chart-o"></i> 게시판 새글 현황</a>
                     </li>
 					<li>
                         <a href="${pageContext.request.contextPath}/adm/visitorStatus" class="waves-effect waves-dark"><i class="fa fa-bar-chart-o"></i>방문자 현황</a>
