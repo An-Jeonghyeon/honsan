@@ -9,6 +9,67 @@
 
 <style>
 
+#curBox_sub{
+	border: 1px solid #35c5f0;
+	background:  #35c5f0;
+	color: white;
+	border-radius: 4px;
+	font-weight: 700;
+	font-size: 15px;
+	font-weight:bold;
+	height:28px;
+	padding:4px 7px 4px 7px;
+	margin-left:3px;
+	line-height:normal;
+	vertical-align:middle;
+}
+
+
+#numBox_sub{
+	font-size: 15px;
+	border : none;
+
+	height:28px;
+	font-weight:bold;
+	text-decoration:none;
+	padding:4px 7px 4px 7px;
+	margin-left:3px;
+	line-height:normal;
+	vertical-align:middle;
+}
+
+#tlBox{
+	font-size: 15px;
+	border : none;
+	border:1px solid #ccc;
+	height:28px;color:#000000;
+	text-decoration:none;
+	padding:4px 10px 4px 10px;
+	margin-left:3px;
+	margin-right : 20px;
+	line-height:normal;
+	vertical-align:middle;
+	outline:none; 
+	border-radius: 4px;
+}
+
+#trBox{
+	font-size: 15px;
+	border : none;
+	border:1px solid #ccc;
+	height:28px;color:#000000;
+	text-decoration:none;
+	padding:4px 10px 4px 10px;
+	margin-left:20px;
+	margin-right : 3px;
+	line-height:normal;
+	vertical-align:middle;
+	outline:none; 
+	border-radius: 4px;
+	
+}
+
+
 .exbar{
  height: 320px;
  background: url("${pageContext.request.contextPath}/resources/images/interior/interiorbanner.png");
