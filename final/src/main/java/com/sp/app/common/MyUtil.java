@@ -159,6 +159,71 @@ public class MyUtil {
 		
 		return sb.toString();
 	}
+	
+	/**
+	 * 페이징(paging) 처리를 하는 메소드(GET 방식, a 태그를 이용하여 해당 페이지의 URL로 이동)
+	 * @param current_page		화면에 출력할 페이지 번호
+	 * @param total_page			총 페이지 수
+	 * @param list_url					페이지 번호에 link를 설정할 URL
+	 * @return							페이징 처리 결과
+	 */
+	public String paging3(int current_page, int total_page, String list_url) {
+		StringBuffer sb=new StringBuffer();
+		
+		int numPerBlock=10;
+		int currentPageSetup;
+		int n, page;
+		
+		if(current_page<1 || total_page < 1) {
+			return "";
+		}
+		
+		if(list_url.indexOf("?")!=-1) {
+			list_url+="&";
+		} else {
+			list_url+="?";
+		}
+		
+		// currentPageSetup : 표시할첫페이지-1
+		currentPageSetup=(current_page/numPerBlock)*numPerBlock;
+		if(current_page%numPerBlock==0) {
+			currentPageSetup=currentPageSetup-numPerBlock;
+		}
+
+		sb.append("<style type='text/css'>");
+		sb.append("#interior_paginate {clear:both;font:12px \"맑은 고딕\",NanumGothic,돋움,Dotum,AppleGothic;padding:15px 0px 0px 0px;text-align:center;height:28px;white-space:nowrap;}");
+		sb.append("</style>");
+		
+		sb.append("<div id='interior_paginate'>");
+		// 처음페이지, 이전(10페이지 전)
+		n=current_page-numPerBlock;
+		if(total_page > numPerBlock && currentPageSetup > 0) {
+			//sb.append("<a id='tlBox' href='"+list_url+"page=1'>처음</a>");
+			sb.append("<a id='tlBox' href='"+list_url+"page="+n+"'>이전</a>");
+		}
+		
+		// 바로가기
+		page=currentPageSetup+1;
+		while(page<=total_page && page <=(currentPageSetup+numPerBlock)) {
+			if(page==current_page) {
+				sb.append("<span class='curBox' id='curBox_sub'>"+page+"</span>");
+			} else {
+				sb.append("<a href='"+list_url+"page="+page+"' class='numBox' id='numBox_sub'>"+page+"</a>");
+			}
+			page++;
+		}
+		
+		// 다음(10페이지 후), 마지막페이지
+		n=current_page+numPerBlock;
+		if(n>total_page) n=total_page;
+		if(total_page-currentPageSetup>numPerBlock) {
+			sb.append("<a id='trBox' href='"+list_url+"page="+n+"'>다음</a>");
+			//sb.append("<a id='tlBox' href='"+list_url+"page="+total_page+"'>끝</a>");
+		}
+		sb.append("</div>");
+	
+		return sb.toString();
+	}
 
 	/**
 	 * javascript를 이용하여 페이징 처리를하는 메소드 : javascript의 지정한 함수(methodName)를 호출

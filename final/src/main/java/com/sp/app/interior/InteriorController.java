@@ -90,7 +90,7 @@ public class InteriorController {
 			articleUrl += "&" + query;
 		}
 		
-		String paging = myUtil.paging(current_page, total_page, listUrl);
+		String paging = myUtil.paging3(current_page, total_page, listUrl);
 		
 		
 		model.addAttribute("list", list);
