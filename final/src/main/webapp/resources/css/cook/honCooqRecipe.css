@@ -4,6 +4,14 @@
 	margin: 0;
 	padding: 0;
 }
+/* 
+@font-face { 
+    font-family: 'Song Myung'; 
+    font-style: normal; 
+    font-weight: 700; 
+    src: url(https://fonts.googleapis.com/css2?family=Poor+Story&family=Song+Myung&display=swap); 
+}
+ */
 
 /*----------------------
 recipe 게시판 글쓰기폼
@@ -585,9 +593,9 @@ background-position
 .recipe_list {
 	width: 100%;
 	/* 	min-height:50%; */
-	height: 91%;
+	min-height: 91%;
 	border-bottom: 2px solid #ffa952;
-	/* 	background-color:khaki; */
+/* 		background-color:khaki; */
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
@@ -597,8 +605,8 @@ background-position
 
 .recipe_content-box {
 	box-sizing: border-box;
-	width: 20%;
-	height: 20%;
+	width: 16.2rem;
+	height: 20rem;
 	margin: 2.5%;
 	/*     background-color:crimson; */
 }
@@ -629,47 +637,72 @@ background-position
 }
 
 .recipe_content_info {
+/* 	background-color:palegreen; */
 	width: 100%;
 	height: 100%;
 }
-
-.recipe_category {
-	width: 9.0rem;
-	height: 2.2rem;
-	margin-bottom: 1.0rem;
-	box-sizing: border-box;
-	border: 3px solid #ffe79a;
-	/* 	border-radius: 2rem; */
-	border-radius: 10% 50%/120%;
-	box-shadow: 3px 3px 0 #ffa952;
-	font-size: 0.9rem;
-	text-align: center;
-	line-height: 2.1rem;
-	font-weight: 700;
-	background-color: white;
+.recipe_recipe_img {
+	margin:1.0rem 0;
+	width:100%;
+	height:9.0rem;
 }
 
-.recipe_title {
+.recipe_categories{
+	width:auto;
+    display:flex;
+}
+
+.recipe_recipe_category_img {
+    width: 10.0rem;
+    height: 2.2rem;
+    margin-bottom: 1.0rem;
+    box-sizing: border-box;
+    border: 3px solid #ffe79a;
+    /* border-radius: 2rem; */
+    border-radius: 10% 50%/120%;
+    box-shadow: 3px 3px 0 #ffa952;
+    font-size: 0.9rem;
+    text-align: center;
+    line-height: 2.1rem;
+    font-weight: 700;
+    z-index: 5;
+    position: relative;
+    background-color: white;
+}
+
+.recipe_recipe_category_img:first-child {
+	width:6.2rem;
+	margin-right:0.2rem;
+    border: 3px solid #ffe79a;
+    box-shadow: 3px 3px 0 #ffa952;    
+}
+
+.recipe_recipe_category_img:last-child{
+    border: 3px solid #d6ec78;
+    box-shadow: 3px 3px 0 #89aa97;  	
+}
+
+.recipe_recipe_title{
 	font-size: 1.2rem;
 	font-weight: 700;
-	margin: 2.5rem 0;
+	font-family: 'Song Myung', serif;
+	
+	color: black;
+	margin-bottom: 0.1rem;
+	position: relative;
+	top: -3.0rem;
 	display: inline-block;
 	width: 100%;
 	white-space: nowrap;
-	white-space: normal;
-	/*     line-height:1.5rem; */
-	height: 3rem;
 	overflow: hidden;
 	text-overflow: ellipsis;
-	text-align: left;
-	word-wrap: break-word;
-	display: -webkit-box;
-	-webkit-line-clamp: 2;
-	-webkit-box-orient: vertical;
-	/*     background-color:skyblue; */
 }
 
-.recipe_title>a {
+#recipe_recipe_title {
+	
+}
+
+.recipe_recipe_title>a {
 	text-decoration: none;
 }
 
@@ -696,6 +729,44 @@ background-position
 
 .recipe_li_data>span, .recipe_li_util>span {
 	margin: 0;
+}
+
+.recipe_li_util-border{
+	height: 1.4rem;
+	line-height: 0.8rem;
+	margin-right: 0.8rem;
+
+	/*font-family: 'Poor Story', cursive;*/
+	font-family: 'Noto Sans KR', sans-serif;
+	font-size: 1.0rem;
+	font-weight: 500;
+	box-sizing: border-box;
+    padding: 0.3rem;
+
+	
+/* 	border:1px solid black; */
+	float: left;	
+
+	background-color: #f1f1f1;
+}
+
+.li_qnt {
+    max-width:5.3rem;
+}
+
+.li_level {
+    max-width:8.7rem;
+}
+
+.li_mIngre {
+    max-width:14.2rem;
+    width:100%;
+	margin-bottom: 0.4rem;
+	position: relative;
+	display: inline-block;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 .recipe_li_data-userName {
@@ -744,6 +815,13 @@ background-position
 	width: auto;
 	margin: 0 auto;
 	margin: 1.0rem auto;
+	display:flex;
+	justify-content:center;
+
+}
+
+.recipe_list-reload-div{
+    margin : 1.0rem 0;	
 }
 
 .recipe_list-paging {
@@ -752,6 +830,7 @@ background-position
 	font-size: 1.0rem;
 	font-weight: 600;
 }
+
 
 .recipe_list-page .curBox {
 	border: 3px solid #ffa952;
@@ -922,9 +1001,11 @@ background-position
 .recipe_dataAndUtil_img {
 	width: 110%;
 	height: 100%;
-	/*     background-color:aquamarine; */
+/* 	    background-color:aquamarine; */
 	display: flex;
 	justify-content: flex-start;
+    position:relative;
+    top:-1.0rem;
 }
 
 .recipe_dataAndUtil_img ul li {

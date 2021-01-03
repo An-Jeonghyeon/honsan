@@ -73,7 +73,7 @@
 		OFFSET #{offset} ROWS FETCH FIRST #{rows} ROWS ONLY
 	</select>	
 
-	<!-- 글보기(article) -->
+	<!-- 글보기(article) - 기본 읽기 -->
 	<select id="readRecipe" parameterType="Integer" resultType="com.sp.app.cook.honCooq.recipe.Recipe">
 		SELECT	rb.recipe_id, recipe_nm_ko, sumry, nation_code, nation_nm, ty_code, ty_nm,
 				cooking_time, qnt, level_nm, img_url,
@@ -103,6 +103,20 @@
 		
 		WHERE rb.recipe_id = #{recipe_id}	                      
 	</select>
+	
+	<!-- 글보기 - 재료 읽기 -->
+	<select id="readRecipeIngre" parameterType="Integer" resultType="com.sp.app.cook.honCooq.recipe.Recipe">
+		SELECT recipe_id, irdnt_sn, irdnt_nm, irdnt_cpcty, irdnt_ty_code, irdnt_ty_nm
+		FROM recipe_Ingre
+		WHERE recipe_id = #{recipe_id}
+	</select>
+	
+	<!-- 글보기 - 과정 읽기 -->
+	<select id="readRecipeProcess" parameterType="Integer" resultType="com.sp.app.cook.honCooq.recipe.Recipe">
+		SELECT recipe_id, cooking_no, cooking_dc, stre_step_image_url, step_tip
+		FROM recipe_process
+		WHERE recipe_id = #{recipe_id}
+	</select>	
 	
 	<!-- 조회수 증가 -->
 	<!-- 

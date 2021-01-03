@@ -214,7 +214,7 @@ public class CookTipController {
 		model.addAttribute("page", page);
 		model.addAttribute("query", query);
 		
-		return ".cook.honCooq.cookTip.article";
+		return "cook/honCooq/cookTip/article";
 	}
 
 	@RequestMapping(value="update", method=RequestMethod.GET)

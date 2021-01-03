@@ -3,9 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<%-- <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/cook/honCooq.css" type="text/css">
- --%>
-
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Poor+Story&family=Song+Myung&display=swap" rel="stylesheet">
 
 <script type="text/javascript">
 $(function() {
@@ -54,20 +53,29 @@ function recipe_searchList() {
 							<c:choose>
 								<c:when test="${not empty dto.img_url}">
 									<div class="recipe_content_info_img">
-										<div class="recipe_category_img">
-											<span>${dto.nation_nm!=null? dto.nation_nm : "미분류"}</span>
+										<div class="recipe_categories">
+											<div class="recipe_recipe_category_img">
+												<span>${dto.nation_nm!=null? dto.nation_nm : "미분류"}</span>
+											</div>
+											<div class="recipe_recipe_category_img">
+												<span>${dto.ty_nm!=null? dto.ty_nm : "미분류"}</span>
+											</div>										
 										</div>
 				
 										<div class="recipe_listImg">
-											<img class="recipe_img" src="${dto.img_url}">
+											<img class="recipe_recipe_img" src="${dto.img_url}">
 										</div>
 
-										<div class="recipe_title_img"> <a
+										<div class="recipe_recipe_title" style="font-family:'Black Han Sans', sans-serif"> <a
 											href="${articleUrl}&num=${dto.recipe_id}">${dto.recipe_nm_ko} (${dto.replyCount})</a>
 										</div>
 										<div class="recipe_flex">
 											<div class="recipe_dataAndUtil_img">
 												<ul>
+													<li class="recipe_li_util recipe_li_util-border li_qnt"><span>양: ${dto.qnt}</span></li>
+													<li class="recipe_li_util recipe_li_util-border li_level"><span>난이도: ${dto.level_nm}</span></li>
+													<li class="recipe_li_util recipe_li_util-border li_mIngre"><span>주재료: ${dto.irdnt_nm}</span></li>
+													
 													<li class="recipe_li_util recipe_li_util-reply_img"><span><i class="far fa-comment-dots"></i> ${dto.replyCount}</span></li>
 													<li class="recipe_li_util recipe_li_util-like_img"><span><i class="far fa-heart" id="recipe-like"></i>${dto.recipeLikeCount}</span></li>
 												</ul>
@@ -100,9 +108,9 @@ function recipe_searchList() {
 		</div>
 	</div>
 	<div class="recipe_list-page">
-		<button type="button" class="recipe_reload-btn" onclick="reloadBoard();">새로고침</button>
+		<div class="recipe_list-reload-div"><button type="button" class="recipe_reload-btn" onclick="reloadBoard();">새로고침</button></div>
 		
-		${dataCount==0?"등록된 게시물이 없습니다.":paging}
+		<div class="recipe_list-paging-div">${dataCount==0?"등록된 게시물이 없습니다.":paging}</div>
 
 	</div>	
 
