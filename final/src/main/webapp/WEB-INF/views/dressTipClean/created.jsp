@@ -63,7 +63,7 @@
                 enctype="multipart/form-data">
                 <article class="writeBody">
                     <div class="writeBodyHeader">
-                        <span>옷보관법</span>
+                        <span>옷세탁법</span>
                     </div>
                     <div class="writeUserName">작성자: ${sessionScope.member.userName}</div>
 

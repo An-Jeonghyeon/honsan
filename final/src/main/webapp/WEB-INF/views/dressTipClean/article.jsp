@@ -29,7 +29,7 @@ function updatebutton(num){
   <div class="articleMainBody">
                 <div class="articleMainHeader">
                     <div class="articleGo">
-                        <span><a href="${pageContext.request.contextPath}/dressTipClean/list">옷 보관법 게시판&gt;</a></span>
+                        <span><a href="${pageContext.request.contextPath}/dressTipClean/list">옷 세탁법 게시판&gt;</a></span>
                     </div>
                     <div class="articleMainHeaderSubject">
                         <span>${dto.subject}</span>

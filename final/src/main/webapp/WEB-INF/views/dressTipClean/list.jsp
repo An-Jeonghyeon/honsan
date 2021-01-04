@@ -8,6 +8,14 @@
 		var f = document.dressTipCleanCreatedFrom;
 		f.submit();
 	}
+$(function(){
+	$(".dress-InnerImg1").click(function(){
+		location.href="${pageContext.request.contextPath}/dressTip/list";
+	})
+	$(".dress-InnerImg2").click(function(){
+		location.href="${pageContext.request.contextPath}/dressTipClean/list";
+	})
+})
 	
 </script>
 
@@ -16,7 +24,7 @@
                     <div class="dress-TipMenuBody1">
                         <div class="dress-TipMenu1" >
                             <div class="dress-InnerImg1">
-                                <a href="#">
+                                <a href="${pageContext.request.contextPath}/dressTip/list">
                                     <span>옷 보관법</span>
                                 </a>
                             </div>
@@ -25,7 +33,7 @@
                     <div class="dress-TipMenuBody2">
                         <div class="dress-TipMenu2" >
                             <div class="dress-InnerImg2">
-                                <a href="#">
+                                <a href="${pageContext.request.contextPath}/dressTipClean/list">
                                     <span>옷 세탁법</span>
                                 </a>
                             </div>
@@ -36,7 +44,7 @@
                 <div class="dress-TipMainShowArticleBody">
                 <c:forEach var="dto" items="${list}">
                     <div class="dress-TipShowArticleBody">
-                        <div class="dress-TipShowMenu">[보관법]</div>
+                        <div class="dress-TipShowMenu">[세탁법]</div>
                         <div class="dress-Subject"><a href="${articleUrl}&num=${dto.num}">${dto.subject}</a></div>
                         <div class="dress-UserName">${dto.userName}</div>
                         <div class="dress-Created">${dto.register_date}</div>

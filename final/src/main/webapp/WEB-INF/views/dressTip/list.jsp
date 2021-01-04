@@ -8,30 +8,32 @@
 		var f = document.dressTipCreatedFrom;
 		f.submit();
 	}
-$(function(){
-	$(".dress-TipMenuBody1").click(function(){
-		
+	$(function(){
+		$(".dress-InnerImg1").click(function(){
+			location.href='${pageContext.request.contextPath}/dressTip/list';
+		})
+		$(".dress-InnerImg2").click(function(){
+			location.href='${pageContext.request.contextPath}/dressTipClean/list';
+		})
 	})
-})
-	
-	
+
 </script>
 
  <div class="dress-TipMainBody">
                 <div class="dress-TipMainBodySub">
                     <div class="dress-TipMenuBody1">
-                        <div class="dress-TipMenu1" >
+                        <div class="dress-TipMenu1">
                             <div class="dress-InnerImg1">
-                                <a href="#">
+                                <a href="${pageContext.request.contextPath}/dressTip/list">
                                     <span>옷 보관법</span>
                                 </a>
                             </div>
                         </div>
                     </div>
                     <div class="dress-TipMenuBody2">
-                        <div class="dress-TipMenu2" >
+                        <div class="dress-TipMenu2">
                             <div class="dress-InnerImg2">
-                                <a href="#">
+                                <a href="${pageContext.request.contextPath}/dressTipClean/list">
                                     <span>옷 세탁법</span>
                                 </a>
                             </div>
