@@ -82,7 +82,7 @@
                       <li> <a href="${pageContext.request.contextPath}/room/roomlist">방구할래?</a></li>
                       <li> <a href="${pageContext.request.contextPath}/room/roomtip">부동산 팁</a></li>
                       <li> <a href="${pageContext.request.contextPath}/room/roomChecklist">방 체크리스트</a></li>
-                      <li> <a href="${pageContext.request.contextPath}/room/security">보안 테스트&서비스</a></li>
+                      <li> <a href="${pageContext.request.contextPath}/room/security">보안 테스트&amp;서비스</a></li>
                   </ul>
                   <ul class="menuObject">
                       <li> <a href="${pageContext.request.contextPath}/interior/main">내집자랑</a></li>
