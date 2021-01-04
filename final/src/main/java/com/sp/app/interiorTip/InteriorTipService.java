@@ -22,5 +22,10 @@ public interface InteriorTipService {
 	public int dataCount(Map<String, Object> map);
 	public List<InteriorTip> listBoard(Map<String, Object> map);
 	
-	public void insertReply(Reply dto) throws Exception;
+
+	//댓글 
+	public void insertReply(Reply dto) throws Exception ;
+	public List<Reply> listReply(Map<String, Object> map);
+	public int replyCount(Map<String, Object> map) ;
+	public void deleteReply(Map<String, Object> map) throws Exception;
 }

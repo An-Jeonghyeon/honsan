@@ -82,6 +82,67 @@
 	margin-top: 100px;
 }
 
+#curBox_sub{
+	border: 1px solid #35c5f0;
+	background:  #35c5f0;
+	color: white;
+	border-radius: 4px;
+	font-weight: 700;
+	font-size: 15px;
+	font-weight:bold;
+	height:28px;
+	padding:4px 7px 4px 7px;
+	margin-left:3px;
+	line-height:normal;
+	vertical-align:middle;
+}
+
+
+#numBox_sub{
+	font-size: 15px;
+	border : none;
+	color : #424242;
+	height:28px;
+	font-weight:bold;
+	text-decoration:none;
+	padding:4px 7px 4px 7px;
+	margin-left:3px;
+	line-height:normal;
+	vertical-align:middle;
+}
+
+#tlBox{
+	font-size: 15px;
+	border : none;
+	border:1px solid #ccc;
+	height:28px;color:#000000;
+	text-decoration:none;
+	padding:4px 10px 4px 10px;
+	margin-left:3px;
+	margin-right : 20px;
+	line-height:normal;
+	vertical-align:middle;
+	outline:none; 
+	border-radius: 4px;
+}
+
+#trBox{
+	font-size: 15px;
+	border : none;
+	border:1px solid #ccc;
+	height:28px;color:#000000;
+	text-decoration:none;
+	padding:4px 10px 4px 10px;
+	margin-left:20px;
+	margin-right : 3px;
+	line-height:normal;
+	vertical-align:middle;
+	outline:none; 
+	border-radius: 4px;
+	
+}
+
+
 </style>
 
 <script type="text/javascript">
@@ -110,6 +171,101 @@ function updateBoard(num) {
          alert("게시글을 수정할 권한이 없습니다.");
       </c:if>
    }
+   
+function ajaxJSON(url, method, query, fn) {
+	$.ajax({
+		type:method
+		,url:url
+		,data:query
+		,dataType:"json"
+		,success:function(data) {
+			fn(data);
+		}
+		,beforeSend:function(jqXHR) {
+	        jqXHR.setRequestHeader("AJAX", true);
+	    }
+	    ,error:function(jqXHR) {
+	    	if(jqXHR.status===403) {
+	    		login();
+	    		return false;
+	    	}
+	    	
+	    	console.log(jqXHR.responseText);
+	    }
+	});
+}
+
+function ajaxHTML(url, method, query, selector) {
+	$.ajax({
+		type:method
+		,url:url
+		,data:query
+		,success:function(data) {
+			$(selector).html(data);
+		}
+		,beforeSend:function(jqXHR) {
+	        jqXHR.setRequestHeader("AJAX", true);
+	    }
+	    ,error:function(jqXHR) {
+	    	if(jqXHR.status===403) {
+	    		login();
+	    		return false;
+	    	}
+	    	
+	    	console.log(jqXHR.responseText);
+	    }
+	});
+}
+
+
+//게시글 로딩시 페이징 처리
+$(function() {
+	listPage(1);
+});
+
+// 댓글 리스트 보이기
+function listPage(page) {
+	var url = "${pageContext.request.contextPath}/interiorTip/listReply";
+	var query = "num=${dto.num}&pageNo="+page;
+	var selector = ".comment_list_box";
+	
+	ajaxHTML(url, "get", query, selector);
+}
+
+$(function(){
+	$(".btnSendReply").click(function(){ // 버튼클릭시 
+		var num="${dto.num}"; // 댓글을 작성할 게시판의 넘 설정 
+		//var $tb = $(this).closest("table");
+		var $div = $(this).parents(".leftbox_comment_usercomment"); // content 를 찾을 위치 설정
+		
+//		var content=$tb.find("textarea").val().trim();
+		var content=$div.find("textarea").val().trim(); // 부모값 밑 textarea 값으로 content 설정
+		
+		
+		if(! content) {     // 값이 없으면 
+			$div.find("textarea").focus(); // 댓글을 입력하는 곳에 마우스 포인트 
+			return false; //펄스로 빠져나가기 
+		}
+		content = encodeURIComponent(content); // 한글 인코딩 
+		
+		var url="${pageContext.request.contextPath}/interiorTip/insertReply"; //컨트롤러로 보내질 주소 
+		var query="num="+num+"&content="+content; //값으로 게시판번호 , 댓글내용 , 부모댓글로 사용할 넘버 
+		
+		var fn = function(data){
+			$div.find("textarea").val(""); // 전송 후 댓글창 값 공백 입력 
+			
+			var state=data.state;
+			if(state==="true") { // 성공하면 리스트 보이게 
+				listPage(1);
+			} else if(state==="false") { // 실패시 실패 안내 
+				alert("댓글을 추가 하지 못했습니다.");
+			}
+		};
+		
+		ajaxJSON(url, "post", query, fn); // 만들어 놓은 재이슨으로 전송 
+	});
+});
+
 </script>
 
 

@@ -91,9 +91,38 @@
 	</delete>
 	
 	<insert id="insertReply" parameterType="com.sp.app.interiorTip.InteriorTip">
-		INSERT INTO lifeTip(replyNum, num, userId, content, register_date)
+		INSERT INTO lifeTip_reply(replyNum, num, userId, content, register_date)
 			VALUES (lifeTipReply_seq.NEXTVAL, #{num}, #{userId}, #{content}, SYSDATE) 
 	</insert>
+	
+	<!-- 리스트 수 -->
+	<select id="interiorTipReplyCount" parameterType="map" resultType="Integer">
+		SELECT NVL(COUNT(*), 0) FROM lifeTip_reply
+		WHERE num=#{num} 
+	</select>
+	
+	<select id="listInteriorTipReply" parameterType="map" resultType="com.sp.app.interior.Reply">
+		SELECT replyNum, i.userId, userName, num, content, register_date , profileImg , profileMsg
+		FROM lifeTip_reply i
+		JOIN member1 m ON i.userId = m.userId
+		LEFT OUTER JOIN (
+        SELECT userId , profileImg , profileMsg
+        FROM memberprofile
+        )p ON i.userId = p.userId
+		WHERE num=#{num}  
+		ORDER BY i.replyNum DESC
+		OFFSET #{offset} ROWS FETCH FIRST #{rows} ROWS ONLY
+	</select>	
+	
+		<!-- 리플 삭제 -->
+	<delete id="deleteInteriorTipReply" parameterType="map">
+		DELETE FROM lifeTip_reply
+		WHERE replyNum=#{replyNum}
+	</delete>
+	
+	
+	
+	
 	
 	<select id="dataCount" parameterType="map" resultType="Integer">
 		SELECT NVL(COUNT(*), 0) 
