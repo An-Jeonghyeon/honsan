@@ -67,6 +67,7 @@ ul.tabs li.active{
 
 .qnasearchbtn:hover{
 	background:#a7b7ed;
+	box-shadow: 0 0 3px gray;
 }
 
 .qnalbl {
@@ -85,7 +86,10 @@ a{
 	text-decoration: none;
 	
 }
-
+#condition{
+	height: 32px;
+	border-radius: 5px;
+}
 
 
 

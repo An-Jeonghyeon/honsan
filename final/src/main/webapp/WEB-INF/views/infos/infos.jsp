@@ -15,16 +15,15 @@
 <section>
 
 <div class="top_menu">
-	<div class="top_menu_atr">
-		<a href="${pageContext.request.contextPath}/qna/qnalist" class="top_menu_atr_name">Q&A 게시판
-			<p> Q&A 이용안내를 위한 게시판 입니다.</p>
-		</a>
+	<div class="top_menu_atr" onclick="javascript:location.href='${pageContext.request.contextPath}/qna/qnalist';">
+		<a href="${pageContext.request.contextPath}/qna/qnalist" class="top_menu_atr_name">Q&amp;A 게시판</a>
+			<p class="top_menu_atr_name2"> Q&amp;A 이용안내를 위한 게시판 입니다.</p>
+		
 	</div>
 	
-	<div class="top_menu_atr">
-		<a href="#" class="top_menu_atr_name">FAQ 게시판
-			<p> FAQ 이용안내를 위한 게시판 입니다.</p>
-		</a>
+	<div class="top_menu_atr" onclick="javascript:location.href='${pageContext.request.contextPath}/';">
+		<a href="#" class="top_menu_atr_name">FAQ 게시판</a>
+			<p class="top_menu_atr_name2"> FAQ 이용안내를 위한 게시판 입니다.</p>
 	</div>
 </div>
 
@@ -33,7 +32,7 @@
 
 <div id="board_qna_faq">
 	<div id="qnafaq"> <!-- Q&A 반복문  -->
-	<h2 class="af_h2">Q&A 자주 묻는 질문</h2>
+	<h2 class="af_h2"><i class="fab fa-quora"></i>&nbsp;&nbsp;Q&amp;A 자주 묻는 질문</h2>
 		<ul class="admin_controller">
 			<li class="admin_subject">원티드 이력서 양식을 꼭 사용해야 하나요?</li>
 			<li class="admin_content">필수 사항은 아니며, 자유양식으로 지원 가능합니다. </li>
@@ -63,7 +62,7 @@
 	</div>
 
 	<div id="qnafaq">  <!-- FAQ 반복문  -->
-	<h2 class="af_h2">FAQ 자주 묻는 질문</h2>
+	<h2 class="af_h2"><i class="fab fa-foursquare"></i>&nbsp;&nbsp;FAQ 자주 묻는 질문</h2>
 		<ul class="admin_controller">
 			<li class="admin_subject">원티드 이력서 양식을 꼭 사용해야 하나요?</li>
 			<li class="admin_content">필수 사항은 아니며, 자유양식으로 지원 가능합니다. </li>

@@ -15,7 +15,7 @@
 	}
 
 	function searchList() {
-		var f = document.searchForm;
+		var f = document.qnasearchForm;
 		f.submit();
 	}
 
@@ -23,7 +23,7 @@
 		var url = "${articleUrl}&num=" + num;
 		location.href = url;
 	}
-	
+
 
 </script>
 
@@ -46,8 +46,16 @@
 					<td align="center">HOLLO에게 묻고 싶은 질문을 해보세요.</td>
 				</tr>
 				<tr height="60">
-					<td align="center"><label for="town" id="lblTown" class="qnalbl"><i class="fas fa-search"></i>궁금한 것을 검색해보세요.
-							</label> <input type="text" name="town" id="town"
+					<td align="center">
+					<select id="condition" name="condition" class="selectField">
+		                  <option value="all" ${condition=="all"?"selected='selected'":""}>모두</option>
+		                  <option value="subject" ${condition=="subject"?"selected='selected'":""}>제목</option>
+		                  <option value="content" ${condition=="content"?"selected='selected'":""}>내용</option>
+		                  <option value="userName" ${condition=="userName"?"selected='selected'":""}>작성자</option>
+		                  <option value="created" ${condition=="created"?"selected='selected'":""}>작성일</option>
+		            </select>
+					<label for="town" id="lblTown" class="qnalbl"><i class="fas fa-search"></i>궁금한 것을 검색해보세요.
+							</label> <input type="text" name="keyword" id="keyword"
 						class="qnasearchTF" maxlength="20" tabindex="2"
 						onfocus="document.getElementById('lblTown').style.display='none';"
 						onblur="bgLabel(this, 'lblTown');">
@@ -130,20 +138,7 @@
 <table style="width: 100%; margin: 10px auto; border-spacing: 0px;">
    <tr height="40">
       <td align="left" width="100">
-          <button type="button" class="btn" onclick="reloadBoard();">새로고침</button>
-      </td>
-      <td align="center">
-          <form name="searchForm" action="" method="post">
-              <select id="condition" name="condition" class="selectField">
-                  <option value="all" ${condition=="all"?"selected='selected'":""}>모두</option>
-                  <option value="subject" ${condition=="subject"?"selected='selected'":""}>제목</option>
-                  <option value="content" ${condition=="content"?"selected='selected'":""}>내용</option>
-                  <option value="userName" ${condition=="userName"?"selected='selected'":""}>작성자</option>
-                  <option value="created" ${condition=="created"?"selected='selected'":""}>작성일</option>
-            </select>
-            <input type="text" id="keyword" name="keyword" class="boxTF" value="${keyword}">
-            <button type="button" class="btn" onclick="searchList();">검색</button>
-        </form>
+          <button type="button" class="btn" onclick="javascript:location.href='${pageContext.request.contextPath}/qna/qnalist';">새로고침</button>
       </td>
       <td align="right" width="100">
           <button type="button" class="btn" onclick="javascript:location.href='${pageContext.request.contextPath}/qna/created';">글올리기</button>
