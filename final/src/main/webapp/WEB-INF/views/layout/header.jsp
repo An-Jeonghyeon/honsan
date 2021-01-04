@@ -27,7 +27,7 @@
               <div class="menuBox"> <a href="${pageContext.request.contextPath}">오늘 뭐 입어?</a></div>
               <div class="menuBox"> <a href="${pageContext.request.contextPath}/cook/honCooq/main">혼자 뭐 먹지?</a></div>
               <div class="menuBox"> <a href="${pageContext.request.contextPath}/room/roomlist">방구할래?</a></div>
-              <div class="menuBox"> <a href="${pageContext.request.contextPath}">인테리어</a></div>
+              <div class="menuBox"> <a href="${pageContext.request.contextPath}/interior/main">인테리어</a></div>
               <div class="menuBox"> <a href="${pageContext.request.contextPath}/supplement/list">건강챙기기</a></div>
               <div class="loginBox">
                   <div class="loginName">
@@ -40,7 +40,7 @@
                   </div>
                   
                       <c:if test="${sessionScope.member.userId =='admin'}">
-                          <a href="${pageContext.request.contextPath}/adm/adm" style="padding-left :10px; line-height: 100px; font-size: 0px;"><img style="width: 32px; height: 29px;" src="${pageContext.request.contextPath}/resources/images/setcon_1.jpg"></img></a>
+                          <a href="${pageContext.request.contextPath}/adm/chart/chart" style="padding-left :10px; line-height: 100px; font-size: 0px;"><img style="width: 32px; height: 29px;" src="${pageContext.request.contextPath}/resources/images/setcon_1.jpg"></img></a>
                       </c:if>
                   <div class="mypage">
                       <i class="fas fa-house-user fa-2x"></i>
@@ -86,8 +86,8 @@
                   </ul>
                   <ul class="menuObject">
                       <li> <a href="${pageContext.request.contextPath}/interior/main">내집자랑</a></li>
-                      <li> <a href="${pageContext.request.contextPath}">생활 팁</a></li>
-                      <li> <a href="${pageContext.request.contextPath}">생활 팁</a></li>
+                      <li> <a href="${pageContext.request.contextPath}/interiorTip/list">생활 팁</a></li>
+                      <li> <a href="${pageContext.request.contextPath}/iEstimate/list">견적 받아보깅</a></li>
                       <li> <a href="${pageContext.request.contextPath}">생활 팁</a></li>
                   </ul>
                   <ul class="menuObject">

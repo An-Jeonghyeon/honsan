@@ -17,7 +17,7 @@
 	<!-- 상세정보 인서트 -->
 	<insert id="insertChallenge2" parameterType="com.sp.app.adm.health.HealthAdmin">
 		INSERT INTO challenge2(exNum, num, startDate, endDate, exContent)
-			VALUES(#{exNum}, #{num}, #{startDate}, #{endDate}, #{exContent})
+			VALUES(challenge2_seq.NEXTVAL, #{num}, #{startDate}, #{endDate}, #{exContent})
 	</insert>
 	
 		<!--  검색  -->
@@ -67,19 +67,19 @@
 	</select>
 	
 	<!-- 챌린지 삭제 (challenge1) -->
-	<delete id="deleteChallenge" parameterType="Integer">
+	<delete id="deleteChallenge" parameterType="Long">
 		DELETE FROM challenge WHERE num=#{num}
 	</delete>
 	
 	<!-- 챌린지 삭제 (challenge2) 다지우기 -->
-	<delete id="deleteChallengeAll" parameterType="Integer">
+	<delete id="deleteChallengeAll" parameterType="Long">
 		DELETE FROM challenge2 WHERE num=#{num}
 	</delete>
 	
 	<!-- 챌린지 수정 (challenge1) -->
-	<update id="updateChallenge" parameterType="map">
-		UPDATE challenge SET name=${name}, subName=${subName}, content=${content},
-			challengePeriod=${challengePeriod}, calorie=${calorie}, challengeFilename=${challengeFilename}, video=${video} 
+	<update id="updateChallenge" parameterType="com.sp.app.adm.health.HealthAdmin">
+		UPDATE challenge SET name=#{name}, subName=#{subName}, content=#{content},
+			challengePeriod=#{challengePeriod}, calorie=#{calorie, jdbcType=VARCHAR}, challengeFilename=#{challengeFilename, jdbcType=VARCHAR}, video=#{video, jdbcType=VARCHAR} 
 		WHERE num=#{num}	
 	</update>
 	
@@ -87,8 +87,8 @@
 
 
 	<!-- 게시글보기 -->
-	<select id="readChallenge" parameterType="Integer" resultType="com.sp.app.adm.health.HealthAdmin">
-		SELECT c.num, name, subName, content, challengePeriod, challengeFilename, TO_CHAR(created, 'YYYY-MM-DD') created,
+	<select id="readChallenge" parameterType="Long" resultType="com.sp.app.adm.health.HealthAdmin">
+		SELECT c.num, name, subName, content, challengePeriod, challengeFilename, video, TO_CHAR(created, 'YYYY-MM-DD') created,
 			NVL(playMember, 0) playMember
 		FROM challenge c
 		LEFT OUTER JOiN(
@@ -100,7 +100,7 @@
 	</select>
 	
 	<!-- 상세정보 리스트 -> 글보기에서 상세정보를 따로 출력하기 위함 -> article, update 둘다에 사용-->
-	<select id="listChallenge2" parameterType="Integer" resultType="com.sp.app.adm.health.HealthAdmin">
+	<select id="listChallenge2" parameterType="Long" resultType="com.sp.app.adm.health.HealthAdmin">
 		SELECT exNum, num, startDate, endDate, exContent
 		FROM  challenge2
 		WHERE num=#{num}
@@ -108,16 +108,16 @@
 	
 	<!-- 상세정보 하나 읽기 -->
 	<!--값 두개 받아와야하니까 map으로   -->
-	<select id="readChallenge2" parameterType="map" resultType="com.sp.app.adm.health.HealthAdmin">
+	<select id="readChallenge2" parameterType="Integer" resultType="com.sp.app.adm.health.HealthAdmin">
 		SELECT exNum, num, startDate, endDate, exContent
 		FROM  challenge2
-		WHERE num=#{num} AND exNum=#{exNum}
+		WHERE exNum=#{exNum}
 	</select>
 	
 	<!-- 챌린지 개별삭제 (challenge2)  -->
 	<delete id="deleteChallenge2" parameterType="map">
 		DELETE FROM challenge2
-		WHERE num=#{num} AND exNum=#{exNum}
+		WHERE exNum=#{exNum}
 	</delete>
 	
 </mapper>

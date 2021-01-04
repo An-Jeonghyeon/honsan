@@ -138,7 +138,7 @@ public class HealthAdminController {
 	
 	@RequestMapping(value="delete", method=RequestMethod.GET)
 	public String delete(
-			@RequestParam int num,
+			@RequestParam long num,
 			@RequestParam String page,
 			@RequestParam(defaultValue="name") String condition,
 			@RequestParam(defaultValue="") String keyword,
@@ -160,7 +160,7 @@ public class HealthAdminController {
 	
 	@RequestMapping(value="article")
 	public String article(
-			@RequestParam int num,
+			@RequestParam long num,
 			@RequestParam String page,
 			@RequestParam(defaultValue="all") String condition,
 			@RequestParam(defaultValue="") String keyword,
@@ -170,5 +170,53 @@ public class HealthAdminController {
 		return "";
 	}
 
+	//수정
+	@RequestMapping(value = "update", method = RequestMethod.GET)
+	public String update(
+			@RequestParam long num,
+			@RequestParam String page,
+			HttpSession session,
+			Model model) throws Exception {
+		
+		HealthAdmin dto = service.readChallenge(num);
+		if(dto==null) {
+			return "redirect:/adm/health/list?page="+page;
+		}
+		
+		List<HealthAdmin> listChallenge2 = service.listChallenge2(num); //상세정보 가져오기
+		
+		model.addAttribute("mode","update");
+		model.addAttribute("page", page);
+		model.addAttribute("dto", dto);
+		model.addAttribute("listChallenge2", listChallenge2);
+		
+		return ".adm.health.created";
+	}
+	
+	@RequestMapping(value="update", method=RequestMethod.POST)
+	public String updateSubmit(
+			HealthAdmin dto,
+			@RequestParam String page,
+			HttpSession session) throws Exception {
+
+		try {
+			String root = session.getServletContext().getRealPath("/");
+			String pathname = root + File.separator + "uploads" + File.separator + "challenge";		
+			
+			//기보정보 업데이트
+			service.updateChallenge(dto, pathname);
+			
+			
+			//완료누르면...기존 상세 다 지우고
+			service.deleteChallengeAll(dto.getNum());
+			
+			//새로 인서트
+			service.insertChallenge2(dto);
+			
+		} catch (Exception e) {
+		}
+		
+		return "redirect:/adm/health/list?page="+page;
+	}
 	
 } 

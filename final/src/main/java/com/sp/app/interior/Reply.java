@@ -8,7 +8,20 @@ public class Reply {
 	private String content;
 	private String register_date;
 	private int answer;
+	private String created;
 	
+	public String getRegister_date() {
+		return register_date;
+	}
+	public void setRegister_date(String register_date) {
+		this.register_date = register_date;
+	}
+	public String getCreated() {
+		return created;
+	}
+	public void setCreated(String created) {
+		this.created = created;
+	}
 	private int answerCount;
 	private int likeCount;
 	private int disLikeCount;
