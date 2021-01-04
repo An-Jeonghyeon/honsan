@@ -454,8 +454,8 @@ $(function(){
 
             <p class="leftbox_item_box_p">
                 <span class="leftbox_item_box_span">조회수 ${dto.hitCount}</span>
-                <span class="leftbox_item_box_span">댓글 64</span>
-                <span class="leftbox_item_box_span">찜 58</span>
+                <span class="leftbox_item_box_span">댓글 ${interiorLikeCount}</span>
+                <span class="leftbox_item_box_span">찜 ${interiorZzimCount}</span>
                 <button class="leftbox_item_box_button">신고</button>
             </p>
 
