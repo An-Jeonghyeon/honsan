@@ -19,6 +19,13 @@ function deleteChallenge(num) {
 	}
 	
 }
+function updateChallenge(num) {
+	var url="num="+num+"&page="+${page};
+	var url2="${pageContext.request.contextPath}/adm/health/update?"+url;
+	
+	location.href=url2;
+}
+
 </script>
 <div id="wrapper">
 	<div id="page-wrapper">
@@ -44,7 +51,7 @@ function deleteChallenge(num) {
 			                           <option value="name" ${condition=="name"?"selected='selected'":""}>챌린지명</option>
 			                           <option value="created" ${condition=="created"?"selected='selected'":""}>등록일</option>
 	                        		</select>
-	                        		<input type="text" class="form-control form-inline col-md-4" name="keyword" value="${keyword}">
+	                        		<input type="text" class="form-control form-inline col-md-4 keywordPointer" name="keyword" value="${keyword}">
                     		       <button type="button" class="btn btn-default" onclick="searchList();">검색</button>
 	                        	</div>
 	                	        <div class="chList_createbtn">
@@ -69,11 +76,12 @@ function deleteChallenge(num) {
                                     <c:forEach var="dto" items="${list}">
                                         <tr class="odd gradeX">
                                             <td class="center">${dto.listNum}</td>
-                                            <td><small>${dto.subName}</small> ${dto.name}</td>
+                                            <td class="chsub"><a href="${pageContext.request.contextPath}/challenge/article?num=${dto.num}"><small>${dto.subName}</small> ${dto.name}</a></td>
                                             <td class="center">${dto.created}</td>
                                             <td class="center">${dto.playMember}</td>
                                             <td class="center chListupanddel">
-                                            	<button type="button" class="jbtn btn-xs btn btn-default">수정</button>
+<%--                                             	<button type="button" class="jbtn btn-xs btn btn-default" onclick="javascript:location.href='${pageContext.request.contextPath}/adm/health/update?num=${dto.num}&page=${page}';">수정</button> --%>
+                                            	<button type="button" class="jbtn btn-xs btn btn-default" onclick="updateChallenge(${dto.num});">수정</button>
                                             	<button type="button" class="jbtn btn-xs btn btn-default" data-num="${dto.num}" onclick="deleteChallenge(${dto.num});">삭제</button>
                                             </td>
                                         </tr>

@@ -141,9 +141,12 @@ $(function(){
 		
 		var $table = $(this).closest(".morebody") 
 		var count = $table.find(".plusbtn").data('addcount');
-		console.log(count);
+//		console.log(count);
 		
-		if(count=='1') {
+//		console.log($table.index());
+
+		//제일 첫번째 tbody일 경우 삭제불가
+		if($table.index()===0) { 
 			alert("최소 1개의 상세정보를 입력해주세요.");
 			return false;
 		}
@@ -180,31 +183,36 @@ $(function(){
 					                    <table border="1" class="ch_table">
 					                        <tr>
 					                            <th scope="row">챌린지명</th>
-					                            <td class="chname"><input type="text" class="form-control" name="name"></td>
+					                            <td class="chname"><input type="text" class="form-control" name="name" value="${dto.name}"></td>
 					                        </tr>
 					                        <tr>
 					                            <th scope="row">간단설명</th>
-					                            <td class="chsub"><input type="text" name="subName"></td>
+					                            <td class="chsub"><input type="text" name="subName" value="${dto.subName}"></td>
 					                        </tr>
 					                        <tr>
 					                            <th scope="row">상세설명</th>
-					                            <td class="chdet"><textarea name="content" rows="15" style="margin: 0px; width: 770px; height: 207px;"></textarea></td>
+					                            <td class="chdet"><textarea name="content" rows="15" style="margin: 0px; width: 770px; height: 207px;">${dto.content}</textarea></td>
 					                        </tr>
 					                        <tr>
 					                            <th scope="row">챌린지 기간</th>
-					                            <td class="chdate"><input type="text" name="challengePeriod"> 일</td>
+					                            <td class="chdate"><input type="text" name="challengePeriod" value="${dto.challengePeriod}"> 일</td>
 					                        </tr>
 					                        <tr>
 					                            <th scope="row">총 칼로리</th>
-					                            <td class="chkcal"><input type="text" name="calorie"> kcal</td>
+					                            <td class="chkcal"><input type="text" name="calorie" value="${dto.calorie}"> kcal</td>
 					                        </tr>
 					                        <tr>
 					                            <th scope="row">대표이미지</th>
-					                            <td><input type="file" name="upload"></td>
+					                            <td>
+					                            	<input type="file" name="upload" accept="image/*">
+					                            	<c:if test="mode=='update'">
+					                            		<input type="hidden" name="challengeFilename" value="${dto.challengeFilename}">
+					                            	</c:if>
+					                            </td>
 					                        </tr>
 					                        <tr>
 				                           		<th scope="row">동영상 주소(유튜브)</th>
-					                            <td class="cvideo"><input type="text" name="video">
+					                            <td class="cvideo"><input type="text" name="video" value="${dto.video}">
 					                            <small>ex) www.youtube.com/embed/IfJcq4LDXKE</small>
 					                            </td>
 					                        </tr>
@@ -220,6 +228,31 @@ $(function(){
 <!-- 					                   		여기 추가될것.. -->
 <!-- 					                    </div> -->
 					                    <table border="1" class="ch_table moreTable">
+            								<c:if test="${mode=='update'}">
+											   <c:forEach var="vo" items="${listChallenge2}">
+							                    	<tbody class="morebody" id="f${vo.exNum}"> 
+							                        <tr>
+							                            <th scope="row">상세기간</th>
+							                            <td class="chperiod">
+							                                <input type="text" name="startDates" class="start" value="${vo.startDate}"> 일차  ~
+							                                <input type="text" name="endDates" class="end" value="${vo.endDate}"> 일차
+						                     	           <button type="button" class="deletebtn">X</button>
+							                                <input type="hidden" name="exNum" value="${dto.exNum}">
+							                                
+							                            </td>
+							                        </tr>
+							                        <tr>
+							                            <th scope="row">하루 운동상세</th>
+							                            <td class="chsub">
+							                                <input type="text" name="exContents" class="excontent" value="${vo.exContent}">
+							                                <button type="button" class="plusbtn">수정</button>
+							                                <br><small>* 여러항목 등록시 '/' 로 구분작성</small>
+							                            </td>
+							                        </tr>
+							                    	</tbody>
+											   </c:forEach>
+											</c:if>
+					                    
 					                    	<tbody class="morebody">
 					                        <tr>
 					                            <th scope="row">상세기간</th>
@@ -247,7 +280,12 @@ $(function(){
 						        <div class="h-buttonBoxBody">
 						            <button type="button" id="CencelSubmit" onclick="javascript:location.href='${pageContext.request.contextPath}/adm/health/list';">${mode=='update'?'수정취소':'등록취소'}</button>
 						            <button type="button" id="writeSubmit" onclick="sendOk();">${mode=='update'?'수정완료':'등록하기'}</button>
+           				         <c:if test="${mode=='update'}">
+			         	 			<input type="hidden" name="num" value="${dto.num}">
+			        	 			<input type="hidden" name="page" value="${page}">
+			        			</c:if>
 						        </div>
+						        
 						     </div>
 						 </form>
                     

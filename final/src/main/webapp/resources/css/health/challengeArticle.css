@@ -136,7 +136,7 @@
     border: 4px solid  rgb(68, 68, 68);;
     top: -30px;
     box-sizing: border-box;
-    padding-top: 40px;
+    padding-top: 60px;
     padding-bottom: 20px;
 }
 .introboxtext {
@@ -196,6 +196,7 @@
 }
 .chalicontent p {
    font-family: 'Do Hyeon', sans-serif!important;
+   margin-top: 30px;
 }
 
 /* 도전버튼 */
@@ -232,4 +233,18 @@
     color: rgb(136, 136, 136);
     background: white;
     margin-top: 10px;
+}
+.h-adminButton {
+    float: right;
+    width: 110px;
+    height: 30px;
+    border:1px solid #ccc;
+    cursor: pointer;
+    border-radius: 5px;
+    float: right;
+    transition: 0.1s;
+    color: rgb(136, 136, 136);
+    background: white;
+    margin-top: 10px;
+    margin-right: 8px;
 }

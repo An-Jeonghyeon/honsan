@@ -25,6 +25,7 @@ public class HealthAdminServiceImpl implements HealthAdminService {
 			long seq = dao.selectOne("healthAdmin.challengeSeq");
 			dto.setNum(seq);
 			
+			//사진파일
 			String challengeFilename = fileManager.doFileUpload(dto.getUpload(), pathname);
 			if(challengeFilename!=null) {
 				dto.setChallengeFilename(challengeFilename);
@@ -35,16 +36,12 @@ public class HealthAdminServiceImpl implements HealthAdminService {
 			List<String> startDates = dto.getStartDates();
 			
 			// 상세정보 갯수만큼 for문 실행됨
-			int exNum=1;
 			for(int i=0; i<startDates.size(); i++) {
-				dto.setExNum(exNum);
 			    dto.setStartDate(dto.getStartDates().get(i));
 			    dto.setEndDate(dto.getEndDates().get(i));
 			    dto.setExContent(dto.getExContents().get(i));
 
 			    insertChallengeMore(dto);
-			    
-			    exNum++;
 			}
 			
 		} catch (Exception e) {
@@ -67,7 +64,7 @@ public class HealthAdminServiceImpl implements HealthAdminService {
 	
 	//challenge1,2 둘다 같이 지우는거
 	@Override
-	public void deleteChallenge(int num, String pathname) throws Exception {
+	public void deleteChallenge(long num, String pathname) throws Exception {
 		try {
 			
 			HealthAdmin dto = readChallenge(num);
@@ -88,12 +85,40 @@ public class HealthAdminServiceImpl implements HealthAdminService {
 	//둘다 같이 업데이트
 	@Override
 	public void updateChallenge(HealthAdmin dto, String pathname) throws Exception {
-		
+		try {
+			
+			String challengeFilename = fileManager.doFileUpload(dto.getUpload(), pathname);
+
+			if(challengeFilename!=null) {
+				if(dto.getChallengeFilename().length()!=0) {
+					fileManager.doFileDelete(dto.getChallengeFilename(), pathname);
+				}
+			}
+			dao.updateData("healthAdmin.updateChallenge", dto);
+			
+			if(dto.getStartDate()!=null) {
+				List<String> startDates = dto.getStartDates();
+				int exNum=1;
+				for(int i=0; i<startDates.size(); i++) {
+					dto.setExNum(exNum);
+					dto.setStartDate(dto.getStartDates().get(i));
+					dto.setEndDate(dto.getEndDates().get(i));
+					dto.setExContent(dto.getExContents().get(i));
+					
+					insertChallengeMore(dto);
+					
+					exNum++;
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
 	}
 
 	//challenge1만 읽기 
 	@Override
-	public HealthAdmin readChallenge(int num) {
+	public HealthAdmin readChallenge(long num) {
 		HealthAdmin dto =null;
 		try {
 			dto=dao.selectOne("healthAdmin.readChallenge", num);
@@ -128,7 +153,7 @@ public class HealthAdminServiceImpl implements HealthAdminService {
 
 	//챌린지2리스트(article 용)
 	@Override
-	public List<HealthAdmin> listChallenge2(int num) {
+	public List<HealthAdmin> listChallenge2(long num) {
 		List<HealthAdmin> listChallenge2=null;
 		try {
 			listChallenge2=dao.selectList("healthAdmin.listChallenge2", num);

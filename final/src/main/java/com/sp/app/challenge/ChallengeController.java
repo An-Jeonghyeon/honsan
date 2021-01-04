@@ -152,7 +152,7 @@ public class ChallengeController {
 	
 	@RequestMapping(value = "article")
 	public String article(
-			@RequestParam int num,
+			@RequestParam long num,
 			@RequestParam(defaultValue="all") String condition,
 			@RequestParam(defaultValue="") String keyword,
 			Model model
@@ -192,15 +192,22 @@ public class ChallengeController {
         	int end = Integer.parseInt(s.getEndDate());
         	
         	for(int i=start; i<=end; i++) {
-        		dto.setdDate(i);
-        		dto.setExContent(s.getExContent());
-        		//여기까진 잘뽑히는데 이걸 어디에 어떻게 넣어서 보내느가. . . .
+        		Challenge dto2 = new Challenge();
+        		dto2.setdDate(i);
+        		dto2.setExContent(s.getExContent());
         		
-        		list3.add(dto);
+        		list3.add(dto2);
 //        		System.out.println(i);
 //        		System.out.println(s.getExContent());
         		
         	}
+        	
+//        	for(Challenge d : list3) {
+//        		System.out.println("**"+d.getdDate());
+//        		System.out.println("**"+d.getExContent());
+//        	}
+//        	System.out.println("--------------------");
+//        	
         }
         
         
@@ -209,8 +216,6 @@ public class ChallengeController {
 		model.addAttribute("query", query);
 		model.addAttribute("contentList", list3);
         
-		System.out.println(dto.getVideo());
-		
 		return ".challenge.article";
 	}
 	

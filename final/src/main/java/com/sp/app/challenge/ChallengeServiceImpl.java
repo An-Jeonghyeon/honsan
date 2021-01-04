@@ -15,7 +15,7 @@ public class ChallengeServiceImpl implements ChallengeService {
 	private CommonDAO  dao;
 	
 	@Override
-	public Challenge readChallenge(int num) {
+	public Challenge readChallenge(long num) {
 		Challenge dto =null;
 		try {
 			dto=dao.selectOne("challenge.readChallenge", num);
@@ -50,7 +50,7 @@ public class ChallengeServiceImpl implements ChallengeService {
 	}
 
 	@Override
-	public List<Challenge> listChallenge2(int num) {
+	public List<Challenge> listChallenge2(long num) {
 		List<Challenge> listChallenge2=null;
 		try {
 			listChallenge2=dao.selectList("challenge.listChallenge2", num);
