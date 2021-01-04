@@ -11,7 +11,7 @@
 #wrapper{
 	width: 1000px;
 	margin: 100px auto;
-	
+	height: 1000px
 }
 
  /*TAB CSS*/
@@ -21,10 +21,11 @@ ul.tabs {
     padding: 0;
     float: left;
     list-style: none;
-    height: 32px; /*--Set height of tabs--*/
+    height: 82px; /*--Set height of tabs--*/
     border-bottom: 1px solid #999;
     border-left: 1px solid #999;
     width: 100%;
+    font-size: 20px;
 }
 ul.tabs li {
     float: left;
@@ -54,9 +55,10 @@ ul.tabs li a:hover {
 }
 html ul.tabs li.active, html ul.tabs li.active a:hover  {
      /*--Makes sure that the active tab does not listen to the hover properties--*/
-   background: #fff;
+   background: #ffffff;
    /*--Makes the active tab look like it's connected with its content--*/
     border-bottom: 1px solid #fff; 
+    font-weight: bold;
 }
 
 /*Tab Conent CSS*/
@@ -84,14 +86,180 @@ html ul.tabs li.active, html ul.tabs li.active a:hover  {
 }
 
 .alert-info {
-    border: 1px solid #9acfea;
-    border-radius: 4px;
-    background-color: #d9edf7;
-    color: #31708f;
+    border-bottom: 1px solid #008080;
+    border-top: 1px solid #008080;
     padding: 15px;
     margin-top: 10px;
     margin-bottom: 20px;
 }
+
+
+
+/*------------------------------------------------*/
+.guest-write {
+    border: #d5d5d5 solid 1px;
+    padding: 10px;
+    min-height: 50px;
+}
+
+.guest-delete, .guest-notify{
+	cursor:pointer;
+}
+.guest-delete:hover, .guest-notify:hover{
+	color:#F28011;
+	text-decoration: underline;
+}
+.guest-more:hover{
+	cursor:pointer;
+	color: #2524FF;
+}
+
+.body-title{
+	font-size: 35px;
+	padding-bottom: 30px;
+}
+.tipli:hover{
+	cursor: pointer;
+}
+
+/*-----------------------------------------*/
+@import url(https://fonts.googleapis.com/css?family=Raleway:400,700);
+.snip1445 {
+  font-family: 'Raleway', Arial, sans-serif;
+  position: relative;
+  overflow: hidden;
+  min-width: 950px;
+  height:520px;
+  max-width: 9050px;
+  width: 100%;
+  color: #ffffff;
+  text-align: center;
+  font-size: 16px;
+  background-color: #000000;
+}
+.snip1445 *,
+.snip1445 *:before,
+.snip1445 *:after {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-transition: all 0.55s ease;
+  transition: all 0.55s ease;
+}
+.snip1445 img {
+  width: 100%;
+  height:100%;
+  backface-visibility: hidden;
+  vertical-align: top;
+}
+.snip1445 figcaption {
+  position: absolute;
+  bottom: 25px;
+  right: 25px;
+  padding: 5px 10px 10px;
+}
+.snip1445 figcaption:before,
+.snip1445 figcaption:after {
+  height: 2px;
+  width: 1000px;
+  position: absolute;
+  content: '';
+  background-color: #ffffff;
+}
+.snip1445 figcaption:before {
+  top: 0;
+  left: 0;
+  -webkit-transform: translateX(100%);
+  transform: translateX(100%);
+}
+.snip1445 figcaption:after {
+  bottom: 0;
+  right: 0;
+  -webkit-transform: translateX(-100%);
+  transform: translateX(-100%);
+}
+.snip1445 figcaption div:before,
+.snip1445 figcaption div:after {
+  width: 2px;
+  height: 500px;
+  position: absolute;
+  content: '';
+  background-color: #ffffff;
+}
+.snip1445 figcaption div:before {
+  top: 0;
+  left: 0;
+  -webkit-transform: translateY(100%);
+  transform: translateY(100%);
+}
+.snip1445 figcaption div:after {
+  bottom: 0;
+  right: 0;
+  -webkit-transform: translateY(-100%);
+  transform: translateY(-100%);
+}
+.snip1445 h2,
+.snip1445 h4 {
+  margin: 0;
+  text-transform: uppercase;
+}
+.snip1445 h2 {
+  font-weight: 400;
+  font-size: 40px;
+}
+.snip1445 h4 {
+  display: block;
+  font-weight: 700;
+  background-color: #ffffff;
+  padding: 5px 10px;
+  color: #000000;
+  font-size: 20px;
+}
+.snip1445 a {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.snip1445:hover img,
+.snip1445.hover img {
+  zoom: 1;
+  filter: alpha(opacity=50);
+  -webkit-opacity: 0.5;
+  opacity: 0.5;
+}
+.snip1445:hover figcaption:before,
+.snip1445.hover figcaption:before,
+.snip1445:hover figcaption:after,
+.snip1445.hover figcaption:after,
+.snip1445:hover figcaption div:before,
+.snip1445.hover figcaption div:before,
+.snip1445:hover figcaption div:after,
+.snip1445.hover figcaption div:after {
+  -webkit-transform: translate(0, 0);
+  transform: translate(0, 0);
+}
+.snip1445:hover figcaption:before,
+.snip1445.hover figcaption:before,
+.snip1445:hover figcaption:after,
+.snip1445.hover figcaption:after {
+  -webkit-transition-delay: 0.15s;
+  transition-delay: 0.15s;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
