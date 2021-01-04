@@ -95,8 +95,12 @@
 	</select>
 	
 	<select id="listBoard" parameterType="map" resultType="com.sp.app.interiorTip.InteriorTip"> 
-		SELECT num, userId, subject, hitCount, TO_CHAR(register_date, 'YYYY-MM-DD') register_date , category
-		FROM lifeTip 
+		SELECT num, l.userId, subject, hitCount, TO_CHAR(register_date, 'YYYY-MM-DD') created , category ,userName
+		FROM lifeTip l
+		LEFT OUTER JOIN (
+        SELECT userId , userName 
+        FROM member1
+        ) m ON l.userId = m.userId
 		<where>
 			<if test="keyword!=null and keyword!=''">
 				<include refid="where-list"/>

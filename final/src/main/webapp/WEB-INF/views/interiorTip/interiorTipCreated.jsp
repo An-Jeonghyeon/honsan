@@ -2,7 +2,24 @@
 <%@ page trimDirectiveWhitespaces="true" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
+<link rel="stylesheet"href="${pageContext.request.contextPath}/resources/css/dress/created.css"type="text/css">
 <!-- 스마트에디터 사용을 위한 스크립트 -->
+
+<style>
+
+.writeCategory{
+	height: 43px;
+	
+}
+
+.writeCategory_category{
+	width: 120px;
+	height: 95%;
+	border: 1px solid rgb(226, 226, 226);
+	border-radius: 2px;
+}
+</style>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/se/js/HuskyEZCreator.js" charset="utf-8"></script>
 <script type="text/javascript">
     function check() {
@@ -27,67 +44,73 @@
     }
 </script>
 
-<div class="body-container" style="width: 830px;">
-    <div class="body-title">
-        <h3><i class="fab fa-asymmetrik"></i> 게시판 </h3>
-    </div>
-    
-    <div>
-			<form name="interiorTipForm" method="post" onsubmit="return submitContents(this);" enctype="multipart/form-data">
-			  <table style="width: 100%; margin: 20px auto 0px; border-spacing: 0px; border-collapse: collapse;">
-			  <tbody id="boardBody">
-			  <tr align="left" height="40" style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc;"> 
-			      <td width="100" bgcolor="#eeeeee" style="text-align: center;">제&nbsp;&nbsp;&nbsp;&nbsp;목</td>
-			      <td style="padding-left:10px;"> 
-			        <input type="text" name="subject" maxlength="100" class="boxTF" style="width: 95%;" value="${dto.subject}">
-			      </td>
-			  </tr>
-			
-			  <tr align="left" height="40" style="border-bottom: 1px solid #cccccc;"> 
-			      <td width="100" bgcolor="#eeeeee" style="text-align: center;">작성자</td>
-			      <td style="padding-left:10px;"> 
-			          ${sessionScope.member.userName}
-			      </td>
-			  </tr>
-			
-			  <tr align="left" style="border-bottom: 1px solid #cccccc;"> 
-			      <td width="100" bgcolor="#eeeeee" style="text-align: center; padding-top:5px;" valign="top">내&nbsp;&nbsp;&nbsp;&nbsp;용</td>
-			      <td valign="top" style="padding:5px 0px 5px 10px;"> 
-			        <textarea name="content" id="content" class="boxTA" style="width:98%; height: 270px;">${dto.content}</textarea>
-			      </td>
-			  </tr>
-		<!-- 여기서 지울수도 ㅣㅇㅆ음  -->	  
-			  <tr>
-			  	<td>
-			  		<select name="category" >
-			  			<option value="tip1">청소팁</option>
-			  			<option value="tip2">정리팁</option>
-			  			<option value="tip3">생활팁</option>
-			  		</select>
-			  	</td>
-			  </tr>
 
-			  
-			  </tbody>
-			  </table>
-			
-			  <table style="width: 100%; margin: 0px auto; border-spacing: 0px;">
-			     <tr height="45"> 
-			      <td align="center" >
-			      <c:if test="${mode=='update' }">
-						<input type="hidden" name="num" value="${dto.num}">
-						<input type="hidden" name="page" value="${page}">
-					</c:if>
-			        <button type="submit" class="btn">${mode=='update'?'수정완료':'등록하기'}</button>
-			        <button type="reset" class="btn">다시입력</button>
-			        <button type="button" class="btn" onclick="javascript:location.href='${pageContext.request.contextPath}/bbs/list';">${mode=='update'?'수정취소':'등록취소'}</button>
+<article class="writeHeader">
+                <div class="writeheaderInnerText">
+                    <h3 class="FadeinText">정보를 공유 해요!</h3>
+                    <small class="FadeinText">오늘도 어김없이 혼자 무엇을 하려는 당신 <br> 오늘
+                        하루 수고한 당신과 ,주변사람들을 위해 <br> 당신의 하루를 공유 해보는게 어떠세요?
+                    </small>
+                </div>
+                <div class="writeHeaderMenu">
+                    <ul>
+                        <li><a style="text-decoration: none; color : #35c5f0; font-weight: 700;"
+                         href="${pageContext.request.contextPath}/interiorTip/list">전체글보기</a></li>
+                    </ul>
+                </div>
+            </article>
 
-			      </td>
-			    </tr>
-			  </table>
-			</form>
-    </div>
-    
+            <form method="post" name="writeBodyForm" onsubmit="return submitContents(this);"
+                enctype="multipart/form-data">
+                <article class="writeBody">
+                    <div class="writeBodyHeader">
+                        <span>Tip Tip</span>
+                    </div>
+                    <div class="writeUserName">작성자: ${sessionScope.member.userName}</div>
+					
+					<div class="writeCategory">
+						<select name="category" class=writeCategory_category>
+							<option value="생활 팁">생활 팁</option>
+							<option value="청소 팁">청소 팁</option>
+							<option value="정리 팁">정리 팁</option>
+						</select>
+					</div>
+					
+                    <div class="subjectBody">
+                        <input type="text" name="subject" id="subject" value="${dto.subject}"
+                            placeholder="제목을 입력해 주세요.">
+                    </div>
+
+                    <div class="contentBody">
+                        <div class="inputBody1">
+                            <textarea id="content" name="content">${dto.content}</textarea>
+                              <div class="">
+                          </div>
+                        </div>                     
+                        <div class="tagBody">
+                            <div class="plusTag">
+                              
+                            </div>
+                            <div class="dress-TagSpanBodyBox">
+                                <div class="dress-TagSpanBody">
+                               
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="buttonBoxBody">
+                        <button type="button" id="CencelSubmit" onclick="javascript:location.href='${pageContext.request.contextPath}/dressTip/article?num=${dto.num}&page=${page}'">${mode=='update'? '수정취소':'등록취소'}</button>
+                        <button type="submit" id="writeSubmit">${mode=='update'?'수정완료':'등록하기'}</button>
+                        <c:if test="${mode=='update'}">
+                        	<input type="hidden" name="num" value="${dto.num}">
+                        	<input type="hidden" name="page" value="${page}">
+                        </c:if>
+                    </div>
+                </article>
+            </form>
 <script type="text/javascript">
 var oEditors = [];
 nhn.husky.EZCreator.createInIFrame({

@@ -10,6 +10,7 @@ public class InteriorTip {
 	private String subject;
 	private String content;
 	private String category;
+
 	
 	private String created;
 	private int hitCount;
