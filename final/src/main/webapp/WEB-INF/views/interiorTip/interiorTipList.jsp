@@ -20,6 +20,9 @@
 	vertical-align:middle;
 }
 
+.fa-angle-left:before{
+}
+
 
 #numBox_sub{
 	font-size: 15px;
