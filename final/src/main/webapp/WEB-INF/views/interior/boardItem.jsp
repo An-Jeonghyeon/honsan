@@ -466,7 +466,7 @@ $(function(){
 
                 <div class="leftbox_comment_insert">
                     <div class="leftbox_comment_userImg">
-                        <img src="${pageContext.request.contextPath}/resources/images/interior/comment.png">
+                        <img src="${pageContext.request.contextPath}/uploads/profile/${logindto.profileImg}">
                     </div>
                     <div class="leftbox_comment_usercomment">
                         <div class="leftbox_comment_usercomment_input">

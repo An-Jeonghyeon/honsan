@@ -154,6 +154,7 @@
 
 .spanEx {
   display: block;
+
   
 }
 

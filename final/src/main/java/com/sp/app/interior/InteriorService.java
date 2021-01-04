@@ -12,6 +12,8 @@ public interface InteriorService {
 	public Interior readBoard(int num);
 	public void updateHitCount(int num) throws Exception;
 	public void deleteBoard(Map<String, Object> map) throws Exception;
+	public Interior readprofile(Map<String, Object> map) throws Exception;
+	public int mdataCount(Map<String, Object> map);
 	
 	public void updateInterior(Interior dto ,String pathname) throws Exception;
 	public List<Interior> userlistBoard(Map<String, Object> map);

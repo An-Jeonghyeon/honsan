@@ -10,6 +10,21 @@ public class Reply {
 	private int answer;
 	private String created;
 	
+	private String profileImg;
+	private String replyProfileImg;
+	
+	public String getProfileImg() {
+		return profileImg;
+	}
+	public void setProfileImg(String profileImg) {
+		this.profileImg = profileImg;
+	}
+	public String getReplyProfileImg() {
+		return replyProfileImg;
+	}
+	public void setReplyProfileImg(String replyProfileImg) {
+		this.replyProfileImg = replyProfileImg;
+	}
 	public String getRegister_date() {
 		return register_date;
 	}

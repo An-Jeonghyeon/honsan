@@ -21,6 +21,7 @@ public class Interior {
 	private String replycontent;
 	private String replyuserId;
 	private int replyCount;
+	private String profileMsg;
 	
 	// 프로 필 이미지 들 
 	private String profileImg;
@@ -37,6 +38,13 @@ public class Interior {
 	
 	
 	
+	public String getProfileMsg() {
+		return profileMsg;
+	}
+	
+	public void setProfileMsg(String profileMsg) {
+		this.profileMsg = profileMsg;
+	}
 	public int getInteriorZzimCount() {
 		return interiorZzimCount;
 	}

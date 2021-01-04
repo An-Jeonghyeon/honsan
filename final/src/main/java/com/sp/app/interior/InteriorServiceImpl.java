@@ -81,6 +81,19 @@ public class InteriorServiceImpl implements InteriorService{
 		
 		return result;
 	}
+	
+	@Override
+	public int mdataCount(Map<String, Object> map) {
+		int result = 0;
+		
+		try {
+			result = dao.selectOne("interior.mdataCount", map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
 
 	@Override
 	public Interior readBoard(int num) {
@@ -395,6 +408,19 @@ public class InteriorServiceImpl implements InteriorService{
 			e.printStackTrace();
 		}
 		return list;
+	}
+
+
+
+	@Override
+	public Interior readprofile(Map<String, Object> map) throws Exception {
+		Interior dto = null;
+		try {
+			dto = dao.selectOne("interior.readprofile", map);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return dto;
 	}
 	
 

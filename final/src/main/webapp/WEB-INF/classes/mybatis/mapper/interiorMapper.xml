@@ -47,6 +47,12 @@
 			</where>
 	</select>
 	
+	<select id="mdataCount" parameterType="map" resultType="Integer">
+		SELECT NVL(COUNT(*), 0) 
+		FROM interior
+		WHERE userId = #{userId}
+	</select>
+	
 	<!-- 인테리어 게시판 리스트  -->
 	<select id="interiorlist" parameterType="map"
 		resultType="com.sp.app.interior.Interior"> <!-- map에는 condition, keyword, offset, rows 등이 저장되어 넘어온다 -->
@@ -219,9 +225,13 @@
 	
 	<!-- 댓글 리스트 -->
 	<select id="listInteriorReply" parameterType="map" resultType="com.sp.app.interior.Reply">
-		SELECT replyNum, i.userId, userName, num, content, register_date
+		SELECT replyNum, i.userId, userName, num, content, register_date , profileImg , profileMsg
 		FROM interior_reply i
 		JOIN member1 m ON i.userId = m.userId
+		LEFT OUTER JOIN (
+        SELECT userId , profileImg , profileMsg
+        FROM memberprofile
+        )p ON i.userId = p.userId
 		WHERE num=#{num}  AND i.answer=0
 		ORDER BY i.replyNum DESC
 		OFFSET #{offset} ROWS FETCH FIRST #{rows} ROWS ONLY
@@ -239,10 +249,20 @@
 	
 	<!-- 대댓글 리스트 -->
 	<select id="listInteriorReplyAnswer" parameterType="Integer" resultType="com.sp.app.interior.Reply">
-		SELECT replyNum, num, i.userId, userName, content, register_date, answer
+		SELECT replyNum, num, i.userId, userName, content, register_date, answer , profileImg , profileMsg
 		FROM interior_reply i
 		JOIN member1 m ON i.userId = m.userId
+		LEFT OUTER JOIN (
+        SELECT userId , profileImg , profileMsg
+        FROM memberprofile
+        )p ON i.userId = p.userId
 		WHERE answer = #{answer}
 		ORDER BY replyNum ASC
+	</select>
+	
+	<!-- 로그인 사용자 프로필 댓글 부분사용  -->
+	<select id="readprofile" parameterType="map" resultType="com.sp.app.interior.Interior">
+		SELECT userId, profileImg, profileMsg
+		From memberprofile WHERE userId = #{userId}
 	</select>
 </mapper>
