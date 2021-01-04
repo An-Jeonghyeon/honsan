@@ -5,15 +5,9 @@
 
 <script type="text/javascript">
 	function searchList() {
-		var f = document.dressTipCreatedFrom;
+		var f = document.dressTipCleanCreatedFrom;
 		f.submit();
 	}
-$(function(){
-	$(".dress-TipMenuBody1").click(function(){
-		
-	})
-})
-	
 	
 </script>
 
@@ -51,11 +45,11 @@ $(function(){
                     </div>
                 </c:forEach>
                 </div>
-                <form name="dressTipCreatedFrom" method="post" action="${pageContext.request.contextPath}/dressTip/list">
+                <form name="dressTipCleanCreatedFrom" method="post" action="${pageContext.request.contextPath}/dressTipClean/list">
                     <div class="dress-searchFormBody">
                         <div class="dress-pagingNum">  ${dataCount==0?"등록된 게시물이 없습니다.":paging}</div>
                         <div class="dress-searchBody">
-                            <button class="dress-Resetbtn dress-Btn" type="button" onclick="javascript:location.href='${pageContext.request.contextPath}/dressTip/list';">
+                            <button class="dress-Resetbtn dress-Btn" type="button" onclick="javascript:location.href='${pageContext.request.contextPath}/dressTipClean/list';">
                                 <i class="fas fa-redo-alt fa-2x"></i></button>
                             <select class="dress-Selectbtn" name="condition">
                                   <option value="all" ${condition=="all"?"selected='selected'":""}>모두</option>
@@ -66,7 +60,7 @@ $(function(){
                             </select>
                             <input class="dress-Search" type="text"  name="keyword" value="${keyword}">
                             <button class="dress-Searchbnt dress-Btn" type="button" onclick="searchList();">검색</button>
-                            <button class="dress-Createdbtn dress-Btn" type="button" onclick="javascript:location.href='${pageContext.request.contextPath}/dressTip/created';">글쓰기</button>
+                            <button class="dress-Createdbtn dress-Btn" type="button" onclick="javascript:location.href='${pageContext.request.contextPath}/dressTipClean/created';">글쓰기</button>
                         </div>
                     </div>
                 </form>

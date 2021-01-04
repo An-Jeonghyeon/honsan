@@ -1,4 +1,4 @@
-package com.sp.app.dressTip;
+package com.sp.app.dressTipClean;
 
 import java.net.URLDecoder;
 import java.net.URLEncoder;
@@ -19,35 +19,35 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.sp.app.common.MyUtil;
 import com.sp.app.member.SessionInfo;
 
-@Controller("dressTip.dressTipController")
-@RequestMapping("/dressTip/*")
-public class DressTipController {
+@Controller("dressTipClean.dressTipCleanController")
+@RequestMapping("/dressTipClean/*")
+public class DressTipCleanController {
 	
 	@Autowired
-	private DressTipService service;
+	private DressTipCleanService service;
 	
 	@Autowired
 	private MyUtil myUtil;
 	
 	@RequestMapping(value = "created" , method = RequestMethod.GET)
-	public String DressTipCreatd(Model model)throws Exception{
+	public String DressTipCleanCreatd(Model model)throws Exception{
 		model.addAttribute("mode","created");
-		return ".dressTip.created";
+		return ".dressTipClean.created";
 	}
 	@RequestMapping(value = "created" , method = RequestMethod.POST)
-	public String DressTipCreatedSubmit(DressTip dto, HttpSession session)throws Exception{
+	public String DressTipCleanCreatedSubmit(DressTipClean dto, HttpSession session)throws Exception{
 		SessionInfo info = (SessionInfo)session.getAttribute("member");
 		
 		try {
 			dto.setUserId(info.getUserId());
-			service.insertDressTip(dto);
+			service.insertDressTipClean(dto);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "redirect:/dressTip/list";
+		return "redirect:/dressTipClean/list";
 	}
 	@RequestMapping("list")
-	public String DressTipList(@RequestParam(value = "page",defaultValue = "1")int current_page,
+	public String DressTipCleanList(@RequestParam(value = "page",defaultValue = "1")int current_page,
 								@RequestParam(defaultValue = "all")String condition,
 								@RequestParam(defaultValue = "") String keyword,
 								HttpServletRequest req,
@@ -78,13 +78,13 @@ public class DressTipController {
 		map.put("offset", offset);
 		map.put("rows", rows);
 		
-		List<DressTip> list= service.listDressTip(map);
+		List<DressTipClean> list= service.listDressTipClean(map);
 		List<String> images;
 		
 		int listNum;
 		int n=0;
 		
-		for(DressTip dto:list){
+		for(DressTipClean dto:list){
 			listNum=dataCount-(offset+n);
 			dto.setListNum(listNum);
 			n++;
@@ -95,8 +95,8 @@ public class DressTipController {
 		}
 		String cp = req.getContextPath();
 		String query ="";
-		String listUrl =cp+"/dressTip/list";
-		String articleUrl = cp+"/dressTip/article?page="+current_page;
+		String listUrl =cp+"/dressTipClean/list";
+		String articleUrl = cp+"/dressTipClean/article?page="+current_page;
 		if(keyword.length()!=0) {
 			query= "condition="+condition+"&keyword="+URLEncoder.encode(keyword,"utf-8");
 		}
@@ -115,10 +115,10 @@ public class DressTipController {
 		model.addAttribute("condition", condition);
 		model.addAttribute("keyword", keyword);
 		
-		return ".dressTip.list";
+		return ".dressTipClean.list";
 	}
 	@RequestMapping(value = "article" , method = RequestMethod.GET)
-	public String DressTipArticle(@RequestParam (defaultValue = "1")int num,
+	public String DressTipCleanArticle(@RequestParam (defaultValue = "1")int num,
 							      @RequestParam (defaultValue = "" )String page,
 							      @RequestParam (defaultValue = "all")String condition,
 							      @RequestParam (defaultValue = "")String keyword,
@@ -131,9 +131,9 @@ public class DressTipController {
 			query+="&condition="+condition+"&keyword="+URLEncoder.encode(keyword,"utf-8");
 		}
 		service.updateHitCount(num);
-		DressTip dto = service.readDressTip(num);
+		DressTipClean dto = service.readDressTipClean(num);
 		if(dto==null) {
-			return "redirect:/dressTip/list?"+query;
+			return "redirect:/dressTipClean/list?"+query;
 		}
 		
 		SessionInfo info =(SessionInfo)session.getAttribute("member");
@@ -150,10 +150,10 @@ public class DressTipController {
 		model.addAttribute("page",page);
 		model.addAttribute("query",query);
 		
-		return ".dressTip.article";
+		return ".dressTipClean.article";
 	}
 	@RequestMapping(value = "delete")
-	public String deleteDressTip(@RequestParam int num , 
+	public String deleteDressTipClean(@RequestParam int num , 
 								  @RequestParam String page,
 								  @RequestParam(defaultValue= "all")String condition,
 								  @RequestParam(defaultValue= "")String keyword,
@@ -166,37 +166,37 @@ public class DressTipController {
 		if(keyword.length()!=0) {
 			 query+="&condition="+condition+"&keyword="+URLEncoder.encode(keyword,"utf-8");
 		}
-		service.deleteDressTip(num ,info.getUserId());
+		service.deleteDressTipClean(num ,info.getUserId());
 		
-		return "redirect:/dressTip/list?"+query;
+		return "redirect:/dressTipClean/list?"+query;
 	}
 	@RequestMapping(value = "update",method = RequestMethod.GET)
-	public String updateDressTipForm(@RequestParam int num,
+	public String updateDressTipCleanForm(@RequestParam int num,
 								 @RequestParam String page,
 								 HttpSession session,
 								 Model model
 	)throws Exception{
 			SessionInfo info = (SessionInfo)session.getAttribute("member");
-			DressTip dto = service.readDressTip(num);
+			DressTipClean dto = service.readDressTipClean(num);
 			if(dto == null) {
-				return "redirect:/dressTip/list?page="+page;
+				return "redirect:/dressTipClean/list?page="+page;
 			}
 			if(! info.getUserId().equals(dto.getUserId())) {
-				return "redirect:/dressTip/list?page="+page;
+				return "redirect:/dressTipClean/list?page="+page;
 			}
 			model.addAttribute("dto",dto);
 			model.addAttribute("mode","update");
 			model.addAttribute("page",page);
-		return ".dressTip.created";
+		return ".dressTipClean.created";
 	}
 	@RequestMapping(value = "update", method = RequestMethod.POST)
-	public String updateDressTipSubmit(DressTip dto,@RequestParam String page, HttpSession session)throws Exception{
+	public String updateDressTipCleanSubmit(DressTipClean dto,@RequestParam String page, HttpSession session)throws Exception{
 		try {
-			service.updateDressTip(dto);
+			service.updateDressTipClean(dto);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "redirect:/dressTip/list?page="+page;
+		return "redirect:/dressTipClean/list?page="+page;
 		
 	}
 	
