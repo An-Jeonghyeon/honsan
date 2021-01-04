@@ -44,7 +44,7 @@
 				DBMS_LOB.INSTR(content, #{keyword}) &gt; 0
 			</when>
 			<otherwise>
-				INSTR(${condition}, #{keyword}) &gt; 0
+				(INSTR(${condition}, #{keyword}) &gt; 0 OR INSTR(${hashtag}, #{keyword}) &gt; 0 )
 			</otherwise>
 		</choose>
 	</sql>

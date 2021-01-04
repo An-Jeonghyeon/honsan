@@ -2,6 +2,7 @@
 <%@ page trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <script type="text/javascript">
 	function searchList() {
@@ -37,7 +38,7 @@
 						<span class="dress-subContent-InnerTags">
 							 <c:forEach
 								var="s" items="${best.hashtag}">
-								<a href="#">${s}</a>
+								<a href="${pageContext.request.contextPath}/dress/list?keyword=${s}">${s}</a>
 							</c:forEach>
 						</span>
 					</div>
@@ -60,8 +61,8 @@
 						<span class="dress-subContent-InnerReplyCount">(${dto.replyCount })</span>
 						<span class="dress-subContent-InnerTags">
 							 <c:forEach
-								var="s" items="${dto.tags}">
-								<a href="#">${s}</a>
+								var="s" items="${dto.tags}" varStatus="n">
+								<a href="${pageContext.request.contextPath}/dress/list?keyword=${fn:substring(s,1,s.length())}">${s}</a>
 							</c:forEach>
 						</span>
 					</div>
