@@ -205,8 +205,9 @@ $(function(){
 					                            <th scope="row">대표이미지</th>
 					                            <td>
 					                            	<input type="file" name="upload" accept="image/*">
-					                            	<c:if test="mode=='update'">
+					                            	<c:if test="${mode=='update'}">
 					                            		<input type="hidden" name="challengeFilename" value="${dto.challengeFilename}">
+					                            		${dto.challengeFilename}
 					                            	</c:if>
 					                            </td>
 					                        </tr>
@@ -223,29 +224,34 @@ $(function(){
 					                <!-- 추가될것 -->
 					                
 					                <div class="ch_content_more">
-					                    <div class="more_title">  상세정보</div>
+					                    <div class="more_title">상세정보</div>
+					                    <div class="more-notice"><b>작성시 유의사항</b>  
+					                    	<br> - 시작일과 종료일 동일시 하루로 계산됩니다.
+					                    	<br> - 일차 순서대로 작성하여 주십시오.
+					                    	<br> - 두개이상의 상세기간의 날짜가 겹칠 경우, 해당일차가 두번 생성되니 유의하여 작성하여주십시오  </div>
 <!-- 					                    <div class="plustable"> -->
 <!-- 					                   		여기 추가될것.. -->
 <!-- 					                    </div> -->
 					                    <table border="1" class="ch_table moreTable">
-					                    	<tbody class="morebody">
-					                        <tr>
-					                            <th scope="row">상세기간</th>
-					                            <td class="chperiod">
-					                                <input type="text" name="startDates" class="start"> 일차  ~
-					                                <input type="text" name="endDates" class="end"> 일차
-					                                <button type="button" class="deletebtn">X</button>
-					                            </td>
-					                        </tr>
-					                        <tr>
-					                            <th scope="row">하루 운동상세</th>
-					                            <td class="chsub">
-					                                <input type="text" name="exContents" class="excontent">
-					                                <button type="button" class="plusbtn" data-addcount="1">추가</button>
-					                                <br><small>* 여러항목 등록시 '/' 로 구분작성</small>
-					                            </td>
-					                        </tr>
-					                    	</tbody>
+					                    	<c:if test="${mode=='created'}">
+						                    	<tbody class="morebody">
+						                        <tr>
+						                            <th scope="row">상세기간</th>
+						                            <td class="chperiod">
+						                                <input type="text" name="startDates" class="start"> 일차  ~
+						                                <input type="text" name="endDates" class="end"> 일차
+						                                <button type="button" class="deletebtn">X</button>
+						                            </td>
+						                        </tr>
+						                        <tr>
+						                            <th scope="row">하루 운동상세</th>
+						                            <td class="chsub">
+						                                <input type="text" name="exContents" class="excontent">
+						                                <button type="button" class="plusbtn" data-addcount="1">추가</button>
+						                            </td>
+						                        </tr>
+						                    	</tbody>
+					                    	</c:if>
 					                    	
 					                    	<c:if test="${mode=='update'}">
 											   <c:forEach var="vo" items="${listChallenge2}">
@@ -265,7 +271,6 @@ $(function(){
 							                            <td class="chsub">
 							                                <input type="text" name="exContents" class="excontent" value="${vo.exContent}">
 							                                <button type="button" class="plusbtn">추가</button>
-							                                <br><small>* 여러항목 등록시 '/' 로 구분작성</small>
 							                            </td>
 							                        </tr>
 							                    	</tbody>

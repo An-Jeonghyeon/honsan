@@ -68,6 +68,7 @@
 		SELECT exNum, num, startDate, endDate, exContent
 		FROM  challenge2
 		WHERE num=#{num}
+		ORDER BY exNum
 	</select>
 	
 	<!-- 상세정보 하나 읽기 -->

@@ -183,22 +183,25 @@ a {
 }
 /* 게시글 비율 */
 .s-table-num {
-	width: 10%;
+	width: 7%;  
+}
+.s-table-category {
+	width: 13%;
 }
 .s-table-sub {
-	width: 43%;
-}
-.s-table-date {
-	width: 15%;
+	width: 40%;
 }
 .s-table-user {
 	width: 15%;
 }
-.register_date {
-	width: 10%;
+.s-table-date {
+	width: 15%;
+}
+.s-table-lisk {
+	width: 5%;
 }
 .s-table-count {
-	width: 10%;
+	width: 5%;
 }
 
 /*글리스트 */

@@ -279,3 +279,45 @@
     border-radius: 5px;
     font-weight: 700;
 }
+/* 분류 */
+.sup_subjectTitle {
+	width: inherit;
+	height: 30px;
+	font-size: 18px;
+	font-weight: 600;
+}
+.sup_smallTitle {
+	font-weight: 700;
+}
+
+.sup_select {
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	appearance: none;
+	font-family: "Noto Sansf KR", sans-serif;
+	font-size: 1rem;
+	font-weight: 400;
+	line-height: 1.5;
+	color: #444;
+	background-color: #fff;
+	padding: .6em 1.4em .5em .8em;
+	margin-bottom: 20px;
+	height: 45px;
+	box-sizing: border-box;
+	border: 1px solid rgb(226, 226, 226);
+}
+
+.sup_select:hover {
+	border-color: black;
+}
+
+.sup_select:focus {
+	border-color: #aaa;
+	color: #222;
+	outline: none;
+	border: 2px solid black; 
+}
+
+.sup_select:disabled {
+	opacity: 0.5;
+}

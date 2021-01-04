@@ -199,13 +199,12 @@ public class HealthAdminController {
 			@RequestParam String page,
 			HttpSession session) throws Exception {
 
+		String root = session.getServletContext().getRealPath("/");
+		String pathname = root + File.separator + "uploads" + File.separator + "challenge";		
+		
 		try {
-			String root = session.getServletContext().getRealPath("/");
-			String pathname = root + File.separator + "uploads" + File.separator + "challenge";		
-			
 			//기보정보 업데이트
 			service.updateChallenge(dto, pathname);
-			
 			
 			//완료누르면...기존 상세 다 지우고
 			service.deleteChallengeAll(dto.getNum());
@@ -214,6 +213,7 @@ public class HealthAdminController {
 			service.insertChallenge2(dto);
 			
 		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		
 		return "redirect:/adm/health/list?page="+page;
