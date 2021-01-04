@@ -15,8 +15,8 @@
 					OR DBMS_LOB.INSTR(content, #{keyword}) &gt; 0 )
 			</when>
 			<when test="condition=='created' ">
-				( TO_CHAR(created, 'YYYYMMDD') = #{keyword}
-					OR TO_CHAR(created, 'YYYY-MM-DD') = #{keyword} )
+				( TO_CHAR(register_date, 'YYYYMMDD') = #{keyword}
+					OR TO_CHAR(register_date, 'YYYY-MM-DD') = #{keyword} )
 			</when>
 					<!-- 날짜에서 - 없애려면 서비스에서 처리하기 -->			
 			
@@ -39,8 +39,13 @@
 	</update>
 	
 	<select id="readBoard" parameterType="Integer" resultType="com.sp.app.interiorTip.InteriorTip">
-		SELECT num, userId, subject , category , content, register_date , hitCount 
-		FROM lifeTip
+		SELECT num, l.userId, subject , category , content, TO_CHAR(register_date, 'YYYY"년" MM"월" DD"일"') created , hitCount , userName  ,profileImg , profileMsg
+		FROM lifeTip l
+		LEFT OUTER JOIN (
+        SELECT userId , userName 
+        FROM member1
+        ) m ON l.userId = m.userId
+        LEFT OUTER JOIN memberprofile p ON l.userId = p.userId
 		WHERE num= #{num}
 	</select>
 	

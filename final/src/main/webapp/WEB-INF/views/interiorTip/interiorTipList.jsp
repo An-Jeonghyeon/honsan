@@ -334,18 +334,18 @@ function searchList() {
 			                            <div class="interiorTip_list_row_sub_hit"  align="left">조회수 &nbsp; ${dto.hitCount}</div>	
 			                        </div>
 		                        </c:if>
-	
-	                        <div class="interiorTip_list_row" align="center" bgcolor="#ffffff" height="35" style="border-bottom: 1px solid #cccccc;"> 
-	                            <div class="interiorTip_list_row_sub">${dto.category}</div>
-	                            <div class="interiorTip_list_row_subject" align="left" style="padding-left: 10px;">
-	                                <a class="interiorTip_list_row_subject_a" href="${articleUrl}&num=${dto.num}">${dto.subject}</a>
-	                            </div>
-	                            <div class="interiorTip_list_row_sub">${dto.userName}</div>
-	                            <div class="interiorTip_list_row_sub">${dto.created}</div>
-	                            <div class="interiorTip_list_row_sub_hit" align="left">조회수 &nbsp; ${dto.hitCount}</div>
-	
-	                        </div>
-	
+								<c:if test="${n.index!=0}">
+			                        <div class="interiorTip_list_row" align="center" bgcolor="#ffffff" height="35" style="border-bottom: 1px solid #cccccc;"> 
+			                            <div class="interiorTip_list_row_sub">${dto.category}</div>
+			                            <div class="interiorTip_list_row_subject" align="left" style="padding-left: 10px;">
+			                                <a class="interiorTip_list_row_subject_a" href="${articleUrl}&num=${dto.num}">${dto.subject}</a>
+			                            </div>
+			                            <div class="interiorTip_list_row_sub">${dto.userName}</div>
+			                            <div class="interiorTip_list_row_sub">${dto.created}</div>
+			                            <div class="interiorTip_list_row_sub_hit" align="left">조회수 &nbsp; ${dto.hitCount}</div>
+			
+			                        </div>
+								</c:if>
 	                        </c:forEach>
 	
 	                    </div>
@@ -364,13 +364,14 @@ function searchList() {
 	                            <button type="button" class="btn interiprTip_foot_row_button" onclick="javascript:location.href='${pageContext.request.contextPath}/bbs/list';">새로고침</button>
 	                        </div>
 	                        <div style="height: 40px;" >
-	                            <form name="searchForm" action="${pageContext.request.contextPath }/bbs/list" style="height: 100%;" method="post">
-	                                <select name="condition" class="selectField">
-	                                    <option value="all" ${condition=="ctip"?"selected='selected'":""}>전체 팁</option>
-	                                    <option value="생활 팁" ${condition=="ctip"?"selected='selected'":""}>생활 팁</option>
-	                                    <option value="청소 팁" ${condition=="jtip"?"selected='selected'":""}>청소 팁</option>
-	                                    <option value="정리 팁" ${condition=="ltip"?"selected='selected'":""}>정리 팁</option>
-	                                </select>
+	                            <form name="searchForm" action="${pageContext.request.contextPath }/interiorTip/list" style="height: 100%;" method="post">
+									<select name="condition" class="selectField">
+										<option value="all" ${condition=="all"?"selected='selected'":""}>모두</option>
+										<option value="subject" ${condition=="subject"?"selected='selected'":""}>제목</option>
+										<option value="content" ${condition=="content"?"selected='selected'":""}>내용</option>
+										<option value="userName" ${condition=="userName"?"selected='selected'":""}>작성자</option>
+										<option value="created" ${condition=="created"?"selected='selected'":""}>등록일</option>
+									</select>
 	                                <input type="text" name="keyword" value="${keyword}" class="boxTF interiprTip_foot_row_input">
 	                                <button type="button" class="btn interiprTip_foot_row_button" onclick="searchList()">&nbsp;검 색&nbsp; </button>
 	                            </form>

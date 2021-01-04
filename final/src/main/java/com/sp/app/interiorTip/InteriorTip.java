@@ -12,6 +12,21 @@ public class InteriorTip {
 	private String category;
 
 	
+	private String profileImg;
+	private String profileMsg;
+	
+	public String getProfileImg() {
+		return profileImg;
+	}
+	public void setProfileImg(String profileImg) {
+		this.profileImg = profileImg;
+	}
+	public String getProfileMsg() {
+		return profileMsg;
+	}
+	public void setProfileMsg(String profileMsg) {
+		this.profileMsg = profileMsg;
+	}
 	private String created;
 	private int hitCount;
 

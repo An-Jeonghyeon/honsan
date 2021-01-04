@@ -20,8 +20,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sp.app.common.MyUtil;
+import com.sp.app.interior.Interior;
+import com.sp.app.interior.InteriorService;
 import com.sp.app.interior.Reply;
 import com.sp.app.member.SessionInfo;
+import com.sp.app.mypage.MypageService;
 
 @Controller("interiorTip.interiorTipController")
 @RequestMapping("/interiorTip/*")
@@ -33,6 +36,8 @@ public class InteriorTipController {
 	@Autowired
 	private MyUtil myUtil;
 	
+	@Autowired
+	private InteriorService iService;
 	
 	@RequestMapping("list")
 	public String list(
@@ -131,6 +136,7 @@ public class InteriorTipController {
 			@RequestParam (defaultValue = "")String page,
 			@RequestParam(defaultValue = "") String condition,
 			@RequestParam(defaultValue = "") String keyword,
+			HttpSession session,
 			Model model
 			) throws Exception {
 		keyword = URLDecoder.decode(keyword, "utf-8");
@@ -148,7 +154,12 @@ public class InteriorTipController {
 			return "redirect:/interiorTip/list?"+query;
 		}
 		
+		SessionInfo info = (SessionInfo)session.getAttribute("member");
 		
+		Map<String, Object> loginmap = new HashMap<>();
+		
+		loginmap.put("userId", info.getUserId());
+		Interior logindto = iService.readprofile(loginmap);
 		
 		// 스마트에디터를 사용하는 경우 아래 주석처리(스마트에디터는 자체적으로 고쳐서..?)
 		// dto.setContent(myUtil.htmlSymbols(dto.getContent()));
@@ -161,6 +172,7 @@ public class InteriorTipController {
 		InteriorTip preReadDto = service.preReadBoard(map);
 		InteriorTip nextReadDto = service.nextReadBoard(map);
 		
+		model.addAttribute("logindto",logindto);
 		model.addAttribute("dto", dto);
 		model.addAttribute("preReadDto", preReadDto);
 		model.addAttribute("nextReadDto", nextReadDto);

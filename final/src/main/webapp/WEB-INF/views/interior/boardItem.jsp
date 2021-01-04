@@ -487,7 +487,7 @@ $(function(){
 
                 
 				</ul>
-                </div>
+           		</div>
                 <article>
 
                 </article>
