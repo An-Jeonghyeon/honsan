@@ -92,8 +92,8 @@
                   </ul>
                   <ul class="menuObject">
                       <li> <a href="${pageContext.request.contextPath}/supplement/list">영양제 뭐 먹을까?</a></li>
-                      <li> <a href="${pageContext.request.contextPath}/challenge/list">하루 운동 챌린지</a></li>
-                      <li> <a href="${pageContext.request.contextPath}">오늘 운동을 보여줘</a></li>
+                      <li> <a href="${pageContext.request.contextPath}/challenge/list">하루운동 챌린지</a></li>
+                      <li> <a href="${pageContext.request.contextPath}/healthStory/list">오늘 운동을 보여줘</a></li>
                       <li> <a href="${pageContext.request.contextPath}">건강 지킴이</a></li>
                   </ul>
               </div>
