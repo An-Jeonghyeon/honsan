@@ -314,24 +314,16 @@
   }
 }
 
+
+.interiorTip_benner{
+
+	width: 100%;
+	height: 600px;
+	background: url('${pageContext.request.contextPath}/resources/images/interior/interiorbanner2.png');
+	background-size: cover;
+	background-position: bottom;
+	margin-top: 100px;
 }
-
-#curBox_sub{
-	border: 1px solid #35c5f0;
-	background:  #35c5f0;
-	color: white;
-	border-radius: 4px;
-	font-weight: 700;
-	font-size: 15px;
-	font-weight:bold;
-	height:28px;
-	padding:4px 7px 4px 7px;
-	margin-left:3px;
-	line-height:normal;
-	vertical-align:middle;
-}
-
-
 
 
 </style>
@@ -346,6 +338,9 @@ function searchList() {
 
 
 <section>
+	<div class="interiorTip_benner">
+
+	</div>
     <div class="tip_topController">
 
 	    </div>
