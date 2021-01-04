@@ -63,7 +63,7 @@
 
 
 	<select id="readDressTipClean" parameterType="Integer"
-		resultType="com.sp.app.dressTip.DressTip">
+		resultType="com.sp.app.dressTipClean.DressTipClean">
 		SELECT num, userId, subject, content, register_date,
 		hitCount
 		FROM clothesTipClean WHERE num= #{num}
