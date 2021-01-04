@@ -98,28 +98,7 @@ hr {
 	margin: 30px auto 30px;
 }
 
-.toplist{
-	width:100%;
-	height: 300px;
-	margin: 10px auto;
-}
 
-.toplistTd{
-	padding: 3px;
-}
-
-.topimg_box{
-	background-position: center;
-	background-size:cover;
-	background-position:center; 
-	width:300px;  
-	height: 200px; 
-	border:2px solid silver;
-}
-
-.topimg_box:hover{
-	box-shadow: 10px 10px 20px #c0c0c0;
-}
 
 .banner{
 	width: 100%;
@@ -1190,7 +1169,7 @@ h2{ color: #7f8c8d; font-family: Neucha, Arial, sans serif; font-size:18px; marg
 
 
 #wrapper{
-	transform : scale(1.2);
+	transform : scale(1.7);
 }
 
 
@@ -1210,27 +1189,50 @@ h2{ color: #7f8c8d; font-family: Neucha, Arial, sans serif; font-size:18px; marg
 .linediv{
 	padding: 10px;
 	margin:20px auto;
-	border: 1px solid #808080;
 }
 
 .option{
 	margin:10px;
-	background: yellow; 
 	text-align: center; 
 	width: 150px; 
-	height: 50px;
+	height: 150px;
 	display: inline-block;
+}
+.option img{
+	width: 100px;
+	height: 100px;
 }
 
 
+/*-----------------------------------------*/
+.roomtype{
+	font-size: 30px;
+}
+.subtitles{
+	padding-top: 10px;
+	font-size: 20px;
+	
+}
+.firstexpl{
+	font-size: 30px;
+	color: #000080;
+	font-weight: bold;
+}
 
+.secondtable td{
+	font-size:20px;
+	border-bottom: 1px solid gray;
+}
 
+.secondtable td:first-child{
+	background: #eee;
+	width: 100px;
+	padding: 10px 10px 10px 10px;
+}
 
-
-
-
-
-
+.secondtable td:nth-child( 2 ){
+	padding: 15px;
+}
 
 
 			

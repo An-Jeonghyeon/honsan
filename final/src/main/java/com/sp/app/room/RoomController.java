@@ -47,7 +47,7 @@ public class RoomController {
 			HttpServletRequest req,
 			Model model
 			) throws Exception{
-		int rows = 8;
+		int rows = 12;
 		int total_page=0;
 		int dataCount=0;
 		
@@ -121,7 +121,7 @@ public class RoomController {
 			@RequestParam(value="roomtype", defaultValue = "") String roomtype,
 			HttpServletRequest req
 			) throws Exception {
-		int rows = 8;
+		int rows = 12;
 		int total_page=0;
 		int dataCount=0;
 		

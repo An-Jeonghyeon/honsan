@@ -236,99 +236,12 @@ $(function(){
 	<div style="width: 1300px; margin: 0px auto;">
 		
 	
-	<!-- 새로뜬 게시물 또는 인기 게시물 -->
-	<div class="toplist">
-		<table style="width: 100%;">
-			<tr style="height: 50px;">
-				<td align="center" colspan="4"> 최근 올라온 방 </td>
-			</tr>
-			<tr>
-				<td class="toplistTd">
-					<div class="topimg_box" id="topimg_box"
-							style="background: url('${pageContext.request.contextPath}/room/roomlist/ ');">
-					</div>
-				</td>
-				<td class="toplistTd">
-					<div class="topimg_box" id="topimg_box"
-							style="background: url('${pageContext.request.contextPath}/room/roomlist/ ');">
-					</div>
-				</td>
-				<td class="toplistTd">
-					<div class="topimg_box" id="topimg_box"
-							style="background: url('${pageContext.request.contextPath}/room/roomlist/ ');">
-					</div>
-				</td>
-				<td class="toplistTd">
-					<div class="topimg_box" id="topimg_box"
-							style="background: url('${pageContext.request.contextPath}/room/roomlist/ ');">
-					</div>
-				</td>
-			
-			</tr>
-		
-		
-		
-		</table>
-	</div>
 
 
-	<hr>
+
 			<!-- 리스트 부분 -->
 			<div class="roomlist">
-<!--
-				<table style="width: 100%;">
-				
-				<tr style="height: 50px;">
-					<td align="right" colspan="4"> 
-					<c:if test="${not empty keyword || not empty roomtype}">
-					검색 결과 " ${keyword} &nbsp;&nbsp; ${roomtype} " : 
-					</c:if>
-					 ${dataCount}개(${page}/${total_page} 페이지)</td>
-				</tr>
-				
-			 <c:forEach var="dto" items="${list}" varStatus="status">
-			 	<c:if test="${status.index==0 }">
-			 	<tr align="center">
-			 	</c:if>
-			 	<c:if test="${status.index!=0 && status.index%4==0}">
-			 		<c:out value="</tr><tr>" escapeXml="false"/>
-			 	</c:if>
-			 	
-			 	<td class="listTd">
-			 		<div class="imgLayout" onclick="article('${dto.num}');"style="margin: 10px;">
-				 		<div class="img_box"style="background: url('${pageContext.request.contextPath}/uploads/room/${dto.mainimg}');
-							background-position: center;background-size:cover;background-position:center;height: 200px; border-radius: 5px; border:1px solid silver; text-overflow: ellipsis;"></div>
-						<br><p class="title-style">${dto.subject}<p>
-						<div class="mainexplain">
-							<p>${dto.dealtype } / ${dto.depo } / ${dto.mrent }</p>
-						</div>
-						<div class="mainexplain">
-							<p>${dto.m2} m<sup>2</sup>  ${dto.pyeoug } 평</p>
-						</div>
-			 		</div>
-			 	</td>
-			 </c:forEach>
-			<c:set var="n" value="${list.size()}"/>
-			<c:if test="${n>0 && n%4!=0}">
-				<c:forEach var="i" begin="${n%4+1}" end="4">
-					<td width="210">
-					<div class="imgLayout" style="cursor: default;">&nbsp;</div>
-					</td>
-				</c:forEach>
-			</c:if>
-			<c:if test="${n!=0}">
-				<c:out value="</tr>" escapeXml="false"/>
-			</c:if>
-			</table>
 
-				<table style="width: 100%; border-spacing: 0px;">
-					<tr height="35">
-						<td align="center">
-							${dataCount==0?"등록된 게시물이 없습니다.":paging}
-						</td>
-					</tr>
-				</table>
--->
 
 <table style="width: 100%;">
 					<thead>

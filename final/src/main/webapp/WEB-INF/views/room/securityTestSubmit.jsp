@@ -57,7 +57,7 @@ $(document).ready(function() {
    			<tr>
    				<td height="70" style="text-align: center; background-color: #cccccc;"> 구  분 </td>
    				<td style="text-align: center;"> 건물 장치 부분 </td>
-   				<td style="text-align: center;"> 생활 & 일상 부분 </td>
+   				<td style="text-align: center;"> 생활 &amp; 일상 부분 </td>
    				<td style="text-align: center;"> 서비스 부분 </td>
    				<td style="text-align: center;"> 전체 </td>
    			</tr>

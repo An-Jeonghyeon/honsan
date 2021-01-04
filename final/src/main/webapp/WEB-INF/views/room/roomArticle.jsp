@@ -2,6 +2,7 @@
 <%@ page trimDirectiveWhitespaces="true" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/room/room.css"
@@ -45,11 +46,11 @@ function updateBoard(num) {
 
 </script>	
 	
-<div class="body-container">
-	<hr>
+<hr>
+<div class="body-container" style="margin-top: 200px;">
 	<div style="width: 1000px; margin: 0px auto; padding-top: 100px; padding-bottom: 100px;">	
 		<!-- 사진이 들어가는 곳 -->
-		<div class="imagediv" style="border: 1px solid gray; margin: 10px auto 30px; height: 500px;">
+		<div class="imagediv" style=" margin: 10px auto 50px; height: 500px;">
 			
 			
 			<div id="wrapper">
@@ -58,8 +59,8 @@ function updateBoard(num) {
 		          
 		          <li>
 		                <div>
-		                    <h3>Slide #${status.count }</h3>
-		                    <span>Sub-title #${status.count }</span>
+		                    <h3>메인사진</h3>
+		                    <span>main image</span>
 		                </div>                
 						<img src="${pageContext.request.contextPath}/uploads/room/${dto.mainimg}">
 		             </li>
@@ -68,8 +69,8 @@ function updateBoard(num) {
 
 				 	<li>
 		                <div>
-		                    <h3>Slide #${status.count }</h3>
-		                    <span>Sub-title #${status.count }</span>
+		                    <h3>#${status.count }</h3>
+		                    <span>#${status.count }</span>
 		                </div>                
 						<img src="${pageContext.request.contextPath}/uploads/room/${vo.saveFile}">
 		             </li>
@@ -106,27 +107,31 @@ function updateBoard(num) {
 		<div class="roomdetaildiv">
 			<div class="linediv">
 				<p class="listnum"> 등록 번호 : ${dto.num }</p>
-				<p> ${dto.roomtype }</p>
+				<p class="roomtype"> ${dto.roomtype }</p>
 			</div>
+			<hr>
 			<div class="linediv">
 				<table style="width:100%; margin: 15px auto; border-spacing: 0px;">
 					<tr>
-						<td style="padding: 0 20px 0 20px; width:30%;">
-							<div style="text-align: center; border: 1px solid gray; height: 70px;">
-								<p>${dto.m2} m<sup>2</sup> / ${dto.pyeoug} 평</p>
+						<td style="padding: 0 20px 0 20px; width:40%;">
+							<div style="height: 70px;">
+								<p class="subtitles">전용 면적</p>
+								<p class="firstexpl">${dto.m2} m<sup>2</sup> / ${dto.pyeoug} 평</p>
 							</div>
 						</td>
-						<td style="padding: 0 20px 0 20px; width:30%; "> 
-							<div style="text-align: center; border: 1px solid gray; height: 70px;">
-								<p>
-								<c:if test="${dto.mrent>0 }">월세</c:if>
+						<td style="padding: 0 20px 0 50px; width:30%; "> 
+							<div style="height: 70px;">
+								<p class="subtitles">
+								<c:if test="${dto.mrent>0 }">보증금 / 월세</c:if>
 								<c:if test="${dto.mrent==0 }">전세</c:if>
-								 &nbsp; ${dto.depo} / ${dto.mrent}</p>
+								</p>
+								<p class="firstexpl">${dto.depo} / ${dto.mrent}</p>
 							</div>
 						</td>
 						<td style="padding: 0 20px 0 20px; width:30%; "> 
-							<div style="text-align: center; border: 1px solid gray; height: 70px;">
-								<p>
+							<div style="height: 70px;">
+								<p class="subtitles">전체 층수 / 해당 층수</p>
+								<p class="firstexpl">
 								 ${dto.totfloor} / ${dto.corfloor}</p>
 							</div>
 						</td>
@@ -134,69 +139,144 @@ function updateBoard(num) {
 					</tr>
 				</table>
 			</div>
+			
+			<hr>
+			
 			<div class="linediv">
-				<table style="width:100%; margin: 15px auto; border-spacing: 0px;">
+				<table class="secondtable" style="width:100%; margin: 15px auto; border-spacing: 0px;">
 				<tr height="40">
-					<td style="width: 10%">주차</td>
-					<td style="width: 90%;">
+					<td style="width: 20%; border-top: 1px solid gray;">주차</td>
+					<td style="width: 80%; border-top: 1px solid gray;">
 					<c:if test="${dto.park==1 }">가능</c:if>
 					<c:if test="${dto.park==0 }">불가능</c:if>
 					</td>
 				</tr>
 				<tr height="40">
-					<td style="width: 10%">엘리베이터</td>
-					<td style="width: 90%;">
+					<td style="width: 20%">엘리베이터</td>
+					<td style="width: 80%;">
 					<c:if test="${dto.elev==1 }">가능</c:if>
 					<c:if test="${dto.elev==0 }">불가능</c:if>
 					</td>
 				</tr>
 				<tr height="40">
-					<td style="width: 10%">입주가능일</td>
-					<td style="width: 90%;">
+					<td style="width: 20%">입주가능일</td>
+					<td style="width: 80%;">
 					${dto.movedate }
 					</td>
 				</tr>
 				<tr height="40">
-					<td style="width: 10%">주소</td>
-					<td style="width: 90%;">
+					<td style="width: 20%">주소</td>
+					<td style="width: 80%;">
 					${dto.addr1 } &nbsp; ${dto.addr2 }
 					</td>
 				</tr>
 				</table>
 			</div>
 			
+			<hr>
+			
 			<div class="linediv">
-				<p>관리비  &nbsp;&nbsp;| &nbsp;&nbsp; ${dto.adcost}</p>
+				<p class="subtitles">관리비  &nbsp;&nbsp;| &nbsp;&nbsp; ${dto.adcost} 만원</p>
+				<br>
+				<p>관리비 포함 항목</p>
 				<c:if test="${not empty aditems}">
 					<c:forEach var="list" items="${aditems}">
-						<div class="option">${list}</div>
+					<div class="option">
+						<c:if test="${fn:contains(list, '전기')}">
+							<img alt="" src="${pageContext.request.contextPath}/resources/images/room/elec.png">
+						</c:if>
+						<c:if test="${fn:contains(list, '가스')}">
+							<img alt="" src="${pageContext.request.contextPath}/resources/images/room/ggs.png">
+						</c:if>
+						<c:if test="${fn:contains(list, '인터넷')}">
+							<img alt="" src="${pageContext.request.contextPath}/resources/images/room/internet.png">
+						</c:if>
+						<c:if test="${fn:contains(list, '수도')}">
+							<img alt="" src="${pageContext.request.contextPath}/resources/images/room/water.png">
+						</c:if>
+						<c:if test="${fn:contains(list, 'TV')}">
+							<img alt="" src="${pageContext.request.contextPath}/resources/images/room/telev.png">
+						</c:if>
+						<p>${list}</p>
+						</div>
 					</c:forEach>
 				</c:if>
 			</div>
+			
+			<hr>
 			
 			<!-- 스크립트에서 split으로 배열에 넣어서 여기서 foreach 로 돌려서 하나씩 비교? -->
 			<div class="linediv">
-				<p style="margin: 10px;">옵션</p>
+				<p class="subtitles" style="margin: 10px;">옵션</p>
 				
 				<c:if test="${not empty options}">
 					<c:forEach var="list" items="${options}">
-						<div class="option">${list}</div>
+						
+						<div class="option">
+						<c:if test="${fn:contains(list, '에어컨')}">
+							<img alt="" src="${pageContext.request.contextPath}/resources/images/room/acon.png">
+						</c:if>
+						<c:if test="${fn:contains(list, '침대')}">
+							<img alt="" src="${pageContext.request.contextPath}/resources/images/room/bed.png">
+						</c:if>
+						<c:if test="${fn:contains(list, '책장')}">
+							<img alt="" src="${pageContext.request.contextPath}/resources/images/room/books.png">
+						</c:if>
+						<c:if test="${fn:contains(list, '옷장')}">
+							<img alt="" src="${pageContext.request.contextPath}/resources/images/room/clothestong.png">
+						</c:if>
+						<c:if test="${fn:contains(list, '책상')}">
+							<img alt="" src="${pageContext.request.contextPath}/resources/images/room/desk.png">
+						</c:if>
+						<c:if test="${fn:contains(list, '가스레인지')}">
+							<img alt="" src="${pageContext.request.contextPath}/resources/images/room/gas.png">
+						</c:if>
+						<c:if test="${fn:contains(list, '인덕션')}">
+							<img alt="" src="${pageContext.request.contextPath}/resources/images/room/induc.png">
+						</c:if>
+						<c:if test="${fn:contains(list, '냉장고')}">
+							<img alt="" src="${pageContext.request.contextPath}/resources/images/room/nag.png">
+						</c:if>
+						<c:if test="${fn:contains(list, '전자레인지')}">
+							<img alt="" src="${pageContext.request.contextPath}/resources/images/room/range.png">
+						</c:if>
+						<c:if test="${fn:contains(list, '세탁기')}">
+							<img alt="" src="${pageContext.request.contextPath}/resources/images/room/setac.png">
+						</c:if>
+						<c:if test="${fn:contains(list, '신발장')}">
+							<img alt="" src="${pageContext.request.contextPath}/resources/images/room/sinbal.png">
+						</c:if>
+						<c:if test="${fn:contains(list, '싱크대')}">
+							<img alt="" src="${pageContext.request.contextPath}/resources/images/room/sink.png">
+						</c:if>
+						
+						<p>${list}</p>
+						</div>
+						
+						
+						
 					</c:forEach>
 				</c:if>
 				
 				
 			</div>
 			
+			<hr>
+			
 			<div class="linediv">
-				<p>상세 설명</p>
+				<p class="subtitles">상세 설명</p>
 				<p>${dto.content }</p>
 			</div>
+			
+			<hr>
 			
 			<div class="linediv">
 				<p style="height: 100px;">지도를............</p>
 			</div>
 			
 		</div>
+		
+		<hr>
 		
 		<div class="btndiv">
 			<table style="width:100%; margin: 15px auto; border-spacing: 0px;">
