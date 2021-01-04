@@ -139,7 +139,7 @@ function updateBoard(num) {
 	            <td colspan="2" align="left" style="padding-left: 5px;">
 	               이전글 :
 	               <c:if test="${not empty preReadDto }">
-	                  <a href="${pageContext.request.contextPath }/interiorTip/article?${query}&num=${preReadDto.num}">${preReadDto.subject }</a>
+	                  <a href="${pageContext.request.contextPath }/interiorTip/article?${query}&num=${preReadDto.num}&categorys=${categorys}">${preReadDto.subject }</a>
 	               </c:if>
 	            </td>
 	         </tr>
@@ -148,7 +148,7 @@ function updateBoard(num) {
 	            <td colspan="2" align="left" style="padding-left: 5px;">
 	               다음글 :
 	               <c:if test="${not empty nextReadDto }">
-	                  <a href="${pageContext.request.contextPath }/interiorTip/article?${query}&num=${nextReadDto.num}">${nextReadDto.subject }</a>
+	                  <a href="${pageContext.request.contextPath }/interiorTip/article?${query}&num=${nextReadDto.num}&categorys=${categorys}">${nextReadDto.subject }</a>
 	               </c:if>
 	            </td>
 	         </tr>
@@ -160,11 +160,12 @@ function updateBoard(num) {
 		            <c:if test="${sessionScope.member.userId==dto.userId || sessionScope.member.userId=='admin'}">
 		               <button type="button" class="btn" onclick="updateBoard('${dto.num}');">수정</button>
 		               <button type="button" class="btn" onclick="deleteBoard('${dto.num}');">삭제</button>
+		               
 		            </c:if>
 	            </td>
 	
 	            <td align="right">
-	               <button type="button" class="btn" onclick="javascript:location.href='${pageContext.request.contextPath}/interiorTip/list">리스트</button>
+	               <button type="button" class="btn" onclick="javascript:location.href='${pageContext.request.contextPath}/interiorTip/list';">리스트</button>
 	            </td>
 	         </tr>
 	      </table>

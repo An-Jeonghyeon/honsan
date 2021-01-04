@@ -10,8 +10,15 @@ public class InteriorTip {
 	private String subject;
 	private String content;
 	private String category;
+	private String categorys;
 
 	
+	public String getCategorys() {
+		return categorys;
+	}
+	public void setCategorys(String categorys) {
+		this.categorys = categorys;
+	}
 	private String profileImg;
 	private String profileMsg;
 	

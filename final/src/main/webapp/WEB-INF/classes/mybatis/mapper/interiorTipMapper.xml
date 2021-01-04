@@ -22,7 +22,7 @@
 			
 			<when test="condition=='content' ">
 				DBMS_LOB.INSTR(content, #{keyword}) &gt; 0
-			</when>			
+			</when>
 			<otherwise>
 				INSTR(${condition}, #{keyword}) &gt; 0
 			</otherwise>
@@ -56,6 +56,9 @@
 			<if test="keyword!=null and keyword!=''">
 				<include refid="where-list"/>
 			</if>
+			<if test="categorys!=null and categorys!=''">
+				category = #{categorys}
+			</if>
 			AND (num &gt; #{num})
 		</where>
 		ORDER BY num ASC
@@ -68,6 +71,9 @@
 		<where>
 			<if test="keyword!=null and keyword!=''">
 				<include refid="where-list"/>
+			</if>
+			<if test="categorys!=null and categorys!=''">
+				category = #{categorys}
 			</if>
 			AND (num &lt; #{num})
 		</where>
@@ -96,6 +102,9 @@
 				<if test="keyword!=null and keyword!=''">
 					<include refid="where-list"/>
 				</if>
+				<if test="categorys!=null and categorys!=''">
+					category = #{categorys}
+				</if>
 			</where>
 	</select>
 	
@@ -109,6 +118,9 @@
 		<where>
 			<if test="keyword!=null and keyword!=''">
 				<include refid="where-list"/>
+			</if>
+			<if test="categorys!=null and categorys!=''">
+				category = #{categorys}
 			</if>
 		</where>
 		ORDER BY num DESC

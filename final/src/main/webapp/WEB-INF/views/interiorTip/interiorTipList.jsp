@@ -4,6 +4,68 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <style>
+
+#curBox_sub{
+	border: 1px solid #35c5f0;
+	background:  #35c5f0;
+	color: white;
+	border-radius: 4px;
+	font-weight: 700;
+	font-size: 15px;
+	font-weight:bold;
+	height:28px;
+	padding:4px 7px 4px 7px;
+	margin-left:3px;
+	line-height:normal;
+	vertical-align:middle;
+}
+
+
+#numBox_sub{
+	font-size: 15px;
+	border : none;
+	color : #424242;
+	height:28px;
+	font-weight:bold;
+	text-decoration: none;
+	padding:4px 7px 4px 7px;
+	margin-left:3px;
+	line-height:normal;
+	vertical-align:middle;
+}
+
+#tlBox{
+	font-size: 15px;
+	border : none;
+	border:1px solid #ccc;
+	height:28px;color:#000000;
+	text-decoration:none;
+	padding:4px 10px 4px 10px;
+	margin-left:3px;
+	margin-right : 20px;
+	line-height:normal;
+	vertical-align:middle;
+	outline:none; 
+	border-radius: 4px;
+}
+
+#trBox{
+	font-size: 15px;
+	border : none;
+	border:1px solid #ccc;
+	height:28px;color:#000000;
+	text-decoration:none;
+	padding:4px 10px 4px 10px;
+	margin-left:20px;
+	margin-right : 3px;
+	line-height:normal;
+	vertical-align:middle;
+	outline:none; 
+	border-radius: 4px;
+	
+}
+
+
 .tip_topController{
     height: 65px;
     
@@ -248,6 +310,27 @@
     transform: scale(0.8);
   }
 }
+
+}
+
+#curBox_sub{
+	border: 1px solid #35c5f0;
+	background:  #35c5f0;
+	color: white;
+	border-radius: 4px;
+	font-weight: 700;
+	font-size: 15px;
+	font-weight:bold;
+	height:28px;
+	padding:4px 7px 4px 7px;
+	margin-left:3px;
+	line-height:normal;
+	vertical-align:middle;
+}
+
+
+
+
 </style>
 
 
@@ -277,19 +360,19 @@ function searchList() {
 	        <div class="tip_topitems">
 	            <div class="tip_topitem">
 	                <!-- 팁 종류 이동 이미지  -->
-	                <a><img src="${pageContext.request.contextPath}/resources/images/interior/life4.png"></a>
+	                <a href="${pageContext.request.contextPath}/interiorTip/list"><img src="${pageContext.request.contextPath}/resources/images/interior/life4.png"></a>
 	            </div>
 	            <div class="tip_topitem">
 	                <!-- 팁 종류 이동 이미지  -->
-	                <a><img src="${pageContext.request.contextPath}/resources/images/interior/life1.png"></a>
+	                <a href="${pageContext.request.contextPath}/interiorTip/list?categorys=생활 팁"><img src="${pageContext.request.contextPath}/resources/images/interior/life1.png"></a>
 	            </div>
 	            <div class="tip_topitem">
 	                <!-- 팁 종류 이동 이미지  -->
-	                <a><img src="${pageContext.request.contextPath}/resources/images/interior/life2.png"></a>
+	                <a href="${pageContext.request.contextPath}/interiorTip/list?categorys=청소 팁"><img src="${pageContext.request.contextPath}/resources/images/interior/life2.png"></a>
 	            </div>
 	            <div class="tip_topitem">
 	                <!-- 팁 종류 이동 이미지  -->
-	                <a><img src="${pageContext.request.contextPath}/resources/images/interior/life3.png"></a>
+	                <a href="${pageContext.request.contextPath}/interiorTip/list?categorys=정리 팁"><img src="${pageContext.request.contextPath}/resources/images/interior/life3.png"></a>
 	            </div>
 	        </div>
 	        
@@ -327,7 +410,12 @@ function searchList() {
 			                        <div class="interiorTip_list_row" align="center" bgcolor="#ffffff" height="35" style="margin-top: 0px;"> 
 			                            <div class="interiorTip_list_row_sub">${dto.category}</div>
 			                            <div class="interiorTip_list_row_subject" align="left" style="padding-left: 10px;">
-			                                <a class="interiorTip_list_row_subject_a" href="${articleUrl}&num=${dto.num}">${dto.subject}</a>
+			                            	<c:if test="${not empty categorys}">
+				                                <a class="interiorTip_list_row_subject_a" href="${articleUrl}&num=${dto.num}&categorys=${categorys}">${dto.subject}</a>
+				                            </c:if>
+				                            <c:if test="${empty categorys}">
+				                                <a class="interiorTip_list_row_subject_a" href="${articleUrl}&num=${dto.num}">${dto.subject}</a>
+				                            </c:if>
 			                            </div>
 			                            <div class="interiorTip_list_row_sub">${dto.userName}</div>
 			                            <div class="interiorTip_list_row_sub">${dto.created}</div>
@@ -338,7 +426,12 @@ function searchList() {
 			                        <div class="interiorTip_list_row" align="center" bgcolor="#ffffff" height="35" style="border-bottom: 1px solid #cccccc;"> 
 			                            <div class="interiorTip_list_row_sub">${dto.category}</div>
 			                            <div class="interiorTip_list_row_subject" align="left" style="padding-left: 10px;">
-			                                <a class="interiorTip_list_row_subject_a" href="${articleUrl}&num=${dto.num}">${dto.subject}</a>
+				                            <c:if test="${not empty categorys}">
+				                                <a class="interiorTip_list_row_subject_a" href="${articleUrl}&num=${dto.num}&categorys=${categorys}">${dto.subject}</a>
+				                            </c:if>
+				                            <c:if test="${empty categorys}">
+				                                <a class="interiorTip_list_row_subject_a" href="${articleUrl}&num=${dto.num}">${dto.subject}</a>
+				                            </c:if>
 			                            </div>
 			                            <div class="interiorTip_list_row_sub">${dto.userName}</div>
 			                            <div class="interiorTip_list_row_sub">${dto.created}</div>
@@ -361,7 +454,7 @@ function searchList() {
 	                <div class="interiprTip_foot" style="width: 100%; margin: 10px auto; border-spacing: 0px;">
 	                    <div class="interiprTip_foot_row">
 	                        <div class="interiprTip_foot_row_reset" align="left" width="100">
-	                            <button type="button" class="btn interiprTip_foot_row_button" onclick="javascript:location.href='${pageContext.request.contextPath}/bbs/list';">새로고침</button>
+	                            <button type="button" class="btn interiprTip_foot_row_button" onclick="javascript:location.href='${pageContext.request.contextPath}/interiorTip/list';">새로고침</button>
 	                        </div>
 	                        <div style="height: 40px;" >
 	                            <form name="searchForm" action="${pageContext.request.contextPath }/interiorTip/list" style="height: 100%;" method="post">

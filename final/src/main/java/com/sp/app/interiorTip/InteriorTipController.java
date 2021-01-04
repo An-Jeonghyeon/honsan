@@ -24,7 +24,7 @@ import com.sp.app.interior.Interior;
 import com.sp.app.interior.InteriorService;
 import com.sp.app.interior.Reply;
 import com.sp.app.member.SessionInfo;
-import com.sp.app.mypage.MypageService;
+
 
 @Controller("interiorTip.interiorTipController")
 @RequestMapping("/interiorTip/*")
@@ -44,6 +44,7 @@ public class InteriorTipController {
 			@RequestParam(value = "page", defaultValue = "1") int current_page,			
 			@RequestParam(defaultValue = "all") String condition,
 			@RequestParam(defaultValue = "") String keyword,
+			@RequestParam(defaultValue = "") String categorys,
 			HttpServletRequest req,
 			Model model
 			) throws Exception {
@@ -55,11 +56,14 @@ public class InteriorTipController {
 		  
 		  if (req.getMethod().equalsIgnoreCase("GET")) { 
 			  keyword =URLDecoder.decode(keyword, "utf-8"); 
+			  categorys =URLDecoder.decode(categorys, "utf-8");   
 		  }
+		  
 		  
 		  Map<String, Object> map = new HashMap<>(); 
 		  map.put("condition", condition);
 		  map.put("keyword", keyword);
+		  map.put("categorys", categorys);
 		  
 		  dataCount = service.dataCount(map); 
 		  if (dataCount!=0) { 
@@ -91,8 +95,8 @@ public class InteriorTipController {
 			  listUrl += "?"+query; articleUrl += "&" + query; 
 		  }
 		  
-		  String paging = myUtil.paging(current_page, total_page, listUrl);
-		  
+		  String paging = myUtil.paging3(current_page, total_page, listUrl);
+		  model.addAttribute("categorys", categorys); 
 		  model.addAttribute("list", list); 
 		  model.addAttribute("articleUrl",articleUrl); 
 		  model.addAttribute("page", current_page);
@@ -136,10 +140,14 @@ public class InteriorTipController {
 			@RequestParam (defaultValue = "")String page,
 			@RequestParam(defaultValue = "") String condition,
 			@RequestParam(defaultValue = "") String keyword,
+			@RequestParam(defaultValue = "") String categorys,
 			HttpSession session,
 			Model model
 			) throws Exception {
+		
+		
 		keyword = URLDecoder.decode(keyword, "utf-8");
+		categorys = URLDecoder.decode(categorys, "utf-8");
 		
 		String query = "page="+page;
 		if (keyword.length()!=0) {
@@ -168,6 +176,8 @@ public class InteriorTipController {
 		map.put("num", num);
 		map.put("condition", condition);
 		map.put("keyword", keyword);
+		map.put("categorys", categorys);
+		
 		
 		InteriorTip preReadDto = service.preReadBoard(map);
 		InteriorTip nextReadDto = service.nextReadBoard(map);

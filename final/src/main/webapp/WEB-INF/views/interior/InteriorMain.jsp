@@ -28,7 +28,7 @@
 #numBox_sub{
 	font-size: 15px;
 	border : none;
-
+	color : #424242;
 	height:28px;
 	font-weight:bold;
 	text-decoration:none;
