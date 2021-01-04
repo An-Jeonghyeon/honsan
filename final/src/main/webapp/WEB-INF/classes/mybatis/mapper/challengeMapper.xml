@@ -51,7 +51,7 @@
 	</select>
 	
 	<!-- 게시글보기 -->
-	<select id="readChallenge" parameterType="Integer" resultType="com.sp.app.challenge.Challenge">
+	<select id="readChallenge" parameterType="Long" resultType="com.sp.app.challenge.Challenge">
 		SELECT c.num, name, subName, content, challengePeriod, challengeFilename, video, TO_CHAR(created, 'YYYY-MM-DD') created,
 			NVL(playMember, 0) playMember
 		FROM challenge c
@@ -64,7 +64,7 @@
 	</select>
 	
 	<!-- 상세정보 리스트 -> 글보기에서 상세정보를 따로 출력하기 위함 -> article, update 둘다에 사용-->
-	<select id="listChallenge2" parameterType="Integer" resultType="com.sp.app.challenge.Challenge">
+	<select id="listChallenge2" parameterType="Long" resultType="com.sp.app.challenge.Challenge">
 		SELECT exNum, num, startDate, endDate, exContent
 		FROM  challenge2
 		WHERE num=#{num}
@@ -75,7 +75,7 @@
 	<select id="readChallenge2" parameterType="map" resultType="com.sp.app.challenge.Challenge">
 		SELECT exNum, num, startDate, endDate, exContent
 		FROM  challenge2
-		WHERE num=#{num} AND exNum=#{exNum}
+		WHERE exNum=#{exNum}
 	</select>
 	
 	

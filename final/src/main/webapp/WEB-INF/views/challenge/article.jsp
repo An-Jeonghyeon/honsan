@@ -69,6 +69,9 @@
             <div class="gobutton">
                 <button type="button" class="gobtngo"> 도 전 하 기 </button>
                 <button class="h-listButton" onclick="javascript:location.href='${pageContext.request.contextPath}/challenge/list?${query}';">목록</button>
+                <c:if test="${sessionScope.member.userId =='admin'}">
+	                <button class="h-adminButton" onclick="javascript:location.href='${pageContext.request.contextPath}/adm/health/list';">관리자 리스트</button>
+                </c:if>
                 
             </div>
         </div>

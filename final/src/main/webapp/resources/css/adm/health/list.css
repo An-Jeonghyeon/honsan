@@ -9,6 +9,7 @@
     background: yellow;
     margin: 0 auto;
 }
+
 /* .chListTitle {
     text-align: left;
     font-size: 25px;
@@ -30,6 +31,10 @@
 }
 .searchSelect {
 	width: 130px;
+}
+.searchSelect input {
+	background-color: white;
+	
 }
 .chlist_search {
     text-align: left;
@@ -162,4 +167,7 @@
     height: 35px;
     width: 100px;
     border: 1px solid #e8e8e8;
+}
+.chsub a {
+	color: black;
 }
