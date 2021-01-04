@@ -199,7 +199,7 @@ public class MyUtil {
 		n=current_page-numPerBlock;
 		if(total_page > numPerBlock && currentPageSetup > 0) {
 			//sb.append("<a id='tlBox' href='"+list_url+"page=1'>처음</a>");
-			sb.append("<a id='tlBox' href='"+list_url+"page="+n+"'>이전</a>");
+			sb.append("<a id='tlBox' href='"+list_url+"page="+n+"'><i class='fas fa-angle-left'></a>");
 		}
 		
 		// 바로가기
@@ -217,7 +217,7 @@ public class MyUtil {
 		n=current_page+numPerBlock;
 		if(n>total_page) n=total_page;
 		if(total_page-currentPageSetup>numPerBlock) {
-			sb.append("<a id='trBox' href='"+list_url+"page="+n+"'>다음</a>");
+			sb.append("<a id='trBox' href='"+list_url+"page="+n+"'><i class='fas fa-angle-right'></i></a>");
 			//sb.append("<a id='tlBox' href='"+list_url+"page="+total_page+"'>끝</a>");
 		}
 		sb.append("</div>");
