@@ -20,6 +20,9 @@ public interface HealthAdminService {
 	public List<HealthAdmin> listChallenge2(long num); //상세정보 리스트
 	public HealthAdmin readChallenge2(Map<String, Object> map);
 	public void deleteChallenge2(Map<String, Object> map) throws Exception; //상세정보만 개별삭제
+	public void deleteChallengeAll(long num) throws Exception;
+	
+	public void insertChallenge2(HealthAdmin dto) throws Exception;
 	
 	
 }

@@ -228,31 +228,6 @@ $(function(){
 <!-- 					                   		여기 추가될것.. -->
 <!-- 					                    </div> -->
 					                    <table border="1" class="ch_table moreTable">
-            								<c:if test="${mode=='update'}">
-											   <c:forEach var="vo" items="${listChallenge2}">
-							                    	<tbody class="morebody" id="f${vo.exNum}"> 
-							                        <tr>
-							                            <th scope="row">상세기간</th>
-							                            <td class="chperiod">
-							                                <input type="text" name="startDates" class="start" value="${vo.startDate}"> 일차  ~
-							                                <input type="text" name="endDates" class="end" value="${vo.endDate}"> 일차
-						                     	           <button type="button" class="deletebtn">X</button>
-							                                <input type="hidden" name="exNum" value="${dto.exNum}">
-							                                
-							                            </td>
-							                        </tr>
-							                        <tr>
-							                            <th scope="row">하루 운동상세</th>
-							                            <td class="chsub">
-							                                <input type="text" name="exContents" class="excontent" value="${vo.exContent}">
-							                                <button type="button" class="plusbtn">수정</button>
-							                                <br><small>* 여러항목 등록시 '/' 로 구분작성</small>
-							                            </td>
-							                        </tr>
-							                    	</tbody>
-											   </c:forEach>
-											</c:if>
-					                    
 					                    	<tbody class="morebody">
 					                        <tr>
 					                            <th scope="row">상세기간</th>
@@ -271,6 +246,31 @@ $(function(){
 					                            </td>
 					                        </tr>
 					                    	</tbody>
+					                    	
+					                    	<c:if test="${mode=='update'}">
+											   <c:forEach var="vo" items="${listChallenge2}">
+							                    	<tbody class="morebody" id="f${vo.exNum}"> 
+							                        <tr>
+							                            <th scope="row">상세기간</th>
+							                            <td class="chperiod">
+							                                <input type="text" name="startDates" class="start" value="${vo.startDate}"> 일차  ~
+							                                <input type="text" name="endDates" class="end" value="${vo.endDate}"> 일차
+						                     	           <button type="button" class="deletebtn">X</button>
+							                                <input type="hidden" name="exNum" value="${dto.exNum}">
+							                                
+							                            </td>
+							                        </tr>
+							                        <tr>
+							                            <th scope="row">하루 운동상세</th>
+							                            <td class="chsub">
+							                                <input type="text" name="exContents" class="excontent" value="${vo.exContent}">
+							                                <button type="button" class="plusbtn">추가</button>
+							                                <br><small>* 여러항목 등록시 '/' 로 구분작성</small>
+							                            </td>
+							                        </tr>
+							                    	</tbody>
+											   </c:forEach>
+											</c:if>
 					                    </table>
 					                </div>
 

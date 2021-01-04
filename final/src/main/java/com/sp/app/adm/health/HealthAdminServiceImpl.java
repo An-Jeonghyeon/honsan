@@ -186,4 +186,38 @@ public class HealthAdminServiceImpl implements HealthAdminService {
 		}
 	}
 
+	//challenge2 전체 삭제
+	@Override
+	public void deleteChallengeAll(long num) throws Exception {
+		try {
+			dao.deleteData("healthAdmin.deleteChallengeAll", num);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+		
+	}
+
+	//challenge2만 인서트
+	@Override
+	public void insertChallenge2(HealthAdmin dto) throws Exception {
+		try {
+			List<String> startDates = dto.getStartDates();
+			
+			// 상세정보 갯수만큼 for문 실행됨
+			for(int i=0; i<startDates.size(); i++) {
+			    dto.setStartDate(dto.getStartDates().get(i));
+			    dto.setEndDate(dto.getEndDates().get(i));
+			    dto.setExContent(dto.getExContents().get(i));
+
+			    insertChallengeMore(dto);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+		
+	}
+
 }

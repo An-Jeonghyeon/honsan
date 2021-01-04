@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.sp.app.common.MyUtil;
-import com.sp.app.member.SessionInfo;
 
 @Controller("adm.health.healthAdminController")
 @RequestMapping("/adm/health/*")
@@ -204,11 +203,15 @@ public class HealthAdminController {
 			String root = session.getServletContext().getRealPath("/");
 			String pathname = root + File.separator + "uploads" + File.separator + "challenge";		
 			
-			
+			//기보정보 업데이트
 			service.updateChallenge(dto, pathname);
 			
 			
+			//완료누르면...기존 상세 다 지우고
+			service.deleteChallengeAll(dto.getNum());
 			
+			//새로 인서트
+			service.insertChallenge2(dto);
 			
 		} catch (Exception e) {
 		}
