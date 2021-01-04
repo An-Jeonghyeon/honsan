@@ -1077,6 +1077,16 @@ SETTINGS
   height: 100%;
 }
 
+#ui-id-1{
+	width: 1000px;
+    display: inline-block;
+    text-align: left;
+    font-size: 20px;
+    margin: 0 0 0 0;
+    box-sizing: border-box;
+}
+
+
 
 /*btns*/
 .btns{
