@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.web.multipart.MultipartFile;
 
 public class Challenge {
+	private int listNum;// 안쓰는데 걍 넣어둠
 	private long num;
 	private String name;
 	private String subName; 
@@ -14,12 +15,14 @@ public class Challenge {
 	private String challengeFilename;
 	private MultipartFile upload;
 	private String video;
-
+	private String created;
+	
 	//challenge2
 	private int exNum;
 	private String startDate;
 	private String endDate;
 	private String exContent; //challenge2 - content
+	private int dDate; //이거 컨텐트 하나씩 담을껀데..아직 안씀..
 	
 	private List<String> startDates; //세부정도 리스트로 담는곳
 	private List<String> endDates;
@@ -29,6 +32,14 @@ public class Challenge {
 	private String userId;
 	private int enabled;
 	
+	private int playMember; //진행중인 회원
+	
+	public int getListNum() {
+		return listNum;
+	}
+	public void setListNum(int listNum) {
+		this.listNum = listNum;
+	}
 	public long getNum() {
 		return num;
 	}
@@ -82,6 +93,12 @@ public class Challenge {
 	}
 	public void setVideo(String video) {
 		this.video = video;
+	}
+	public String getCreated() {
+		return created;
+	}
+	public void setCreated(String created) {
+		this.created = created;
 	}
 	public int getExNum() {
 		return exNum;
@@ -137,6 +154,18 @@ public class Challenge {
 	public void setEnabled(int enabled) {
 		this.enabled = enabled;
 	}
-	
+	public int getPlayMember() {
+		return playMember;
+	}
+	public void setPlayMember(int playMember) {
+		this.playMember = playMember;
+	}
+	public int getdDate() {
+		return dDate;
+	}
+	public void setdDate(int dDate) {
+		this.dDate = dDate;
+	}
+
 	
 }

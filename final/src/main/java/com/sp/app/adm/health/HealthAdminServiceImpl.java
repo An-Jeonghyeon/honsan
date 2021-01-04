@@ -65,25 +65,45 @@ public class HealthAdminServiceImpl implements HealthAdminService {
 		}
 	}
 	
+	//challenge1,2 둘다 같이 지우는거
 	@Override
 	public void deleteChallenge(int num, String pathname) throws Exception {
-		// TODO Auto-generated method stub
-		
+		try {
+			
+			HealthAdmin dto = readChallenge(num);
+			
+			if(dto.getChallengeFilename()!=null) {
+				fileManager.doFileDelete(dto.getChallengeFilename(), pathname);
+			}
+			
+			// 게시물지우기
+			dao.deleteData("healthAdmin.deleteChallengeAll", num);		
+			dao.deleteData("healthAdmin.deleteChallenge", num);	
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
 	}
 
+	//둘다 같이 업데이트
 	@Override
 	public void updateChallenge(HealthAdmin dto, String pathname) throws Exception {
-		// TODO Auto-generated method stub
 		
 	}
 
-
+	//challenge1만 읽기 
 	@Override
 	public HealthAdmin readChallenge(int num) {
-		// TODO Auto-generated method stub
-		return null;
+		HealthAdmin dto =null;
+		try {
+			dto=dao.selectOne("healthAdmin.readChallenge", num);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return dto;
 	}
 
+	//챌린지1 리스트(list용)
 	@Override
 	public List<HealthAdmin> listChallenge(Map<String, Object> map) {
 		List<HealthAdmin> list = null;
@@ -104,6 +124,41 @@ public class HealthAdminServiceImpl implements HealthAdminService {
 			e.printStackTrace();
 		}
 		return result;
+	}
+
+	//챌린지2리스트(article 용)
+	@Override
+	public List<HealthAdmin> listChallenge2(int num) {
+		List<HealthAdmin> listChallenge2=null;
+		try {
+			listChallenge2=dao.selectList("healthAdmin.listChallenge2", num);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return listChallenge2;
+	}
+
+	//챌린지2 읽기(상세파일 한개 읽기)
+	@Override
+	public HealthAdmin readChallenge2(Map<String, Object> map) {
+		HealthAdmin dto =null;
+		try {
+			dto=dao.selectOne("healthAdmin.readChallenge2", map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return dto;
+	}
+
+	//챌린지 2 개별지우기
+	@Override
+	public void deleteChallenge2(Map<String, Object> map) throws Exception {
+		try {
+			dao.deleteData("healthAdmin.deleteChallenge2", map);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
 	}
 
 }
