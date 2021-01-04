@@ -9,7 +9,7 @@
 
 .interiorTipBoard_body {
 	width: 100%;
-	margin-top: 200px;
+	margin-top: 100px;
 	border-top: 1px solid #cccccc;
 }
 
@@ -70,6 +70,18 @@
 	border-radius: 4px;
 	padding: 4px;
 }
+
+
+.interiorTipBoard_benner{
+
+	width: 100%;
+	height: 600px;
+	background: url('${pageContext.request.contextPath}/resources/images/interior/interiorTipboardbenner1.webp');
+	background-size: cover;
+	background-position: center; 
+	margin-top: 100px;
+}
+
 </style>
 
 <script type="text/javascript">
@@ -102,6 +114,10 @@ function updateBoard(num) {
 
 
 <section>
+<div class="interiorTipBoard_benner">
+
+</div>
+
 <div class="interiorTipBoard_body">
 	<div class="interiorTipBoard_body_tle">
 
