@@ -454,7 +454,7 @@ public class SupplementController {
 			paramMap.put("userId", info.getUserId());
 			service.insertReplyLike(paramMap);
 		} catch (Exception e) { //무결성 위반시
-			service.deleteReplyLike(paramMap);
+//			service.deleteReplyLike(paramMap);
 			e.printStackTrace();
 			state="false";
 		}

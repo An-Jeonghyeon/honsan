@@ -6,46 +6,6 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/room/roomtip.css"
 	type="text/css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/tabs.css" type="text/css">
-<style type="text/css">
-.ui-widget-header {
-	background: none;
-	border: none;
-	height:35px;
-	line-height:35px;
-	border-bottom: 1px solid #cccccc;
-	border-radius: 0px;
-}
-
-.alert-info {
-    border: 1px solid #9acfea;
-    border-radius: 4px;
-    background-color: #d9edf7;
-    color: #31708f;
-    padding: 15px;
-    margin-top: 10px;
-    margin-bottom: 20px;
-}
-/*------------------------------------------------*/
-.guest-write {
-    border: #d5d5d5 solid 1px;
-    padding: 10px;
-    min-height: 50px;
-}
-
-.guest-delete, .guest-notify{
-	cursor:pointer;
-}
-.guest-delete:hover, .guest-notify:hover{
-	color:#F28011;
-	text-decoration: underline;
-}
-.guest-more:hover{
-	cursor:pointer;
-	color: #2524FF;
-}
-</style>
-
 
  <script type="text/javascript">
  $(function(){
@@ -181,11 +141,33 @@ $(function(){
 
 </script>
 
+
+
+<script>
+/* Demo purposes only */
+$(".hover").mouseleave(
+  function () {
+    $(this).removeClass("hover");
+  }
+);
+
+
+</script>
+
+
+
+
+
+
+
+
+
+<hr>
 <div class="body-container">
-	<div style="height: 1000px;">
+	<div style="height: 1700px;">
 		<div id="wrapper">    
 			    <div class="body-title">
-			        <h3><i class="fas fa-exclamation-triangle"></i> 부동산 팁 </h3>
+			        <h2><i class="fas fa-lightbulb"></i> 부동산 팁 </h2>
 			    </div>
 			    
 				<div class="alert-info">
@@ -197,11 +179,11 @@ $(function(){
 			            <div style="clear: both;">
 				           <ul class="tabs">
 				           	   <c:forEach var="dto" items="${listCategory}">
-						       		<li id="tab-${dto.categoryNum}" data-categoryNum="${dto.categoryNum}">${dto.category}</li>
+						       		<li class="tipli" style="padding: 25px 35px;" id="tab-${dto.categoryNum}" data-categoryNum="${dto.categoryNum}">${dto.category}</li>
 				           	   </c:forEach>
 						   </ul>
 					   </div>
-					   <div id="tab-content" style="clear:both; padding: 20px 10px 0px;"></div>
+					   <div id="tab-content" style="clear:both;padding: 20px 10px 0px;"></div>
 			    </div>
 		
 		
@@ -209,3 +191,4 @@ $(function(){
 	</div>
 </div>
 
+<hr>

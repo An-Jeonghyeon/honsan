@@ -93,6 +93,7 @@ public class HealthAdminServiceImpl implements HealthAdminService {
 				if(dto.getChallengeFilename().length()!=0) {
 					fileManager.doFileDelete(dto.getChallengeFilename(), pathname);
 				}
+				dto.setChallengeFilename(challengeFilename);
 			}
 			dao.updateData("healthAdmin.updateChallenge", dto);
 			

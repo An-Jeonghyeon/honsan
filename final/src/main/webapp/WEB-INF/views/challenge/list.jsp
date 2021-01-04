@@ -86,7 +86,7 @@ function printChallenge(data) {
         out += "    	<p>"+subName+"</p>";
         out += "    	<h2>"+name+"</h2>";
         out += "    </div>";
-        out += "     <img class='image1' src='${pageContext.request.contextPath}/uploads/challenge/"+challengeFilename+"'  height='130px' width='570px'>";
+        out += "     <img class='image1' src='${pageContext.request.contextPath}/uploads/challenge/"+challengeFilename+"'  height='130px' width='570px' onerror='imgError(this);'>";
         out += "  </div>";
         out += "  <div class='textch'>진행중인 회원 "+playMember+"명</div>";
         out += " </div>";
@@ -124,6 +124,11 @@ function article(num) {
 	location.href = url;
 }
 
+function imgError(image){
+	image.onerror= "";
+	image.src ="${pageContext.request.contextPath}/resources/images/health/default2.png";
+	return true;
+}
 </script>    
 
 <section>

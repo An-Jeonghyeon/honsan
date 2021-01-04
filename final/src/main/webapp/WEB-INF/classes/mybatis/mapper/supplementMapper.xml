@@ -4,9 +4,9 @@
 <mapper namespace="supplement">
 	<!-- 인서트 -->
 	<insert id="insertSupplement" parameterType="com.sp.app.supplement.Supplement">
-		INSERT INTO supplement(num, userId, subject, content, hashtag, register_date, hitCount, imageFilename)
+		INSERT INTO supplement(num, userId, subject, content, category, register_date, hitCount, imageFilename)
 			VALUES(supplement_seq.NEXTVAL, #{userId}, #{subject}, #{content}, 
-				 #{hashtag, jdbcType=VARCHAR}, SYSDATE, 0, #{imageFilename, jdbcType=VARCHAR})
+				 #{category, jdbcType=VARCHAR}, SYSDATE, 0, #{imageFilename, jdbcType=VARCHAR})
 	</insert>
 	
 
@@ -16,12 +16,18 @@
 			<when test="condition=='all'">
 				(INSTR(subject, #{keyword}) &gt; 0 OR DBMS_LOB.INSTR(content, #{keyword})  &gt; 0)
 			</when>
+			<when test="condition == 'subject'">
+			    INSTR(subject, #{keyword}) &gt; 0
+			</when>
 			<when test="condition=='register_date'">
 				(TO_CHAR(register_date, 'YYYYMMDD') = #{keyword} 
 					OR TO_CHAR(register_date, 'YYYY-MM-DD') = #{keyword})
 			</when>
-			<when test="condition=='cotent'">
+			<when test="condition=='content'">
 				DBMS_LOB.INSTR(content, #{keyword}) &gt; 0
+			</when>
+			<when test="condition == 'userId'">
+			    s.userId=#{keyword}
 			</when>
 			<otherwise>
 				INSTR(#{condition}, #{keyword}) &gt; 0
@@ -31,7 +37,7 @@
 	
 	<!-- 글 리스트  -->
 	<select id="listSupplement" parameterType="map" resultType="com.sp.app.supplement.Supplement">
-		SELECT s.num, s.userId, userName, subject, TO_CHAR(register_date, 'YYYY-MM-DD') register_date, hitCount, imageFilename, 
+		SELECT s.num, s.userId, userName, subject, category, TO_CHAR(register_date, 'YYYY-MM-DD') register_date, hitCount, imageFilename, 
    			 NVL(likeCount, 0) likeCount, 
    			 NVL(replyCount, 0) replyCount
 		FROM supplement s
@@ -79,7 +85,7 @@
 		select num, userId, userName, subject, imageFilename, 
 		         likeCount
 		from (
-		    SELECT s.num, s.userId, userName, subject, TO_CHAR(register_date, 'YYYY-MM-DD') register_date, hitCount, imageFilename, 
+		    SELECT s.num, s.userId, userName, subject, TO_CHAR(register_date, 'YYYY-MM-DD') register_date, category, hitCount, imageFilename, 
 		         NVL(likeCount, 0) likeCount
 		    FROM supplement s
 		    JOIN member1 m ON s.userId = m.userId 
@@ -114,7 +120,7 @@
 	
 	<!-- 게시글보기 -->
 	<select id="readSupplement" parameterType="Integer" resultType="com.sp.app.supplement.Supplement">
-		SELECT s.num, s.userId, userName, subject, content, hitCount, register_date, imageFilename, 
+		SELECT s.num, s.userId, userName, subject, content, hitCount, category, register_date, imageFilename, 
 			NVL(likeCount, 0) likeCount
 		FROM supplement s
 		JOIN member1 m ON s.userId = m.userId
@@ -133,7 +139,7 @@
 	
 	<!-- 게시글 수정 -->
 	<update id="updateSupplement" parameterType="com.sp.app.supplement.Supplement">
-		UPDATE supplement SET subject=#{subject}, content=#{content}, imageFilename=#{imageFilename}
+		UPDATE supplement SET category=#{category}, subject=#{subject}, content=#{content}, imageFilename=#{imageFilename}
 		WHERE num=#{num}
 	</update>
 	
@@ -237,7 +243,7 @@
 	<!-- 댓글 좋아요/싫어요 추가   -->		
 	<insert id="insertReplyLike" parameterType="map">
 		INSERT INTO supplement_reply_like(replyNum, userId, replyLike) 
-		VALUES(#{replyNum}, #{userId}, #{replyLike})
+		VALUES (#{replyNum}, #{userId}, #{replyLike})
 	</insert>
 	
 	<!-- 댓글 좋아요/ 싫어요 취소 -->

@@ -260,40 +260,32 @@ $(function(){
 	});
 });
 
-//댓글 좋아요/ 싫어요 추가 +취소
 $(function(){
-	//h-reply-btnlike : 이거 좋아요 싫어요 둘다 이 이름임
-	$("body").on("click", ".sreplybtn", function(){
-		var replyNum = $(this).attr("data-replyNum");		
-		var replyLike = $(this).attr("data-replyLike");		//좋아요1 싫어요 0 
+	// 댓글 좋아요 / 싫어요 등록
+	$("body").on("click", ".h-reply-btnlike", function(){
+		var replyNum=$(this).attr("data-replyNum");
+		var replyLike=$(this).attr("data-replyLike");
 		var $btn = $(this);
 		
-		//console.log(replyLike)
-	
+		
+
 		var url="${pageContext.request.contextPath}/supplement/insertReplyLike";
 		var query="replyNum="+replyNum+"&replyLike="+replyLike;
 		
 		var fn = function(data){
-			var state = data.state;
-			
-			var likeCount = data.likeCount;
-			var disLikeCount = data.disLikeCount;
-			
+			var state=data.state;
 			if(state==="true") {
-				$btn.parent("td").children().eq(0).find("span").html(likeCount);
-				$btn.parent("td").children().eq(1).find("span").html(disLikeCount);
+				var likeCount=data.likeCount;
+				var disLikeCount=data.disLikeCount;
+				
+				$btn.parent("div").children().eq(0).find("span").html(likeCount);
+				$btn.parent("div").children().eq(1).find("span").html(disLikeCount);
 			} else if(state==="false") {
-				alert("요요");
-
-
-
-				$btn.parent("td").children().eq(0).find("span").html(likeCount);
-				$btn.parent("td").children().eq(1).find("span").html(disLikeCount);
+				alert("댓글 좋아요/싫어요는 한 번만 가능합니다.");
 			}
 		};
 		
-		ajaxJSON(url, "post", query, fn)
-		
+		ajaxJSON(url, "post", query, fn);
 	});
 });
 
@@ -347,11 +339,14 @@ $(document).ready(function() {
 	    </div>
 	    <div class="h-articleMainBody">
 	        <div class="h-articleMainHeader">
-	            <div class="imagetop">
-	            	<p class="imgatetop2 imageout"><i class="far fa-image fa-2x imamge3"></i> <span class="imagespan"> 대표이미지  보기</span> <i class="fas fa-mouse-pointer"></i></p>
-	            </div>
+	        	<div class="cate">
+	        		<p class="cateP">${dto.category}</p>
+	        	</div>
 	            <div class="h-articleMainHeaderSubject">
 	                <span>${dto.subject}</span>
+	            </div>
+	            <div class="imagetop">
+	            	<p class="imgatetop2 imageout"><i class="far fa-image fa-2x imamge3"></i> <span class="imagespan"> 영양제 보기</span> <i class="fas fa-mouse-pointer"></i></p>
 	            </div>
 	            <div class="h-articleSub">
 	                <div class="h-articleMainHeaderUserName">

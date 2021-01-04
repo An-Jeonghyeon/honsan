@@ -33,7 +33,7 @@
             <div class="userPage_rightbox">
                <div class="userPage_listbox">
                     <div class="userPage_listbox_subject">
-                        <h3>인테리어 <span style="color: #35c5f0;">58</span></h3>
+                        <h3>인테리어 <span style="color: #35c5f0;">${mdataCount}</span></h3>
                         <a class="userPage_listbox_send" href="${pageContext.request.contextPath}/interior/mListAll?userId=${userId}">전채보기</a>
                     </div>
                     <div class="userPage_listbox_items">

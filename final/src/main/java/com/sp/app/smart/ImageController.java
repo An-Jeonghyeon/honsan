@@ -101,4 +101,6 @@ public class ImageController {
 			PrintWriter out=resp.getWriter();
 			out.print(strUrl);
 	}
+	
+
 }

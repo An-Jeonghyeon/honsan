@@ -83,6 +83,7 @@ $(function() {
                    <thead class="s-thead">
                        <tr>
                            <th class="s-table-num">번호</th>
+                           <th class="s-table-category">종류</th>
                            <th class="s-table-sub">제목</th>
                            <th class="s-table-user">작성자</th>
                            <th class="s-table-date">날짜</th>
@@ -94,6 +95,7 @@ $(function() {
                        <c:forEach var="dto" items="${list}">
                            <tr class="s-tbody-tr">
                                <td>${dto.listNum}</td>
+                               <td>${dto.category}</td>
                                <td class="s-subject">
                                    <a href="${article_url}&num=${dto.num}">${dto.subject} (${dto.replyCount})</a></td>
                                <td>${dto.userId}</td>

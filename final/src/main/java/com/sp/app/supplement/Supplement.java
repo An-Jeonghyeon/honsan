@@ -9,7 +9,7 @@ public class Supplement {
 	private String userName;
 	private String subject;
 	private String content;
-	private String hashtag; //이거 타입 뭘로해야하지?
+	private String category; //변경
 	private String register_date;
 	private int hitCount;
 	private int bestNum;
@@ -21,6 +21,7 @@ public class Supplement {
 	//게시글 좋아요 + 댓글갯수
 	private int replyCount;
 	private int likeCount; //좋아요
+	
 	public int getNum() {
 		return num;
 	}
@@ -57,11 +58,11 @@ public class Supplement {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public String getHashtag() {
-		return hashtag;
+	public String getCategory() {
+		return category;
 	}
-	public void setHashtag(String hashtag) {
-		this.hashtag = hashtag;
+	public void setCategory(String category) {
+		this.category = category;
 	}
 	public String getRegister_date() {
 		return register_date;
@@ -105,6 +106,5 @@ public class Supplement {
 	public void setLikeCount(int likeCount) {
 		this.likeCount = likeCount;
 	}
-	
 
 }

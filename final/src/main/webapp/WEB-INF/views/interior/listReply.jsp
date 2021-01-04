@@ -7,7 +7,7 @@
                     <li class="comment_list_item">
                         <article class="comment_fild_item">
                             <p class="comment_fild_item_content">
-                                <a href="#"><img src="${pageContext.request.contextPath}/resources/images/interior/t1.webp"><span>${dto.userName}</span></a>
+                                <a href="#"><img src="${pageContext.request.contextPath}/uploads/profile/${dto.profileImg}"><span>${dto.userName}</span></a>
                                 <span>${dto.content}
                                 </span>
                                 <nav class="comment_fild_tfoot">

@@ -182,6 +182,8 @@ public class InteriorController {
 		map.put("userId", dto.getUserId());
 		map.put("rows", 4);
 		
+		
+		
 		List<Interior> ublist = service.userlistBoard(map);
 		int ublistCount = ublist.size();
 		
@@ -191,6 +193,9 @@ public class InteriorController {
 		Map<String, Object> paramMap=new HashMap<>();
 		paramMap.put("num", num);
 		paramMap.put("userId", info.getUserId());
+		
+		Interior logindto = service.readprofile(paramMap);
+		
 		int replyCount=service.replyCount(paramMap);
 		
 		int readinteriorLike=0;
@@ -221,6 +226,7 @@ public class InteriorController {
 			
 		map.put("keyword", keyword);
 		
+		model.addAttribute("logindto",logindto);
 		model.addAttribute("replyCount",replyCount);
 		model.addAttribute("ublist", ublist);
 		model.addAttribute("ublistCount", ublistCount);		
@@ -370,9 +376,10 @@ public class InteriorController {
 		
 		
 		Map<String, Object> map = new HashMap<>();
-		map.put("userId", userId);
+		map.put("userId", userId);	
+		int mdataCount = service.mdataCount(map);
 		map.put("rows" , 4);
-		
+			
 		Mypage dto = new Mypage();
 		dto.setUserId(userId);
 				
@@ -380,6 +387,7 @@ public class InteriorController {
 		
 		List<Interior> list = service.userlistBoard(map);
 		
+		model.addAttribute("mdataCount", mdataCount);
 		model.addAttribute("dto", dto);
 		model.addAttribute("list", list);
 		model.addAttribute("userId", userId);
@@ -593,6 +601,7 @@ public class InteriorController {
 		@RequestMapping(value="listReplyAnswer")
 		public String listReplyAnswer(
 				@RequestParam int answer,
+				HttpSession session,
 				Model model
 				) throws Exception {
 			
@@ -603,6 +612,15 @@ public class InteriorController {
 				dto.setContent(dto.getContent().replaceAll("\n", "<br>"));
 			}
 			
+			SessionInfo info=(SessionInfo)session.getAttribute("member");
+			Map<String, Object> map = new HashMap<>();
+			map.put("userId", info.getUserId());
+			
+			Interior mto = service.readprofile(map);
+			
+		
+			
+			model.addAttribute("mto", mto);
 			model.addAttribute("listReplyAnswer", listReplyAnswer);
 			model.addAttribute("replyNum",answer);
 			return "interior/listReplyAnswer";

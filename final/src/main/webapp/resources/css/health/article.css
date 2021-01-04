@@ -86,7 +86,7 @@ a {
 .h-articleMainHeaderSubject{
     width: 95%;
     height: 60px;
-    margin: 0px auto 40px;
+    margin: 0px auto 80px;
     padding-top: 5px;
     box-sizing: border-box;
     /* border: 1px solid rgb(226, 226, 226); */
@@ -349,4 +349,21 @@ outline: none;
 	margin-left: 6px;
 	margin-top: 4px;
 	vertical-align: sub;
+}
+/* 카테고리 */
+.cate {
+	margin: 0 auto;
+	margin-left: 25px;
+	margin-right: 25px;
+}
+.cateP{
+	display: inline-block;
+	width: 100px;
+	text-align : center;
+	background: black;
+	color : white;
+	height :20px;
+	margin : 0 auto;
+	border-radius: 5px;
+	padding-bottom: 3px;
 }

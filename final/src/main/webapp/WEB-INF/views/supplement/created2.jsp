@@ -51,25 +51,6 @@ function check() {
         <div class="h-writeBodyHeader">
             <span><i class="fas fa-capsules"></i> 영양제 추천하기</span>
         </div>
-        
-     	<div class="sup_subjectTitle">
-			<span class="sup_smallTitle">영양제 종류 선택</span>
-		</div>
-		<div class="">
-			<select name="category" class="sup_select" id="category">
-				<option value="기타" ${dto.category=="기타"?"selected='selected'":"" }>기타</option>
-				<option value="종합비타민" ${dto.category=="종합비타민"?"selected='selected'":"" }>종합비타민</option>
-				<option value="비타민 B" ${dto.category=="비타민B"?"selected='selected'":"" }>비타민B</option>
-				<option value="비타민 C" ${dto.category=="비타민C"?"selected='selected'":"" }>비타민C</option>
-				<option value="비타민 D" ${dto.category=="비타민D"?"selected='selected'":"" }>비타민D</option>
-				<option value="오메가" ${dto.category=="오메가"?"selected='selected'":"" }>오메가</option>
-				<option value="마그네슘" ${dto.category=="마그네슘"?"selected='selected'":"" }>마그네슘</option>
-				<option value="철분" ${dto.category=="철분"?"selected='selected'":"" }>철분</option>
-				<option value="루테인" ${dto.category=="루테인"?"selected='selected'":"" }>루테인</option>
-				<option value="칼슘" ${dto.category=="칼슘"?"selected='selected'":"" }>칼슘</option>
-				<option value="밀크시슬" ${dto.category=="밀크시슬"?"selected='selected'":"" }>밀크시슬</option>
-			</select>
-		</div>
     
         <div class="h-subjectBody">
             <input type="text" class="h-title-font" name="subject" id="subject" placeholder="제목을 입력해 주세요." value="${dto.subject}">
@@ -83,6 +64,20 @@ function check() {
             <div class="h-image ">
                 <div class="h-image-title"><i class="fas fa-check"></i> 대표 이미지</div>
 	                <input type="file" class="h-imageFile" name="upload" id="img22" accept="image/*">
+            </div>
+
+            <div class="h-tagBody">
+                <div class="h-inputBody2">
+                    <div class="h-tag-title"><i class="fas fa-hashtag"></i> 태그</div>
+                       <div class="h-tag-tag">
+                        <div class="h-InputTag">
+                            <span>#</span><input type="text" class="h-tag1" name="hashtag" placeholder="태그 입력(최대5개)">
+                        </div>
+                        <div class="h-tagbtnBody">
+                            <button class="h-Tag-btn" type="button" onclick="TagbtnSend()">TAG</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="h-buttonBoxBody">

@@ -8,7 +8,7 @@
         <li class="comment_reply_list_li">
             <article class="comment_reply_list_item">
                 <p class="comment_fild_item_content">
-                    <a href="#"><img src="${pageContext.request.contextPath}/resources/images/interior/t1.webp"><span>${vo.userName}</span></a>
+                    <a href="#"><img src="${pageContext.request.contextPath}/uploads/profile/${vo.profileImg}"><span>${vo.userName}</span></a>
                     <span><a class="reply_idTag" href="#"></a>&nbsp;${vo.content}
                     </span>
                     <nav class="comment_fild_tfoot">
@@ -29,7 +29,7 @@
     </c:forEach>
        <li class="leftbox_comment_insert" >
            <div class="leftbox_comment_userImg">
-               <img src="${pageContext.request.contextPath}/resources/images/interior/comment.png">
+               <img src="${pageContext.request.contextPath}/uploads/profile/${mto.profileImg}">
            </div>
            <div class="leftbox_comment_usercomment">
                <div class="leftbox_comment_usercomment_input">
