@@ -1,0 +1,235 @@
+@charset "UTF-8";
+
+.challengeArticle ul {
+    list-style: none;
+}
+.challengeArticle {
+    width: 1200px;
+/*     background: #F9F6F3; */
+    margin: 100px auto;
+    padding-bottom: 20px;
+    font-family: 'Do Hyeon', sans-serif!important;
+} 
+/* 제목부분 */
+.articleHeader {
+    width: 1100px;
+    min-height: 100px;
+    margin: 0 auto;
+    /* background: yellow; */
+    border-bottom: 3px solid rgb(85, 85, 85);
+    padding-bottom: 20px;
+    
+}
+.headertitle {
+    text-align: center;
+    font-size: 18px;
+    font-weight: 700;
+    position: relative;
+    top: 30px;
+    padding-top: 40px;
+}
+.headertitle span{
+	font-family: 'Noto Sans KR', sans-serif;
+	font-weight: normal;
+}
+.hollotext {
+    float: left;
+}
+.haru {
+
+}
+.hrr {
+    width: 100%;
+    height: 8px;
+    background: black;
+    box-sizing: border-box;
+    position: relative;
+    top: 30px;
+}
+.charsubject {
+/*     background: sandybrown; */
+    width: 100%;
+    margin-top: 50px;
+    text-align: center;
+}
+.subnamediv {
+    font-size : 25px;
+    font-weight: 800;
+    width: 800px;
+    /* background: violet; */
+    margin: 0 auto;
+    text-align: center;
+    padding-top: 30px;
+}
+.subnamediv span{
+    font-family: 'Do Hyeon', sans-serif!important;
+}
+.namediv {
+    /* background: turquoise; */
+    margin: 0 auto;
+    font-size: 70px;
+    font-weight: 900;
+    text-align: center;
+}
+.namediv span {
+    position: relative;
+    z-index: 1;
+    font-family: 'Do Hyeon', sans-serif!important;
+    
+}
+.mitgul {
+    width: 700px;
+    height: 20px;
+    background: rgba(204, 204, 204, 0.753);
+    border-radius: 100px 0 100px 0;
+    margin: 0 auto;
+    position: relative;
+    bottom: 30px;
+    /* z-index: -1; */
+}
+/*  바디부분(동영상 + 설명) */
+.articleBody {
+/*     background:#DCEAEC; */
+    width: 1100px;
+    margin: 5px auto 0;
+    border-top: 3px solid rgb(85, 85, 85);
+}
+    /* 동영상 */
+.videodiv {
+    width: 1100px;
+    height: 600px;
+    background: steelblue;
+    margin-top: 50px;
+    box-sizing: border-box;
+}
+    /* 챌린지 설명 겸 소개 */
+.intro {
+    width: 1100px;
+    /* background: slateblue; */
+    text-align: center;
+    margin: 50px auto 0;
+    text-align: center;
+}
+.introtext {
+    width: 400px;
+    font-size: 40px;
+    font-weight: 700;
+    background: rgb(68, 68, 68);
+    margin: 0 auto;
+    color: white;
+    border-radius: 40px;
+    position: relative;
+    z-index: 1;
+}
+.introtext img {
+	width: 45px;
+	height: 40px;
+}
+.introtext span {
+    font-family: 'Do Hyeon', sans-serif!important;
+    font-weight: 300;
+}
+.introbox {
+    width: 100%;
+    height: 200px;
+    position: relative;
+    border: 4px solid  rgb(68, 68, 68);;
+    top: -30px;
+    box-sizing: border-box;
+    padding-top: 40px;
+    padding-bottom: 20px;
+}
+.introboxtext {
+    color: black;
+    font-size: 20px;
+	font-family: 'Noto Sans KR', sans-serif;
+	font-weight: 100;
+}
+/*  챌린지 달력 */
+.articleChallenge {
+    width: 1100px;
+    margin: 50px auto 90px;
+    font-family: 'Do Hyeon', sans-serif!important;
+}
+.dalbox {
+    width: 100%;
+    box-sizing: border-box;
+}
+.chaul {
+    width: 1000px;
+    margin: 0 auto;
+/*     background:#DCEAEC; */
+}
+.chali {
+    width: 185px;
+    height: 200px;
+    /* background: turquoise; */
+    display: inline-block;
+    margin: 0 5px;
+    box-sizing: border-box;
+    margin-top: 10px;
+    font-family: 'Do Hyeon', sans-serif!important;
+}
+.chaliday {
+    width: 100%;
+    height: 15%;
+    background: rgb(248, 233, 27);
+    text-align: center;
+    font-size: 25px;
+    font-weight: 800;
+}
+.chaliday span {
+    font-family: 'Do Hyeon', sans-serif!important;
+}
+.chalicontent {
+    width: 100%;
+    height: 80%;
+    text-align: center;
+    font-size: 25px;
+    font-weight: 800;
+    margin-top: 5px;
+    background: white;
+    box-shadow: 0px 5px 10px 2px slategrey;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    box-sizing: border-box;
+}
+.chalicontent p {
+   font-family: 'Do Hyeon', sans-serif!important;
+}
+
+/* 도전버튼 */
+.gobut { 
+    width: 1200px;
+    margin : 50px auto;
+}
+.gobutton {
+    width: 1100px;
+    height: 60px;
+    background: #726658;
+    margin: 0 auto;
+}
+.gobtngo {
+    background: none;
+    outline: none;
+    border: none;
+    width: 100%;
+    height: 100%;
+    font-size: 30px;
+    font-weight: 800;
+    color: #F9F6F3;
+    text-decoration: underline;
+}
+.h-listButton {
+    float: right;
+    width: 70px;
+    height: 30px;
+    border:1px solid #ccc;
+    cursor: pointer;
+    border-radius: 5px;
+    float: right;
+    transition: 0.1s;
+    color: rgb(136, 136, 136);
+    background: white;
+    margin-top: 10px;
+}

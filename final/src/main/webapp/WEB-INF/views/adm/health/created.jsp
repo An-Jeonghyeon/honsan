@@ -8,99 +8,148 @@
 
 <script type="text/javascript">
 function sendOk() {
-	function sendOk() {
-		 var f = document.challengeForm;
+	 var f = document.challengeForm;
 
-			var str = f.name.value;
-		    if(!str) {
-		        alert("챌린지명을 입력하세요.");
-		        f.name.focus();
-		        return;
-		    }
-			var str = f.subName.value;
-		    if(!str) {
-		        alert("간단설명을 입력하세요.");
-		        f.subName.focus();
-		        return;
-		    }
-			var str = f.content.value;
-		    if(!str) {
-		        alert("상세설명을 입력하세요.");
-		        f.content.focus();
-		        return;
-		    }
-			var str = f.challengePeriod.value;
-		    if(!str) {
-		        alert("챌린지 기간을 입력하세요.");
-		        f.challengePeriod.focus();
-		        return;
-		    }
-			var str = f.startDates.value;
-		    if(!str) {
-		        alert("시작일을 입력하세요.");
-		        f.startDates.focus();
-		        return;
-		    }
-			var str = f.endDates.value;
-		    if(!str) {
-		        alert("마지막일을 입력하세요.");
-		        f.endDates.focus();
-		        return;
-		    }
-			var str = f.exContents.value;
-		    if(!str) {
-		        alert("상세내용을 입력하세요.");
-		        f.exContents.focus();
-		        return;
-		    }
-		    
-			f.action="${pageContext.request.contextPath}/adm/health/created";
+		var str = f.name.value;
+	    if(!str) {
+	        alert("챌린지명을 입력하세요.");
+	        f.name.focus();
+	        return;
+	    }
+		var str = f.subName.value;
+	    if(!str) {
+	        alert("간단설명을 입력하세요.");
+	        f.subName.focus();
+	        return;
+	    }
+		var str = f.content.value;
+	    if(!str) {
+	        alert("상세설명을 입력하세요.");
+	        f.content.focus();
+	        return;
+	    }
+		var str = f.challengePeriod.value;
+	    if(!str) {
+	        alert("챌린지 기간을 입력하세요.");
+	        f.challengePeriod.focus();
+	        return;
+	    }
+	    
+	    var obj;
+	    var b=true;
+	    $(".ch_content_more input[name=startDates]").each(function(){
+	    	if(! $(this).val()) {
+	    		obj = $(this);
+	    		b=false;
+	    		return false;
+	    	}
+	    });
+	    if(! b) {
+	    	 alert("시작일을 입력하세요.");
+	    	 obj.focus();
+	    	 return;
+	    }
 
-			return true;
+	    var b=true;
+	    $(".ch_content_more input[name=endDates]").each(function(){
+	    	if(! $(this).val()) {
+	    		obj = $(this);
+	    		b=false;
+	    		return false;
+	    	}
+	    });
+	    if(! b) {
+	    	 alert("마지막일을 입력하세요.");
+	    	 obj.focus();
+	    	 return;
+	    }
+	    
+	    var b=true;
+	    $(".ch_content_more input[name=exContents]").each(function(){
+	    	if(! $(this).val()) {
+	    		obj = $(this);
+	    		b=false;
+	    		return false;
+	    	}
+	    });
+	    if(! b) {
+	    	 alert("상세내용을 입력하세요.");
+	    	 obj.focus();
+	    	 return;
+	    }	
 
-	}
-	
+		f.action="${pageContext.request.contextPath}/adm/health/${mode}";
+
+		f.submit();
 }
 </script>
-<script type="text/javascript">
-$(function(){
-	
-	$("#plusbtn").click(function(){
-		var f = document.challengeForm;
-		
-/* 		var str = f.startDate.value;
-	    if(!str) {
-	        alert("시작일을 입력하세요.");
-	        f.startDate.focus();
-	        return;
-	    }
-		var str = f.endDate.value;
-	    if(!str) {
-	        alert("마지막일을 입력하세요.");
-	        f.endDate.focus();
-	        return;
-	    }
-		var str = f.dContent.value;
-	    if(!str) {
-	        alert("상세정보를 입력하세요.");
-	        f.dContent.focus();
-	        return;
-	    }
-	     */
-	     
-	    
-	    $table = $(this).closest("#moreTable");
 
+<script type="text/javascript">
+//추가버튼
+$(function(){
+	$(".plusbtn").click(function(){
+		
+		$check = $(this).closest(".morebody")
+	    if($check.find(".start").val()=="") {
+	    	alert("시작일을 입력해주세요");
+	    	$check.find(".start").focus();
+	        return false;
+	    }
+		
+	    if($check.find(".end").val()=="") {
+	    	alert("종료일을 입력해주세요");
+	    	$check.find(".end").focus();
+	        return false;
+	    }
+		
+	    if($check.find(".excontent").val()=="") {
+	    	alert("하루운동 상세를 입력해주세요");
+	    	$check.find(".excontent").focus();
+	        return false;
+	    }
+		
+	    $table = $(this).closest(".morebody");
+
+	    
+	    
 		var plus = $table.clone(true);
- 		$table.find("#start").val("");
-		$table.find("#end").val("");
-		$table.find("#excontent").val(""); 
+ 		$table.find(".start").val("");
+		$table.find(".end").val("");
+		$table.find(".excontent").val(""); 
+		//data-count 변경
+		var count = $(this).data('addcount');
+// 		console.log(count);
+		
+		count = count+1;
+// 		console.log(count);
+		
+		$(this).data('addcount', count);
+// 		var count1 = $(this).data('addcount');
+// 		console.log(count1);
+		
 		
 //		$(".ch_content_more").append(plus);
- 		plus .appendTo('.plustable');
+
+//  		plus .prependTo('.moreTable');
+ 		$(this).closest('.morebody').before(plus);
+	});
+});
+
+//삭제버튼
+$(function(){
+	$(".deletebtn").click(function(){
+		
+		var $table = $(this).closest(".morebody") 
+		var count = $table.find(".plusbtn").data('addcount');
+		console.log(count);
+		
+		if(count=='1') {
+			alert("최소 1개의 상세정보를 입력해주세요.");
+			return false;
+		}
+		$(this).closest(".morebody").remove();
 		
 	});
-	
 });
 
 </script>
@@ -154,8 +203,10 @@ $(function(){
 					                            <td><input type="file" name="upload"></td>
 					                        </tr>
 					                        <tr>
-				                           		<th scope="row">동영상 주소(유튜브 url)</th>
-					                            <td class="cvideo"><input type="text" name="video"></td>
+				                           		<th scope="row">동영상 주소(유튜브)</th>
+					                            <td class="cvideo"><input type="text" name="video">
+					                            <small>ex) www.youtube.com/embed/IfJcq4LDXKE</small>
+					                            </td>
 					                        </tr>
 					                    </table>
 					                </div>
@@ -165,25 +216,28 @@ $(function(){
 					                
 					                <div class="ch_content_more">
 					                    <div class="more_title">  상세정보</div>
-					                    <div class="plustable">
-					                   		<!-- 여기 추가될것.. -->
-					                    </div>
-					                    <table border="1" class="ch_table" id="moreTable">
+<!-- 					                    <div class="plustable"> -->
+<!-- 					                   		여기 추가될것.. -->
+<!-- 					                    </div> -->
+					                    <table border="1" class="ch_table moreTable">
+					                    	<tbody class="morebody">
 					                        <tr>
 					                            <th scope="row">상세기간</th>
 					                            <td class="chperiod">
-					                                <input type="text" name="startDates" id="start"> 일차  ~
-					                                <input type="text" name="endDates" id="end"> 일차
+					                                <input type="text" name="startDates" class="start"> 일차  ~
+					                                <input type="text" name="endDates" class="end"> 일차
+					                                <button type="button" class="deletebtn">X</button>
 					                            </td>
 					                        </tr>
 					                        <tr>
 					                            <th scope="row">하루 운동상세</th>
 					                            <td class="chsub">
-					                                <input type="text" name="exContents" id="excontent">
-					                                <button type="button" id="plusbtn">추가</button>
+					                                <input type="text" name="exContents" class="excontent">
+					                                <button type="button" class="plusbtn" data-addcount="1">추가</button>
 					                                <br><small>* 여러항목 등록시 '/' 로 구분작성</small>
 					                            </td>
 					                        </tr>
+					                    	</tbody>
 					                    </table>
 					                </div>
 
@@ -192,8 +246,7 @@ $(function(){
 						
 						        <div class="h-buttonBoxBody">
 						            <button type="button" id="CencelSubmit" onclick="javascript:location.href='${pageContext.request.contextPath}/adm/health/list';">${mode=='update'?'수정취소':'등록취소'}</button>
-						            <button type="reset" id="resetSubmit">다시입력</button>
-						            <button type="submit" id="writeSubmit" onclick="sendOk();">${mode=='update'?'수정완료':'등록하기'}</button>
+						            <button type="button" id="writeSubmit" onclick="sendOk();">${mode=='update'?'수정완료':'등록하기'}</button>
 						        </div>
 						     </div>
 						 </form>

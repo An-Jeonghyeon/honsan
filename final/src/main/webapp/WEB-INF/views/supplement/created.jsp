@@ -14,7 +14,7 @@ function check() {
     if(!str) {
         alert("제목을 입력하세요.");
         f.subject.focus();
-        return;
+        return false;
     }
 
     str = f.content.value;

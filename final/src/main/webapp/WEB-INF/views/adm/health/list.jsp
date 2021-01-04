@@ -4,6 +4,22 @@
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/adm/health/list.css" type="text/css">
 
+<script type="text/javascript">
+function searchList() {
+	var f=document.searchForm;
+	f.submit();
+}
+	
+function deleteChallenge(num) {
+	var url="num="+num+"&page="+${page};
+	var url2="${pageContext.request.contextPath}/adm/health/delete?"+url;
+	
+	if(confirm("게시물을 삭제하시겠습니까?")) {
+		location.href=url2;
+	}
+	
+}
+</script>
 <div id="wrapper">
 	<div id="page-wrapper">
 	  	
@@ -25,7 +41,7 @@
                         	<div class="chlist_top">
 	                        	<div class="chlist_search">
 	                        		<select class="form-control searchSelect" name="condition">
-			                           <option value="subject" ${condition=="subject"?"selected='selected'":""}>챌린지명</option>
+			                           <option value="name" ${condition=="name"?"selected='selected'":""}>챌린지명</option>
 			                           <option value="created" ${condition=="created"?"selected='selected'":""}>등록일</option>
 	                        		</select>
 	                        		<input type="text" class="form-control form-inline col-md-4" name="keyword" value="${keyword}">
@@ -38,7 +54,7 @@
                         	</form>
        
                             <div class="table-responsive">
-                     	        <div class="chList_total">총 3개 [1페이지/3페이지]</div> 
+                     	        <div class="chList_total">총 ${dataCount}개 [${page}/${total_page}페이지]</div> 
                                 <table class="table table-bordered table-hover" id="dataTables-example">
                                     <thead>
                                         <tr class="warning">
@@ -58,7 +74,7 @@
                                             <td class="center">${dto.playMember}</td>
                                             <td class="center chListupanddel">
                                             	<button type="button" class="jbtn btn-xs btn btn-default">수정</button>
-                                            	<button type="button" class="jbtn btn-xs btn btn-default">삭제</button>
+                                            	<button type="button" class="jbtn btn-xs btn btn-default" data-num="${dto.num}" onclick="deleteChallenge(${dto.num});">삭제</button>
                                             </td>
                                         </tr>
                                     </c:forEach>

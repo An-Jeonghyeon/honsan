@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="challenge">
+
+	
+	<!--  검색  -->
+	<sql id="where-list">
+		<choose>
+			<when test="condition=='created'">
+				(TO_CHAR(created, 'YYYYMMDD') = #{keyword} 
+					OR TO_CHAR(created, 'YYYY-MM-DD') = #{keyword})
+			</when>
+			<when test="condition=='name'">
+				(INSTR(name, #{keyword}) &gt; 0 OR INSTR(subName, #{keyword}) &gt; 0)
+			</when>
+			<otherwise>
+				INSTR(#{condition}, #{keyword}) &gt; 0
+			</otherwise>
+		</choose>
+	</sql>
+	
+	<!-- 리스트 -> 일단 다 뽑고 필요한거만 가져다쓰기 ?-->
+	<select id="listChallenge" parameterType="map" resultType="com.sp.app.challenge.Challenge">
+		SELECT c.num, name, subName, challengePeriod, challengeFilename, TO_CHAR(created, 'YYYY-MM-DD') created,
+			NVL(playMember, 0) playMember
+		FROM challenge c
+		LEFT OUTER JOiN(
+			SELECT num, COUNT(*) playMember 
+			FROM userChallenge
+			GROUP BY num
+		) u ON c.num = u.num
+		<where>
+			<if test="keyword !=null and keyword !=''">
+				<include refid="where-list"/>
+			</if>
+		</where>
+		ORDER BY c.num DESC
+		OFFSET #{offset} ROWS FETCH FIRST #{rows} ROWS ONLY
+	</select>
+	
+	<!-- dataCount -->
+	<select id="dataCount" parameterType="map" resultType="Integer">
+		SELECT NVL(count(*), 0)
+		FROM challenge 
+		<where>
+			<if test="keyword!=null and keyword!=''">
+				<include refid="where-list"/>
+			</if>
+		</where>
+	</select>
+	
+	<!-- 게시글보기 -->
+	<select id="readChallenge" parameterType="Integer" resultType="com.sp.app.challenge.Challenge">
+		SELECT c.num, name, subName, content, challengePeriod, challengeFilename, video, TO_CHAR(created, 'YYYY-MM-DD') created,
+			NVL(playMember, 0) playMember
+		FROM challenge c
+		LEFT OUTER JOiN(
+			SELECT num, COUNT(*) playMember 
+			FROM userChallenge
+			GROUP BY num
+		) u ON c.num = u.num
+		WHERE c.num=#{num}
+	</select>
+	
+	<!-- 상세정보 리스트 -> 글보기에서 상세정보를 따로 출력하기 위함 -> article, update 둘다에 사용-->
+	<select id="listChallenge2" parameterType="Integer" resultType="com.sp.app.challenge.Challenge">
+		SELECT exNum, num, startDate, endDate, exContent
+		FROM  challenge2
+		WHERE num=#{num}
+	</select>
+	
+	<!-- 상세정보 하나 읽기 -->
+	<!--값 두개 받아와야하니까 map으로   -->
+	<select id="readChallenge2" parameterType="map" resultType="com.sp.app.challenge.Challenge">
+		SELECT exNum, num, startDate, endDate, exContent
+		FROM  challenge2
+		WHERE num=#{num} AND exNum=#{exNum}
+	</select>
+	
+	
+</mapper>

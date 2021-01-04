@@ -17,6 +17,7 @@ public class Interior {
 	private int mainnum;
 	private String mainImg;
 	private int interiorLikeCount;
+	private int interiorZzimCount;
 	private String replycontent;
 	private String replyuserId;
 	private int replyCount;
@@ -36,6 +37,13 @@ public class Interior {
 	
 	
 	
+	public int getInteriorZzimCount() {
+		return interiorZzimCount;
+	}
+	
+	public void setInteriorZzimCount(int interiorZzimCount) {
+		this.interiorZzimCount = interiorZzimCount;
+	}
 	public String getProfileImg() {
 		return profileImg;
 	}

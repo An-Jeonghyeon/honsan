@@ -11,10 +11,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
 
-    <script type="text/javascript" src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-    
+    <script src="${pageContext.request.contextPath}/resources/assets/js/jquery-1.10.2.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
     
     
@@ -46,10 +45,6 @@
     <tiles:insertAttribute name="body"/>
 </div>
 
-    <!-- JS Scripts-->
-    <!-- jQuery Js -->
-    <script src="${pageContext.request.contextPath}/resources/assets/js/jquery-1.10.2.js" ></script>
-	
 	<!-- Bootstrap Js -->
     <script src="${pageContext.request.contextPath}/resources/assets/js/bootstrap.min.js"></script>
 	
@@ -66,11 +61,6 @@
 	<script src="${pageContext.request.contextPath}/resources/assets/js/easypiechart-data.js" ></script>
 	
 	 <script src="${pageContext.request.contextPath}/resources/assets/js/Lightweight-Chart/jquery.chart.js"></script>
-	
-    <!-- Custom Js -->
-    <script src="${pageContext.request.contextPath}/resources/assets/js/custom-scripts.js" ></script> 
- 
-
 </body>
 
 </html>

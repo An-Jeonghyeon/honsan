@@ -52,7 +52,7 @@
 		resultType="com.sp.app.interior.Interior"> <!-- map에는 condition, keyword, offset, rows 등이 저장되어 넘어온다 -->
 	
 		SELECT i.num, i.userId, userName, subject, content, category, hitCount, register_date, mainImg,
-        NVL(interiorLikeCount, 0) interiorLikeCount,
+        NVL(interiorLikeCount, 0) interiorLikeCount, interiorZzimCount ,
         replycontent , replyuserId ,replyCount , profileImg , replyProfileImg
 		FROM interior i
 		JOIN member1 m ON i.userId = m.userId
@@ -61,6 +61,11 @@
 			FROM interior_like
 			GROUP BY num
 		) c ON i.num = c.num
+		LEFT OUTER JOIN (
+			SELECT num, COUNT(*) interiorZzimCount 
+			FROM interior_Zzim
+			GROUP BY num
+		) z ON i.num = z.num
         LEFT OUTER JOIN (
             SELECT n.replyNum , n.num , content AS replycontent ,userid AS replyuserId ,replyCount
             FROM interior_reply n
@@ -144,6 +149,10 @@
 		WHERE num=#{num}
 	</delete>
 	
+	
+	
+	
+	<!--   -->
 	<!-- 좋아요 추가 -->
 	<insert id="insertInteriorLike" parameterType="map">
 		INSERT INTO interior_like(num, userId) VALUES (#{num}, #{userId})
@@ -163,6 +172,37 @@
 	<delete id="deleteInteriorLike" parameterType="map">
 		DELETE FROM interior_like WHERE num=#{num} AND userId=#{userId}
 	</delete>
+	
+	
+	
+	
+	
+	
+	<!--   -->
+	<!-- 찜 추가 -->
+	<insert id="insertInteriorZzim" parameterType="map">
+		INSERT INTO interior_zzim(num, userId) VALUES (#{num}, #{userId})
+	</insert>
+      
+	<!-- 찜 개수 -->
+	<select id="interiorZzimCount" parameterType="Integer" resultType="Integer">
+		SELECT COUNT(*) FROM interior_zzim WHERE num=#{num}
+	</select>
+
+	<!-- 유저당 게시글 찜 여부 확인 -->
+	<select id="readInteriorZzim" parameterType="map" resultType="Integer">
+		SELECT NVL(COUNT(*),0) FROM interior_zzim WHERE num=#{num} AND userId=#{userId}
+	</select>
+	
+	<!-- 게시글 찜 취소 -->
+	<delete id="deleteInteriorZzim" parameterType="map">
+		DELETE FROM interior_zzim WHERE num=#{num} AND userId=#{userId}
+	</delete>
+	
+	
+	
+	
+	
 	
 	
 	<!-- 댓글 등록  -->

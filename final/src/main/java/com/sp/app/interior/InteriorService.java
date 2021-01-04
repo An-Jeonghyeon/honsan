@@ -30,6 +30,13 @@ public interface InteriorService {
 	public int readInteriorLike(Map<String, Object> map) throws Exception;
 	public void deleteInteriorLike(Map<String, Object> map) throws Exception;
 	
+	// 게시판 찜
+	
+	public void insertInteriorZzim(Map<String, Object> map) throws Exception;
+	public int interiorZzimCount(int num);
+	public int readInteriorZzim(Map<String, Object> map) throws Exception;
+	public void deleteInteriorZzim(Map<String, Object> map) throws Exception;
+	
 	//댓글 
 	public void insertReply(Reply dto) throws Exception ;
 	public List<Reply> listReply(Map<String, Object> map);

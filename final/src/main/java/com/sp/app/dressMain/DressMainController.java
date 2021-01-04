@@ -5,6 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.w3c.dom.Document;
+import org.w3c.dom.NodeList;
 
 import com.sp.app.common.APISerializer;
 @Controller("dressMain.dressMainController")
@@ -82,7 +87,26 @@ public class DressMainController {
 		//현재 지역 날씨 확인
 		String spec="http://www.kma.go.kr/XML/weather/sfc_web_map.xml";
 		result=apiSerializer.receiveToString(spec);
+//		// 1. 빌더 팩토리 생성.
+//        DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
+//        
+//        // 2. 빌더 팩토리로부터 빌더 생성
+//        DocumentBuilder builder = builderFactory.newDocumentBuilder();
+//        
+//        // 3. 빌더를 통해 XML 문서를 파싱해서 Document 객체로 가져온다.
+//        Document document = builder.parse(spec);
+//        
+//        // 문서 구조 안정화 ?
+//        document.getDocumentElement().normalize();
+//        
+//        // XML 데이터 중 <person> 태그의 내용을 가져온다.
+//        NodeList personTagList = document.getElementsByTagName("current");
+        
+     
 		
+	
+	
+		System.out.println(result);
 		return result;
 	}
 	@RequestMapping("areaWeatherChart")

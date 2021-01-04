@@ -52,26 +52,22 @@
                 element: 'morris-donut-chart',
                 data: [{
                     label: "옷",
-                    value: 82
+                    value: 56
                 }, {
                     label: "요리",
-                    value: 46
+                    value: 33
                 }, {
                     label: "부동산",
-                    value: 84
+                    value: 22
                 }, {
                     label: "인테리어",
-                    value: 55
+                    value: 33
                 }, {
                     label: "운동",
-                    value: 55
-                }, {
-                    label: "잡동사니",
-                    value: 55
+                    value: 44
                 }],
 				   colors: [
-    '#30A5FF','#EF4040', '#1EBFAE' , '#FFB53E' , '#795548' ,
-    '#9C27B0' 
+    '#30A5FF','#EF4040', '#1EBFAE' , '#FFB53E' , '#795548'
   ],
                 resize: true
             });

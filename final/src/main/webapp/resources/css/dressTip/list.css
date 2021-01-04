@@ -80,7 +80,6 @@
 }
 .dress-TipMainShowArticleBody{
     width: 100%;
-    min-height: 500px;
     box-sizing: border-box;
     padding: 10px 0;
     border-radius: 0 15px 15px 15px;
@@ -114,7 +113,6 @@
   
 }
 .dress-Created{
-    width: 10%;
     margin: 0 auto;
     text-align: center;
    

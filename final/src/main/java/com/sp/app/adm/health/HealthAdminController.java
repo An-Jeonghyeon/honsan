@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.sp.app.common.MyUtil;
-import com.sp.app.supplement.Supplement;
 
 @Controller("adm.health.healthAdminController")
 @RequestMapping("/adm/health/*")
@@ -34,7 +33,7 @@ public class HealthAdminController {
 	@RequestMapping("list")
 	public String listHealthAdmin(
 			@RequestParam(value = "page", defaultValue = "1") int current_page,
-			@RequestParam(defaultValue = "subject") String condition,
+			@RequestParam(defaultValue = "name") String condition,
 			@RequestParam(defaultValue = "") String keyword,
 			HttpServletRequest req,
 			Model model
@@ -126,6 +125,7 @@ public class HealthAdminController {
 		String root = session.getServletContext().getRealPath("/");
 		String pathname= root+"uploads"+File.separator+"challenge";
 		
+		
 		try {
 			service.insertChallenge(dto, pathname);
 		} catch (Exception e) {
@@ -135,6 +135,40 @@ public class HealthAdminController {
 		return "redirect:/adm/health/list";
 	}
 
+	
+	@RequestMapping(value="delete", method=RequestMethod.GET)
+	public String delete(
+			@RequestParam int num,
+			@RequestParam String page,
+			@RequestParam(defaultValue="name") String condition,
+			@RequestParam(defaultValue="") String keyword,
+			HttpSession session) throws Exception {
+		
+		keyword = URLDecoder.decode(keyword, "utf-8");
+		String query="pageNo="+page;
+		if(keyword.length()!=0) {
+			query+="&condition="+condition+"&keyword="+URLEncoder.encode(keyword, "UTF-8");
+		}
+		
+		String root=session.getServletContext().getRealPath("/");
+		String pathname=root+"uploads"+File.separator+"challenge";
+		
+		service.deleteChallenge(num, pathname);
+		
+		return "redirect:/adm/health/list?"+query;
+	}
+	
+	@RequestMapping(value="article")
+	public String article(
+			@RequestParam int num,
+			@RequestParam String page,
+			@RequestParam(defaultValue="all") String condition,
+			@RequestParam(defaultValue="") String keyword,
+			Model model) throws Exception {
+
+		
+		return "";
+	}
 
 	
 } 
