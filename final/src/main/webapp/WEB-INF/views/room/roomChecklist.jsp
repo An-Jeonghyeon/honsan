@@ -85,7 +85,7 @@ function newcheck(){
 		<div class="listdiv">
 		<table class="listTable">
 		<tr>
-				<td align="center" colspan="2"><input type="text" name="subject" class="listname" placeholder="리스트 이름 작성" value="${dto.subject }"></td>
+				<td align="center" colspan="2"><input type="text" name="subject" class="listname" placeholder="-리스트 이름 작성-" value="${dto.subject }"></td>
 		</tr>
 		<tr>
 			<td align="right" colspan="2"><p style="height: 25px; padding-right: 20px;"> 상 &nbsp;&nbsp; 중  &nbsp;&nbsp; 하 </p></td>
@@ -274,19 +274,20 @@ function newcheck(){
 		
 		<table style="margin-left: 230px">
 		<tr>
-			<td width="80">메&nbsp;&nbsp;&nbsp;모</td>
+			<td width="80" style="font-weight: bold; font-size: 20px;">메&nbsp;&nbsp;&nbsp;모</td>
 			<td align="center" height="100"><textarea name="memo" rows="5" cols="100" style="resize: none;">${dto.memo }</textarea></td>
 		</tr>
 		</table>
 		<table style="margin-left: 350px;">
 		<tr>
 			<td align="center"><button type="button" class="bottonbtn" onclick="send('${dto.num}');">저장하기</button></td>
-			<td align="center">&nbsp;&nbsp;&nbsp;</td>
+			<c:if test="${mode!='update'}">
+				<td align="center" width="150">&nbsp;&nbsp;&nbsp;</td>
+			</c:if>
 			<td align="center"><button type="reset" class="bottonbtn" onclick="newcheck();">새로 작성</button></td>
 			<c:if test="${mode=='update'}">
-				<td align="center">&nbsp;&nbsp;&nbsp;
+				<td align="center">
 					<input type="hidden" name="num" value="${dto.num }">
-				</td>
 				<td align="center"><button type="button" class="bottonbtn" onclick="deleteBoard('${dto.num}');">삭제하기</button></td>
 			</c:if>
 		</tr>
@@ -324,7 +325,7 @@ function newcheck(){
 			<tr>
 				<td style="padding-left: 60px;">
 					<div class="memoimg" onclick="article('${dto.num}');">
-						<p>${dto.subject }</p>
+						${dto.subject }
 					</div>
 				</td>
 			</tr>

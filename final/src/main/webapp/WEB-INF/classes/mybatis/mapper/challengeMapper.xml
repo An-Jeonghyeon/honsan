@@ -96,11 +96,14 @@
 		UPDATE userChallenge SET completion=#{completion} WHERE num=#{num} AND userId =#{userId}
 	</update>
 	
-	<!-- 내가 진행중인 운동 읽어오기 -->
-	<select id="readUserChallenge" parameterType="map" resultType="com.sp.app.challenge.Challenge">
-		select num, enabled, totalCount, completion
-		FROM userChallenge
+	<!-- 내가 진행중인 운동 리스트-->
+	<select id="listMyChallenge" parameterType="map" resultType="com.sp.app.challenge.Challenge">
+		select u.num, userId, enabled, totalCount, completion, name, subName, challengePeriod  
+		FROM userChallenge u
+		JOIN challenge c ON u.num=c.num
 		WHERE userId=#{userId}
+		ORDER BY num DESC
+		OFFSET #{offset} ROWS FETCH FIRST #{rows} ROWS ONLY
 	</select>
 	
 	<!-- 내가 진행중인 운동한개 읽어오기 -->
@@ -109,6 +112,20 @@
 		FROM userChallenge
 		WHERE num=#{num} AND userId=#{userId}
 	</select>
+	
+	<select id="myListDataCount" parameterType="map" resultType="Integer">
+		SELECT NVL(count(*), 0)
+		FROM userChallenge 
+		WHERE userId=#{userId}
+	</select>
+	
+	<!-- 진행중인 챌린지 삭제 -->
+	<delete id="deleteMyChallenge" parameterType="map">
+		DELETE FROM userChallenge 
+		WHERE num=#{num} AND userId=#{userId}
+	</delete>
+	
+	
 	
 	
 </mapper>

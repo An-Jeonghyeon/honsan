@@ -18,5 +18,7 @@ public interface ChallengeService {
 	public void updateTotalCount(Map<String, Object> map) throws Exception; //토탈카운트 증가
 	public void updateCompletion(Map<String, Object> map) throws Exception; //토탈카운트 증가
 	public Challenge readUserChallengeOne(Map<String, Object> map); //도전중인 챌린지 하나 읽어오기
-
+	public List<Challenge> listMyChallenge(Map<String, Object> map);
+	public int myListDataCount(Map<String, Object> map);
+	public void deleteMyChallenge(Map<String, Object> map);
 }

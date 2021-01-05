@@ -136,6 +136,8 @@ hr {
 }
 .title-style{
 	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
 }
 
 .searchcheckbox{
@@ -760,13 +762,17 @@ SETTINGS
 	border: 1px solid #999999;
 	color: #333333;
 	margin:250px 0 0 0;
-	font-size: 20px;
+	font-size: 30px;
 	border-radius: 4px;
 	text-align: center;
 }
 
 .listname:focus{
-	border: 1px solid #ff8000;
+	border: 2px solid #808080;
+	box-shadow: 0 0 5px gray;
+}
+.listname:hover{
+	box-shadow: 0 0 5px gray;
 }
 
 .checklist{
@@ -808,9 +814,16 @@ SETTINGS
 	border-radius:4px;
 	color: #000;
 	margin: 10px;
+	font-weight: bold;
 }
-
-
+.bottonbtn:hover{
+	background:#a7b7ed;
+	box-shadow: 0 0 5px gray;
+}
+.bottonbtn:active{
+	color: white;
+	background:#7992e3;
+}
 
 .mylistbtn{
 	font-size: 15px; 
@@ -823,9 +836,7 @@ SETTINGS
 	margin: 10px;
 }
 
-.bottonbtn:hover{
-	background:#a7b7ed;
-}
+
 
 .toptitle{
 	width: 900px; 
@@ -857,13 +868,20 @@ SETTINGS
 }
 
 .memoimg{
+	display: block;
 	background-image: url("../../images/room/postitimg.png");
 	background-position: center;
 	background-size:cover;
 	background-position:center; 
-	width:100px; 
-	height: 100px;
-	padding: 50px 0 0 20px;
+	width:120px; 
+	height: 150px;
+	padding: 50px 30px 0 20px;
+	text-align: center;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	font-size: 20px;
+	font-weight: bold;
 }
 .memoimg:hover{
 	cursor: pointer;
