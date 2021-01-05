@@ -246,7 +246,7 @@
 					</div>
 					<div class="mypage-content">
 						<div class="mypage-content-item"
-							onclick="location.href='${pageContext.request.contextPath}/';">
+							onclick="location.href='${pageContext.request.contextPath}/challenge/myChallenge';">
 							<div class="hexagon">
 								<span><img class="items"
 									src="${pageContext.request.contextPath}/resources/images/exercise.png"></span>
