@@ -145,7 +145,11 @@
 		<div class="mypage-top"></div>
 		<div class="mypage-both">
 			<div class="mypage-left">
+				<div class="mypagetext">
+					<span>My<br>Page</span>
+				</div>
 				<div class="mypage-left-container">
+				
 					<div class="profile-image">
 						<div class="profile-image-box">
 							<!-- 유저 프로필 이미지 -->
@@ -154,7 +158,8 @@
 								src="${pageContext.request.contextPath}/resources/images/user.png">
 								 -->
 							<img class="userImage" alt="user"
-								src="${pageContext.request.contextPath}/uploads/profile/${dto.profileImg}">
+								src="${pageContext.request.contextPath}/uploads/profile/${dto.profileImg}"
+								onerror="this.src='${pageContext.request.contextPath}/resources/images/mypage/user.png'">
 						</div>
 						<c:if test="${mode=='update'}">
 							<input id="mainImg_upload" type="file" name="profileUpload"  onchange="javascript:deleteMainFile('${dto.userId}');">
@@ -166,9 +171,6 @@
 							</span>
 						</div>
 						<div class="profile-follow">
-							<c:if test="${mode=='created'}">
-								<span> <a href="">팔로워 1</a> | <a href="">팔로잉 10</a>
-							</c:if>
 							</span>
 						</div>
 						<div class="profile-update-userBasicInfo profile-center">
@@ -198,9 +200,6 @@
 					<div class="profile-like">
 						<div class="profile-like-container">
 							<div>
-								<c:if test="${mode=='created'}">
-									<span>좋아요</span> <span>스크랩</span>
-								</c:if>
 								<c:if test="${mode=='update'}">
 									<span>상대 메세지</span>
 								</c:if>
