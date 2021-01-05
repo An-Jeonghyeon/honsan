@@ -4,7 +4,7 @@
 	width: 1300px;
 	height: 1000px;
 	margin :0 auto;
-	background-color: gray;
+/* 	background-color: gray; */
 	display: flex;
 }
 
@@ -14,7 +14,7 @@
 .mypage-left {
 	width: 40%;
 	height: 100%;
-	background-color: yellow;
+/* 	background-color: yellow; */
 	/*float: left;*/
 }
 
@@ -30,7 +30,7 @@
 	width: 100%;
 	height: 45%;
 	padding : 10% 0 0 0;
-	background-color: tomato;
+/* 	background-color: tomato; */
 	/*float: clear;*/
 	/*float: left;*/
 }
@@ -41,7 +41,7 @@
     width : 40%;
     height : 65%;
     border-radius : 100%;
-    background-color:beige;
+/*     background-color:beige; */
     background-image: url("");
 }
 
@@ -54,7 +54,7 @@
 	width: 100%;
 	height: 30%;
 	text-align:center;
-	background-color: skyblue;
+/* 	background-color: skyblue; */
 }
 
 .profile-userName {
@@ -78,19 +78,49 @@
 .profile-like {
 	width: 100%;
 	height: 15%;
-	background-color: orange;
+/* 	background-color: orange; */
 	text-align: center;
 }
 
+.profile-center .btn-default {
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	appearance: none;
+	font-size: 1rem;
+	font-weight: 400;
+	line-height: 1.5;
+	text-align: center;
+	color: #444;
+	background-color: #fff;
+	padding: .6em 1.4em .5em .8em;
+	margin-bottom: 20px;
+	height: 45px;
+	box-sizing: border-box;
+	border: 2px solid #ababab;
+	border-radius: .5em;
+	box-shadow: 0 1px 0 1px rgba(0, 0, 0, .04);
+	transition: all .5s ease-in-out;
+}
+
+.profile-center .btn-default:focus {
+	box-shadow: 2px 2px 1px #848484;
+	border: 2px solid #848484;
+	background-color: white;
+	outline: none;	
+}
+
+.profile-center .btn-default:hover {
+	box-shadow: 2px 2px 1px #848484;
+	border: 2px solid #848484;	
+}
 /****************
 	마이페이지 오른쪽
 *****************/
 .mypage-right {
 	width: 60%;
 	height: 100%;
-	background-color: pink;
-	
-	/* float: right; */
+/* 	background-color: pink; */
+	border-left:6px double gray;
 }
 
 .mypage-right .heading{
@@ -100,22 +130,32 @@
 .mypage-contents {
 	width: 100%;
 	height: 60%;
-	background-color: lime;
-}
+	box-sizing:border-box;
+	padding: 3rem;
 
-.mypage-contents {
-/* 	padding: 60px 0 0 60px;
- */}
+/* 	background-color: lime; */
+	display:flex;
+	flex-wrap:wrap;
+	justify-content:space-around;
+}
 
 .mypage-content-item {
 	display: inline-block;
 	vertical-align: middle;
 	text-align: center;
+
+}
+
+.mypage-content {
+/*     background-color:palevioletred;	 */
+    width:10rem;
+	height:10rem;
+	margin:0.5rem;
 }
 
 .mypage-content-item .hexagon {
-/* 	margin: 35px 0;
- */}
+ 	margin: 2rem;
+} 
 
 .items {
 	width: 55px;
@@ -153,8 +193,50 @@
 	border-top: 25px solid #ececec;
 }
 
+.hexagon:hover,.hexagon:before:hover, .hexagon:after:hover {
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	width: 100px;
+	height: 55px;
+	position: relative;
+	
+	font-weight: 700;
+	color: #444;
+	background-color: #ffeaea; 
+	margin-bottom: 27px; 
+	box-sizing: border-box;
+	box-shadow: 0 1px 0 1px rgba(0, 0, 0, .04);
+	transition: all .5s ease-in-out;
+}
+
+.mypage-content-item:hover {
+/* 	-moz-appearance: none;
+	-webkit-appearance: none;
+	width: 100px;
+	height: 90px;
+	position: relative;
+	top:0.2rem;
+	
+/* 	background-color: #ffeaea;  */
+/* 	margin-bottom: 20px; */
+	box-sizing: border-box;
+	box-shadow: 0 2px 0 1px rgba(0, 0, 0, .08);
+	transition: all .5s ease-in-out; */
+}
+
 .mypage-recent {
 	width: 100%;
 	height: 35%;
 	background-color: maroon;
+}
+
+/****************
+	마이페이지 오른쪽 : 내 정보 수정시
+*****************/
+.mypage-right-update {
+	
+}
+
+.updateF {
+	
 }

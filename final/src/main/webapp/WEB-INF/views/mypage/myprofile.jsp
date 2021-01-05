@@ -140,9 +140,8 @@ function sendProfileUpdate(){
 				</div>
 		</div>
 	
-		<div class="mypage-right" >
+		<div class="mypage-right-update" >
 			<div class="updateF">
-				
 			</div>
 		</div>
 	</div>
