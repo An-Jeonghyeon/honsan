@@ -1,6 +1,7 @@
 package com.sp.app.faq;
 
 import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -53,7 +54,8 @@ public class FqaController {
 	}
 	@RequestMapping(value = "main")
 	public String FaqList(@RequestParam(value="page", defaultValue="1")int current_page,
-						  @RequestParam(defaultValue="member")String questionSelect,
+						  @RequestParam(defaultValue="all")String condition,
+						  @RequestParam (defaultValue = "")String page,
 						  @RequestParam(defaultValue="")String keyword,
 						  HttpServletRequest req,
 						  Model model
@@ -66,10 +68,10 @@ public class FqaController {
 			keyword=URLDecoder.decode(keyword, "utf-8");
 		}
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("questionSelect", questionSelect);
+		map.put("condition", condition);
 		map.put("keyword", keyword);
 		
-//		dataCount = service.dataCount(map);
+		dataCount = service.dataCount(map);
 		if(dataCount !=0) {
 			total_page= myUtil.pageCount(rows, dataCount);
 		}
@@ -88,19 +90,41 @@ public class FqaController {
 			dto.setListNum(listNum);
 			n++;
 		}
+		
+		String query = "page="+page;
+		if (keyword.length()!=0) {
+			query+="&condition="+condition+"&keyword="
+					+URLEncoder.encode(keyword, "utf-8");
+		}
 		 
         String paging = myUtil.pagingMethod(current_page, total_page, "listPage");
 		
 		model.addAttribute("list", list);
-		model.addAttribute("pageNo", current_page);
+		model.addAttribute("page", current_page);
 		model.addAttribute("dataCount", dataCount);
 		model.addAttribute("total_page", total_page);
 		model.addAttribute("paging", paging);		
-		
-		model.addAttribute("questionSelect", questionSelect);
+		model.addAttribute("query", query);
+		model.addAttribute("condition", condition);
 		model.addAttribute("keyword", keyword);
 		
-		
 		return ".faq.main";
+	}
+	@RequestMapping(value = "delete")
+	public String deleteFaq(@RequestParam int num,
+							@RequestParam String page,
+							 @RequestParam(defaultValue = "all")String condition,
+							  @RequestParam(defaultValue = "")String keyword,
+							  HttpSession session
+			)throws Exception{
+		System.out.println(num);
+		keyword= URLDecoder.decode(keyword,"utf-8");
+		String query= "page="+page;
+		if(keyword.length()!=0) {
+			query+="&condition="+condition+"&keyword="+URLEncoder.encode(keyword,"utf-8");
+		}
+		service.deleteFaq(num);
+		
+		return "redirect:/faq/main?"+query;
 	}
 }

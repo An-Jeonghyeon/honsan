@@ -155,5 +155,6 @@ function sendOk(){
                     <button class="faqBtn" type="button" onclick="sendOk()">${mode=='update'?'수정완료':'등록하기'}</button>
                 </div>
             </div>
+             
         </form>
     </div>

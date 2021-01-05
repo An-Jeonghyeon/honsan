@@ -31,6 +31,36 @@ public class faqServiceImpl implements faqService{
 		}
 		return list;
 	}
+	@Override
+	public int dataCount(Map<String, Object>map) throws Exception {
+		int result=0;
+		try {
+			result= dao.selectOne("faq.faqDatacount",map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	@Override
+	public void deleteFaq(int num) throws Exception {
+		try {
+			
+			dao.deleteData("faq.faqDelete",num);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+	@Override
+	public Faq readFaq(int num) throws Exception {
+		Faq dto = null;
+		try {
+			dto = dao.selectOne("faq.readFaq",num);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return dto;
+	}
 	
 	
 

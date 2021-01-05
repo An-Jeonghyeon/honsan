@@ -134,6 +134,14 @@
             text-align: center;
      
         }
+        .faq-select{
+        width:1px;
+        height:10px;
+        }
+        .faq-select select{
+        	width:100%;
+        	height:40px;
+        }
     </style>
 
     <script>
@@ -150,6 +158,15 @@
                 }
             });
         });
+     function deletebutton(num){
+    	 if(confirm("게시물을 삭제 하시겠습니까?")){
+    			var q="num="+num+"&${query}";
+    			var url="${pageContext.request.contextPath}/faq/delete?"+q;
+    			location.href=url;
+    		}
+     }   
+ 
+        
     </script>
 </head>
 
@@ -171,6 +188,11 @@
                         <span>${dto.question}</span>
                     </div>
                 </td>
+                 <td>
+                 <c:if test="${sessionScop.member.userId=='admin'}">
+               <button class="faq-qu-delete" onclick="deletebutton(${dto.num})">x</button>
+               	</c:if>
+               </td>
             </tr>
             <tr class="faq-tr-Answer">
                 <td class="faq-td-Answer">
@@ -183,20 +205,25 @@
                         <span>${dto.questionAnswer}</span>
                     </div>
                 </td>
+           
             </tr>
         </c:forEach>
         </table>
     </div>
        
-        <div class="faq-paging">123</div>
+        <div class="faq-paging">${dataCount==0?"등록된 게시물이 없습니다.":paging}</div>
         <form method="post" name="faq-seraChSubmit">
             <table class="faq-table2">
                 <tr class="faq-seachBody">
                     <td class="faq-reset"><button>새로고침 </button></td>
+                    <td class="faq-select">
+                    <select class=""name="condition" disabled="disabled" hidden="hidden">
+						<option value="all" >모두</option>
+					</select></td>
                     <td class="faq-search"><input type="text" name="keyword"></td>
                     <td class="faq-seachButton"><button type="submit">검색</button></td>
                     <td class="faq-createdButton">
-                    <c:if test="${dto.userId}=='admin'">
+                    <c:if test="${sessionScope.member.userId=='admin'}">
                     <button type="button" onclick="javascript:location.href='${pageContext.request.contextPath}/faq/created';">글올리기</button>
                     </c:if>
                     </td>
