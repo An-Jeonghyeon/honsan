@@ -79,5 +79,36 @@
 		WHERE exNum=#{exNum}
 	</select>
 	
+	<!-- ***회원도전 **** -->
+	<!-- 도전 누르면 인서트 -->
+	<insert id="insertUserChallenge" parameterType="com.sp.app.challenge.Challenge">
+		INSERT INTO userChallenge(num, userId, enabled, totalCount, completion)
+		VALUES (#{num}, #{userId}, 0, 0, 0)
+	</insert>
+	
+	<!-- totalCount 증가   -> 두개라 map으로 받기 -->
+	<update id="updateTotalCount" parameterType="map">
+		UPDATE userChallenge SET totalCount=totalCount+1 WHERE num=#{num} AND userId =#{userId}
+	</update>
+	
+	<!-- completion 업데이트 (완료된 일차수 계속 더할거임) -->
+	<update id="updateCompletion" parameterType="map">
+		UPDATE userChallenge SET completion=#{completion} WHERE num=#{num} AND userId =#{userId}
+	</update>
+	
+	<!-- 내가 진행중인 운동 읽어오기 -->
+	<select id="readUserChallenge" parameterType="map" resultType="com.sp.app.challenge.Challenge">
+		select num, enabled, totalCount, completion
+		FROM userChallenge
+		WHERE userId=#{userId}
+	</select>
+	
+	<!-- 내가 진행중인 운동한개 읽어오기 -->
+	<select id="readUserChallengeOne" parameterType="map" resultType="com.sp.app.challenge.Challenge">
+		select num, enabled, totalCount, completion
+		FROM userChallenge
+		WHERE num=#{num} AND userId=#{userId}
+	</select>
+	
 	
 </mapper>
