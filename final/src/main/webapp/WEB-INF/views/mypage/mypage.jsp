@@ -126,6 +126,16 @@
 
 	});
 
+		
+	function sendProfileUpdate(){
+		
+		f = document.mypage_profile;
+		
+		f.action = "${pageContext.request.contextPath}/mypage/profileUpdate";
+		f.submit();
+	}
+	
+	
 </script>
 
 
@@ -176,7 +186,7 @@
 							
 							<c:if test="${mode=='update'}">
 								<button class="btn btn-default" type="button"
-									onclick="sendProfileUpdate();">수정 완료</button>
+									onclick="sendProfileUpdate();" >수정 완료</button>
 								<input type="hidden" name="userId"
 									value="${sessionScope.member.userId}">
 	
