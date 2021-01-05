@@ -80,3 +80,17 @@
     width: 100%;
     height: 90%;
 }
+
+/*방구할래....*/
+.backimg{
+    background-image: url("../images/room/threeroom.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center -300px;
+    background-position: center;
+    margin: 0 auto;
+}
+
+
+
+
