@@ -1190,9 +1190,170 @@ h2{ color: #7f8c8d; font-family: Neucha, Arial, sans serif; font-size:18px; marg
 	transform : scale(1.7);
 }
 
+.h-ReplyBody{
+    width: 100%;
+    min-height:150px;
+    margin: 0 auto;
+    /* TestBackground */
+    /* background-color: rgba(222, 188, 255, 0.31); */
+}
 
-
-
+.h-ReplyContentBox{
+    width: 100%;
+    height: 100px;
+    border-radius: 5px;
+    margin: 30px auto;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 2px solid rgb(226,226,226);
+    /* TestBackground */
+    /* background-color: rgba(130, 43, 218, 0.31); */
+}
+.h-ReplyContentBox>span{
+    font-size: 0.8rem;
+    font-weight: 400;
+}
+.h-ReplyContentBox>textarea{
+    width: 100%;
+    resize: none;
+    display: block;
+    border: none;
+    /* TestBackground */
+    /* background-color: rgba(130, 43, 218, 0.31); */
+}
+.h-ReplyContentBox>textarea:focus{
+   outline: none;
+   
+}
+.h-ReplyContentBox>textarea::placeholder{
+    color: rgb(226,226,226);
+}
+.h-ReplySubmitButton{
+ width: 100%;
+ height: 20%;
+ /* TestBackground */
+ /* background-color: #ff6347; */
+}
+.h-Replybtn{
+    width: 70px;
+    height: 30px;
+    border:none;
+    cursor: pointer;
+    border-radius: 5px;
+    float: right;
+    transition: 0.1s;
+    color: rgb(136, 136, 136);
+    box-shadow: 0px 0px 10px  rgba(128, 128, 128, 0.529);
+}
+.h-Replybtn:hover{
+background: rgb(174, 174, 174);
+color: aliceblue;
+}
+.h-Replybtn:active{
+transform: scale(0.9);
+}
+.h-Replybtn:focus{
+outline: none;
+}
+.h-ReplyList{
+    width: 100%;
+    margin: 10px auto;
+    box-sizing: border-box;
+    /* TestBackground */
+    /* background-color: rgba(222, 188, 255, 0.31); */
+}
+.h-replyList2 {
+    width: 100%;
+    margin: 10px auto;
+}
+@charset "UTF-8";
+.h-reply-table{
+    width: 100%;
+    border-spacing: 0px;
+    margin: 0 auto;
+} 
+.replybody-tr {
+    height: 30px;
+}
+.replybody-td1 {
+    width : 50%; 
+    padding:5px 5px; 
+    border-top:1px solid #cccccc; 
+    border-right:none;
+}
+.replybody-td2 {
+    width : 50%; 
+    padding:5px 5px; 
+    border-top : 1px solid #cccccc; 
+    border-left:none; 
+    text-align: right;
+}
+.h-deleteReply {
+    cursor: pointer;
+}
+.reply-content {
+    column-span: 2;
+    padding:5px 5px;
+    vertical-align: top;
+}
+.h-reply-count {
+    padding:7px 5px;
+}
+.h-reply-like {
+    padding:7px 5px; 
+    text-align : right;
+}
+/* 왜 안먹는가... */
+/* .replym { */
+/*     margin-bottom: 10px; */
+/* } */
+.h-reply-btnlike {
+    width: 70px;
+    height: 30px;
+    border: none;
+    border-radius: 5px;
+}
+.h-btnReplyAnswerLayout {
+    width: 90px;
+    height: 30px;
+    border: none;
+    border-radius: 5px;
+}
+.replyAnswer{
+	
+}
+.h-answerList {
+    border-top: 1px solid #cccccc;'
+}
+.h-replytextbox {
+    clear: both; 
+    padding: 10px 30px;
+    height: 70px;
+}
+.replyL{
+    float: left; 
+    width: 30px;
+}
+.replyareabox {
+    float: left; 
+    width:800px;
+}
+.replyarea {
+    width:840px;
+    height: 70px;
+}
+.reply2button {
+    width: 800px;
+    text-align: right;
+    margin: 0 auto;
+    height: 40px;
+}
+.h-sendreply2btn {
+    width: 70px;
+    height: 30px;
+    border: none;
+    border-radius: 5px;
+}
 
 
 

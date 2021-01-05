@@ -214,5 +214,76 @@ public class RoomServiceImpl implements RoomService{
 		}
 	}
 	
+	/*-----------------댓글-------------*/
+	@Override
+	public void insertReply(Reply dto) throws Exception {
+		try {
+			dao.insertData("room.insertReply", dto);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+		
+	}
+
+	@Override
+	public List<Reply> listReply(Map<String, Object> map) {
+		List<Reply> list=null;
+		try {
+			list = dao.selectList("room.listReply", map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+
+	@Override
+	public int ReplyCount(Map<String, Object> map) {
+		int result=0;
+		try {
+			result=dao.selectOne("room.replyCount", map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+
+	@Override
+	public void deleteReply(Map<String, Object> map) throws Exception {
+		try {
+			dao.deleteData("room.deleteReply", map);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+		
+	}
+
+
+	@Override
+	public List<Reply> listReplyAnswer(int answer) {
+		List<Reply> list = null;
+		try {
+			list=dao.selectList("room.listReplyAnswer", answer);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+
+	@Override
+	public int ReplyAnswerCount(int answer) {
+		int result =0;
+		try {
+			result=dao.selectOne("room.replyAnswerCount", answer);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
 
 }

@@ -46,6 +46,219 @@ function updateBoard(num) {
 </script>
 
 <script type="text/javascript">
+//답글
+//json으로 전송하는 함수만들어둠
+function ajaxJSON(url, method, query, fn) { 
+	$.ajax({
+		type:method
+		,url:url
+		,data:query
+		,dataType:"json"
+		,success:function(data) {
+			fn(data);
+		}
+		,beforeSend:function(jqXHR) {
+	        jqXHR.setRequestHeader("AJAX", true);
+	    }
+	    ,error:function(jqXHR) {
+	    	if(jqXHR.status===403) {
+	    		login();
+	    		return false;
+	    	}
+	    	
+	    	console.log(jqXHR.responseText);
+	    }
+	});
+}
+//html로 전송하는 ajax
+function ajaxHTML(url, method, query, selector){
+	$.ajax({
+		type:method
+		,url:url
+		,data:query
+		,success:function(data) {
+			$(selector).html(data);
+		}
+		,beforeSend:function(jqXHR) {
+	        jqXHR.setRequestHeader("AJAX", true);
+	    }
+	    ,error:function(jqXHR) {
+	    	if(jqXHR.status===403) {
+	    		login();
+	    		return false;
+	    	}
+	    	
+	    	console.log(jqXHR.responseText);
+	    }
+	});
+}
+$(function(){
+	listPage(1);
+});
+
+function listPage(page){
+	var url = "${pageContext.request.contextPath}/room/listReplys";
+	var query = "num=${dto.num}&pageNo="+page;
+	var selector = "#hreplyList2";
+
+	ajaxHTML(url, "get", query, selector);
+};
+$(function(){
+	$("#hReplybtn").click(function(){
+		var num="${dto.num}";
+		var $div = $(this).closest("#hreplycontent");
+		var content = $div.find("textarea").val().trim();
+		//console.log(content);
+		
+		if(! content) {
+			$div.find("textarea").focus();
+			return false;
+		}
+		content = encodeURIComponent(content);
+		
+		var url="${pageContext.request.contextPath}/room/insertReply";
+		var query = "num="+num+"&content="+content+"&answer=0";
+		
+		//성공시
+		var fn = function(data){
+			$div.find("textarea").val("");
+			
+			var state= data.state;
+			if(state==="true") {
+				listPage(1);				
+			} else if(state==="false") {
+				//console.log(data);			
+				alert("댓글 등록에 실패하였습니다.");				
+			}
+		};
+			
+		ajaxJSON(url, "post", query, fn);
+	});
+});
+
+//답글 버튼(댓글별 답글 등록폼 및 답글리스트)
+$(function(){
+	$("body").on("click", ".h-btnReplyAnswerLayout", function(){
+		var $trReplyAnswer = $(this).closest("tr").next();
+		
+		var isVisible = $trReplyAnswer.is(':visible');
+		var replyNum = $(this).attr("data-replyNum");
+			
+		if(isVisible) {
+			$trReplyAnswer.hide();
+		} else {
+			$trReplyAnswer.show();
+            
+			// 답글 리스트
+			listReplyAnswer(replyNum);
+			
+			// 답글 개수
+			countReplyAnswer(replyNum);
+		}
+	});
+	
+});
+
+//댓글 삭제(대댓글도 포함)
+$(function(){
+	$("body").on("click", ".h-deleteReply", function(){
+		if(! confirm("게시물을 삭제하시겠습니까 ? ")) {
+		    return false;
+		}
+		
+		var replyNum=$(this).attr("data-replyNum");
+		var page=$(this).attr("data-pageNo");
+		
+		var url="${pageContext.request.contextPath}/room/deleteReply";
+		var query="replyNum="+replyNum+"&mode=reply";
+		
+		var fn = function(data){
+			listPage(page);
+		};
+		
+		ajaxJSON(url, "post", query, fn);
+	});
+});
+
+//     ----대댓글 ----
+//댓글별 대댓글 리스트
+function listReplyAnswer(answer) {
+	var url="${pageContext.request.contextPath}/room/listReplyAnswer";
+	var query="answer="+answer;
+	var selector="#listReplyAnswer"+answer;
+	
+	ajaxHTML(url, "get", query, selector);
+}
+//댓글별 대댓글 갯수
+function countReplyAnswer(answer) {
+	var url="${pageContext.request.contextPath}/room/replyAnswerCount";
+	var query="answer="+answer;
+	
+	var fn = function(data){
+		var count=data.count;
+		var vid="#answerCount"+answer;
+		$(vid).html(count);
+	};
+	
+	ajaxJSON(url, "post", query, fn);
+}
+//답글 등록 
+$(function() {
+	$("body").on("click", ".h-sendreply2btn", function() {
+		var num = "${dto.num}";
+		var replyNum = $(this).attr("data-replyNum");
+		var $td = $(this).closest("td");
+		
+		var content = $td.find("textarea").val().trim()
+		if(! content) {
+			$td.find("textarea").focus();			
+			return false;			
+		}
+		
+		content = encodeURIComponent(content);
+		
+		var url="${pageContext.request.contextPath}/room/insertReply";
+		var query="num="+num+"&content="+content+"&answer="+replyNum;
+		
+		var fn = function(data){
+			$td.find("textarea").val("");
+			
+			var state=data.state;
+			if(state==="true") {
+				listReplyAnswer(replyNum);
+				countReplyAnswer(replyNum);
+			}
+		};
+		
+		ajaxJSON(url, "post", query, fn);
+		
+	});
+});
+
+//대댓글 삭제 
+$(function(){
+	$("body").on("click", ".deleteReplyAnswer", function(){
+		if(! confirm("게시물을 삭제하시겠습니까 ? ")) {
+		    return;
+		}
+		
+		var replyNum=$(this).attr("data-replyNum");
+		var answer=$(this).attr("data-answer");
+		
+		var url="${pageContext.request.contextPath}/room/deleteReply";
+		var query="replyNum="+replyNum+"&mode=answer";
+		
+		var fn = function(data){
+			listReplyAnswer(answer);
+			countReplyAnswer(answer);
+		};
+		
+		ajaxJSON(url, "post", query, fn);
+	});
+});
+
+
+
 
 
 </script>
@@ -319,7 +532,7 @@ function updateBoard(num) {
 		<hr>
 
 		<div class="btndiv">
-			<table style="width: 100%; margin: 15px auto; border-spacing: 0px;">
+			<table style="width: 100%; height:100px; margin: 15px auto; border-spacing: 0px;">
 				<tr>
 					<td width="300" align="left">
 						<button type="button" class="btn"
@@ -337,8 +550,22 @@ function updateBoard(num) {
 
 		</div>
 
+<hr>
 
-		<div class="replydiv"></div>
+		<div class="h-ReplyBody">
+	            <div class="h-ReplyContentBox" id="hreplycontent">
+	                <span>${sessionScope.member.userId}</span>
+	                <textarea name="" id="" placeholder="댓글을 남겨보세요"></textarea>
+	                <div class="h-ReplySubmitButton">
+	                    <button class="h-Replybtn" id="hReplybtn" type="button">등록</button>
+	                </div>
+	            </div>
+		        <div class="h-ReplyList">
+		            <div class="h-replyList2" id="hreplyList2">
+		                
+		            </div>
+		        </div>
+	        </div>
 
 	</div>
 	<hr>
@@ -419,23 +646,6 @@ for (i = 0; i < myAddress.length; i++) {
     myMarker(i + 1, myAddress[i]);
 }
     </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
