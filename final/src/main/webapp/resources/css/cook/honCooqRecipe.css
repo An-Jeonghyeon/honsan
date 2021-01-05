@@ -698,12 +698,13 @@ background-position
 	text-overflow: ellipsis;
 }
 
-#recipe_recipe_title {
+.recipe_recipe_title {
 	
 }
 
 .recipe_recipe_title>a {
 	text-decoration: none;
+	font-family: 'Black Han Sans', sans-serif;
 }
 
 .recipe_data {

@@ -66,8 +66,8 @@ function recipe_searchList() {
 											<img class="recipe_recipe_img" src="${dto.img_url}">
 										</div>
 
-										<div class="recipe_recipe_title" style="font-family:'Black Han Sans', sans-serif"> <a
-											href="${articleUrl}&num=${dto.recipe_id}">${dto.recipe_nm_ko} (${dto.replyCount})</a>
+										<div class="recipe_recipe_title"> <a
+											href="${articleUrl}&num=${dto.recipe_id}">${dto.recipe_nm_ko}</a>
 										</div>
 										<div class="recipe_flex">
 											<div class="recipe_dataAndUtil_img">

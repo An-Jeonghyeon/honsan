@@ -7,8 +7,23 @@
 
 <script type="text/javascript">
 $(function() {
+		var m = "${m}";
+		var page = "${page}";
+		var condition = "${condition}";
+		var keyword = "${keyword}";
+		
 		var url="${pageContext.request.contextPath}/cook/honCooq/recipe/list";
-		var query="pageNo="+1;
+		if(m=="2") {
+			url="${pageContext.request.contextPath}/cook/honCooq/cookTip/list";
+		} else if(m=="3") {
+			url="${pageContext.request.contextPath}/cook/honCooq/wdie/list";
+		}
+		
+		var query="pageNo="+page;
+/* 		if(keyword.length()!=0) {
+			query+="&condition="+condition+"&keyword="+URLEncoder.encode(keyword, "UTF-8");
+		} */
+		
 		var search=$('form[name=honCooqSearchForm]').serialize();
 		query=query+"&"+search;
 		var selector = "#honCooq-tab-content"; // 결과 뿌리는 곳(jsp 제일 아래)

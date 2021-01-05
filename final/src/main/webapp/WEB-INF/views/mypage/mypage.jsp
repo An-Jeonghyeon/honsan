@@ -158,6 +158,18 @@
 									src="${pageContext.request.contextPath}/resources/images/meditation.png"></span>
 							</div>
 							<div class="hexagon-title">
+								<span>찜 목록</span>
+							</div>
+						</div>
+					</div>
+					<div class="mypage-content">
+						<div class="mypage-content-item"
+							onclick="location.href='${pageContext.request.contextPath}/';">
+							<div class="hexagon">
+								<span><img class="items"
+									src="${pageContext.request.contextPath}/resources/images/meditation.png"></span>
+							</div>
+							<div class="hexagon-title">
 								<span>건강미 자랑</span>
 							</div>
 						</div>

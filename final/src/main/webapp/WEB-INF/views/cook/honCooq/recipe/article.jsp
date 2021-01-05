@@ -346,18 +346,9 @@ $(function(){
 // 2. This code loads the IFrame Player API code asynchronously.
 var tag = document.createElement('script');
 
-tag.src = "https://www.youtube.com/iframe_api";	
-
+tag.src = "https://www.youtube.com/iframe_api";
 var firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-// 동영상 주소에서 아이디 부분 자르기
-var yUrl = ${dto.yUrl};
-var $videoId = "";
-if(yUrl.indexOf("=") != 0) {
-	$videoId = yUrl.subString(yUrl.indexOf("=") + 1);
-}
-
 
 // 3. This function creates an <iframe> (and YouTube player)
 //    after the API code downloads.
@@ -401,16 +392,17 @@ function stopVideo() {
 					&gt;</a></span>
 		</div> --%>
 		<div class="cookTip_ariticleBodyHeader">
-			<span class="cookTip_articleBodyHeader-Title">CookTip</span>
+			<span class="cookTip_articleBodyHeader-Title">Recipes</span>
 		</div>
 		<div class="cookTip_category article_category">
-			<span>${dto.category!=null? dto.category : "설거지 및 주방정리"}</span>
+			<span>${dto.nation_nm!=null? dto.nation_nm : "기타"} ${dto.ty_code!=null? dto.ty_code : "기타"}</span>
 		</div>
 
 		<div class="cookTip_articleMainHeaderSubject">
-			<span>${dto.subject}</span>
+			<span>${dto.recipe_nm_ko}</span>
 		</div>
 		<div class="cookTip_articleSub">
+		<!-- 
 			<div class="cookTip_articleMainHeaderInfo">
 				<div class="cookTip_writer">
 					<span class="cookTip_articleInfo"><i class="far fa-user"></i>
@@ -423,6 +415,7 @@ function stopVideo() {
 					<span class="cookTip_articleInfo">조회수 ${dto.hitCount}</span>
 				</div>
 			</div>
+		 -->
 		</div>
 	</div>
 
@@ -469,7 +462,7 @@ function stopVideo() {
 
 			<div class="cookTip_articleButtonBox">
 				<button class="cookTip_toList" type="button"
-					onclick="javascript:location.href='${pageContext.request.contextPath}/cook/honCooq/main?m=2&${query}';">
+					onclick="javascript:location.href='${pageContext.request.contextPath}/cook/honCooq/cookTip/list?${query}';">
 					<i class="fas fa-bars"></i>
 				</button>
 				<span> 리스트로</span>
