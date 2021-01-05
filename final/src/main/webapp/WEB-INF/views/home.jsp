@@ -46,7 +46,10 @@ $(".hover").mouseleave(
                     <span>오늘 뭐입어? 추천 게시판</span>
                 </div>
                      
-                 <div class="categories-content">추천게시물</div>
+                 <div class="categories-content">
+                 <video src="/app/resources/images/dress/rain.mov" width="400" height="400" preload="auto" autoplay="autoplay" loop="loop"></video>
+                 </div>
+                 
                      
             </div>
             
