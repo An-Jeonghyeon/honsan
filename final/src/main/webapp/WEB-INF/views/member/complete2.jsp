@@ -14,7 +14,7 @@
                        ${message}            
             </div>
             <div style="margin-top: 20px;">
-                     <button type="button" onclick="javascript:location.href='${pageContext.request.contextPath}/';" class="btnConfirm">메인화면으로 이동</button>
+                     <button type="button" onclick="javascript:location.href='${pageContext.request.contextPath}/home';" class="btnConfirm">메인화면으로 이동</button>
                 </div>
         </div>
      </div>   

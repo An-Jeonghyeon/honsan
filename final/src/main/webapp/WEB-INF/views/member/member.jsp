@@ -51,6 +51,7 @@ function memberOk() {
   var f = document.memberForm;
   var str;
 
+  <c:if test="${mode=='created'}">
   str = f.userId.value;
   str = str.trim();
   if(!str) {
@@ -58,6 +59,7 @@ function memberOk() {
       f.userId.focus();
       return;
   }
+  
   if(!/^[a-zA-Z0-9]{4,12}$/i.test(str) ) { 
       alert("아이디는 4~12자이며 영문, 숫자를 조합해서 사용해주세요.");
       f.userId.focus();
@@ -69,7 +71,9 @@ function memberOk() {
       f.userId.focus();
      	return;
   }
-
+  
+  </c:if>
+  
   str = f.userPwd.value;
   str = str.trim();
   if(!str) {
@@ -90,6 +94,7 @@ function memberOk() {
       return;
   }
   
+  <c:if test="${mode=='created'}">
   str = f.userName.value;
   str = str.trim();
   if(!str) {
@@ -98,6 +103,8 @@ function memberOk() {
       return;
   }
   f.userName.value = str;
+  
+  </c:if>
   
   str = f.email1.value;
   str = str.trim();
@@ -157,17 +164,19 @@ function memberOk() {
       return;
   }
 
+  <c:if test="${mode=='created'}">
   str = f.allcheck.checked;
   if(!str){
       alert("모든 약관에 동의 하셔야 다음 단계로 진행 가능합니다.");
       f.allcheck.focus();
       return;
   } 
-  
+  </c:if>
   f.action = "${pageContext.request.contextPath}/member/${mode}";
 
   f.submit();
 }
+
 
 //이메일 셀렉박스 선택시 
 function changeEmail() {
@@ -221,8 +230,9 @@ $(function(){
         <!-- 회원가입 헤더 -->
 		<article class="singup-header">
         	<div class="singup-title">
-                <h1>회원가입</h1>
+                <h1>${mode=='created'?"회원가입":"정보수정"}</h1>
             </div>
+        <c:if test="${mode=='created'}">
             <div class="singup-step">
                 <div class="step1">
                     <div class="circle"> </div>
@@ -235,6 +245,7 @@ $(function(){
                     <p class="step-name2">STEP 2</p>
                 </div>
             </div>
+        </c:if>
         </article>
             
             <!-- 회원가입  기본정보 -->
@@ -249,11 +260,22 @@ $(function(){
                 	<div class="user-basic">
                         <div class="basic-id">
                             <span  class="b-span">회원 아이디</span>
-                            <input type="text" name="userId" id="userId" placeholder="회원아이디 입력" class="de-input"> 
-                            <button type="button" onclick="userIdCheck();">중복확인</button>
-                            <small id="help_id" class="check-sm">4~12 자의 영문, 숫자를 조합해서 사용해주세요.</small>
+        					<c:if test="${mode=='created'}">
+	                            <input type="text" name="userId" id="userId" placeholder="회원아이디 입력" class="de-input">
+	                            <button type="button" onclick="userIdCheck();">중복확인</button>
+	                            <small id="help_id" class="check-sm">4~12 자의 영문, 숫자를 조합해서 사용해주세요.</small>
+                            </c:if>
+                            <c:if test="${mode.equals('update')}">
+                            	<input type="text" name="userId" id="userId" class="de-input" value="${dto.userId}" readonly="readonly">
+                            </c:if>
+                           
                         </div>
-                        
+                        <c:if test="${mode.equals('update')}">
+	                        <div class="basic-pwd">
+	                            <span class="b-span">기존 비밀번호</span>
+	                            <input type="password" name="preuserPwd" placeholder="비밀번호 입력"  class="de-input"> 
+	                        </div>
+                        </c:if>
                         <div class="basic-pwd">
                             <span class="b-span">비밀번호</span>
                             <input type="password" name="userPwd" placeholder="비밀번호 입력"  class="de-input"> 
@@ -266,50 +288,62 @@ $(function(){
 
                         <div class="basic-name">
                             <span  class="b-span">이름</span>
-                            <input type="text" name="userName" placeholder="이름을 입력해주세요"  class="de-input"> 
+                            <c:if test="${mode=='created'}">
+                            <input type="text" name="userName" placeholder="이름을 입력해주세요"  class="de-input">
+                            </c:if>
+                            <c:if test="${mode=='update'}">
+                            <input type="text" name="userName" placeholder="이름을 입력해주세요"  class="de-input" value="${dto.userName}" readonly="readonly">
+                            </c:if>
                         </div>
 
                         <div class="basic-birth">
-                            <span  class="b-span">생년월일</span>
-                            <select name="birth_year" class="birth-select">
-								<c:forEach var="i" begin="0" end="${2020-1910}">
-								    <c:set var="yearOption" value="${2020-i}" />
-								    <option value="${yearOption}">${yearOption}</option>
-								</c:forEach>
-                            </select>
-                            <span>년</span>
-                            <select name="birth_month" class="birth-select">
-								<c:forEach var="i" begin="1" end="12">
-							    	<option value="<fmt:formatNumber value='${i}' pattern='00'/>"> ${i}</option>
-								</c:forEach>
-                            </select>
-                            <span>월</span>
-                            <select name="birth_day" class="birth-select">
-								<c:forEach var="i" begin="1" end="31">
-							    	<option value=" <fmt:formatNumber value='${i}' pattern='00'/>"> ${i}</option>
-								</c:forEach>
-                            </select>
-                            <span>일</span>
+	                            <span  class="b-span">생년월일</span>
+                        	<c:if test="${mode=='created'}">
+	                            <select name="birth_year" class="birth-select">
+									<c:forEach var="i" begin="0" end="${2020-1910}">
+									    <c:set var="yearOption" value="${2020-i}" />
+									    <option value="${yearOption}">${yearOption}</option>
+									</c:forEach>
+	                            </select>
+	                            <span>년</span>
+	                            <select name="birth_month" class="birth-select">
+									<c:forEach var="i" begin="1" end="12">
+								    	<option value="<fmt:formatNumber value='${i}' pattern='00'/>"> ${i}</option>
+									</c:forEach>
+	                            </select>
+	                            <span>월</span>
+	                            <select name="birth_day" class="birth-select">
+									<c:forEach var="i" begin="1" end="31">
+								    	<option value=" <fmt:formatNumber value='${i}' pattern='00'/>"> ${i}</option>
+									</c:forEach>
+	                            </select>
+	                            <span>일</span>
+                            </c:if>
+                            <c:if test="${mode=='update'}">
+                            	<input type="text" class="de-input" value="${dto.birth}" readonly="readonly">
+                            </c:if>
                         </div>
 
                         <div class="basic-email">
-                            <span  class="b-span">e-mail</span>
-                            <div class="email-input">
-                                <input type="text" name="email1" > 
-                                <span  id="at">@</span>
-                                <input type="text" name="email2" readonly="readonly" > 
-                            </div>
-                            <select name="selectEmail" class="email-select" onchange="changeEmail();">
-                                <option value="direct">직접입력</option>
-                                <option value="naver.com">naver.com</option>
-                                <option value="hanmail.net">hanmail.net</option>
-                                <option value="nate.com">nate.com</option>
-                                <option value="gmail.com">gmail.com</option>
-                                <option value="daum.net">daum.net</option>
-                            </select>
+                            <span  class="b-span">e-mail</span>    
+	                            <div class="email-input">
+	                                <input type="text" name="email1" value="${email1}" >
+	                                <span  id="at">@</span>
+	                                <input type="text" name="email2" readonly="readonly" value="${email2}"> 
+	                            </div>
+	                            <select name="selectEmail" class="email-select" onchange="changeEmail();">
+	                                <option value="direct">직접입력</option>
+	                                <option value="naver.com">naver.com</option>
+	                                <option value="hanmail.net">hanmail.net</option>
+	                                <option value="nate.com">nate.com</option>
+	                                <option value="gmail.com">gmail.com</option>
+	                                <option value="daum.net">daum.net</option>
+	                            </select>
+
                         </div>
 
                         <div class="basic-tel">
+           
                             <span  class="b-span">휴대폰 번호</span>
                             <select name="tel1">
                                 <option value="010">010</option>
@@ -320,14 +354,14 @@ $(function(){
                                 <option value="019">019</option>
                             </select>
                             <span>-</span>
-                            <input type="text" name="tel2" maxlength="4"> 
+                            <input type="text" name="tel2" maxlength="4" value="${tel2}"> 
                             <span>-</span>
-                            <input type="text" name="tel3" maxlength="4"> 
+                            <input type="text" name="tel3" maxlength="4" value="${tel3}"> 
                         </div>
 
                         <div class="basic-zip">
                             <span  class="b-span">우편번호</span>
-                            <input type="text" name="zip" id="zip" class="de-input c-none" readonly="readonly"> 
+                            <input type="text" name="zip" id="zip" class="de-input c-none" readonly="readonly" value="${dto.zip}"> 
                             <button type="button" onclick="daumPostcode();">우편번호 검색</button>
                         </div>
                         <div class="basic-addr">
@@ -335,8 +369,8 @@ $(function(){
                                 <span  class="b-span">주소</span>
                             </div>
                             <div class="addr-input">
-                                <input type="text" name="addr1" id="addr1" placeholder="주소입력"  class="de-input c-none"  readonly="readonly">
-                                <input type="text" name="addr2" id="addr2" placeholder="상세주소입력"  class="de-input">
+                                <input type="text" name="addr1" id="addr1" placeholder="주소입력"  class="de-input c-none"  readonly="readonly" value="${dto.addr1}">
+                                <input type="text" name="addr2" id="addr2" placeholder="상세주소입력"  class="de-input" value="${dto.addr2}">
                             </div>
                         </div>
                     </div>
@@ -344,6 +378,7 @@ $(function(){
             </article>
 
             <!-- 회원가입 약관동의 및 완료 -->
+            <c:if test="${mode=='created'}">
             <div class="singup-terms">
                 <div class="terms-left">
                     <span><i class="far fa-check-circle fa-2x"></i></span>
@@ -504,6 +539,12 @@ $(function(){
                     </div>
                 </div>
             </div>
+            </c:if>
+            	<c:if test="${mode=='update'}">
+            		<div class="singup-submit">
+                        <button type="button" class="submit-ok" name="sendButton" onclick="memberOk()();">완료</button>
+                    </div>
+               </c:if>
         </form>
     </div>
 

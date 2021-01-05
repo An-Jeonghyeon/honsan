@@ -142,7 +142,8 @@ public class MemberServiceImpl implements MemberService {
 				dto.setTel(dto.getTel1() + "-" + dto.getTel2() + "-" + dto.getTel3());
 			}
 			
-			dao.updateData("member.updateMeber1", dto);
+			
+			dao.updateData("member.updateMember1", dto);
 			dao.updateData("member.updateMember2", dto);
 		} catch (Exception e) {
 			e.printStackTrace();

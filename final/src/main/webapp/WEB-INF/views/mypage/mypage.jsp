@@ -12,6 +12,13 @@
 	height: 100%;
 	border-radius: 100%;
 }
+
+.profileMsg{
+	width : 200px;
+	text-overflow: ellipsis;
+	white-space: normal;
+	height: 3em;
+}
 </style>
 <script>
 	function sendUpdate() {
@@ -20,11 +27,110 @@
 		f.action = "${pageContext.request.contextPath}/mypage/updateForm";
 		f.submit();
 	};
+	
+	function memberUpdate() {
+		location.href = '${pageContext.request.contextPath}/member/update?userId=${dto.userId}';
+
+	};
+	
+	
+	$(function () {
+	    var sel_files = [];
+
+	    $("body").on("change", "#mainImg_upload", function (e) {
+	        
+	        $(".userImage").remove();
+	        //$("#mainImg_upload").parent().prependTo().css("background","none");
+	        
+	        // 사진이 없으면 ! 이거 표시 할수있으려나 
+	        // $("#ex7").firstChild().css("background", url('camera1.png'));
+
+	        var files = e.target.files;
+	        var filesArr = Array.prototype.slice.call(files);
+	        
+	        filesArr.forEach(function (f ) {
+	            // 이미지 파일이 아닌경우
+	            if (!f.type.match("image.*")) {
+	                return;
+	            }             
+	            sel_files.push(f);
+	            
+	            var reader = new FileReader();
+	            reader.onload = function (e1 ) {
+	                
+	                var out = "<img class='userImage' alt='user'src='" + e1.target.result + "'>" ;
+	               
+
+	                $(".profile-image-box").append(out);
+	            }
+	            
+	            reader.readAsDataURL(f);
+	        });
+
+	    });
+
+
+	});
+
+
+
+
+
+	
+	function ajaxJSON(url, method, query, fn) {
+		$.ajax({
+			type:method
+			,url:url
+			,data:query
+			,dataType:"json"
+			,success:function(data) {
+				fn(data);
+			}
+			,beforeSend:function(jqXHR) {
+		        jqXHR.setRequestHeader("AJAX", true);
+		    }
+		    ,error:function(jqXHR) {
+		    	if(jqXHR.status===403) {
+		    		login();
+		    		return false;
+		    	}
+		    	
+		    	console.log(jqXHR.responseText);
+		    }
+		});
+	}
+
+	<c:if test="${mode=='update'}">
+
+	function deleteMainFile(userId) {
+		var url="${pageContext.request.contextPath}/mypage/deleteMainFile";
+		$.post(url, {userId:userId}, function(data){
+			//다른 제이쿼리에 삭제를 넣어놈 
+		}, "json");
+	}
+	</c:if>
+	
+	
+	$(function(){
+		$('.profileMsg').on('keyup', function() {
+		
+			if($(this).val().length > 28) {
+		
+				alert("글자수는 112byte로 제한됩니다.");
+		
+				$(this).val($(this).val().substring(0, 28));
+		
+			}
+		
+		});
+
+	});
+
 </script>
 
 
 
-<form name="mypage_profile" method="post">
+<form name="mypage_profile" method="post" enctype="multipart/form-data">
 	<div class="main-content-container">
 		<div class="mypage-top"></div>
 		<div class="mypage-both">
@@ -40,6 +146,9 @@
 							<img class="userImage" alt="user"
 								src="${pageContext.request.contextPath}/uploads/profile/${dto.profileImg}">
 						</div>
+						<c:if test="${mode=='update'}">
+							<input id="mainImg_upload" type="file" name="profileUpload"  onchange="javascript:deleteMainFile('${dto.userId}');">
+						</c:if>
 					</div>
 					<div class="profile-userBasicInfo">
 						<div class="profile-userName">
@@ -47,24 +156,48 @@
 							</span>
 						</div>
 						<div class="profile-follow">
-							<span> <a href="">팔로워 1</a> | <a href="">팔로잉 10</a>
+							<c:if test="${mode=='created'}">
+								<span> <a href="">팔로워 1</a> | <a href="">팔로잉 10</a>
+							</c:if>
 							</span>
 						</div>
 						<div class="profile-update-userBasicInfo profile-center">
-							<button class="btn btn-default" type="button"
-								onclick="sendUpdate();">내 정보 수정</button>
-							<input type="hidden" name="userId"
-								value="${sessionScope.member.userId}">
-
-							<button class="btn btn-default" type="button"
-								onclick="sendDelete();">회원 탈퇴</button>
+							<c:if test="${mode=='created'}">
+								<button class="btn btn-default" type="button"
+									onclick="sendUpdate();">프로필 수정</button>
+								<button class="btn btn-default" type="button"
+									onclick="memberUpdate();">정보 수정</button>
+								<input type="hidden" name="userId"
+									value="${sessionScope.member.userId}">
+	
+								<button class="btn btn-default" type="button"
+									onclick="sendDelete();">회원 탈퇴</button>
+							</c:if>
+							
+							<c:if test="${mode=='update'}">
+								<button class="btn btn-default" type="button"
+									onclick="sendProfileUpdate();">수정 완료</button>
+								<input type="hidden" name="userId"
+									value="${sessionScope.member.userId}">
+	
+								<button class="btn btn-default" type="button"
+									onclick="javascript:location.href='${pageContext.request.contextPath}/mypage/main'">수정 취소</button>
+							</c:if>		
 						</div>
 					</div>
 					<div class="profile-like">
 						<div class="profile-like-container">
 							<div>
-								<span>좋아요</span> <span>스크랩</span>
+								<c:if test="${mode=='created'}">
+									<span>좋아요</span> <span>스크랩</span>
+								</c:if>
+								<c:if test="${mode=='update'}">
+									<span>상대 메세지</span>
+								</c:if>
 							</div>
+								<c:if test="${mode=='update'}">
+									<textarea name="profileMsg" class="profileMsg">${dto.profileMsg}</textarea>
+								</c:if>
 						</div>
 					</div>
 
