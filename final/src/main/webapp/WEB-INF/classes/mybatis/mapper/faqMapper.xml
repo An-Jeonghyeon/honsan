@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="faq">
+	<insert id="faqinsert" parameterType="com.sp.app.faq.Faq">
+	INSERT INTO faq (num, userId,question, questionSelect,questionAnswer) 
+	VALUES(faq_seq.NEXTVAL, #{userId},#{question},#{questionSelect},#{questionAnswer}) 
+	</insert>
+	<select id="faqList" parameterType="map" resultType="com.sp.app.faq.Faq">
+		SELECT num,question , questionAnswer,questionSelect FROM faq 
+		<where>
+			<if test="keyword!=null and keyword!=''">
+				<include refid="where-list"></include>
+			</if>
+		</where>
+		ORDER BY num DESC
+		OFFSET #{offset} ROWS
+		FETCH FIRST #{rows} ROWS ONLY
+	</select>
+	<sql id="where-list">
+		<choose>
+				<when test="condition=='all' ">
+				( INSTR(question, #{keyword}) &gt; 0 
+					OR DBMS_LOB.INSTR(questionSelect, #{keyword}) &gt; 0 )
+			</when>
+			<otherwise>
+				(INSTR(${condition}, #{keyword}) &gt; 0)
+			</otherwise>
+		</choose>
+	</sql>
+	<select id="faqDatacount" parameterType="map" resultType="Integer">
+			SELECT COUNT(*) FROM faq 
+	</select>
+	<select id="readFaq" parameterType="Integer" resultType="com.sp.app.faq.Faq">
+		SELECT num, userId,question, questionSelect,questionAnswer FROM faq
+	</select>
+	
+	<delete id="faqDelete" parameterType="Integer">
+		DELETE FROM faq WHERE num= #{num}
+	</delete>
+</mapper>

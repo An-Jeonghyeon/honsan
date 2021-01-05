@@ -21,6 +21,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sp.app.common.FileManager;
 import com.sp.app.common.MyUtil;
+import com.sp.app.interiorTip.InteriorTip;
+import com.sp.app.interiorTip.InteriorTipService;
 import com.sp.app.member.SessionInfo;
 import com.sp.app.mypage.Mypage;
 import com.sp.app.mypage.MypageService;
@@ -34,6 +36,9 @@ public class InteriorController {
 	
 	@Autowired
 	private MypageService mypageSerivce;
+	
+	@Autowired
+	private InteriorTipService itService;
 	
 	@Autowired
 	private MyUtil myUtil;
@@ -387,9 +392,26 @@ public class InteriorController {
 		
 		List<Interior> list = service.userlistBoard(map);
 		
+		Map<String, Object> tipMap = new HashMap<>();
+		tipMap.put("offset", 0); 
+		tipMap.put("rows", 4);
+		
+		List<InteriorTip> listTip = itService.listBoard(tipMap);
+		
+		List<String> images;
+		for(InteriorTip tto : listTip) {
+			
+			images = myUtil.getImgSrc(tto.getContent());
+			if(images.size()>0) {
+				tto.setSaveFilename(images.get(0));
+			}
+		}
+		
+		
 		model.addAttribute("mdataCount", mdataCount);
 		model.addAttribute("dto", dto);
 		model.addAttribute("list", list);
+		model.addAttribute("listTip", listTip);
 		model.addAttribute("userId", userId);
 		
 		

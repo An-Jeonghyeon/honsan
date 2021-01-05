@@ -86,8 +86,7 @@
 							${condition=="subject"
                                         ?"selected='selected'":""}>제목</option>
 						<option value=" content"
-							${condition=="content"
-                                        ?"selected='selected'":""}>내용</option>
+							${condition=="content"?"selected='selected'":""}>내용</option>
 						<option value=" userName"
 							${condition=="userName"
                                         ?"selected='selected'":""}>작성자</option>

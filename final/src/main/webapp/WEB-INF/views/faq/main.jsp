@@ -51,7 +51,7 @@
             height: 40px;
             line-height: 40px;
             text-align: center;
-            background: rgb(100,100,100);
+            background: red;
             border-radius: 5px;
             color: white;
             margin: 0 auto;
@@ -67,7 +67,7 @@
 
         .faq-tr-Answer {
             display: none;
-              background-color: rgb(250, 250, 250);
+            background-color: rgb(250, 250, 250);
         }
 
         .faq-table2 {
@@ -77,7 +77,17 @@
 
         .faq-reset {
             width: 100px;
-
+          
+        }
+        .faq-reset button{
+        	width:70px;
+          	height: 40px;
+            line-height: 40px;
+            text-align: center;
+            background: black;
+            border-radius: 5px;
+            color: white;
+            margin: 0 auto;
         }
 
         .faq-search {
@@ -97,6 +107,18 @@
         .faq-createdButton {
             width: 100px;
             text-align: right;
+            
+        }
+        .faq-createdButton button{
+       
+       		 width:70px;
+          	height: 40px;
+            line-height: 40px;
+            text-align: center;
+            background: black;
+            border-radius: 5px;
+            color: white;
+            margin: 0 auto;
         }
         .faq-footerBody{
         	width:100%;
@@ -112,6 +134,14 @@
             text-align: center;
      
         }
+        .faq-select{
+        width:1px;
+        height:10px;
+        }
+        .faq-select select{
+        	width:100%;
+        	height:40px;
+        }
     </style>
 
     <script>
@@ -119,36 +149,50 @@
             $("body").on("click", ".faq-tr", function () {
                 var fa = $(this);
                 var da = fa.next();
-                da.hide(200);
+                da.hide(1000);
 
                 var visible = da.is(":visible");
                 if (!visible) {
-                    $(".faq-tr-Answer").hide(200);
-                    da.show(200);
+                    $(".faq-tr-Answer").hide(1000);
+                    da.show(1000);
                 }
             });
         });
+     function deletebutton(num){
+    	 if(confirm("게시물을 삭제 하시겠습니까?")){
+    			var q="num="+num+"&${query}";
+    			var url="${pageContext.request.contextPath}/faq/delete?"+q;
+    			location.href=url;
+    		}
+     }   
+ 
+        
     </script>
 </head>
 
 
     <div class="MainBody">
-    	
         <table class="faq-table">
             <tr>
-                <td class="faq-page" colspan="2"> 1개 [1/3]페이지</td>
+                <td class="faq-page" colspan="2"> ${dataCount}개 [${page}/${total_page}]페이지</td>
             </tr>
+    	<c:forEach var ="dto" items="${list}">
             <tr class="faq-tr">
                 <td class="faq-td">
                     <div class="faq-subject">
-                        <span>회원관련</span>
+                        <span>${dto.questionSelect}</span>
                     </div>
                 </td>
                 <td>
                     <div class="faq-qu">
-                        <span>회원 관련 탈퇴는 어떻게 하나요?</span>
+                        <span>${dto.question}</span>
                     </div>
                 </td>
+                 <td>
+                 <c:if test="${sessionScop.member.userId=='admin'}">
+               <button class="faq-qu-delete" onclick="deletebutton(${dto.num})">x</button>
+               	</c:if>
+               </td>
             </tr>
             <tr class="faq-tr-Answer">
                 <td class="faq-td-Answer">
@@ -158,21 +202,31 @@
                 </td>
                 <td>
                     <div class="faq-qu-Answer">
-                        <span>내정보에 들어가서 회원 탈퇴를 누르시면 됩니다</span>
+                        <span>${dto.questionAnswer}</span>
                     </div>
                 </td>
+           
             </tr>
+        </c:forEach>
         </table>
     </div>
        
-        <div class="faq-paging">123</div>
-        <form action="" name="faq-seraChSubmit">
+        <div class="faq-paging">${dataCount==0?"등록된 게시물이 없습니다.":paging}</div>
+        <form method="post" name="faq-seraChSubmit">
             <table class="faq-table2">
                 <tr class="faq-seachBody">
                     <td class="faq-reset"><button>새로고침 </button></td>
-                    <td class="faq-search"><input type="text" value=""></td>
+                    <td class="faq-select">
+                    <select class=""name="condition" disabled="disabled" hidden="hidden">
+						<option value="all" >모두</option>
+					</select></td>
+                    <td class="faq-search"><input type="text" name="keyword"></td>
                     <td class="faq-seachButton"><button type="submit">검색</button></td>
-                    <td class="faq-createdButton"><button type="button">글올리기</button></td>
+                    <td class="faq-createdButton">
+                    <c:if test="${sessionScope.member.userId=='admin'}">
+                    <button type="button" onclick="javascript:location.href='${pageContext.request.contextPath}/faq/created';">글올리기</button>
+                    </c:if>
+                    </td>
                 </tr>
             </table>
         </form>
