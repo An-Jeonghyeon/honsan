@@ -72,6 +72,10 @@ function ajaxHTML(url, method, query, selector) {
 	});
 }
 
+function reloadBoard() {
+	location.href = "${pageContext.request.contextPath}/cook/honCooq/main?m=2";
+}
+
 </script>
 
 <div class="cookTip_list-container">
@@ -102,7 +106,7 @@ function ajaxHTML(url, method, query, selector) {
 				총 ${dataCount}건 / ${total_page} 페이지 <span class="cookTip_list-dataCount-small"> * 게시판 성격에 맞지않은 글은 예고없이 삭제됩니다.</span>
 			</div>
 			<div class="cookTip_list-search">
-					<form name="cookTip_searchForm" action="${pageContext.request.contextPath}/cook/honCooq/cookTip/list" method="post">
+					<form name="cookTip_searchForm" action="${pageContext.request.contextPath}/cook/honCooq/main?m=2" method="post">
 						<select name="condition" class="cookTip_select cookTip_list_select">
 							<option value="all" ${condition=="all"?"selected='selected'":""}>전체</option>
 							<option value="subject" ${condition=="subject"?"selected='selected'":""}>제목</option>

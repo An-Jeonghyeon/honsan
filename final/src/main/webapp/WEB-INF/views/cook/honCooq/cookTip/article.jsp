@@ -345,19 +345,24 @@ $(function(){
 <script type="text/javascript">
 // 2. This code loads the IFrame Player API code asynchronously.
 var tag = document.createElement('script');
-
 tag.src = "https://www.youtube.com/iframe_api";	
 
 var firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 // 동영상 주소에서 아이디 부분 자르기
-var yUrl = ${dto.yUrl};
 var $videoId = "";
-if(yUrl.indexOf("=") != 0) {
-	$videoId = yUrl.subString(yUrl.indexOf("=") + 1);
-}
-
+$(function() {
+	var yUrl = $(".cookTip_yUrl").attr("data-yUrl");
+	if(yUrl.indexOf("=") != 0) {
+		$videoId = yUrl.substring(yUrl.indexOf("=") + 1);
+	} else {
+//		$videoId = yUrl.substring(yUrl.lastIndexOf('/') +1); 
+		var n = yUrl.split("/");
+		$videoId = yUrl.substring(n + 1);		
+	}
+	alert($videoId);
+});
 
 // 3. This function creates an <iframe> (and YouTube player)
 //    after the API code downloads.
@@ -366,7 +371,7 @@ function onYouTubeIframeAPIReady() {
   player = new YT.Player('player', {
     height: '360',
     width: '640',
-    videoId: 'M7lc1UVf-VE',
+    videoId: $videoId,
     events: {
       'onReady': onPlayerReady,
       'onStateChange': onPlayerStateChange
@@ -376,7 +381,7 @@ function onYouTubeIframeAPIReady() {
 
 // 4. The API will call this function when the video player is ready.
 function onPlayerReady(event) {
-  event.target.playVideo();
+ // event.target.playVideo();
 }
 
 // 5. The API calls this function when the player's state changes.
@@ -385,7 +390,7 @@ function onPlayerReady(event) {
 var done = false;
 function onPlayerStateChange(event) {
   if (event.data == YT.PlayerState.PLAYING && !done) {
-    setTimeout(stopVideo, 6000);
+    //setTimeout(stopVideo, 6000);
     done = true;
   }
 }
@@ -428,7 +433,9 @@ function stopVideo() {
 
 	<div class="cookTip_ContentBody">
 		${dto.content}
-		<div id="player"></div>
+		<c:if test="${dto.yUrl != null}">
+			<div id="player"></div>
+		</c:if>
 	</div>
 	<div class="cookTip_LikeBox">
 		<span class="cookTip_LikeHeart">
@@ -437,6 +444,9 @@ function stopVideo() {
 					data-userLike="${userLike}">${dto.cookTipLikeCount}</span>
 			</button>
 		</span>
+	</div>
+	<div class="cookTip_youtubeUrl" style="display: none;">
+		<span class="cookTip_yUrl" data-yUrl="${dto.yUrl}">${dto.yUrl}</span>
 	</div>
 	<div class="cookTip_updateAndDelete">
 		<div class="cookTip_articleButtons_updateAndDelete">

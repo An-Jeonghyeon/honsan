@@ -1131,7 +1131,7 @@ CookTip 게시판 글보기 폼
 	width: 10%;
 /* 	height: 100px; */
 	box-sizing: border-box;
-	background-color: pink;
+/* 	background-color: pink; */
 }
 
 .cookTip_preRead, .cookTip_nextRead, .cookTip_toList {
@@ -1372,6 +1372,13 @@ transform: scale(0.9);
 }
 .cookTip_Replybtn:focus{
 outline: none;
+}
+
+#player {
+/* 	background-color:aquamarine; */
+	margin:5rem;
+	width:64rem;
+	height:36rem;
 }
 
 /*----------------------
