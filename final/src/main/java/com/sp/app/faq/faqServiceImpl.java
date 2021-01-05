@@ -61,6 +61,16 @@ public class faqServiceImpl implements faqService{
 		}
 		return dto;
 	}
+	@Override
+	public List<Faq> faqMainlist() {
+		List<Faq> list =null;
+		try {
+			list= dao.selectList("faq.faqMainlist");
+		} catch (Exception e) {
+		e.printStackTrace();
+		}
+		return list;
+	}
 	
 	
 

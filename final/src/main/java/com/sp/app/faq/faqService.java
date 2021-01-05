@@ -9,5 +9,5 @@ public interface faqService {
 	public int dataCount(Map<String, Object>map)throws Exception;
 	public Faq readFaq(int num) throws Exception;
 	public void deleteFaq(int num)throws Exception;
-	 
+	public List<Faq> faqMainlist();
 }
