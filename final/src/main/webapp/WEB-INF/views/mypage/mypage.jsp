@@ -73,7 +73,7 @@
 
 			<div class="mypage-right">
 				<div class="mypage-heading">
-					<h2 class="heading">My Content</h2>
+					<h2 class="heading">My Contents</h2>
 				</div>
 				<div class="mypage-contents">
 					<div class="mypage-content">
@@ -165,13 +165,13 @@
 				</div>
 				<div class="mypage-recent">
 					<div class="myQna-content">
-						<h2>My QNA</h2>
-						<div class="mypage-recent-contentBox"></div>
+						<h2 class="heading">My QNA</h2>
+						<div class="mypage-recent-contentBox">여기에 최근 질문글 내용 가져오기</div>
 					</div>
 
 					<div class="dontknow-content">
-						<h2>My ???</h2>
-						<div class="mypage-recent-contentBox"></div>
+						<h2 class="heading">My ???</h2>
+						<div class="mypage-recent-contentBox">또 가져오고 싶은 게시판 글 가져오기..</div>
 					</div>
 
 				</div>
