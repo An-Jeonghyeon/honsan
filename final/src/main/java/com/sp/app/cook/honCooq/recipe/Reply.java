@@ -2,7 +2,7 @@ package com.sp.app.cook.honCooq.recipe;
 
 public class Reply {
 	private int replyNum;
-	private int num;
+	private int recipe_id;
 	private String userId;
 	private String userName;
 	private String content;
@@ -19,11 +19,11 @@ public class Reply {
 	public void setReplyNum(int replyNum) {
 		this.replyNum = replyNum;
 	}
-	public int getNum() {
-		return num;
+	public int getRecipe_id() {
+		return recipe_id;
 	}
-	public void setNum(int num) {
-		this.num = num;
+	public void setRecipe_id(int recipe_id) {
+		this.recipe_id = recipe_id;
 	}
 	public String getUserId() {
 		return userId;

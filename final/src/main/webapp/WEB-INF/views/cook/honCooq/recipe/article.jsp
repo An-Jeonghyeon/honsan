@@ -55,13 +55,13 @@ $(function(){
 		$("#heart").removeClass("far").addClass("fas");
 	}
 	
-	$(".btnSendCookTipLike").click(function(){
+	$(".btnSendRecipeLike").click(function(){
 		var userLike=$("#recipeLikeCount").attr("data-userLike");
 		if(userLike=="0") {
 			if(! confirm("게시물이 마음에 드세요?")) {
 				return false;
 			}
-			var url="${pageContext.request.contextPath}/cook/honCooq/cookTip/insertCookTipLike";
+			var url="${pageContext.request.contextPath}/cook/honCooq/recipe/insertRecipeLike";
 			var num="${dto.recipe_id}";
 			// var query={num:num}; 이렇게 써도 아래와 같은 의미
 			var query="num="+num;
@@ -82,7 +82,7 @@ $(function(){
 			if (! confirm("좋아요를 취소하실 건가요?")) {
 				return false;
 			}
-			var url="${pageContext.request.contextPath}/cook/honCooq/cookTip/deleteCookTipLike";
+			var url="${pageContext.request.contextPath}/cook/honCooq/recipe/deleteRecipeLike";
 			var num="${dto.recipe_id}";
 			var query="num="+num;
 			
@@ -110,9 +110,9 @@ $(function() {
 
 // 댓글 리스트 보이기
 function listPage(page) {
-	var url = "${pageContext.request.contextPath}/cook/honCooq/cookTip/listReply";
+	var url = "${pageContext.request.contextPath}/cook/honCooq/recipe/listReply";
 	var query = "num=${dto.recipe_id}&pageNo="+page;
-	var selector = "#listCookTipReply";
+	var selector = "#listRecipeReply";
 	
 	ajaxHTML(url, "get", query, selector);
 }
@@ -122,7 +122,7 @@ $(function(){
 	$(".btnSendReply").click(function(){
 		var num="${dto.recipe_id}";
 		//var $tb = $(this).closest("table");
-		var $div = $(this).parents(".cookTip_ReplyContentBox"); 
+		var $div = $(this).parents(".recipe_ReplyContentBox"); 
 		
 //		var content=$tb.find("textarea").val().trim();
 		var content=$div.find("textarea").val().trim();
@@ -134,7 +134,7 @@ $(function(){
 		}
 		content = encodeURIComponent(content);
 		
-		var url="${pageContext.request.contextPath}/cook/honCooq/cookTip/insertReply";
+		var url="${pageContext.request.contextPath}/cook/honCooq/recipe/insertReply";
 		var query="num="+num+"&content="+content+"&answer=0";
 		
 		var fn = function(data){
@@ -162,7 +162,7 @@ $(function(){
 		var replyNum=$(this).attr("data-replyNum");
 		var page=$(this).attr("data-pageNo");
 		
-		var url="${pageContext.request.contextPath}/cook/honCooq/cookTip/deleteReply";
+		var url="${pageContext.request.contextPath}/cook/honCooq/recipe/deleteReply";
 		var query="replyNum="+replyNum+"&mode=reply";
 		
 		var fn = function(data){
@@ -190,7 +190,7 @@ $(function(){
 			return false;
 		}
 		
-		var url="${pageContext.request.contextPath}/cook/honCooq/cookTip/insertReplyLike";
+		var url="${pageContext.request.contextPath}/cook/honCooq/recipe/insertReplyLike";
 		var query="replyNum="+replyNum+"&replyLike="+replyLike;
 		
 		var fn = function(data){
@@ -212,16 +212,16 @@ $(function(){
 
 //댓글별 답글 리스트
 function listReplyAnswer(answer) {
-	var url="${pageContext.request.contextPath}/cook/honCooq/cookTip/listReplyAnswer";
+	var url="${pageContext.request.contextPath}/cook/honCooq/recipe/listReplyAnswer";
 	var query="answer="+answer;
-	var selector="#cookTip_listReplyAnswer"+answer;
+	var selector="#recipe_listReplyAnswer"+answer;
 	
 	ajaxHTML(url, "get", query, selector);
 }
 
 //댓글별 답글 개수
 function countReplyAnswer(answer) {
-	var url="${pageContext.request.contextPath}/cook/honCooq/cookTip/countReplyAnswer";
+	var url="${pageContext.request.contextPath}/cook/honCooq/recipe/countReplyAnswer";
 	var query="answer="+answer;
 	
 	var fn = function(data){
@@ -271,7 +271,7 @@ $(function(){
 		}
 		content = encodeURIComponent(content);
 		
-		var url="${pageContext.request.contextPath}/cook/honCooq/cookTip/insertReply";
+		var url="${pageContext.request.contextPath}/cook/honCooq/recipe/insertReply";
 		var query="num="+num+"&content="+content+"&answer="+replyNum;
 		
 		var fn = function(data){
@@ -299,7 +299,7 @@ $(function(){
 		var replyNum=$(this).attr("data-replyNum");
 		var answer=$(this).attr("data-answer");
 		
-		var url="${pageContext.request.contextPath}/cook/honCooq/cookTip/deleteReply";
+		var url="${pageContext.request.contextPath}/cook/honCooq/recipe/deleteReply";
 		var query="replyNum="+replyNum+"&mode=answer";
 		
 		var fn = function(data){
@@ -313,103 +313,62 @@ $(function(){
 
 </script>
 
-<script type="text/javascript">
-// 2. This code loads the IFrame Player API code asynchronously.
-var tag = document.createElement('script');
-
-tag.src = "https://www.youtube.com/iframe_api";
-var firstScriptTag = document.getElementsByTagName('script')[0];
-firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-// 3. This function creates an <iframe> (and YouTube player)
-//    after the API code downloads.
-var player;
-function onYouTubeIframeAPIReady() {
-  player = new YT.Player('player', {
-    height: '360',
-    width: '640',
-    videoId: 'M7lc1UVf-VE',
-    events: {
-      'onReady': onPlayerReady,
-      'onStateChange': onPlayerStateChange
-    }
-  });
-}
-
-// 4. The API will call this function when the video player is ready.
-function onPlayerReady(event) {
-  event.target.playVideo();
-}
-
-// 5. The API calls this function when the player's state changes.
-//    The function indicates that when playing a video (state=1),
-//    the player should play for six seconds and then stop.
-var done = false;
-function onPlayerStateChange(event) {
-  if (event.data == YT.PlayerState.PLAYING && !done) {
-    setTimeout(stopVideo, 6000);
-    done = true;
-  }
-}
-function stopVideo() {
-  player.stopVideo();
-}
-</script>
-
-<div class="cookTip_articleMainBody">
-	<div class="cookTip_articleMainHeader">
-		<%-- 		<div class="cookTip_articleGo">
-			<span><a href="${pageContext.request.contextPath}/cook/honCooq/cookTip/list">CookTip게시판
+<div class="recipe_articleMainBody">
+	<div class="recipe_articleMainHeader">
+		<%-- 		<div class="recipe_articleGo">
+			<span><a href="${pageContext.request.contextPath}/cook/honCooq/recipe/list">Recipe게시판
 					&gt;</a></span>
 		</div> --%>
-		<div class="cookTip_ariticleBodyHeader">
-			<span class="cookTip_articleBodyHeader-Title">Recipes</span>
+		<div class="recipe_ariticleBodyHeader">
+			<span class="recipe_articleBodyHeader-Title">Recipes</span>
 		</div>
-		<div class="cookTip_category article_category">
-			<span>${dto.nation_nm!=null? dto.nation_nm : "기타"}</span>
-		</div>
-		<div class="cookTip_category article_category">
-			<span>${dto.ty_code!=null? dto.ty_code : "기타"}</span>
+		<div class="recipe_recipe_category_box">
+			<div class="recipe_recipe_category article_category">
+				<span>${dto.nation_nm!=null? dto.nation_nm : "기타"}</span>
+			</div>
+			<div class="recipe_recipe_category article_category">
+				<span>${dto.ty_code!=null? dto.ty_code : "기타"}</span>
+			</div>
 		</div>
 
-		<div class="cookTip_articleMainHeaderSubject">
+		<div class="recipe_articleMainHeaderSubject">
 			<span>${dto.recipe_nm_ko}</span>
 		</div>
-		<div class="cookTip_articleSub">
+		<div class="recipe_articleSub">
 		<!-- 
-			<div class="cookTip_articleMainHeaderInfo">
-				<div class="cookTip_writer">
+			<div class="recipe_articleMainHeaderInfo">
+				<div class="recipe_writer">
 				</div>
-				<div class="cookTip_registerDateNumber">
+				<div class="recipe_registerDateNumber">
 				</div>
-				<div class="cookTip_hitCountNumber">
+				<div class="recipe_hitCountNumber">
 				</div>
 			</div>
 		 -->
 		</div>
 	</div>
 
-	<div class="cookTip_ContentBody">
+	<div class="recipe_ContentBody">
 		<!-- 
 		
 		 -->
 		<div id="player"></div>
 	</div>
-	<div class="cookTip_LikeBox">
-		<span class="cookTip_LikeHeart">
-			<button type="button" class="cookTip_LikeButton btnSendCookTipLike">
+	<div class="recipe_LikeBox">
+		<span class="recipe_LikeHeart">
+			<button type="button" class="recipe_LikeButton btnSendRecipeLike">
 				<i id="heart" class="far fa-heart"></i> <span id="recipeLikeCount"
 					data-userLike="${userLike}">${dto.recipeLikeCount}</span>
 			</button>
 		</span>
 	</div>
-	<div class="cookTip_updateAndDelete">
+	<div class="recipe_updateAndDelete">
 	</div>
-	<div class="cookTip_preAndNext">
-		<div class="cookTip_articleButtons">
-			<div class="cookTip_articleButtonBox">
+	<div class="recipe_preAndNext">
+		<div class="recipe_articleButtons">
+			<div class="recipe_articleButtonBox">
 				<c:if test="${not empty preReadDto}">
-					<button class="cookTip_preRead" type="button"
+					<button class="recipe_preRead" type="button"
 						onclick="javascript:location.href='${pageContext.request.contextPath}/cook/honCooq/recipe/article?${query}&num=${preReadDto.recipe_id}';">
 						<i class="fas fa-angle-left"></i>
 					</button>
@@ -417,18 +376,18 @@ function stopVideo() {
 				</c:if>
 			</div>
 
-			<div class="cookTip_articleButtonBox">
-				<button class="cookTip_toList" type="button"
+			<div class="recipe_articleButtonBox">
+				<button class="recipe_toList" type="button"
 					onclick="javascript:location.href='${pageContext.request.contextPath}/cook/honCooq/main?${query}';">
 					<i class="fas fa-bars"></i>
 				</button>
 				<span> 리스트로</span>
 			</div>
 
-			<div class="cookTip_articleButtonBox">
+			<div class="recipe_articleButtonBox">
 				<c:if test="${not empty nextReadDto}">
 					<span>${nextReadDto.subject} | 다음글</span>
-					<button class="cookTip_nextRead" type="button"
+					<button class="recipe_nextRead" type="button"
 						onclick="javascript:location.href='${pageContext.request.contextPath}/cook/honCooq/recipe/article?${query}&num=${nextReadDto.recipe_id}';">
 						<i class="fas fa-angle-right"></i>
 					</button>
@@ -437,18 +396,18 @@ function stopVideo() {
 		</div>
 	</div>
 
-	<div id="cookTip_listReply"></div>
+	<div id="recipe_listReply"></div>
 
-	<div class="cookTip_ReplyAll">
-		<div id="listCookTipReply"></div>
+	<div class="recipe_ReplyAll">
+		<div id="listRecipeReply"></div>
 		<!-- 댓글 불러오기 : ajax -->
-		<div class="cookTip_ReplyBody">
-			<div class="cookTip_ReplyContentBox">
+		<div class="recipe_ReplyBody">
+			<div class="recipe_ReplyContentBox">
 				<span>${sessionScope.member.userName}</span>
-				<textarea class="cookTip_ReplyContentBox-textarea" id=""
+				<textarea class="recipe_ReplyContentBox-textarea" id=""
 					placeholder="댓글을 남겨보세요"></textarea>
-				<div class="cookTip_ReplySubmitButton">
-					<button class="cookTip_Replybtn btnSendReply" type="button">등록</button>
+				<div class="recipe_ReplySubmitButton">
+					<button class="recipe_Replybtn btnSendReply" type="button">등록</button>
 				</div>
 			</div>
 		</div>
