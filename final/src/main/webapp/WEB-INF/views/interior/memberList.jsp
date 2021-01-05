@@ -54,26 +54,13 @@
                     </div>
                     <div class="userPage_listbox_items">
                         <!-- 반복문은 여기서 돌리시오  -->
-                        <div class="userPage_listbox_item">
-                            <a href="#">
-                                <img class="userPage_listbox_item_img" src="#">
-                            </a>
-                        </div>
-                        <div class="userPage_listbox_item">
-                            <a href="#">
-                                <img class="userPage_listbox_item_img" src="#">
-                            </a>
-                        </div>
-                        <div class="userPage_listbox_item">
-                            <a href="#">
-                                <img class="userPage_listbox_item_img" src="#">
-                            </a>
-                        </div>
-                        <div class="userPage_listbox_item">
-                            <a href="#">
-                                <img class="userPage_listbox_item_img" src="#">
-                            </a>
-                        </div>                       
+                        <c:forEach var="tto" items="${listTip}">
+	                        <div class="userPage_listbox_item">
+	                            <a href="${pageContext.request.contextPath}/interiorTip/article?num=${tto.num}">
+	                                <img class="userPage_listbox_item_img" src="${tto.saveFilename}">
+	                            </a>
+	                        </div>
+                        </c:forEach>
                     </div> 
                 </div>
 

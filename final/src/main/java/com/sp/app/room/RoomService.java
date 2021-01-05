@@ -18,10 +18,13 @@ public interface RoomService {
 	public Room readFile(int fileNum);
 	public void deleteFile(Map<String, Object> map) throws Exception;
 	
-	/* 댓글
+	//댓글(인서트,딜리트는 답글도 같이)
 	public void insertReply(Reply dto) throws Exception;
 	public List<Reply> listReply(Map<String, Object> map);
-	public int replyCount(Map<String, Object> map);
+	public int ReplyCount(Map<String, Object> map);
 	public void deleteReply(Map<String, Object> map) throws Exception;
-	*/
+	
+	//대댓글
+	public List<Reply> listReplyAnswer(int answer);
+	public int ReplyAnswerCount(int answer);
 }
