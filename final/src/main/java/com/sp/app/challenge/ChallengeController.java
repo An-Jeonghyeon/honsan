@@ -374,6 +374,85 @@ public class ChallengeController {
 
 		return model;
 	}
+	
+	//마이페이지 챌린지
+	@RequestMapping(value = "myChallenge")
+	public String myChallenge(
+			@RequestParam(value="page", defaultValue="1") int current_page,
+			HttpSession session,
+			HttpServletRequest req,
+			Model model) throws Exception {
+		
+		String cp=req.getContextPath();
 
+		int rows = 10;
+		int total_page = 0;
+		int dataCount= 0;
+		
+		
+		SessionInfo info=(SessionInfo)session.getAttribute("member");
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("userId", info.getUserId());
+		
+		
+		dataCount = service.myListDataCount(map);
+		if(dataCount != 0) {
+			total_page = myUtil.pageCount(rows, dataCount);
+		}
+		
+		if(total_page<current_page) {
+			current_page=total_page;
+		}
+		
+		int offset = (current_page-1)*rows;
+		if(offset < 0) {
+			offset=0;
+		}
+		map.put("offset", offset);
+		map.put("rows", rows);
+		
+		List<Challenge> list = service.listMyChallenge(map);
+		
+		int listNum=0;
+		int n=0;
+		for(Challenge dto : list) {
+			listNum = dataCount - (offset + n);
+			dto.setListNum(listNum);
+			n++;
+		}
+		
+		String list_url = cp+"/challenge/myChallenge?page="+current_page;
+		
+		String paging = myUtil.paging(current_page, total_page, list_url);
+		
+		model.addAttribute("list", list);
+        model.addAttribute("page", current_page);
+        model.addAttribute("paging", paging);
+        model.addAttribute("total_page", total_page);
+
+		return ".mypage.myChallenge";
+	}
+	
+	//진행중인 챌린지 삭제
+	@RequestMapping(value = "deleteMyChallenge", method = RequestMethod.GET)
+	public String deleteMyChallenge(
+			@RequestParam long num,
+			HttpSession session
+			) throws Exception {
+		
+		SessionInfo info=(SessionInfo)session.getAttribute("member");
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("userId", info.getUserId());
+		map.put("num", num);
+		
+		service.deleteMyChallenge(map);
+		
+
+		return "redirect:/challenge/myChallenge";
+	}
+
+	
 	
 }

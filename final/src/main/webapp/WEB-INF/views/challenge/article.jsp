@@ -202,7 +202,7 @@ $(function(){
 	                <button class="h-adminButton" onclick="javascript:location.href='${pageContext.request.contextPath}/adm/health/list';">관리자 리스트</button>
                 </c:if>
                 <c:if test="${mode=='articleGo' || mode=='articleNo'}">
-	                <button class="h-articlelistButton" onclick="javascript:location.href='${pageContext.request.contextPath}/';">나의 챌린지리스트</button>
+	                <button class="h-articlelistButton" onclick="javascript:location.href='${pageContext.request.contextPath}/challenge/myChallenge';">나의 챌린지리스트</button>
                 </c:if>
         </div>
 

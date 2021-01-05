@@ -120,4 +120,38 @@ public class ChallengeServiceImpl implements ChallengeService {
 	}
 
 
+	@Override
+	public List<Challenge> listMyChallenge(Map<String, Object> map) {
+		List<Challenge> list = null;
+		try {
+			list = dao.selectList("challenge.listMyChallenge", map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+
+	@Override
+	public int myListDataCount(Map<String, Object> map) {
+		int result=0;
+		try {
+			result=dao.selectOne("challenge.myListDataCount", map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+
+	@Override
+	public void deleteMyChallenge(Map<String, Object> map) {
+		try {
+			dao.deleteData("challenge.deleteMyChallenge", map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+
 }
