@@ -24,13 +24,13 @@ $(".hover").mouseleave(
 		 <div class="loginMainBody">
                 <div class="slideshow-container">
                     <div class="slide slide1">
-                        backgounr img 1 
+                    
                     </div>
                     <div class="slide slide2">
-                        backgounr img 2 
+                     
                     </div>
                     <div class="slide slide3">
-                        backgounr img 3 
+       
                     </div>
                 </div>
             </div>
@@ -46,9 +46,14 @@ $(".hover").mouseleave(
                     <span>오늘 뭐입어? 추천 게시판</span>
                 </div>
                      
-                 <div class="categories-content">
-                 <video src="/app/resources/images/dress/rain.mov" width="400" height="400" preload="auto" autoplay="autoplay" loop="loop"></video>
-                 </div>
+                <div class="categories-content">
+	             <video src="/app/resources/images/dress/rain.mov" width="400" height="400" preload="auto" autoplay="autoplay" loop="loop" controls="controls"></video> 
+	             <div class="weatherImg"></div>
+	             <div class="weatherImg2"></div>
+	             <div class="clothesImg"></div>
+	             <div class="clothesImg2"></div>
+	            </div>
+             
                  
                      
             </div>
