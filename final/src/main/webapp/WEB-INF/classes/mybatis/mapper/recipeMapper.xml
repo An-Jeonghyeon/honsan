@@ -12,9 +12,7 @@
 			<when test="condition == 'subject'">
 			    INSTR(recipe_nm_ko, #{keyword}) &gt; 0
 			</when>
-			<when test="condition == 'content'">
-			    INSTR(cooking_dc, #{keyword}) &gt; 0
-			</when>
+
 			<otherwise>
 			    INSTR(${condition}, #{keyword}) &gt; 0
 			</otherwise>

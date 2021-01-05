@@ -15,7 +15,7 @@ public interface RecipeService {
 	public void deleteRecipe(int num, String userId) throws Exception;
 	
 	public void insertRecipeLike(Map<String, Object> map) throws Exception;
-	public int RecipeLikeCount(int num);
+	public int recipeLikeCount(int num);
 	public int readRecipeLike(Map<String, Object> map) throws Exception;
 	public void deleteRecipeLike(Map<String, Object> map) throws Exception;
 	

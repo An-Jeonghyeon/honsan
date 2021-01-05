@@ -61,7 +61,24 @@ $(".hover").mouseleave(
                     <span>혼자 뭐먹지? 추천 게시판</span>
                 </div>
                        
-                 <div class="categories-content">추천게시물</div>
+                 <div class="categories-content">
+                 	<div class="categories-content-cook">
+	                 	<div class="categories-content-cook-img1">
+	                 		<div class="categories-content-cook-img1-box">
+	                 			<div class="categories-content-cook-img1-category">
+	                 			</div>
+	                 			<div class="">
+	                 			</div>
+	                 		</div>
+	                 	</div>
+	                 	<div class="categories-content-cook-inside">
+		                 	<div class="categories-content-cook-img2">
+		                 	</div>
+		                 	<div class="categories-content-cook-words">
+		                 	</div>
+	                 	</div>
+                 	</div>
+                 </div>
                        
             </div>
             

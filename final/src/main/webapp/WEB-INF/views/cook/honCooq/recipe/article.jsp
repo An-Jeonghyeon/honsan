@@ -51,12 +51,12 @@ function ajaxHTML(url, method, query, selector) {
 
 //게시글 좋아요 여부
 $(function(){
-	if($("#cookTipLikeCount").attr("data-userLike")=="1") {
+	if($("#recipeLikeCount").attr("data-userLike")=="1") {
 		$("#heart").removeClass("far").addClass("fas");
 	}
 	
 	$(".btnSendCookTipLike").click(function(){
-		var userLike=$("#cookTipLikeCount").attr("data-userLike");
+		var userLike=$("#recipeLikeCount").attr("data-userLike");
 		if(userLike=="0") {
 			if(! confirm("게시물이 마음에 드세요?")) {
 				return false;
@@ -69,9 +69,9 @@ $(function(){
 			var fn = function(data){
 				var state=data.state;
 				if(state==="true") {
-					var count = data.cookTipLikeCount;
-					$("#cookTipLikeCount").text(count);
-					$("#cookTipLikeCount").attr("data-userLike", "1");
+					var count = data.recipeLikeCount;
+					$("#recipeLikeCount").text(count);
+					$("#recipeLikeCount").attr("data-userLike", "1");
 					$("#heart").removeClass("far").addClass("fas");
 					
 				} else if(state==="false") {					
@@ -89,9 +89,9 @@ $(function(){
 			var fn = function(data){
 				var state=data.state;
 				if(state==="true") {
-					var count = data.cookTipLikeCount;
-					$("#cookTipLikeCount").text(count);
-					$("#cookTipLikeCount").attr("data-userLike", "0");
+					var count = data.recipeLikeCount;
+					$("#recipeLikeCount").text(count);
+					$("#recipeLikeCount").attr("data-userLike", "0");
 					$("#heart").removeClass("fas").addClass("far");
 
 				} else if(state==="false") {
@@ -391,15 +391,15 @@ function stopVideo() {
 
 	<div class="cookTip_ContentBody">
 		<!-- 
-		${dto.content}
+		
 		 -->
 		<div id="player"></div>
 	</div>
 	<div class="cookTip_LikeBox">
 		<span class="cookTip_LikeHeart">
 			<button type="button" class="cookTip_LikeButton btnSendCookTipLike">
-				<i id="heart" class="far fa-heart"></i> <span id="cookTipLikeCount"
-					data-userLike="${userLike}">${dto.cookTipLikeCount}</span>
+				<i id="heart" class="far fa-heart"></i> <span id="recipeLikeCount"
+					data-userLike="${userLike}">${dto.recipeLikeCount}</span>
 			</button>
 		</span>
 	</div>
@@ -410,7 +410,7 @@ function stopVideo() {
 			<div class="cookTip_articleButtonBox">
 				<c:if test="${not empty preReadDto}">
 					<button class="cookTip_preRead" type="button"
-						onclick="javascript:location.href='${pageContext.request.contextPath}/cook/honCooq/cookTip/article?${query}&num=${preReadDto.recipe_id}';">
+						onclick="javascript:location.href='${pageContext.request.contextPath}/cook/honCooq/recipe/article?${query}&num=${preReadDto.recipe_id}';">
 						<i class="fas fa-angle-left"></i>
 					</button>
 					<span>이전글 | ${preReadDto.subject}</span>
@@ -419,7 +419,7 @@ function stopVideo() {
 
 			<div class="cookTip_articleButtonBox">
 				<button class="cookTip_toList" type="button"
-					onclick="javascript:location.href='${pageContext.request.contextPath}/cook/honCooq/cookTip/list?${query}';">
+					onclick="javascript:location.href='${pageContext.request.contextPath}/cook/honCooq/main?${query}';">
 					<i class="fas fa-bars"></i>
 				</button>
 				<span> 리스트로</span>
@@ -429,7 +429,7 @@ function stopVideo() {
 				<c:if test="${not empty nextReadDto}">
 					<span>${nextReadDto.subject} | 다음글</span>
 					<button class="cookTip_nextRead" type="button"
-						onclick="javascript:location.href='${pageContext.request.contextPath}/cook/honCooq/cookTip/article?${query}&num=${nextReadDto.recipe_id}';">
+						onclick="javascript:location.href='${pageContext.request.contextPath}/cook/honCooq/recipe/article?${query}&num=${nextReadDto.recipe_id}';">
 						<i class="fas fa-angle-right"></i>
 					</button>
 				</c:if>

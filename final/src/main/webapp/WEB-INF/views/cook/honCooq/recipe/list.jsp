@@ -33,7 +33,7 @@ $(function() {
 						<select name="condition" class="recipe_select recipe_list_select">
 							<option value="all" ${condition=="all"?"selected='selected'":""}>전체</option>
 							<option value="subject" ${condition=="subject"?"selected='selected'":""}>제목</option>
-							<option value="content" ${condition=="content"?"selected='selected'":""}>내용</option>
+							<!-- <option value="content" ${condition=="content"?"selected='selected'":""}>내용</option> -->
 						</select>
 						<input type="text" name="keyword" value="${keyword}" class="recipe_search-input">
 						<button type="button" class="recipe_search-btn" onclick="recipe_searchList()">검색</button>

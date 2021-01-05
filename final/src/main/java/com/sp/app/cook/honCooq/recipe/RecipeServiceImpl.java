@@ -115,7 +115,7 @@ public class RecipeServiceImpl implements RecipeService{
 	}
 
 	@Override
-	public int RecipeLikeCount(int num) {
+	public int recipeLikeCount(int num) {
 		int result=0;
 		try {
 			result=dao.selectOne("recipe.recipeLikeCount", num);

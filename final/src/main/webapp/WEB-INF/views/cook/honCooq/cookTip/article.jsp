@@ -352,16 +352,11 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 // 동영상 주소에서 아이디 부분 자르기
 var $videoId = "";
-$(function() {
+$(function() { 
 	var yUrl = $(".cookTip_yUrl").attr("data-yUrl");
 		$videoId = yUrl.substring(yUrl.lastIndexOf('/') +1); 
-	if(yUrl.indexOf("=") != 0) {
-		//$videoId = yUrl.substring(yUrl.indexOf("=") + 1);
-		// https://youtu.be/v=BhepSW0Z7H0
-	} else {
-//		https://youtu.be/				BhepSW0Z7H0
-/* 		var n = yUrl.split("/");
-		$videoId = yUrl.substring(n + 1);	 */	
+	if(yUrl.indexOf("=") > 0) {
+		$videoId = yUrl.substring(yUrl.indexOf("=") + 1);
 	}
 	alert($videoId);
 });
