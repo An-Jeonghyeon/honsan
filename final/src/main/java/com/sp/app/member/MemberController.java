@@ -28,6 +28,32 @@ public class MemberController {
 		model.addAttribute("mode", "member");
 		return ".member.member";
 	}
+	
+	@RequestMapping(value="update", method=RequestMethod.GET)
+	public String updateForm(
+			String userId,
+			Model model) {
+		
+		Member dto = service.readMember(userId);
+		
+		String tel[] = dto.getTel().trim().split("-");
+		int tel2 = Integer.parseInt(tel[1]);
+		int tel3 = Integer.parseInt(tel[2]);
+		
+		String email[] = dto.getEmail().trim().split("@");
+		String email1 = email[0];
+		String email2 = email[1];
+		
+		model.addAttribute("mode", "update");
+		
+		model.addAttribute("email1", email1);
+		model.addAttribute("email2", email2);
+		model.addAttribute("tel3", tel3);
+		model.addAttribute("tel2", tel2);
+		model.addAttribute("dto", dto);
+		
+		return ".member.member";
+	}
 
 /*
     * RedirectAttributes 
@@ -213,14 +239,14 @@ public class MemberController {
 		} catch (Exception e) {
 		}
 		
-		StringBuilder sb=new StringBuilder();
-		sb.append(dto.getUserName()+ "님의 회원정보가 정상적으로 변경되었습니다.<br>");
-		sb.append("메인화면으로 이동 하시기 바랍니다.<br>");
 		
-		reAttr.addFlashAttribute("title", "회원 정보 수정");
-		reAttr.addFlashAttribute("message", sb.toString());
+		String title = dto.getUserName()+ "님의 회원정보가 정상적으로 변경되었습니다.";
+		String message ="메인화면으로 이동 하시기 바랍니다.";
 		
-		return "redirect:/member/complete";
+		model.addAttribute("title", title);
+		model.addAttribute("message", message);
+		
+		return ".member.complete2";
 	}
 
 	// @ResponseBody : 자바 객체를 HTTP 응답 몸체로 전송(AJAX에서 JSON 전송 등에 사용)
