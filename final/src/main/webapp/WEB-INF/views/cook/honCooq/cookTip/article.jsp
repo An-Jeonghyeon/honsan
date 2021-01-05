@@ -354,12 +354,14 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 var $videoId = "";
 $(function() {
 	var yUrl = $(".cookTip_yUrl").attr("data-yUrl");
+		$videoId = yUrl.substring(yUrl.lastIndexOf('/') +1); 
 	if(yUrl.indexOf("=") != 0) {
-		$videoId = yUrl.substring(yUrl.indexOf("=") + 1);
+		//$videoId = yUrl.substring(yUrl.indexOf("=") + 1);
+		// https://youtu.be/v=BhepSW0Z7H0
 	} else {
-//		$videoId = yUrl.substring(yUrl.lastIndexOf('/') +1); 
-		var n = yUrl.split("/");
-		$videoId = yUrl.substring(n + 1);		
+//		https://youtu.be/				BhepSW0Z7H0
+/* 		var n = yUrl.split("/");
+		$videoId = yUrl.substring(n + 1);	 */	
 	}
 	alert($videoId);
 });

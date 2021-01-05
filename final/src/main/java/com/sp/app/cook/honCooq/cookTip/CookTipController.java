@@ -103,8 +103,8 @@ public class CookTipController {
 		}
 
         // ajax 페이징처리
-//        String paging = myUtil.pagingMethod2(current_page, total_page, "listPage");
-		String paging = myUtil.paging2(current_page, total_page, listUrl);
+        String paging = myUtil.pagingMethod2(current_page, total_page, "listPage");
+//		String paging = myUtil.paging2(current_page, total_page, listUrl);
 				
 		model.addAttribute("list", list);
 		model.addAttribute("articleUrl", articleUrl);

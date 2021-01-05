@@ -76,30 +76,23 @@
 	<!-- 글보기(article) - 기본 읽기 -->
 	<select id="readRecipe" parameterType="Integer" resultType="com.sp.app.cook.honCooq.recipe.Recipe">
 		SELECT	rb.recipe_id, recipe_nm_ko, sumry, nation_code, nation_nm, ty_code, ty_nm,
-				cooking_time, qnt, level_nm, img_url,
-				irdnt_sn, irdnt_nm, irdnt_cpcty, irdnt_ty_code, irdnt_ty_nm,
-				cooking_no, cooking_dc, stre_step_image_url, step_tip,			
+				cooking_time, qnt, level_nm, img_url,		
 		       	NVL(recipeLikeCount, 0) recipeLikeCount 
 		
 		FROM recipe_basic rb
-		
-		LEFT OUTER JOIN (
-			SELECT recipe_id, irdnt_sn, irdnt_nm, irdnt_cpcty, irdnt_ty_code, irdnt_ty_nm
-			FROM recipe_ingre
-			GROUP BY recipe_id
-		) ri ON rb.recipe_id = ri.recipe_id
-		
-		LEFT OUTER JOIN (
-			SELECT recipe_id, cooking_no, cooking_dc, stre_step_image_url, step_tip
-			FROM recipe_process
-			GROUP BY recipe_id
-		) rp ON rb.recipe_id = rp.recipe_id
 		
 		LEFT OUTER JOIN (
 			SELECT recipe_id, COUNT(*) recipeLikeCount 
 			FROM recipe_like
 			GROUP BY recipe_id
 		) rlc ON rb.recipe_id = rlc.recipe_id
+
+		LEFT OUTER JOIN (
+			SELECT recipe_id, COUNT(*) replyCount 
+			FROM recipe_reply 
+			WHERE answer = 0
+			GROUP BY recipe_id
+		) rr ON rb.recipe_id = rr.recipe_id
 		
 		WHERE rb.recipe_id = #{recipe_id}	                      
 	</select>
@@ -109,6 +102,7 @@
 		SELECT recipe_id, irdnt_sn, irdnt_nm, irdnt_cpcty, irdnt_ty_code, irdnt_ty_nm
 		FROM recipe_Ingre
 		WHERE recipe_id = #{recipe_id}
+		ORDER BY irdnt_sn ASC
 	</select>
 	
 	<!-- 글보기 - 과정 읽기 -->
@@ -116,6 +110,7 @@
 		SELECT recipe_id, cooking_no, cooking_dc, stre_step_image_url, step_tip
 		FROM recipe_process
 		WHERE recipe_id = #{recipe_id}
+		ORDER BY cooking_no ASC;
 	</select>	
 	
 	<!-- 조회수 증가 -->

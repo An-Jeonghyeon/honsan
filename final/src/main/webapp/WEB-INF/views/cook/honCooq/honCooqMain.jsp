@@ -42,7 +42,7 @@ $(function(){
 		$(".honCooq-tabs button").each(function(){
 			$(this).removeClass("active");
 		});
-		
+
 		$("#tab-"+tab).addClass("active");
 		
 		// listPage(1);
@@ -133,7 +133,9 @@ function ajaxHTML(url, method, query, selector) {
 // 글리스트 및 페이징 처리
 function listPage(page) {
 	var $tab = $(".honCooq-tabs .active"); // 누가 활성화 된 상태인지 가져오기
+	console.log($tab);
 	var tab = $tab.attr("data-tab"); // 활성화된 db에서 자료 가져오기
+	console.log(tab);
 	
 	var url="${pageContext.request.contextPath}/cook/honCooq/"+tab+"/list";
 	var query="pageNo="+page;
@@ -162,145 +164,6 @@ function reloadBoard() {
 	listPage(1);
 }
 
-// 글쓰기폼
-function insertForm() {
-	var $tab = $(".honCooq-tabs .active");
-	var tab = $tab.attr("data-tab");
-	
-	var url="${pageContext.request.contextPath}/honCooq/"+tab+"/created";
-	var query="tmp="+new Date().getTime(); // get방식은 주소가 똑같기 때문에 구분하기 위해 넣어줌. 현재 컴퓨터 시간
-	var selector = "#honCooq-tab-content"; // 쿼리가 바뀌면 주소가 동일해도 서버로 다시 감 
-	
-	ajaxHTML(url, "get", query, selector);
-}
-
-// 글등록, 수정등록, 답변등록
-function sendOk(mode, page) {
-	var $tab = $(".honCooq-tabs .active");
-	var tab = $tab.attr("data-tab");
-	
-    var f = document.boardForm;
-
-	var str = f.subject.value;
-    if(!str) {
-        alert("제목을 입력하세요. ");
-        f.subject.focus();
-        return;
-    }
-
-	str = f.content.value;
-    if(!str) {
-        alert("내용을 입력하세요. ");
-        f.content.focus();
-        return;
-    }
-    
-/*     if(tab=="inquiry" && mode=="created") {
-    	if(f.emailRecv.checked && ! f.email.value) {
-    		alert("이메일을 입력하세요. ");
-            f.email.focus();
-            return;
-    	}
-    	
-    	if(f.phoneRecv.checked && ! f.phone.value) {
-    		alert("전화번호를 입력하세요. ");
-            f.phone.focus();
-            return;
-    	}
-    } */
-	
-    var url="${pageContext.request.contextPath}/honCooq/"+tab+"/"+mode;
-    var query = new FormData(f); // IE는 10이상에서만 가능
-    
-	var fn = function(data){
-		var state=data.state;
-        if(state=="false")
-            alert("게시물을 추가(수정)하지 못했습니다. !!!");
-
-    	if(page==undefined || page=="")
-    		page="1";
-    	
-    	if(mode=="created" || mode=="reply") {
-    		reloadBoard()
-    	} else {
-    		listPage(page);
-    	}
-	};
-	
-	ajaxFileJSON(url, "post", query, fn);		
-}
-
-// 글쓰기 취소, 수정 취소, 답변 취소
-function sendCancel(page) {
-	if(page==undefined || page=="")
-		page="1";
-	
-	listPage(page);
-}
-
-// 게시글 보기
-function articleBoard(num, page) {
-	var $tab = $(".honCooq-tabs .active");
-	var tab = $tab.attr("data-tab");
-	
-	var url="${pageContext.request.contextPath}/honCooq/"+tab+"/article";
-	var query="num="+num;
-	var search=$('form[name=honCooqSearchForm]').serialize();
-	query=query+"&pageNo="+page+"&"+search;
-	var selector = "#honCooq-tab-content";
-	
-	ajaxHTML(url, "get", query, selector);
-}
-
-// 글 수정폼
-function updateForm(num, page) {
-	var $tab = $(".honCooq-tabs .active");
-	var tab = $tab.attr("data-tab");
-	
-	var url="${pageContext.request.contextPath}/honCooq/"+tab+"/update";
-	var query;
-	if(tab=="board")
-		query="boardNum="+num;
-	else
-		query="num="+num;
-	query=query+"&pageNo="+page
-	var selector = "#honCooq-tab-content";
-	
-	ajaxHTML(url, "get", query, selector);
-}
-
-// 글 답변폼
-function replyForm(num, page) {
-	var $tab = $(".honCooq-tabs .active");
-	var tab = $tab.attr("data-tab");
-	
-	var url="${pageContext.request.contextPath}/honCooq/"+tab+"/answer";
-	var query="num="+num+"&pageNo="+page
-	var selector = "#honCooq-tab-content";
-	
-	ajaxHTML(url, "get", query, selector);
-}
-
-// 글 삭제
-function deleteBoard(num, page, mode) {
-	var $tab = $(".honCooq-tabs .active");
-	var tab = $tab.attr("data-tab");
-	var url="${pageContext.request.contextPath}/honCooq/"+tab+"/delete";
-	
-	var query="num="+num;
-	if(tab=="qna") {
-		query+="&mode="+mode;
-	}
-	
-	if(! confirm("위 게시물을 삭제 하시 겠습니까 ? "))
-		  return;
-	
-	var fn = function(data){
-		listPage(page);
-	};
-	
-	ajaxJSON(url, "post", query, fn);		
-}
 
 </script>
 

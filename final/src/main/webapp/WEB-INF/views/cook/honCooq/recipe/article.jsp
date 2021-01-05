@@ -4,35 +4,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <script type="text/javascript">
-function deleteBoard() {
-	<c:if test="${sessionScope.member.userId=='admin' || sessionScope.member.userId==dto.userId}">
-		var q = "num=${dto.num}&${query}";
-		var url = "${pageContext.request.contextPath}/cook/honCooq/cookTip/delete?" + q;
-
-		if(confirm("위 자료를 삭제 하시 겠습니까 ? ")) {
-				location.href=url;
-		}
-	</c:if>    
-	<c:if test="${sessionScope.member.userId!='admin' && sessionScope.member.userId!=dto.userId}">
-		alert("게시물을 삭제할 수  없습니다.");
-	</c:if>
-	}
-
-	function updateBoard() {
-	<c:if test="${sessionScope.member.userId==dto.userId}">
-		var q = "num=${dto.num}&page=${page}";
-		var url = "${pageContext.request.contextPath}/cook/honCooq/cookTip/update?" + q;
-
-		location.href=url;
-	</c:if>
-
-	<c:if test="${sessionScope.member.userId!=dto.userId}">
-		alert("게시물을 수정할 수  없습니다.");
-	</c:if>
-	}
-</script>
-
-<script type="text/javascript">
 function ajaxJSON(url, method, query, fn) {
 	$.ajax({
 		type:method
@@ -91,7 +62,7 @@ $(function(){
 				return false;
 			}
 			var url="${pageContext.request.contextPath}/cook/honCooq/cookTip/insertCookTipLike";
-			var num="${dto.num}";
+			var num="${dto.recipe_id}";
 			// var query={num:num}; 이렇게 써도 아래와 같은 의미
 			var query="num="+num;
 			
@@ -112,7 +83,7 @@ $(function(){
 				return false;
 			}
 			var url="${pageContext.request.contextPath}/cook/honCooq/cookTip/deleteCookTipLike";
-			var num="${dto.num}";
+			var num="${dto.recipe_id}";
 			var query="num="+num;
 			
 			var fn = function(data){
@@ -140,7 +111,7 @@ $(function() {
 // 댓글 리스트 보이기
 function listPage(page) {
 	var url = "${pageContext.request.contextPath}/cook/honCooq/cookTip/listReply";
-	var query = "num=${dto.num}&pageNo="+page;
+	var query = "num=${dto.recipe_id}&pageNo="+page;
 	var selector = "#listCookTipReply";
 	
 	ajaxHTML(url, "get", query, selector);
@@ -149,7 +120,7 @@ function listPage(page) {
 //리플 등록
 $(function(){
 	$(".btnSendReply").click(function(){
-		var num="${dto.num}";
+		var num="${dto.recipe_id}";
 		//var $tb = $(this).closest("table");
 		var $div = $(this).parents(".cookTip_ReplyContentBox"); 
 		
@@ -289,7 +260,7 @@ $(function(){
 //댓글별 답글 등록
 $(function(){
 	$("body").on("click", ".btnSendReplyAnswer", function(){
-		var num="${dto.num}";
+		var num="${dto.recipe_id}";
 		var replyNum=$(this).attr("data-replyNum");
 		var $div=$(this).closest("div");
 		
@@ -395,7 +366,10 @@ function stopVideo() {
 			<span class="cookTip_articleBodyHeader-Title">Recipes</span>
 		</div>
 		<div class="cookTip_category article_category">
-			<span>${dto.nation_nm!=null? dto.nation_nm : "기타"} ${dto.ty_code!=null? dto.ty_code : "기타"}</span>
+			<span>${dto.nation_nm!=null? dto.nation_nm : "기타"}</span>
+		</div>
+		<div class="cookTip_category article_category">
+			<span>${dto.ty_code!=null? dto.ty_code : "기타"}</span>
 		</div>
 
 		<div class="cookTip_articleMainHeaderSubject">
@@ -405,14 +379,10 @@ function stopVideo() {
 		<!-- 
 			<div class="cookTip_articleMainHeaderInfo">
 				<div class="cookTip_writer">
-					<span class="cookTip_articleInfo"><i class="far fa-user"></i>
-						${dto.userName}</span>
 				</div>
 				<div class="cookTip_registerDateNumber">
-					<span class="cookTip_articleInfo">등록일 ${dto.register_date}</span>
 				</div>
 				<div class="cookTip_hitCountNumber">
-					<span class="cookTip_articleInfo">조회수 ${dto.hitCount}</span>
 				</div>
 			</div>
 		 -->
@@ -420,7 +390,9 @@ function stopVideo() {
 	</div>
 
 	<div class="cookTip_ContentBody">
+		<!-- 
 		${dto.content}
+		 -->
 		<div id="player"></div>
 	</div>
 	<div class="cookTip_LikeBox">
@@ -432,28 +404,13 @@ function stopVideo() {
 		</span>
 	</div>
 	<div class="cookTip_updateAndDelete">
-		<div class="cookTip_articleButtons_updateAndDelete">
-			<c:if test="${dto.userName == sessionScope.member.userId}">
-				<div class="cookTip_articleButtonBox2">
-					<button class="cookTip_update" type="button"
-						onclick="updateBoard('${dto.num}');">수정</button>
-				</div>
-			</c:if>
-			<c:if
-				test="${dto.userName == sessionScope.member.userId ||  sessionScope.member.userId == 'admin' }">
-				<div class="cookTip_articleButtonBox2">
-					<button class="cookTip_delete" type="button"
-						onclick="deleteBoard('${dto.num}');">삭제</button>
-				</div>
-			</c:if>
-		</div>
 	</div>
 	<div class="cookTip_preAndNext">
 		<div class="cookTip_articleButtons">
 			<div class="cookTip_articleButtonBox">
 				<c:if test="${not empty preReadDto}">
 					<button class="cookTip_preRead" type="button"
-						onclick="javascript:location.href='${pageContext.request.contextPath}/cook/honCooq/cookTip/article?${query}&num=${preReadDto.num}';">
+						onclick="javascript:location.href='${pageContext.request.contextPath}/cook/honCooq/cookTip/article?${query}&num=${preReadDto.recipe_id}';">
 						<i class="fas fa-angle-left"></i>
 					</button>
 					<span>이전글 | ${preReadDto.subject}</span>
@@ -472,7 +429,7 @@ function stopVideo() {
 				<c:if test="${not empty nextReadDto}">
 					<span>${nextReadDto.subject} | 다음글</span>
 					<button class="cookTip_nextRead" type="button"
-						onclick="javascript:location.href='${pageContext.request.contextPath}/cook/honCooq/cookTip/article?${query}&num=${nextReadDto.num}';">
+						onclick="javascript:location.href='${pageContext.request.contextPath}/cook/honCooq/cookTip/article?${query}&num=${nextReadDto.recipe_id}';">
 						<i class="fas fa-angle-right"></i>
 					</button>
 				</c:if>

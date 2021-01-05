@@ -17,10 +17,6 @@ $(function() {
 	});
 });
 
-function recipe_searchList() {
-	var f=document.recipe_searchForm;
-	f.submit();
-}
 </script>
 
 

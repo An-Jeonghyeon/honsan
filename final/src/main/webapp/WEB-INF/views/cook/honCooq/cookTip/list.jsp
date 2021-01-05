@@ -3,9 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<%-- <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/cook/honCooq.css" type="text/css">
- --%>
-
 
 <script type="text/javascript">
 
@@ -19,64 +16,9 @@ $(function() {
 	});
 });
 
-function cookTip_searchList() {
-	var f=document.cookTip_searchForm;
-	f.submit();
-}
-
 </script>
 
-<script type="text/javascript">
-function ajaxJSON(url, method, query, fn) {
-	$.ajax({
-		type:method
-		,url:url
-		,data:query
-		,dataType:"json"
-		,success:function(data) {
-			fn(data);
-		}
-		,beforeSend:function(jqXHR) {
-	        jqXHR.setRequestHeader("AJAX", true);
-	    }
-	    ,error:function(jqXHR) {
-	    	if(jqXHR.status===403) {
-	    		login();
-	    		return false;
-	    	}
-	    	
-	    	console.log(jqXHR.responseText);
-	    }
-	});
-}
 
-function ajaxHTML(url, method, query, selector) {
-	$.ajax({
-		type:method
-		,url:url
-		,data:query
-		,success:function(data) {
-			$(selector).html(data);
-		}
-		,beforeSend:function(jqXHR) {
-	        jqXHR.setRequestHeader("AJAX", true);
-	    }
-	    ,error:function(jqXHR) {
-	    	if(jqXHR.status===403) {
-	    		login();
-	    		return false;
-	    	}
-	    	
-	    	console.log(jqXHR.responseText);
-	    }
-	});
-}
-
-function reloadBoard() {
-	location.href = "${pageContext.request.contextPath}/cook/honCooq/main?m=2";
-}
-
-</script>
 
 <div class="cookTip_list-container">
 <!-- 

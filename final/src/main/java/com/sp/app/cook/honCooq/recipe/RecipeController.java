@@ -1,6 +1,7 @@
 package com.sp.app.cook.honCooq.recipe;
 
 import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -74,26 +75,26 @@ public class RecipeController {
 		List<Recipe> list = service.listRecipe(map);
 		
 		
-//		String cp = req.getContextPath();
-//		String query = "";
+		String cp = req.getContextPath();
+		String query = "";
 //		String listUrl = cp+"/cook/honCooq/recipe/list";
-//		String articleUrl = cp+"/cook/honCooq/recipe/article?page=" + current_page;
-//		if (keyword.length() != 0) {
-//			query = "condition="+condition + "&keyword=" 
-//						+ URLEncoder.encode(keyword, "utf-8");
-//		}
-//
-//		if (query.length()!=0) {
+		String articleUrl = cp+"/cook/honCooq/recipe/article?page=" + current_page;
+		if (keyword.length() != 0) {
+			query = "condition="+condition + "&keyword=" 
+						+ URLEncoder.encode(keyword, "utf-8");
+		}
+
+		if (query.length()!=0) {
 //			listUrl = cp+"/cook/honCooq/recipe/list?"+query;
-//			articleUrl = cp+"/cook/honCooq/recipe/article?page=" + current_page +"&"+ query;
-//		}
+			articleUrl = cp+"/cook/honCooq/recipe/article?page=" + current_page +"&"+ query;
+		}
 		
         // ajax 페이징처리
         String paging = myUtil.pagingMethod2(current_page, total_page, "listPage");
-        // String paging = myUtil.paging(current_page, total_page);
+        // String paging = myUtil.paging2(current_page, total_page);
 				
 		model.addAttribute("list", list);
-//		model.addAttribute("articleUrl", articleUrl);
+		model.addAttribute("articleUrl", articleUrl);
 		model.addAttribute("pageNo", current_page);
 		model.addAttribute("dataCount", dataCount);
 		model.addAttribute("total_page", total_page);
@@ -105,25 +106,30 @@ public class RecipeController {
 		return "/cook/honCooq/recipe/list";
 	}
 	
-	@RequestMapping(value = "article", method = RequestMethod.GET)
+	@RequestMapping(value = "article")
 	public String article(
-			@RequestParam(value = "recipe_id") int num,
-			@RequestParam String pageNo,
+			@RequestParam int num,
+			@RequestParam String page,
 			@RequestParam(defaultValue="all") String condition,
 			@RequestParam(defaultValue="") String keyword,
-			HttpServletResponse resp,
+			HttpSession session,
 			Model model) throws Exception {
 
 		keyword = URLDecoder.decode(keyword, "utf-8");
 
+		String query = "page="+page;
+		if(keyword.length()!=0) {
+			query+="&condition="+condition+"&keyword="+URLEncoder.encode(keyword, "UTF-8");
+		}		
+		
+		// 해당 레코드(글 정보) 가져오기
 		Recipe dto = service.readRecipe(num);
 		if(dto==null) {
-			resp.sendError(410, "삭제된 게시물입니다."); // main.jsp에서 설정한 에러코드를 보내기
-			return null;
+			return "redirect:/cook/honCooq/main?"+query;
 		}
 		
 		// 스마트 에디터인 경우 주석 처리
-//        dto.setContent(dto.getContent().replaceAll("\n", "<br>"));
+//      dto.setContent(dto.getContent().replaceAll("\n", "<br>"));
          
 		// 이전 글, 다음 글
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -137,9 +143,26 @@ public class RecipeController {
 		model.addAttribute("dto", dto);
 //		model.addAttribute("preReadDto", preReadDto);
 //		model.addAttribute("nextReadDto", nextReadDto);
-		model.addAttribute("pageNo", pageNo);
 		
-		return "cook/honCooq/recipe/article";
+		// 좋아요 여부 가져오기
+		SessionInfo info=(SessionInfo)session.getAttribute("member");		
+		Map<String, Object> paramMap=new HashMap<>();
+		paramMap.put("num", num);
+		paramMap.put("userId", info.getUserId());
+		
+		int readcookTipLike=0;
+		
+		try {
+			readcookTipLike = service.readRecipeLike(paramMap);					
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		model.addAttribute("userLike", readcookTipLike);		
+		model.addAttribute("page", page);
+		model.addAttribute("query", query);		
+		
+		return ".cook.honCooq.recipe.article";
 	}	
 	
 }

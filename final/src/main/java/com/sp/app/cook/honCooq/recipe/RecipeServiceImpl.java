@@ -49,6 +49,28 @@ public class RecipeServiceImpl implements RecipeService{
 	}
 
 	@Override
+	public Recipe readRecipeIngre(int num) {
+		Recipe dto = null;
+		try {
+			dto = dao.selectOne("recipe.readRecipeIngre", num);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return dto;
+	}
+
+	@Override
+	public Recipe readRecipeProcess(int num) {
+		Recipe dto = null;
+		try {
+			dto = dao.selectOne("recipe.readRecipeProcess", num);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return dto;
+	}
+	
+	@Override
 	public Recipe preReadRecipe(Map<String, Object> map) {
 		Recipe dto = null;
 		try {
@@ -208,5 +230,4 @@ public class RecipeServiceImpl implements RecipeService{
 		}
 		return countMap;
 	}
-
 }
