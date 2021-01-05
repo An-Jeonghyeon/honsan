@@ -85,7 +85,7 @@
 		</ul>
 		<ul class="admin_controller">	
 			<li>
-				<a href="#" class="list_tag_a">+ 모두보기</a> <!-- 리스트 주소 -->
+				<a href="${pageContext.request.contextPath}/faq/main" class="list_tag_a">+ 모두보기</a> <!-- 리스트 주소 -->
 			</li>
 		</ul>
 	</div>
