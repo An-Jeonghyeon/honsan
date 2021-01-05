@@ -85,7 +85,7 @@
    
     <update id="updateMember2" parameterType="com.sp.app.member.Member">
         UPDATE member2 SET email=#{email, jdbcType=VARCHAR}, 
-                     tel=#{tel, jdbcType=VARCHAR}, birth=#{birth, jdbcType=VARCHAR},
+                     tel=#{tel, jdbcType=VARCHAR}, 
                      zip=#{zip, jdbcType=VARCHAR},
                      addr1=#{addr1, jdbcType=VARCHAR}, addr2=#{addr2, jdbcType=VARCHAR}
                WHERE userId=#{userId}

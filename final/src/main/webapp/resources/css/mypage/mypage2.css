@@ -1,11 +1,30 @@
 @charset "UTF-8";
 
 .main-content-container {
-	width: 1300px;
-	height: 1000px;
 	margin :0 auto;
 /* 	background-color: gray; */
 	display: flex;
+	flex-wrap:wrap;
+	font-family: 
+}
+
+.mypage-top {
+    width: 100%;
+    height: 400px;
+    background-image:url("../../images/mypage/mypageImg.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+/*     background-position: center -300px; */
+	background-position : center -450px;
+}
+
+.mypage-both {
+	width: 1300px;
+	height : 1000px;
+/* 	background-color:pink; */
+	display:flex;
+	margin: 40px auto;
+	padding: 30px 0;
 }
 
 /****************
@@ -16,14 +35,28 @@
 	height: 100%;
 /* 	background-color: yellow; */
 	/*float: left;*/
+	background: #efefef;
 }
+/* 마이페이지 글씨 */
+.mypagetext {
+	padding-left: 40px;
+	box-sizing: border-box;
+	padding-top: 20px;
+}
+.mypagetext span {
+	font-size: 80px;
+	font-weight: 900;
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
 
 .mypage-left-container {
 	width:90%;
 	height:60%;
-	margin:35% auto;
+	margin:70px auto 0;
 	border: 3px solid #ececec;	
 	border-radius: 10px;
+	background: white;
 }
 
 .profile-image {
@@ -58,7 +91,11 @@
 }
 
 .profile-userName {
-	font-size: 1.8em;
+}
+.profile-userName span {
+	font-weight :800;
+	font-size : 32px;
+	font-family: 'Noto Sans KR', sans-serif;
 }
 
 .profile-follow {
@@ -80,6 +117,8 @@
 	height: 15%;
 /* 	background-color: orange; */
 	text-align: center;
+	display:flex;
+	justify-content:space-around;
 }
 
 .profile-center .btn-default {
@@ -87,12 +126,13 @@
 	-webkit-appearance: none;
 	appearance: none;
 	font-size: 1rem;
-	font-weight: 400;
+	font-weight: 700;
 	line-height: 1.5;
 	text-align: center;
 	color: #444;
 	background-color: #fff;
-	padding: .6em 1.4em .5em .8em;
+/* 	padding: .6em 1.4em .5em .8em; */
+	padding : 0 15px;
 	margin-bottom: 20px;
 	height: 45px;
 	box-sizing: border-box;
@@ -113,18 +153,42 @@
 	box-shadow: 2px 2px 1px #848484;
 	border: 2px solid #848484;	
 }
+
+.profile-like-container{
+	
+	width:80%;
+	height:70%;
+    magin: 0 auto;
+}
+
 /****************
 	마이페이지 오른쪽
 *****************/
 .mypage-right {
-	width: 60%;
+	width: 55%;
 	height: 100%;
 /* 	background-color: pink; */
-	border-left:6px double gray;
+/* 	border-left:3px solid gray; */
+    box-shadow: 1px 1px 5px gray;
+    margin-left: 60px;
 }
 
-.mypage-right .heading{
-	/* margin-top:0; */
+.heading{
+	font-weight:900;
+	text-shadow: 1px 1px 2px gray;
+/* 	font-family:'Do Hyeon', sans-serif; */
+}
+
+.mypage-heading {
+	width:85%;
+	margin-left: 2.5rem;
+	line-height:3.5rem;
+	border-bottom :3px double gray;
+/* 	background-color:olive; */
+}
+
+.mypage-heading > .heading {
+	magin-top:1.0rem;
 }
 
 .mypage-contents {
@@ -143,7 +207,6 @@
 	display: inline-block;
 	vertical-align: middle;
 	text-align: center;
-
 }
 
 .mypage-content {
@@ -167,6 +230,11 @@
 	height: 55px;
 	background: #ececec;
 	position: relative;
+}
+
+.hexagon-title > span {
+	font-size : 1.1rem;
+    font-family:'Do Hyeon', sans-serif;
 }
 
 .hexagon:before {
@@ -227,9 +295,31 @@
 .mypage-recent {
 	width: 100%;
 	height: 35%;
-	background-color: maroon;
+	padding-top:1rem;
+/* 	background-color: maroon; */
+	display: flex;
+	justify-content: space-around;
 }
 
+.myQna-content {
+/* 	background-color: darkslategray; */
+	width: 40%;
+	height:90%;
+}
+
+.dontknow-content {
+/* 	background-color:palevioletred; */
+	width:40%;
+	height:90%;
+}
+
+.mypage-recent-contentBox {
+	width:100%;
+	height:80%;
+	margin-top:0.4rem;
+	border-top:3px double gray;
+	background-color:linen;
+}
 /****************
 	마이페이지 오른쪽 : 내 정보 수정시
 *****************/

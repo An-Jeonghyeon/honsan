@@ -14,7 +14,7 @@
 		WHERE  userId = #{userId}
 	</update>
 	
-		<update id="updateProfile2" parameterType="com.sp.app.mypage.Mypage">
+	<update id="updateProfile2" parameterType="com.sp.app.mypage.Mypage">
 		UPDATE memberProfile SET profileImg=#{profileImg} , profileMsg=#{profileMsg} 
 		WHERE  userId = #{userId}
 	</update>

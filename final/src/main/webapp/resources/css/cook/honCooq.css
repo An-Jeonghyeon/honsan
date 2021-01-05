@@ -1224,3 +1224,78 @@ recipe 게시판 댓글 폼
 	display: flex;
 	justify-content: flex-end;
 }
+
+/*----------------------
+main - home용 css
+-----------------------*/
+.categories-content-cook {
+	width: 98%;
+	height: 97%;
+	display: flex;
+	flex-wrap: wrap;
+	margin:0 auto 0 auto;
+	transition: 1s ;
+}
+
+.categories-content-cook:hover {
+	width:100%;
+	height:100%;	
+}
+.categories-content-cook:hover .categories-content-cook-img1-box{
+/* 	width:520px; */
+/* 	height:416px; */
+	display:block;
+	position:relative;
+	top:10rem;
+	left:30rem;
+}
+
+.categories-content-cook-img1{
+	width: 70%;
+    height: 100%;
+    background-image:url("../../images/home/bibimbap1.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+/*     background-position: center -300px; */
+	background-position : center;
+/* 	margin: 0 auto; */
+    box-sizing:border-box;
+    
+}
+
+.categories-content-cook-img1-box{
+	background-color:cornsilk;
+	width:500px;
+	height:400px;
+	position:relative;
+	top : 10rem;
+	left: 31rem;
+	transition:1s;
+/* 	display:none; */
+}
+
+.categories-content-cook-inside {
+	width:30%;
+	height:100%;
+	background-color:yellow;
+	box-sizing:border-box;
+}
+
+.categories-content-cook-img2{
+	width: 100%;
+	height: 50%;
+    background-image:url("../../images/mypage/mypageImg.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+/*     background-position: center -300px; */
+	background-position : center;
+	margin: 0 auto;
+	box-sizing:border-box;
+}
+
+.categories-content-cook-words {
+	width: 100%;
+	height: 50%;
+	background-color: tomato;
+	box-sizing:border-box;
+}

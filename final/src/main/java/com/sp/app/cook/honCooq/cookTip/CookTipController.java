@@ -88,26 +88,26 @@ public class CookTipController {
 			}
 		}
 		
-//		String cp = req.getContextPath();
-//		String query = "";
-//		String listUrl = cp+"/cook/honCooq/cookTip/list";
-//		String articleUrl = cp+"/cook/honCooq/cookTip/article?page=" + current_page;
-//		if (keyword.length() != 0) {
-//			query = "condition="+condition + "&keyword=" 
-//						+ URLEncoder.encode(keyword, "utf-8");
-//		}
-//
-//		if (query.length()!=0) {
-//			listUrl = cp+"/cook/honCooq/cookTip/list?"+query;
-//			articleUrl = cp+"/cook/honCooq/cookTip/article?page=" + current_page +"&"+ query;
-//		}
+		String cp = req.getContextPath();
+		String query = "";
+		String listUrl = cp+"/cook/honCooq/cookTip/list";
+		String articleUrl = cp+"/cook/honCooq/cookTip/article?page=" + current_page;
+		if (keyword.length() != 0) {
+			query = "condition="+condition + "&keyword=" 
+						+ URLEncoder.encode(keyword, "utf-8");
+		}
+
+		if (query.length()!=0) {
+			listUrl = cp+"/cook/honCooq/main?m=2&"+query;
+			articleUrl = cp+"/cook/honCooq/cookTip/article?page=" + current_page +"&"+ query;
+		}
 
         // ajax 페이징처리
         String paging = myUtil.pagingMethod2(current_page, total_page, "listPage");
 //		String paging = myUtil.paging2(current_page, total_page, listUrl);
 				
 		model.addAttribute("list", list);
-//		model.addAttribute("articleUrl", articleUrl);
+		model.addAttribute("articleUrl", articleUrl);
 		model.addAttribute("pageNo", current_page);
 		model.addAttribute("dataCount", dataCount);
 		model.addAttribute("total_page", total_page);
@@ -115,7 +115,7 @@ public class CookTipController {
 		model.addAttribute("condition", condition);
 		model.addAttribute("keyword", keyword);		
 		
-		return "/cook/honCooq/cookTip/list";
+		return "cook/honCooq/cookTip/list";
 	}
 	
 	@RequestMapping(value = "created", method = RequestMethod.GET)
@@ -129,9 +129,9 @@ public class CookTipController {
 	}
 	
 	@RequestMapping(value="created", method=RequestMethod.POST)
-	@ResponseBody
-	public Map<String, Object> createdSubmit(	// ajax 화면 구성시
-//	public String createdSubmit(
+//	@ResponseBody
+//	public Map<String, Object> createdSubmit(	// ajax 화면 구성시
+	public String createdSubmit(
 			CookTip dto,
 			HttpSession session
 			) throws Exception {
@@ -149,8 +149,8 @@ public class CookTipController {
 		
 		Map<String, Object> model=new HashMap<>();
 		model.put("state", state);
-		return model;
-//		return "redirect:/cook/honCooq/cookTip/list";
+//		return model; javascript:location.href='${pageContext.request.contextPath}/cook/honCooq/main?m=2&${query}';
+		return "redirect:/cook/honCooq/main?m=2";
 	}
 	
 	@RequestMapping("article")
@@ -175,7 +175,7 @@ public class CookTipController {
 		// 해당 레코드(글 정보) 가져오기
 		CookTip dto = service.readCookTip(num);
 		if (dto==null) {
-			return "redirect:/cook/honCooq/cookTip/list?"+query;
+			return "redirect:/cook/honCooq/main?m=2&"+query;
 		}
 		
 		// 스마트 에디터 사용시 주석처리 해야함!
@@ -214,7 +214,7 @@ public class CookTipController {
 		model.addAttribute("page", page);
 		model.addAttribute("query", query);
 		
-		return "cook/honCooq/cookTip/article";
+		return ".cook.honCooq.cookTip.article";
 	}
 
 	@RequestMapping(value="update", method=RequestMethod.GET)

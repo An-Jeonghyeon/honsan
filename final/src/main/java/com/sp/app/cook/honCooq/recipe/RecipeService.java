@@ -7,13 +7,15 @@ public interface RecipeService {
 	public List<Recipe> listRecipe(Map<String, Object> map);
 	public int dataCount(Map<String, Object> map);
 	public Recipe readRecipe(int num);
+	public Recipe readRecipeIngre(int num);
+	public Recipe readRecipeProcess(int num);
 	public Recipe preReadRecipe(Map<String, Object> map);
 	public Recipe nextReadRecipe(Map<String, Object> map);
 	public void updateRecipe(Recipe dto) throws Exception;
 	public void deleteRecipe(int num, String userId) throws Exception;
 	
 	public void insertRecipeLike(Map<String, Object> map) throws Exception;
-	public int RecipeLikeCount(int num);
+	public int recipeLikeCount(int num);
 	public int readRecipeLike(Map<String, Object> map) throws Exception;
 	public void deleteRecipeLike(Map<String, Object> map) throws Exception;
 	

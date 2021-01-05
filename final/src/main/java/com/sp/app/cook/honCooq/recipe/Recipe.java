@@ -9,6 +9,9 @@ public class Recipe {
 	private String nation_nm; 	// 유형분류 : 한식, 일식, 양식..
 	private int ty_code;
 	private String ty_nm; 		// 음식분류 : 빵/과자, 구이, 도시락/간식, 볶음..
+	private String ty_nm1;
+	private String ty_nm2;
+	private String ty_nm3;
 	private String cooking_time; // 요리시간
 	private String qnt; 			// 음식양(예: 3인분)
 	private String level_nm; 	// 난이도
@@ -29,7 +32,26 @@ public class Recipe {
 	
 	private int replyCount;
 	private int recipeLikeCount;		
-	
+
+	// ------------------------------- getter, setter
+	public String getTy_nm1() {
+		return ty_nm1;
+	}
+	public void setTy_nm1(String ty_nm1) {
+		this.ty_nm1 = ty_nm1;
+	}
+	public String getTy_nm2() {
+		return ty_nm2;
+	}
+	public void setTy_nm2(String ty_nm2) {
+		this.ty_nm2 = ty_nm2;
+	}
+	public String getTy_nm3() {
+		return ty_nm3;
+	}
+	public void setTy_nm3(String ty_nm3) {
+		this.ty_nm3 = ty_nm3;
+	}
 	public int getRecipe_id() {
 		return recipe_id;
 	}

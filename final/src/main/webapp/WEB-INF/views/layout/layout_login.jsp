@@ -47,7 +47,7 @@
 	
 
     <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Do+Hyeon&family=Noto+Sans+KR:wght@900&display=swap" rel="stylesheet">
-
+	<link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&display=swap" rel="stylesheet">
     
     <link href="${pageContext.request.contextPath}/resources/images/layout_logout/hollo_title.png" rel="shortcut icon" type="image/x-icon">
     <title>Hollo - Home live alone</title>

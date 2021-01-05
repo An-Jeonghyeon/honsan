@@ -8,15 +8,18 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sp.app.common.MyUtil;
+import com.sp.app.member.SessionInfo;
 
 @Controller("challenge.challengeController")
 @RequestMapping("/challenge/*")
@@ -215,10 +218,162 @@ public class ChallengeController {
 		model.addAttribute("challengeList", challengeList); //파일따로 
 		model.addAttribute("query", query);
 		model.addAttribute("contentList", list3);
-        
+		model.addAttribute("mode", "article");
+
 		return ".challenge.article";
 	}
 	
+	//도전하기 버튼 누르면 여기서 인서트만 하고...articleGo로 리다이렉트
+	@RequestMapping(value = "userInsert", method = RequestMethod.GET)
+	public String userInsert(
+			Challenge dto,
+			@RequestParam long num,
+			HttpSession session,
+			Model model 
+			) throws Exception {
+		
+		SessionInfo info=(SessionInfo)session.getAttribute("member");
 	
+		Challenge dto1 = service.readChallenge(num);
+		if(dto1==null) {
+			return "redirect:/challenge/list";
+		}
+		
+		try {
+			dto.setUserId(info.getUserId());
+			service.insertUserChallenge(dto);
+		} catch (Exception e) {
+			e.printStackTrace();
+			model.addAttribute("mode", "articleNo"); //인서트 실패시(이유 : 이미 도전하기 누른거)
+			model.addAttribute("num", num); //인서트 실패시(이유 : 이미 도전하기 누른거)
+			return ""; //여기서 그냥 바로 리스트로보내기..
+		}
+		
+		return "redirect:/challenge/articleGo?num="+dto.getNum();
+	}
+	
+	//도전 폼  -> 위에서 인서트하고 여기로 리다이렉트되어  article로 넘어가기
+	@RequestMapping(value = "articleGo", method = RequestMethod.GET)
+	public String articleGo (
+			@RequestParam long num,
+			HttpSession session,
+			Model model
+			) throws Exception {
+		
+		//article에 뿌릴 챌린지 내용들 가져오기
+		Challenge dto = service.readChallenge(num);
+		if(dto==null) {
+			return "redirect:/challenge/list?";
+		}
+		
+        dto.setContent(dto.getContent().replaceAll("\n", "<br>"));
+
+        List<Challenge> challengeList = service.listChallenge2(num);
+
+        List<Challenge> list3 = new ArrayList<Challenge>();
+        for(Challenge s : challengeList) {
+        	int start = Integer.parseInt(s.getStartDate());
+        	int end = Integer.parseInt(s.getEndDate());
+        	
+        	for(int i=start; i<=end; i++) {
+        		Challenge dto2 = new Challenge();
+        		dto2.setdDate(i);
+        		dto2.setExContent(s.getExContent());
+        		
+        		list3.add(dto2);
+        	}
+        }
+        //--내용 뿌리는건 이상x
+        
+		//각 개인의 챌린지화면에 완료된 부분에 체크하고, completion 누적하기위한 userChallenge 1개
+		SessionInfo info=(SessionInfo)session.getAttribute("member");
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("userId", info.getUserId());
+		map.put("num", num);
+		Challenge dto2 = service.readUserChallengeOne(map);
+		
+		System.out.println("가져와지니..?"+ dto2.getCompletion()); //넴
+		String ch=dto2.getCompletion();
+		System.out.println(ch);
+		
+		List<String> comList = new ArrayList<String>();
+		//만약 아직 앙무것도 완료 안한상태가 아니라면
+		String[] com =  dto2.getCompletion().split(",");
+		for(String s : com) {
+			comList.add(s);   //완료한 일차 담은거
+		}
+		model.addAttribute("comList", comList);// 완료한 일자 
+        
+
+        
+		model.addAttribute("dto", dto); //챌린지 내용(challenge1)
+		model.addAttribute("challengeList", challengeList); //challenge2 따로 
+		model.addAttribute("contentList", list3); //day에 쓸거(뭉쳐서 받은거 하루씩으로 푼거)
+		model.addAttribute("mode", "articleGo"); //article인거 알려주기
+		model.addAttribute("dto2", dto2); //이건 개별꺼
+		model.addAttribute("completion1", ch); //이건 개별꺼
+		
+		return ".challenge.article";
+	}
+	
+	//완료버튼시	
+	@RequestMapping(value = "challengeOk", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> challengeOk(
+			Challenge dto,
+			HttpSession session
+			) throws Exception {
+		
+		SessionInfo info=(SessionInfo)session.getAttribute("member");
+		
+		String state = "true";
+		
+		dto.setUserId(info.getUserId());
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("num", dto.getNum());
+		map.put("userId", dto.getUserId());
+		
+		//하나 완료하면 총카운터 +1씩
+		try {
+			service.updateTotalCount(map);
+		} catch (Exception e) {
+			e.printStackTrace(); //이거 나중에 지우기
+			state = "false";
+		}
+
+		//기존꺼...+
+		String completion = dto.getCompletion();
+		System.out.println("*************9999 "+ completion);
+		
+		map.put("completion", completion); 
+		
+		try {
+			service.updateCompletion(map); //이거 일수+업데이트 
+		} catch (Exception e) {
+			e.printStackTrace();
+			state = "false";
+		} 
+		//여기서 completion을 나눠서 보내줘야함 
+		List<String> comList = new ArrayList<String>();
+		String[] com =  completion.split(",");
+		for(String s : com) {
+			comList.add(s);   //완료한 일차 담은거
+		}
+		
+		Challenge dto2 = service.readUserChallengeOne(map);
+		String completion3 = dto2.getCompletion();
+		//이건 보낼거..
+		Map<String, Object> model = new HashMap<String, Object>();
+
+		model.put("completion3", completion3); //완룓된숫자들
+		model.put("state", state);
+		model.put("comList", dto2); //진행중인거 한개
+
+		return model;
+	}
+
 	
 }

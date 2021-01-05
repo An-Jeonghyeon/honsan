@@ -92,6 +92,40 @@ function sendProfileUpdate(){
 	f.submit();
 }
 
+
+function ajaxJSON(url, method, query, fn) {
+	$.ajax({
+		type:method
+		,url:url
+		,data:query
+		,dataType:"json"
+		,success:function(data) {
+			fn(data);
+		}
+		,beforeSend:function(jqXHR) {
+	        jqXHR.setRequestHeader("AJAX", true);
+	    }
+	    ,error:function(jqXHR) {
+	    	if(jqXHR.status===403) {
+	    		login();
+	    		return false;
+	    	}
+	    	
+	    	console.log(jqXHR.responseText);
+	    }
+	});
+}
+
+<c:if test="${mode=='update'}">
+
+function deleteMainFile(userId) {
+	var url="${pageContext.request.contextPath}/interiorTip/deleteMainFile";
+	$.post(url, {userId:userId}, function(data){
+		//다른 제이쿼리에 삭제를 넣어놈 
+	}, "json");
+}
+</c:if>
+
 </script>
 <form name="sendProfile_F" method="post" enctype="multipart/form-data">
 <div class="main-content-container">
@@ -107,15 +141,15 @@ function sendProfileUpdate(){
 								 <img class="userImage" alt="user"
 								src="${pageContext.request.contextPath}/uploads/profile/${dto.profileImg}">
 						</div>
-							<div class="mainImg_append"> 설정
-				                <input id="mainImg_upload" type="file" name="profileUpload" > <!-- 다운받아져있는 이미지넣는다  -->
+							<div class="mainImg_append">
+				                <input id="mainImg_upload" type="file" name="profileUpload"  onchange="javascript:deleteMainFile('${dto.userId}');"> <!-- 다운받아져있는 이미지넣는다  -->
 				                <input type="text" value="${dto.profileImg}">
 				            </div>
 					</div>
 					<div class="profile-userBasicInfo">
 						<div class="profile-userName">
 							<span>
-							${sessionScope.member.userName!=null? sessionScope.member.userName : "이경태"}
+							${sessionScope.member.userName!=null? sessionScope.member.userName : "또리"}
 							</span>
 						</div>
 						<div class="profile-follow">
@@ -142,6 +176,7 @@ function sendProfileUpdate(){
 	
 		<div class="mypage-right-update" >
 			<div class="updateF">
+				
 			</div>
 		</div>
 	</div>

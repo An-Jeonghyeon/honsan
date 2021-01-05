@@ -406,6 +406,7 @@ $(function(){
 	});
 });
 
+
 </script>
 
 <section>
@@ -471,7 +472,7 @@ $(function(){
                     <div class="leftbox_comment_usercomment">
                         <div class="leftbox_comment_usercomment_input">
                             <div class="leftbox_comment_usercomment_input2">
-                               <textarea placeholder="메모" onkeydown="resize(this)" onkeyup="resize(this)" class="comment_content"></textarea>
+                               <textarea  placeholder="댓글을 입력해주세요" onkeydown="resize(this)" onkeyup="resize(this)" style="resize: none; height: 16px;" class="comment_content"></textarea>
                             </div>
                         </div>
                         <div class="leftbox_comment_usercomment_button">

@@ -31,6 +31,8 @@ public class Challenge {
 	// 사용자
 	private String userId;
 	private int enabled;
+	private int totalCount;
+	private String completion; //완료한일차
 	
 	private int playMember; //진행중인 회원
 	
@@ -165,6 +167,18 @@ public class Challenge {
 	}
 	public void setdDate(int dDate) {
 		this.dDate = dDate;
+	}
+	public int getTotalCount() {
+		return totalCount;
+	}
+	public void setTotalCount(int totalCount) {
+		this.totalCount = totalCount;
+	}
+	public String getCompletion() {
+		return completion;
+	}
+	public void setCompletion(String completion) {
+		this.completion = completion;
 	}
 
 	

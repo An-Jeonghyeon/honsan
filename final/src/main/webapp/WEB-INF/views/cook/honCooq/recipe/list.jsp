@@ -17,10 +17,6 @@ $(function() {
 	});
 });
 
-function recipe_searchList() {
-	var f=document.recipe_searchForm;
-	f.submit();
-}
 </script>
 
 
@@ -37,7 +33,7 @@ function recipe_searchList() {
 						<select name="condition" class="recipe_select recipe_list_select">
 							<option value="all" ${condition=="all"?"selected='selected'":""}>전체</option>
 							<option value="subject" ${condition=="subject"?"selected='selected'":""}>제목</option>
-							<option value="content" ${condition=="content"?"selected='selected'":""}>내용</option>
+							<!-- <option value="content" ${condition=="content"?"selected='selected'":""}>내용</option> -->
 						</select>
 						<input type="text" name="keyword" value="${keyword}" class="recipe_search-input">
 						<button type="button" class="recipe_search-btn" onclick="recipe_searchList()">검색</button>
@@ -66,8 +62,8 @@ function recipe_searchList() {
 											<img class="recipe_recipe_img" src="${dto.img_url}">
 										</div>
 
-										<div class="recipe_recipe_title" style="font-family:'Black Han Sans', sans-serif"> <a
-											href="${articleUrl}&num=${dto.recipe_id}">${dto.recipe_nm_ko} (${dto.replyCount})</a>
+										<div class="recipe_recipe_title"> <a
+											href="${articleUrl}&num=${dto.recipe_id}">${dto.recipe_nm_ko}</a>
 										</div>
 										<div class="recipe_flex">
 											<div class="recipe_dataAndUtil_img">

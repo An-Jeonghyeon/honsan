@@ -207,7 +207,7 @@
 
 .leftbox_comment_usercomment{
     width: 100%;
-    height: 38px;
+    min-height: 38px;
     border: 1px solid #dbdbdb ;
     color: #424242;
     font-size: 15px;

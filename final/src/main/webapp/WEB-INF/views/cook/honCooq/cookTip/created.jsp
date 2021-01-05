@@ -160,7 +160,7 @@ function ajaxHTML(url, method, query, selector) {
 			<span class="cookTip_smallTitle">유튜브 URL</span>
 		</div>
 		<div class="cookTip_subjectBody">
-			<input type="text" name="youtubeURL" id="youtubeURL"
+			<input type="text" name="yUrl" id="yUrl"
 				placeholder="유튜브 영상코드를 입력해 주세요." value="">
 		</div>
 
@@ -168,13 +168,13 @@ function ajaxHTML(url, method, query, selector) {
 			<span class="cookTip_smallTitle">유튜브 영상 자막</span>
 		</div>
 		<div class="cookTip_subjectBody">
-			<input type="text" name="youtubeSubtitle" id="youtubeSubtitle"
+			<input type="text" name="ySub" id="ySub"
 				placeholder="유튜브 영상 자막을 입력해 주세요." value="">
 		</div>
 
 		<div class="cookTip_buttonBoxBody">
-			<button type="submit" id="cookTip_writeSubmit" class="cookTip_btn">${mode=='update'?'수정완료':'등록하기'}</button>
-			<button type="button" id="cookTip_CancelSubmit" class="cookTip_btn" onclick="javascript:location.href='${pageContext.request.contextPath}/cook/honCooq/cookTip/list';">${mode=='update'?'수정취소':'등록취소'}</button>
+			<button type="submit" id="cookTip_writeSubmit" class="cookTip_btn">${mode=='update'?'수정완료':'등록하기'}</button> 
+			<button type="button" id="cookTip_CancelSubmit" class="cookTip_btn" onclick="javascript:location.href='${pageContext.request.contextPath}/cook/honCooq/main?m=2';">${mode=='update'?'수정취소':'등록취소'}</button>
 		</div>
 		<c:if test="${mode=='update'}">
 			<input type="hidden" name="num" value="${dto.num}">

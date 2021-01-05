@@ -3,9 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<%-- <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/cook/honCooq.css" type="text/css">
- --%>
-
 
 <script type="text/javascript">
 
@@ -19,60 +16,9 @@ $(function() {
 	});
 });
 
-function cookTip_searchList() {
-	var f=document.cookTip_searchForm;
-	f.submit();
-}
-
 </script>
 
-<script type="text/javascript">
-function ajaxJSON(url, method, query, fn) {
-	$.ajax({
-		type:method
-		,url:url
-		,data:query
-		,dataType:"json"
-		,success:function(data) {
-			fn(data);
-		}
-		,beforeSend:function(jqXHR) {
-	        jqXHR.setRequestHeader("AJAX", true);
-	    }
-	    ,error:function(jqXHR) {
-	    	if(jqXHR.status===403) {
-	    		login();
-	    		return false;
-	    	}
-	    	
-	    	console.log(jqXHR.responseText);
-	    }
-	});
-}
 
-function ajaxHTML(url, method, query, selector) {
-	$.ajax({
-		type:method
-		,url:url
-		,data:query
-		,success:function(data) {
-			$(selector).html(data);
-		}
-		,beforeSend:function(jqXHR) {
-	        jqXHR.setRequestHeader("AJAX", true);
-	    }
-	    ,error:function(jqXHR) {
-	    	if(jqXHR.status===403) {
-	    		login();
-	    		return false;
-	    	}
-	    	
-	    	console.log(jqXHR.responseText);
-	    }
-	});
-}
-
-</script>
 
 <div class="cookTip_list-container">
 <!-- 
@@ -102,7 +48,7 @@ function ajaxHTML(url, method, query, selector) {
 				총 ${dataCount}건 / ${total_page} 페이지 <span class="cookTip_list-dataCount-small"> * 게시판 성격에 맞지않은 글은 예고없이 삭제됩니다.</span>
 			</div>
 			<div class="cookTip_list-search">
-					<form name="cookTip_searchForm" action="${pageContext.request.contextPath}/cook/honCooq/cookTip/list" method="post">
+					<form name="cookTip_searchForm" action="${pageContext.request.contextPath}/cook/honCooq/main?m=2" method="post">
 						<select name="condition" class="cookTip_select cookTip_list_select">
 							<option value="all" ${condition=="all"?"selected='selected'":""}>전체</option>
 							<option value="subject" ${condition=="subject"?"selected='selected'":""}>제목</option>

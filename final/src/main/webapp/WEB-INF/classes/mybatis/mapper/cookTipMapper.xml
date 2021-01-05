@@ -4,9 +4,9 @@
 <mapper namespace="cookTip">
 	<insert id="insertCookTip" parameterType="com.sp.app.cook.honCooq.cookTip.CookTip">
 		INSERT INTO cookTip(num, userId, subject, content,
-			category, register_date, hitCount) VALUES 
+			category, register_date, hitCount, yUrl, ySub) VALUES 
 			( cookTip_seq.NEXTVAL, #{userId}, #{subject}, #{content},
-				#{category}, SYSDATE, 0 )	
+				#{category}, SYSDATE, 0, #{yUrl, jdbcType=VARCHAR}, #{ySub, jdbcType=VARCHAR} )	
 	</insert>
 	
 	<sql id="where-list">		
@@ -80,7 +80,7 @@
 	<!-- 글보기(article) -->
 	<select id="readCookTip" parameterType="Integer" resultType="com.sp.app.cook.honCooq.cookTip.CookTip">
 		SELECT c.num, c.userId, userName, subject, content, TO_CHAR(register_date, 'YYYY-MM-DD') register_date, 
-		hitCount, category, NVL(cookTipLikeCount, 0) cookTipLikeCount
+		hitCount, category, yUrl, ySub, NVL(cookTipLikeCount, 0) cookTipLikeCount
 		FROM cookTip c
 		JOIN  member1 m ON c.userId = m.userId
 		LEFT OUTER JOIN (

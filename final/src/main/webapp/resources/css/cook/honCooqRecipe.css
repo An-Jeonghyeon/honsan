@@ -698,12 +698,14 @@ background-position
 	text-overflow: ellipsis;
 }
 
-#recipe_recipe_title {
+.recipe_recipe_title {
 	
 }
 
 .recipe_recipe_title>a {
 	text-decoration: none;
+	font-family: 'Song Myung', serif;
+	font-size:1.5rem;
 }
 
 .recipe_data {
@@ -735,9 +737,12 @@ background-position
 	height: 1.4rem;
 	line-height: 0.8rem;
 	margin-right: 0.8rem;
+	width:auto;
+	border-radius:0.3rem;
+	margin-bottom:0.3rem;
 
 	/*font-family: 'Poor Story', cursive;*/
-	font-family: 'Noto Sans KR', sans-serif;
+/* 	font-family: 'Noto Sans KR', sans-serif; */
 	font-size: 1.0rem;
 	font-weight: 500;
 	box-sizing: border-box;
@@ -814,7 +819,7 @@ background-position
 	/* 	background-color:burlywood; */
 	width: auto;
 	margin: 0 auto;
-	margin: 1.0rem auto;
+	margin: 2.0rem auto;
 	display:flex;
 	justify-content:center;
 
@@ -1005,7 +1010,13 @@ background-position
 	display: flex;
 	justify-content: flex-start;
     position:relative;
-    top:-1.0rem;
+    top:-1.0rem; 
+}
+
+.recipe_dataAndUtil_img ul li span {
+	font-family: 'Gamja Flower', cursive;
+	font-size: 1.1rem;
+
 }
 
 .recipe_dataAndUtil_img ul li {
@@ -1082,8 +1093,31 @@ recipe 게시판 글보기 폼
 	text-shadow: 2px 2px 0px #bdbdbd;
 }
 
+.recipe_recipe_category_box{
+	display:flex;
+	width:30%;
+	margin:0 auto;
+/* 	background-color: pink; */
+}
+
+.recipe_recipe_category {
+    width: 9.0rem;
+    height: 2.2rem;
+    margin-bottom: 1.0rem;
+    box-sizing: border-box;
+    border: 3px solid #ffe79a;
+    /* border-radius: 2rem; */
+    border-radius: 10% 50%/120%;
+    box-shadow: 3px 3px 0 #ffa952;
+    font-size: 0.9rem;
+    text-align: center;
+    line-height: 2.1rem;
+    font-weight: 700;
+    background-color: white;
+}
+
 .article_category {
-	margin: 0 auto;
+	margin: 0.5rem auto;
 }
 
 .recipe_articleMainHeaderSubject {

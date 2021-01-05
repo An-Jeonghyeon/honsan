@@ -15,8 +15,15 @@ public class Member {
 	private int enabled;
 	private String black_date;
 	private String reason;
+	private String preuserPwd;
 	
 	
+	public String getPreuserPwd() {
+		return preuserPwd;
+	}
+	public void setPreuserPwd(String preuserPwd) {
+		this.preuserPwd = preuserPwd;
+	}
 	public String getBlack_date() {
 		return black_date;
 	}
