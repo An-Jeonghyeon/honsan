@@ -38,4 +38,8 @@
 	<delete id="faqDelete" parameterType="Integer">
 		DELETE FROM faq WHERE num= #{num}
 	</delete>
+	
+	<select id="faqMainlist" resultType="com.sp.app.faq.Faq">
+		SELECT num,question , questionAnswer,questionSelect FROM faq 
+	</select>
 </mapper>

@@ -63,26 +63,12 @@
 
 	<div id="qnafaq">  <!-- FAQ 반복문  -->
 	<h2 class="af_h2"><i class="fab fa-foursquare"></i>&nbsp;&nbsp;FAQ 자주 묻는 질문</h2>
+		<c:forEach var="dto" items="${faqList}">
 		<ul class="admin_controller">
-			<li class="admin_subject">원티드 이력서 양식을 꼭 사용해야 하나요?</li>
-			<li class="admin_content">필수 사항은 아니며, 자유양식으로 지원 가능합니다. </li>
+			<li class="admin_subject">${dto.question}</li>
+			<li class="admin_content">${dto.questionAnswer }</li>
 		</ul >
-		<ul class="admin_controller">
-			<li class="admin_subject">지원한 회사에서 피드백이 없습니다. 어떻게 하면 되나요 ?</li>
-			<li class="admin_content">필수 사항은 아니며, 자유양식으로 지원 가능합니다. </li>
-		</ul>
-		<ul class="admin_controller">	
-			<li class="admin_subject">지원했던 공고에 재지원 or 지원 취소하고 싶어요 </li>
-			<li class="admin_content">필수 사항은 아니며, 자유양식으로 지원 가능합니다. </li>
-		</ul>
-		<ul class="admin_controller">	
-			<li class="admin_subject">추천 채용 보상금은 어떻게 지급되나요 ?</li>
-			<li class="admin_content">필수 사항은 아니며, 자유양식으로 지원 가능합니다. </li>
-		</ul>
-		<ul class="admin_controller">	
-			<li class="admin_subject">구매한 영상 목록은 어디서 확인할 수 있나요 ?</li>
-			<li class="admin_content">필수 사항은 아니며, 자유양식으로 지원 가능합니다. </li>
-		</ul>
+		</c:forEach>
 		<ul class="admin_controller">	
 			<li>
 				<a href="${pageContext.request.contextPath}/faq/main" class="list_tag_a">+ 모두보기</a> <!-- 리스트 주소 -->
