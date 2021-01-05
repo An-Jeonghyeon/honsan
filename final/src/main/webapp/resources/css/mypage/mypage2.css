@@ -2,10 +2,29 @@
 
 .main-content-container {
 	width: 1300px;
-	height: 1000px;
+	height: 1400px;
 	margin :0 auto;
 /* 	background-color: gray; */
 	display: flex;
+	flex-wrap:wrap;
+}
+
+.mypage-top {
+    width: 100%;
+    height: 300px;
+    background-image:url("../../images/health/gray_m.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+/*     background-position: center -300px; */
+	background-position : center;
+	margin: 0 auto;
+}
+
+.mypage-both {
+	width: 100%;
+	height: 70%;
+/* 	background-color:pink; */
+	display:flex;
 }
 
 /****************
@@ -80,6 +99,8 @@
 	height: 15%;
 /* 	background-color: orange; */
 	text-align: center;
+	display:flex;
+	justify-content:space-around;
 }
 
 .profile-center .btn-default {
@@ -113,6 +134,14 @@
 	box-shadow: 2px 2px 1px #848484;
 	border: 2px solid #848484;	
 }
+
+.profile-like-container{
+	background-color:chartreuse;
+	width:80%;
+	height:70%;
+    magin: 0 auto;
+}
+
 /****************
 	마이페이지 오른쪽
 *****************/
@@ -125,6 +154,12 @@
 
 .mypage-right .heading{
 	/* margin-top:0; */
+}
+
+.mypage-heading {
+	width:80%;
+	margin-left: 2.5rem;
+/* 	background-color:olive; */
 }
 
 .mypage-contents {
@@ -227,9 +262,27 @@
 .mypage-recent {
 	width: 100%;
 	height: 35%;
+	padding-top:1rem;
 	background-color: maroon;
+	display: flex;
+	justify-content: space-around;
 }
 
+.myQna-content {
+	background-color: darkslategray;
+	width: 40%;
+	height:90%;
+}
+
+.dontknow-content {
+	background-color:palevioletred;
+	width:40%;
+	height:90%;
+}
+
+.mypage-recent-contentBox {
+	
+}
 /****************
 	마이페이지 오른쪽 : 내 정보 수정시
 *****************/

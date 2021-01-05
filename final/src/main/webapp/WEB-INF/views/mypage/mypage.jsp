@@ -26,133 +26,156 @@
 
 <form name="mypage_profile" method="post">
 	<div class="main-content-container">
-		<div class="mypage-left">
-			<div class="mypage-left-container">
-				<div class="profile-image">
-					<div class="profile-image-box">
-						<!-- 유저 프로필 이미지 -->
-						<!-- 
+		<div class="mypage-top"></div>
+		<div class="mypage-both">
+			<div class="mypage-left">
+				<div class="mypage-left-container">
+					<div class="profile-image">
+						<div class="profile-image-box">
+							<!-- 유저 프로필 이미지 -->
+							<!-- 
 								<img class="userImage" alt="user"
 								src="${pageContext.request.contextPath}/resources/images/user.png">
 								 -->
-						<img class="userImage" alt="user"
-							src="${pageContext.request.contextPath}/uploads/profile/${dto.profileImg}">
-					</div>
-				</div>
-				<div class="profile-userBasicInfo">
-					<div class="profile-userName">
-						<span> ${sessionScope.member.userName!=null? sessionScope.member.userName : "이경태"}
-						</span>
-					</div>
-					<div class="profile-follow">
-						<span> <a href="">팔로워 1</a> | <a href="">팔로잉 10</a>
-						</span>
-					</div>
-					<div class="profile-update-userBasicInfo profile-center">
-						<button class="btn btn-default" type="button"
-							onclick="sendUpdate();">내 정보 수정</button>
-						<input type="hidden" name="userId"
-							value="${sessionScope.member.userId}">
-
-						<button class="btn btn-default" type="button"
-							onclick="sendDelete();">회원 탈퇴</button>
-					</div>
-				</div>
-				<div class="profile-like">
-					<div class="profile-like-container">
-						<div>
-							<span>좋아요</span> <span>스크랩</span>
+							<img class="userImage" alt="user"
+								src="${pageContext.request.contextPath}/uploads/profile/${dto.profileImg}">
 						</div>
 					</div>
-				</div>
+					<div class="profile-userBasicInfo">
+						<div class="profile-userName">
+							<span> ${sessionScope.member.userName!=null? sessionScope.member.userName : "이경태"}
+							</span>
+						</div>
+						<div class="profile-follow">
+							<span> <a href="">팔로워 1</a> | <a href="">팔로잉 10</a>
+							</span>
+						</div>
+						<div class="profile-update-userBasicInfo profile-center">
+							<button class="btn btn-default" type="button"
+								onclick="sendUpdate();">내 정보 수정</button>
+							<input type="hidden" name="userId"
+								value="${sessionScope.member.userId}">
 
+							<button class="btn btn-default" type="button"
+								onclick="sendDelete();">회원 탈퇴</button>
+						</div>
+					</div>
+					<div class="profile-like">
+						<div class="profile-like-container">
+							<div>
+								<span>좋아요</span> <span>스크랩</span>
+							</div>
+						</div>
+					</div>
+
+				</div>
 			</div>
-		</div>
 
-		<div class="mypage-right">
-			<h4 class="heading">Mypage</h4>
-			<div class="mypage-contents">
-				<div class="mypage-content">
-					<div class="mypage-content-item">
-						<div class="hexagon">
-							<!-- 아이콘 색 : #686868 -->
-							<span><img class="items"
-								src="${pageContext.request.contextPath}/resources/images/myCookingDiary.png"></span>
-						</div>
-						<div class="hexagon-title">
-							<span>우리집 냉장고</span>
+			<div class="mypage-right">
+				<div class="mypage-heading">
+					<h2 class="heading">My Content</h2>
+				</div>
+				<div class="mypage-contents">
+					<div class="mypage-content">
+						<div class="mypage-content-item"
+							onclick="location.href='${pageContext.request.contextPath}/';">
+							<div class="hexagon">
+								<!-- 아이콘 색 : #686868 -->
+								<span><img class="items"
+									src="${pageContext.request.contextPath}/resources/images/myCookingDiary.png"></span>
+							</div>
+							<div class="hexagon-title">
+								<span>우리집 냉장고</span>
+							</div>
 						</div>
 					</div>
-				</div>
-				<div class="mypage-content">
-					<div class="mypage-content-item">
-						<div class="hexagon">
-							<!-- 아이콘 색 : #686868 -->
-							<span><img class="items"
-								src="${pageContext.request.contextPath}/resources/images/myCookingDiary.png"></span>
-						</div>
-						<div class="hexagon-title">
-							<span>마이 쿠킹다이어리</span>
-						</div>
-					</div>
-				</div>
-				<div class="mypage-content">
-					<div class="mypage-content-item">
-						<div class="hexagon">
-							<span><img class="items"
-								src="${pageContext.request.contextPath}/resources/images/exercise.png"></span>
-						</div>
-						<div class="hexagon-title">
-							<span>하루 운동 챌린지</span>
+					<div class="mypage-content">
+						<div class="mypage-content-item"
+							onclick="location.href='${pageContext.request.contextPath}/';">
+							<div class="hexagon">
+								<!-- 아이콘 색 : #686868 -->
+								<span><img class="items"
+									src="${pageContext.request.contextPath}/resources/images/myCookingDiary.png"></span>
+							</div>
+							<div class="hexagon-title">
+								<span>마이 쿠킹다이어리</span>
+							</div>
 						</div>
 					</div>
-				</div>
-				<div class="mypage-content">
-					<div class="mypage-content-item">
+					<div class="mypage-content">
+						<div class="mypage-content-item"
+							onclick="location.href='${pageContext.request.contextPath}/';">
+							<div class="hexagon">
+								<span><img class="items"
+									src="${pageContext.request.contextPath}/resources/images/exercise.png"></span>
+							</div>
+							<div class="hexagon-title">
+								<span>하루 운동 챌린지</span>
+							</div>
+						</div>
+					</div>
+					<div class="mypage-content">
+						<div class="mypage-content-item"
+							onclick="location.href='${pageContext.request.contextPath}/';">
 							<div class="hexagon">
 								<span><img class="items"
 									src="${pageContext.request.contextPath}/resources/images/homeCheck.png"></span>
-							</div> 
+							</div>
 							<div class="hexagon-title">
 								<span>부동산 체크리스트</span>
 							</div>
+						</div>
+					</div>
+					<div class="mypage-content">
+						<div class="mypage-content-item"
+							onclick="location.href='${pageContext.request.contextPath}/';">
+							<div class="hexagon">
+								<span><img class="items"
+									src="${pageContext.request.contextPath}/resources/images/fashion.png"></span>
+							</div>
+							<div class="hexagon-title">
+								<span>내 옷 자랑</span>
+							</div>
+						</div>
+					</div>
+					<div class="mypage-content">
+						<div class="mypage-content-item"
+							onclick="location.href='${pageContext.request.contextPath}/';">
+							<div class="hexagon">
+								<span><img class="items"
+									src="${pageContext.request.contextPath}/resources/images/living-room.png"></span>
+							</div>
+							<div class="hexagon-title">
+								<span>우리집 자랑</span>
+							</div>
+						</div>
+					</div>
+					<div class="mypage-content">
+						<div class="mypage-content-item"
+							onclick="location.href='${pageContext.request.contextPath}/';">
+							<div class="hexagon">
+								<span><img class="items"
+									src="${pageContext.request.contextPath}/resources/images/meditation.png"></span>
+							</div>
+							<div class="hexagon-title">
+								<span>건강미 자랑</span>
+							</div>
+						</div>
 					</div>
 				</div>
-				<div class="mypage-content">
-					<div class="mypage-content-item">
-						<div class="hexagon">
-							<span><img class="items"
-								src="${pageContext.request.contextPath}/resources/images/fashion.png"></span>
-						</div>
-						<div class="hexagon-title">
-							<span>내 옷 자랑</span>
-						</div>
+				<div class="mypage-recent">
+					<div class="myQna-content">
+						<h2>My QNA</h2>
+						<div class="mypage-recent-contentBox"></div>
 					</div>
-				</div>
-				<div class="mypage-content">
-					<div class="mypage-content-item">
-						<div class="hexagon">
-							<span><img class="items"
-								src="${pageContext.request.contextPath}/resources/images/living-room.png"></span>
-						</div>
-						<div class="hexagon-title">
-							<span>우리집 자랑</span>
-						</div>
+
+					<div class="dontknow-content">
+						<h2>My ???</h2>
+						<div class="mypage-recent-contentBox"></div>
 					</div>
-				</div>
-				<div class="mypage-content">
-					<div class="mypage-content-item">
-						<div class="hexagon">
-							<span><img class="items"
-								src="${pageContext.request.contextPath}/resources/images/meditation.png"></span>
-						</div>
-						<div class="hexagon-title">
-							<span>건강미 자랑</span>
-						</div>
-					</div>
+
 				</div>
 			</div>
-			<div class="mypage-recent"></div>
 		</div>
 	</div>
 </form>
