@@ -25,6 +25,7 @@ function deleteMyChallenge(num){
 		<div class="mych-board">
    			<div class="mypa-title">My운동챌린지</div>
    		<div class="supplement-bbs">
+   		
              <table class="supplement-table">
                   <thead class="s-thead">
                       <tr>

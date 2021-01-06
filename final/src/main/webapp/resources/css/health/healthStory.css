@@ -1,0 +1,297 @@
+@charset "UTF-8";
+/* 최상위 */
+.insta_box {
+    margin : 0 auto;
+    background : #efefef;
+    padding-bottom: 70px;
+    /* background: wheat; */
+}
+/* 탑이미지 div */
+.topimg {
+    width :100%;
+    height: 600px;
+    background: url("images/1697.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: bottom center;
+}
+
+/* 인스타 최상위 */
+.insta_box2 {
+    width : 650px;
+    /* background :steelblue; */
+    margin : 50px auto 20px;
+    border : 2px solid #dbdada;
+    background: white;
+}
+/* 사진, 아이디부분 */
+.insta_top{
+    width: 100%;
+    height: 50px;
+    border-bottom: 2px solid #dbdada;
+
+}
+/* 회원 이미지 박스 */
+.userImg{
+    width: 45px;
+    height: 36px;
+    float: left;
+    margin-top: 5px;
+    /* background: tomato; */
+}
+.iuserImg img{
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+}
+/* 아이디부분 div */
+.top_right {
+    width: 221px;
+    height: 36px;
+    float: left;
+}
+/* 메인 게시글 회원 아이디  */
+.userIddiv{
+    width: 100%;
+    height: 19px;
+    font-size: 15px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    font-weight: 700;
+    margin-top: 15px;
+    margin-left :10px;
+}
+
+/* 이미지*/
+.imgup {
+    width: 100%;
+    height: 600px;
+    /* background : yellow; */
+    border-bottom: 2px solid #dbdada;
+}
+.imgup img{
+    width: 100%
+    height: 100%
+}
+
+/* 메인화면 게시글의 좋아요 , 댓글 , 회원좋아효 수 창  */
+.likeplusbtn {
+    display : flex;
+    width :100%;
+}
+.likebox {
+    width: 50%;
+    height: 40px;
+    text-align: left;
+    margin: 5px 5px 0 5px;
+}
+/* 수정 삭제 */
+.updatedelete {
+    width : 49%;
+    height: 40px;
+    text-align: right;
+}
+.updatebtnn {
+    width: 50px;
+    height : 50px; 
+    border: none;
+    background: none;
+    cursor : pointer;
+}
+.deletebtnn {
+    width: 50px;
+    height : 50px; 
+    border: none;
+    background: none;
+    cursor : pointer;
+}
+/*  몇명이 좋아합니다*/
+.likeCountdiv{
+    width: 100%;
+    height: 30px;
+    box-sizing: border-box;
+    border: 0px;
+    font-size: 14px;
+    padding-left: 10px;
+}
+/* 내용 */
+.contentdivv {
+    width: 100%;
+    height: 30px;
+    box-sizing: border-box;
+    border: 0px;
+    font-size: 14px;
+    padding-left: 10px;
+}
+/* 댓글  */
+.reviewdiv {
+    width: 100%;
+    /* background: turquoise; */
+
+}
+/* 댓글 작성한 회원의 내용 */
+.reviewcontent{
+    height: 100%;
+    font-size: 15px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: normal;
+    height: 2.5em;
+    padding : 10px;
+}
+/* 날짜 */
+.createdDate {
+    padding: 5px 0;
+    padding-left: 10px;
+    border-bottom: 2px solid #dbdada;
+
+}
+/*  댓글쓰기창 */
+.reviewinput {
+    width: 85%;
+    height : 30px;
+    margin: 10px 0 ;
+    padding-left: 7px;
+    font-size: 16px;
+    border: none;
+    outline: none;
+}
+.reviewinputbtn {
+    width: 12%;
+    height :40px;
+    border: none;
+    background: none;
+    cursor : pointer;
+}
+/* 여기부터*/
+:root {
+  --secondary-color: #0b2244;
+  --contrast-color: #ffffffe3;
+}
+.overlay {
+/*     position: absolute; */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+    z-index: -10;
+    background-color: var(--contrast-color);
+  }
+  
+  .containerinsta {
+    display: flex;
+    height: 90vh;
+    justify-content: space-around;
+    align-items: center;
+    color: #fff;
+    animation: expand .8s ease;
+    background-color: var(--secondary-color);
+/*     position: relative; */
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    transition: all .8s ease;
+/*     background: url("../../images/health/back.png"); */
+  }
+  
+  .container_contentinsta {
+   width: 50%;
+  }
+  
+  .container_content_innerinsta {
+    width: 80%;
+    margin-left: 80px;
+  }
+  
+  .container_outer_imginsta {
+    margin: 50px;
+    width: 40%;
+    overflow: hidden;
+  }   
+      
+  .container_imginsta {
+    width: 100%;
+    animation: slideIn 1.5s ease-in-out;
+  }
+  
+  .parinsta {
+    height: auto;
+    overflow: hidden;
+  }
+  
+  containerinsta p{
+    line-height: 28px;
+    transform: translateY(300px);
+    animation: slideUp .8s ease-in-out forwards .8s;
+  }
+  
+  .btnsinsta {
+    height: 100%;
+    position: relative;
+    width: 180px;
+    overflow: hidden;
+  }
+  
+  .btns_moreinsta {
+    background: transparent;
+/*     border: 1px solid var(--contrast-color); */
+    border-radius: 50px;
+    padding: 8px 12px;
+    color: #0f0f0f;
+    font-size: 16px;
+    text-transform: uppercase;
+    position: relative;
+    margin-top: 15px;
+    outline: none;
+    transform: translateY(50px);
+    animation: slideUp .8s ease-in-out forwards 1s;
+    background :#e9be00;
+    cursor: pointer;
+    font-weight: 800;
+	font-family: 'Noto Sans KR', sans-serif;
+  }
+  .btns_moreinsta:active {
+    transform: scale(0.70);
+  }
+  .titleinsta {
+    overflow: hidden;
+    height: auto;
+  }
+  
+  .titleinsta span {
+      font-size: 60px;
+/*       color: var(--contrast-color); */
+      margin-bottom: 20px;
+      transform: translateY(100px);
+/*       animation: slideUp .8s ease forwards .5s; */
+/*       font-weight: 600; */
+      font-family: 'Do Hyeon', sans-serif!important;
+  }
+  
+  @keyframes slideIn {
+    0% {
+      transform: translateX(500px) scale(.2);
+    }
+    100% {
+      transform: translateX(0px) scale(1);
+    }
+  }
+  
+  @keyframes slideUp {
+    0% {
+      transform: translateY(300px);
+    }
+    100% {
+      transform: translateY(0px);
+    }
+  }
+  
+  @keyframes expand {
+    0% {
+      transform: translateX(1400px);
+    }
+    100% {
+      transform: translateX(0px);
+    }
+  }
+  

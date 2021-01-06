@@ -63,7 +63,7 @@
 
 	<div id="qnafaq">  <!-- FAQ 반복문  -->
 	<h2 class="af_h2"><i class="fab fa-foursquare"></i>&nbsp;&nbsp;FAQ 자주 묻는 질문</h2>
-		<c:forEach var="dto" items="${faqList}">
+		<c:forEach var="dto" items="${faqList}" end="6">
 		<ul class="admin_controller">
 			<li class="admin_subject">${dto.question}</li>
 			<li class="admin_content">${dto.questionAnswer }</li>

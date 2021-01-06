@@ -191,6 +191,31 @@ $(".hover").mouseleave(
                     <span>건강챙기기 추천 게시판</span>
                 </div>
                         
-                <div class="categories-content">추천게시물</div>
+                <div class="categories-content">
+               		<div class="categories-health">
+						<div class="categories-health-inside">
+							<div class="categories-health-img2">
+								<div class="button-1 rrright">
+									<div class="eff-1"></div>
+									<a href="${pageContext.request.contextPath}/supplement/list"> 영양체 추천하기 </a>
+								  </div>
+							</div>
+							<div class="categories-health-words">
+							</div>
+					   </div>
+						<div class="categories-health-img1">
+							<div class="categories-health-img1-box">
+								<div class="categories-health-img1-category">
+									<div class="button-1 llleft">
+										<div class="eff-1"></div>
+										<a href="${pageContext.request.contextPath}/challenge/list"> 도전하러가기 </a>
+									  </div>
+								</div>
+								<div class="">
+								</div>
+							</div>
+						</div>
+					</div>
+                </div>
                         
             </div>

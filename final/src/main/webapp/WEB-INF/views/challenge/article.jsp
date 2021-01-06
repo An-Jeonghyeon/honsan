@@ -47,7 +47,7 @@ function ajaxJSON(url, method, query, fn) {
 //이미 도전중인거는 도전 안뜨게
 $(function(){
 	var mode = "${mode}";
-	if(mode=="articleNo"){
+	if(mode==""){
 		alert("이미 도전중인 챌린지입니다.");
 		//여기서 이제 그 내가 도전하는 리스트로 .....보내기...
 	}
@@ -103,33 +103,38 @@ $(function(){
 	});
 });
 
-// $(function(){
-// 	var mode = "${mode}";
-// 	if(mode=="articleGo"){
-// 		var listDay = $(".okbtn").attr("data-day");
-// // 		if("${ch!='0'}"){
-// // 			var checkDay = ${comList};
-// // 		}
-// 		var list = new Array();
-// 		list = ${comList};
+$(function(){
+	var mode = "${mode}";
+	if(mode=="articleGo"){
 		
+		var list = new Array();
+		list = ${comList};
+		console.log(list); //나옴
 		
-// 		$(".chaul li").each(function(index1, item1){
-// 	 		var listDay = item1.find(".okbtn").attr("data-day"); //for문 돌린 날짜와
+		$(".chaul li").each(function(index1, item1){
+	 		var listDay = $(this).find(".okbtn").attr("data-day"); //for문 돌린 날짜와
+// 			console.log(listDay);
 	 		
-// 			$div = $(this).find(".chalicontent");
-// 			$btn = $(this).find(".okbtn");
-	 	
-// 			checkDay.each(function(index2, item2){
-// 				if(item1==item2){
-// 					$div.css("background", "#dbdbdb")
-// 					$btn.prop("disabled", true)
-// 				}
-// 			});	
-	 	
-// 		});
-// 	}
-// });
+			var $this=$(this);
+// 			console.log($this);
+			
+			var $div = $this.find(".chalicontent");
+			var $btn = $this.find(".okbtn");
+// 			console.log($this.find(".chalicontent"));
+
+	 		for(var i=0; i<list.length; i++) {
+// 	 				console.log("listDay" +listDay);
+// 	 				console.log(" [i]" +list[i]);
+	 			if(listDay==list[i]) {
+// 	 				console.log(" 이프절");
+// 	 				$div.append("sdfdsf");
+	 				$div.css("background", "#dbdbdb");
+	 				$btn.prop("disabled", true);
+	 			}
+	 		}
+		});
+	}
+});
 </script>
 
 <section>

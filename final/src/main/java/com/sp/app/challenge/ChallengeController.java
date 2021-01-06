@@ -233,7 +233,7 @@ public class ChallengeController {
 			) throws Exception {
 		
 		SessionInfo info=(SessionInfo)session.getAttribute("member");
-	
+		String userId = info.getUserId();
 		Challenge dto1 = service.readChallenge(num);
 		if(dto1==null) {
 			return "redirect:/challenge/list";
@@ -246,7 +246,7 @@ public class ChallengeController {
 			e.printStackTrace();
 			model.addAttribute("mode", "articleNo"); //인서트 실패시(이유 : 이미 도전하기 누른거)
 			model.addAttribute("num", num); //인서트 실패시(이유 : 이미 도전하기 누른거)
-			return ""; //여기서 그냥 바로 리스트로보내기..
+			return "redirect:/challenge/myChallenge?userId="+userId; //여기서 그냥 바로 리스트로보내기..
 		}
 		
 		return "redirect:/challenge/articleGo?num="+dto.getNum();
