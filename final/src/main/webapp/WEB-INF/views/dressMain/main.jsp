@@ -226,7 +226,7 @@ function printJSON(data) {
  })     
  $(function(){
 	 $("#dialog").css("height","700");
-	
+	$("#highcharts-8ewdc0b-0").css("width","0");
 
  })
 </script>
@@ -265,9 +265,9 @@ function printJSON(data) {
                     </div>
                     <div class="dress-baseTimeBody">
                         <span class="dress-baseTime">기준시간</span>
-                        <span class="outTime">1111</span>
+                        <span class="outTime"></span>
                             <div class="dress-windWidn">
-                                <div class="dress-wind">바람이 강해요</div>
+                                <div class="dress-wind">바람강도</div>
                             </div>
                     </div>
                     <div id="dress-searchWeather">
