@@ -230,9 +230,9 @@ $(function(){
         <!-- 회원가입 헤더 -->
 		<article class="singup-header">
         	<div class="singup-title">
-                <h1>${mode=='created'?"회원가입":"정보수정"}</h1>
+                <h1>${mode=='member'?"회원가입":"정보수정"}</h1>
             </div>
-        <c:if test="${mode=='created'}">
+        <c:if test="${mode=='member'}">
             <div class="singup-step">
                 <div class="step1">
                     <div class="circle"> </div>
@@ -260,7 +260,7 @@ $(function(){
                 	<div class="user-basic">
                         <div class="basic-id">
                             <span  class="b-span">회원 아이디</span>
-        					<c:if test="${mode=='created'}">
+        					<c:if test="${mode=='member'}">
 	                            <input type="text" name="userId" id="userId" placeholder="회원아이디 입력" class="de-input">
 	                            <button type="button" onclick="userIdCheck();">중복확인</button>
 	                            <small id="help_id" class="check-sm">4~12 자의 영문, 숫자를 조합해서 사용해주세요.</small>
@@ -288,7 +288,7 @@ $(function(){
 
                         <div class="basic-name">
                             <span  class="b-span">이름</span>
-                            <c:if test="${mode=='created'}">
+                            <c:if test="${mode=='member'}">
                             <input type="text" name="userName" placeholder="이름을 입력해주세요"  class="de-input">
                             </c:if>
                             <c:if test="${mode=='update'}">
@@ -298,7 +298,7 @@ $(function(){
 
                         <div class="basic-birth">
 	                            <span  class="b-span">생년월일</span>
-                        	<c:if test="${mode=='created'}">
+                        	<c:if test="${mode=='member'}">
 	                            <select name="birth_year" class="birth-select">
 									<c:forEach var="i" begin="0" end="${2020-1910}">
 									    <c:set var="yearOption" value="${2020-i}" />
@@ -378,7 +378,7 @@ $(function(){
             </article>
 
             <!-- 회원가입 약관동의 및 완료 -->
-            <c:if test="${mode=='created'}">
+            <c:if test="${mode=='member'}">
             <div class="singup-terms">
                 <div class="terms-left">
                     <span><i class="far fa-check-circle fa-2x"></i></span>
