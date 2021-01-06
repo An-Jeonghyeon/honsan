@@ -317,6 +317,7 @@
 						</div>
 					</div>
 				</div>
+				<!-- 
 				<div class="mypage-recent">
 					<div class="myQna-content">
 						<h2 class="heading">My QNA</h2>
@@ -329,6 +330,7 @@
 					</div>
 
 				</div>
+				 -->
 			</div>
 		</div>
 	</div>

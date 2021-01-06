@@ -330,7 +330,7 @@ $(function(){
 				<span>${dto.ty_nm!=null? dto.ty_nm : "기타"}</span>
 			</div>
 		</div>
-
+		
 		<div class="recipe_articleMainHeaderSubject">
 			<span>${dto.recipe_nm_ko}</span>
 		</div>
@@ -349,20 +349,83 @@ $(function(){
 	</div>
 
 	<div class="recipe_ContentBody">
+		<!-- 재료 정보 -->
 		<div class="recipe_ingre">
-			<div>주재료 :
+			<div class="recipe_ingreMain">
+				<h3><span class="ingre_title">주재료</span></h3>
+				<span class="forSpace"> </span>
 				<c:forEach var="vo1" items="${listIngre}"> 
-					<c:if test="${vo1.irdnt_ty_nm}=='주재료'? '${vo1.irdnt_nm} ': ''"></c:if>				
-					${vo1.irdnt_ty_nm}
+					<c:if test="${vo1.irdnt_ty_nm eq '주재료'}">
+						<span class="mainIngre">
+							${vo1.irdnt_nm} <span> </span> ${vo1.irdnt_cpcty} 
+						</span>
+					</c:if>				
 				</c:forEach>
 			</div>
-			<div>부재료 :
-			
+			<div class="recipe_ingreSub">
+				<h3><span class="ingre_title">부재료</span></h3>
+				<span class="forSpace"> </span>
+				<c:forEach var="vo1" items="${listIngre}"> 
+					<c:if test="${vo1.irdnt_ty_nm eq '부재료'}">
+						<span class="subIngre">
+							${vo1.irdnt_nm} 					
+						</span>
+					</c:if>				
+				</c:forEach>			
 			</div>
-			<div>양념 :
-			
+			<div class="recipe_ingreSource">
+				<h3><span class="ingre_title">양념</span></h3>
+				<span class="forSpace"> </span>
+				<c:forEach var="vo1" items="${listIngre}"> 
+					<c:if test="${vo1.irdnt_ty_nm eq '양념'}">
+						<span class="sourceIngre">
+							${vo1.irdnt_nm} 					
+						</span>
+					</c:if>				
+				</c:forEach>						
 			</div>
 		</div>
+		
+		<!-- 조리 과정 정보 -->
+		<div class="recipe_Process">
+			<c:forEach var="vo2" items="${listProcess}"> 
+				<div class="recipe_Process_box">
+					<div class="cooking_numAndInfo">
+						<div class="cooking_num">
+							<span class="cNum">
+								${vo2.cooking_no}
+							</span>
+						</div>
+						<div class="cooking_info">
+							<span class="cInfo">
+								${vo2.cooking_dc}
+							</span>
+						</div>
+					</div>
+					<div class="cooking_image">
+						<span class="cImg"><img class="cImg" src="${vo2.stre_step_image_url}"></span>
+					</div>
+					
+					
+					<c:if test="${not empty vo2.step_tip}">
+						<div class="cooking_step_tip">
+							<span class="cTip_icon"><i class="far fa-lightbulb"></i> Tip </span>
+							<span class="cTip_data">
+								${vo2.step_tip} 					
+							</span>
+						</div>
+					</c:if>						
+					
+					<div>
+					
+					</div>
+				</div>
+			</c:forEach>
+		</div>
+
+
+
+
 
 	</div>
 	<div class="recipe_LikeBox">

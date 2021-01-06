@@ -132,14 +132,16 @@ public class RecipeController {
 		if(dto==null) {
 			return "redirect:/cook/honCooq/main?"+query;
 		}
-			
 		
 		// 재료 리스트
 		List<Recipe> listIngre = service.listRecipeIngre(num);
 		// 과정 리스트
 		List<Recipe> listProcess = service.listRecipeProcess(num);
 		
-		
+		for(Recipe dto1  : listProcess) {
+			dto1.setStep_tip(dto1.getStep_tip().trim());
+		}
+			
 		// 스마트 에디터인 경우 주석 처리
 //      dto.setContent(dto.getContent().replaceAll("\n", "<br>"));
          

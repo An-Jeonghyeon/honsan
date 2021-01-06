@@ -47,28 +47,28 @@ public class RecipeServiceImpl implements RecipeService{
 		}
 		return dto;
 	}
-
-	@Override
-	public Recipe readRecipeIngre(int num) {
-		Recipe dto = null;
+	
+	@Override	// 레시피 재료 정보 읽기(리스트)
+	public List<Recipe> listRecipeIngre(int num) {
+		List<Recipe> list = null;
 		try {
-			dto = dao.selectOne("recipe.readRecipeIngre", num);
+			list = dao.selectList("recipe.readRecipeIngre", num);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return dto;
+		return list;
 	}
 
-	@Override
-	public Recipe readRecipeProcess(int num) {
-		Recipe dto = null;
+	@Override	// 레시피 과정 정보 읽기(리스트)
+	public List<Recipe> listRecipeProcess(int num) {
+		List<Recipe> list = null;
 		try {
-			dto = dao.selectOne("recipe.readRecipeProcess", num);
+			list = dao.selectList("recipe.readRecipeProcess", num);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return dto;
-	}
+		return list;
+	}	
 	
 	@Override
 	public Recipe preReadRecipe(Map<String, Object> map) {
@@ -231,25 +231,5 @@ public class RecipeServiceImpl implements RecipeService{
 		return countMap;
 	}
 
-	@Override
-	public List<Recipe> listRecipeIngre(int num) {
-		List<Recipe> list = null;
-		try {
-			list = dao.selectList("recipe.listRecipe", num);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return list;
-	}
 
-	@Override
-	public List<Recipe> listRecipeProcess(int num) {
-		List<Recipe> list = null;
-		try {
-			list = dao.selectList("recipe.readRecipeIngre", num);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return list;
-	}
 }

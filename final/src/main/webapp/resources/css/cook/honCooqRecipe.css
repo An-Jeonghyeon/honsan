@@ -1531,6 +1531,164 @@ recipe 게시판 글보기 폼
 }
 
 /*----------------------
+recipe 게시판 글보기 추가 폼 (요리 관련)
+-----------------------*/
+.recipe_imgUrl {
+	
+}
+
+.recipe_imgUrl_size {
+	
+}
+
+		/* 재료 */
+.recipe_ingre {
+	box-sizing:border-box;
+	padding:2rem;
+/* 	background-color:aliceblue; */
+	border-bottom : 2px solid #e2e2e2;
+    
+}
+
+.recipe_ingreMain {
+/* 	background-color:red; */
+	width:100%;
+	height:5rem;
+	margin:1rem auto;
+/* 	display:flex; */
+/* 	flex-wrap:wrap; */
+}
+
+.recipe_ingreMain > h3 , .recipe_ingreSub > h3, .recipe_ingreSource > h3{
+	margin-bottom: 1.25rem;
+}
+
+.ingre_title {
+	background-color:white;
+	border: 4px solid #3d6d4f;
+	border-radius: 1rem;
+	padding:5px;
+
+	box-shadow: 2px 2px #ff6b61;
+
+	color: #000000;
+	font-weight:900;
+	text-shadow: 2px 2px 1px #ffffff;
+}
+
+.recipe_ingreSub {
+/* 	background-color:yellow; */
+	height:5rem;
+	margin:1rem auto;
+}
+
+.recipe_ingreSource {
+/* 	background-color:floralwhite; */
+	height:5rem;
+	margin:1rem auto;	
+}
+
+.forSpace{
+	margin-right:2rem;
+}
+
+.mainIngre, .subIngre, .sourceIngre{
+/* 	margin:0.4rem auto; */
+/* 	background-color:mintcream; */
+/* 	border:2px solid green; */
+    border-bottom: 4px double #ff6b61;
+    border-radius : 10px;
+    box-shadow: 2px 2px 5px gray;
+	padding:0.2rem 0.3rem;
+}
+		/* 조리 과정 */
+.recipe_Process{
+/* 	background-color:cornflowerblue; */
+	width:100%;
+}
+
+.recipe_Process_box{
+	width:90%;
+/* 	background-color:cornsilk; */
+	margin:2rem auto;
+	display:flex;
+	flex-wrap:wrap;
+}
+
+.cooking_numAndInfo{
+/* 	background-color:coral; */
+	width:100%;
+	display:flex;
+}
+
+.cooking_num{
+	width:1rem;
+	height:1rem;
+	margin-right:1.5rem;
+	padding:0.2rem;
+	text-align:center;
+/* 	background-color:khaki; */
+
+	border : 4px solid #19AAD1;
+	border-radius:5px;
+	box-shadow:2px 2px 2px #ffcc4c;
+}
+
+.cooking_num .cNum{
+    font-size:1rem;
+    font-weight:700;
+    line-height:0.5rem;
+}
+
+.cooking_info {
+/* 	background-color:aliceblue; */
+}
+
+.cooking_info .cInfo{
+	font-size:1rem;
+	font-weight:500;
+}
+
+.cooking_image {
+	width:100%;
+	margin:0.5rem 5rem 0;	
+/* 	background-color:aqua; */
+}
+
+.cooking_image .cImg{
+	margin: 0 auto;
+}
+
+.cooking_image > span {
+	margin: 0 auto;
+}
+
+.cooking_step_tip {
+	width:80%;
+	margin:1rem auto;
+/* 	background-color:lavenderblush; */
+}
+
+.cooking_step_tip .cTip_icon {
+    padding:0.2rem 0.5rem;
+    margin-right:0.7rem;
+	
+	background-color:#19AAD1;
+    box-shadow: 3px 3px #ffcc4c;
+    border-radius: 10% 10%;
+
+	color:#ffcc4c;
+	font-size:1.2rem;
+	font-weight:900;
+	text-shadow: 1px 1px 2px #505050;
+}
+
+.cooking_step_tip .cTip_data {
+	font-size:0.9rem;
+	border-bottom: 3px double #ff9b9b;
+}
+
+/*----------------------
 recipe 게시판 댓글 폼
 -----------------------*/
 .recipe_replyAnswer {
