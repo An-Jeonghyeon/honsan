@@ -42,6 +42,8 @@ public class RecipeController {
 			Model model
 			) throws Exception {
 		
+		System.out.println( "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"+keyword);
+		
 		SessionInfo info = (SessionInfo)session.getAttribute("member");
 		
 		int rows = 12;	// 한 화면에 보여주는 게시물 수
@@ -145,7 +147,7 @@ public class RecipeController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("condition", condition);
 		map.put("keyword", keyword);
-		map.put("num", num);
+		map.put("recipe_id", num);
 
 //		Recipe preReadDto = service.preReadRecipe(map);
 //		Recipe nextReadDto = service.nextReadRecipe(map);
@@ -157,7 +159,7 @@ public class RecipeController {
 		// 좋아요 여부 가져오기
 		SessionInfo info=(SessionInfo)session.getAttribute("member");		
 		Map<String, Object> paramMap=new HashMap<>();
-		paramMap.put("num", num);
+		paramMap.put("recipe_id", num);
 		paramMap.put("userId", info.getUserId());
 		
 		int readRecipeLike=0;
@@ -189,7 +191,7 @@ public class RecipeController {
 		SessionInfo info=(SessionInfo)session.getAttribute("member");
 		
 		Map<String, Object> paramMap=new HashMap<>();
-		paramMap.put("num", num);
+		paramMap.put("recipe_id", num);
 		paramMap.put("userId", info.getUserId());
 		
 		try {
@@ -220,7 +222,7 @@ public class RecipeController {
 		SessionInfo info=(SessionInfo)session.getAttribute("member");
 		
 		Map<String, Object> paramMap=new HashMap<>();
-		paramMap.put("num", num);
+		paramMap.put("recipe_id", num);
 		paramMap.put("userId", info.getUserId());
 		
 		try {
@@ -253,7 +255,7 @@ public class RecipeController {
 		int dataCount=0;
 		
 		Map<String, Object> map=new HashMap<>();
-		map.put("num", num);
+		map.put("recipe_id", num);
 		
 		dataCount=service.replyCount(map);
 		total_page = myUtil.pageCount(rows, dataCount);

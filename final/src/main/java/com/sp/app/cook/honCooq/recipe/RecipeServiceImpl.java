@@ -37,7 +37,7 @@ public class RecipeServiceImpl implements RecipeService{
 		return result;
 	}
 
-	@Override
+	@Override	// 기본 레시피 정보 읽기
 	public Recipe readRecipe(int num) {
 		Recipe dto = null;
 		try {

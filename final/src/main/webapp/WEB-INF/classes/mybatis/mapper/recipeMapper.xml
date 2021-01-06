@@ -6,11 +6,14 @@
 		<choose>
 			<when test="condition == 'all' ">
 			   ( INSTR(recipe_nm_ko, #{keyword}) &gt; 0
-		          OR INSTR(cooking_dc, #{keyword}) &gt; 0
+		          OR INSTR(irdnt_nm, #{keyword}) &gt; 0
 		        )
 			</when>
 			<when test="condition == 'subject'">
 			    INSTR(recipe_nm_ko, #{keyword}) &gt; 0
+			</when>
+			<when test="condition == 'ingredients'">
+			    INSTR(irdnt_nm, #{keyword}) &gt; 0
 			</when>
 
 			<otherwise>
@@ -184,7 +187,7 @@
 		       NVL(likeCount, 0) likeCount,
 		       NVL(disLikeCount, 0) disLikeCount
 		FROM recipe_reply rr	
-		JOIN member1 m ON c.userId = m.userId
+		JOIN member1 m ON rr.userId = m.userId
 		LEFT OUTER JOIN (
 			SELECT answer, COUNT(*) answerCount
 			FROM recipe_reply WHERE answer!=0 GROUP BY answer
