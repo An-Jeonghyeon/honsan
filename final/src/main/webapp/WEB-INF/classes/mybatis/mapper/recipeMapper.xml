@@ -108,10 +108,10 @@
 	
 	<!-- 글보기 - 과정 읽기 -->
 	<select id="readRecipeProcess" parameterType="Integer" resultType="com.sp.app.cook.honCooq.recipe.Recipe">
-		SELECT recipe_id, cooking_no, cooking_dc, stre_step_image_url, step_tip
+		SELECT recipe_id, cooking_no, cooking_dc, stre_step_image_url, NVL(step_tip, 0) step_tip
 		FROM recipe_process
 		WHERE recipe_id = #{recipe_id}
-		ORDER BY cooking_no ASC;
+		ORDER BY cooking_no ASC
 	</select>	
 	
 	<!-- 조회수 증가 -->

@@ -103,7 +103,7 @@ function newcheck(){
 		
 		
 		<tr class="checklistTr" height="49">
-			<td class="checkleftTd"><input type="checkbox" name="ck" value="ck2" class="checkbox" ${fn:contains(dto.item, "ck2") ? "checked='checked'":""}> 보증금 </td>
+			<td class="checkleftTd"><input type="checkbox" name="ck" value="ck2" class="checkbox" ${fn:contains(dto.item, "ck2") ? "checked='checked'":""}> 방 구조 </td>
 			<td class="checkrightTd" align="right">
 			<input type="radio" class="radio" name="b2" value="b1" ${fn:contains(dto.item, "b1") ? "checked='checked'":""}>  &nbsp;&nbsp;&nbsp;
 			<input type="radio" class="radio" name="b2" value="b2" ${fn:contains(dto.item, "b2") ? "checked='checked'":""}>  &nbsp;&nbsp;&nbsp;
@@ -113,7 +113,7 @@ function newcheck(){
 		
 		
 		<tr class="checklistTr" height="50">
-			<td class="checkleftTd"><input type="checkbox" name="ck" value="ck3" class="checkbox" ${fn:contains(dto.item, "ck3") ? "checked='checked'":""}> 질문은 차차 </td>
+			<td class="checkleftTd"><input type="checkbox" name="ck" value="ck3" class="checkbox" ${fn:contains(dto.item, "ck3") ? "checked='checked'":""}> 보증금 </td>
 			<td class="checkrightTd" align="right">
 			<input type="radio" class="radio" name="c3" value="c1" ${fn:contains(dto.item, "c1") ? "checked='checked'":""}>  &nbsp;&nbsp;&nbsp;
 			<input type="radio" class="radio" name="c3" value="c2" ${fn:contains(dto.item, "c2") ? "checked='checked'":""}>  &nbsp;&nbsp;&nbsp;
@@ -123,7 +123,7 @@ function newcheck(){
 		
 		
 		<tr class="checklistTr" height="50">
-			<td class="checkleftTd"><input type="checkbox" name="ck"  value="ck4" class="checkbox" ${fn:contains(dto.item, "ck4") ? "checked='checked'":""}> 정해지는  </td>
+			<td class="checkleftTd"><input type="checkbox" name="ck"  value="ck4" class="checkbox" ${fn:contains(dto.item, "ck4") ? "checked='checked'":""}> 월세  </td>
 			<td class="checkrightTd" align="right">
 			<input type="radio" class="radio" name="d4" value="d1" ${fn:contains(dto.item, "d1") ? "checked='checked'":""}>  &nbsp;&nbsp;&nbsp;
 			<input type="radio" class="radio" name="d4" value="d2" ${fn:contains(dto.item, "d2") ? "checked='checked'":""}>  &nbsp;&nbsp;&nbsp;
@@ -133,7 +133,7 @@ function newcheck(){
 		
 		
 		<tr class="checklistTr" height="49">
-			<td class="checkleftTd"><input type="checkbox" name="ck" value="ck5" class="checkbox" ${fn:contains(dto.item, "ck5") ? "checked='checked'":""}> 근데 언제 정하지 </td>
+			<td class="checkleftTd"><input type="checkbox" name="ck" value="ck5" class="checkbox" ${fn:contains(dto.item, "ck5") ? "checked='checked'":""}> 관리비 포함 항묵 </td>
 			<td class="checkrightTd" align="right">
 			<input type="radio" class="radio" name="e5" value="e1" ${fn:contains(dto.item, "e1") ? "checked='checked'":""}>  &nbsp;&nbsp;&nbsp;
 			<input type="radio" class="radio" name="e5" value="e2" ${fn:contains(dto.item, "e2") ? "checked='checked'":""}>  &nbsp;&nbsp;&nbsp;
@@ -143,7 +143,7 @@ function newcheck(){
 		
 		
 		<tr class="checklistTr" height="52">
-			<td class="checkleftTd"><input type="checkbox" name="ck" value="ck6" class="checkbox" ${fn:contains(dto.item, "ck6") ? "checked='checked'":""}> 근데 언제 정하지 </td>
+			<td class="checkleftTd"><input type="checkbox" name="ck" value="ck6" class="checkbox" ${fn:contains(dto.item, "ck6") ? "checked='checked'":""}> 건물 시설</td>
 			<td class="checkrightTd" align="right">
 			<input type="radio" class="radio" name="f6" value="f1" ${fn:contains(dto.item, "f1") ? "checked='checked'":""}>  &nbsp;&nbsp;&nbsp;
 			<input type="radio" class="radio" name="f6" value="f2" ${fn:contains(dto.item, "f2") ? "checked='checked'":""}>  &nbsp;&nbsp;&nbsp;
@@ -152,7 +152,7 @@ function newcheck(){
 		</tr>
 		
 		<tr class="checklistTr" height="48">
-			<td class="checkleftTd"><input type="checkbox" name="ck" value="ck7" class="checkbox" ${fn:contains(dto.item, "ck7") ? "checked='checked'":""}> 근데 언제 정하지 </td>
+			<td class="checkleftTd"><input type="checkbox" name="ck" value="ck7" class="checkbox" ${fn:contains(dto.item, "ck7") ? "checked='checked'":""}> 주변 교퉁 환경 </td>
 			<td class="checkrightTd" align="right">
 			<input type="radio" class="radio" name="g7" value="g1" ${fn:contains(dto.item, "g1") ? "checked='checked'":""}>  &nbsp;&nbsp;&nbsp;
 			<input type="radio" class="radio" name="g7" value="g2" ${fn:contains(dto.item, "g2") ? "checked='checked'":""}>  &nbsp;&nbsp;&nbsp;
@@ -162,7 +162,7 @@ function newcheck(){
 		
 		
 		<tr class="checklistTr" height="52">
-			<td class="checkleftTd"><input type="checkbox" name="ck" value="ck8" class="checkbox" ${fn:contains(dto.item, "ck8") ? "checked='checked'":""}> 근데 언제 정하지 </td>
+			<td class="checkleftTd"><input type="checkbox" name="ck" value="ck8" class="checkbox" ${fn:contains(dto.item, "ck8") ? "checked='checked'":""}> 방 기본 옵션 </td>
 			<td class="checkrightTd" align="right">
 			<input type="radio" class="radio" name="h8" value="h1" ${fn:contains(dto.item, "h1") ? "checked='checked'":""}>  &nbsp;&nbsp;&nbsp;
 			<input type="radio" class="radio" name="h8" value="h2" ${fn:contains(dto.item, "h2") ? "checked='checked'":""}>  &nbsp;&nbsp;&nbsp;
@@ -171,7 +171,7 @@ function newcheck(){
 		</tr>
 		
 		<tr class="checklistTr" height="48">
-			<td class="checkleftTd"><input type="checkbox" name="ck" value="ck9" class="checkbox" ${fn:contains(dto.item, "ck9") ? "checked='checked'":""}> 근데 언제 정하지 </td>
+			<td class="checkleftTd"><input type="checkbox" name="ck" value="ck9" class="checkbox" ${fn:contains(dto.item, "ck9") ? "checked='checked'":""}> 방 청결도 </td>
 			<td class="checkrightTd" align="right">
 			<input type="radio" class="radio" name="i9" value="i1" ${fn:contains(dto.item, "i1") ? "checked='checked'":""}>  &nbsp;&nbsp;&nbsp;
 			<input type="radio" class="radio" name="i9" value="i2" ${fn:contains(dto.item, "i2") ? "checked='checked'":""}>  &nbsp;&nbsp;&nbsp;
@@ -180,7 +180,7 @@ function newcheck(){
 		</tr>
 		
 		<tr class="checklistTr" height="50">
-			<td class="checkleftTd"><input type="checkbox" name="ck" value="ck10" class="checkbox" ${fn:contains(dto.item, "ck10") ? "checked='checked'":""}> 근데 언제 정하지 </td>
+			<td class="checkleftTd"><input type="checkbox" name="ck" value="ck10" class="checkbox" ${fn:contains(dto.item, "ck10") ? "checked='checked'":""}> 욕실 청결 및 사용 </td>
 			<td class="checkrightTd" align="right">
 			<input type="radio" class="radio" name="j10" value="j1" ${fn:contains(dto.item, "j1") ? "checked='checked'":""}>  &nbsp;&nbsp;&nbsp;
 			<input type="radio" class="radio" name="j10" value="j2" ${fn:contains(dto.item, "j2") ? "checked='checked'":""}>  &nbsp;&nbsp;&nbsp;
@@ -189,7 +189,7 @@ function newcheck(){
 		</tr>
 		
 		<tr class="checklistTr" height="50">
-			<td class="checkleftTd"><input type="checkbox" name="ck" value="ck11" class="checkbox" ${fn:contains(dto.item, "ck11") ? "checked='checked'":""}> 근데 언제 정하지 </td>
+			<td class="checkleftTd"><input type="checkbox" name="ck" value="ck11" class="checkbox" ${fn:contains(dto.item, "ck11") ? "checked='checked'":""}> 수압(주방,화장실) </td>
 			<td class="checkrightTd" align="right">
 			<input type="radio" class="radio" name="k11" value="k111" ${fn:contains(dto.item, "k111") ? "checked='checked'":""}>  &nbsp;&nbsp;&nbsp;
 			<input type="radio" class="radio" name="k11" value="k112" ${fn:contains(dto.item, "k112") ? "checked='checked'":""}>  &nbsp;&nbsp;&nbsp;
@@ -198,7 +198,7 @@ function newcheck(){
 		</tr>
 		
 		<tr class="checklistTr" height="48">
-			<td class="checkleftTd"><input type="checkbox" name="ck" value="ck12" class="checkbox" ${fn:contains(dto.item, "ck12") ? "checked='checked'":""}> 근데 언제 정하지 </td>
+			<td class="checkleftTd"><input type="checkbox" name="ck" value="ck12" class="checkbox" ${fn:contains(dto.item, "ck12") ? "checked='checked'":""}> 방음(벽 재질) </td>
 			<td class="checkrightTd" align="right">
 			<input type="radio" class="radio" name="l12" value="l1" ${fn:contains(dto.item, "l1") ? "checked='checked'":""}>  &nbsp;&nbsp;&nbsp;
 			<input type="radio" class="radio" name="l12" value="l2" ${fn:contains(dto.item, "l2") ? "checked='checked'":""}>  &nbsp;&nbsp;&nbsp;
@@ -207,7 +207,7 @@ function newcheck(){
 		</tr>
 		
 		<tr class="checklistTr" height="52">
-			<td class="checkleftTd"><input type="checkbox" name="ck" value="ck13" class="checkbox" ${fn:contains(dto.item, "ck13") ? "checked='checked'":""}> 근데 언제 정하지 </td>
+			<td class="checkleftTd"><input type="checkbox" name="ck" value="ck13" class="checkbox" ${fn:contains(dto.item, "ck13") ? "checked='checked'":""}> 보안(건물 및 주변) </td>
 			<td class="checkrightTd" align="right">
 			<input type="radio" class="radio" name="m13" value="m1" ${fn:contains(dto.item, "m1") ? "checked='checked'":""}>  &nbsp;&nbsp;&nbsp;
 			<input type="radio" class="radio" name="m13" value="m2" ${fn:contains(dto.item, "m2") ? "checked='checked'":""}>  &nbsp;&nbsp;&nbsp;
@@ -216,7 +216,7 @@ function newcheck(){
 		</tr>
 		
 		<tr class="checklistTr" height="48">
-			<td class="checkleftTd"><input type="checkbox" name="ck" value="ck14" class="checkbox" ${fn:contains(dto.item, "ck14") ? "checked='checked'":""}> 근데 언제 정하지 </td>
+			<td class="checkleftTd"><input type="checkbox" name="ck" value="ck14" class="checkbox" ${fn:contains(dto.item, "ck14") ? "checked='checked'":""}> 곰팡이  </td>
 			<td class="checkrightTd" align="right">
 			<input type="radio" class="radio" name="n14" value="n1" ${fn:contains(dto.item, "n1") ? "checked='checked'":""}>  &nbsp;&nbsp;&nbsp;
 			<input type="radio" class="radio" name="n14" value="n2" ${fn:contains(dto.item, "n2") ? "checked='checked'":""}>  &nbsp;&nbsp;&nbsp;
@@ -225,7 +225,7 @@ function newcheck(){
 		</tr>
 		
 		<tr class="checklistTr" height="52">
-			<td class="checkleftTd"><input type="checkbox" name="ck" value="ck15" class="checkbox" ${fn:contains(dto.item, "ck15") ? "checked='checked'":""}> 근데 언제 정하지 </td>
+			<td class="checkleftTd"><input type="checkbox" name="ck" value="ck15" class="checkbox" ${fn:contains(dto.item, "ck15") ? "checked='checked'":""}> 건물 청결도 </td>
 			<td class="checkrightTd" align="right">
 			<input type="radio" class="radio" name="o15" value="o1" ${fn:contains(dto.item, "o1") ? "checked='checked'":""}>  &nbsp;&nbsp;&nbsp;
 			<input type="radio" class="radio" name="o15" value="o2" ${fn:contains(dto.item, "o2") ? "checked='checked'":""}>  &nbsp;&nbsp;&nbsp;
@@ -234,7 +234,7 @@ function newcheck(){
 		</tr>
 		
 		<tr class="checklistTr" height="48">
-			<td class="checkleftTd"><input type="checkbox" name="ck" value="ck16" class="checkbox" ${fn:contains(dto.item, "ck16") ? "checked='checked'":""}> 근데 언제 정하지 </td>
+			<td class="checkleftTd"><input type="checkbox" name="ck" value="ck16" class="checkbox" ${fn:contains(dto.item, "ck16") ? "checked='checked'":""}> 주변 생활 시설 </td>
 			<td class="checkrightTd" align="right">
 			<input type="radio" class="radio" name="p16" value="p1" ${fn:contains(dto.item, "p1") ? "checked='checked'":""}>  &nbsp;&nbsp;&nbsp;
 			<input type="radio" class="radio" name="p16" value="p2" ${fn:contains(dto.item, "p2") ? "checked='checked'":""}>  &nbsp;&nbsp;&nbsp;
@@ -243,7 +243,7 @@ function newcheck(){
 		</tr>
 		
 		<tr class="checklistTr" height="49">
-			<td class="checkleftTd"><input type="checkbox" name="ck" value="ck17" class="checkbox" ${fn:contains(dto.item, "ck17") ? "checked='checked'":""}> 근데 언제 정하지 </td>
+			<td class="checkleftTd"><input type="checkbox" name="ck" value="ck17" class="checkbox" ${fn:contains(dto.item, "ck17") ? "checked='checked'":""}> 출/퇴근 난이도 </td>
 			<td class="checkrightTd" align="right">
 			<input type="radio" class="radio" name="q17" value="q1" ${fn:contains(dto.item, "q1") ? "checked='checked'":""}>  &nbsp;&nbsp;&nbsp;
 			<input type="radio" class="radio" name="q17" value="q2" ${fn:contains(dto.item, "q2") ? "checked='checked'":""}>  &nbsp;&nbsp;&nbsp;
@@ -252,7 +252,7 @@ function newcheck(){
 		</tr>
 		
 		<tr class="checklistTr" height="52">
-			<td class="checkleftTd"><input type="checkbox" name="ck" value="ck18" class="checkbox" ${fn:contains(dto.item, "ck18") ? "checked='checked'":""}> 근데 언제 정하지 </td>
+			<td class="checkleftTd"><input type="checkbox" name="ck" value="ck18" class="checkbox" ${fn:contains(dto.item, "ck18") ? "checked='checked'":""}> 주차장 시설 </td>
 			<td class="checkrightTd" align="right">
 			<input type="radio" class="radio" name="r18" value="r1" ${fn:contains(dto.item, "r1") ? "checked='checked'":""}>  &nbsp;&nbsp;&nbsp;
 			<input type="radio" class="radio" name="r18" value="r2" ${fn:contains(dto.item, "r2") ? "checked='checked'":""}>  &nbsp;&nbsp;&nbsp;

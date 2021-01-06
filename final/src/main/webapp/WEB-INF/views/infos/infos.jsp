@@ -21,7 +21,7 @@
 		
 	</div>
 	
-	<div class="top_menu_atr" onclick="javascript:location.href='${pageContext.request.contextPath}/';">
+	<div class="top_menu_atr" onclick="javascript:location.href='${pageContext.request.contextPath}/faq/main';">
 		<a href="#" class="top_menu_atr_name">FAQ 게시판</a>
 			<p class="top_menu_atr_name2"> FAQ 이용안내를 위한 게시판 입니다.</p>
 	</div>

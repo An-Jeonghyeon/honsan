@@ -264,9 +264,9 @@ function memberOk() {
 							<div class="question">
 								<p><strong>6.</strong> 택배 수령 하는 법 ?  </p><br>
 								<input type="radio" name="f1" value="4"> 보안이 되어있는 택배함  &nbsp; &nbsp;
-								<input type="radio" name="f1" value="3"> 보안 없이 있는 택배 보관 &nbsp; &nbsp;
+								<input type="radio" name="f1" value="3"> 보안 없이 있는 택배 보관 <br><br>
 								<input type="radio" name="f1" value="2"> 택배 기사님임을 인증하고 집 앞으로  &nbsp; &nbsp;
-								<input type="radio" name="f1" value="1"> 인증 없이 다이렉트로 집 앞으로 <br><br>
+								<input type="radio" name="f1" value="1"> 인증 없이 다이렉트로 집 앞으로 <br><br><br>
 							</div>
 						
 							<div class="question">

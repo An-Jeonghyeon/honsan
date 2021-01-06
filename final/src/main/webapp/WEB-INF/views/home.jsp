@@ -211,16 +211,16 @@ $(".hover").mouseleave(
 							</div>
 					   </div>
 						<div class="categories-health-img1">
-							<div class="categories-health-img1-box">
-								<div class="categories-health-img1-category">
 									<div class="button-1 llleft">
 										<div class="eff-1"></div>
 										<a href="${pageContext.request.contextPath}/challenge/list"> 도전하러가기 </a>
 									  </div>
-								</div>
-								<div class="">
-								</div>
-							</div>
+<!-- 							<div class="categories-health-img1-box"> -->
+<!-- 								<div class="categories-health-img1-category"> -->
+<!-- 								</div> -->
+<!-- 								<div class=""> -->
+<!-- 								</div> -->
+<!-- 							</div> -->
 						</div>
 					</div>
                 </div>

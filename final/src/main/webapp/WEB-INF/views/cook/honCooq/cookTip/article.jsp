@@ -358,7 +358,6 @@ $(function() {
 	if(yUrl.indexOf("=") > 0) {
 		$videoId = yUrl.substring(yUrl.indexOf("=") + 1);
 	}
-	alert($videoId);
 });
 
 // 3. This function creates an <iframe> (and YouTube player)
