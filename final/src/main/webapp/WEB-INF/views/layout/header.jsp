@@ -87,7 +87,7 @@
                   <ul class="menuObject">
                       <li> <a href="${pageContext.request.contextPath}/interior/main">내집자랑</a></li>
                       <li> <a href="${pageContext.request.contextPath}/interiorTip/list">생활 팁</a></li>
-                      <li> <a href="${pageContext.request.contextPath}/iEstimate/list">견적 받아보깅</a></li>
+                      <li> <a href="${pageContext.request.contextPath}/itEstimate/main">견적 받아보깅</a></li>
                       <li> <a href="${pageContext.request.contextPath}">생활 팁</a></li>
                   </ul>
                   <ul class="menuObject">
