@@ -240,7 +240,6 @@ figure.snip1384.hover i {
 
 
 
-
 /*securityTestSubmit*/
 
 
@@ -252,12 +251,12 @@ figure.snip1384.hover i {
     padding-top: 20px;
 	width: 1300px;
 	border: 1px solid gray;
-	height: 1000px;
+	height: 1500px;
 }
 
 .submitLayout {
    width: 80%;
-   min-height: 30px; 
+   min-height: 350px; 
    margin: 10px auto 10px; 
    padding: 20px;
 }
@@ -280,6 +279,48 @@ figure.snip1384.hover i {
 .submittable:hover{
 	box-shadow: 0 0 10px #c0c0c0;
 }
+
+.expltotaldiv{
+	width: 100%;
+}
+
+.expldivimg{
+	width: 200px;
+	margin: 10px auto;
+	
+}
+.expldivimg img{
+	width: 180px;
+	height: 180px;
+}
+.expldivtext{
+	width: 500px;
+	margin: 0 auto;
+}
+.expldivp{
+	width: 270px;
+	margin: 0 auto;
+}
+.score{
+	font-size: 40px;
+	padding-top: 50px;
+}
+.expldivp strong{
+	color: #000080;
+}
+.underscore{
+	text-align: center;
+	font-size: 18px;
+}
+.textdiv{
+	padding-top: 50px;
+}
+
+
+
+
+
+
 
 
 
