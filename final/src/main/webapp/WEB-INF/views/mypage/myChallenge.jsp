@@ -7,11 +7,19 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/health/myChallenge.css">
 
 <script type="text/javascript">
+function deleteMyChallenge1(num){
+	var query ="num="+num;
+	var url="${pageContext.request.contextPath}/challenge/deleteMyChallenge?"+query;
+	
+	if( confirm("삭제시 기존에 진행된 내용은 모두 사라집니다. 삭제하시겠습니까?")) {
+		location.href=url;
+	}
+}
 function deleteMyChallenge(num){
 	var query ="num="+num;
 	var url="${pageContext.request.contextPath}/challenge/deleteMyChallenge?"+query;
 	
-	if( confirm("포기시 진행중인 내용은 사라집니다.\n정말 포기하시겠습니까?")) {
+	if( confirm("포기할 경우 진행중인 내용은 사라집니다.\n정말 그만두시겠습니까?")) {
 		location.href=url;
 	}
 }
@@ -44,11 +52,18 @@ function deleteMyChallenge(num){
                                    <a href="${pageContext.request.contextPath}/challenge/articleGo?num=${dto.num}">
                                    		${dto.subName} <b> ${dto.name}</b></a></td>
                                <td>${dto.totalCount}/${dto.challengePeriod}일</td>
-                               <td>
-                               	<c:if test="${dto.enabled==0}">진행중</c:if>
-                               	<c:if test="${dto.enabled==1}">완료</c:if>
-                               </td>
-                               <td><button type="button" class="pogi" onclick="deleteMyChallenge(${dto.num});">포기하기</button> </td>
+                               	<c:if test="${dto.enabled==0}">
+                               		<td style="color: blue; font-weight: 700;">진행중</td>
+                               	</c:if>
+                               	<c:if test="${dto.enabled==1}">
+                               		<td style="color: red; font-weight: 700;">완료</td>
+                               	</c:if>
+                               	<c:if test="${dto.enabled==1}">
+	                               <td><button type="button" class="pogi" onclick="deleteMyChallenge1(${dto.num});">삭제하기</button> </td>
+                               	</c:if>
+                               	<c:if test="${dto.enabled==0}">
+	                               <td><button type="button" class="pogi" onclick="deleteMyChallenge(${dto.num});">그만두기</button> </td>
+                               	</c:if>
                            </tr>
                         </c:forEach>
                    </tbody>

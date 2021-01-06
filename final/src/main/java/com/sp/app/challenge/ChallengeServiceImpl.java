@@ -154,4 +154,16 @@ public class ChallengeServiceImpl implements ChallengeService {
 	}
 
 
+	@Override
+	public void updateEnabled(Map<String, Object> map) throws Exception {
+		try {
+			dao.updateData("challenge.updateEnabled", map);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+		
+	}
+
+
 }

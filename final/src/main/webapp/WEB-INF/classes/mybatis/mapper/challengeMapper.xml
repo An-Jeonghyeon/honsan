@@ -125,6 +125,10 @@
 		WHERE num=#{num} AND userId=#{userId}
 	</delete>
 	
+	<!-- 완료시 enabled 변경 -->
+	<update id="updateEnabled" parameterType="map">
+		UPDATE userChallenge SET enabled=1 WHERE num=#{num} AND userId =#{userId}
+	</update>
 	
 	
 	
