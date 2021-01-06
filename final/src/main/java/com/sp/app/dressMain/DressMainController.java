@@ -5,9 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-
+import org.json.JSONArray;
+import org.json.JSONObject;
+import org.json.XML;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,8 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.w3c.dom.Document;
-import org.w3c.dom.NodeList;
 
 import com.sp.app.common.APISerializer;
 @Controller("dressMain.dressMainController")
@@ -87,22 +85,7 @@ public class DressMainController {
 		//현재 지역 날씨 확인
 		String spec="http://www.kma.go.kr/XML/weather/sfc_web_map.xml";
 		result=apiSerializer.receiveToString(spec);
-//		// 1. 빌더 팩토리 생성.
-//        DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
-//        
-//        // 2. 빌더 팩토리로부터 빌더 생성
-//        DocumentBuilder builder = builderFactory.newDocumentBuilder();
-//        
-//        // 3. 빌더를 통해 XML 문서를 파싱해서 Document 객체로 가져온다.
-//        Document document = builder.parse(spec);
-//        
-//        // 문서 구조 안정화 ?
-//        document.getDocumentElement().normalize();
-//        
-//        // XML 데이터 중 <person> 태그의 내용을 가져온다.
-//        NodeList personTagList = document.getElementsByTagName("current");
-        
-     
+
 		
 	
 	
@@ -112,15 +95,55 @@ public class DressMainController {
 	@RequestMapping("areaWeatherChart")
 	@ResponseBody
 	public Map<String, Object> areaWeatherChart() throws Exception{
+		String result= null;
+		
+		//현재 지역 날씨 확인
+		String spec="http://www.kma.go.kr/XML/weather/sfc_web_map.xml";
+		result=apiSerializer.receiveToString(spec);
+
+		
+		JSONObject job = XML.toJSONObject(result);
+		//System.out.println(job.toString());
+		JSONArray jar=job.getJSONObject("current").getJSONObject("weather").getJSONArray("local");
+		
+		double[] dd=new double[11];
+		
+		for(int i =0; i<jar.length(); i++) {
+			JSONObject ob = jar.getJSONObject(i);
+			
+			String s= ob.getString("content");
+			double t = ob.getDouble("ta");
+			
+			
+			try {
+				if(s.equals("서울")) dd[0] = t;
+				else if (s.equals("인천")) dd[1] = t;
+				else if (s.equals("춘천")) dd[2] = t;
+				else if (s.equals("강릉")) dd[3] = t;
+				else if (s.equals("청주")) dd[4] = t;
+				else if (s.equals("대전")) dd[5] = t;
+				else if (s.equals("전주")) dd[6] = t;
+				else if (s.equals("광주")) dd[7] = t;
+				else if (s.equals("대구")) dd[8] = t;
+				else if (s.equals("부산")) dd[9] = t;
+				else if (s.equals("제주")) dd[10] = t;
+			} catch (Exception e) {
+			
+			}
+	
+			
+		}
 		Map<String, Object> model = new HashMap<String, Object>();
+		
 		
 		List<Map<String, Object>> list  = new ArrayList<Map<String,Object>>();
 		Map<String, Object> map =new HashMap<String, Object>();
-		map.put("name", "서울,인천, 춘천, 강릉, 청주, 대전, 전주, 광주, 대구, 부산, 제주");
-		map.put("data", new double[] {-0.9,1.0,6.3,13.3,18.9,23.6,25.8,26.3,22.4,15.5,8.9,1.6});
+		map.put("data", dd);
+		map.put("name", "현재기온");
 		list.add(map);
 		
 	
+		model.put("categories", new String[] {"서울","인천", "춘천", "강릉", "청주", "대전", "전주", "광주", "대구", "부산", "제주"});
 		model.put("series", list);
 		return model;
 	}

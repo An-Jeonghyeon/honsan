@@ -197,64 +197,21 @@ function printJSON(data) {
 	}
 	
 /* 모달에 지역별 날씨 뿌리기 */
-$(function(){
-	$("#scroll").click(function(){
-		// 현재 지역 날씨 
-		var url="${pageContext.request.contextPath}/dressMain/areaWeather";
-		var query="time="+new Date().getTime();
-		
-		var fn = function(data) {
-			console.log(data);
-			printXML(data);
-		};
-		
-		ajaxFun(url, "get", "xml", query, fn);
-	});
-	
-	function printXML(data) {
-		var out="<h3>날씨</h3><hr>";
-		
-		var year = $(data).find("weather").attr("year");
-		var month = $(data).find("weather").attr("month");
-		var day = $(data).find("weather").attr("day");
-		var hour = $(data).find("weather").attr("hour");
-		var namee;
-		var datae;
-		out+="<p>"+year+"년 "+month+"월 "+day+"일 "+hour+"시</p>";
-		
-		var icon, desc, ta, city;
-		$(data).find("local").each(function(){
-			city = $(this).text(); // 지역
-			icon = $(this).attr("icon"); // 아이콘
-			desc = $(this).attr("desc"); // 날씨
-			ta = $(this).attr("ta"); // 현재온도
-			
-		 	 if(city=="서울"||city=="인천"||city=="춘천"||city=="강릉"||city=="청주"||
-					city=="대전"||city=="전주"||city=="광주"||city=="대구"||
-					city=="부산"||city=="제주") {
-				out+="<p><b>"+city+"</b> 날씨:" + desc + ", 기온:"+ta+", 아이콘:"+icon+"</p>";
-			}  
-			
-			
-			
-		});
-		
-	  	$(".innerdialog").html(out);  
-	
-	}
-});
-  /*  $(function(){ 
+
+    $(function(){ 
 	 var url="${pageContext.request.contextPath}/dressMain/areaWeatherChart";
 	//$.getJSON(): AJAX 처리 결과를 json 으로 반환 받는 함수 
 	$.getJSON(url, function(data){ 
-		//console.log(data); 
+		
 
 		Highcharts.chart("dialog", {
 			title:{
 				text:"서울 평균 기온 "
+				
+				
 			},
 			xAxis:{
-				categories:["서울"]
+				categories:data.categories
 			},
 		    yAxis:{
 		    	title:{
@@ -267,7 +224,10 @@ $(function(){
 		
  	
 	 })
- })     */
+ })     
+ $(function(){
+	 $("#dialog").css("height","700");
+ })
 </script>
 
 <div class="dress-WeatherHeaderImg"></div>
