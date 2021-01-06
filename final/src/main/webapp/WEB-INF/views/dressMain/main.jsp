@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=UTF-8"%>
+  <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -208,7 +208,6 @@ function printJSON(data) {
 			title:{
 				text:"서울 평균 기온 "
 				
-				
 			},
 			xAxis:{
 				categories:data.categories
@@ -227,42 +226,69 @@ function printJSON(data) {
  })     
  $(function(){
 	 $("#dialog").css("height","700");
+	
+
  })
 </script>
 
 <div class="dress-WeatherHeaderImg"></div>
-<div class="dress-menuball" id="scroll">
-	<span>지역별 날씨 확인 하러 가기&nbsp;&gt;</span>
-</div>
-<div id="dress-searchWeather">
-	
-	<input class="dress-searchWeatherInput" type="text" name="town" placeholder="지역명을 입력해주세요. ex)강서구, 해운대구,제주">
-	<button class="dress-searchWeatherButton" type="button">area</button>
-</div>
-<div class="dress-WeatherMainBody">
-	<div class="dress-WeatherTmpBody">
-		<div class="dress-WeatherTmp">
-			<i class="fas fa-temperature-high fa-2x"></i>
-			<span class="dress-weatherArea">입력한 지역  </span>
-			<span> 기온은</span> 
-			<span class="dress-temper"></span> 
-			<span>입니다.</span>
-		</div>
-		<div class="dress-baseTimeBody">
-			<div><span class="dress-wind"></span></div>
-			<span class="dress-baseTime">기준시간:</span> 
-			<span class="outTime"></span>
-		</div>
-		<div class="dress-tmeperText">
-			<span></span>
-		</div>
-	</div>
-	<div class="dress-WeatherImgBody">
-		<div class="dress-WeatherImg"></div>
-	</div>
-	<div class="dress-WeatherImgText"></div>
-	
-	<div id="dialog">
-		<div class="innerdialog"></div>
-	</div>
-</div>
+    <div class="dress-menuball" id="scroll">
+        <span>지역별 날씨 확인 하러 가기&nbsp;&gt;</span>
+    </div>
+
+    <div class="dress-WeatherMainBody">
+        <div class="BodyBody">
+            <div class="dress-WeatherTmpBody">
+                <div class="dress-WeatherTmp">
+                    <div class="wa">
+                        <div class="svg-contain">
+                            <svg version="1.1" class="clear-sky-svg" xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 72.3 52.6"
+                                style="enable-background:new 0 0 72.3 52.6;" xml:space="preserve">
+                                <g>
+                                    <path class="sun"
+                                        d="M50.8,25.7c0,7.9-6.4,14.4-14.4,14.4s-14.4-6.4-14.4-14.4s6.4-14.4,14.4-14.4S50.8,17.8,50.8,25.7z" />
+                                    <path class="line big-path line-1" d="M54.5,25.8h6" />
+                                    <path class="line big-path line-2" d="M12.4,25.8h6" />
+                                    <path class="line big-path line-3" d="M36.5,44.3v6" />
+                                    <path class="line big-path line-4" d="M36.5,8.2v-6" />
+                                    <path class="line big-path line-5" d="M23,38.8l-4.8,4.8" />
+                                    <path class="line big-path line-6" d="M54.9,8.9L50,13.8" />
+                                    <path class="line big-path line-7" d="M50,38.8l4.4,4.4" />
+                                    <path class="line big-path line-8" d="M18.8,9.6l4.2,4.2" />
+                                </g>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="waa">
+                        <span class="dress-temper"><b></b></span>
+                    </div>
+                    <div class="dress-baseTimeBody">
+                        <span class="dress-baseTime">기준시간</span>
+                        <span class="outTime">1111</span>
+                            <div class="dress-windWidn">
+                                <div class="dress-wind">바람이 강해요</div>
+                            </div>
+                    </div>
+                    <div id="dress-searchWeather">
+                        <input class="dress-searchWeatherInput" type="text" name="town"
+                            placeholder="ex)강서구, 해운대구,제주">
+                        <button class="dress-searchWeatherButton" type="button">area</button>
+                    </div>
+                    <div class="dress-tmeperText">
+                        <span></span>
+                    </div>
+
+                </div>
+            </div>
+            <div class="dress-WeatherImgBody">
+                <div class="dress-WeatherImg"></div>
+            </div>
+            <div class="dress-WeatherImgText"></div>
+
+            <div id="dialog">
+                <div class="innerdialog"></div>
+            </div>
+        </div>
+    </div>
+

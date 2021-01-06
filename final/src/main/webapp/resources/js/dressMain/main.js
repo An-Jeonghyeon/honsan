@@ -17,9 +17,9 @@ $(function(){
 	$(".dress-menuball").click(function(){
 		
 		$( "#dialog" ).dialog({
-			 title:"지역별 날씨 현황",
+		
 			 width:1000,
-			 height: 1000,
+			 minHeight: 200,
              modal:false,
             
 		});
