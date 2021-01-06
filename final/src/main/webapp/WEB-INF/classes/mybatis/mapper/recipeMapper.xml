@@ -145,25 +145,6 @@
 		ORDER BY recipe_id DESC
 		FETCH FIRST 1 ROWS ONLY                      
 	</select>
-	
-	<!-- 수정 -->
-	<!-- 
-	<update id="updateCookTip" parameterType="com.sp.app.cook.honCooq.recipe.Recipe">
-		UPDATE cookTip SET category=#{category}, subject=#{subject}, content=#{content}
-				WHERE num=#{num} AND userId = #{userId}
-	</update>	
-	 -->
-
-
-	<!-- 삭제 -->
-	<!-- 
-	<delete id="deleteCookTip" parameterType="map">
-		DELETE FROM cookTip WHERE num = #{num}
-		<if test="userId != 'admin' ">
-			AND userId = #{userId}
-		</if>
-	</delete>
-	 -->
 
 	<!-- 게시글 좋아요 추가 -->
 	<insert id="insertRecipeLike" parameterType="map">

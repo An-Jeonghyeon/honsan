@@ -130,6 +130,13 @@ public class RecipeController {
 		if(dto==null) {
 			return "redirect:/cook/honCooq/main?"+query;
 		}
+			
+		
+		// 재료 리스트
+		List<Recipe> listIngre = service.listRecipeIngre(num);
+		// 과정 리스트
+		List<Recipe> listProcess = service.listRecipeProcess(num);
+		
 		
 		// 스마트 에디터인 경우 주석 처리
 //      dto.setContent(dto.getContent().replaceAll("\n", "<br>"));
@@ -164,6 +171,8 @@ public class RecipeController {
 		model.addAttribute("userLike", readRecipeLike);		
 		model.addAttribute("page", page);
 		model.addAttribute("query", query);		
+		model.addAttribute("listIngre", listIngre);
+		model.addAttribute("listProcess", listProcess);
 		
 		return ".cook.honCooq.recipe.article";
 	}
@@ -226,6 +235,7 @@ public class RecipeController {
 		Map<String, Object> model=new HashMap<>();
 		model.put("state", state);
 		model.put("recipeLikeCount", recipeLikeCount);
+		
 		
 		return model;
 	}		

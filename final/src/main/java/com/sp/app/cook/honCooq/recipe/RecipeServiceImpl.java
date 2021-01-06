@@ -230,4 +230,26 @@ public class RecipeServiceImpl implements RecipeService{
 		}
 		return countMap;
 	}
+
+	@Override
+	public List<Recipe> listRecipeIngre(int num) {
+		List<Recipe> list = null;
+		try {
+			list = dao.selectList("recipe.listRecipe", num);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+	@Override
+	public List<Recipe> listRecipeProcess(int num) {
+		List<Recipe> list = null;
+		try {
+			list = dao.selectList("recipe.readRecipeIngre", num);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
 }

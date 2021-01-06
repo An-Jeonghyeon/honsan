@@ -327,7 +327,7 @@ $(function(){
 				<span>${dto.nation_nm!=null? dto.nation_nm : "기타"}</span>
 			</div>
 			<div class="recipe_recipe_category article_category">
-				<span>${dto.ty_code!=null? dto.ty_code : "기타"}</span>
+				<span>${dto.ty_nm!=null? dto.ty_nm : "기타"}</span>
 			</div>
 		</div>
 

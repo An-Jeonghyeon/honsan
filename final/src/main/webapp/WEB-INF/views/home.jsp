@@ -74,15 +74,36 @@ $(".hover").mouseleave(
 	                 	<div class="categories-content-cook-img1">
 	                 		<div class="categories-content-cook-img1-box">
 	                 			<div class="categories-content-cook-img1-category">
+	                 				<span>Recipes</span>
 	                 			</div>
-	                 			<div class="">
+	                 			<div class="categories-content-cook-img1-info">
+	                 				<h3>오늘 뭐 먹지?</h3>
+	                 				<span>  오늘은 또 무엇을 재료로, 무슨 요리를 해 먹으면 좋을지 고민중이신가요?
+	                 				그렇다면 각양각색의 레시피를 구경하며 오늘의 메뉴를 골라보세요.
+	                 				</span>
 	                 			</div>
+	                 			<div class="categories-content-cook-img1-more">
+	                 				<span onclick="location.href='${pageContext.request.contextPath}/cook/honCooq/main';">more + </span>
+	                 			</div>	                 			
 	                 		</div>
 	                 	</div>
 	                 	<div class="categories-content-cook-inside">
 		                 	<div class="categories-content-cook-img2">
 		                 	</div>
 		                 	<div class="categories-content-cook-words">
+		                 		<div class="categories-content-cook-words-box">
+		                 			<div class="categories-content-cook-img1-category">
+		                 				<span>CookTip</span>
+		                 			</div>
+		                 			<div class="categories-content-cook-img1-info2">
+		                 				<h3>주방팁이 필요할 때!</h3>
+		                 				<span>  주방은 매일 청소하고 관리해도 유지하기가 어렵죠. 여러분만의 팁이 있다면 소개해 주세요!
+		                 				</span>
+		                 			</div>		                 	
+		                 			<div class="categories-content-cook-img1-more">
+		                 				<span onclick="location.href='${pageContext.request.contextPath}/cook/honCooq/main?m=2';">more + </span>
+		                 			</div>	                 			
+		                 		</div>
 		                 	</div>
 	                 	</div>
                  	</div>
