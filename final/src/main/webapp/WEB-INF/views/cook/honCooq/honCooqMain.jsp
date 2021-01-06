@@ -147,7 +147,25 @@ function listPage(page) {
 }
 
 // 검색
-function searchList() {
+/* function searchList() {
+	var f=document.honCooqSearchForm;
+	f.condition.value=$("#condition").val();
+	f.keyword.value=$.trim($("#keyword").val());
+
+	listPage(1);
+} */
+
+// 검색1 - 레시피
+function recipe_searchList() {
+	var f=document.honCooqSearchForm;
+	f.condition.value=$("#condition").val();
+	f.keyword.value=$.trim($("#keyword").val());
+
+	listPage(1);
+}
+
+// 검색2 - 레시피
+function cookTip_searchList() {
 	var f=document.honCooqSearchForm;
 	f.condition.value=$("#condition").val();
 	f.keyword.value=$.trim($("#keyword").val());
