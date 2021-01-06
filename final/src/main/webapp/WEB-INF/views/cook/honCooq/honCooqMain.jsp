@@ -184,10 +184,10 @@ function reloadBoard() {
 
 
 </script>
-
+<div class="honCooq-top"></div>
 <div class="honCooq-container">	
+	<div class="honCooq-banner"></div>
 	<div class="honCooq-header">
-		<div class="honCooq-banner">아아 여기는 배너</div>
 		<div class="honCooq-tabs">
 			<button type="button" class="honCooq-tab-button" id="tab-recipe" data-tab="recipe">요리 정보</button>
 			<button type="button" class="honCooq-tab-button" id="tab-cookTip" data-tab="cookTip">CookTip</button>

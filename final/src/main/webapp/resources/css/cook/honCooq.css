@@ -8,9 +8,19 @@
 /*----------------------
 honCooq 게시판 리스트폼
 -----------------------*/
+.honCooq-top {
+    width: 100%;
+    height: 450px;
+    background-image:url("../../images/cook/cookMain1.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+/*     background-position: center -300px; */
+	background-position : center -450px;	
+}
+
 .honCooq-container {
 	width: 1300px;
-	height: 1800px;
+	height: 1500px;
 	margin: 0 auto;
 	/* 	background-color: red; */
 	display: flex;
@@ -39,14 +49,26 @@ honCooq 게시판 리스트폼
 
 .honCooq-header {
 	min-width: 100%;
-	height: 18%;
+	height: 5%;
+	margin-top:3%;
 	/* 	background-color: pink; */
+
+}
+.honCooq-header .honCooq-banner {
+    width: 100%;
+    height: 400px;
+    background-image:url("../../images/mypage/mypageImg.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+/*     background-position: center -300px; */
+	background-position : center -450px;
 }
 
 /* THE DIV */
+/*
 .honCooq-header .honCooq-banner {
 	width: 100%;
-/* 	height: 80%; */
+
     height: 16.5rem;
 	background-color: skyblue;
 	text-align: center;
@@ -58,13 +80,14 @@ honCooq 게시판 리스트폼
 	background-position: 0;
 	background-repeat: no-repeat;
 	background-size: cover;
-	/* ANIMATING STUFF */
+	
 	animation-name: slide;
 	animation-duration: 16s;
 	animation-direction: normal;
 	animation-timing-function: ease;
 	animation-iteration-count: infinite;
 }
+*/
 
 /* NOTE CODEPEN AUTOGENERATING -PREFIXES */
 @
@@ -1352,7 +1375,7 @@ main - home용 css
 .categories-content-cook-img2{
 	width: 100%;
 	height: 50%;
-    background-image:url("../../images/mypage/mypageImg.jpg");
+    background-image:url("../../images/cook/cookMain2.jpg");
     background-repeat: no-repeat;
     background-size: cover;
 /*     background-position: center -300px; */
