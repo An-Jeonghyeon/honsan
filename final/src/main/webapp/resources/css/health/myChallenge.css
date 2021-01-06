@@ -50,7 +50,7 @@ a {
 }
 .s-thead tr {
     border:  1px solid #efefef;
-    height: 40px;
+    height: 50px;
 }
 .s-thead tr th{
     border:  1px solid #ccc;
@@ -63,16 +63,16 @@ a {
 	width: 5%;  
 }
 .s-table-category {
-	width: 50%;
+	width: 56%;
 }
 .s-table-sub {
-	width: 15%;
+	width: 13%;
 }
 .s-table-user {
-	width: 15%;
+	width: 13%;
 }
 .s-table-date {
-	width: 15%;
+	width: 13%;
 }
 
 
@@ -83,7 +83,7 @@ a {
 	
 }
 .s-tbody tr{
-    height: 40px;
+    height: 50px;
     border:  1px solid #efefef;
 }
 .s-tbody tr:hover {

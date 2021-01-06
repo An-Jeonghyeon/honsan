@@ -1,14 +1,5 @@
 @charset "UTF-8";
 
-.categories-content{
-  width: 1600px;
-  height: 800px;
-  margin: 30px auto;
-  border-radius: 5px;
-  transition:1s;
-  background-color: #ff634768;
-}
-
 .categories-health{
   width: 98%;
   height: 97%;
