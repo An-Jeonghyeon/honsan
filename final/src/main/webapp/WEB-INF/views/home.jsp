@@ -126,17 +126,7 @@ $(".hover").mouseleave(
                 
 					<div style="float: left; width: 35%;height:100%;">
 						<div style="height: 50%;">
-							<figure class="snip1361">
-							  <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample45.jpg" alt="sample45" />
-							  <figcaption>
-							    <h3>Room Tip</h3>
-							    <p><br>
-							    집을 구하기 전   hollo 회원들과  <br><br>
-							    살펴 보아야 할 주의 사항을 <br><br>
-							    공유해보아요.</p>
-							  </figcaption>
-							  <a href="${pageContext.request.contextPath}/room/roomtip"></a>
-							</figure>
+							
 						</div>
 						<div style="height: 50%;">
 						<figure class="snip1432">
@@ -156,10 +146,27 @@ $(".hover").mouseleave(
 						
 						</div>
 					</div>
-					<div style="float: left;height:100%; width: 65%;">
-					
-					
-					
+					<div style="float: left; width: 20%;height:100%;">
+					</div>
+					<div style="float: left; width: 45%;height:100%;">
+						<div style="height: 60%;">
+							<figure class="snip1361">
+							  <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample45.jpg" alt="sample45" />
+							  <figcaption>
+							    <h3>Room Tip</h3>
+							    <p><br>
+							    집을 구하기 전   hollo 회원들과  <br><br>
+							    살펴 보아야 할 주의 사항을 <br><br>
+							    공유해보아요.</p>
+							  </figcaption>
+							  <a href="${pageContext.request.contextPath}/room/roomtip"></a>
+							</figure>
+						</div>
+						<div style="height: 40%;">
+						
+						
+						
+						</div>
 					</div>
 					
 					
