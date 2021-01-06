@@ -184,8 +184,9 @@ $(".hover").mouseleave(
                     <span>인테리어 추천 게시판</span>
                 </div>
                         
-                <div class="categories-content">추천게시물</div>
-                        
+                <div class="categories-content">추천게시물
+ 
+	             </div>    
             </div>
             
             <p>
