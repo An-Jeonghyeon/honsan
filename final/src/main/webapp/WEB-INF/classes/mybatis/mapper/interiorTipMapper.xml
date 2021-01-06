@@ -138,7 +138,7 @@
 	</select>
 	
 	<select id="listBoard" parameterType="map" resultType="com.sp.app.interiorTip.InteriorTip"> 
-		SELECT num, l.userId, subject, hitCount, TO_CHAR(register_date, 'YYYY-MM-DD') created , category ,userName
+		SELECT num, l.userId, subject, hitCount, content,TO_CHAR(register_date, 'YYYY-MM-DD') created , category ,userName
 		FROM lifeTip l
 		LEFT OUTER JOIN (
         SELECT userId , userName 
