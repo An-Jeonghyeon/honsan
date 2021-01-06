@@ -331,8 +331,7 @@ $(function(){
 	            <td width="300" align="left">
 		            <c:if test="${sessionScope.member.userId==dto.userId || sessionScope.member.userId=='admin'}">
 		               <button type="button" class="btn" onclick="updateBoard('${dto.num}');">수정</button>
-		               <button type="button" class="btn" onclick="deleteBoard('${dto.num}');">삭제</button>
-		               
+		               <button type="button" class="btn" onclick="deleteBoard('${dto.num}');">삭제</button>		               
 		            </c:if>
 	            </td>
 	

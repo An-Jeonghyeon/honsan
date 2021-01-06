@@ -21,6 +21,7 @@ public interface InteriorTipService {
 	public void deleteBoard(int num , String userId) throws Exception;
 	public int dataCount(Map<String, Object> map);
 	public List<InteriorTip> listBoard(Map<String, Object> map);
+	public List<InteriorTip> listAllBoard(Map<String, Object> map);
 	
 
 	//댓글 

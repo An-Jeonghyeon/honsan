@@ -74,6 +74,34 @@ $(function(){
 	});
 });
 
+
+$(function(){
+	$("body").on("click", ".memberwhite", function(){
+		if(! confirm("회원 정지를 해제 하겠습니까 ? ")) {
+		    return false;
+		}
+		var memberIdx=$(this).attr("data-memberIdx");
+		var page=$(this).attr("data-pageNo");
+		
+		var url="${pageContext.request.contextPath}/adm/memberManage/blackList";
+		var query="memberIdx="+memberIdx+"&enabled="+1+"&reason="+"정지였던 기록이 있는 회원";
+		var fn = function(data){
+			var state=data.state;
+			console.log(state);
+			if(state==="true") { // 성공하면 리스트 보이게 
+				listPage();
+			} else if(state==="false") { // 실패시 실패 안내 
+				alert("수정 실패.");
+			}
+			
+			
+		};
+		
+		ajaxJSON(url, "post", query, fn);
+	});
+});
+
+
 function listsearch(){
 	var keyword = $(".keywordPointer").val();
 	var query = "?page="+${page}+"&keyword="+keyword;

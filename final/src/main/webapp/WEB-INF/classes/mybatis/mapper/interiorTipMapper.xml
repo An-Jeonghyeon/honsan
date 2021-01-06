@@ -151,9 +151,24 @@
 			<if test="categorys!=null and categorys!=''">
 				category = #{categorys}
 			</if>
+			<if test="usertd!=null and usertd!=''">
+			 	l.userId = #{usertd}
+			</if>
 		</where>
 		ORDER BY num DESC
 		OFFSET #{offset} ROWS FETCH FIRST #{rows} ROWS ONLY
+	</select>
+	
+	<select id="listAllBoard" parameterType="map" resultType="com.sp.app.interiorTip.InteriorTip"> 
+		SELECT num, l.userId, subject, hitCount, content,TO_CHAR(register_date, 'YYYY-MM-DD') created , category ,userName
+		FROM lifeTip l
+		LEFT OUTER JOIN (
+        SELECT userId , userName 
+        FROM member1
+        ) m ON l.userId = m.userId
+        WHERE l.userId = #{userId}
+        ORDER BY num DESC
+        
 	</select>
 
 </mapper>

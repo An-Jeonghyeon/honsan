@@ -112,13 +112,19 @@ public class MemberManageController {
 	@RequestMapping(value = "blackList")
 	@ResponseBody
 	public Map<String, Object> Blacklist(
-			@RequestParam Map<String, Object> map
+			@RequestParam Map<String, Object> map,
+			@RequestParam int enabled
 			) throws Exception{
 		
 		String state="true";
 		
-		try {			
-			service.updateBlackList(map);
+		try {
+			if(enabled==0) {
+				service.updateBlackList(map);				
+			}
+			if(enabled==1) {
+				service.updateBlackList2(map);	
+			}
 		} catch (Exception e) {
 			state="false";
 		}

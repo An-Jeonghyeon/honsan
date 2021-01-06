@@ -236,7 +236,7 @@
 <script>
 
 $(function(){
-	$(".content_memo").focus(function(){
+	$(".content_memo").on("keyup" ,function(){
 		$(".estimate_list_button").removeAttr("disabled");
 		$(".estimate_list_button").css("background","#35c5f0");
 	});
@@ -250,44 +250,73 @@ $(function(){
 			$(".estimate_list_button").css("background","#35c5f0");
 		});
 		
+
+	});
+		
 		
 		$(".estimate_list_button").click(function(){
 
 						
-			if ($(".estimate_list_button").hasClass("last")) {
-				var f = document.estimate_list;
-				
-				//현재 보이는 곳에서 required클래스를 가지고 있니?
-				str = f.userName.value;
-				str = str.trim();
-				if(!str) {
-					alert("이름을 입력하세요.");
-					f.userName.focus();
-					return;
-				}
-				str = f.tel.value;
-				str = str.trim();
-				if(!str) {
-					alert("전화번호를 입력하세요.");
-					f.tel.focus();
-					return;
-				}	
-			
-				// 마지막 레이아웃에서 가입 버튼을 클릭한 경우
-				//memberOk(); 전송 버튼 만들것 
-				return false; // jQuery에서 return false는 이벤트를 취소하는 것. return 써도 되지만.. 더 이상 클릭 처리하지 않겠다는 의미
-			}
-			
+		
 			if (! $(".estimate_list_controller").last().is(":visible")) { // last() 검색할 때 쓰임 
 				$(".estimate_list_controller:visible").hide().next(".estimate_list_controller").fadeIn(100); //fadeIn은 애니메이션 효과주기 위해 사용. show 써도 됨		
 				$(".estimate_list_button").attr("disabled");
 				$(".estimate_list_button").css("background","#dbdbdb");
-				
+				$(".estimate_list_button").addClass("last");
 			}
-			
-			
+				
 		});
+		
+	
+	
+	$(".estimate_input_name").on("keyup",function(){
+		var $input = $(".estimate_input_name").val();
+		var $tel = $(".estimate_input_tel").val();
+		if($input.length > 2 && $tel.length > 11){
+			$(".estimate_list_button").removeAttr("disabled");
+			$(".estimate_list_button").css("background","#35c5f0");
+		}else{
+			$(".estimate_list_button").attr("disabled");
+			$(".estimate_list_button").css("background","#dbdbdb");
+		}
 	});
+	
+	$(".estimate_input_tel").on("keyup",function(){
+		var $input = $(".estimate_input_name").val();
+		var $tel = $(".estimate_input_tel").val();
+		if($input.length > 2 && $tel.length > 11){
+			$(".estimate_list_button").removeAttr("disabled");
+			$(".estimate_list_button").css("background","#35c5f0");
+		}else{
+			$(".estimate_list_button").attr("disabled");
+			$(".estimate_list_button").css("background","#dbdbdb");
+		}
+	});
+	
+	$(".last").click(function(){
+		var f = document.estimate_list;
+		
+		//현재 보이는 곳에서 required클래스를 가지고 있니?
+		str = f.userName.value;
+		str = str.trim();
+		if(!str) {
+			alert("이름을 입력하세요.");
+			f.userName.focus();
+			return;
+		}
+		str = f.tel.value;
+		str = str.trim();
+		if(!str) {
+			alert("전화번호를 입력하세요.");
+			f.tel.focus();
+			return;
+		}	
+	
+		// 마지막 레이아웃에서 가입 버튼을 클릭한 경우
+		//memberOk(); 전송 버튼 만들것 
+		return false; // jQuery에서 return false는 이벤트를 취소하는 것. return 써도 되지만.. 더 이상 클릭 처리하지 않겠다는 의미
+	});
+	
 });
 
 $(function() {
@@ -297,9 +326,11 @@ $(function() {
 		}
 		
 		$(".estimate_list_controller:visible").hide().prev(".estimate_list_controller").fadeIn(100);
+		$(".estimate_list_button").removeClass("last");
 					
 	});
 });
+
 
 </script>
 
@@ -432,15 +463,15 @@ $(function() {
 	                        </div>
 	                        <h1 class="estimate_list_h1">이름과 연락처를 알려주세요 .</h1>
 	                        <div class="estimate_list_content">
-	                            <input name="userName" class="estimate_list_content_input" type="text" placeholder="이름을 입력해주세요.">
+	                            <input name="userName" class="estimate_list_content_input estimate_input_name" type="text" placeholder="이름을 입력해주세요.">
 	                        </div>
 	                        <div class="estimate_list_content">
-	                            <input name="tel" class="estimate_list_content_input" type="text" placeholder="ex:) 010-1234-5678 ">
+	                            <input name="tel" class="estimate_list_content_input estimate_input_tel" type="text" placeholder="ex:) 010-1234-5678 ">
 	                        </div>
 	
 	                        <div class="estimate_list_buttonbox">
 	                            <button type="button" class="estimate_list_prebutton"> 이전 </button>
-	                            <button type="button" class="estimate_list_button" disabled="disabled"> 완료 </button>
+	                            <button type="button" class="estimate_list_button " disabled="disabled"> 완료 </button>
 	                        </div>
 	                    </div>                    
 	

@@ -172,4 +172,16 @@ public class InteriorTipServiceImpl implements InteriorTipService{
 		
 	}
 
+	@Override
+	public List<InteriorTip> listAllBoard(Map<String, Object> map) {
+		List<InteriorTip> list = null;
+		try {
+			list = dao.selectList("interiorTip.listAllBoard", map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return list;
+	}
+
 }

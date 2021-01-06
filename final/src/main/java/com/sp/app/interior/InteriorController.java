@@ -393,6 +393,7 @@ public class InteriorController {
 		List<Interior> list = service.userlistBoard(map);
 		
 		Map<String, Object> tipMap = new HashMap<>();
+		tipMap.put("usertd", userId);
 		tipMap.put("offset", 0); 
 		tipMap.put("rows", 4);
 		
@@ -441,6 +442,40 @@ public class InteriorController {
 		
 		
 		return ".interior.interiorList";
+	}
+	
+	@RequestMapping(value="tListAll" ,method = RequestMethod.GET)
+	public String memberListAll2(
+			@RequestParam String userId,
+			Model model
+			) throws Exception {
+		
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("userId", userId);
+		map.put("rows" , 0);
+		
+		List<InteriorTip> listTip = itService.listAllBoard(map);
+		
+		List<String> images;
+		for(InteriorTip tto : listTip) {
+			
+			images = myUtil.getImgSrc(tto.getContent());
+			if(images.size()>0) {
+				tto.setSaveFilename(images.get(0));
+			}
+		}
+		
+		Mypage dto = new Mypage();
+		dto.setUserId(userId);
+				
+		dto = mypageSerivce.readProfile(dto);
+		
+		model.addAttribute("dto", dto);
+		model.addAttribute("listTip", listTip);
+		
+		
+		return ".interior.interiorTipList";
 	}
 	
 	@RequestMapping(value="insertInteriorLike", method=RequestMethod.POST) //포스트방식으로 왔을때 
