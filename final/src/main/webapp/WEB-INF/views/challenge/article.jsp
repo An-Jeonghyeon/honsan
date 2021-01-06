@@ -44,14 +44,6 @@ function ajaxJSON(url, method, query, fn) {
 	});
 }
 
-//이미 도전중인거는 도전 안뜨게
-$(function(){
-	var mode = "${mode}";
-	if(mode=="articleNo"){
-		alert("이미 도전중인 챌린지입니다.");
-		//여기서 이제 그 내가 도전하는 리스트로 .....보내기...
-	}
-});
 
 //도전 누르면
 $(function(){
@@ -83,17 +75,32 @@ $(function(){
 
 		var $div = $(this).closest(".chalicontent");
 		var $this = $(this);
+		var $ul = $(this).closest(".chaul");
+		var $btn = $ul.find(".okbtn");
+		
 		var fn = function(data){
 			//성공하면 completion을 밑에 값에 넣기
 			var state=data.state;
 			var completion3= data.completion3;
-			console.log(completion3);
+// 			console.log(completion3);
 
 			if(state==="true") {
 // 				alert("성공..");	
 				$(this).closest("ul").attr("data-completion", data.completion3);
 				$div.css("background", "#dbdbdb")
 				$this.prop("disabled", true)
+				
+				//마지막일자일 경우
+				if(day=="${endDate}") {
+					$btn.prop("disabled", true);
+					updateEnabled(num);
+// 					var url = "${pageContext.request.contextPath}/challenge/updateEnabled";
+// 					var query = "num="+num;
+// 					var fn = function(data){
+// 						//모달
+// 					}
+// 					ajaxJSON(url, "post", query, fn);
+				}
 				
 			} else if(state==="false") {
 				alert("왜실패..");	
@@ -103,33 +110,64 @@ $(function(){
 	});
 });
 
-// $(function(){
-// 	var mode = "${mode}";
-// 	if(mode=="articleGo"){
-// 		var listDay = $(".okbtn").attr("data-day");
-// // 		if("${ch!='0'}"){
-// // 			var checkDay = ${comList};
-// // 		}
-// 		var list = new Array();
-// 		list = ${comList};
+$(function(){
+	var mode = "${mode}";
+	if(mode=="articleGo"){
 		
+		$(".okbtn").attr("disabled", false);
 		
-// 		$(".chaul li").each(function(index1, item1){
-// 	 		var listDay = item1.find(".okbtn").attr("data-day"); //for문 돌린 날짜와
+		console.log("${enabled}");
+		if("${enabled}"==1){
+			$(".okbtn").attr("disabled", true);
+		} 
+		
+		var list = new Array();
+		list = ${comList};
+// 		console.log(list); //나옴
+		
+		$(".chaul li").each(function(index1, item1){
+	 		var listDay = $(this).find(".okbtn").attr("data-day"); //for문 돌린 날짜와
+// 			console.log(listDay);
 	 		
-// 			$div = $(this).find(".chalicontent");
-// 			$btn = $(this).find(".okbtn");
-	 	
-// 			checkDay.each(function(index2, item2){
-// 				if(item1==item2){
-// 					$div.css("background", "#dbdbdb")
-// 					$btn.prop("disabled", true)
-// 				}
-// 			});	
-	 	
-// 		});
-// 	}
-// });
+			var $this=$(this);
+// 			console.log($this);
+			
+			var $div = $this.find(".chalicontent");
+			var $btn = $this.find(".okbtn");
+// 			console.log($this.find(".chalicontent"));
+
+	 		for(var i=0; i<list.length; i++) {
+// 	 				console.log("listDay" +listDay);
+// 	 				console.log(" [i]" +list[i]);
+	 			if(listDay==list[i]) {
+// 	 				console.log(" 이프절");
+// 	 				$div.append("sdfdsf");
+	 				$div.css("background", "#dbdbdb");
+	 				$btn.prop("disabled", true);
+	 			}
+	 		}
+	 		
+		});
+	}
+});
+//완료시
+function updateEnabled(num) {
+	$(function(){
+		var url = "${pageContext.request.contextPath}/challenge/updateEnabled";
+		var query = "num="+num;
+		var fn = function(data){
+			var state = data.state;
+			if(state=="true") {
+				$("#modal").trigger("click");
+// 			alert("축하드립니다!\n 챌린지를 모두 완료하였습니다.\n나의 챌린지 결과 : 총 ${endDate} 중 ${totalCount}일 성공");
+			} else if(state=="false") {
+				alert("왜실패..");	
+			}
+		}
+		ajaxJSON(url, "post", query, fn);
+
+	});
+}
 </script>
 
 <section>
@@ -165,6 +203,15 @@ $(function(){
 
         </div>
         <div class="articleChallenge">
+                <input type="checkbox" id="modal" class="hidden">
+			<div class="box_modal">
+			  <label for="modal" class="closer">x</label>
+			  <div class="text">
+			    <h3>✔챌린지 완료</h3>
+			    <p><b>축하드립니다! 챌린지를 모두 완료하였습니다.</b></p>
+			    <p><b>나의 챌린지 결과 : 총 ${endDate}일 중 ${totalCount}일 성공</b></p>
+			  </div>
+			</div>
             <div class="dalbox">
                 <ul class="chaul" data-completion="${completion1}">
                 	<c:forEach var="dto2" items="${contentList}" >
@@ -205,6 +252,19 @@ $(function(){
 	                <button class="h-articlelistButton" onclick="javascript:location.href='${pageContext.request.contextPath}/challenge/myChallenge';">나의 챌린지리스트</button>
                 </c:if>
         </div>
+        
+        <!--모달  -->
+<!--         <input type="checkbox" id="modal" class="hidden"> -->
+<!-- 			<div class="box_modal"> -->
+<!-- 			  <label for="modal" class="closer">x</label> -->
+<!-- 			  <div class="text"> -->
+<!-- 			    <h3>챌린지를 완료하였습니다!!</h3> -->
+<!-- 			    <p>축하드립니다! 챌린지를 모두 완료하였습니다.</p> -->
+<%-- 			    <p>나의 챌린지 결과 : 총 ${endDate} 중 ${totalCount}일 성공</p> --%>
+<!-- 			  </div> -->
+<!-- 			</div> -->
 
     </div>
+    
+    
 </section>

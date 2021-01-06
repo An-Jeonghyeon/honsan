@@ -1,0 +1,221 @@
+@charset "UTF-8";
+
+.categories-health{
+  width: 98%;
+  height: 97%;
+  display: flex;
+  flex-wrap: wrap;
+  margin:0 auto 0 auto;
+  transition: 1s ;
+}
+
+.categories-health:hover {
+  width:100%;
+  height:100%;   
+}
+.categories-health:hover .categories-health-img1-box{
+/*    width:520px; */
+/*    height:416px; */
+  display:block;
+  position:relative;
+  top:10rem;
+  left:30rem;
+}
+
+.categories-health-img1{
+  width: 70%;
+   height: 100%;
+   background-image:url("../../images/health/gonh.jpg");
+/*    background-image:url("images/gonh.jpg"); */
+   background-repeat: no-repeat;
+   background-size: cover;
+/*     background-position: center -300px; */
+  background-position : center;
+/*    margin: 0 auto; */
+   box-sizing:border-box;
+   
+}
+
+.categories-health-img1-box{
+  box-sizing:border-box;
+/*   background-color:cornsilk; */
+   padding:2.5rem;
+  width:500px;
+  height:400px;
+  position:relative;
+  top : 7rem;
+  left: 33rem;
+  transition:1s;
+/*    display:none; */
+   box-shadow: 2px 2px 10px gray;
+   background-image:url("../../images/health/haruch.png");
+   background-repeat: no-repeat;
+   background-size: cover;
+   background-position: center right;
+}
+
+.categories-health-img1-category{
+/*     background-color:aquamarine; */
+   margin-bottom:2rem;
+   font-size:1.4rem;
+}
+
+.categories-health-img1-category > span {
+  background-color:#ff967a;
+  border:3px solid #1f1f1f;
+  border-radius:20px 20px;
+  padding:0.2rem 0.5rem;
+   box-shadow:2px 2px gray;
+   font-weight:700;
+   text-shadow:1px 2px white;
+
+}
+
+.categories-health-img1-info {
+/*    background-color:teal; */
+}
+
+.categories-health-img1-info > h3 {
+   font-size:2.5rem;
+   margin-bottom:2rem;
+}
+
+.categories-health-img1-info > span {
+  font-size:1.5rem;
+}
+
+.categories-health-img1-more {
+/*    background-color:peachpuff; */
+  margin-top:1.7rem;
+  font-size:1.3rem;
+  text-align:right;
+  font-weight:700;
+}
+
+.categories-health-img1-more > a {
+  text-decoration: none;
+}
+.categories-health-img1-more > a:link {
+  text-decoration: none;
+}
+.categories-health-img1-more > a:hover {
+  text-decoration: none;
+}
+
+.categories-health-img1-more > span {
+  background-color:white;
+  border:3px solid gray;
+  border-radius:20px 20px;
+  padding:0.2rem 0.5rem;   
+  transition:0.4s ;
+}
+
+.categories-health-img1-more > span:hover {
+  background-color:white;
+  border:3px solid #ff6a37;
+  border-radius:20px 20px;
+  padding:0.2rem 0.5rem;   
+  box-shadow:2px 2px gray;
+}
+
+.categories-health-inside {
+  width:30%;
+  height:100%;
+  background-color:yellow;
+  box-sizing:border-box;
+}
+
+.categories-health-img2{
+  width: 100%;
+  height: 50%;
+   background-image:url("../../images/health/young.png");
+   background-repeat: no-repeat;
+   background-size: cover;
+/*     background-position: center -300px; */
+  background-position : center;
+  margin: 0 auto;
+  box-sizing:border-box;
+}
+
+.categories-health-words {
+  width: 100%;
+  height: 50%;
+  background-color: #e0ffffed;
+  box-sizing:border-box;
+  padding:2.5rem;
+  background-image:url("../../images/health/ddd.jpg");
+  background-repeat: no-repeat;
+   background-size: cover;
+  background-position : center;
+}
+
+.categories-health-words-box {
+/*     background-color:midnightblue; */
+   width:24rem;
+
+}
+
+.categories-health-img1-info2 {
+/*    background-color:teal; */
+  width:23rem;
+}
+
+.categories-health-img1-info2 > h3 {
+   font-size:2.0rem;
+   margin-bottom:0.8rem;
+}
+
+.categories-health-img1-info2 > span {
+  font-size:1.3rem;
+}
+
+/* 버튼*/
+.button-1{
+  height:50px;
+  border:2px solid #34495e;
+ 
+  text-align:center;
+  cursor:pointer;
+  position:relative;
+  box-sizing:border-box;
+  overflow:hidden;
+  margin:0 0 40px 0;
+}
+.button-1 a{
+  font-family:arial;
+  font-size:16px;
+  color:#34495e;
+  text-decoration:none;
+  line-height:50px;
+  transition:all .5s ease;
+  z-index:2;
+  font-weight: 700;
+  position:relative;
+}
+.eff-1{
+  width:140px;
+  height:50px;
+  top:-2px;
+  right:-140px;
+  background:#34495e;
+  position:absolute;
+  transition:all .5s ease;
+  z-index:1;
+}
+.button-1:hover .eff-1{
+  right:0;
+}
+.button-1:hover a{
+  color:#fff;
+}
+.llleft {
+  width:140px;
+  float: right;
+  top: 250px;
+}
+.rrright {
+  width:140px;
+  float: left;
+  top: 240px;
+  margin-left: 30px;
+}

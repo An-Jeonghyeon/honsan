@@ -21,4 +21,6 @@ public interface ChallengeService {
 	public List<Challenge> listMyChallenge(Map<String, Object> map);
 	public int myListDataCount(Map<String, Object> map);
 	public void deleteMyChallenge(Map<String, Object> map);
+	public void updateEnabled(Map<String, Object> map) throws Exception; //토탈카운트 증가
+
 }

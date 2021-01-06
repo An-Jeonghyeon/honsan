@@ -327,7 +327,7 @@ $(function(){
 				<span>${dto.nation_nm!=null? dto.nation_nm : "기타"}</span>
 			</div>
 			<div class="recipe_recipe_category article_category">
-				<span>${dto.ty_code!=null? dto.ty_code : "기타"}</span>
+				<span>${dto.ty_nm!=null? dto.ty_nm : "기타"}</span>
 			</div>
 		</div>
 
@@ -349,10 +349,21 @@ $(function(){
 	</div>
 
 	<div class="recipe_ContentBody">
-		<!-- 
-		
-		 -->
-		<div id="player"></div>
+		<div class="recipe_ingre">
+			<div>주재료 :
+				<c:forEach var="vo1" items="${listIngre}"> 
+					<c:if test="${vo1.irdnt_ty_nm}=='주재료'? '${vo1.irdnt_nm} ': ''"></c:if>				
+					${vo1.irdnt_ty_nm}
+				</c:forEach>
+			</div>
+			<div>부재료 :
+			
+			</div>
+			<div>양념 :
+			
+			</div>
+		</div>
+
 	</div>
 	<div class="recipe_LikeBox">
 		<span class="recipe_LikeHeart">

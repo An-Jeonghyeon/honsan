@@ -9,6 +9,10 @@ public interface RecipeService {
 	public Recipe readRecipe(int num);
 	public Recipe readRecipeIngre(int num);
 	public Recipe readRecipeProcess(int num);
+	
+	public List<Recipe> listRecipeIngre(int num);
+	public List<Recipe> listRecipeProcess(int num);
+	
 	public Recipe preReadRecipe(Map<String, Object> map);
 	public Recipe nextReadRecipe(Map<String, Object> map);
 	public void updateRecipe(Recipe dto) throws Exception;

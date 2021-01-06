@@ -219,46 +219,57 @@
     cursor: pointer;
 }
 .h-listButton {
-    float: right;
-    width: 70px;
-    height: 30px;
-    border:1px solid #ccc;
-    cursor: pointer;
+    width: 100px;
+    height: 35px;
+    margin-right: 80px;
     border-radius: 5px;
-    float: right;
-    transition: 0.1s;
-    color: rgb(136, 136, 136);
+    border: 1px solid black;
     background: white;
-    margin-top: 10px;
-    margin-right:80px;
+    outline: none;
+    float: right;
+    font-weight: 800;
+    box-shadow: 5px 5px 5px 2px rgba(56, 55, 55, 0.425);
+    margin-top: 8px;
 }
 .h-adminButton {
-    float: right;
-    width: 110px;
-    height: 30px;
-    border:1px solid #ccc;
-    cursor: pointer;
-    border-radius: 5px;
-    float: right;
-    transition: 0.1s;
-    color: rgb(136, 136, 136);
-    background: white;
-    margin-top: 10px;
+    width: 100px;
+    height: 35px;
     margin-right: 8px;
+    border-radius: 5px;
+    border: 1px solid black;
+    background: white;
+    outline: none;
+    float: right;
+    font-weight: 800;
+    box-shadow: 5px 5px 5px 2px rgba(56, 55, 55, 0.425);
+    margin-top: 8px;
 }
 .h-articlelistButton {
-    float: right;
-    width: 150px;
-    height: 30px;
-    border:1px solid #ccc;
-    cursor: pointer;
-    border-radius: 5px;
-    float: right;
-    transition: 0.1s;
-    color: rgb(136, 136, 136);
-    background: white;
-    margin-top: 10px;
+    width: 130px;
+    height: 35px;
     margin-right: 8px;
+    border-radius: 5px;
+    border: 1px solid black;
+    background: white;
+    outline: none;
+    font-weight: 800;
+    float: right;
+    box-shadow: 5px 5px 5px 2px rgba(56, 55, 55, 0.425);
+    margin-top: 8px;
+}
+
+
+.h-adminButton:active {
+    transform: scale(0.98);
+    box-shadow: none;
+}
+.h-articlelistButton:active {
+    transform: scale(0.98);
+    box-shadow: none;
+}
+.h-listButton:active {
+    transform: scale(0.98);
+    box-shadow: none;
 }
 /* 완료버튼 */
 .okbtn {
@@ -277,4 +288,86 @@
 .okbtn:active {
     transform: scale(0.98);
     box-shadow: none;
+}
+/*모달*/
+.hidden {
+  display:none;
+  visibility:hidden;
+}
+
+
+/* 버튼으로 사용할 라벨 디자인 */
+.button {
+  font-size:19px;
+  font-weight:600;
+  vertical-align:middle;
+  cursor:pointer;
+}
+
+/* 모달 윈도우 디자인 */
+.box_modal {
+  position:fixed;
+  display:block;
+  width:500px;
+  height:300px;
+  top:45%;
+  left:45%;
+  margin-top:-75px;
+  margin-left:-150px;
+  background:#f3c04ac7;
+  border:1px solid #386980;
+  overflow:hidden;
+  /* 아래 부분은 애니메이션 효과를 위한 부분 */
+  visibility: collapse;
+  opacity: 0.6;
+  filter: alpha(opacity=60);
+  -webkit-transition: all .2s ease;
+  transition: all .2s ease;
+  -webkit-transform: scale(0, 0);
+  -ms-transform: scale(0, 0);
+  transform: scale(0, 0);
+  box-sizing: border-box;
+}
+.box_modal:hover {
+  opacity: 1;
+  filter: alpha(opacity=100);
+}
+
+/* 닫기 버튼으로 사용할 라벨 */
+.closer {
+  position:absolute;
+  width:30px;
+  height:30px;
+  top:0;
+  right:0;
+  background:#eee;
+  border-left:1px solid #386980;
+  border-bottom:1px solid #386980;
+  text-align:center;
+  line-height:26px;
+  font-size:16x;
+  cursor:pointer;
+}
+.text {
+  display:inline-block;
+  text-align: center;
+    width: 100%;
+    height: 100%;
+    padding-top: 100px;
+}
+.text h3 {
+  font-size:25px;
+  margin:0;
+  padding-bottom: 20px;
+}
+.text p {
+  font-size:15px;
+}
+
+/* 모달 윈도우가 팝업되는 코어 소스 */
+input#modal[type=checkbox]:checked ~ .box_modal {
+  visibility: visible;
+  -webkit-transform: scale(1, 1);
+  -ms-transform: scale(1, 1);
+  transform: scale(1, 1);
 }

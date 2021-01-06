@@ -233,7 +233,7 @@ public class ChallengeController {
 			) throws Exception {
 		
 		SessionInfo info=(SessionInfo)session.getAttribute("member");
-	
+		String userId = info.getUserId();
 		Challenge dto1 = service.readChallenge(num);
 		if(dto1==null) {
 			return "redirect:/challenge/list";
@@ -246,7 +246,7 @@ public class ChallengeController {
 			e.printStackTrace();
 			model.addAttribute("mode", "articleNo"); //인서트 실패시(이유 : 이미 도전하기 누른거)
 			model.addAttribute("num", num); //인서트 실패시(이유 : 이미 도전하기 누른거)
-			return ""; //여기서 그냥 바로 리스트로보내기..
+			return "redirect:/challenge/myChallenge?userId="+userId; //여기서 그냥 바로 리스트로보내기..
 		}
 		
 		return "redirect:/challenge/articleGo?num="+dto.getNum();
@@ -265,6 +265,8 @@ public class ChallengeController {
 		if(dto==null) {
 			return "redirect:/challenge/list?";
 		}
+		
+		String endDate=dto.getChallengePeriod();
 		
         dto.setContent(dto.getContent().replaceAll("\n", "<br>"));
 
@@ -293,6 +295,8 @@ public class ChallengeController {
 		map.put("userId", info.getUserId());
 		map.put("num", num);
 		Challenge dto2 = service.readUserChallengeOne(map);
+		int enabled = dto2.getEnabled();
+		int totalCount = dto2.getTotalCount();
 		
 		System.out.println("가져와지니..?"+ dto2.getCompletion()); //넴
 		String ch=dto2.getCompletion();
@@ -314,6 +318,9 @@ public class ChallengeController {
 		model.addAttribute("mode", "articleGo"); //article인거 알려주기
 		model.addAttribute("dto2", dto2); //이건 개별꺼
 		model.addAttribute("completion1", ch); //이건 개별꺼
+		model.addAttribute("endDate", endDate); //며칠짜리인지
+		model.addAttribute("enabled", enabled); //진행상황
+		model.addAttribute("totalCount", totalCount); //나의 카운트
 		
 		return ".challenge.article";
 	}
@@ -453,6 +460,33 @@ public class ChallengeController {
 		return "redirect:/challenge/myChallenge";
 	}
 
-	
+	@RequestMapping(value = "updateEnabled", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> updateEnabled(
+			Challenge dto,
+			HttpSession session
+			) throws Exception {
+		
+		SessionInfo info=(SessionInfo)session.getAttribute("member");
+		
+		String state="true";
+
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("userId", info.getUserId());
+		map.put("num", dto.getNum());
+		try {
+			service.updateEnabled(map);
+		} catch (Exception e) {
+			e.printStackTrace();
+			state="false";
+		}
+		
+		Map<String, Object> model = new HashMap<>();
+		model.put("state", state);
+		
+		return model;
+		
+	}
+		
 	
 }

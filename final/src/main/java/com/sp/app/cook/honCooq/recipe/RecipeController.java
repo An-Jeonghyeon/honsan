@@ -42,6 +42,8 @@ public class RecipeController {
 			Model model
 			) throws Exception {
 		
+		System.out.println( "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"+keyword);
+		
 		SessionInfo info = (SessionInfo)session.getAttribute("member");
 		
 		int rows = 12;	// 한 화면에 보여주는 게시물 수
@@ -130,6 +132,13 @@ public class RecipeController {
 		if(dto==null) {
 			return "redirect:/cook/honCooq/main?"+query;
 		}
+			
+		
+		// 재료 리스트
+		List<Recipe> listIngre = service.listRecipeIngre(num);
+		// 과정 리스트
+		List<Recipe> listProcess = service.listRecipeProcess(num);
+		
 		
 		// 스마트 에디터인 경우 주석 처리
 //      dto.setContent(dto.getContent().replaceAll("\n", "<br>"));
@@ -138,7 +147,7 @@ public class RecipeController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("condition", condition);
 		map.put("keyword", keyword);
-		map.put("num", num);
+		map.put("recipe_id", num);
 
 //		Recipe preReadDto = service.preReadRecipe(map);
 //		Recipe nextReadDto = service.nextReadRecipe(map);
@@ -150,7 +159,7 @@ public class RecipeController {
 		// 좋아요 여부 가져오기
 		SessionInfo info=(SessionInfo)session.getAttribute("member");		
 		Map<String, Object> paramMap=new HashMap<>();
-		paramMap.put("num", num);
+		paramMap.put("recipe_id", num);
 		paramMap.put("userId", info.getUserId());
 		
 		int readRecipeLike=0;
@@ -164,6 +173,8 @@ public class RecipeController {
 		model.addAttribute("userLike", readRecipeLike);		
 		model.addAttribute("page", page);
 		model.addAttribute("query", query);		
+		model.addAttribute("listIngre", listIngre);
+		model.addAttribute("listProcess", listProcess);
 		
 		return ".cook.honCooq.recipe.article";
 	}
@@ -180,7 +191,7 @@ public class RecipeController {
 		SessionInfo info=(SessionInfo)session.getAttribute("member");
 		
 		Map<String, Object> paramMap=new HashMap<>();
-		paramMap.put("num", num);
+		paramMap.put("recipe_id", num);
 		paramMap.put("userId", info.getUserId());
 		
 		try {
@@ -211,7 +222,7 @@ public class RecipeController {
 		SessionInfo info=(SessionInfo)session.getAttribute("member");
 		
 		Map<String, Object> paramMap=new HashMap<>();
-		paramMap.put("num", num);
+		paramMap.put("recipe_id", num);
 		paramMap.put("userId", info.getUserId());
 		
 		try {
@@ -226,6 +237,7 @@ public class RecipeController {
 		Map<String, Object> model=new HashMap<>();
 		model.put("state", state);
 		model.put("recipeLikeCount", recipeLikeCount);
+		
 		
 		return model;
 	}		
@@ -243,7 +255,7 @@ public class RecipeController {
 		int dataCount=0;
 		
 		Map<String, Object> map=new HashMap<>();
-		map.put("num", num);
+		map.put("recipe_id", num);
 		
 		dataCount=service.replyCount(map);
 		total_page = myUtil.pageCount(rows, dataCount);
