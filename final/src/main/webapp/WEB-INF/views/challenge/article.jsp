@@ -82,6 +82,7 @@ $(function(){
 			//성공하면 completion을 밑에 값에 넣기
 			var state=data.state;
 			var completion3= data.completion3;
+			var totall=data.totalCount;
 // 			console.log(completion3);
 
 			if(state==="true") {
@@ -93,6 +94,7 @@ $(function(){
 				//마지막일자일 경우
 				if(day=="${endDate}") {
 					$btn.prop("disabled", true);
+					$(".mytotal").text(totall);
 					updateEnabled(num);
 // 					var url = "${pageContext.request.contextPath}/challenge/updateEnabled";
 // 					var query = "num="+num;
@@ -158,6 +160,7 @@ function updateEnabled(num) {
 		var fn = function(data){
 			var state = data.state;
 			if(state=="true") {
+				
 				$("#modal").trigger("click");
 // 			alert("축하드립니다!\n 챌린지를 모두 완료하였습니다.\n나의 챌린지 결과 : 총 ${endDate} 중 ${totalCount}일 성공");
 			} else if(state=="false") {
@@ -209,7 +212,7 @@ function updateEnabled(num) {
 			  <div class="text">
 			    <h3>✔챌린지 완료</h3>
 			    <p><b>축하드립니다! 챌린지를 모두 완료하였습니다.</b></p>
-			    <p><b>나의 챌린지 결과 : 총 ${endDate}일 중 ${totalCount}일 성공</b></p>
+			    <p><b>나의 챌린지 결과 : 총  ${endDate}일 중 <span class="mytotal"></span>일 성공</b></p>
 			  </div>
 			</div>
             <div class="dalbox">
