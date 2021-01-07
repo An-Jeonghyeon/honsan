@@ -107,8 +107,9 @@ nav{
     width: 107px;
     text-align: right;
     line-height: 75px;
-    color: rgb(255, 255, 255);
-    text-shadow: 1px 1px 1px rgb(13, 43, 10);
+/*     color: rgb(255, 255, 255); */
+    color:#725d84;
+    text-shadow: 1px 1px 1px rgb(164 161 141);
     margin: 0 auto;
     /* TestBackground */
     /* background-color: rgb(194, 192, 190);  */

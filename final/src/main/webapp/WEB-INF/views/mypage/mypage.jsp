@@ -157,7 +157,7 @@
 								<img class="userImage" alt="user"
 								src="${pageContext.request.contextPath}/resources/images/user.png">
 								 -->
-							<img class="userImage" alt="user"
+							<img class="userImage btn btn-default" alt="user"
 								src="${pageContext.request.contextPath}/uploads/profile/${dto.profileImg}"
 								onerror="this.src='${pageContext.request.contextPath}/resources/images/mypage/user.png'">
 						</div>
@@ -224,7 +224,7 @@
 							<div class="hexagon">
 								<!-- 아이콘 색 : #686868 -->
 								<span><img class="items"
-									src="${pageContext.request.contextPath}/resources/images/myCookingDiary.png"></span>
+									src="${pageContext.request.contextPath}/resources/images/fridge.png"></span>
 							</div>
 							<div class="hexagon-title">
 								<span>우리집 냉장고</span>
@@ -297,7 +297,7 @@
 							onclick="location.href='${pageContext.request.contextPath}/';">
 							<div class="hexagon">
 								<span><img class="items"
-									src="${pageContext.request.contextPath}/resources/images/meditation.png"></span>
+									src="${pageContext.request.contextPath}/resources/images/likelist2.png"></span>
 							</div>
 							<div class="hexagon-title">
 								<span>찜 목록</span>
