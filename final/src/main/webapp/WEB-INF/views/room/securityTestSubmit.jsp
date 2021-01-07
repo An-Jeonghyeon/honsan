@@ -122,7 +122,7 @@ $(document).ready(function() {
 			<div>
 				<div class="section">
 				  <div class="section__item">
-				    <a href="#0" class="r-link text-flat text-flat_v9">
+				    <a href="${pageContext.request.contextPath }/room/securityService" class="r-link text-flat text-flat_v9">
 				      <span class="text-flat__label">보안 서비스 살펴보기</span>
 				    </a>
 				  </div>

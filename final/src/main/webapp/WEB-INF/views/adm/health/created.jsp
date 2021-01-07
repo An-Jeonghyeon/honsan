@@ -162,7 +162,9 @@ $(function(){
 	  	
 	  	<div class="header"> 
            <h2 class="page-header jyheader">
-               	[오늘운동 챌린지] 등록
+               	[오늘운동 챌린지] 
+               	<c:if test="${mode=='created'}">등록</c:if>
+               	<c:if test="${mode=='update'}">수정</c:if>
            </h2>
    		</div>
    		
