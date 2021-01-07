@@ -21,6 +21,7 @@ public interface InteriorTipService {
 	public void deleteBoard(int num , String userId) throws Exception;
 	public int dataCount(Map<String, Object> map);
 	public List<InteriorTip> listBoard(Map<String, Object> map);
+	public List<InteriorTip> listAllBoard(Map<String, Object> map);
 	
 
 	//댓글 
@@ -28,4 +29,11 @@ public interface InteriorTipService {
 	public List<Reply> listReply(Map<String, Object> map);
 	public int replyCount(Map<String, Object> map) ;
 	public void deleteReply(Map<String, Object> map) throws Exception;
+	
+	//좋아요 
+	
+	public void insertInteriorTipLike(Map<String, Object> map) throws Exception;
+	public int interiorTipLikeCount(int num);
+	public int readInteriorTipLike(Map<String, Object> map) throws Exception;
+	public void deleteInteriorTipLike(Map<String, Object> map) throws Exception;
 }

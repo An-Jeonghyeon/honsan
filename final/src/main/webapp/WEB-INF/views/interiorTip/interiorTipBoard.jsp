@@ -51,15 +51,15 @@
 	height: 36px;
 	width : 70px;
 	border: none;
-	background: #35c5f0;
-	color: white;
+	border : 1px solid #35c5f0;
+	color: black;
 	border-radius: 4px;
 	text-align: center;
 }
 
 .fa-thumbs-up {
 	font-size: 20px;
-	color: white;
+	color: black;
 }
 
 .btn{
@@ -266,6 +266,56 @@ $(function(){
 	});
 });
 
+/*  좋아요  추가 취소   */
+$(function(){
+	if($("#interiorTipLikeCount").attr("data-userLike")=="1") { // 데이터값이 1이면 
+		$("#thumbs").removeClass("far").addClass("fas"); // 클래스명 삭제 , 삽입으로 변경
+		$(".btnSendBoardLike").css("background","#35c5f0"); // 백그라운드 변경 
+		$(".btnSendBoardLike").css("border","1px solid #35c5f0");
+	}
+
+
+	$(".btnSendBoardLike").click(function(){
+		var userLike=$("#interiorTipLikeCount").attr("data-userLike"); // 스팬 데이터값이 0이면 
+		if(userLike=="0") {
+			var url="${pageContext.request.contextPath}/interiorTip/insertInteriorTipLike";
+			var num="${dto.num}"; 
+			// var query={num:num}; 이렇게 써도 아래와 같은 의미
+			var query="num="+num; 
+			// ajoxjson 좋아요 +1 DB작업 처리 후 결과를 state 에 반환 
+			var fn = function(data){
+				var state=data.state;
+				if(state==="true") {
+					$("#interiorTipLikeCount").attr("data-userLike", "1"); //삽입후 이미지변경을위해 1로 변경
+					$("#thumbs").removeClass("far").addClass("fas"); // 1로변경되었으니 이미지 변경 
+					$(".btnSendBoardLike").css("background","#35c5f0"); // 백그라운드 변경 
+					
+				} else if(state==="false") {					
+					alert("좋아요 추가에 문제가 발생했습니다.");
+				}
+			};		
+		} else {			//이미 좋아요가 눌려져있을경우 , 데이터가 1인경우 
+			var url="${pageContext.request.contextPath}/interiorTip/deleteInteriorTipLike";
+			var num="${dto.num}";
+			var query="num="+num;
+			//	좋아요 -1 DB작업 처리 후 결과를 state 에 반환 
+			var fn = function(data){
+				var state=data.state;
+				if(state==="true") {
+					$("#interiorTipLikeCount").attr("data-userLike", "0"); //취소 후 라서 1을 0으로 변경
+					$("#thumbs").removeClass("fas").addClass("far"); // 이미지도 변경 
+					$(".btnSendBoardLike").css("background","#EFEFEF"); // 백그라운드 변경 
+	
+				} else if(state==="false") {
+					alert("좋아요 삭제에 문제가 발생했습니다.");
+				}
+			};								
+		}	
+		ajaxJSON(url, "post", query, fn);   
+	});
+	
+});
+
 </script>
 
 
@@ -296,7 +346,7 @@ $(function(){
 	               	<div class="interiorTipBoard_created"> ${dto.created}</div>
 	            </td>
 	            <td height="100%" width="50%" align="right" style="padding-right: 5px;">
-	               	<button type="button" class="btn btnSendBoardLike" title="좋아요"><i class="far fa-thumbs-up"></i>&nbsp;&nbsp;<span id="boardLikeCount"></span></button> | &nbsp;&nbsp;조회수 ${dto.hitCount}
+	               	<button type="button" class="btnSendBoardLike" title="좋아요"><i id="thumbs" class="far fa-thumbs-up"></i>&nbsp;&nbsp;<span id="interiorTipLikeCount" data-userLike="${userLike}">${interiorTipLikecount}</span></button> | &nbsp;&nbsp;조회수 ${dto.hitCount}
 	            </td>
 	         </tr>
 	         <tr height="75px"></tr>
@@ -331,8 +381,7 @@ $(function(){
 	            <td width="300" align="left">
 		            <c:if test="${sessionScope.member.userId==dto.userId || sessionScope.member.userId=='admin'}">
 		               <button type="button" class="btn" onclick="updateBoard('${dto.num}');">수정</button>
-		               <button type="button" class="btn" onclick="deleteBoard('${dto.num}');">삭제</button>
-		               
+		               <button type="button" class="btn" onclick="deleteBoard('${dto.num}');">삭제</button>		               
 		            </c:if>
 	            </td>
 	

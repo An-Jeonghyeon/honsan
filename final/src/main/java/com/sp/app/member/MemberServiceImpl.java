@@ -213,6 +213,17 @@ public class MemberServiceImpl implements MemberService {
 		}
 		
 	}
+
+	@Override
+	public void updateBlackList2(Map<String, Object> map) throws Exception {
+		try {
+			dao.updateData("member.blacklistUpdate2", map);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+		
+	}
 	
 
 	

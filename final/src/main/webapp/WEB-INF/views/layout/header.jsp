@@ -76,7 +76,7 @@
                       <li> <a href="${pageContext.request.contextPath}/cook/honCooq/recipe">HONCOOQ</a></li>
                       <li> <a href="${pageContext.request.contextPath}">우리집 냉장고</a></li>
                       <li> <a href="${pageContext.request.contextPath}">우리동네 마트</a></li>
-                      <li> <a href="${pageContext.request.contextPath}">나만의 요리 후기</a></li>
+<%--                       <li> <a href="${pageContext.request.contextPath}">나만의 요리 후기</a></li> --%>
                   </ul>
                   <ul class="menuObject">
                       <li> <a href="${pageContext.request.contextPath}/room/roomlist">방구할래?</a></li>
@@ -87,14 +87,12 @@
                   <ul class="menuObject">
                       <li> <a href="${pageContext.request.contextPath}/interior/main">내집자랑</a></li>
                       <li> <a href="${pageContext.request.contextPath}/interiorTip/list">생활 팁</a></li>
-                      <li> <a href="${pageContext.request.contextPath}/itEstimate/main">견적 받아보깅</a></li>
-                      <li> <a href="${pageContext.request.contextPath}">생활 팁</a></li>
-                  </ul>
+                      <li> <a href="${pageContext.request.contextPath}/itEstimate/main">견적 받아보기</a></li>
+                 </ul>
                   <ul class="menuObject">
                       <li> <a href="${pageContext.request.contextPath}/supplement/list">영양제 뭐 먹을까?</a></li>
                       <li> <a href="${pageContext.request.contextPath}/challenge/list">하루운동 챌린지</a></li>
                       <li> <a href="${pageContext.request.contextPath}/healthStory/list">오늘 운동을 보여줘</a></li>
-                      <li> <a href="${pageContext.request.contextPath}">건강 지킴이</a></li>
                   </ul>
               </div>
               </div>

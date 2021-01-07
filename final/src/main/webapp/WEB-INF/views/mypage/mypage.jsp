@@ -258,7 +258,7 @@
 					</div>
 					<div class="mypage-content">
 						<div class="mypage-content-item"
-							onclick="location.href='${pageContext.request.contextPath}/';">
+							onclick="location.href='${pageContext.request.contextPath}/room/roomChecklist';">
 							<div class="hexagon">
 								<span><img class="items"
 									src="${pageContext.request.contextPath}/resources/images/homeCheck.png"></span>
@@ -282,7 +282,7 @@
 					</div>
 					<div class="mypage-content">
 						<div class="mypage-content-item"
-							onclick="location.href='${pageContext.request.contextPath}/';">
+							onclick="location.href='${pageContext.request.contextPath}/myinterior/mListAll';">
 							<div class="hexagon">
 								<span><img class="items"
 									src="${pageContext.request.contextPath}/resources/images/living-room.png"></span>

@@ -156,4 +156,8 @@
 		update member1 set enabled=#{enabled}  , reason=#{reason} , black_date=SYSDATE WHERE memberIdx = #{memberIdx}
 	</update>
    
+   	<update id="blacklistUpdate2" parameterType="map" >
+		update member1 set enabled=#{enabled}  , reason='' , black_date= null WHERE memberIdx = #{memberIdx}
+	</update>
+   
 </mapper>

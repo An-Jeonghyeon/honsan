@@ -50,7 +50,7 @@
                 <div class="userPage_listbox">
                     <div class="userPage_listbox_subject">
                         <h3>TIP <span style="color: #35c5f0;">58</span></h3>
-                        <a class="userPage_listbox_send" href="#">전채보기</a>
+                        <a class="userPage_listbox_send" href="${pageContext.request.contextPath}/interior/tListAll?userId=${userId}">전채보기</a>
                     </div>
                     <div class="userPage_listbox_items">
                         <!-- 반복문은 여기서 돌리시오  -->

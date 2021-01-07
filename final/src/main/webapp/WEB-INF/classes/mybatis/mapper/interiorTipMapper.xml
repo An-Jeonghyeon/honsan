@@ -151,9 +151,50 @@
 			<if test="categorys!=null and categorys!=''">
 				category = #{categorys}
 			</if>
+			<if test="usertd!=null and usertd!=''">
+			 	l.userId = #{usertd}
+			</if>
 		</where>
 		ORDER BY num DESC
 		OFFSET #{offset} ROWS FETCH FIRST #{rows} ROWS ONLY
 	</select>
+	
+	<select id="listAllBoard" parameterType="map" resultType="com.sp.app.interiorTip.InteriorTip"> 
+		SELECT num, l.userId, subject, hitCount, content,TO_CHAR(register_date, 'YYYY-MM-DD') created , category ,userName
+		FROM lifeTip l
+		LEFT OUTER JOIN (
+        SELECT userId , userName 
+        FROM member1
+        ) m ON l.userId = m.userId
+        WHERE l.userId = #{userId}
+        ORDER BY num DESC
+        
+	</select>
+	
+	
+	
+	
+	
+	
+		<!-- 좋아요 추가 -->
+	<insert id="insertInteriorTipLike" parameterType="map">
+		INSERT INTO lifeTip_like(num, userId) VALUES (#{num}, #{userId})
+	</insert>
+      
+	<!-- 게시글 좋아요 개수 -->
+	<select id="interiorTipLikeCount" parameterType="Integer" resultType="Integer">
+		SELECT COUNT(*) FROM lifeTip_like WHERE num=#{num}
+	</select>
+
+	<!-- 유저당 게시글 좋아요 여부 확인 -->
+	<select id="readInteriorLikeTip" parameterType="map" resultType="Integer">
+		SELECT NVL(COUNT(*),0) FROM lifeTip_like WHERE num=#{num} AND userId=#{userId}
+	</select>
+	
+	<!-- 게시글 좋아요 삭제 -->
+	<delete id="deleteInteriorTipLike" parameterType="map">
+		DELETE FROM lifeTip_like WHERE num=#{num} AND userId=#{userId}
+	</delete>
+	
 
 </mapper>
