@@ -170,5 +170,31 @@
         ORDER BY num DESC
         
 	</select>
+	
+	
+	
+	
+	
+	
+		<!-- 좋아요 추가 -->
+	<insert id="insertInteriorTipLike" parameterType="map">
+		INSERT INTO lifeTip_like(num, userId) VALUES (#{num}, #{userId})
+	</insert>
+      
+	<!-- 게시글 좋아요 개수 -->
+	<select id="interiorTipLikeCount" parameterType="Integer" resultType="Integer">
+		SELECT COUNT(*) FROM lifeTip_like WHERE num=#{num}
+	</select>
+
+	<!-- 유저당 게시글 좋아요 여부 확인 -->
+	<select id="readInteriorLikeTip" parameterType="map" resultType="Integer">
+		SELECT NVL(COUNT(*),0) FROM lifeTip_like WHERE num=#{num} AND userId=#{userId}
+	</select>
+	
+	<!-- 게시글 좋아요 삭제 -->
+	<delete id="deleteInteriorTipLike" parameterType="map">
+		DELETE FROM lifeTip_like WHERE num=#{num} AND userId=#{userId}
+	</delete>
+	
 
 </mapper>
