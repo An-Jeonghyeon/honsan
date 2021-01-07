@@ -34,6 +34,10 @@ public class DressController {
 	@Autowired
 	private MyUtil myUtil;
 	
+	@RequestMapping("main")
+	public String main()throws Exception{
+		return ".dressMain.mainPage";
+	}
 	@RequestMapping("list")
 	public String DressList(@RequestParam(value = "page",defaultValue = "1")int current_page,
 							@RequestParam(defaultValue = "all")String condition,

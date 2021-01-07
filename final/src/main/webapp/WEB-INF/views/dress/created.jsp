@@ -96,7 +96,7 @@
                             </div>
                             <div class="inputBody2">
                               <input type="hidden" value="" name="hashtag" id="rdTag" />
-                                <input type="text" class="InputTag" placeholder="#태그를 입렵해 주세요.(최대5개)">
+                                <input type="text" class="InputTag" placeholder="#태그를 입력해 주세요.(최대5개)">
                                 <div class="tagbtnBody">
                                     <button class="Tag-btn" type="button" onclick="TagbtnSend()">TAG</button>
                                 </div>

@@ -97,9 +97,10 @@
     border-radius: 10px;
     margin-left:50px;
     text-align: center;
-    color: white;
+    color: black;
     background:rgb(206, 206, 206);
-    font-size:14px;
+    font-size:12px;
+    
 }
 .dress-WeatherImgBody{
     width: 500px;
@@ -237,11 +238,11 @@
     
 }
 .dress-baseTime{
-    font-size: 12px;
+    font-size: 10px;
     text-align: center;
 }
 .outTime{
-    font-size: 12px;
+    font-size: 10px;
     text-align: center;
    
 }
@@ -252,6 +253,7 @@
 .dress-wind{
     width:100px;
     font-size: 12px;
+   	color:skyblue;
     display: inline-block;
 }
 #highcharts-e3pb21b-0{

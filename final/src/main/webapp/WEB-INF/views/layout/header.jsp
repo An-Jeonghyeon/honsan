@@ -24,7 +24,7 @@
                   </c:if>
               </div>
               
-              <div class="menuBox"> <a href="${pageContext.request.contextPath}">오늘 뭐 입어?</a></div>
+              <div class="menuBox"> <a href="${pageContext.request.contextPath}/dress/main">오늘 뭐 입어?</a></div>
               <div class="menuBox"> <a href="${pageContext.request.contextPath}/cook/honCooq/recipe">혼자 뭐 먹지?</a></div>
               <div class="menuBox"> <a href="${pageContext.request.contextPath}/room/roomlist">방구할래?</a></div>
               <div class="menuBox"> <a href="${pageContext.request.contextPath}/interior/main">인테리어</a></div>
