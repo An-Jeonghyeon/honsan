@@ -188,7 +188,7 @@ $(".hover").mouseleave(
                         
                 <div class="categories-content">
 				 	<div class="main_interior_box">
-						<div class="main_interior_box_left">
+						<div class="main_interior_box_left" style="padding-top: 100px">
 							<a class="main_iterior_a" href="#">
 								<div class="main_interior_box_left_one" style="background: #deedf2">
 									<div class="main_interior_box_left_one_imgbox" >
@@ -215,9 +215,9 @@ $(".hover").mouseleave(
 									</div>
 								</a>
 								<a class="main_iterior_a" href="#">
-								<div class="main_interior_rightfirstdiv" style="background: #ffa6dd">
-									<div class="main_interior_rightfirstdiv_sub">
-										<img src="${pageContext.request.contextPath}/resources/images/interior/main2.webp">
+								<div class="main_interior_rightfirstdiv" style="background: #ddcab2">
+									<div class="main_interior_rightfirstdiv_sub in30">
+<%-- 										<img src="${pageContext.request.contextPath}/resources/images/interior/main2.webp"> --%>
 									</div>
 									<div class="main_interior_rightfirstdiv_sub2">
 										<p class="main_interior_rightfirstdiv_sub2_subject">인테리어 | 내추럴 스타일 | 30평대</p>
@@ -229,8 +229,8 @@ $(".hover").mouseleave(
 							<div class="main_interior_box_rightupdowm">
 								<a class="main_iterior_a" href="#">
 									<div class="main_interior_rightfirstdiv" style="background  :#ddcab9 ">
-										<div class="main_interior_rightfirstdiv_sub">
-											<img src="${pageContext.request.contextPath}/resources/images/interior/main3.webp">
+										<div class="main_interior_rightfirstdiv_sub in20">
+<%-- 											<img src="${pageContext.request.contextPath}/resources/images/interior/main3.webp"> --%>
 										</div>
 										<div class="main_interior_rightfirstdiv_sub2">
 											<p class="main_interior_rightfirstdiv_sub2_subject">인테리어 | 20평대</p>
@@ -239,9 +239,9 @@ $(".hover").mouseleave(
 									</div>
 								</a>
 								<a class="main_iterior_a" href="#">
-									<div class="main_interior_rightfirstdiv" style="background : #fff173">
-										<div class="main_interior_rightfirstdiv_sub">
-											<img src="${pageContext.request.contextPath}/resources/images/interior/main4.webp">
+									<div class="main_interior_rightfirstdiv" style="background : #efefef">
+										<div class="main_interior_rightfirstdiv_sub in40">
+<%-- 											<img src="${pageContext.request.contextPath}/resources/images/interior/main4.webp"> --%>
 										</div>
 										<div class="main_interior_rightfirstdiv_sub2">
 											<p class="main_interior_rightfirstdiv_sub2_subject">인테리어 | 모던 스타일 | 30평대 </p>

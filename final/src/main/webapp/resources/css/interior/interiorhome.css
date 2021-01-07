@@ -80,12 +80,32 @@
 	height: 65%;
 
 }
+.inimage {
+	
+}
 
 .main_interior_rightfirstdiv_sub img{
 	width: 100%;
 	height: 100%;
 }
-
+.in20 {
+	background: url("../../images/interior/in1.jpg");
+	background-size: cover;
+	background-position: center -280px;
+	background-repeat: no-repeat;
+}
+.in30 {
+	background: url("../../images/interior/in2.jpg");
+	background-size: cover;
+/* 	background-position: center -280px; */
+	background-repeat: no-repeat;
+}
+.in40 {
+	background: url("../../images/interior/in3.jpg");
+	background-size: cover;
+/* 	background-position: center -280px; */
+	background-repeat: no-repeat;
+}
 .main_interior_rightfirstdiv_sub2{
 	width: 100%;
 	height: 35%;
@@ -105,12 +125,14 @@
 	font-size: 15px;
 	color: #666666;
 	letter-spacing: -1px;
+	background: 
 
 }
 
 .main_interior_box_left_one:hover{
 	transform: scale(1.1);
 }
+
 
 .main_iterior_a {
 	text-decoration: none;

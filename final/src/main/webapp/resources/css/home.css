@@ -77,7 +77,7 @@
     margin: 30px auto;
     border-radius: 5px;
     transition:1s;
-    background-color: #ff634768;
+/*     background-color: #ff634768; */
 }
 .categories-content:hover{
     width: 100%;
