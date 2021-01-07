@@ -26,7 +26,7 @@
               
               <div class="menuBox"> <a href="${pageContext.request.contextPath}">오늘 뭐 입어?</a></div>
               <div class="menuBox"> <a href="${pageContext.request.contextPath}/cook/honCooq/recipe">혼자 뭐 먹지?</a></div>
-              <div class="menuBox"> <a href="${pageContext.request.contextPath}/room/roomlist">방구할래?</a></div>
+              <div class="menuBox"> <a href="${pageContext.request.contextPath}/room/roomlist">방 구할래?</a></div>
               <div class="menuBox"> <a href="${pageContext.request.contextPath}/interior/main">인테리어</a></div>
               <div class="menuBox"> <a href="${pageContext.request.contextPath}/supplement/list">건강챙기기</a></div>
               <div class="loginBox">
@@ -50,7 +50,7 @@
 	                              <ul>
 	                                   <li><a href="${pageContext.request.contextPath}/member/logout">로그아웃</a></li>   
 	                                   <li>
-	                                  		<a onclick="mypage_send();" >마이페이지</a>
+	                                  		<a style="cursor: pointer;" onclick="mypage_send();" >마이페이지</a>
 	                                  		<input type="hidden" name="userId" value="${sessionScope.member.userId}">
 	                                   </li>            
 	                                   <li><a href="${pageContext.request.contextPath}/infos/infos">고객센터</a></li>
@@ -79,7 +79,7 @@
 <%--                       <li> <a href="${pageContext.request.contextPath}">나만의 요리 후기</a></li> --%>
                   </ul>
                   <ul class="menuObject">
-                      <li> <a href="${pageContext.request.contextPath}/room/roomlist">방구할래?</a></li>
+                      <li> <a href="${pageContext.request.contextPath}/room/roomlist">방 구할래?</a></li>
                       <li> <a href="${pageContext.request.contextPath}/room/roomtip">부동산 팁</a></li>
                       <li> <a href="${pageContext.request.contextPath}/room/roomChecklist">방 체크리스트</a></li>
                       <li> <a href="${pageContext.request.contextPath}/room/security">보안 테스트&amp;서비스</a></li>
