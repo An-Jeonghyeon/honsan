@@ -82,8 +82,6 @@
 .dress-temper::after{
     content:"";
     position: absolute;
-    z-index: 1;
-    
     width: 20px;
     height: 20px;
     background-image: url("/app/resources/images/dress/celsius.png");
