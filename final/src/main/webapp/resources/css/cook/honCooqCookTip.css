@@ -18,6 +18,10 @@ CookTip 게시판 글쓰기폼
 	/* background-color: rgba(211, 23, 111, 0.332);    */
 }
 
+.cookTip_writeHeaderMenu > a {
+	text-decoration: none;
+}
+
 .cookTip_writeheaderInnerText {
 	width: 1300px;
 	height: 100px;
@@ -577,7 +581,7 @@ CookTip 게시판 리스트폼
 .cookTip_content-box {
     box-sizing:border-box;
     width:20%;
-    height:23%; 
+    height:20%; 
     margin : 2.5%;
 /*     background-color:crimson; */
 }
