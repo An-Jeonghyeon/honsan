@@ -147,10 +147,10 @@ function printJSON(data) {
 			
 			if(out*1<=1){
 					$(".dress-tmeperText span").html("상당히 추워요!  <span style='color:skyblue;'>패딩, 두꺼운코드, 목도리, 기모제품 </span>을(를) 준비하세요!");
-					$(".dress-WeatherImg").css("background-image","url('/app/resources/images/dress/pading.png')");
+					$(".dress-WeatherImg").css("background-image","url('/app/resources/images/dress/cold.png')");
 			}else if(out*1 > 1 &&out*1 < 8){
 					$(".dress-tmeperText span").html("날씨가 추워요 여러겹의 <span style='color:skyblue;'>코트, 가죽자켓, 히트텍, 니트, 레깅스 </span>을(를) 준비하세요!");
-					$(".dress-WeatherImg").css("background-image","url('/app/resources/images/dress/mil.png')");
+					$(".dress-WeatherImg").css("background-image","url('/app/resources/images/dress/padding.png')");
 			}else if(out*1 > 9 &&out*1 < 11){
 					$(".dress-tmeperText span").html("날씨가 추워요 <span style='color:skyblue;'>자켓, 트렌치코트, 야상, 니트, 청바지, 스타킹 </span>을(를) 준비하세요!");
 					$(".dress-WeatherImg").css("background-image","url('/app/resources/images/dress/trance.png')");

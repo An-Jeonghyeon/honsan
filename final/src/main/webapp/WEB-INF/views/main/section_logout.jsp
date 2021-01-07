@@ -20,24 +20,24 @@
         <section id="section2">
             <article class="article1">
                 <div class="contentUp content1">
-                    <div class="contentInner"></div>
+                    <div class="contentInner1"></div>
                 </div>
                 <div class="contentUp content2">
-                    <div class="contentInner"></div>
+                    <div class="contentInner2"></div>
                 </div>
                 <div class="contentUp content3">
-                    <div class="contentInner"></div>
+                    <div class="contentInner3"></div>
                 </div>
             </article>
             <article class="article2">
                 <div class="contentDown content1">
-                    <div class="contentInner"></div>
+                    <div class="contentInner4"></div>
                 </div>
                 <div class="contentDown content2">
-                    <div class="contentInner"></div>
+                    <div class="contentInner5"></div>
                 </div>
                 <div class="contentDown content3">
-                    <div class="contentInner"></div>
+                    <div class="contentInner6"></div>
                 </div>
             </article>
         </section>

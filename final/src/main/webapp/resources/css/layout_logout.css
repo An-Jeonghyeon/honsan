@@ -130,15 +130,100 @@ header{
     /* 확인용 background */
     /* background-color: rgba(152, 237, 225, 0.707); */
 }
-.contentInner{
+
+.contentInner1{
+	height: 330px;
+    margin: 10px auto;
+    border-radius: 25px;
+    background-color: rgba(130, 130, 130, 0.454);
+    transition: 1s;
+    background-image: url(../images/layout_logout/main1-1.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: right;
+    transition: 1s;
+}
+.contentInner2{
     height: 330px;
     margin: 10px auto;
     border-radius: 25px;
-    background-color: rgba(130, 130, 130, 0.454); 
+    background-color: rgba(130, 130, 130, 0.454);
+    transition: 1s;
+    background-image: url(../images/layout_logout/main1-2.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: right;
     transition: 1s;
 }
-.contentInner:hover{
+.contentInner3{
+    height: 330px;
+    margin: 10px auto;
+    border-radius: 25px;
+    background-color: rgba(130, 130, 130, 0.454);
+    transition: 1s;
+    background-image: url(../images/layout_logout/main1-3.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: left;
+}
+.contentInner4{
+    height: 330px;
+    margin: 10px auto;
+    border-radius: 25px;
+    background-color: rgba(130, 130, 130, 0.454);
+    transition: 1s;
+    background-image: url(../images/layout_logout/main1-4.jpeg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top;
+    transition: 1s;
+}
+.contentInner5{
+   height: 330px;
+    margin: 10px auto;
+    border-radius: 25px;
+    background-color: rgba(130, 130, 130, 0.454);
+    transition: 1s;
+    background-image: url(../images/layout_logout/main1-5.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: left;
+}
+.contentInner6{
+    height: 330px;
+    margin: 10px auto;
+    border-radius: 25px;
+    background-color: rgba(130, 130, 130, 0.454);
+    transition: 1s;
+    background-image: url(../images/layout_logout/main1-6.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position-x: left;
+
+}
+.contentInner1:hover{
     transform: scale(1.2);
+     background-position: revert;
+}
+.contentInner2:hover{
+    transform: scale(1.2);
+      background-position: revert;
+}
+.contentInner3:hover{
+    transform: scale(1.2);
+    background-position: right;
+}
+.contentInner4:hover{
+    transform: scale(1.2);
+     background-position:right;
+}
+.contentInner5:hover{
+    transform: scale(1.2);
+     background-position: right;
+}
+.contentInner6:hover{
+    transform: scale(1.2);
+    background-position-x: right;
 }
 .login{
     width: 300px;
