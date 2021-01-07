@@ -184,4 +184,49 @@ public class InteriorTipServiceImpl implements InteriorTipService{
 		return list;
 	}
 
+	@Override
+	public void insertInteriorTipLike(Map<String, Object> map) throws Exception {
+		try {
+			dao.insertData("interiorTip.insertInteriorTipLike", map);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+		
+	}
+
+	@Override
+	public int interiorTipLikeCount(int num) {
+		int result=0;
+		try {
+			result=dao.selectOne("interiorTip.interiorTipLikeCount", num);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	@Override
+	public int readInteriorTipLike(Map<String, Object> map) throws Exception {
+		int result=0;
+		try {
+			result=dao.selectOne("interiorTip.readInteriorTipLike", map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	@Override
+	public void deleteInteriorTipLike(Map<String, Object> map) throws Exception {
+		try {
+			dao.deleteData("interiorTip.deleteInteriorTipLike", map);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+		
+		
+	}
+
 }

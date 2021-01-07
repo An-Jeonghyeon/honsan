@@ -508,6 +508,37 @@ public class InteriorController {
 		return model;
 	}
 	
+	// 게시글 좋아요 삭제(delete) : AJAX-JSON
+	@RequestMapping(value="deleteInteriorLike", method=RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> deleteInteriorLike(
+			@RequestParam int num,
+			HttpSession session
+			) {
+		String state="true";
+		int interiorLikeCount=0; //좋아요의 총 수를 담을 변수 
+		SessionInfo info=(SessionInfo)session.getAttribute("member"); //로그인된 회원정보
+		
+		Map<String, Object> paramMap=new HashMap<>();
+		paramMap.put("num", num); //게시판의 시퀸스 번호 
+		paramMap.put("userId", info.getUserId()); // 접속중인 아이디 
+		
+		try {
+			service.deleteInteriorLike(paramMap);	// map 설정한 정보 테이블에서 삭제 
+		} catch (Exception e) {
+			e.printStackTrace();
+			state="false";   // 삭제 실패 시 메시지 전송을 위한 변수 
+		}
+			
+		interiorLikeCount = service.interiorLikeCount(num);
+		 
+		Map<String, Object> model=new HashMap<>();
+		model.put("state", state);  // 상태의 성공 실패 여부 
+		model.put("interiorLikeCount", interiorLikeCount); // 실행 후 좋아요의 수 를 담은 변수
+		
+		return model;
+	}
+	
 	@RequestMapping(value="insertInteriorZzim", method=RequestMethod.POST) //포스트방식으로 왔을때 
 	@ResponseBody //에이작스 제이슨 등 쓸때는 리스폰스 바디필수 자동연결 
 	public Map<String, Object> insertInteriorZzim(
