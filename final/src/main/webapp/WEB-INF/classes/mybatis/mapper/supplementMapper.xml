@@ -26,8 +26,8 @@
 			<when test="condition=='content'">
 				DBMS_LOB.INSTR(content, #{keyword}) &gt; 0
 			</when>
-			<when test="condition == 'userId'">
-			    s.userId=#{keyword}
+			<when test="condition == 'userName'">
+			    s.userName=#{keyword}
 			</when>
 			<otherwise>
 				INSTR(#{condition}, #{keyword}) &gt; 0

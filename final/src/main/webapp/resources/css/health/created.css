@@ -123,10 +123,12 @@
     font-size: 14px;
     padding-left: 30px;
 }
+.filediv {
+    border: 1px solid rgb(226, 226, 226);
+}
 .h-imageFile {
     width: 85%;
     height: 43px;
-    border: 1px solid rgb(226, 226, 226);
     line-height: 43px;
     margin-left: 10px;
     padding-left: 10px;
