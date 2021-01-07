@@ -20,19 +20,26 @@
 	height: 3em;
 }
 
+.mainImg_boxbox{
+	width: 100%;
+	display : flex;
+	justify-content : center;
+	height: 45px;
+}
+
 
 .mainImg_append{
     width: 100px;
-    position: absolute;
+    margin: 0 auto;
     height: 41px;
     font-size: 18px;
     text-align: center;
     font-weight: 700;
     line-height: 2.4;
     color: #444;
-    left : 300px;
     border: 2px solid #ababab;
     border-radius: .5em;
+    
 }
 
 .mainImg_append > input{
@@ -46,10 +53,9 @@
         
     width: 100px;
     height: 41px;
-    position: absolute;
-    top: 50px;
-    left: -1px;
+    position: relative;
     opacity: 0;
+    top: -54px;
    
 
     
@@ -197,8 +203,10 @@
 								onerror="this.src='${pageContext.request.contextPath}/resources/images/mypage/user.png'">
 						</div>
 						<c:if test="${mode=='update'}">
-							<div class="mainImg_append">설정
-								<input id="mainImg_upload" type="file" name="profileUpload"  onchange="javascript:deleteMainFile('${dto.userId}');">
+							<div class="mainImg_boxbox">
+								<div class="mainImg_append">설정
+									<input id="mainImg_upload" type="file" name="profileUpload"  onchange="javascript:deleteMainFile('${dto.userId}');">
+								</div>
 							</div>
 						</c:if>
 					</div>
