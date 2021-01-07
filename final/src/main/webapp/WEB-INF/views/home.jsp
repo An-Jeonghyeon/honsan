@@ -153,7 +153,7 @@ $(".hover").mouseleave(
 							<figure class="snip1361">
 							  <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample45.jpg" alt="sample45" />
 							  <figcaption>
-							    <h3>Room Tip</h3>
+							    <h3 class="thicker"><span>Room Tip</span></h3>
 							    <p><br>
 							    집을 구하기 전   hollo 회원들과  <br><br>
 							    살펴 보아야 할 주의 사항을 <br><br>
