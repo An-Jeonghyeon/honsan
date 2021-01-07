@@ -471,7 +471,7 @@ $(function() {
 	
 	                        <div class="estimate_list_buttonbox">
 	                            <button type="button" class="estimate_list_prebutton"> 이전 </button>
-	                            <button type="button" class="estimate_list_button " disabled="disabled"> 완료 </button>
+	                            <button type="button" class="estimate_list_button " disabled="disabled" onclick="javascript:location.href='${pageContext.request.contextPath}/itEstimate/main'"> 완료 </button>
 	                        </div>
 	                    </div>                    
 	
