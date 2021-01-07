@@ -32,7 +32,7 @@
 	<div class="ReplyAnswerBody">
 		<div class="ReplyAnswerContentBox">
 			<span class="ReplyListUserX">x</span> <span
-				class="ReplyAnswerContentUserName">${vo.userName}</span>
+				class="ReplyAnswerContentUserName">${vo.userId}</span>
 			<textarea placeholder="댓글을 남겨보세요"></textarea>
 			<div class="ReplySubmitButton">
 				<button class="Replybtn" id="ReplybtnSubmit" data-replyNum="${vo.replyNum}"type="button">등록</button>
