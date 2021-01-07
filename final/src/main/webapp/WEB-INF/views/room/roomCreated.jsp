@@ -464,7 +464,7 @@ $(function(){
 <div style="width: 1000px; margin: 0px auto; padding-top: 100px;">
 	
 		<div id="accordion1" class="acc" >
-			<h3 style="background:#ffeb5e; height: 50px; font-size: 20px; color: black; border: none;"><i class="fas fa-map-marked-alt"></i>  주소</h3>
+			<h3 style="padding-left: 14px; background:#ffeb5e; height: 50px; font-size: 20px; color: black; border: none;"><i class="fas fa-map-marked-alt"></i>  주소</h3>
 			<div>
 			
 				<span>주소가 들어갈 kakao api부분</span>
