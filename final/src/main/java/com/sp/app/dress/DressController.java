@@ -1,5 +1,6 @@
 package com.sp.app.dress;
 
+import java.io.File;
 import java.math.BigDecimal;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
@@ -38,11 +39,15 @@ public class DressController {
 							@RequestParam(defaultValue = "all")String condition,
 							@RequestParam(defaultValue = "") String keyword,
 							HttpServletRequest req,
+							HttpSession session,
 							Model model) throws Exception{
 		int rows =9;
 		int total_page=0;
 		int dataCount=0;
-		
+		String root = session.getServletContext().getRealPath("/");
+	    String pathname = root + "uploads" + File.separator + "image";
+	    System.out.println(pathname);
+	    
 		if(req.getMethod().equalsIgnoreCase("GET")) {
 			keyword=URLDecoder.decode(keyword,"utf-8");
 		}

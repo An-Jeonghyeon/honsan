@@ -40,7 +40,9 @@ $(function(){
                             </div>
                         </div>
                     </div>
+                      <div class="paginger">
                       ${dataCount}개(${pageNo}/${total_page} 페이지)
+                     </div>
                 </div>
                 <div class="dress-TipMainShowArticleBody">
                 <c:forEach var="dto" items="${list}">

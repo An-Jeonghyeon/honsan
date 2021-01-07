@@ -11,7 +11,7 @@
 	}
 	
 </script>
-<div class="dress-TipMainImg">
+<div class="dress-TipMainImg1">
 </div>
 <div class="dress-Body">
 	<div class="dress-MainBody">
@@ -46,7 +46,7 @@
 					</div>
 				</div>
 				</c:forEach>
-				<div class="dress-BestContentText">여기에 무엇을 넣어야 할까?</div>
+
 			</div>
 			<c:forEach var="dto" items="${list}">
 			

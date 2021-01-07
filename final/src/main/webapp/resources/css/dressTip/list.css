@@ -64,6 +64,8 @@
     display: inline-block;
     width: 80px;
     text-align: center;
+    text-decoration:none;
+    color:gray;
     position: relative;
     top: 0px;
     left: 175px;
@@ -106,6 +108,11 @@
     width: 50%;
     margin: 0 auto;
   
+}
+.dress-Subject > a{
+	text-decoration:none;
+	color:gray;
+	
 }
 .dress-UserName{
     width: 10%;

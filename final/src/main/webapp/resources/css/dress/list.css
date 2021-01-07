@@ -85,15 +85,15 @@
     transition: 1s;
     box-shadow: 0px 1px 5px rgba(145, 145, 145, 0.769);
 }
-.dress-BestContentText{
+/* .dress-BestContentText{
     width: 100%;
     height: 15%;
     border-radius: 2px;
     box-sizing: border-box;
     text-align: center;
-    /* TestBackground */
+    TestBackground
     background-color: #fafaee;
-}
+} */
 .dress-subContent{
     width: 20%;
     height: 30%;
@@ -334,11 +334,19 @@
 	border-radius: 5px;
 	
 }
-.dress-TipMainImg{
+.dress-TipMainImg1{
 	width:100%;
 	height:300px;
 	background-image: url("/app/resources/images/dress/pp.jpg");
 	background-repeat: no-repeat;
 	background-size: cover;
-	background-position: bottom;
+	background-position: left;
+}
+.paginger{
+	width:100px;
+	height:30px;
+	float:right;
+	position:relative;
+	left:610px;
+	top:70px;
 }
