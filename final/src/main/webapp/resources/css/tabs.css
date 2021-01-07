@@ -90,8 +90,15 @@ a{
 	height: 32px;
 	border-radius: 5px;
 }
-
-
+a:visited {
+	color: black;
+}
+a:link {
+	color: black;
+}
+a:active {
+	color: black;
+}
 
 
 
