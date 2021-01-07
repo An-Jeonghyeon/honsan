@@ -82,7 +82,12 @@ function check() {
     
             <div class="h-image ">
                 <div class="h-image-title"><i class="fas fa-check"></i> 대표 이미지</div>
+                <div class="filediv">
 	                <input type="file" class="h-imageFile" name="upload" id="img22" accept="image/*">
+	                <c:if test="${mode=='update'}">
+                  		${dto.imageFilename}
+                  	</c:if>
+                </div>
             </div>
         </div>
         <div class="h-buttonBoxBody">
@@ -92,7 +97,7 @@ function check() {
             	<input type="hidden" name="num" value="${dto.num}" >
             	<input type="hidden" name="page" value="${page}" >
             	<input type="hidden" name="imageFilename" value="${dto.imageFilename}" >
-            </c:if>
+           	</c:if>
         </div>
     </article>
 </form>

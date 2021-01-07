@@ -66,7 +66,7 @@ $(function() {
                        </div>
                        <div class="best-bottom">
                            <div class="best-subject"><a href="${articleUrl}">${dto.subject}</a></div>
-                           <div class="best-user">${dto.userId}</div>
+                           <div class="best-user">${dto.userName}</div>
                            <div class="best-count"> 
                            	<span class="count-count"><i class="far fa-thumbs-up"></i></span> 
                            		<span>${dto.likeCount}</span></div>
@@ -97,7 +97,7 @@ $(function() {
                                <td>${dto.category}</td>
                                <td class="s-subject">
                                    <a href="${article_url}&num=${dto.num}">${dto.subject} (${dto.replyCount})</a></td>
-                               <td>${dto.userId}</td>
+                               <td>${dto.userName}</td>
                                <td>${dto.register_date}</td>
                                <td>${dto.likeCount}</td>
                                <td>${dto.hitCount}</td>
@@ -120,7 +120,7 @@ $(function() {
 		                           <option value="subject" ${condition=="subject"?"selected='selected'":""}>제목</option>
 		                           <option value="content" ${condition=="content"?"selected='selected'":""}>내용</option>
 		                           <option value="register_date" ${condition=="register_date"?"selected='selected'":""}>작성일</option>
-		                           <option value="userId" ${condition=="userId"?"selected='selected'":""}>작성자</option>
+		                           <option value="userId" ${condition=="userName"?"selected='selected'":""}>작성자</option>
 		                       </select>
 		                       <input type="text" class="sup-bbs-input" name="keyword" value="${keyword}">
 		                       <button type="button" class="sup-bbs-btn" onclick="searchList();">검색</button>

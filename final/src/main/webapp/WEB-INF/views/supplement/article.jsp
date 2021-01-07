@@ -350,7 +350,7 @@ $(document).ready(function() {
 	            </div>
 	            <div class="h-articleSub">
 	                <div class="h-articleMainHeaderUserName">
-	                    <span>${dto.userId}</span> 
+	                    <span>${dto.userName}</span> 
 	                    <span class="h-createdNumber">${dto.register_date}</span> 
 	                </div>
 	                <div class="h-articleMainHeaderReply">
@@ -361,7 +361,7 @@ $(document).ready(function() {
 	        </div>
 	
 	        <div class="h-ContentBody">
-	            <pre class="hpre">
+	            <pre class="hpre" style="white-space: pre-wrap; overflow: auto; word-break: break-all;">
 	                ${dto.content}
 	             </pre>
 	        </div>
