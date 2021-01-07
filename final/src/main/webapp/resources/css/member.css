@@ -24,6 +24,10 @@ li {
 .singup-title h1 {
     font-size: 35px;
 }
+.logina{
+	text-decoration:none;
+	color:gray;
+}
 /* -----------------단계-------------------- */
 .singup-step {
     width: 800px;
