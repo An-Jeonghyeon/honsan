@@ -11,6 +11,8 @@
 	}
 	
 </script>
+<div class="dress-TipMainImg">
+</div>
 <div class="dress-Body">
 	<div class="dress-MainBody">
 		<span class="dress-paging">${dataCount}개(${page}/${total_page} 페이지)</span>

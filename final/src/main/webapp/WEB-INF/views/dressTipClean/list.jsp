@@ -18,7 +18,8 @@ $(function(){
 })
 	
 </script>
-
+<div class="dress-TipMainImg">
+</div>
  <div class="dress-TipMainBody">
                 <div class="dress-TipMainBodySub">
                     <div class="dress-TipMenuBody1">
