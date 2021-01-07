@@ -9,7 +9,9 @@
 <script src="${pageContext.request.contextPath}/resources/js/infos.js"></script>
 
 <div id="top_img_banner">
-	
+	<div class="top_img_banner_title">
+		<span>고객센터</span>
+	</div>
 </div>
 
 <section>

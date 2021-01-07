@@ -12,6 +12,21 @@
 	background-image : url("http://theme.zdassets.com/theme_assets/9309779/71844e0c59c4fc9af423cf408d0868369d842bd1.jpg");
 }
 
+.top_img_banner_title{
+	display:flex;
+	margin: 0 auto;
+/* 	background-color:yellow; */
+	padding-top:9.3rem;
+}
+
+.top_img_banner_title > span {
+	margin:0 auto;
+	color:#2e4891;
+	font-size:3.5rem;
+	font-weight:900;
+	text-shadow:3px 3px white;
+}
+
 #board_qna_faq{
 	min-height : 490px;
 	width: 1200px;

@@ -2,14 +2,30 @@
 <%@ page trimDirectiveWhitespaces="true" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/tabs.css" type="text/css">
+
 <style>
         .MainBody {
         
             width: 1300px;
             height: 600px;
-            margin: 250px auto 0 auto;
-
+            margin: 50px auto 0 auto;
         }
+
+		.faqsearchlist {
+			background: #474a6f;
+		}
+
+		.fontColor-title {
+			color:white;
+			text-shadow: 2px 2px gray;
+		}
+
+		.fontColor {
+		    color: #eaeaea;
+		    text-shadow: 1px 1px grey;		
+		}
 
         .faq-page {
             width: 100%;
@@ -170,7 +186,29 @@
     </script>
 </head>
 
+<div class="qnasearchlist faqsearchlist">
+<div style="width: 1000px; margin: 0px auto;">
+	<form name="qnasearchForm"
+		action="${pageContext.request.contextPath }/qna/qnalist"
+		method="post">
+			<table style="width:1000px; margin: 15px auto; border-spacing: 0px;">
+				<tr>
+					<td align="center" class="qnatitle fontColor-title"><br>FAQ</td>
+				</tr>
+				<tr>
+					<td align="center"> <span style="color: #474a6f">.</span> </td>
+				</tr>			
+				<tr>
+					<td align="center"> <span style="color: #474a6f">.</span> </td>
+				</tr>			
+				<tr>
+					<td align="center" class="fontColor ">HOLLO 회원들이 자주 묻는 질문에 대한 답변입니다.</td>
+				</tr>			
+			</table>
+	</form>
+</div>
 
+</div>
     <div class="MainBody">
         <table class="faq-table">
             <tr>
