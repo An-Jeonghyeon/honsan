@@ -318,8 +318,8 @@
 .interiorTip_benner{
 
 	width: 100%;
-	height: 600px;
-	background: url('${pageContext.request.contextPath}/resources/images/interior/interiorbanner2.png');
+	height: 700px;
+	background: url('${pageContext.request.contextPath}/resources/images/interior/125.jpg');
 	background-size: cover;
 	background-position: bottom;
 	margin-top: 100px;

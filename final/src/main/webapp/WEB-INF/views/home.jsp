@@ -4,6 +4,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 
+
+
 <script type="text/javascript">
 /* Demo purposes only */
 $(".hover").mouseleave(
@@ -184,8 +186,80 @@ $(".hover").mouseleave(
                     <span>Interior</span>
                 </div>
                         
-                <div class="categories-content">추천게시물
- 
+                <div class="categories-content">
+				 	<div class="main_interior_box">
+						<div class="main_interior_box_left">
+							<a class="main_iterior_a" href="#">
+								<div class="main_interior_box_left_one" style="background: #deedf2">
+									<div class="main_interior_box_left_one_imgbox" >
+										<img src="${pageContext.request.contextPath}/resources/images/interior/main0.webp">
+									</div>
+									<div class="main_interior_box_left_one_contentbox">
+										<p class="main_interior_box_left_one_contentbox_subject">인테리어 | 모던 스타일 | 원룸 | 14평형 </p>
+										<p class="main_interior_box_left_one_contentbox_content">포근하고 아늑한 분위기 느낌 , 침대쪽엔 생동감 넘치는 컬러와 곳곳에 컬러풀한  소품들을 배치했어요. </p>
+									</div>
+								</div>
+							</a>
+						</div>
+						<div class="main_interior_box_right">
+							<div class="main_interior_box_rightupdowm">
+								<a class="main_iterior_a" href="#">
+									<div class="main_interior_rightfirstdiv" style="background: #dde7da;">
+										<div class="main_interior_rightfirstdiv_sub">
+											<img src="${pageContext.request.contextPath}/resources/images/interior/main1.webp">
+										</div>
+										<div class="main_interior_rightfirstdiv_sub2">
+											<p class="main_interior_rightfirstdiv_sub2_subject">인테리어 | 로맨틱 스타일 | 오피스텔</p>
+											<p class="main_interior_rightfirstdiv_sub2_content">새해 맞이 새출발을 위한 집정리 . 이케아에서 득템한 러그도 새로 깔아주고 큰 변화는 아니여도 리프레쉬된 기분 :)</p>
+										</div>
+									</div>
+								</a>
+								<a class="main_iterior_a" href="#">
+								<div class="main_interior_rightfirstdiv" style="background: #ffa6dd">
+									<div class="main_interior_rightfirstdiv_sub">
+										<img src="${pageContext.request.contextPath}/resources/images/interior/main2.webp">
+									</div>
+									<div class="main_interior_rightfirstdiv_sub2">
+										<p class="main_interior_rightfirstdiv_sub2_subject">인테리어 | 내추럴 스타일 | 30평대</p>
+										<p class="main_interior_rightfirstdiv_sub2_content">마음에 안정감을 준다는 하늘색으로 색감을 주고 아이가 좋아하는 모던한 느낌으로 배치해 보았어요 ㅎㅎ</p>						
+									</div>
+								</div>
+								</a>
+							</div>
+							<div class="main_interior_box_rightupdowm">
+								<a class="main_iterior_a" href="#">
+									<div class="main_interior_rightfirstdiv" style="background  :#ddcab9 ">
+										<div class="main_interior_rightfirstdiv_sub">
+											<img src="${pageContext.request.contextPath}/resources/images/interior/main3.webp">
+										</div>
+										<div class="main_interior_rightfirstdiv_sub2">
+											<p class="main_interior_rightfirstdiv_sub2_subject">인테리어 | 20평대</p>
+											<p class="main_interior_rightfirstdiv_sub2_content">작은집 한켠에 마련한 아늑한 내 공간이 있는것이 참 좋은 요즘이에요 오늘은 화분을 옮겨둬봤는데 따스한 느낌이네요.</p>						
+										</div>
+									</div>
+								</a>
+								<a class="main_iterior_a" href="#">
+									<div class="main_interior_rightfirstdiv" style="background : #fff173">
+										<div class="main_interior_rightfirstdiv_sub">
+											<img src="${pageContext.request.contextPath}/resources/images/interior/main4.webp">
+										</div>
+										<div class="main_interior_rightfirstdiv_sub2">
+											<p class="main_interior_rightfirstdiv_sub2_subject">인테리어 | 모던 스타일 | 30평대 </p>
+											<p class="main_interior_rightfirstdiv_sub2_content">이 시간 예븐 음악 켜두고 왔다갔다 하며 아이들보고 , 집안일도 하고 , 컴퓨터도 들여다보고 바쁘게 움직이고 있어요.</p>						
+										</div>
+									</div>
+								</a>
+				
+							</div>
+				
+				
+				
+				
+						</div>
+					
+					
+					
+					</div>
 	             </div>    
             </div>
             
