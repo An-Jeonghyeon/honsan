@@ -100,6 +100,7 @@ function ajaxHTML(url, method, query, selector) {
 			어떤가요?
 		</small>
 	</div>
+	<!-- 
 	<div class="cookTip_writeHeaderMenu">
 		<ul>
 			<li><a
@@ -108,6 +109,7 @@ function ajaxHTML(url, method, query, selector) {
 				href="${pageContext.request.contextPath}/cook/honCook/cookTip/list">베스트글</a></li>
 		</ul>
 	</div>
+	 -->
 </article>
 <form method="post" name="writeBodyForm"
 	onsubmit="return submitContents(this)" enctype="multipart/form-data">

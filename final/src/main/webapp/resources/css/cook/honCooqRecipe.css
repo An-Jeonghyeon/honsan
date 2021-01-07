@@ -1134,7 +1134,9 @@ recipe 게시판 글보기 폼
 
 .recipe_articleMainHeaderSubject>span {
 	font-size: 2.5rem;
-	font-weight: 700;
+	font-weight: 900;
+	/*font-family: 'Song Myung', serif;*/
+	text-shadow: 1px 1px 2px #a1a1a1;
 }
 
 .recipe_articleSub {
@@ -1685,7 +1687,11 @@ recipe 게시판 글보기 추가 폼 (요리 관련)
 }
 
 .cooking_step_tip .cTip_data {
+	font-family: 'Song Myung', serif;
+	color:rgb(80 85 124);
 	font-size:0.9rem;
+	font-weight:800;
+	text-shadow: 1px 1px 2px #a1a1a1;
 	border-bottom: 3px double #ff9b9b;
 }
 
