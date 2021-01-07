@@ -12,8 +12,8 @@
 		let month = today.getMonth() + 1;
 		let date = today.getDate();
 		let hour = today.getHours();
-
-		if(hour===0 && month<12){
+		console.log(hour);
+		if(hour===1||hour===0 && month<12){
 			date=date-1;
 			month= "0"+month;
 			if(date<10){
@@ -26,6 +26,8 @@
 				date= "0"+date;
 			}
 			return year+ month + date;
+		}else if(hour==1){
+			
 		}
 		
 		return "" + year + month + date;
@@ -56,6 +58,9 @@
 		} else if (hour < 23) {
 			hour = "20"
 			return hour + "00";
+		} else if (hour < 1) {
+			hour = "20"
+				return hour + "00";
 		}else{
 			return hour + "00";
 		}
