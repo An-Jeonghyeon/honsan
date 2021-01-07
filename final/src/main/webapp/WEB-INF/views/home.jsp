@@ -37,13 +37,13 @@ $(".hover").mouseleave(
             
             <br><br><br><br><br><br>
             <p>
-				<MARQUEE behavior="scroll" scrollamount="15" style="font-size: 30px;font-size: 64px; font-weight: bold; letter-spacing: 1.2em;">real estate Finding a room real estate Finding a room real estate Finding a room real estate Finding a room</MARQUEE>
+				<MARQUEE behavior="scroll" scrollamount="15" style="font-size: 30px;font-size: 64px; font-weight: bold; letter-spacing: 1.2em;">What you wear is how you present yourself to the world, especially today, when human contacts are so quick. Fashion is instant language.</MARQUEE>
 			<!-- 스크롤의 속성 -->
 		    </p>
             
             <div class="categories-Recommendation1">
                 <div class="categoriesName">
-                    <span>오늘 뭐입어? 추천 게시판</span>
+                    <span>Clothes</span>
                 </div>
                      
                 <div class="categories-content">
@@ -59,14 +59,14 @@ $(".hover").mouseleave(
             </div>
             
             <p>
-				<MARQUEE behavior="scroll" scrollamount="15" style="font-size: 30px;font-size: 64px; font-weight: bold; letter-spacing: 1.2em;">real estate Finding a room real estate Finding a room real estate Finding a room real estate Finding a room</MARQUEE>
+				<MARQUEE behavior="scroll" scrollamount="15" style="font-size: 30px;font-size: 64px; font-weight: bold; letter-spacing: 1.2em;">Always remember: If you’re alone in the kitchen and you drop the lamb, you can always just pick it up. Who’s going to know?</MARQUEE>
 			<!-- 스크롤의 속성 -->
 		    </p>
             
             
             <div class="categories-Recommendation1">
                 <div class="categoriesName">
-                    <span>혼자 뭐먹지? 추천 게시판</span>
+                    <span>Cooking</span>
                 </div>
                        
                  <div class="categories-content">
@@ -112,13 +112,13 @@ $(".hover").mouseleave(
             </div>
             
             <p>
-				<MARQUEE behavior="scroll" scrollamount="15" style="font-size: 30px;font-size: 64px; font-weight: bold; letter-spacing: 1.2em;">real estate Finding a room real estate Finding a room real estate Finding a room real estate Finding a room</MARQUEE>
+				<MARQUEE behavior="scroll" scrollamount="15" style="font-size: 30px;font-size: 64px; font-weight: bold; letter-spacing: 1.2em;">Owning a home is a keystone of wealth… both financial affluence and emotional security</MARQUEE>
 			<!-- 스크롤의 속성 -->
 		    </p>
             
             <div class="categories-Recommendation1">
                 <div class="categoriesName">
-                    <span>방구할래? 추천 게시판</span>
+                    <span>Room</span>
                 </div>
                         
                 <div class="categories-content">
@@ -175,13 +175,13 @@ $(".hover").mouseleave(
             </div>
             
             <p>
-				<MARQUEE behavior="scroll" scrollamount="15" style="font-size: 30px;font-size: 64px; font-weight: bold; letter-spacing: 1.2em;">real estate Finding a room real estate Finding a room real estate Finding a room real estate Finding a room</MARQUEE>
+				<MARQUEE behavior="scroll" scrollamount="15" style="font-size: 30px;font-size: 64px; font-weight: bold; letter-spacing: 1.2em;">Design is not just what it looks like and feels like. Design is how it works. - Steve Jobs</MARQUEE>
 			<!-- 스크롤의 속성 -->
 		    </p>
             
             <div class="categories-Recommendation1">
                 <div class="categoriesName">
-                    <span>인테리어 추천 게시판</span>
+                    <span>Interior</span>
                 </div>
                         
                 <div class="categories-content">추천게시물
@@ -190,13 +190,13 @@ $(".hover").mouseleave(
             </div>
             
             <p>
-				<MARQUEE behavior="scroll" scrollamount="15" style="font-size: 30px;font-size: 64px; font-weight: bold; letter-spacing: 1.2em;">real estate Finding a room real estate Finding a room real estate Finding a room real estate Finding a room</MARQUEE>
+				<MARQUEE behavior="scroll" scrollamount="15" style="font-size: 30px;font-size: 64px; font-weight: bold; letter-spacing: 1.2em;">It is exercise alone that supports the spirits, and keeps the mind in vigor. </MARQUEE>
 			<!-- 스크롤의 속성 -->
 		    </p>
             
             <div class="categories-Recommendation1">
                 <div class="categoriesName">
-                    <span>건강챙기기 추천 게시판</span>
+                    <span>Health</span>
                 </div>
                         
                 <div class="categories-content">
