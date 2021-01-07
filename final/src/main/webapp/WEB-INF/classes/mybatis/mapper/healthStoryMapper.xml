@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="healthStory">
+
+	<select id="healtyStorySeq" resultType="Integer">
+		SELECT healthStory_seq.NEXTVAL 
+		FROM dual
+	</select>
+
+
+	<insert id="inserthealtyStory" parameterType="com.sp.app.healthStory.HealthStory">
+		INSERT INTO healthStory (num, userId, content, register_date, enabled) 
+		VALUES(#{num}, #{userId}, #{content}, SYSDATE, 0)
+	</insert>
+
+	
+	<select id="dataCount" parameterType="map" resultType="Integer">
+		SELECT NVL(COUNT(*), 0)
+		FROM healthStory hs
+		JOIN member1 m ON hs.userId =m.userId
+	</select>
+
+
+	<select id="listhealtyStory" parameterType="map" resultType="com.sp.app.healthStory.HealthStory"> <!-- map에는 condition, keyword, offset, rows 등이 저장되어 넘어온다 -->
+		SELECT hs.num, hs.userId, content, TO_CHAR(register_date, 'YYYY-MM-DD') register_date, enabled
+		FROM healthStory hs
+		JOIN member1 m ON hs.userId = m.userId
+		LEFT OUTER JOIN(
+			SELECT num, COUNT(*) likeCount 
+			FROM healthStory_like
+			GROUP BY num
+		) slk ON hs.num = slk.num
+		ORDER BY hs.num DESC
+		OFFSET #{offset} ROWS FETCH FIRST #{rows} ROWS ONLY
+	</select>
+
+
+	<select id="readhealtyStory" parameterType="Integer" resultType="com.sp.app.healthStory.HealthStory">
+		SELECT hs.num, hs.userId, content, register_date, enabled,
+			NVL(likeCount, 0) likeCount
+		FROM healthStory hs
+		JOIN member1 m ON hs.userId = m.userId
+		LEFT OUTER JOIN(
+			SELECT num, COUNT(*) likeCount 
+			FROM healthStory_like
+			GROUP BY num
+		) slk ON hs.num = slk.num
+		WHERE s.num=#{num}
+	</select>
+
+	<update id="updatehealtyStory" parameterType="com.sp.app.healthStory.HealthStory">
+		UPDATE healthStory SET content=#{content}
+		WHERE num=#{num}
+	</update>
+	
+	<delete id="deletehealtyStory" parameterType="Integer">
+		DELETE FROM healthStory WHERE num=#{num}
+	</delete>
+	
+	<!-- 다중파일 -->
+	<insert id="insertFile" parameterType="com.sp.app.healthStory.HealthStory">
+		INSERT INTO healthStory_file(fileNum, num, saveFile) VALUES
+				(healthStoryFile_seq.NEXTVAL, #{num}, #{saveFile})
+	</insert>
+	
+	<select id="listFile" parameterType="Integer" resultType="com.sp.app.healthStory.HealthStory">
+		SELECT fileNum, num, saveFile
+		FROM healthStory_file
+		WHERE num=#{num}    
+	</select>
+	
+	<select id="readFile" parameterType="Integer" resultType="com.sp.app.healthStory.HealthStory">
+		SELECT fileNum, num, saveFile
+		FROM healthStory_file
+	    WHERE fileNum=#{fileNum}      
+	</select>
+	
+	<delete id="deleteFile" parameterType="map">
+		DELETE FROM healthStory_file WHERE ${field} = #{num}
+	</delete>
+	
+
+
+</mapper>
