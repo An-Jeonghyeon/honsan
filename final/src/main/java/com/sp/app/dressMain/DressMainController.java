@@ -111,11 +111,11 @@ public class DressMainController {
 		for(int i =0; i<jar.length(); i++) {
 			JSONObject ob = jar.getJSONObject(i);
 			
-			String s= ob.getString("content");
-			double t = ob.getDouble("ta");
-			
-			
 			try {
+				String s= ob.getString("content");
+				double t = ob.getDouble("ta");
+				System.out.println(ob);
+			
 				if(s.equals("서울")) dd[0] = t;
 				else if (s.equals("인천")) dd[1] = t;
 				else if (s.equals("춘천")) dd[2] = t;
