@@ -372,12 +372,18 @@ public class ChallengeController {
 		
 		Challenge dto2 = service.readUserChallengeOne(map);
 		String completion3 = dto2.getCompletion();
+		int enabled = dto2.getEnabled();
+		int totalCount = dto2.getTotalCount();
+		
 		//이건 보낼거..
 		Map<String, Object> model = new HashMap<String, Object>();
 
 		model.put("completion3", completion3); //완룓된숫자들
 		model.put("state", state);
 		model.put("comList", dto2); //진행중인거 한개
+		model.put("enabled", enabled); //진행상황
+		model.put("totalCount", totalCount); //나의 카운트
+
 
 		return model;
 	}
