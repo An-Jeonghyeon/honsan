@@ -243,7 +243,7 @@ public class ChallengeController {
 			dto.setUserId(info.getUserId());
 			service.insertUserChallenge(dto);
 		} catch (Exception e) {
-			e.printStackTrace();
+//			e.printStackTrace();
 			model.addAttribute("mode", "articleNo"); //인서트 실패시(이유 : 이미 도전하기 누른거)
 			model.addAttribute("num", num); //인서트 실패시(이유 : 이미 도전하기 누른거)
 			return "redirect:/challenge/myChallenge?userId="+userId; //여기서 그냥 바로 리스트로보내기..

@@ -3,7 +3,6 @@
 .insta_box {
     margin : 0 auto;
     background : #efefef;
-    padding-bottom: 150px;
     /* background: wheat; */
 }
 /* 탑이미지 div */
@@ -20,9 +19,9 @@
 .insta_box2 {
     width : 650px;
     /* background :steelblue; */
-    margin : 150px auto 20px;
     border : 2px solid #dbdada;
     background: white;
+    border-radius: 10px;
 }
 /* 사진, 아이디부분 */
 .insta_top{
@@ -39,10 +38,12 @@
     margin-top: 5px;
     /* background: tomato; */
 }
-.iuserImg img{
+.userImg img{
     width: 36px;
     height: 36px;
     border-radius: 50%;
+    margin-left: 10px;
+    size: auto;
 }
 /* 아이디부분 div */
 .top_right {
@@ -182,7 +183,7 @@
   
   .containerinsta {
     display: flex;
-    height: 90vh;
+    height: 900px;
     justify-content: space-around;
     align-items: center;
     color: #fff;
@@ -205,8 +206,10 @@
   
   .container_outer_imginsta {
     margin: 50px;
-    width: 40%;
     overflow: hidden;
+  }
+  .container_outer_imginsta {
+  	color: black;
   }   
       
   .container_imginsta {

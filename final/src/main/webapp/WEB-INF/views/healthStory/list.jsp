@@ -22,7 +22,7 @@
             </p>
             </div>
             <div class="btnsinsta">
-            <button class='btns_moreinsta'>오늘 운동 인증하기</button>
+            <button class='btns_moreinsta' onclick="javascript:location.href='${pageContext.request.contextPath}/healthStory/created';">오늘 운동 인증하기</button>
             </div>
             </div>
             </div>

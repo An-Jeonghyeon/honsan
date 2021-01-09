@@ -15,7 +15,7 @@
 	</insert>
 
 	
-	<select id="dataCount" parameterType="map" resultType="Integer">
+	<select id="dataCount" resultType="Integer">
 		SELECT NVL(COUNT(*), 0)
 		FROM healthStory hs
 		JOIN member1 m ON hs.userId =m.userId
@@ -31,6 +31,10 @@
 			FROM healthStory_like
 			GROUP BY num
 		) slk ON hs.num = slk.num
+        LEFT OUTER JOIN (
+            SELECT userId , profileImg 
+            FROM memberProfile
+        ) p on hs.userId = p.userId
 		ORDER BY hs.num DESC
 		OFFSET #{offset} ROWS FETCH FIRST #{rows} ROWS ONLY
 	</select>
@@ -38,7 +42,7 @@
 
 	<select id="readhealtyStory" parameterType="Integer" resultType="com.sp.app.healthStory.HealthStory">
 		SELECT hs.num, hs.userId, content, register_date, enabled,
-			NVL(likeCount, 0) likeCount
+			NVL(likeCount, 0) likeCount, profileImg
 		FROM healthStory hs
 		JOIN member1 m ON hs.userId = m.userId
 		LEFT OUTER JOIN(
@@ -46,6 +50,10 @@
 			FROM healthStory_like
 			GROUP BY num
 		) slk ON hs.num = slk.num
+        LEFT OUTER JOIN (
+            SELECT userId , profileImg 
+            FROM memberProfile
+        ) p on hs.userId = p.userId
 		WHERE s.num=#{num}
 	</select>
 
