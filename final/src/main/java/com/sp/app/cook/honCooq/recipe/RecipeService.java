@@ -7,8 +7,6 @@ public interface RecipeService {
 	public List<Recipe> listRecipe(Map<String, Object> map);
 	public int dataCount(Map<String, Object> map);
 	public Recipe readRecipe(int num);
-	//public Recipe readRecipeIngre(int num);
-	//public Recipe readRecipeProcess(int num);
 	
 	public List<Recipe> listRecipeIngre(int num);
 	public List<Recipe> listRecipeProcess(int num);
